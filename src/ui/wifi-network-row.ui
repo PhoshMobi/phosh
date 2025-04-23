@@ -27,7 +27,6 @@
     </child>
     <child>
       <object class="GtkImage" id="active_indicator">
-        <property name="visible">1</property>
         <property name="icon-name">object-select</property>
       </object>
     </child>
