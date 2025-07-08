@@ -26,6 +26,14 @@ phosh_plugin_config.set_quoted(
   'PHOSH_PLUGIN_EXTENSION_POINT_QUICK_SETTING_WIDGET_PREFS',
   'phosh-quick-setting-widget-prefs',
 )
+phosh_plugin_config.set_quoted(
+  'PHOSH_PLUGIN_EXTENSION_POINT_STATUS_ICON_WIDGET',
+  'phosh-status-icon-widget',
+)
+phosh_plugin_config.set_quoted(
+  'PHOSH_PLUGIN_EXTENSION_POINT_STATUS_ICON_WIDGET_PREFS',
+  'phosh-status-icon-widget-prefs',
+)
 
 phosh_plugin_h = configure_file(
   input: 'phosh-plugin.h.in',
@@ -40,6 +48,7 @@ pkgconfig.generate(
     'lockscreen_prefs_dir=@0@'.format(plugin_prefs_dir),
     'quick_setting_plugins_dir=@0@'.format(plugins_dir),
     'quick_setting_prefs_dir=@0@'.format(plugin_prefs_dir),
+    'status_icons_plugins_dir=@0@'.format(plugins_dir),
   ],
   subdirs: phosh_plugin_header_subdir,
   version: meson.project_version(),
@@ -120,6 +129,12 @@ if get_option('lockscreen-plugins') or get_option('quick-setting-plugins')
 
   if get_option('quick-setting-plugins')
     foreach plugin : quick_setting_plugins
+      subdir(plugin)
+    endforeach
+  endif
+
+  if get_option('status-icon-plugins')
+    foreach plugin : status_icon_plugins
       subdir(plugin)
     endforeach
   endif

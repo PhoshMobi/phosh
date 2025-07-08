@@ -39,6 +39,10 @@ option('quick-setting-plugins',
        type: 'boolean', value: true,
        description: 'Whether to build the quick setting plugins')
 
+option('status-icon-plugins',
+       type: 'boolean', value: true,
+       description: 'Whether to build the status-icon plugins')
+
 option('introspection',
        type: 'boolean', value: false,
        description: 'Build gobject-introspection support')

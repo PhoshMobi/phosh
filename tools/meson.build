@@ -114,6 +114,20 @@ if get_option('tools')
     )
   endif
 
+  if get_option('status-icon-plugins')
+    executable(
+      'custom-status-icons',
+      ['custom-status-icons-standalone.c'],
+      c_args: [
+        '-DBUILD_DIR="@0@"'.format(meson.project_build_root()),
+        '-DPLUGINS="@0@"'.format(' '.join(status_icon_plugins)),
+      ],
+      link_args: phosh_export_sym_link_arg,
+      link_with: [phosh_lib],
+      dependencies: [gmodule_dep, phosh_tool_dep, test_stubs_dep],
+    )
+  endif
+
   executable(
     'search',
     ['search.c'],
