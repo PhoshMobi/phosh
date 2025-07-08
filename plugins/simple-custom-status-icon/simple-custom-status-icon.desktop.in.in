@@ -1,0 +1,8 @@
+[Plugin]
+# Translators: This is an internal id, no need to translate it
+Id=@name@
+Name=Simple Custom Status Icon
+Types=status-icon;
+Comment=A simple custom status icon for demonstration purposes.
+Plugin=@plugins_dir@/libphosh-plugin-@name@.so
+NoDisplay=true

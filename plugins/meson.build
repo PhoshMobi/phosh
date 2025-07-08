@@ -79,6 +79,8 @@ quick_setting_plugins = [
   'wifi-hotspot-quick-setting',
 ]
 
+status_icon_plugins = ['simple-custom-status-icon']
+
 plugin_schema_dirs = []
 foreach plugin : lockscreen_plugins + quick_setting_plugins
   plugin_schema_dirs += meson.project_build_root() / 'plugins' / plugin
