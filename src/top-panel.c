@@ -18,6 +18,7 @@
 
 #include "layersurface-priv.h"
 #include "layout-manager.h"
+#include "plugin-loader.h"
 #include "shell-priv.h"
 #include "session-manager.h"
 #include "settings.h"
@@ -37,6 +38,9 @@
 
 #define KEYBINDINGS_SCHEMA_ID "org.gnome.shell.keybindings"
 #define KEYBINDING_KEY_TOGGLE_MESSAGE_TRAY "toggle-message-tray"
+
+#define CUSTOM_STATUS_ICONS_SCHEMA "mobi.phosh.shell.plugins"
+#define CUSTOM_STATUS_ICONS_KEY "status-icons"
 
 #define PHOSH_TOP_PANEL_DRAG_THRESHOLD 0.3
 
@@ -87,6 +91,10 @@ typedef struct _PhoshTopPanel {
   GtkWidget *lbl_clock;      /* top-bar clock */
   GtkWidget *lbl_lang;
   PhoshStatusIconsBox *status_icons_box;
+
+  GSettings           *custom_status_icons_settings;
+  PhoshPluginLoader   *custom_status_icons_loader;
+  GPtrArray           *custom_status_icons;
 
   GtkWidget *settings;       /* settings menu */
   GtkWidget *batteryinfo;
@@ -768,6 +776,9 @@ phosh_top_panel_dispose (GObject *object)
 
   g_cancellable_cancel (self->cancel);
   g_clear_object (&self->cancel);
+  g_clear_object (&self->custom_status_icons_settings);
+  g_clear_object (&self->custom_status_icons_loader);
+  g_clear_pointer (&self->custom_status_icons, g_ptr_array_unref);
 
   g_clear_object (&self->kb_settings);
   g_clear_object (&self->xkbinfo);
@@ -921,6 +932,40 @@ phosh_top_panel_class_init (PhoshTopPanelClass *klass)
 
 
 static void
+remove_custom_status_icon (GtkWidget *status_icon)
+{
+  GtkWidget *box = gtk_widget_get_ancestor (status_icon, PHOSH_TYPE_STATUS_ICONS_BOX);
+  phosh_status_icons_box_remove (PHOSH_STATUS_ICONS_BOX (box), status_icon);
+}
+
+
+static void
+load_custom_status_icons (PhoshTopPanel *self, GSettings *settings, char *key)
+{
+  g_auto (GStrv) plugins = NULL;
+  GtkWidget *widget;
+
+  g_ptr_array_remove_range (self->custom_status_icons, 0, self->custom_status_icons->len);
+  plugins = g_settings_get_strv (self->custom_status_icons_settings, CUSTOM_STATUS_ICONS_KEY);
+
+  if (plugins == NULL)
+    return;
+
+  for (int i = 0; plugins[i]; i++) {
+    g_debug ("Loading custom status-icon: %s", plugins[i]);
+    widget = phosh_plugin_loader_load_plugin (self->custom_status_icons_loader, plugins[i]);
+
+    if (widget == NULL) {
+      g_warning ("Custom status-icon '%s' not found", plugins[i]);
+    } else {
+      phosh_status_icons_box_append (self->status_icons_box, widget);
+      g_ptr_array_add (self->custom_status_icons, widget);
+    }
+  }
+}
+
+
+static void
 set_clock_position (PhoshTopPanel *self, PhoshLayoutManager *layout_manager)
 {
   PhoshLayoutClockPosition pos;
@@ -1005,6 +1050,7 @@ static void
 phosh_top_panel_init (PhoshTopPanel *self)
 {
   PhoshLayoutManager *layout_manager;
+  const char *plugin_dirs[] = { PHOSH_PLUGINS_DIR, NULL};
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
@@ -1020,6 +1066,16 @@ phosh_top_panel_init (PhoshTopPanel *self)
                            self,
                            G_CONNECT_SWAPPED);
   on_layout_changed (self, layout_manager);
+
+  self->custom_status_icons_settings = g_settings_new (CUSTOM_STATUS_ICONS_SCHEMA);
+  self->custom_status_icons_loader = phosh_plugin_loader_new ((GStrv) plugin_dirs,
+                                                              PHOSH_EXTENSION_POINT_STATUS_ICON_WIDGET);
+  self->custom_status_icons = g_ptr_array_new_with_free_func ((GDestroyNotify) remove_custom_status_icon);
+
+  g_signal_connect_object (self->custom_status_icons_settings, "changed::" CUSTOM_STATUS_ICONS_KEY,
+                           G_CALLBACK (load_custom_status_icons), self, G_CONNECT_SWAPPED);
+
+  load_custom_status_icons (self, NULL, NULL);
 }
 
 
