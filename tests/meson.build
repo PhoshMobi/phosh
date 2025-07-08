@@ -135,6 +135,7 @@ tests_unit = [
   'quick-setting',
   'quick-settings-box',
   'status-icon',
+  'status-icons-box',
   'timestamp-label',
   'util',
   'wall-clock',

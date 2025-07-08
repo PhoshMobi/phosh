@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <template class="PhoshStatusIconsBox" parent="GtkContainer">
+    <property name="hexpand">1</property>
+  </template>
+</interface>

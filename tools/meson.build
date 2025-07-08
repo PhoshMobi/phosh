@@ -81,6 +81,12 @@ if get_option('tools')
     dependencies: [phosh_tool_dep, test_stubs_dep],
   )
 
+  executable(
+    'status-icons-box-standalone',
+    ['status-icons-box-standalone.c'],
+    dependencies: [phosh_tool_dep, test_stubs_dep],
+  )
+
   if get_option('lockscreen-plugins')
     executable(
       'widget-box',
