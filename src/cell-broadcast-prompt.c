@@ -61,7 +61,8 @@ set_message (PhoshCellBroadcastPrompt *self, const char *message)
   g_clear_pointer (&self->message, g_free);
   self->message = g_strdup (message);
 
-  gtk_label_set_label (self->lbl_msg, message);
+  g_strstrip (self->message);
+  gtk_label_set_label (self->lbl_msg, self->message);
 
   g_object_notify_by_pspec (G_OBJECT (self), props[PROP_MESSAGE]);
 }
