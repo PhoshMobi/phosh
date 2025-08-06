@@ -113,6 +113,13 @@ on_ok_clicked (PhoshCellBroadcastPrompt *self)
 
 
 static void
+on_dialog_canceled (PhoshCellBroadcastPrompt *self)
+{
+  g_signal_emit (self, signals[CLOSED], 0);
+}
+
+
+static void
 phosh_cell_broadcast_prompt_finalize (GObject *obj)
 {
   PhoshCellBroadcastPrompt *self = PHOSH_CELL_BROADCAST_PROMPT (obj);
@@ -147,6 +154,7 @@ phosh_cell_broadcast_prompt_class_init (PhoshCellBroadcastPromptClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class,
                                                "/mobi/phosh/ui/cell-broadcast-prompt.ui");
   gtk_widget_class_bind_template_child (widget_class, PhoshCellBroadcastPrompt, lbl_msg);
+  gtk_widget_class_bind_template_callback (widget_class, on_dialog_canceled);
   gtk_widget_class_bind_template_callback (widget_class, on_ok_clicked);
 
   gtk_widget_class_set_css_name (widget_class, "phosh-cell-broadcast-prompt");
