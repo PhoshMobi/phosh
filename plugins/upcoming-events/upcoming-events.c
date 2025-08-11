@@ -11,6 +11,7 @@
 #include "event-list.h"
 #include "calendar-event.h"
 #include "upcoming-events.h"
+#include "gtkfilterlistmodel.h"
 
 #include "phosh-plugin-upcoming-events-phosh-calendar-dbus.h"
 
@@ -37,8 +38,9 @@ struct _PhoshUpcomingEvents {
   GCancellable                  *cancel;
 
   GtkStack                      *stack;
-  GtkBox                        *events_box;
+  GtkListBox                    *events_box;
   GListModel                    *event_lists;
+  GtkFilterListModel            *event_lists_filtered;
   GListStore                    *events;
   GHashTable                    *event_ids;
   GDateTime                     *since;
@@ -59,7 +61,7 @@ phosh_upcoming_events_finalize (GObject *object)
 {
   PhoshUpcomingEvents *self = PHOSH_UPCOMING_EVENTS (object);
 
-  g_clear_object (&self->event_lists);
+  g_clear_object (&self->event_lists_filtered);
   g_clear_handle_id (&self->today_changed_timeout_id, g_source_remove);
   g_cancellable_cancel (self->cancel);
   g_clear_object (&self->cancel);
@@ -158,23 +160,16 @@ calendar_event_begin_compare (gconstpointer a,
 
 
 static void
-update_event_lists_visibility (PhoshUpcomingEvents *self)
+refilter_event_lists (PhoshUpcomingEvents *self)
 {
-  int visible_lists = 0;
+  const char *child_name = "no-events";
 
-  for (uint i = 0; i < g_list_model_get_n_items (self->event_lists); i++) {
-    g_autoptr (PhoshEventList) event_list = g_list_model_get_item (self->event_lists, i);
-    uint events = phosh_event_list_get_n_events (event_list);
-    gboolean visibility = !self->skip_empty || events != 0;
+  gtk_filter_list_model_refilter (self->event_lists_filtered);
 
-    gtk_widget_set_visible (GTK_WIDGET (event_list), visibility);
-    visible_lists += visibility;
-  }
+  if (!self->skip_empty || g_list_model_get_n_items (G_LIST_MODEL (self->event_lists_filtered)))
+    child_name = "events-window";
 
-  if (!self->skip_empty || visible_lists)
-    gtk_stack_set_visible_child_name (self->stack, "events-window");
-  else
-    gtk_stack_set_visible_child_name (self->stack, "no-events");
+  gtk_stack_set_visible_child_name (self->stack, child_name);
 }
 
 
@@ -222,7 +217,7 @@ on_events_added_or_updated (PhoshUpcomingEvents *self, GVariant *events)
                                 NULL);
   }
 
-  update_event_lists_visibility (self);
+  refilter_event_lists (self);
 
   if (changed == FALSE)
     return;
@@ -260,6 +255,8 @@ on_events_removed (PhoshUpcomingEvents *self, GStrv ids)
 
     g_hash_table_remove (self->event_ids, id);
   }
+
+  refilter_event_lists (self);
 
   g_debug ("Removed %d events of %d", removed, g_strv_length (ids));
 }
@@ -363,7 +360,40 @@ on_skip_empty_changed (PhoshUpcomingEvents *self)
   gtk_button_set_image (GTK_BUTTON (self->skip_empty_btn),
                         gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_BUTTON));
 
-  update_event_lists_visibility (self);
+  refilter_event_lists (self);
+}
+
+
+static gboolean
+filter_event_lists_func (gpointer item, gpointer user_data)
+{
+  PhoshUpcomingEvents *self = PHOSH_UPCOMING_EVENTS (user_data);
+  PhoshEventList *event_list = PHOSH_EVENT_LIST (item);
+
+  if (!self->skip_empty)
+    return TRUE;
+
+  return phosh_event_list_get_n_events (event_list) > 0;
+}
+
+
+static GtkWidget *
+create_event_list_func (gpointer item, gpointer user_data)
+{
+  PhoshUpcomingEvents *self = PHOSH_UPCOMING_EVENTS (user_data);
+  PhoshEventList *el;
+  int day_offset;
+
+  g_object_get (G_OBJECT (item), "day-offset", &day_offset, NULL);
+
+  el = g_object_new (PHOSH_TYPE_EVENT_LIST,
+                     "day-offset", day_offset,
+                     "today", self->since,
+                     "model", self->events,
+                     "visible", TRUE,
+                     NULL);
+
+  return GTK_WIDGET (el);
 }
 
 
@@ -390,9 +420,15 @@ on_num_days_changed (PhoshUpcomingEvents *self)
                                           "model", self->events,
                                           "visible", TRUE,
                                           NULL);
-    gtk_container_add (GTK_CONTAINER (self->events_box), event_list);
+
     g_list_store_append (G_LIST_STORE (self->event_lists), event_list);
   }
+
+  gtk_list_box_bind_model (self->events_box,
+                           G_LIST_MODEL (self->event_lists_filtered),
+                           create_event_list_func,
+                           self,
+                           NULL);
 
   load_events (self, FALSE);
 }
@@ -452,6 +488,10 @@ phosh_upcoming_events_init (PhoshUpcomingEvents *self)
                            G_CONNECT_SWAPPED);
 
   self->event_lists = G_LIST_MODEL (g_list_store_new (PHOSH_TYPE_EVENT_LIST));
+  self->event_lists_filtered = gtk_filter_list_model_new (self->event_lists,
+                                                          filter_event_lists_func,
+                                                          self,
+                                                          NULL);
   self->events = g_list_store_new (PHOSH_TYPE_CALENDAR_EVENT);
 
   self->event_ids = g_hash_table_new_full (g_str_hash,
