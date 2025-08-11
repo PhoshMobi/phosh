@@ -38,7 +38,7 @@ struct _PhoshUpcomingEvents {
 
   GtkStack                      *stack;
   GtkBox                        *events_box;
-  GPtrArray                     *event_lists;
+  GListModel                    *event_lists;
   GListStore                    *events;
   GHashTable                    *event_ids;
   GDateTime                     *since;
@@ -59,7 +59,7 @@ phosh_upcoming_events_finalize (GObject *object)
 {
   PhoshUpcomingEvents *self = PHOSH_UPCOMING_EVENTS (object);
 
-  g_ptr_array_free (self->event_lists, TRUE);
+  g_clear_object (&self->event_lists);
   g_clear_handle_id (&self->today_changed_timeout_id, g_source_remove);
   g_cancellable_cancel (self->cancel);
   g_clear_object (&self->cancel);
@@ -162,8 +162,8 @@ update_event_lists_visibility (PhoshUpcomingEvents *self)
 {
   int visible_lists = 0;
 
-  for (uint i = 0; i < self->event_lists->len; i++) {
-    PhoshEventList *event_list = PHOSH_EVENT_LIST (self->event_lists->pdata[i]);
+  for (uint i = 0; i < g_list_model_get_n_items (self->event_lists); i++) {
+    g_autoptr (PhoshEventList) event_list = g_list_model_get_item (self->event_lists, i);
     uint events = phosh_event_list_get_n_events (event_list);
     gboolean visibility = !self->skip_empty || events != 0;
 
@@ -228,8 +228,11 @@ on_events_added_or_updated (PhoshUpcomingEvents *self, GVariant *events)
     return;
 
   /* Changed events might be tz change so refilter days */
-  for (int i = 0; i < self->event_lists->len; i++)
-    phosh_event_list_set_today (g_ptr_array_index (self->event_lists, i), self->since);
+  for (int i = 0; i < g_list_model_get_n_items (self->event_lists); i++) {
+    g_autoptr (PhoshEventList) el = g_list_model_get_item (self->event_lists, i);
+
+    phosh_event_list_set_today (el, self->since);
+  }
 }
 
 #undef EVENT_FORMAT
@@ -273,8 +276,11 @@ update_calendar (PhoshUpcomingEvents *self, gboolean force_reload)
 
   load_events (self, force_reload);
 
-  for (int i = 0; i < self->event_lists->len; i++)
-    phosh_event_list_set_today (g_ptr_array_index (self->event_lists, i), self->since);
+  for (int i = 0; i < g_list_model_get_n_items (self->event_lists); i++) {
+    g_autoptr (PhoshEventList) el = g_list_model_get_item (self->event_lists, i);
+
+    phosh_event_list_set_today (el, self->since);
+  }
 
   /* Rearm timer */
   setup_date_change_timeout (self);
@@ -375,11 +381,7 @@ on_num_days_changed (PhoshUpcomingEvents *self)
 
   g_debug ("Number of days changed to %u; reconfiguring event lists", self->num_days);
 
-  for (int i = 0; i < self->event_lists->len; i++) {
-    GtkWidget *child = g_ptr_array_index (self->event_lists, i);
-    gtk_container_remove (GTK_CONTAINER (self->events_box), child);
-  }
-  g_ptr_array_remove_range (self->event_lists, 0, self->event_lists->len);
+  g_list_store_remove_all (G_LIST_STORE (self->event_lists));
 
   for (int i = 0; i < self->num_days; i++) {
     GtkWidget *event_list = g_object_new (PHOSH_TYPE_EVENT_LIST,
@@ -389,7 +391,7 @@ on_num_days_changed (PhoshUpcomingEvents *self)
                                           "visible", TRUE,
                                           NULL);
     gtk_container_add (GTK_CONTAINER (self->events_box), event_list);
-    g_ptr_array_add (self->event_lists, event_list);
+    g_list_store_append (G_LIST_STORE (self->event_lists), event_list);
   }
 
   load_events (self, FALSE);
@@ -449,7 +451,7 @@ phosh_upcoming_events_init (PhoshUpcomingEvents *self)
                            self,
                            G_CONNECT_SWAPPED);
 
-  self->event_lists = g_ptr_array_new ();
+  self->event_lists = G_LIST_MODEL (g_list_store_new (PHOSH_TYPE_EVENT_LIST));
   self->events = g_list_store_new (PHOSH_TYPE_CALENDAR_EVENT);
 
   self->event_ids = g_hash_table_new_full (g_str_hash,
