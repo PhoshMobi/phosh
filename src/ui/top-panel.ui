@@ -278,50 +278,56 @@
                     <child>
                       <object class="GtkBox" id="box_indicators">
                         <property name="visible">1</property>
-                        <property name="halign">end</property>
                         <style>
                           <class name="indicators"/>
                         </style>
+                        <child>
+                          <object class="PhoshStatusIconsBox" id="status_icons_box">
+                            <property name="visible">1</property>
+                            <property name="spacing">8</property>
+                            <property name="align">end</property>
+                            <child>
+                              <object class="PhoshRevealer">
+                                <property name="visible">1</property>
+                                <property name="show-child" bind-source="hks_info_mic" bind-property="blocked" bind-flags="sync-create"/>
+                                <property name="child">hks_info_mic</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="PhoshRevealer">
+                                <property name="visible">1</property>
+                                <property name="show-child" bind-source="hks_info_camera" bind-property="blocked" bind-flags="sync-create"/>
+                                <property name="child">hks_info_camera</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="PhoshRevealer">
+                                <property name="visible">1</property>
+                                <property name="show-child" bind-source="feedback_info" bind-property="muted" bind-flags="sync-create"/>
+                                <property name="child">feedback_info</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="PhoshRevealer">
+                                <property name="visible">1</property>
+                                <property name="show-child" bind-source="location_info" bind-property="active" bind-flags="sync-create"/>
+                                <property name="child">location_info</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="PhoshBatteryInfo" id="batteryinfo">
+                                <property name="visible">1</property>
+                                <property name="pixel-size">16</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
                         <child>
                           <object class="GtkLabel" id="lbl_lang">
                             <property name="visible">1</property>
                             <property name="margin-end">8</property>
                             <property name="margin-top">2</property>
                             <property name="justify">center</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="PhoshRevealer">
-                            <property name="visible">1</property>
-                            <property name="show-child" bind-source="hks_info_mic" bind-property="blocked" bind-flags="sync-create"/>
-                            <property name="child">hks_info_mic</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="PhoshRevealer">
-                            <property name="visible">1</property>
-                            <property name="show-child" bind-source="hks_info_camera" bind-property="blocked" bind-flags="sync-create"/>
-                            <property name="child">hks_info_camera</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="PhoshRevealer">
-                            <property name="visible">1</property>
-                            <property name="show-child" bind-source="feedback_info" bind-property="muted" bind-flags="sync-create"/>
-                            <property name="child">feedback_info</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="PhoshRevealer">
-                            <property name="visible">1</property>
-                            <property name="show-child" bind-source="location_info" bind-property="active" bind-flags="sync-create"/>
-                            <property name="child">location_info</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="PhoshBatteryInfo" id="batteryinfo">
-                            <property name="visible">1</property>
-                            <property name="pixel-size">16</property>
                           </object>
                         </child>
                       </object>
@@ -422,20 +428,16 @@
   <object class="PhoshHksInfo" id="hks_info_mic">
     <property name="device-type">mic</property>
     <property name="pixel-size">16</property>
-    <property name="margin-end">8</property>
   </object>
   <object class="PhoshHksInfo" id="hks_info_camera">
     <property name="device-type">camera</property>
     <property name="pixel-size">16</property>
-    <property name="margin-end">8</property>
   </object>
   <object class="PhoshFeedbackInfo" id="feedback_info">
     <property name="pixel-size">16</property>
-    <property name="margin-end">8</property>
   </object>
   <object class="PhoshLocationInfo" id="location_info">
     <property name="pixel-size">16</property>
-    <property name="margin-end">8</property>
   </object>
   <object class="GtkGestureMultiPress" id="click_gesture">
     <property name="widget">PhoshTopPanel</property>

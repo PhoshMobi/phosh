@@ -21,6 +21,7 @@
 #include "shell-priv.h"
 #include "session-manager.h"
 #include "settings.h"
+#include "status-icons-box.h"
 #include "top-panel.h"
 #include "top-panel-bg.h"
 #include "arrow.h"
@@ -85,6 +86,7 @@ typedef struct _PhoshTopPanel {
   GtkWidget *box_top_bar;
   GtkWidget *lbl_clock;      /* top-bar clock */
   GtkWidget *lbl_lang;
+  PhoshStatusIconsBox *status_icons_box;
 
   GtkWidget *settings;       /* settings menu */
   GtkWidget *batteryinfo;
@@ -885,6 +887,7 @@ phosh_top_panel_class_init (PhoshTopPanelClass *klass)
                                      0);
 
   g_type_ensure (PHOSH_TYPE_ARROW);
+  g_type_ensure (PHOSH_TYPE_STATUS_ICONS_BOX);
 
   gtk_widget_class_set_template_from_resource (widget_class,
                                                "/mobi/phosh/ui/top-panel.ui");
@@ -904,6 +907,7 @@ phosh_top_panel_class_init (PhoshTopPanelClass *klass)
   gtk_widget_class_bind_template_child (widget_class, PhoshTopPanel, menu_system);
   gtk_widget_class_bind_template_child (widget_class, PhoshTopPanel, settings);
   gtk_widget_class_bind_template_child (widget_class, PhoshTopPanel, stack);
+  gtk_widget_class_bind_template_child (widget_class, PhoshTopPanel, status_icons_box);
   gtk_widget_class_bind_template_child (widget_class, PhoshTopPanel, top_bar_bin);
   gtk_widget_class_bind_template_callback (widget_class, on_settings_drag_handle_offset_changed);
   gtk_widget_class_bind_template_callback (widget_class, phosh_top_panel_fold);
