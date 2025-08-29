@@ -47,5 +47,7 @@ void phosh_status_icon_set_extra_widget (PhoshStatusIcon *self, GtkWidget *widge
 GtkWidget * phosh_status_icon_get_extra_widget (PhoshStatusIcon *self);
 void phosh_status_icon_set_info (PhoshStatusIcon *self, const char *info);
 char *phosh_status_icon_get_info (PhoshStatusIcon *self);
+void phosh_status_icon_set_priority (PhoshStatusIcon *self, int priority);
+int phosh_status_icon_get_priority (PhoshStatusIcon *self);
 
 G_END_DECLS

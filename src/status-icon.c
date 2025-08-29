@@ -31,6 +31,7 @@ enum {
   PHOSH_STATUS_ICON_PROP_PIXEL_SIZE,
   PHOSH_STATUS_ICON_PROP_EXTRA_WIDGET,
   PHOSH_STATUS_ICON_PROP_INFO,
+  PHOSH_STATUS_ICON_PROP_PRIORITY,
   PHOSH_STATUS_ICON_PROP_LAST_PROP
 };
 static GParamSpec *props[PHOSH_STATUS_ICON_PROP_LAST_PROP];
@@ -42,6 +43,7 @@ typedef struct {
   GtkIconSize  icon_size;
   guint        pixel_size;
   char        *info;
+  int          priority;
 
   guint       idle_id;
 } PhoshStatusIconPrivate;
@@ -75,6 +77,9 @@ phosh_status_icon_set_property (GObject      *object,
   case PHOSH_STATUS_ICON_PROP_INFO:
     phosh_status_icon_set_info (self, g_value_get_string (value));
     break;
+  case PHOSH_STATUS_ICON_PROP_PRIORITY:
+    phosh_status_icon_set_priority (self, g_value_get_int (value));
+    break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
@@ -106,6 +111,9 @@ phosh_status_icon_get_property (GObject    *object,
     break;
   case PHOSH_STATUS_ICON_PROP_INFO:
     g_value_set_string (value, phosh_status_icon_get_info (self));
+    break;
+  case PHOSH_STATUS_ICON_PROP_PRIORITY:
+    g_value_set_int (value, phosh_status_icon_get_priority (self));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -242,6 +250,16 @@ phosh_status_icon_class_init (PhoshStatusIconClass *klass)
     g_param_spec_string ("info", "", "",
                          NULL,
                          G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshStatusIcon:priority:
+   *
+   * The priority of icon. Higher priority icons are more likely to be shown when displayed in
+   * space-constrained places.
+   */
+  props[PHOSH_STATUS_ICON_PROP_PRIORITY] =
+    g_param_spec_int ("priority", "", "",
+                      0, G_MAXINT, 10,
+                      G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PHOSH_STATUS_ICON_PROP_LAST_PROP, props);
 
@@ -262,6 +280,7 @@ phosh_status_icon_init (PhoshStatusIcon *self)
 
   priv->icon_size = GTK_ICON_SIZE_LARGE_TOOLBAR;
   priv->pixel_size = 24;
+  priv->priority = 10;
 }
 
 
@@ -487,4 +506,33 @@ phosh_status_icon_set_info (PhoshStatusIcon *self, const char *info)
   priv->info = g_strdup (info);
 
   g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_STATUS_ICON_PROP_INFO]);
+}
+
+
+void
+phosh_status_icon_set_priority (PhoshStatusIcon *self, int priority)
+{
+  PhoshStatusIconPrivate *priv;
+
+  g_return_if_fail (PHOSH_IS_STATUS_ICON (self));
+  priv = phosh_status_icon_get_instance_private (self);
+
+  if (priv->priority == priority)
+    return;
+
+  priv->priority = priority;
+
+  g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_STATUS_ICON_PROP_PRIORITY]);
+}
+
+
+int
+phosh_status_icon_get_priority (PhoshStatusIcon *self)
+{
+  PhoshStatusIconPrivate *priv;
+
+  g_return_val_if_fail (PHOSH_IS_STATUS_ICON (self), 0);
+  priv = phosh_status_icon_get_instance_private (self);
+
+  return priv->priority;
 }
