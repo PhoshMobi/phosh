@@ -129,6 +129,8 @@ plugins/ticket-box/prefs/ticket-box-prefs.ui
 plugins/upcoming-events/event-list.c
 plugins/upcoming-events/event-list.ui
 plugins/upcoming-events/upcoming-event.c
+plugins/upcoming-events/upcoming-events.c
+plugins/upcoming-events/upcoming-events.ui
 plugins/upcoming-events/prefs/upcoming-events-prefs.ui
 plugins/scaling-quick-setting/qs.ui
 plugins/scaling-quick-setting/scale-row.c

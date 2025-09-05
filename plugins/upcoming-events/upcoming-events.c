@@ -14,7 +14,9 @@
 
 #include "phosh-plugin-upcoming-events-phosh-calendar-dbus.h"
 
+#include <handy.h>
 #include <gmobile.h>
+#include <glib/gi18n.h>
 
 #define UPCOMING_EVENTS_SCHEMA_ID    "sm.puri.phosh.plugins.upcoming-events"
 #define UPCOMING_EVENT_DAYS_KEY      "days"
@@ -34,6 +36,7 @@ struct _PhoshUpcomingEvents {
   PhoshPluginDBusCalendarServer *proxy;
   GCancellable                  *cancel;
 
+  GtkStack                      *stack;
   GtkBox                        *events_box;
   GPtrArray                     *event_lists;
   GListStore                    *events;
@@ -92,6 +95,7 @@ phosh_upcoming_events_class_init (PhoshUpcomingEventsClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class,
                                                "/mobi/phosh/plugins/upcoming-events/upcoming-events.ui");
+  gtk_widget_class_bind_template_child (widget_class, PhoshUpcomingEvents, stack);
   gtk_widget_class_bind_template_child (widget_class, PhoshUpcomingEvents, events_box);
   gtk_widget_class_bind_template_child (widget_class, PhoshUpcomingEvents, skip_empty_btn);
 
@@ -156,13 +160,21 @@ calendar_event_begin_compare (gconstpointer a,
 static void
 update_event_lists_visibility (PhoshUpcomingEvents *self)
 {
+  int visible_lists = 0;
+
   for (uint i = 0; i < self->event_lists->len; i++) {
     PhoshEventList *event_list = PHOSH_EVENT_LIST (self->event_lists->pdata[i]);
     uint events = phosh_event_list_get_n_events (event_list);
     gboolean visibility = !self->skip_empty || events != 0;
 
     gtk_widget_set_visible (GTK_WIDGET (event_list), visibility);
+    visible_lists += visibility;
   }
+
+  if (!self->skip_empty || visible_lists)
+    gtk_stack_set_visible_child_name (self->stack, "events-window");
+  else
+    gtk_stack_set_visible_child_name (self->stack, "no-events");
 }
 
 
@@ -352,7 +364,14 @@ on_skip_empty_changed (PhoshUpcomingEvents *self)
 static void
 on_num_days_changed (PhoshUpcomingEvents *self)
 {
+  g_autofree char *desc = NULL;
+  HdyStatusPage *no_events = HDY_STATUS_PAGE (gtk_stack_get_child_by_name (self->stack,
+                                                                           "no-events"));
+
   self->num_days = g_settings_get_uint (self->settings, UPCOMING_EVENT_DAYS_KEY);
+  desc = g_strdup_printf (_("No events for the next %d days"), self->num_days);
+
+  hdy_status_page_set_description (no_events, desc);
 
   g_debug ("Number of days changed to %u; reconfiguring event lists", self->num_days);
 
