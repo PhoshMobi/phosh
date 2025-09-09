@@ -23,5 +23,6 @@ PhoshLayoutClockPosition     phosh_layout_manager_get_clock_pos        (PhoshLay
 guint                        phosh_layout_manager_get_clock_shift      (PhoshLayoutManager *self);
 void                         phosh_layout_manager_get_box_shifts       (PhoshLayoutManager *self,
                                                                         guint *network_shift,
-                                                                        guint *indicators_shift);
+                                                                        guint *indicators_shift,
+                                                                        guint *settings_shift);
 G_END_DECLS
