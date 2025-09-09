@@ -396,6 +396,7 @@ phosh_layout_manager_init (PhoshLayoutManager *self)
 
   self->network_box_shift = PHOSH_TOP_BAR_MIN_PADDING;
   self->indicators_box_shift = PHOSH_TOP_BAR_MIN_PADDING;
+  self->corner_shift = PHOSH_TOP_BAR_MIN_PADDING;
 
   self->settings = g_settings_new ("sm.puri.phosh");
 
