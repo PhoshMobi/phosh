@@ -346,7 +346,8 @@ void
 phosh_wifi_network_add_access_point (PhoshWifiNetwork *self, NMAccessPoint *ap, gboolean active)
 {
   g_ptr_array_add (self->access_points, g_object_ref (ap));
-  update_active (self, active);
+  if (active)
+    update_active (self, TRUE);
   g_signal_connect_swapped (ap, "notify::strength", G_CALLBACK (update_best_access_point), self);
   update_best_access_point (self, NULL, ap);
 }
