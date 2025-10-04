@@ -34,22 +34,22 @@
                 <property name="name">no-events</property>
               </packing>
             </child>
-        <child>
-          <object class="GtkScrolledWindow">
-            <property name="visible">1</property>
-            <property name="hscrollbar-policy">never</property>
-            <property name="propagate-natural-height">1</property>
             <child>
-              <object class="GtkBox" id="events_box">
+              <object class="GtkScrolledWindow">
                 <property name="visible">1</property>
-                <property name="orientation">vertical</property>
+                <property name="hscrollbar-policy">never</property>
+                <property name="propagate-natural-height">1</property>
+                <child>
+                  <object class="GtkBox" id="events_box">
+                    <property name="visible">1</property>
+                    <property name="orientation">vertical</property>
+                  </object>
+                </child>
               </object>
+              <packing>
+                <property name="name">events-window</property>
+              </packing>
             </child>
-          </object>
-          <packing>
-            <property name="name">events-window</property>
-          </packing>
-        </child>
           </object>
         </child>
       </object>
