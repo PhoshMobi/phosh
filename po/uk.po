@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-08-10 13:57+0000\n"
-"PO-Revision-Date: 2025-08-10 17:31+0300\n"
+"POT-Creation-Date: 2025-10-12 08:52+0000\n"
+"PO-Revision-Date: 2025-10-12 17:30+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -268,20 +268,20 @@ msgctxt "feedback:enabled"
 msgid "On"
 msgstr "❙"
 
-#: src/location-manager.c:268
+#: src/location-manager.c:269
 #, c-format
 msgid "Allow '%s' to access your location information?"
 msgstr "Дозволити «%s» доступ до даних щодо вашого місця перебування?"
 
-#: src/location-manager.c:273
+#: src/location-manager.c:274
 msgid "Geolocation"
 msgstr "Геопозиціювання"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:275
 msgid "Yes"
 msgstr "Так"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:275
 msgid "No"
 msgstr "Ні"
 
@@ -331,18 +331,18 @@ msgstr "Невідома назва"
 msgid "Unknown Artist"
 msgstr "Невідомий виконавець"
 
-#: src/monitor-manager.c:127
+#: src/monitor-manager.c:128
 msgid "Built-in display"
 msgstr "Вбудований дисплей"
 
-#: src/monitor-manager.c:145
+#: src/monitor-manager.c:146
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:152
+#: src/monitor-manager.c:153
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -351,7 +351,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:161
+#: src/monitor-manager.c:162
 msgid "Unknown"
 msgstr "Нетиповий"
 
@@ -1100,6 +1100,16 @@ msgstr "Завершується"
 #: plugins/upcoming-events/upcoming-event.c:400
 msgid "Untitled event"
 msgstr "Подія без назви"
+
+#: plugins/upcoming-events/upcoming-events.c:372
+#, c-format
+msgid "No events for the next %d days"
+msgstr "Немає подій протягом наступних %d днів"
+
+#: plugins/upcoming-events/upcoming-events.ui:28
+#| msgid "Upcoming Events"
+msgid "No upcoming events"
+msgstr "Записів майбутніх подій не виявлено"
 
 #: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:6
 msgid "Upcoming Events Preferences"
