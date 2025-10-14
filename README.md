@@ -32,8 +32,8 @@ The [main][] branch has the current development version.
 On a Debian based system run
 
 ```sh
-sudo apt-get -y install build-essential
-sudo apt-get -y build-dep .
+sudo apt -y install build-essential
+sudo apt -y build-dep .
 ```
 
 For an explicit list of dependencies check the `Build-Depends` entry in the
