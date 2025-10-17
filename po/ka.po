@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-08-10 14:32+0000\n"
-"PO-Revision-Date: 2025-08-10 16:38+0200\n"
+"POT-Creation-Date: 2025-10-16 13:11+0000\n"
+"PO-Revision-Date: 2025-10-17 10:25+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -262,20 +262,20 @@ msgctxt "feedback:enabled"
 msgid "On"
 msgstr "ჩართ"
 
-#: src/location-manager.c:268
+#: src/location-manager.c:269
 #, c-format
 msgid "Allow '%s' to access your location information?"
 msgstr "მივცეთ უფლება %s-ს, მიიღოს ინფორმაცია თქვენი მდებარეობის შესახებ?"
 
-#: src/location-manager.c:273
+#: src/location-manager.c:274
 msgid "Geolocation"
 msgstr "გეოლოკაცია"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:275
 msgid "Yes"
 msgstr "დიახ"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:275
 msgid "No"
 msgstr "არა"
 
@@ -325,18 +325,18 @@ msgstr "უცნობი სათაური"
 msgid "Unknown Artist"
 msgstr "უცნობი შემსრულებელი"
 
-#: src/monitor-manager.c:127
+#: src/monitor-manager.c:128
 msgid "Built-in display"
 msgstr "ჩაშენებული ეკრანი"
 
-#: src/monitor-manager.c:145
+#: src/monitor-manager.c:146
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:152
+#: src/monitor-manager.c:153
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -345,7 +345,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:161
+#: src/monitor-manager.c:162
 msgid "Unknown"
 msgstr "უცნობი"
 
@@ -1080,6 +1080,15 @@ msgstr "მთავრდება"
 #: plugins/upcoming-events/upcoming-event.c:400
 msgid "Untitled event"
 msgstr "უსახელო მოვლენა"
+
+#: plugins/upcoming-events/upcoming-events.c:372
+#, c-format
+msgid "No events for the next %d days"
+msgstr "მოვლენების გარეშე შემდეგი %d დღე"
+
+#: plugins/upcoming-events/upcoming-events.ui:28
+msgid "No upcoming events"
+msgstr "უახლოეს მოვალში მოვლენები არ არის"
 
 #: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:6
 msgid "Upcoming Events Preferences"
