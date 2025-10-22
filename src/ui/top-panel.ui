@@ -352,9 +352,6 @@
                     <property name="has-focus">1</property>
                     <property name="can-focus">1</property>
                   </object>
-                  <packing>
-                    <property name="name">arrow</property>
-                  </packing>
                 </child>
                 <child>
                   <object class="GtkRevealer" id="launch_settings_revealer">

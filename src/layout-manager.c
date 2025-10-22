@@ -396,6 +396,7 @@ phosh_layout_manager_init (PhoshLayoutManager *self)
 
   self->network_box_shift = PHOSH_TOP_BAR_MIN_PADDING;
   self->indicators_box_shift = PHOSH_TOP_BAR_MIN_PADDING;
+  self->corner_shift = PHOSH_TOP_BAR_MIN_PADDING;
 
   self->settings = g_settings_new ("sm.puri.phosh");
 
@@ -457,6 +458,8 @@ phosh_layout_manager_get_clock_shift (PhoshLayoutManager *self)
  * @self: The layout manager
  * @network_shift: (out): The shift of the network box
  * @indicators_shift: (out): The shift of the indicators box
+ * @settings_shift (out): The shift of the settings launcher at the bottom of the top-panel
+ *   when unfolded
  *
  * Gets the amount of pixels UI elements should be moved to towards the
  * center because of rounded corners or notches.
@@ -464,11 +467,13 @@ phosh_layout_manager_get_clock_shift (PhoshLayoutManager *self)
 void
 phosh_layout_manager_get_box_shifts (PhoshLayoutManager *self,
                                      guint              *network_shift,
-                                     guint              *indicators_shift)
+                                     guint              *indicators_shift,
+                                     guint              *settings_shift)
 {
   g_return_if_fail (PHOSH_IS_LAYOUT_MANAGER (self));
   g_return_if_fail (network_shift && indicators_shift);
 
   *network_shift = self->network_box_shift;
   *indicators_shift = self->indicators_box_shift;
+  *settings_shift = self->corner_shift;
 }

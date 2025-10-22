@@ -1,3 +1,46 @@
+phosh (0.50.1) experimental; urgency=medium
+
+  [ Rudra Pratap Singh ]
+  * upcoming-events: Show appropriate status page in case of no events.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1255
+    Fixes: 6614bbd39 ("upcoming-events: Add new setting for skipping non-event days")
+
+  [ Guido Günther ]
+  * layout-manager: Don't forget to init corner shift.
+    This ensures we have the correct default in case of no rounded corners.
+  * top-panel: Shift gear icon according to corner shift
+  * top-panel: Drop `name` property.  Fixes a warning on startup.
+    Fixes: b567c6ed3 ("top-panel: Add gear button")
+
+  [ Martin ]
+  * Update Slovenian translation
+
+  [ Yuri Chornoivan ]
+  * Update Ukrainian translation
+
+  [ Nathan Follens ]
+  * Update Dutch translation
+
+  [ Antonio Marin ]
+  * Update Romanian translation
+
+  [ Danial Behzadi ]
+  * Update Persian translation
+
+  [ Daniel Rusek ]
+  * Update Czech translation
+
+  [ Artur S0 ]
+  * Update Russian translation
+
+  [ Juliano de Souza Camargo ]
+  * Update Brazilian Portuguese translation
+
+  [ Ekaterine Papava ]
+  * Update Georgian translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Sun, 19 Oct 2025 11:10:03 +0200
+
 phosh (0.50.0) experimental; urgency=medium
 
   [ Guido Günther ]

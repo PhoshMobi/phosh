@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-09-11 10:12+0000\n"
-"PO-Revision-Date: 2025-09-13 23:11+0200\n"
+"POT-Creation-Date: 2025-10-12 14:32+0000\n"
+"PO-Revision-Date: 2025-10-12 17:08+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
 "Language: nl\n"
@@ -266,20 +266,20 @@ msgctxt "feedback:enabled"
 msgid "On"
 msgstr "Aan"
 
-#: src/location-manager.c:268
+#: src/location-manager.c:269
 #, c-format
 msgid "Allow '%s' to access your location information?"
 msgstr "‘%s’ toegang geven tot uw locatiegegevens?"
 
-#: src/location-manager.c:273
+#: src/location-manager.c:274
 msgid "Geolocation"
 msgstr "Geolocatie"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:275
 msgid "Yes"
 msgstr "Ja"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:275
 msgid "No"
 msgstr "Nee"
 
@@ -329,18 +329,18 @@ msgstr "Onbekende titel"
 msgid "Unknown Artist"
 msgstr "Onbekende artiest"
 
-#: src/monitor-manager.c:127
+#: src/monitor-manager.c:128
 msgid "Built-in display"
 msgstr "Ingebouwd beeldscherm"
 
-#: src/monitor-manager.c:145
+#: src/monitor-manager.c:146
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:152
+#: src/monitor-manager.c:153
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -349,7 +349,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:161
+#: src/monitor-manager.c:162
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -1091,6 +1091,15 @@ msgstr "Loopt af"
 #: plugins/upcoming-events/upcoming-event.c:400
 msgid "Untitled event"
 msgstr "Naamloze afspraak"
+
+#: plugins/upcoming-events/upcoming-events.c:372
+#, c-format
+msgid "No events for the next %d days"
+msgstr "Geen afspraken voor de volgende %d dagen"
+
+#: plugins/upcoming-events/upcoming-events.ui:28
+msgid "No upcoming events"
+msgstr "Geen aankomende afspraken"
 
 #: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:6
 msgid "Upcoming Events Preferences"

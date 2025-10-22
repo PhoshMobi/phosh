@@ -916,13 +916,14 @@ set_clock_position (PhoshTopPanel *self, PhoshLayoutManager *layout_manager)
 static void
 set_margin (PhoshTopPanel *self, PhoshLayoutManager *layout_manager)
 {
-  guint network_box_shift = 0, indicators_box_shift = 0;
+  guint network_box_shift = 0, indicators_box_shift = 0, launch_settings_revealer_shift = 0;
   g_autofree char *css = NULL;
   g_autoptr (GtkCssProvider) provider = gtk_css_provider_new ();
 
   phosh_layout_manager_get_box_shifts (layout_manager,
                                        &network_box_shift,
-                                       &indicators_box_shift);
+                                       &indicators_box_shift,
+                                       &launch_settings_revealer_shift);
 
   g_debug ("Shifting UI elements %u,%u pixels to center ",
            network_box_shift,
@@ -933,7 +934,11 @@ set_margin (PhoshTopPanel *self, PhoshLayoutManager *layout_manager)
                          "}"
                          "#top-bar > :last-child {"
                          "  padding-right: %dpx;"
-                         "}", network_box_shift, indicators_box_shift);
+                         "}"
+                         "#settings-gear {"
+                         "  padding-right: %dpx;"
+                         "}",
+                         network_box_shift, indicators_box_shift, launch_settings_revealer_shift);
   gtk_css_provider_load_from_data (provider, css, -1, NULL);
   gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
                                              GTK_STYLE_PROVIDER (provider),

@@ -1,3 +1,24 @@
+phosh 0.50.1
+------------
+Released October 2025
+* Fix upcoming-event's plugin empty state
+* Fix "Open settings" button position on devices with rounded corners
+* Issues fixed:
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1255
+* Contributors:
+    * Guido Günther
+    * Rudra Pratap Singh
+* UI translations:
+    * Antonio Marin (ro)
+    * Artur S0 (ru)
+    * Danial Behzadi (fa)
+    * Daniel Rusek (cs)
+    * Ekaterine Papava (ka)
+    * Juliano de Souza Camargo (pt_BR)
+    * Martin (sl)
+    * Nathan Follens (nl)
+    * Yuri Chornoivan (uk)
+
 phosh 0.50.0
 ------------
 Released October 2025

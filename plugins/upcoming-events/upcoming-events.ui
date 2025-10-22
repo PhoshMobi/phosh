@@ -20,15 +20,35 @@
           </object>
         </child>
         <child>
-          <object class="GtkScrolledWindow">
+          <object class="GtkStack" id="stack">
             <property name="visible">1</property>
-            <property name="hscrollbar-policy">never</property>
-            <property name="propagate-natural-height">1</property>
             <child>
-              <object class="GtkBox" id="events_box">
+              <object class="HdyStatusPage">
                 <property name="visible">1</property>
-                <property name="orientation">vertical</property>
+                <property name="title" translatable="yes">No upcoming events</property>
+                <property name="icon-name">x-office-calendar-symbolic</property>
+                <property name="vexpand">1</property>
+                <property name="valign">center</property>
               </object>
+              <packing>
+                <property name="name">no-events</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="visible">1</property>
+                <property name="hscrollbar-policy">never</property>
+                <property name="propagate-natural-height">1</property>
+                <child>
+                  <object class="GtkBox" id="events_box">
+                    <property name="visible">1</property>
+                    <property name="orientation">vertical</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="name">events-window</property>
+              </packing>
             </child>
           </object>
         </child>
