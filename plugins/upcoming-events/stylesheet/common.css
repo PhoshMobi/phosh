@@ -5,19 +5,27 @@ phosh-upcoming-events {
 }
 
 phosh-upcoming-events list {
+  background: none;
+}
+
+phosh-upcoming-events list row {
+  background: none;
+}
+
+phosh-upcoming-events .event-list-listbox {
   background-color: transparent;
 }
 
-phosh-upcoming-events row {
+phosh-upcoming-events .event-list-listbox row {
   border-radius: 6px;
   background: shade(@phosh_notification_bg_color, 1.3);
 }
 
-phosh-upcoming-events row:hover {
+phosh-upcoming-events .event-list-listbox row:hover {
   background: shade(@phosh_notification_bg_color, 1.5);
 }
 
-phosh-upcoming-events row:active {
+phosh-upcoming-events .event-list-listbox row:active {
   background: shade(@phosh_notification_bg_color, 1.8);
 }
 
