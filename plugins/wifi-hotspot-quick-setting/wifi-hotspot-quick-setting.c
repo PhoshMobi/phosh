@@ -7,6 +7,7 @@
  */
 
 #include "wifi-hotspot-quick-setting.h"
+#include "wifi-hotspot-status-page.h"
 #include "plugin-shell.h"
 
 #include <glib/gi18n.h>
@@ -99,6 +100,8 @@ static void
 phosh_wifi_hotspot_quick_setting_class_init (PhoshWifiHotspotQuickSettingClass *klass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+  g_type_ensure (PHOSH_TYPE_WIFI_HOTSPOT_STATUS_PAGE);
 
   gtk_widget_class_set_template_from_resource (widget_class,
                                                "/mobi/phosh/plugins/wifi-hotspot-quick-setting/qs.ui");
