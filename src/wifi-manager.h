@@ -32,5 +32,6 @@ void               phosh_wifi_manager_connect_network (PhoshWifiManager *self,
 void               phosh_wifi_manager_request_scan (PhoshWifiManager *self);
 gboolean           phosh_wifi_manager_get_scanning (PhoshWifiManager *self);
 NMActiveConnectionState phosh_wifi_manager_get_state (PhoshWifiManager *self);
+NMActiveConnection     *phosh_wifi_manager_get_active_connection (PhoshWifiManager *self);
 
 G_END_DECLS
