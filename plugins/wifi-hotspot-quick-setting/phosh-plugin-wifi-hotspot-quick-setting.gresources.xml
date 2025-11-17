@@ -4,5 +4,6 @@
     <file preprocess="xml-stripblanks">qs.ui</file>
     <file compressed="true">icons/network-wireless-hotspot-disabled-symbolic.svg</file>
     <file compressed="true">icons/network-wireless-hotspot-acquiring-symbolic.svg</file>
+    <file compressed="true">style.css</file>
   </gresource>
 </gresources>
