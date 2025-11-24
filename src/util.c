@@ -927,6 +927,7 @@ phosh_util_activate_action_finish (GAsyncResult *res, GError **err)
 /**
  * phosh_util_open_settings_panel:
  * @panel: A settings panel name
+ * @params: Panel specific parameters, can be empty but not null
  * @mobile: panel is in mobile settings app
  * @cancellable:(nullable): A cancellable
  * @callback:(scope async): The callback to invoke when the async operation finished
@@ -935,6 +936,7 @@ phosh_util_activate_action_finish (GAsyncResult *res, GError **err)
  */
 void
 phosh_util_open_settings_panel (const char         *panel,
+                                GVariant           *params,
                                 gboolean            mobile,
                                 GCancellable       *cancellable,
                                 GAsyncReadyCallback callback,
@@ -943,6 +945,8 @@ phosh_util_open_settings_panel (const char         *panel,
   g_autoptr (GDesktopAppInfo) info = NULL;
   const char *action;
   GVariantBuilder builder;
+
+  g_return_if_fail (params != NULL);
 
   if (mobile) {
     info = g_desktop_app_info_new ("mobi.phosh.MobileSettings.desktop");
@@ -953,7 +957,8 @@ phosh_util_open_settings_panel (const char         *panel,
   }
 
   g_variant_builder_init_static (&builder, G_VARIANT_TYPE ("av"));
-  g_variant_builder_add (&builder, "v", g_variant_new ("(sav)", panel, NULL));
+  g_variant_builder_add (&builder, "v", g_variant_new ("(s@av)", panel, params));
+
   phosh_util_activate_action (G_APP_INFO (info),
                               action,
                               g_variant_builder_end (&builder),

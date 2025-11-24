@@ -278,12 +278,13 @@ on_open_panel_ready (GObject *source_object, GAsyncResult *res, gpointer user_da
 
 
 static void
-open_settings_panel (PhoshTopPanel *self, gboolean mobile, const char *panel)
+open_settings_panel (PhoshTopPanel *self, gboolean mobile, const char *panel, GVariant *params)
 {
   if (self->on_lockscreen)
     return;
 
   phosh_util_open_settings_panel (panel,
+                                  params,
                                   mobile,
                                   self->cancel,
                                   on_open_panel_ready,
@@ -315,7 +316,7 @@ on_launch_panel_activated (GSimpleAction *action, GVariant *param, gpointer data
 
   parse_panel_options (action, param, &panel, &params);
 
-  open_settings_panel (self, FALSE, panel);
+  open_settings_panel (self, FALSE, panel, params);
   phosh_settings_hide_details (PHOSH_SETTINGS (self->settings));
 }
 
@@ -329,7 +330,7 @@ on_launch_mobile_panel_activated (GSimpleAction *action, GVariant *param, gpoint
 
   parse_panel_options (action, param, &panel, &params);
 
-  open_settings_panel (self, TRUE, panel);
+  open_settings_panel (self, TRUE, panel, params);
   phosh_settings_hide_details (PHOSH_SETTINGS (self->settings));
 }
 

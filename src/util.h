@@ -78,6 +78,7 @@ gboolean         phosh_util_matches_app_info (GAppInfo *info, const char *search
 GStrv            phosh_util_append_to_strv (GStrv array, const char *element);
 GStrv            phosh_util_remove_from_strv (GStrv array, const char *element);
 void             phosh_util_open_settings_panel (const char         *panel,
+                                                 GVariant           *params,
                                                  gboolean            mobile,
                                                  GCancellable       *cancellable,
                                                  GAsyncReadyCallback callback,
