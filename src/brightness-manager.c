@@ -725,3 +725,37 @@ phosh_brightness_manager_get_auto_brightness_enabled (PhoshBrightnessManager *se
 
   return self->auto_brightness.enabled;
 }
+
+/**
+ * phosh_brightness_manager_get_value:
+ * @PhoshBrightnessManager: The brightness manager
+ *
+ * Get the value of the brightness adjustment. The interpretation of the value depends
+ * on whether auto brightness is enabled or not.
+ *
+ * Returns: The current value of the adjustment [0.0, 1.0]
+ */
+double
+phosh_brightness_manager_get_value (PhoshBrightnessManager *self)
+{
+  g_return_val_if_fail (PHOSH_IS_BRIGHTNESS_MANAGER (self), 0.5);
+
+  return gtk_adjustment_get_value (self->adjustment);
+}
+
+/**
+ * phosh_brightness_manager_set_value:
+ * @PhoshBrightnessManager: The brightness manager
+ * @value: The brightness adjustment value [0.0, 1.0].
+ *
+ * Set the value of the brightness adjustment. The interpretation of the value depends
+ * on whether auto brightness is enabled or not.
+ */
+void
+phosh_brightness_manager_set_value (PhoshBrightnessManager *self,
+                                    double                  value)
+{
+  g_return_if_fail (PHOSH_IS_BRIGHTNESS_MANAGER (self));
+
+  gtk_adjustment_set_value (self->adjustment, value);
+}
