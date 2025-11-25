@@ -22,7 +22,8 @@ GtkAdjustment *         phosh_brightness_manager_get_adjustment (PhoshBrightness
 gboolean                phosh_brightness_manager_get_auto_brightness_enabled (PhoshBrightnessManager *self);
 double                  phosh_brightness_manager_get_value (PhoshBrightnessManager *self);
 void                    phosh_brightness_manager_set_value (PhoshBrightnessManager *self,
-                                                            double                  value);
+                                                            double                  value,
+                                                            gboolean                osd);
 
 
 G_END_DECLS
