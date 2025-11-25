@@ -461,9 +461,25 @@ on_primary_monitor_changed (PhoshBrightnessManager *self, GParamSpec *psepc, Pho
 
 
 static void
-adjust_brightness (PhoshBrightnessManager *self, gboolean up)
+show_osd (PhoshBrightnessManager *self, double brightness)
 {
   PhoshShell *shell = phosh_shell_get_default ();
+
+  if (phosh_shell_get_state (shell) & PHOSH_STATE_SETTINGS)
+    return;
+
+  phosh_shell_show_osd (shell,
+                        NULL,
+                        self->icon_name,
+                        NULL,
+                        100.0 * brightness,
+                        100.0);
+}
+
+
+static void
+adjust_brightness (PhoshBrightnessManager *self, gboolean up)
+{
   int levels;
   double brightness, step;
 
@@ -483,15 +499,7 @@ adjust_brightness (PhoshBrightnessManager *self, gboolean up)
   brightness = CLAMP (brightness, 0.0, 1.0);
   phosh_backlight_set_relative (self->backlight, brightness);
 
-  if (phosh_shell_get_state (shell) & PHOSH_STATE_SETTINGS)
-    return;
-
-  phosh_shell_show_osd (phosh_shell_get_default (),
-                        NULL,
-                        self->icon_name,
-                        NULL,
-                        100.0 * brightness,
-                        100.0);
+  show_osd (self, brightness);
 }
 
 
