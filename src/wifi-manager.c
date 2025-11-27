@@ -1404,3 +1404,12 @@ phosh_wifi_manager_get_state (PhoshWifiManager *self)
 
   return self->state;
 }
+
+
+NMActiveConnection *
+phosh_wifi_manager_get_active_connection (PhoshWifiManager *self)
+{
+  g_return_val_if_fail (PHOSH_IS_WIFI_MANAGER (self), NULL);
+
+  return self->active;
+}

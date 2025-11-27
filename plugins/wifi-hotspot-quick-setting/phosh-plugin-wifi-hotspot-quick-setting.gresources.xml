@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <gresources>
   <gresource prefix="/mobi/phosh/plugins/wifi-hotspot-quick-setting/">
+    <file preprocess="xml-stripblanks">status-page.ui</file>
     <file preprocess="xml-stripblanks">qs.ui</file>
     <file compressed="true">icons/network-wireless-hotspot-disabled-symbolic.svg</file>
     <file compressed="true">icons/network-wireless-hotspot-acquiring-symbolic.svg</file>
+    <file compressed="true">style.css</file>
   </gresource>
 </gresources>

@@ -3,10 +3,12 @@
   <requires lib="gtk+" version="3.24"/>
   <template class="PhoshWifiHotspotQuickSetting" parent="PhoshQuickSetting">
     <property name="status-icon">info</property>
+    <property name="status-page">status_page</property>
     <signal name="clicked" handler="on_clicked" object="PhoshWifiHotspotQuickSetting" swapped="yes"/>
   </template>
   <object class="PhoshStatusIcon" id="info">
     <property name="visible">1</property>
     <property name="pixel-size">16</property>
   </object>
+  <object class="PhoshWifiHotspotStatusPage" id="status_page"/>
 </interface>

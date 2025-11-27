@@ -1,5 +1,7 @@
 name = 'wifi-hotspot-quick-setting'
 
+qrcodegen_dep = dependency('qrcodegen')
+
 wifi_hotspot_quick_setting_resources = gnome.compile_resources(
   'phosh-plugin-wifi-hotspot-quick-setting-resources',
   'phosh-plugin-wifi-hotspot-quick-setting.gresources.xml',
@@ -9,6 +11,7 @@ wifi_hotspot_quick_setting_resources = gnome.compile_resources(
 wifi_hotspot_quick_setting_plugin_sources = files(
   'phosh-plugin-wifi-hotspot-quick-setting.c',
   'wifi-hotspot-quick-setting.c',
+  'wifi-hotspot-status-page.c',
 )
 
 phosh_wifi_hotspot_quick_setting_plugin = shared_module(
@@ -16,7 +19,7 @@ phosh_wifi_hotspot_quick_setting_plugin = shared_module(
   wifi_hotspot_quick_setting_plugin_sources,
   wifi_hotspot_quick_setting_resources,
   c_args: ['-DG_LOG_DOMAIN="phosh-plugin-@0@"'.format(name), '-DPLUGIN_NAME="@0@"'.format(name)],
-  dependencies: plugin_dep,
+  dependencies: [plugin_dep, qrcodegen_dep],
   install: true,
   install_dir: plugins_dir,
 )

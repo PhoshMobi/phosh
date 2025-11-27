@@ -141,4 +141,5 @@ plugins/upcoming-events/prefs/upcoming-events-prefs.ui
 plugins/scaling-quick-setting/qs.ui
 plugins/scaling-quick-setting/scale-row.c
 plugins/scaling-quick-setting/scaling-quick-setting.c
+plugins/wifi-hotspot-quick-setting/status-page.ui
 plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c

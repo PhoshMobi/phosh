@@ -39,6 +39,7 @@ Build-Depends:
  valac,
 # for the plugins
  libecal2.0-dev,
+ libqrcodegen-dev,
  evolution-data-server-dev,
  universal-ctags,
 # to run the tests
@@ -75,6 +76,7 @@ Depends:
  gnome-shell-common,
  gsettings-desktop-schemas (>= 47),
  libcap2-bin,
+ libqrcodegen1,
  phoc (>= 0.45.0),
  phosh-common (= ${source:Version}),
 Recommends:

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <template class="PhoshWifiHotspotStatusPage" parent="PhoshStatusPage">
+    <property name="visible">1</property>
+    <property name="title" translatable="yes">Wi-Fi Hotspot</property>
+    <property name="content">stack</property>
+    <property name="footer">footer</property>
+  </template>
+  <object class="GtkStack" id="stack">
+    <property name="visible">1</property>
+    <property name="transition-type">crossfade</property>
+    <property name="vhomogeneous">0</property>
+    <child>
+      <object class="PhoshStatusPagePlaceholder" id="placeholder">
+        <property name="visible">1</property>
+        <property name="extra-widget">turn_on_btn</property>
+      </object>
+      <packing>
+        <property name="name">empty_state</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">1</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkImage" id="image">
+            <property name="visible">1</property>
+            <property name="pixel-size">128</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkEntry" id="entry">
+            <property name="visible">1</property>
+            <property name="name">entry</property>
+            <property name="halign">center</property>
+            <property name="xalign">0.5</property>
+            <property name="editable">0</property>
+            <property name="input-purpose">password</property>
+            <property name="visibility">0</property>
+            <property name="secondary-icon-name">view-reveal-symbolic</property>
+            <signal name="icon-press" handler="on_icon_press" object="PhoshWifiHotspotStatusPage" swapped="yes"/>
+            <style>
+              <class name="flat"/>
+            </style>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="name">hotspot_enabled</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkButton" id="turn_on_btn">
+    <property name="visible">1</property>
+    <property name="halign">center</property>
+    <property name="label" translatable="yes">Turn On</property>
+    <property name="focus-on-click">0</property>
+    <signal name="clicked" handler="on_turn_on_clicked" object="PhoshWifiHotspotStatusPage" swapped="yes"/>
+  </object>
+  <object class="GtkButton" id="footer">
+    <property name="visible">1</property>
+    <property name="hexpand">1</property>
+    <property name="focus-on-click">0</property>
+    <property name="action-name">panel.launch-panel</property>
+    <property name="action-target">&quot;wifi&quot;</property>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">1</property>
+        <property name="ellipsize">end</property>
+        <property name="label" translatable="yes">Wi-Fi Settings</property>
+      </object>
+    </child>
+  </object>
+</interface>

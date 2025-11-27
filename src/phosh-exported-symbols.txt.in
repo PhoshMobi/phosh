@@ -41,9 +41,13 @@
 
    # Wi-Fi Hotspot plugin wants Wi-Fi Manager
    phosh_shell_get_wifi_manager;
+   phosh_wifi_manager_get_type;
+   phosh_wifi_manager_get_active_connection;
    phosh_wifi_manager_get_enabled;
+   phosh_wifi_manager_get_present;
    phosh_wifi_manager_get_state;
    phosh_wifi_manager_is_hotspot_master;
+   phosh_wifi_manager_set_enabled;
    phosh_wifi_manager_set_hotspot_master;
 
    # Mobile Data wants WWan Manager

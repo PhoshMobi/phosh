@@ -7,6 +7,7 @@
  */
 
 #include "wifi-hotspot-quick-setting.h"
+#include "wifi-hotspot-status-page.h"
 #include "plugin-shell.h"
 
 #include <glib/gi18n.h>
@@ -100,6 +101,8 @@ phosh_wifi_hotspot_quick_setting_class_init (PhoshWifiHotspotQuickSettingClass *
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
+  g_type_ensure (PHOSH_TYPE_WIFI_HOTSPOT_STATUS_PAGE);
+
   gtk_widget_class_set_template_from_resource (widget_class,
                                                "/mobi/phosh/plugins/wifi-hotspot-quick-setting/qs.ui");
 
@@ -112,9 +115,17 @@ phosh_wifi_hotspot_quick_setting_class_init (PhoshWifiHotspotQuickSettingClass *
 static void
 phosh_wifi_hotspot_quick_setting_init (PhoshWifiHotspotQuickSetting *self)
 {
+  g_autoptr (GtkCssProvider) css_provider = NULL;
   PhoshShell *shell = phosh_shell_get_default ();
 
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  css_provider = gtk_css_provider_new ();
+  gtk_css_provider_load_from_resource (css_provider,
+                                       "/mobi/phosh/plugins/wifi-hotspot-quick-setting/style.css");
+  gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
+                                             GTK_STYLE_PROVIDER (css_provider),
+                                             GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
   gtk_icon_theme_add_resource_path (gtk_icon_theme_get_default (),
                                     "/mobi/phosh/plugins/wifi-hotspot-quick-setting/icons");
