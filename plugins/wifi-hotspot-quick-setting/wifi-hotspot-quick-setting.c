@@ -19,14 +19,15 @@
  */
 
 struct _PhoshWifiHotspotQuickSetting {
-  PhoshQuickSetting  parent;
+  PhoshQuickSetting parent;
 
-  PhoshStatusIcon   *info;
-  gboolean           connecting;
-  PhoshWifiManager  *wifi;
+  PhoshStatusIcon  *info;
+  gboolean          connecting;
+  PhoshWifiManager *wifi;
 };
 
-G_DEFINE_TYPE (PhoshWifiHotspotQuickSetting, phosh_wifi_hotspot_quick_setting, PHOSH_TYPE_QUICK_SETTING);
+G_DEFINE_TYPE (PhoshWifiHotspotQuickSetting, phosh_wifi_hotspot_quick_setting,
+               PHOSH_TYPE_QUICK_SETTING);
 
 
 static void
