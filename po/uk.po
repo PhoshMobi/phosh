@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-11-13 12:27+0000\n"
-"PO-Revision-Date: 2025-11-13 15:35+0200\n"
+"POT-Creation-Date: 2025-11-28 12:32+0000\n"
+"PO-Revision-Date: 2025-11-28 20:47+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -687,7 +687,7 @@ msgid "Authentication required"
 msgstr "Слід пройти розпізнавання"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:51
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Скасувати"
@@ -753,6 +753,7 @@ msgid "Wi-Fi"
 msgstr "Wi-Fi"
 
 #: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
 msgid "Wi-Fi Settings"
 msgstr "Параметри Wi-Fi"
 
@@ -805,16 +806,16 @@ msgid "Cellular"
 msgstr "Стільниковий"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:68
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
 msgid "Phosh on caffeine"
 msgstr "Phosh на caffeine"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:226
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "○"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:231
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "❙"
@@ -827,18 +828,16 @@ msgstr "Таймери caffeine"
 msgid "No caffeine intervals"
 msgstr "Немає інтервалів caffeine"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:251
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:147
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
 msgid "No timeout (∞)"
 msgstr "Без часу очікування (∞)"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:7
-#| msgid "Caffeine Quick Setting"
 msgid "Caffeine Quick Setting Preferences"
 msgstr "Параметри швидкого налаштовування Caffeine"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:11
-#| msgid "Caffeine timers"
 msgid "Caffeine Duration"
 msgstr "Тривалість Caffeine"
 
@@ -847,47 +846,43 @@ msgid "Manage Caffeine Duration"
 msgstr "Керування тривалістю Caffeine"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:16
-#| msgid "No caffeine intervals"
 msgid "Add or remove custom caffeine intervals"
 msgstr "Додати або вилучити нетипові інтервали caffeine"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:22
-#| msgid "Add Contact"
 msgid "Add interval"
 msgstr "Додати інтервал"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:42
-#| msgid "Add New Contact"
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
 msgid "Add New Interval"
 msgstr "Додати новий інтервал"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:59
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "_Додати"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:91
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
 msgid "Quickstart Intervals"
 msgstr "Інтервали швидкого запуску"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:103
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
 msgid "5 m"
 msgstr "5 хв."
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:114
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
 msgid "15 m"
 msgstr "15 хв."
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:125
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
 msgid "30 m"
 msgstr "30 хв."
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:136
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
 msgid "1 h"
 msgstr "1 год."
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
-#| msgid "Choose Folder"
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
 msgid "Choose Interval"
 msgstr "Вибрати інтервал"
 
@@ -1231,11 +1226,21 @@ msgstr "Масштаби монітора"
 msgid "%d%%"
 msgstr "%d%%"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:75
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+#| msgid "No Wi-Fi Hotspots"
+msgid "Wi-Fi Hotspot"
+msgstr "Хот-спот Wi-Fi"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
+#| msgid "Turn Off"
+msgid "Turn On"
+msgstr "Увімкнути"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
 msgid "Hotspot On"
 msgstr "Точку доступу увімкнено"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:77
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
 msgid "Hotspot Off"
 msgstr "Точку доступу вимкнено"
 
