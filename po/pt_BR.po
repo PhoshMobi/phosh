@@ -4,17 +4,17 @@
 # Luís Fernando Stürmer da Rosa <luisfsr@dismail.de>, 2018-2020.
 # Matheus Barbosa <mdpb.matheus@gmail.com>, 2022.
 # Álvaro Burns <>, 2025.
-# Juliano de Souza Camargo <julianosc@pm.me>, 2024-2025.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2020-2025.
+# Juliano de Souza Camargo <julianosc@pm.me>, 2024-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-11-25 13:21+0000\n"
-"PO-Revision-Date: 2025-11-25 12:20-0300\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
-"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
+"POT-Creation-Date: 2025-11-27 21:54+0000\n"
+"PO-Revision-Date: 2025-11-28 08:42-0300\n"
+"Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
+"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -745,6 +745,7 @@ msgid "Wi-Fi"
 msgstr "Wi-Fi"
 
 #: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
 msgid "Wi-Fi Settings"
 msgstr "Configurações de Wi-Fi"
 
@@ -1217,11 +1218,19 @@ msgstr "Escalas do monitor"
 msgid "%d%%"
 msgstr "%d%%"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:75
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+msgid "Wi-Fi Hotspot"
+msgstr "Ponto de acesso Wi-Fi"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
+msgid "Turn On"
+msgstr "Ativar"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
 msgid "Hotspot On"
 msgstr "Ponto de acesso ligado"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:77
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
 msgid "Hotspot Off"
 msgstr "Ponto de acesso desligado"
 
