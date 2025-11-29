@@ -302,3 +302,24 @@ class PhoshDBusTestCase(DBusTestCase):
             " Found HEADLESS-1 for brightness control",
             ignore_present=True,
         )
+
+        subprocess.check_output(
+            [
+                "busctl",
+                "call",
+                "--user",
+                "org.gnome.Shell",
+                "/org/gnome/Shell/Brightness",
+                "org.gnome.Shell.Brightness",
+                "SetDimming",
+                "b",
+                "true",
+            ]
+        )
+        # schema default of "org.gnome.settings-daemon.plugins.power" "idle-dim"
+        # is enabled so the above DBus call should change brightness
+        assert self.phosh.wait_for_output(" Setting target brightness to 764\n")
+        assert self.phosh.wait_for_output(
+            " Setting brightness via logind: 764\n",
+            ignore_present=True,
+        )
