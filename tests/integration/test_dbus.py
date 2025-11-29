@@ -10,6 +10,7 @@
 #
 # Author: Guido Günther <agx@sigxcpu.org>
 
+import gi
 import os
 import subprocess
 import dbus
@@ -24,14 +25,51 @@ from dbusmock.templates.networkmanager import (
     SETTINGS_OBJ,
 )
 
-from pathlib import Path
-
-from gi.repository import Gio
-
-from . import Phosh, set_nonblock
+gi.require_version("UMockdev", "1.0")
+gi.require_version("GUdev", "1.0")
+from gi.repository import Gio, UMockdev  # noqa: 402
+from . import Phosh, set_nonblock  # noqa: 402
 
 
 class PhoshDBusTestCase(DBusTestCase):
+
+    @classmethod
+    def setup_udev_mock(klass):
+        klass.umock = UMockdev.Testbed.new()
+
+        # Torch
+        syspath = klass.umock.add_device(
+            "leds",
+            "white:flash",
+            None,
+            ["brightness", "0", "max_brightness", "255"],
+            ["GM_TORCH_MIN_BRIGHTNESS", "1"],
+        )
+        assert syspath == "/sys/devices/white:flash"
+
+        # Backlight
+        syspath = klass.umock.add_device(
+            "backlight",
+            "intel_backlight",
+            None,
+            [
+                "actual_brightness",
+                "76255",
+                "brightness",
+                "76255",
+                "max_brightness",
+                "19200",
+                "scale",
+                "unknown",
+                "type",
+                "raw",
+            ],
+            [],
+        )
+        assert syspath == "/sys/devices/intel_backlight"
+
+        return klass.umock.get_root_dir()
+
     @classmethod
     def setUpClass(klass):
         klass.mocks = OrderedDict()
@@ -52,11 +90,8 @@ class PhoshDBusTestCase(DBusTestCase):
             klass.session_test_bus.get_bus_address()
         )
 
-        # Add the templates we want running before phosh starts
-        flash_mock = (
-            Path(topsrcdir) / "tests" / "integration" / "oneplus,fajita.umockdev"
-        )
-        udev_mock_script = ["umockdev-run", "-d", str(flash_mock), "--"]
+        # Setup udev mocks
+        env["UMOCKDEV_DIR"] = klass.setup_udev_mock()
 
         # TODO: start udev mock for e.g. backlight
         klass.start_from_template("bluez5")
@@ -83,7 +118,10 @@ class PhoshDBusTestCase(DBusTestCase):
         env["XDG_CURRENT_DESKTOP"] = "Phosh:GNOME"
 
         klass.phosh = Phosh(
-            topsrcdir, topbuilddir, env, wrapper=udev_mock_script
+            topsrcdir,
+            topbuilddir,
+            env,
+            wrapper=["umockdev-wrapper"],
         ).spawn_nested()
 
     @classmethod
