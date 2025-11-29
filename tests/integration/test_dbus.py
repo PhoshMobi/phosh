@@ -15,6 +15,7 @@ import os
 import subprocess
 import dbus
 import dbusmock
+import shutil
 from collections import OrderedDict
 from dbusmock import DBusTestCase
 from dbusmock.templates.networkmanager import (
@@ -122,7 +123,22 @@ class PhoshDBusTestCase(DBusTestCase):
             topbuilddir,
             env,
             wrapper=["umockdev-wrapper"],
-        ).spawn_nested()
+            gsettings_backend="keyfile",
+        )
+
+        # Install keyfile with gsettings
+        assert os.environ.get("XDG_CONFIG_HOME") is None
+        keyfile_dir = os.path.join(
+            klass.phosh.homedir, ".config", "glib-2.0", "settings"
+        )
+        os.makedirs(keyfile_dir, exist_ok=True)
+
+        srcdir = os.path.dirname(os.path.abspath(__file__))
+        keyfile = os.path.join(srcdir, "keyfile")
+        shutil.copy(keyfile, keyfile_dir)
+
+        # Spawn phosh
+        klass.phosh.spawn_nested()
 
     @classmethod
     def tearDownClass(klass):
