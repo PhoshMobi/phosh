@@ -49,12 +49,12 @@ variables:
   ASAN_IMAGE: $CI_REGISTRY/world/phosh/phosh/asan:$IMAGE_VERSION
   XVFB_RUN: xvfb-run -a -s -noreset
   COMMON_BUILD_OPTS: -Db_coverage=true --werror -Dtools=true
-  ALPINE_EDGE_DEPS: alpine-sdk callaudiod-dev elogind-dev feedbackd-dev gcr-dev git glib-dev gnome-desktop-dev
-                    gtk+3.0-dev libgudev-dev libhandy1-dev gcr-dev libsecret-dev gcovr linux-pam-dev
-                    meson musl-dev networkmanager networkmanager-dev ninja polkit-elogind-dev pulseaudio-dev
-                    upower-dev wayland-dev wayland-protocols ttf-dejavu evolution-data-server-dev evince-dev
-                    libadwaita-dev json-glib-dev gnome-bluetooth-dev modemmanager-dev gmobile-dev gsettings-desktop-schemas
-                    vala
+  ALPINE_EDGE_DEPS: alpine-sdk callaudiod-dev elogind-dev evince-dev evolution-data-server-dev feedbackd-dev
+                    gcovr gcr-dev git glib-dev gmobile-dev gnome-bluetooth-dev gnome-desktop-dev
+                    gsettings-desktop-schemas gtk+3.0-dev json-glib-dev libadwaita-dev libgudev-dev
+                    libhandy1-dev libsecret-dev linux-pam-dev meson modemmanager-dev musl-dev networkmanager
+                    networkmanager-dev ninja polkit-elogind-dev pulseaudio-dev qrcodegen-dev ttf-dejavu
+                    upower-dev vala wayland-dev wayland-protocols
   RUST_BINDINGS_BRANCH: main
   LIBPHOSH: libphosh-0.45
   BUILD_OPTS: -Dcallui-i18n=true -Dphoc_tests=enabled -Dsearchd=true ${COMMON_BUILD_OPTS}
