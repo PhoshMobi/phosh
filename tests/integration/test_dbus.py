@@ -38,17 +38,17 @@ class PhoshDBusTestCase(DBusTestCase):
         klass.umock = UMockdev.Testbed.new()
 
         # Torch
-        syspath = klass.umock.add_device(
+        klass.torch_syspath = klass.umock.add_device(
             "leds",
             "white:flash",
             None,
             ["brightness", "0", "max_brightness", "255"],
             ["GM_TORCH_MIN_BRIGHTNESS", "1"],
         )
-        assert syspath == "/sys/devices/white:flash"
+        assert klass.torch_syspath == "/sys/devices/white:flash"
 
         # Backlight
-        syspath = klass.umock.add_device(
+        klass.backlight_syspath = klass.umock.add_device(
             "backlight",
             "intel_backlight",
             None,
@@ -66,7 +66,7 @@ class PhoshDBusTestCase(DBusTestCase):
             ],
             [],
         )
-        assert syspath == "/sys/devices/intel_backlight"
+        assert klass.backlight_syspath == "/sys/devices/intel_backlight"
 
         return klass.umock.get_root_dir()
 
