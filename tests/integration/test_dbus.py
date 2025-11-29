@@ -114,6 +114,7 @@ class PhoshDBusTestCase(DBusTestCase):
                 "phosh-wifi-manager",
                 "phosh-wwan-manager",
                 "phosh-wwan-mm",
+                "phosh-plugin-wifi-hotspot-quick-setting",
             ]
         )
         env["XDG_CURRENT_DESKTOP"] = "Phosh:GNOME"
@@ -251,6 +252,8 @@ class PhoshDBusTestCase(DBusTestCase):
         )
         assert self.phosh.wait_for_output(" NM Wi-Fi enabled: 1, present: 1")
         assert self.phosh.check_for_stdout(" Wi-Fi device connected at 0")
+        # From the hotspot quick setting
+        assert self.phosh.check_for_stdout(" State: 0, Hotspot: 0 Wi-Fi: 0")
 
         nm.AddAccessPoint(
             wifi,
