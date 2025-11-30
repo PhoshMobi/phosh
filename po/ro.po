@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-11-12 09:11+0000\n"
-"PO-Revision-Date: 2025-11-12 11:46+0100\n"
+"POT-Creation-Date: 2025-11-27 21:54+0000\n"
+"PO-Revision-Date: 2025-11-28 15:35+0100\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -689,7 +689,7 @@ msgid "Authentication required"
 msgstr "Autentificare necesară"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:50
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Anulează"
@@ -755,6 +755,7 @@ msgid "Wi-Fi"
 msgstr "Wi-Fi"
 
 #: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
 msgid "Wi-Fi Settings"
 msgstr "Opțiuni Wi-Fi"
 
@@ -807,16 +808,16 @@ msgid "Cellular"
 msgstr "Celular"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:68
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
 msgid "Phosh on caffeine"
 msgstr "Phosh cu Cafeină"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:226
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "Oprit"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:231
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "Pornit"
@@ -829,61 +830,61 @@ msgstr "Timpi Cafeină"
 msgid "No caffeine intervals"
 msgstr "Niciun interval Cafeină"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:251
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:146
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
 msgid "No timeout (∞)"
 msgstr "Nelimitat (∞)"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:6
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:7
 msgid "Caffeine Quick Setting Preferences"
 msgstr "Preferințe pentru Cafeină"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:10
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:11
 msgid "Caffeine Duration"
 msgstr "Timpi Cafeină"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:14
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:15
 msgid "Manage Caffeine Duration"
 msgstr "Gestionează durata pentru Cafeină"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:15
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:16
 msgid "Add or remove custom caffeine intervals"
 msgstr "Adaugă sau elimină intervale pentru Cafeină"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:21
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:22
 msgid "Add interval"
 msgstr "Adaugă un interval"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:41
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
 msgid "Add New Interval"
 msgstr "Adaugă un interval nou"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:58
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "_Adaugă"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:90
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
 msgid "Quickstart Intervals"
 msgstr "Intervale rapide"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:102
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
 msgid "5 m"
 msgstr "5 m"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:113
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
 msgid "15 m"
 msgstr "15 m"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:124
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
 msgid "30 m"
 msgstr "30 m"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:135
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
 msgid "1 h"
 msgstr "1 h"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:163
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
 msgid "Choose Interval"
 msgstr "Alege intervalul"
 
@@ -1218,7 +1219,7 @@ msgstr "Numărul de zile pentru care se afișează evenimentele"
 
 #: plugins/scaling-quick-setting/qs.ui:14
 msgid "Monitor scales"
-msgstr "Scala monitorului"
+msgstr "Scara monitorului"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
@@ -1227,10 +1228,18 @@ msgstr "Scala monitorului"
 msgid "%d%%"
 msgstr "%d%%"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:75
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+msgid "Wi-Fi Hotspot"
+msgstr "Punct de acces Wi-Fi"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
+msgid "Turn On"
+msgstr "Pornește"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
 msgid "Hotspot On"
 msgstr "Punct de acces Activ"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:77
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
 msgid "Hotspot Off"
 msgstr "Punct de acces Oprit"
