@@ -99,10 +99,17 @@ class PhoshDBusTestCase(DBusTestCase):
         klass.start_from_template("gsd_rfkill")
         klass.start_from_template("modemmanager")
         klass.start_from_template("networkmanager")
+        klass.start_from_template(
+            "upower",
+            {
+                "OnBattery": True,
+            },
+        )
 
         # Setup logging
         env["G_MESSAGES_DEBUG"] = " ".join(
             [
+                "phosh-battery-manager",
                 "phosh-brightness-manager",
                 "phosh-backlight",
                 "phosh-backlight-sysfs",
@@ -345,4 +352,58 @@ class PhoshDBusTestCase(DBusTestCase):
         assert self.phosh.wait_for_output(
             " Setting brightness via logind: 764\n",
             ignore_present=True,
+        )
+
+    def test_bat(self):
+        upower = self.mocks["upower"][1]
+
+        assert self.phosh.wait_for_output(
+            " Got upower display device\n",
+            ignore_present=True,
+        )
+
+        assert self.phosh.wait_for_output(
+            " New icon: battery-level-0-symbolic",
+            ignore_present=True,
+        )
+
+        upower.SetupDisplayDevice(
+            # UP_DEVICE_KIND_BATTERY
+            2,
+            # UP_DEVICE_STATE_DISCHARGING
+            2,
+            33.0,
+            33.0,
+            100.0,
+            0.01,
+            3600,
+            0,
+            True,
+            "",
+            # UP_DEVICE_LEVEL,
+            1,
+        )
+
+        assert self.phosh.wait_for_output(" New icon: battery-level-30-symbolic")
+
+        upower.SetDeviceProperties(
+            "/org/freedesktop/UPower/devices/DisplayDevice",
+            {
+                "State": dbus.UInt32(1),
+            },
+        )
+
+        assert self.phosh.wait_for_output(
+            " New icon: battery-level-30-charging-symbolic"
+        )
+
+        upower.SetDeviceProperties(
+            "/org/freedesktop/UPower/devices/DisplayDevice",
+            {
+                "Percentage": 43.0,
+            },
+        )
+
+        assert self.phosh.wait_for_output(
+            " New icon: battery-level-40-charging-symbolic"
         )
