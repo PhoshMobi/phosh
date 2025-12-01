@@ -138,6 +138,10 @@ class PhoshDBusTestCase(DBusTestCase):
         keyfile = os.path.join(srcdir, "keyfile")
         shutil.copy(keyfile, keyfile_dir)
 
+        if os.getenv("SAVE_DBUS_LOGS"):
+            os.system("dbus-monitor --system --pcap > pcap.session &")
+            os.system("dbus-monitor --session --pcap > pcap.session &")
+
         # Spawn phosh
         klass.phosh.spawn_nested()
 
