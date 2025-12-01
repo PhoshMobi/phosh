@@ -38,6 +38,9 @@
           <object class="GtkListBox" id="lb_events">
             <property name="visible">1</property>
             <property name="selection-mode">none</property>
+            <style>
+              <class name="event-list-listbox"/>
+            </style>
           </object>
           <packing>
             <property name="name">events</property>
