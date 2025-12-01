@@ -8,11 +8,11 @@
 
 /* Battery Info widget */
 
-#define G_LOG_DOMAIN "phosh-batteryinfo"
+#define G_LOG_DOMAIN "phosh-battery-info"
 
 #include "phosh-config.h"
 
-#include "batteryinfo.h"
+#include "battery-info.h"
 #include "upower.h"
 
 #include <math.h>

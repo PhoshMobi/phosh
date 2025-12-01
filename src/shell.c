@@ -32,7 +32,7 @@
 #include "debug-control.h"
 #include "shell-priv.h"
 #include "app-tracker.h"
-#include "batteryinfo.h"
+#include "battery-info.h"
 #include "background-manager.h"
 #include "bt-info.h"
 #include "bt-manager.h"
