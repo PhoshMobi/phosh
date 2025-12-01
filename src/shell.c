@@ -174,6 +174,7 @@ typedef struct
   PhoshScreenshotManager *screenshot_manager;
   PhoshNotifyManager *notify_manager;
   PhoshFeedbackManager *feedback_manager;
+  PhoshBatteryManager *battery_manager;
   PhoshBtManager *bt_manager;
   PhoshMountManager *mount_manager;
   PhoshWWan *wwan;
@@ -618,6 +619,7 @@ phosh_shell_dispose (GObject *object)
   g_clear_object (&priv->gnome_shell_manager);
   g_clear_object (&priv->wwan);
   g_clear_object (&priv->mount_manager);
+  g_clear_object (&priv->battery_manager);
   g_clear_object (&priv->bt_manager);
   g_clear_object (&priv->feedback_manager);
   g_clear_object (&priv->notify_manager);
@@ -1995,6 +1997,29 @@ phosh_shell_get_brightness_manager (PhoshShell *self)
   g_return_val_if_fail (PHOSH_IS_BRIGHTNESS_MANAGER (priv->brightness_manager), NULL);
 
   return priv->brightness_manager;
+}
+
+/**
+ * phosh_shell_get_battery_manager:
+ * @self: The shell singleton
+ *
+ * Get the battery manager
+ *
+ * Returns: (transfer none): The battery manager
+ */
+PhoshBatteryManager *
+phosh_shell_get_battery_manager (PhoshShell *self)
+{
+  PhoshShellPrivate *priv;
+
+  g_return_val_if_fail (PHOSH_IS_SHELL (self), NULL);
+  priv = phosh_shell_get_instance_private (self);
+
+  if (!priv->battery_manager)
+    priv->battery_manager = phosh_battery_manager_new ();
+
+  g_return_val_if_fail (PHOSH_IS_BATTERY_MANAGER (priv->battery_manager), NULL);
+  return priv->battery_manager;
 }
 
 /**
