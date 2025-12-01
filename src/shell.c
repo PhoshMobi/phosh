@@ -142,87 +142,86 @@ static guint signals[N_SIGNALS] = { 0 };
 
 static PhoshShellDebugFlags debug_flags;
 
-typedef struct
-{
-  PhoshDragSurface *top_panel;
-  PhoshDragSurface *home;
-  gboolean          overview_visible;
-  GPtrArray *faders;              /* for final fade out */
+typedef struct {
+  PhoshDragSurface           *top_panel;
+  PhoshDragSurface           *home;
+  gboolean                    overview_visible;
+  GPtrArray                  *faders; /* for final fade out */
   GStrv log_domains;
 
-  PhoshOsdWindow   *osd;
-  gint              osd_timeoutid;
-  gboolean          osd_continue;
+  PhoshOsdWindow             *osd;
+  gint osd_timeoutid;
+  gboolean                    osd_continue;
 
-  GtkWidget *notification_banner;
+  GtkWidget                  *notification_banner;
 
-  PhoshUdevManager *udev_manager;
-  PhoshAppTracker *app_tracker;
-  PhoshSessionManager *session_manager;
-  PhoshBackgroundManager *background_manager;
-  PhoshCallsManager *calls_manager;
-  PhoshMonitor *primary_monitor;
-  PhoshMonitor *builtin_monitor;
-  PhoshMonitorManager *monitor_manager;
-  PhoshLockscreenManager *lockscreen_manager;
-  PhoshIdleManager *idle_manager;
-  PhoshOskManager  *osk_manager;
-  PhoshToplevelManager *toplevel_manager;
-  PhoshWifiManager *wifi_manager;
-  PhoshPolkitAuthAgent *polkit_auth_agent;
-  PhoshScreenSaverManager *screen_saver_manager;
-  PhoshScreenshotManager *screenshot_manager;
-  PhoshNotifyManager *notify_manager;
-  PhoshFeedbackManager *feedback_manager;
-  PhoshBatteryManager *battery_manager;
-  PhoshBtManager *bt_manager;
-  PhoshMountManager *mount_manager;
-  PhoshWWan *wwan;
-  PhoshTorchManager *torch_manager;
-  PhoshModeManager *mode_manager;
-  PhoshDockedManager *docked_manager;
-  PhoshGtkMountManager *gtk_mount_manager;
-  PhoshHksManager *hks_manager;
-  PhoshKeyboardEvents *keyboard_events;
-  PhoshLocationManager *location_manager;
-  PhoshGnomeShellManager *gnome_shell_manager;
-  PhoshSplashManager *splash_manager;
-  PhoshRunCommandManager *run_command_manager;
-  PhoshNetworkAuthManager *network_auth_manager;
-  PhoshVpnManager *vpn_manager;
-  PhoshPortalAccessManager *portal_access_manager;
-  PhoshSuspendManager *suspend_manager;
+  PhoshUdevManager           *udev_manager;
+  PhoshAppTracker            *app_tracker;
+  PhoshSessionManager        *session_manager;
+  PhoshBackgroundManager     *background_manager;
+  PhoshCallsManager          *calls_manager;
+  PhoshMonitor               *primary_monitor;
+  PhoshMonitor               *builtin_monitor;
+  PhoshMonitorManager        *monitor_manager;
+  PhoshLockscreenManager     *lockscreen_manager;
+  PhoshIdleManager           *idle_manager;
+  PhoshOskManager            *osk_manager;
+  PhoshToplevelManager       *toplevel_manager;
+  PhoshWifiManager           *wifi_manager;
+  PhoshPolkitAuthAgent       *polkit_auth_agent;
+  PhoshScreenSaverManager    *screen_saver_manager;
+  PhoshScreenshotManager     *screenshot_manager;
+  PhoshNotifyManager         *notify_manager;
+  PhoshFeedbackManager       *feedback_manager;
+  PhoshBatteryManager        *battery_manager;
+  PhoshBtManager             *bt_manager;
+  PhoshMountManager          *mount_manager;
+  PhoshWWan                  *wwan;
+  PhoshTorchManager          *torch_manager;
+  PhoshModeManager           *mode_manager;
+  PhoshDockedManager         *docked_manager;
+  PhoshGtkMountManager       *gtk_mount_manager;
+  PhoshHksManager            *hks_manager;
+  PhoshKeyboardEvents        *keyboard_events;
+  PhoshLocationManager       *location_manager;
+  PhoshGnomeShellManager     *gnome_shell_manager;
+  PhoshSplashManager         *splash_manager;
+  PhoshRunCommandManager     *run_command_manager;
+  PhoshNetworkAuthManager    *network_auth_manager;
+  PhoshVpnManager            *vpn_manager;
+  PhoshPortalAccessManager   *portal_access_manager;
+  PhoshSuspendManager        *suspend_manager;
   PhoshEmergencyCallsManager *emergency_calls_manager;
-  PhoshPowerMenuManager *power_menu_manager;
-  PhoshLayoutManager *layout_manager;
-  PhoshStyleManager *style_manager;
-  PhoshLauncherEntryManager *launcher_entry_manager;
-  PhoshCellBroadcastManager *cell_broadcast_manager;
-  PhoshConnectivityManager *connectivity_manager;
-  PhoshMprisManager *mpris_manager;
-  PhoshBrightnessManager *brightness_manager;
-  PhoshDebugControl *debug_control;
+  PhoshPowerMenuManager      *power_menu_manager;
+  PhoshLayoutManager         *layout_manager;
+  PhoshStyleManager          *style_manager;
+  PhoshLauncherEntryManager  *launcher_entry_manager;
+  PhoshCellBroadcastManager  *cell_broadcast_manager;
+  PhoshConnectivityManager   *connectivity_manager;
+  PhoshMprisManager          *mpris_manager;
+  PhoshBrightnessManager     *brightness_manager;
+  PhoshDebugControl          *debug_control;
 
   /* sensors */
-  PhoshSensorProxyManager *sensor_proxy_manager;
-  PhoshProximity *proximity;
-  PhoshAmbient *ambient;
-  PhoshRotationManager *rotation_manager;
+  PhoshSensorProxyManager    *sensor_proxy_manager;
+  PhoshProximity             *proximity;
+  PhoshAmbient               *ambient;
+  PhoshRotationManager       *rotation_manager;
 
-  gboolean             startup_finished;
-  guint                startup_finished_id;
+  gboolean                    startup_finished;
+  guint startup_finished_id;
 
-  GSimpleActionGroup  *action_map;
+  GSimpleActionGroup         *action_map;
 
   /* Mirrors PhoshLockscreenManager's locked property */
-  gboolean locked;
+  gboolean                    locked;
 
   /* Mirrors PhoshDockedManager's docked property */
-  gboolean docked;
+  gboolean                    docked;
 
-  PhoshShellStateFlags shell_state;
+  PhoshShellStateFlags        shell_state;
 
-  GSettings      *settings;
+  GSettings                  *settings;
 } PhoshShellPrivate;
 
 static void phosh_shell_action_group_iface_init (GActionGroupInterface *iface);
