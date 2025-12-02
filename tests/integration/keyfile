@@ -1,0 +1,2 @@
+[sm/puri/phosh/plugins]
+quick-settings=['caffeine-quick-setting', 'location-quick-setting', 'pomodoro-quick-setting', 'wifi-hotspot-quick-setting']

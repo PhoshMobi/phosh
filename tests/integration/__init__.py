@@ -32,21 +32,27 @@ class Phosh:
     wl_display = None
     process = None
 
-    def __init__(self, topsrcdir, topbuilddir, env={}, wrapper=[]):
+    def __init__(
+        self, topsrcdir, topbuilddir, env={}, wrapper=[], gsettings_backend="memory"
+    ):
         self.topsrcdir = topsrcdir
         self.topbuilddir = topbuilddir
         self.tmpdir = tempfile.TemporaryDirectory(dir=topbuilddir)
+        self.rundir = os.path.join(self.tmpdir.name, "run", "user")
+        self.homedir = os.path.join(self.tmpdir.name, "home")
         self.stdout = ""
         self.stderr = ""
         self.env = env
         self.wrapper = wrapper
+        self.gsettings_backend = gsettings_backend
 
         # Set Wayland socket
-        self.wl_display = os.path.join(self.tmpdir.name, "wayland-socket")
+        os.makedirs(self.rundir, exist_ok=True)
+        self.wl_display = os.path.join(self.rundir, "wayland-socket")
+        os.environ["XDG_RUNTIME_DIR"] = self.rundir
 
-        if not os.getenv("XDG_RUNTIME_DIR"):
-            print(f"'XDG_RUNTIME_DIR' unset, setting to {topbuilddir}")
-            os.environ["XDG_RUNTIME_DIR"] = topbuilddir
+        os.makedirs(self.homedir, exist_ok=True)
+        os.environ["HOME"] = self.homedir
 
     def teardown_nested(self):
         self.process.send_signal(15)
@@ -79,7 +85,7 @@ class Phosh:
         runscript = os.path.join(self.topbuilddir, "run")
 
         env = os.environ.copy()
-        env["GSETTINGS_BACKEND"] = "memory"
+        env["GSETTINGS_BACKEND"] = self.gsettings_backend
         backend = self.find_wlr_backend()
         env["WLR_BACKENDS"] = backend
 

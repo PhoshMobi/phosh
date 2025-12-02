@@ -8,4 +8,4 @@ export TOPSRCDIR=@ABS_SRCDIR@
 export TOPBUILDDIR=@ABS_BUILDDIR@
 export PHOSH_DEBUG=fake-builtin
 
-pytest $@
+exec umockdev-wrapper pytest $@

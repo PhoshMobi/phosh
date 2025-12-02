@@ -308,8 +308,17 @@ phosh_brightness_manager_handle_set_dimming (PhoshDBusBrightness   *object,
   }
 
   if (arg_enable) {
+    double current = phosh_backlight_get_relative (self->backlight);
+
     target = g_settings_get_int (self->settings_power, "idle-brightness") * 0.01;
-    self->saved_brightness = phosh_backlight_get_relative (self->backlight);
+
+    /* If current brightness is lower than dim brightness don't do anything */
+    if (target >= current) {
+      self->saved_brightness = -1.0;
+      goto done;
+    }
+
+    self->saved_brightness = current;
   } else {
     target = self->saved_brightness;
     self->saved_brightness = -1.0;
@@ -318,6 +327,7 @@ phosh_brightness_manager_handle_set_dimming (PhoshDBusBrightness   *object,
   if (target >= 0.0)
     phosh_backlight_set_relative (self->backlight, target);
 
+ done:
   phosh_dbus_brightness_complete_set_dimming (object, invocation);
   return TRUE;
 }

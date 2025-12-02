@@ -58,6 +58,7 @@ Build-Depends:
  phoc (>= 0.44~) <!nocheck>,
  python3-dbusmock (>= 0.32.1) <!nocheck>,
  python3-pytest <!nocheck>,
+ gir1.2-umockdev-1.0 <!nocheck>,
  umockdev <!nocheck>,
  wlr-randr <!nocheck>,
  xauth <!nocheck>,

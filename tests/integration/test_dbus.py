@@ -10,10 +10,12 @@
 #
 # Author: Guido Günther <agx@sigxcpu.org>
 
+import gi
 import os
 import subprocess
 import dbus
 import dbusmock
+import shutil
 from collections import OrderedDict
 from dbusmock import DBusTestCase
 from dbusmock.templates.networkmanager import (
@@ -24,14 +26,51 @@ from dbusmock.templates.networkmanager import (
     SETTINGS_OBJ,
 )
 
-from pathlib import Path
-
-from gi.repository import Gio
-
-from . import Phosh, set_nonblock
+gi.require_version("UMockdev", "1.0")
+gi.require_version("GUdev", "1.0")
+from gi.repository import Gio, UMockdev  # noqa: 402
+from . import Phosh, set_nonblock  # noqa: 402
 
 
 class PhoshDBusTestCase(DBusTestCase):
+
+    @classmethod
+    def setup_udev_mock(klass):
+        klass.umock = UMockdev.Testbed.new()
+
+        # Torch
+        klass.torch_syspath = klass.umock.add_device(
+            "leds",
+            "white:flash",
+            None,
+            ["brightness", "0", "max_brightness", "255"],
+            ["GM_TORCH_MIN_BRIGHTNESS", "1"],
+        )
+        assert klass.torch_syspath == "/sys/devices/white:flash"
+
+        # Backlight
+        klass.backlight_syspath = klass.umock.add_device(
+            "backlight",
+            "intel_backlight",
+            None,
+            [
+                "actual_brightness",
+                "76255",
+                "brightness",
+                "76255",
+                "max_brightness",
+                "19200",
+                "scale",
+                "unknown",
+                "type",
+                "raw",
+            ],
+            [],
+        )
+        assert klass.backlight_syspath == "/sys/devices/intel_backlight"
+
+        return klass.umock.get_root_dir()
+
     @classmethod
     def setUpClass(klass):
         klass.mocks = OrderedDict()
@@ -52,11 +91,8 @@ class PhoshDBusTestCase(DBusTestCase):
             klass.session_test_bus.get_bus_address()
         )
 
-        # Add the templates we want running before phosh starts
-        flash_mock = (
-            Path(topsrcdir) / "tests" / "integration" / "oneplus,fajita.umockdev"
-        )
-        udev_mock_script = ["umockdev-run", "-d", str(flash_mock), "--"]
+        # Setup udev mocks
+        env["UMOCKDEV_DIR"] = klass.setup_udev_mock()
 
         # TODO: start udev mock for e.g. backlight
         klass.start_from_template("bluez5")
@@ -78,13 +114,32 @@ class PhoshDBusTestCase(DBusTestCase):
                 "phosh-wifi-manager",
                 "phosh-wwan-manager",
                 "phosh-wwan-mm",
+                "phosh-plugin-wifi-hotspot-quick-setting",
             ]
         )
         env["XDG_CURRENT_DESKTOP"] = "Phosh:GNOME"
 
         klass.phosh = Phosh(
-            topsrcdir, topbuilddir, env, wrapper=udev_mock_script
-        ).spawn_nested()
+            topsrcdir,
+            topbuilddir,
+            env,
+            wrapper=["umockdev-wrapper"],
+            gsettings_backend="keyfile",
+        )
+
+        # Install keyfile with gsettings
+        assert os.environ.get("XDG_CONFIG_HOME") is None
+        keyfile_dir = os.path.join(
+            klass.phosh.homedir, ".config", "glib-2.0", "settings"
+        )
+        os.makedirs(keyfile_dir, exist_ok=True)
+
+        srcdir = os.path.dirname(os.path.abspath(__file__))
+        keyfile = os.path.join(srcdir, "keyfile")
+        shutil.copy(keyfile, keyfile_dir)
+
+        # Spawn phosh
+        klass.phosh.spawn_nested()
 
     @classmethod
     def tearDownClass(klass):
@@ -197,6 +252,8 @@ class PhoshDBusTestCase(DBusTestCase):
         )
         assert self.phosh.wait_for_output(" NM Wi-Fi enabled: 1, present: 1")
         assert self.phosh.check_for_stdout(" Wi-Fi device connected at 0")
+        # From the hotspot quick setting
+        assert self.phosh.check_for_stdout(" State: 0, Hotspot: 0 Wi-Fi: 0")
 
         nm.AddAccessPoint(
             wifi,
@@ -262,5 +319,26 @@ class PhoshDBusTestCase(DBusTestCase):
 
         assert self.phosh.wait_for_output(
             " Found HEADLESS-1 for brightness control",
+            ignore_present=True,
+        )
+
+        subprocess.check_output(
+            [
+                "busctl",
+                "call",
+                "--user",
+                "org.gnome.Shell",
+                "/org/gnome/Shell/Brightness",
+                "org.gnome.Shell.Brightness",
+                "SetDimming",
+                "b",
+                "true",
+            ]
+        )
+        # schema default of "org.gnome.settings-daemon.plugins.power" "idle-dim"
+        # is enabled so the above DBus call should change brightness
+        assert self.phosh.wait_for_output(" Setting target brightness to 764\n")
+        assert self.phosh.wait_for_output(
+            " Setting brightness via logind: 764\n",
             ignore_present=True,
         )
