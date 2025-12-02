@@ -44,6 +44,7 @@
             <signal name="icon-press" handler="on_icon_press" object="PhoshWifiHotspotStatusPage" swapped="yes"/>
             <style>
               <class name="flat"/>
+              <class name="password-entry"/>
             </style>
           </object>
         </child>
