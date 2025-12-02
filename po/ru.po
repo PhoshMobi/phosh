@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-11-13 11:55+0000\n"
-"PO-Revision-Date: 2025-11-13 15:22+0300\n"
+"POT-Creation-Date: 2025-11-28 12:32+0000\n"
+"PO-Revision-Date: 2025-11-28 18:03+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -687,7 +687,7 @@ msgid "Authentication required"
 msgstr "Требуется аутентификация"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:51
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Отменить"
@@ -753,6 +753,7 @@ msgid "Wi-Fi"
 msgstr "Wi-Fi"
 
 #: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
 msgid "Wi-Fi Settings"
 msgstr "Настройки Wi-Fi"
 
@@ -805,16 +806,16 @@ msgid "Cellular"
 msgstr "Мобильная сеть"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:68
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
 msgid "Phosh on caffeine"
 msgstr "Phosh на кофеине"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:226
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "Выкл"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:231
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "Вкл"
@@ -827,8 +828,8 @@ msgstr "Таймеры кофеина"
 msgid "No caffeine intervals"
 msgstr "Нет интервалов кофеина"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:251
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:147
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
 msgid "No timeout (∞)"
 msgstr "Нет перерыва (∞)"
 
@@ -852,36 +853,36 @@ msgstr "Добавить или удалить пользовательские 
 msgid "Add interval"
 msgstr "Добавить интервал"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:42
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
 msgid "Add New Interval"
 msgstr "Добавить новый интервал"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:59
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "_Добавить"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:91
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
 msgid "Quickstart Intervals"
 msgstr "Интервалы быстрого запуска"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:103
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
 msgid "5 m"
 msgstr "5 мин"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:114
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
 msgid "15 m"
 msgstr "15 мин"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:125
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
 msgid "30 m"
 msgstr "30 мин"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:136
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
 msgid "1 h"
 msgstr "1 час"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
 msgid "Choose Interval"
 msgstr "Выбрать интервал"
 
@@ -1225,11 +1226,19 @@ msgstr "Масштаб экрана"
 msgid "%d%%"
 msgstr "%d%%"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:75
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+msgid "Wi-Fi Hotspot"
+msgstr "Точка доступа Wi-Fi"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
+msgid "Turn On"
+msgstr "Включить"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
 msgid "Hotspot On"
 msgstr "Точка доступа включена"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:77
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
 msgid "Hotspot Off"
 msgstr "Точка доступа выключена"
 
