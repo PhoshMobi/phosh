@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-11-13 13:36+0000\n"
-"PO-Revision-Date: 2025-11-14 04:03+0100\n"
+"POT-Creation-Date: 2025-12-02 16:11+0000\n"
+"PO-Revision-Date: 2025-12-03 00:28+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -667,7 +667,7 @@ msgid "Authentication required"
 msgstr "საჭროა ავთენტიკაცია"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:51
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_გაუქმება"
@@ -733,6 +733,7 @@ msgid "Wi-Fi"
 msgstr "Wi-Fi"
 
 #: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
 msgid "Wi-Fi Settings"
 msgstr "Wi-Fi-ის მორგება"
 
@@ -785,16 +786,16 @@ msgid "Cellular"
 msgstr "მობილური"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:68
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
 msgid "Phosh on caffeine"
 msgstr "Phosh caffeine-ზე"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:226
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "გამორთ"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:231
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "ჩართ"
@@ -807,8 +808,8 @@ msgstr "კოფეინის ტაიმერები"
 msgid "No caffeine intervals"
 msgstr "კოფეინის შუალედების გარეშე"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:251
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:147
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
 msgid "No timeout (∞)"
 msgstr "უვადო (∞)"
 
@@ -832,36 +833,36 @@ msgstr "მომხმარებლის კოფეინის შუა�
 msgid "Add interval"
 msgstr "ინტერვალის დამატება"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:42
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
 msgid "Add New Interval"
 msgstr "ახალი ინტერვალის დამატება"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:59
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "_დამატება"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:91
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
 msgid "Quickstart Intervals"
 msgstr "სწრაფი გაშვების ინტერვალები"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:103
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
 msgid "5 m"
 msgstr "5 წთ"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:114
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
 msgid "15 m"
 msgstr "15 წთ"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:125
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
 msgid "30 m"
 msgstr "30 წთ"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:136
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
 msgid "1 h"
 msgstr "1 სთ"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
 msgid "Choose Interval"
 msgstr "აირჩიეთ ინტერვალი"
 
@@ -1168,7 +1169,7 @@ msgstr "მთავრდება"
 msgid "Untitled event"
 msgstr "უსახელო მოვლენა"
 
-#: plugins/upcoming-events/upcoming-events.c:372
+#: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
 msgid "No events for the next %d days"
 msgstr "მოვლენების გარეშე შემდეგი %d დღე"
@@ -1205,11 +1206,19 @@ msgstr "ეკრანის მასშტაბები"
 msgid "%d%%"
 msgstr "%d%%"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:75
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+msgid "Wi-Fi Hotspot"
+msgstr "Wi-Fi ჰოტსპოტი"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
+msgid "Turn On"
+msgstr "ჩართვა"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
 msgid "Hotspot On"
 msgstr "ჰოტსპოტი ჩართ"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:77
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
 msgid "Hotspot Off"
 msgstr "ჰოტსპოტი გამორთ"
 
