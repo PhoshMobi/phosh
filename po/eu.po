@@ -2,9 +2,9 @@
 msgid ""
 msgstr "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2023-07-05 08:48+0000\n"
-"PO-Revision-Date: 2023-03-06 12:37+0200\n"
-"Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
+"POT-Creation-Date: 2025-12-02 23:30+0000\n"
+"PO-Revision-Date: 2025-12-03 12:37+0200\n"
+"Last-Translator: Asier Saratsua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -12,24 +12,32 @@ msgstr "Project-Id-Version: phosh\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#. Translators: this is the session name, no need to translate it
-#: data/phosh.session.desktop.in.in:4 data/wayland-sessions/phosh.desktop:3
-msgid "Phosh"
-msgstr "Phosh"
-
-#: data/mobi.phosh.Shell.desktop.in.in:4 data/wayland-sessions/phosh.desktop:4
+#: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
 msgstr "Shell mugikorra"
 
-#: data/mobi.phosh.Shell.desktop.in.in:5
+#: data/mobi.phosh.Shell.desktop.in.in:4
 msgid "Window management and application launching for mobile"
 msgstr "Leihoen kudeaketa eta aplikazioen abioa mugikorrentzako"
 
-#: data/wayland-sessions/phosh.desktop:5
+#. Translators: this is the session name, no need to translate it
+#: data/phosh.session.desktop.in.in:3 data/wayland-sessions/phosh.desktop:2
+msgid "Phosh"
+msgstr "Phosh"
+
+#: data/wayland-sessions/phosh.desktop:4
 msgid "This session logs you into Phosh"
 msgstr "Saio honek Phosh aplikazioan sartuko zaitu"
 
-#: plugins/calendar/calendar.desktop.in.in:5
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:4
+msgid "Caffeine Quick Setting"
+msgstr "Kafeina-moduaren ezarpen azkarra"
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:6
+msgid "Prevent the session from going idle"
+msgstr "Eragotzi saioa inaktibo gera dadin"
+
+#: plugins/calendar/calendar.desktop.in.in:4
 msgid "Calendar"
 msgstr "Egutegia"
 
@@ -37,8 +45,78 @@ msgstr "Egutegia"
 msgid "A simple calendar widget"
 msgstr "Egutegi-trepeta xume bat"
 
-#: plugins/ticket-box/ticket-box.desktop.in.in:4
-#: plugins/ticket-box/ticket-box.ui:14
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:4
+msgid "Dark Mode / Color Scheme Quick Setting"
+msgstr "Modu ilunaren / Kolore-eskemaren ezarpen azkarra"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:6
+msgid "Toggle dark mode"
+msgstr "Txandakatu modu iluna"
+
+#: plugins/emergency-info/emergency-info.desktop.in.in:4
+#| msgid "_Emergency"
+msgid "Emergency Info"
+msgstr "Larrialdi-informazioa"
+
+#: plugins/emergency-info/emergency-info.desktop.in.in:6
+msgid "Show emergency information and contacts"
+msgstr "Erakutsi larrialdi-informazioa eta -kontaktuak"
+
+#: plugins/launcher-box/launcher-box.desktop.in.in:3
+#: plugins/launcher-box/launcher-box.ui:17
+msgid "Launcher Box"
+msgstr "Abiarazle-kutxa"
+
+#: plugins/launcher-box/launcher-box.desktop.in.in:5
+#| msgid "Show PDFs on the lock screen. <b>This plugin is experimental.</b>"
+msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
+msgstr "Gehitu abiarazleak blokeo-pantailari. <b>Plugin hau esperimentala da.</b>"
+
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
+msgid "Location Quick Setting"
+msgstr "Kokalekuaren ezarpen azkarra"
+
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:6
+msgid "Toggle location services on/off"
+msgstr "Aktibatu/Desaktibatu kokaleku-zerbitzuak"
+
+#: plugins/media-players/media-players.desktop.in.in:3
+#: plugins/media-players/media-players.ui:19
+#: plugins/media-players/media-players.ui:35
+msgid "Media Players"
+msgstr "Multimedia-erreproduzigailuak"
+
+#: plugins/media-players/media-players.desktop.in.in:5
+msgid "Track currently running media players"
+msgstr "Jarraitu unean abioan dauden multimedia-erreproduzitzaileak"
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:4
+msgid "Mobile Data Quick Setting"
+msgstr "Datu mugikorren ezarpen azkarra"
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:6
+msgid "Toggle mobile data on/off"
+msgstr "Aktibatu/Desaktibatu datu mugikorrak"
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:4
+msgid "Night Light Quick Setting"
+msgstr "Gaueko argiaren ezarpen azkarra"
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:6
+msgid "Toggle night light on/off"
+msgstr "Aktibatu/Desaktibatu gaueko argia"
+
+#. Translators: "Pomodoro" is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:5
+msgid "Pomodoro Quick Setting"
+msgstr "Pomodororen ezarpen azkarra"
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:7
+msgid "Simple Pomodoro Timer"
+msgstr "Pomodoro tenporizadore sinplea"
+
+#: plugins/ticket-box/ticket-box.desktop.in.in:3
+#: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
 msgstr "Txartel-kutxa"
 
@@ -46,7 +124,7 @@ msgstr "Txartel-kutxa"
 msgid "Show PDFs on the lock screen. <b>This plugin is experimental.</b>"
 msgstr "Erakutsi PDFak blokeo-pantailan. <b>Plugin hau esperimentala da.</b>"
 
-#: plugins/upcoming-events/upcoming-events.desktop.in.in:4
+#: plugins/upcoming-events/upcoming-events.desktop.in.in:3
 msgid "Upcoming Events"
 msgstr "Etorkizuneko gertaerak"
 
@@ -54,30 +132,67 @@ msgstr "Etorkizuneko gertaerak"
 msgid "Show upcoming calendar events"
 msgstr "Erakutsi etorkizuneko egutegi-gertaerak"
 
-#: src/app-grid-button.c:529
+#: src/app-grid-button.c:144
+#| msgid "Add to _Favorites"
+msgid "Add to Folder"
+msgstr "Gehitu karpetari"
+
+#: src/app-grid-button.c:168
+msgid "Create new folder"
+msgstr "Sortu karpeta berria"
+
+#: src/app-grid-button.c:694 src/app-grid-button.c:748
 msgid "Application"
 msgstr "Aplikazioa"
 
-#: src/app-grid.c:137
+#: src/app-grid.c:261
 msgid "Show All Apps"
 msgstr "Erakutsi aplikazio guztiak"
 
-#: src/app-grid.c:140
+#: src/app-grid.c:264
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Erakutsi mugikorrean ongi doazen aplikazioak soilik"
 
-#: src/bt-info.c:92
+#. Translators: a battery level in percent
+#: src/bt-device-row.c:81
+#, c-format
+msgid "Battery %.0f%%"
+msgstr "Bateria %%%.0f"
+
+#: src/bt-info.c:95 src/ui/bt-status-page.ui:6
+msgid "Bluetooth"
+msgstr "Bluetootha"
+
+#: src/bt-info.c:123
 msgctxt "bluetooth:enabled"
 msgid "On"
 msgstr "Aktibatuta"
 
-#: src/bt-info.c:94
-msgid "Bluetooth"
-msgstr "Bluetooth"
+#: src/bt-status-page.c:123
+msgid "No connectable Bluetooth Devices found"
+msgstr "Ez da aurkitu konektatu daitekeen Bluetooth gailurik"
 
-#: src/call-notification.c:60
+#: src/bt-status-page.c:127
+#| msgid "Bluetooth"
+msgid "Bluetooth disabled"
+msgstr "Bluetootha desaktibatuta"
+
+#: src/call-notification.c:63
 msgid "Unknown caller"
 msgstr "Dei-egile ezezaguna"
+
+#: src/connectivity-manager.c:114
+#, c-format
+msgid "Wi-Fi network '%s' uses a captive portal"
+msgstr "'%s' wifi-sareak atari gatibua darabil"
+
+#: src/connectivity-manager.c:116
+msgid "The Wi-Fi network uses a captive portal"
+msgstr "Wifi sareak atari gatibua darabil"
+
+#: src/connectivity-manager.c:123
+msgid "Sign into Wi-Fi network"
+msgstr "Hasi saioa wifi-sarean"
 
 #: src/docked-info.c:81
 msgid "Docked"
@@ -87,8 +202,8 @@ msgstr "Atrakatuta"
 msgid "Undocked"
 msgstr "Desatrakatuta"
 
-#: src/emergency-menu.c:97 src/ui/app-auth-prompt.ui:71
-#: src/ui/end-session-dialog.ui:71
+#: src/emergency-menu.c:97 src/ui/app-auth-prompt.ui:64
+#: src/ui/cell-broadcast-prompt.ui:18 src/ui/end-session-dialog.ui:62
 msgid "Ok"
 msgstr "Ados"
 
@@ -100,42 +215,38 @@ msgstr "Ezin dira larrialdi-deiak kokatu"
 msgid "Internal error"
 msgstr "Barneko errorea"
 
-#: src/end-session-dialog.c:163
+#: src/end-session-dialog.c:173
 msgid "Log Out"
 msgstr "Amaitu saioa"
 
-#: src/end-session-dialog.c:166
+#: src/end-session-dialog.c:176
 #, c-format
 msgid "%s will be logged out automatically in %d second."
 msgid_plural "%s will be logged out automatically in %d seconds."
 msgstr[0] "%s erabiltzailearen saioa automatikoki segundo %dean amaituko da."
 msgstr[1] "%s erabiltzailearen saioa automatikoki %d segundotan amaituko da."
 
-#: src/end-session-dialog.c:172
+#: src/end-session-dialog.c:182 src/ui/power-menu.ui:72
 msgid "Power Off"
 msgstr "Itzali"
 
-#: src/end-session-dialog.c:173
+#: src/end-session-dialog.c:183
 #, c-format
 msgid "The system will power off automatically in %d second."
 msgid_plural "The system will power off automatically in %d seconds."
 msgstr[0] "Sistema automatikoki segundo %dean itzaliko da."
 msgstr[1] "Sistema automatikoki %d segundotan itzaliko da."
 
-#: src/end-session-dialog.c:179
+#: src/end-session-dialog.c:189
 msgid "Restart"
 msgstr "Berrabiarazi"
 
-#: src/end-session-dialog.c:180
+#: src/end-session-dialog.c:190
 #, c-format
 msgid "The system will restart automatically in %d second."
 msgid_plural "The system will restart automatically in %d seconds."
 msgstr[0] "Sistema automatikoki segundo %dean berrabiaraziko da."
 msgstr[1] "Sistema automatikoki %d segundotan berrabiaraziko da."
-
-#: src/end-session-dialog.c:270
-msgid "Unknown application"
-msgstr "Aplikazio ezezaguna"
 
 #. Translators: quiet and silent are fbd profiles names:
 #. see https://source.puri.sm/Librem5/feedbackd#profiles
@@ -157,61 +268,83 @@ msgctxt "feedback:enabled"
 msgid "On"
 msgstr "Aktibatuta"
 
-#: src/location-manager.c:268
+#: src/location-manager.c:266
 #, c-format
 msgid "Allow '%s' to access your location information?"
 msgstr "Onartu '%s' aplikazioak zure kokalekuaren informazioa eskuratu dezan?"
 
-#: src/location-manager.c:273
+#: src/location-manager.c:271
 msgid "Geolocation"
 msgstr "Geolokalizazioa"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:272
 msgid "Yes"
 msgstr "Bai"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:272
 msgid "No"
 msgstr "Ez"
 
-#: src/lockscreen.c:174 src/ui/lockscreen.ui:245
+#. give visual feedback on error
+#: src/lockscreen.c:313 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "Sartu pasakodea"
 
-#: src/lockscreen.c:397
+#: src/lockscreen.c:956
 msgid "Checking…"
 msgstr "Egiaztatzen…"
 
-#: src/screenshot-manager.c:212
+#. Translators: '%s' is the filename of a screenshot
+#: src/screenshot-manager.c:238
+#, c-format
+#| msgid "Screenshot copied to clipboard"
+msgid "Screenshot saved to '%s'"
+msgstr "Pantaila-argazkia hemen gorde da: '%s'"
+
+#: src/screenshot-manager.c:240
+msgid "Failed to save screenshot"
+msgstr "Huts egin du pantaila-argazkia gordetzeak"
+
+#: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Pantaila-argazkia"
 
-#: src/screenshot-manager.c:213
-msgid "Screenshot copied to clipboard"
-msgstr "Pantaila-argazkia arbelean kopiatu da"
+#. Translators: name of the folder beneath ~/Pictures used to store screenshots
+#: src/screenshot-manager.c:554
+#| msgid "Screenshot"
+msgid "Screenshots"
+msgstr "Pantaila-argazkiak"
+
+#. Translators: Name of a screenshot file. The first '%s' is a timestamp
+#. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
+#. * the file already exists like '-3'
+#: src/screenshot-manager.c:574
+#, c-format
+msgid "Screenshot from %s%s.png"
+msgstr "Pantaila-argazkia: %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:321 src/ui/media-player.ui:161
+#: src/media-player.c:690 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Titulu ezezaguna"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:329 src/ui/media-player.ui:148
+#: src/media-player.c:698 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Artista ezezaguna"
 
-#: src/monitor-manager.c:119
+#: src/monitor-manager.c:128
 msgid "Built-in display"
 msgstr "Pantaila integratuta"
 
-#: src/monitor-manager.c:137
+#: src/monitor-manager.c:146
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:144
+#: src/monitor-manager.c:153
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -220,127 +353,151 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:153
+#: src/monitor-manager.c:162
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: src/network-auth-prompt.c:201
+#: src/network-auth-prompt.c:202
 #, c-format
-msgid "Authentication type of wifi network “%s” not supported"
-msgstr "Wifi-sarearen “%s” autentifikazioa ez da onartzen"
+#| msgid "Authentication type of wifi network “%s” not supported"
+msgid "Authentication type of Wi-Fi network “%s” not supported"
+msgstr "“%s” wifi-sarearen autentifikazio mota ez da onartzen"
 
-#: src/network-auth-prompt.c:206
+#: src/network-auth-prompt.c:207
 #, c-format
-msgid "Enter password for the wifi network “%s”"
-msgstr "Sartu pasahitza “%s” wifi-sarerako"
+#| msgid "Enter password for the wifi network “%s”"
+msgid "Enter password for the Wi-Fi network “%s”"
+msgstr "Sartu “%s” wifi-sarearen pasahitza"
 
 #: src/notifications/mount-notification.c:121
 msgid "Open"
 msgstr "Ireki"
 
-#: src/notifications/notification.c:383 src/notifications/notification.c:654
+#. We don't just set the app_info but name and icon separately to
+#. * not overwrite values set by the caller
+#: src/notifications/notification.c:422 src/notifications/notification.c:695
+#: src/notifications/notify-manager.c:1009
 msgid "Notification"
 msgstr "Jakinarazpena"
 
-#. Translators: Timestamp seconds suffix
-#: src/notifications/timestamp-label.c:84
-msgctxt "timestamp-suffix-seconds"
-msgid "s"
-msgstr "s"
-
-#. Translators: Timestamp minute suffix
-#: src/notifications/timestamp-label.c:86
-msgctxt "timestamp-suffix-minute"
-msgid "m"
-msgstr "s"
-
-#. Translators: Timestamp minutes suffix
+#. Translators: Point in time, use a short word or abbreviation
+#. Please stick to a maximum of 12 chars
 #: src/notifications/timestamp-label.c:88
-msgctxt "timestamp-suffix-minutes"
-msgid "m"
-msgstr "m"
-
-#. Translators: Timestamp hour suffix
-#: src/notifications/timestamp-label.c:90
-msgctxt "timestamp-suffix-hour"
-msgid "h"
-msgstr "o"
-
-#. Translators: Timestamp hours suffix
-#: src/notifications/timestamp-label.c:92
-msgctxt "timestamp-suffix-hours"
-msgid "h"
-msgstr "o"
-
-#. Translators: Timestamp day suffix
-#: src/notifications/timestamp-label.c:94
-msgctxt "timestamp-suffix-day"
-msgid "d"
-msgstr "e"
-
-#. Translators: Timestamp days suffix
-#: src/notifications/timestamp-label.c:96
-msgctxt "timestamp-suffix-days"
-msgid "d"
-msgstr "e"
-
-#. Translators: Timestamp month suffix
-#: src/notifications/timestamp-label.c:98
-msgctxt "timestamp-suffix-month"
-msgid "mo"
-msgstr "h"
-
-#. Translators: Timestamp months suffix
-#: src/notifications/timestamp-label.c:100
-msgctxt "timestamp-suffix-months"
-msgid "mos"
-msgstr "h"
-
-#. Translators: Timestamp year suffix
-#: src/notifications/timestamp-label.c:102
-msgctxt "timestamp-suffix-year"
-msgid "y"
-msgstr "u"
-
-#. Translators: Timestamp years suffix
-#: src/notifications/timestamp-label.c:104
-msgctxt "timestamp-suffix-years"
-msgid "y"
-msgstr "u"
-
-#: src/notifications/timestamp-label.c:121
 msgid "now"
 msgstr "orain"
 
-#. Translators: time difference "Over 5 years"
-#: src/notifications/timestamp-label.c:189
+#. Translators: abbreviated time difference "Less than 30 seconds"
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:93
 #, c-format
+msgid "<30s"
+msgstr "<30s"
+
+#. Translators: abbreviated time difference "Less than one minute"
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:98
+#, c-format
+msgid "<1m"
+msgstr "<1m"
+
+#. Translators: abbreviated time difference "About one minute"
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:103
+#, c-format
+msgid "~1m"
+msgstr "~1m"
+
+#. Translators: abbreviated, exact time difference "1 minute ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:111
+#, c-format
+msgid "%dm"
+msgid_plural "%dm"
+msgstr[0] "%dm"
+msgstr[1] "%dm"
+
+#. Translators: abbreviated time difference "About 3 hours ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:119
+#, c-format
+msgid "~%dh"
+msgid_plural "~%dh"
+msgstr[0] "~%do"
+msgstr[1] "~%do"
+
+#. Translators: abbreviated time difference "About 1 day ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:124
+#, c-format
+msgid "~1d"
+msgstr "~1e"
+
+#. Translators: abbreviated, exact time difference "3 days ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:129
+#, c-format
+#| msgid "Add"
+msgid "%dd"
+msgid_plural "%dd"
+msgstr[0] "%de"
+msgstr[1] "%de"
+
+#. Translators: abbreviated time difference "About 1 month ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:134
+#, c-format
+msgid "~1mo"
+msgstr "~1h"
+
+#. Translators: abbreviated, exact time difference "3 months ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:139
+#, c-format
+msgid "%dmo"
+msgid_plural "%dmos"
+msgstr[0] "%dh"
+msgstr[1] "%dh"
+
+#. Translators: abbreviated time difference "About 5 years ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:149
+#, c-format
+msgid "~%dy"
+msgid_plural "~%dy"
+msgstr[0] "~%du"
+msgstr[1] "~%du"
+
+#. Translators: abbreviated time difference "Over 5 years ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:153
+#, c-format
+#| msgid "Over %dy"
 msgid "Over %dy"
-msgstr "%du inguru"
+msgid_plural "Over %dy"
+msgstr[0] "%du baino gehiago"
+msgstr[1] "%du baino gehiago"
 
-#. Translators: time difference "almost 5 years"
-#: src/notifications/timestamp-label.c:193
+#. Translators: abbreviated time difference "almost 5 years ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:158
 #, c-format
+#| msgid "Almost %dy"
 msgid "Almost %dy"
-msgstr "Ia %du"
+msgid_plural "Almost %dy"
+msgstr[0] "Ia %du"
+msgstr[1] "Ia %du"
 
-#. Translators: a time difference like '<5m', if in doubt leave untranslated
-#: src/notifications/timestamp-label.c:200
-#, c-format
-msgid "%s%d%s"
-msgstr "%s%d%s"
-
-#: src/polkit-auth-agent.c:227
+#: src/polkit-auth-agent.c:271
 msgid "Authentication dialog was dismissed by the user"
 msgstr "Erabiltzaileak autentifikazio-koadroa baztertu du"
 
-#: src/polkit-auth-prompt.c:278 src/ui/gtk-mount-prompt.ui:20
-#: src/ui/network-auth-prompt.ui:82 src/ui/polkit-auth-prompt.ui:56
-#: src/ui/system-prompt.ui:32
+#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "Pasahitza:"
 
-#: src/polkit-auth-prompt.c:325
+#: src/polkit-auth-prompt.c:322
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "Barkatu, horrek ez du funtzionatu. Saiatu berriro."
 
@@ -371,15 +528,15 @@ msgstr "Sakatu ESC ixteko"
 msgid "Running '%s' failed"
 msgstr "'%s' exekutatzeak huts egin du"
 
-#: src/settings/audio-settings.c:373
+#: src/settings/audio-settings.c:376
 msgid "Phone Shell Volume Control"
 msgstr "Shell mugikorraren bolumen-kontrola"
 
-#: src/system-prompt.c:365
+#: src/system-prompt.c:376
 msgid "Passwords do not match."
 msgstr "Pasahitzak ez datoz bat."
 
-#: src/system-prompt.c:372
+#: src/system-prompt.c:383
 msgid "Password cannot be blank"
 msgstr "Pasahitza ezin da hutsik egon"
 
@@ -387,33 +544,37 @@ msgstr "Pasahitza ezin da hutsik egon"
 msgid "Torch"
 msgstr "Torch"
 
-#: src/ui/app-auth-prompt.ui:49
+#: src/ui/app-auth-prompt.ui:43
 msgid "Remember decision"
 msgstr "Gogoratu erabakia"
 
-#: src/ui/app-auth-prompt.ui:62 src/ui/end-session-dialog.ui:62
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:29
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:289
+#: src/ui/app-auth-prompt.ui:55 src/ui/end-session-dialog.ui:53
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:25
 msgid "Cancel"
 msgstr "Utzi"
 
-#: src/ui/app-grid-button.ui:55
-msgid "App"
-msgstr "Aplikazioa"
-
-#: src/ui/app-grid-button.ui:79
+#: src/ui/app-grid-button.ui:31
 msgid "Remove from _Favorites"
 msgstr "Kendu g_ogokoetatik"
 
-#: src/ui/app-grid-button.ui:84
+#: src/ui/app-grid-button.ui:36
 msgid "Add to _Favorites"
 msgstr "Gehitu _gogokoei"
 
-#: src/ui/app-grid-button.ui:89
+#: src/ui/app-grid-button.ui:41
 msgid "View _Details"
 msgstr "Ikusi _xehetasunak"
 
-#: src/ui/app-grid.ui:21
+#: src/ui/app-grid-button.ui:46
+msgid "Uninstall"
+msgstr "Desinstalatu"
+
+#: src/ui/app-grid-button.ui:53
+#| msgid "Remove from _Favorites"
+msgid "_Remove from Folder"
+msgstr "_Kendu karpetatik"
+
+#: src/ui/app-grid.ui:26
 msgid "Search apps…"
 msgstr "Bilatu aplikazioak…"
 
@@ -421,13 +582,32 @@ msgstr "Bilatu aplikazioak…"
 msgid "Output Devices"
 msgstr "Irteerako gailuak"
 
-#: src/ui/audio-settings.ui:107
+#: src/ui/audio-settings.ui:108
 msgid "Input Devices"
 msgstr "Sarrerako gailuak"
 
-#: src/ui/audio-settings.ui:134
+#: src/ui/audio-settings.ui:136
 msgid "Sound Settings"
 msgstr "Soinu-ezarpenak"
+
+#: src/ui/brightness-settings.ui:87
+msgid "Automatic Brightness"
+msgstr "Distira automatikoa"
+
+#: src/ui/brightness-settings.ui:120
+#| msgid "Sound Settings"
+msgid "Brightness Settings"
+msgstr "Distiraren ezarpenak"
+
+#: src/ui/bt-status-page.ui:39
+#| msgid "Bluetooth"
+msgid "Enable Bluetooth"
+msgstr "Gaitu Bluetootha"
+
+#: src/ui/bt-status-page.ui:54
+#| msgid "Bluetooth"
+msgid "Bluetooth Settings"
+msgstr "Bluetootharen ezarpenak"
 
 #: src/ui/emergency-menu.ui:26
 msgid "Close the emergency call dialog"
@@ -441,16 +621,16 @@ msgstr "Larrialdiko _kontaktuak"
 msgid "Go to the emergency contacts page"
 msgstr "Joan larrialdiko kontaktuen orrira"
 
-#: src/ui/emergency-menu.ui:83
+#: src/ui/emergency-menu.ui:82
 msgid "Go back to the emergency dialpad page"
 msgstr "Itzuli larrialdi-deirako teklaturaren orrira"
 
-#: src/ui/emergency-menu.ui:106
+#: src/ui/emergency-menu.ui:105
 msgid "Owner unknown"
 msgstr "Jabe ezezaguna"
 
-#: src/ui/emergency-menu.ui:124 plugins/emergency-info/emergency-info.ui:195
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:230
+#: src/ui/emergency-menu.ui:123 plugins/emergency-info/emergency-info.ui:211
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:170
 msgid "Emergency Contacts"
 msgstr "Larrialdietarako kontaktuak"
 
@@ -458,88 +638,106 @@ msgstr "Larrialdietarako kontaktuak"
 msgid "No emergency contacts available."
 msgstr "Ez dago larrialdiko kontakturik eskuragarri."
 
-#: src/ui/end-session-dialog.ui:31
+#: src/ui/end-session-dialog.ui:27
 msgid "Some applications are busy or have unsaved work"
 msgstr "Aplikazio batzuk lanpetuta daude edo gorde gabeko lanak dituzte."
 
-#: src/ui/gtk-mount-prompt.ui:94
+#: src/ui/feedback-status-page.ui:6
+msgid "Feedback"
+msgstr ""
+
+#: src/ui/feedback-status-page.ui:19
+msgid "Do not disturb"
+msgstr "Ez gogaitu"
+
+#: src/ui/feedback-status-page.ui:52
+#| msgid "Folder Settings"
+msgid "Feedback Settings"
+msgstr ""
+
+#: src/ui/gtk-mount-prompt.ui:74
 msgid "User:"
 msgstr "Erabiltzailea:"
 
-#: src/ui/gtk-mount-prompt.ui:117
+#: src/ui/gtk-mount-prompt.ui:96
 msgid "Domain:"
 msgstr "Domeinua:"
 
-#: src/ui/gtk-mount-prompt.ui:150
+#: src/ui/gtk-mount-prompt.ui:128
 msgid "Co_nnect"
 msgstr "_Konektatu"
 
-#: src/ui/lockscreen.ui:36 src/ui/lockscreen.ui:334
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
 msgid "Back"
 msgstr "Atzera"
 
-#: src/ui/lockscreen.ui:97
+#: src/ui/lockscreen.ui:95
 msgid "Slide up to unlock"
 msgstr "Irristatu gora desblokeatzeko"
 
-#: src/ui/lockscreen.ui:297
+#: src/ui/lockscreen.ui:332
 msgid "Unlock"
 msgstr "Desblokeatu"
 
-#: src/ui/network-auth-prompt.ui:5 src/ui/polkit-auth-prompt.ui:6
+#: src/ui/network-auth-prompt.ui:6 src/ui/polkit-auth-prompt.ui:5
 msgid "Authentication required"
 msgstr "Autentifikazioa behar da"
 
-#: src/ui/network-auth-prompt.ui:40
-#: plugins/ticket-box/prefs/ticket-box-prefs.c:90
+#: src/ui/network-auth-prompt.ui:37
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Utzi"
 
-#: src/ui/network-auth-prompt.ui:58
+#: src/ui/network-auth-prompt.ui:50
 msgid "C_onnect"
 msgstr "_Konektatu"
 
-#: src/ui/polkit-auth-prompt.ui:122
+#: src/ui/polkit-auth-prompt.ui:97
 msgid "Authenticate"
 msgstr "Autentifikatu"
 
-#: src/ui/power-menu.ui:69
-msgid "_Power Off"
-msgstr "_Itzali"
+#: src/ui/power-menu.ui:112
+#| msgid "_Suspend…"
+msgid "Suspend"
+msgstr "Eseki"
 
-#: src/ui/power-menu.ui:110
-msgid "_Lock"
-msgstr "_Blokeatu"
+#: src/ui/power-menu.ui:158
+#| msgid "_Lock"
+msgid "Lock"
+msgstr "Blokeatu"
 
-#: src/ui/power-menu.ui:151
-msgid "_Screenshot"
-msgstr "_Pantaila-argazkia"
+#: src/ui/power-menu.ui:240
+#| msgid "_Emergency"
+msgid "Emergency"
+msgstr "Larrialdia"
 
-#: src/ui/power-menu.ui:192
-msgid "_Emergency"
-msgstr "_Larrialdia"
-
-#: src/ui/run-command-dialog.ui:6
+#: src/ui/run-command-dialog.ui:5
 msgid "Run Command"
 msgstr "Exekutatu komandoa"
 
-#: src/ui/settings.ui:296
+#: src/ui/settings.ui:121
 msgid "No notifications"
 msgstr "Jakinarazpenik ez"
 
-#: src/ui/settings.ui:336
+#: src/ui/settings.ui:150
+#| msgid "Notification"
+msgid "Notifications"
+msgstr "Jakinarazpenak"
+
+#: src/ui/settings.ui:159
 msgid "Clear all"
 msgstr "Garbitu dena"
 
-#: src/ui/system-prompt.ui:62
+#: src/ui/system-prompt.ui:52
 msgid "Confirm:"
 msgstr "Berretsi:"
 
-#: src/ui/top-panel.ui:32
+#: src/ui/top-panel.ui:34
 msgid "_Power Off…"
 msgstr "_Itzali…"
 
-#: src/ui/top-panel.ui:60
+#: src/ui/top-panel.ui:61
 msgid "_Restart…"
 msgstr "_Berrabiarazi…"
 
@@ -547,19 +745,29 @@ msgstr "_Berrabiarazi…"
 msgid "_Suspend…"
 msgstr "_Eseki…"
 
-#: src/ui/top-panel.ui:116
+#: src/ui/top-panel.ui:115
 msgid "_Log Out…"
 msgstr "Amaitu _saioa…"
 
-#. Translators: This is a time format for a date in
-#. long format
-#: src/util.c:339
-msgid "%A, %B %-e"
-msgstr "%A, %B %-e"
+#: src/ui/wifi-status-page.ui:6 src/wifi-info.c:90
+msgid "Wi-Fi"
+msgstr "Wifia"
+
+#: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
+#| msgid "Folder Settings"
+msgid "Wi-Fi Settings"
+msgstr "Wifiaren ezarpenak"
 
 #: src/vpn-info.c:89
 msgid "VPN"
 msgstr "VPNa"
+
+#. Translators: This is a time format for a date in
+#. long format
+#: src/wall-clock.c:248
+msgid "%A, %B %-e"
+msgstr "%A, %B %-e"
 
 #: src/widget-box.c:54
 msgid "Plugin not found"
@@ -570,148 +778,393 @@ msgstr "Ez da plugina aurkitu"
 msgid "The plugin '%s' could not be loaded."
 msgstr "Ezin izan da '%s' plugina kargatu."
 
-#: src/wifiinfo.c:90
-msgid "Wi-Fi"
-msgstr "Wifia"
+#: src/wifi-status-page.c:53
+msgid "No Wi-Fi Device Found"
+msgstr "Ez da wifi-gailurik aurkitu"
+
+#: src/wifi-status-page.c:57
+msgid "Wi-Fi Disabled"
+msgstr "Wifia desgaitu da"
+
+#: src/wifi-status-page.c:58
+msgid "Enable Wi-Fi"
+msgstr "Gaitu wifia"
+
+#: src/wifi-status-page.c:61
+msgid "Wi-Fi Hotspot Active"
+msgstr "Wifigunea aktibo"
+
+#: src/wifi-status-page.c:62
+msgid "Turn Off"
+msgstr "Desaktibatu"
+
+#: src/wifi-status-page.c:65
+msgid "No Wi-Fi Hotspots"
+msgstr "Ez dago wifigunerik"
 
 #. Translators: Refers to the cellular wireless network
 #: src/wwan-info.c:210
 msgid "Cellular"
 msgstr "Mugikorra"
 
-#: plugins/emergency-info/emergency-info.ui:39
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:70
+#. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
+msgid "Phosh on caffeine"
+msgstr "Phosh kafeinarekin"
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
+#| msgctxt "automatic-screen-rotation-disabled"
+#| msgid "Off"
+msgctxt "caffeine-disabled"
+msgid "Off"
+msgstr "Desaktibatuta"
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+#| msgctxt "bluetooth:enabled"
+#| msgid "On"
+msgctxt "caffeine-enabled"
+msgid "On"
+msgstr "Aktibatuta"
+
+#: plugins/caffeine-quick-setting/qs.ui:15
+msgid "Caffeine timers"
+msgstr "Kafeina-tenporizadoreak"
+
+#: plugins/caffeine-quick-setting/qs.ui:37
+msgid "No caffeine intervals"
+msgstr "Ez dago kafeina-tarterik"
+
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+msgid "No timeout (∞)"
+msgstr "Ez dago denbora-mugarik(∞)"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:7
+#| msgid "Ticket Box Preferences"
+msgid "Caffeine Quick Setting Preferences"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:11
+msgid "Caffeine Duration"
+msgstr "Kafeinaren iraupena"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:15
+msgid "Manage Caffeine Duration"
+msgstr "Kudeatu kafeinaren iraupena"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:16
+msgid "Add or remove custom caffeine intervals"
+msgstr "Gehitu edo kendu kafeina-tarte pertsonalizatuak"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:22
+#| msgid "Add Contact"
+msgid "Add interval"
+msgstr "Gehitu tartea"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+#| msgid "Add New Contact"
+msgid "Add New Interval"
+msgstr "Gehitu tarte berria"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
+msgid "_Add"
+msgstr "_Gehitu"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+msgid "Quickstart Intervals"
+msgstr "Abio azkarraren tarteak"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+msgid "5 m"
+msgstr "5 m"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+msgid "15 m"
+msgstr "15 m"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+msgid "30 m"
+msgstr "30 m"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+msgid "1 h"
+msgstr "1 o"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+#| msgid "Choose Folder"
+msgid "Choose Interval"
+msgstr "Aukeratu tartea"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
+msgid "Default style"
+msgstr "Estilo lehenetsia"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:35
+msgid "Dark mode"
+msgstr "Modu iluna"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:36
+msgid "Light mode"
+msgstr "Modu argia"
+
+#: plugins/emergency-info/emergency-info.ui:43
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:62
 msgid "Personal Information"
 msgstr "Datu pertsonalak"
 
-#: plugins/emergency-info/emergency-info.ui:47
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:88
+#: plugins/emergency-info/emergency-info.ui:51
 msgid "Date of Birth"
 msgstr "Jaiotze-data"
 
-#: plugins/emergency-info/emergency-info.ui:65
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:100
+#: plugins/emergency-info/emergency-info.ui:71
 msgid "Preferred Language"
 msgstr "Hizkuntza hobetsia"
 
-#: plugins/emergency-info/emergency-info.ui:83
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:112
+#: plugins/emergency-info/emergency-info.ui:91
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:85
 msgid "Home Address"
 msgstr "Etxeko helbidea"
 
-#: plugins/emergency-info/emergency-info.ui:91
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:129
+#: plugins/emergency-info/emergency-info.ui:99
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:100
 msgid "Medical Information"
 msgstr "Informazio medikoa"
 
-#: plugins/emergency-info/emergency-info.ui:99
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:135
+#: plugins/emergency-info/emergency-info.ui:107
 msgid "Age"
 msgstr "Adina"
 
-#: plugins/emergency-info/emergency-info.ui:117
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:147
+#: plugins/emergency-info/emergency-info.ui:127
 msgid "Blood Type"
 msgstr "Odol mota"
 
-#: plugins/emergency-info/emergency-info.ui:135
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:159
+#: plugins/emergency-info/emergency-info.ui:147
 msgid "Height"
 msgstr "Altuera"
 
-#: plugins/emergency-info/emergency-info.ui:153
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:171
+#: plugins/emergency-info/emergency-info.ui:167
 msgid "Weight"
 msgstr "Pisua"
 
-#: plugins/emergency-info/emergency-info.ui:171
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:183
+#: plugins/emergency-info/emergency-info.ui:187
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:129
 msgid "Allergies"
 msgstr "Alergiak"
 
-#: plugins/emergency-info/emergency-info.ui:179
+#: plugins/emergency-info/emergency-info.ui:195
 msgid "Medications & Conditions"
 msgstr "Medikazioa eta gaixotasunak"
 
-#: plugins/emergency-info/emergency-info.ui:187
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:213
+#: plugins/emergency-info/emergency-info.ui:203
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:155
 msgid "Other Information"
 msgstr "Informazio gehigarria"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:6
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:19
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:16
 msgid "Emergency Info Preferences"
 msgstr "Larrialdi-informazioaren hobespenak"
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:40
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:36
 msgid "Done"
 msgstr "Egina"
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:76
-msgid "Owner Name"
-msgstr "Jabearen izena"
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:67
+#| msgid "Owner Name"
+msgid "_Owner Name"
+msgstr "_Jabearen izena"
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:198
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:73
+#| msgid "Date of Birth"
+msgid "_Date of Birth"
+msgstr "J_aiotze-data"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:79
+#| msgid "Preferred Language"
+msgid "_Preferred Language"
+msgstr "_Hizkuntza hobetsia"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:105
+msgid "_Age"
+msgstr "A_dina"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:111
+#| msgid "Blood Type"
+msgid "_Blood Type"
+msgstr "_Odol mota"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:117
+#| msgid "Height"
+msgid "_Height"
+msgstr "A_ltuera"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:123
+#| msgid "Weight"
+msgid "_Weight"
+msgstr "P_isua"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:142
 msgid "Medications and Conditions"
 msgstr "Medikazioa eta gaixotasunak"
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:239
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:179
 msgid "Add Contact"
 msgstr "Gehitu kontaktua"
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:284
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:203
 msgid "Add New Contact"
 msgstr "Gehitu kontaktu berria"
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:294
-msgid "Add"
-msgstr "Gehitu"
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:240
+#| msgid "New Contact Name"
+msgid "_Contact Name"
+msgstr "_Kontaktuaren izena"
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:315
-msgid "New Contact Name"
-msgstr "Kontaktu berriaren izena"
-
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:329
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:246
 msgid "Relationship"
 msgstr "Erlazioa"
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:342
-msgid "Number"
-msgstr "Zenbakia"
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:252
+#| msgid "New Contact Name"
+msgid "_Contact Number"
+msgstr "_Kontaktuaren zenbakia"
 
-#: plugins/ticket-box/ticket-box.ui:15
+#: plugins/launcher-box/launcher-box.ui:18
+msgid "No launchers configured"
+msgstr "Ez da abiarazlerik konfiguratu"
+
+#: plugins/launcher-box/launcher-box.ui:33
+msgid "Launchers"
+msgstr "Abiarazleak"
+
+#: plugins/location-quick-setting/location-quick-setting.c:65
+#| msgid "Geolocation"
+msgid "Location On"
+msgstr "Kokalekua aktibatuta"
+
+#: plugins/location-quick-setting/location-quick-setting.c:65
+#| msgid "Geolocation"
+msgid "Location Off"
+msgstr "Kokalekua desaktibatuta"
+
+#: plugins/media-players/media-players.ui:20
+msgid "No running media players"
+msgstr "Ez dago multimedia-erreproduzigailurik exekuzioan"
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
+msgid "Mobile Data On"
+msgstr "Datu mugikorrak aktibatuta"
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
+msgid "Mobile Data Off"
+msgstr "Datu mugikorrak desaktibatuta"
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
+msgid "Night Light On"
+msgstr "Gaueko argia aktibatuta"
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
+msgid "Night Light Off"
+msgstr "Gaueko argia desaktibatuta"
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+msgid "Pomodoro start"
+msgstr "Pomodororen hasiera"
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#, c-format
+msgid "Focus on your task for %d minutes"
+msgstr "Jarri arreta lanean %d minutuz"
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+msgid "Take a break"
+msgstr "Egin etenaldi bat"
+
+#. Translators: Pomodoro is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#, c-format
+msgid "You have %d minutes until next Pomodoro"
+msgstr "%d minutu geratzen dira hurrengo Pomodorora arte"
+
+#. Translators: Pomodoro is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+msgid "Pomodoro Timer"
+msgstr "Pomodoo tenporizadorea"
+
+#. Translators: Pomodoro is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#, c-format
+#| msgid "Power Off"
+msgid "Pomodoro Off"
+msgstr "Pomodoro desaktibatuta"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:6
+#| msgid "Ticket Box Preferences"
+msgid "Pomodoro Quick Setting Preferences"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:11
+msgid "Pomodoro Technique"
+msgstr "Pomodoro teknika"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:14
+msgid "_Active Duration"
+msgstr "Iraupen _aktiboa"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:15
+msgid "Duration of the focus session"
+msgstr "Arreta-aldiaren iraupena"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:29
+msgid "_Break Duration"
+msgstr "_Etenaldiaren iraupena"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:30
+msgid "Duration of the break between sessions"
+msgstr "Saioen arteko etenaldiaren iraupena"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:44
+msgid "_Start on unlock"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:45
+msgid "Whether to start the timer on screen unlock"
+msgstr ""
+
+#: plugins/ticket-box/ticket-box.ui:18
 msgid "No documents to display"
 msgstr "Ez dago dokumenturik bistaratzeko"
 
-#: plugins/ticket-box/ticket-box.ui:83
+#: plugins/ticket-box/ticket-box.ui:82
 msgid "Tickets"
 msgstr "Txartelak"
 
-#: plugins/ticket-box/prefs/ticket-box-prefs.c:86
-msgid "Choose Folder"
-msgstr "Hautatu karpeta"
-
-#: plugins/ticket-box/prefs/ticket-box-prefs.c:89
+#: plugins/ticket-box/prefs/ticket-box-prefs.c:94
 msgid "_Open"
 msgstr "_Ireki"
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.c:95
+msgid "Choose Folder"
+msgstr "Hautatu karpeta"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.ui:6
 msgid "Ticket Box Preferences"
 msgstr "Txartel-kutxaren hobespenak"
 
-#: plugins/ticket-box/prefs/ticket-box-prefs.ui:13
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:10
 msgid "Paths"
 msgstr "Bide-izenak"
 
-#: plugins/ticket-box/prefs/ticket-box-prefs.ui:18
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:14
 msgid "Folder Settings"
 msgstr "Karpeta-ezarpenak"
 
-#: plugins/ticket-box/prefs/ticket-box-prefs.ui:19
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:15
 msgid "Where Phosh looks for your tickets"
 msgstr "Phosh aplikazioak non bilatuko dituen txartelak"
 
-#: plugins/ticket-box/prefs/ticket-box-prefs.ui:22
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:18
 msgid "Ticket Folder"
 msgstr "Txartel-karpeta"
 
@@ -723,12 +1176,11 @@ msgstr "Gaur"
 msgid "Tomorrow"
 msgstr "Bihar"
 
-#: plugins/upcoming-events/event-list.c:150
+#. Translators: The current date and weekday for display in a calendar entry
+#: plugins/upcoming-events/event-list.c:151
 #, c-format
-msgid "In %d day"
-msgid_plural "In %d days"
-msgstr[0] "Egun %dean"
-msgstr[1] "%d egunetan"
+msgid "%x %a"
+msgstr "%x %a"
 
 #: plugins/upcoming-events/event-list.ui:26
 msgid "No events"
@@ -755,9 +1207,133 @@ msgstr "Egun osoa"
 msgid "Ends"
 msgstr "Amaiera-data"
 
-#: plugins/upcoming-events/upcoming-event.c:398
+#: plugins/upcoming-events/upcoming-event.c:400
 msgid "Untitled event"
 msgstr "Izenik gabeko gertaera"
+
+#: plugins/upcoming-events/upcoming-events.c:408
+#, c-format
+msgid "No events for the next %d days"
+msgstr "Ez dago gertaerarik hurrengo %d egunetarako"
+
+#: plugins/upcoming-events/upcoming-events.ui:28
+#| msgid "Upcoming Events"
+msgid "No upcoming events"
+msgstr "Ez dago gertaerarik etorkizunean"
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:6
+#| msgid "Upcoming Events"
+msgid "Upcoming Events Preferences"
+msgstr "Etorkizuneko gertaeren hobespenak"
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:10
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:17
+msgid "Days"
+msgstr "Egunak"
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:13
+msgid "Date Range"
+msgstr "Data-tartea"
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:14
+msgid "Number of days to show events for"
+msgstr "Gertaerak zenbat egunetarako erakutsiko diren"
+
+#: plugins/scaling-quick-setting/qs.ui:14
+msgid "Monitor scales"
+msgstr ""
+
+#. Translators: This is scale factor of a monitor in percent
+#: plugins/scaling-quick-setting/scale-row.c:48
+#: plugins/scaling-quick-setting/scaling-quick-setting.c:91
+#, c-format
+msgid "%d%%"
+msgstr "%% %d"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+msgid "Wi-Fi Hotspot"
+msgstr "Wifigunea"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
+msgid "Turn On"
+msgstr "Aktibatu"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
+msgid "Hotspot On"
+msgstr "Wifigunea aktibatuta"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
+msgid "Hotspot Off"
+msgstr "Wifigunea desaktibatuta"
+
+#~ msgid "Unknown application"
+#~ msgstr "Aplikazio ezezaguna"
+
+#~ msgctxt "timestamp-suffix-seconds"
+#~ msgid "s"
+#~ msgstr "s"
+
+#~ msgctxt "timestamp-suffix-minute"
+#~ msgid "m"
+#~ msgstr "s"
+
+#~ msgctxt "timestamp-suffix-minutes"
+#~ msgid "m"
+#~ msgstr "m"
+
+#~ msgctxt "timestamp-suffix-hour"
+#~ msgid "h"
+#~ msgstr "o"
+
+#~ msgctxt "timestamp-suffix-hours"
+#~ msgid "h"
+#~ msgstr "o"
+
+#~ msgctxt "timestamp-suffix-day"
+#~ msgid "d"
+#~ msgstr "e"
+
+#~ msgctxt "timestamp-suffix-days"
+#~ msgid "d"
+#~ msgstr "e"
+
+#~ msgctxt "timestamp-suffix-month"
+#~ msgid "mo"
+#~ msgstr "h"
+
+#~ msgctxt "timestamp-suffix-months"
+#~ msgid "mos"
+#~ msgstr "h"
+
+#~ msgctxt "timestamp-suffix-year"
+#~ msgid "y"
+#~ msgstr "u"
+
+#~ msgctxt "timestamp-suffix-years"
+#~ msgid "y"
+#~ msgstr "u"
+
+#, c-format
+#~ msgid "%s%d%s"
+#~ msgstr "%s%d%s"
+
+#~ msgid "App"
+#~ msgstr "Aplikazioa"
+
+#~ msgid "_Power Off"
+#~ msgstr "_Itzali"
+
+#~ msgid "_Screenshot"
+#~ msgstr "_Pantaila-argazkia"
+
+#~ msgid "Number"
+#~ msgstr "Zenbakia"
+
+#, c-format
+#~ msgid "In %d day"
+#~ msgid_plural "In %d days"
+#~ msgstr[0] "Egun %dean"
+#~ msgstr[1] "%d egunetan"
 
 #~ msgid "Lock Screen"
 #~ msgstr "Blokeatu pantaila"
