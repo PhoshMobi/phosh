@@ -16,131 +16,143 @@
 # Tim Sabsch <tim@sabsch.com>, 2020, 2024.
 # Michael Oppliger <mj.oppliger@gmail.com>, 2021.
 # Philipp Kiemle <l10n@prly.mozmail.com>, 2021, 2023-2025.
-# Jürgen Benvenuti <gastornis@posteo.org>, 2022-2024.
+# Jürgen Benvenuti <gastornis@posteo.org>, 2022-2025.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-06-19 13:24+0000\n"
-"PO-Revision-Date: 2025-06-21 22:57+0200\n"
-"Last-Translator: Philipp Kiemle <l10n@prly.mozmail.com>\n"
+"POT-Creation-Date: 2025-11-21 07:43+0000\n"
+"PO-Revision-Date: 2025-11-23 11:03+0100\n"
+"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/mobi.phosh.Shell.desktop.in.in:4 data/wayland-sessions/phosh.desktop:4
+#: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
 msgstr "Telefon-Shell"
 
-#: data/mobi.phosh.Shell.desktop.in.in:5
+#: data/mobi.phosh.Shell.desktop.in.in:4
 msgid "Window management and application launching for mobile"
 msgstr "Fensterverwaltung und Starten von Anwendungen für Mobilgeräte"
 
 #. Translators: this is the session name, no need to translate it
-#: data/phosh.session.desktop.in.in:4 data/wayland-sessions/phosh.desktop:3
+#: data/phosh.session.desktop.in.in:3 data/wayland-sessions/phosh.desktop:2
 msgid "Phosh"
 msgstr "Phosh"
 
-#: data/wayland-sessions/phosh.desktop:5
+#: data/wayland-sessions/phosh.desktop:4
 msgid "This session logs you into Phosh"
 msgstr "Diese Sitzung meldet Sie in Phosh an"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:5
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:4
 msgid "Caffeine Quick Setting"
 msgstr "Koffein-Schnelleinstellungen"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:7
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:6
 msgid "Prevent the session from going idle"
 msgstr "Inaktivwerden der Sitzung verhindern"
 
-#: plugins/calendar/calendar.desktop.in.in:5
+#: plugins/calendar/calendar.desktop.in.in:4
 msgid "Calendar"
 msgstr "Kalender"
 
-#: plugins/calendar/calendar.desktop.in.in:7
+#: plugins/calendar/calendar.desktop.in.in:6
 msgid "A simple calendar widget"
 msgstr "Ein einfaches Kalender-Widget"
 
-#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:5
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:4
 msgid "Dark Mode / Color Scheme Quick Setting"
 msgstr "Dunkler Modus/Farbschema-Schnelleinstellungen"
 
-#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:7
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:6
 msgid "Toggle dark mode"
 msgstr "Dunklen Modus ein-/ausschalten"
 
-#: plugins/emergency-info/emergency-info.desktop.in.in:5
+#: plugins/emergency-info/emergency-info.desktop.in.in:4
 msgid "Emergency Info"
 msgstr "Notfallinformationen"
 
-#: plugins/emergency-info/emergency-info.desktop.in.in:7
+#: plugins/emergency-info/emergency-info.desktop.in.in:6
 msgid "Show emergency information and contacts"
 msgstr "Notfallinformationen und -kontakte anzeigen"
 
-#: plugins/launcher-box/launcher-box.desktop.in.in:4
+#: plugins/launcher-box/launcher-box.desktop.in.in:3
 #: plugins/launcher-box/launcher-box.ui:17
 msgid "Launcher Box"
 msgstr "Starterbox"
 
-#: plugins/launcher-box/launcher-box.desktop.in.in:6
+#: plugins/launcher-box/launcher-box.desktop.in.in:5
 msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
-msgstr "Starter zum Sperrbildschirm hinzufügen. <b>Diese Erweiterung ist experimentell.</b>"
+msgstr ""
+"Starter zum Sperrbildschirm hinzufügen. <b>Diese Erweiterung ist "
+"experimentell.</b>"
 
-#: plugins/media-players/media-players.desktop.in.in:4
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
+msgid "Location Quick Setting"
+msgstr "Standort-Schnelleinstellungen"
+
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:6
+msgid "Toggle location services on/off"
+msgstr "Ortungsdienste ein-/ausschalten"
+
+#: plugins/media-players/media-players.desktop.in.in:3
 #: plugins/media-players/media-players.ui:19
 #: plugins/media-players/media-players.ui:35
 msgid "Media Players"
 msgstr "Medienspieler"
 
-#: plugins/media-players/media-players.desktop.in.in:6
+#: plugins/media-players/media-players.desktop.in.in:5
 msgid "Track currently running media players"
 msgstr "Aktuell laufende Medienspieler verfolgen"
 
-#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:5
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:4
 msgid "Mobile Data Quick Setting"
 msgstr "Mobile Daten-Schnelleinstellungen"
 
-#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:7
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:6
 msgid "Toggle mobile data on/off"
 msgstr "Mobile Daten ein-/ausschalten"
 
-#: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:5
+#: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:4
 msgid "Night Light Quick Setting"
 msgstr "Nachtmodus-Schnelleinstellungen"
 
-#: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:7
+#: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:6
 msgid "Toggle night light on/off"
 msgstr "Nachtmodus ein-/ausschalten"
 
 #. Translators: "Pomodoro" is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:6
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:5
 msgid "Pomodoro Quick Setting"
 msgstr "Pomodoro-Schnelleinstellungen"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:8
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:7
 msgid "Simple Pomodoro Timer"
 msgstr "Einfacher Pomodoro-Zeitmesser"
 
-#: plugins/ticket-box/ticket-box.desktop.in.in:4
+#: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
 msgstr "Ticketbox"
 
-#: plugins/ticket-box/ticket-box.desktop.in.in:6
+#: plugins/ticket-box/ticket-box.desktop.in.in:5
 msgid "Show PDFs on the lock screen. <b>This plugin is experimental.</b>"
-msgstr "PDFs auf dem Sperrbildschirm anzeigen. <b>Diese Erweiterung ist experimentell.</b>"
+msgstr ""
+"PDFs auf dem Sperrbildschirm anzeigen. <b>Diese Erweiterung ist "
+"experimentell.</b>"
 
-#: plugins/upcoming-events/upcoming-events.desktop.in.in:4
+#: plugins/upcoming-events/upcoming-events.desktop.in.in:3
 msgid "Upcoming Events"
 msgstr "Anstehende Termine"
 
-#: plugins/upcoming-events/upcoming-events.desktop.in.in:6
+#: plugins/upcoming-events/upcoming-events.desktop.in.in:5
 msgid "Show upcoming calendar events"
 msgstr "Anstehende Kalendertermine anzeigen"
 
@@ -213,7 +225,7 @@ msgid "Undocked"
 msgstr "Abgedockt"
 
 #: src/emergency-menu.c:97 src/ui/app-auth-prompt.ui:64
-#: src/ui/cell-broadcast-prompt.ui:22 src/ui/end-session-dialog.ui:62
+#: src/ui/cell-broadcast-prompt.ui:18 src/ui/end-session-dialog.ui:62
 msgid "Ok"
 msgstr "OK"
 
@@ -278,20 +290,20 @@ msgctxt "feedback:enabled"
 msgid "On"
 msgstr "An"
 
-#: src/location-manager.c:268
+#: src/location-manager.c:266
 #, c-format
 msgid "Allow '%s' to access your location information?"
 msgstr "Zulassen, dass »%s« Ihre Standortinformationen abruft?"
 
-#: src/location-manager.c:273
+#: src/location-manager.c:271
 msgid "Geolocation"
 msgstr "Standort"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:272
 msgid "Yes"
 msgstr "Ja"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:272
 msgid "No"
 msgstr "Nein"
 
@@ -332,40 +344,44 @@ msgid "Screenshot from %s%s.png"
 msgstr "Bildschirmfoto vom %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:519 src/ui/media-player.ui:208
+#: src/media-player.c:690 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Unbekannter Titel"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:527 src/ui/media-player.ui:196
+#: src/media-player.c:698 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Unbekannter Interpret"
 
-#: src/monitor-manager.c:127
+#: src/monitor-manager.c:128
 msgid "Built-in display"
 msgstr "Eingebaute Anzeige"
 
-#: src/monitor-manager.c:145
+#: src/monitor-manager.c:146
 #, c-format
-msgctxt "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
+msgctxt ""
+"This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:152
+#: src/monitor-manager.c:153
 #, c-format
-msgctxt "This is a monitor vendor name followed by product/model name where size in inches could not be calculated, e.g. Dell U2414H"
+msgctxt ""
+"This is a monitor vendor name followed by product/model name where size in "
+"inches could not be calculated, e.g. Dell U2414H"
 msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:161
+#: src/monitor-manager.c:162
 msgid "Unknown"
 msgstr "Unbekannt"
 
 #: src/network-auth-prompt.c:202
 #, c-format
 msgid "Authentication type of Wi-Fi network “%s” not supported"
-msgstr "Die Art der Legitimierung des WLAN-Netzwerks »%s« wird nicht unterstützt"
+msgstr ""
+"Die Art der Legitimierung des WLAN-Netzwerks »%s« wird nicht unterstützt"
 
 #: src/network-auth-prompt.c:207
 #, c-format
@@ -379,7 +395,7 @@ msgstr "Öffnen"
 #. We don't just set the app_info but name and icon separately to
 #. * not overwrite values set by the caller
 #: src/notifications/notification.c:422 src/notifications/notification.c:695
-#: src/notifications/notify-manager.c:1012
+#: src/notifications/notify-manager.c:1009
 msgid "Notification"
 msgstr "Benachrichtigung"
 
@@ -499,7 +515,8 @@ msgstr "Passwort:"
 
 #: src/polkit-auth-prompt.c:322
 msgid "Sorry, that didn’t work. Please try again."
-msgstr "Entschuldigung, das hat nicht funktioniert. Bitte versuchen Sie es erneut."
+msgstr ""
+"Entschuldigung, das hat nicht funktioniert. Bitte versuchen Sie es erneut."
 
 #: src/rotateinfo.c:102
 msgid "Portrait"
@@ -573,7 +590,7 @@ msgstr "Deinstallieren"
 msgid "_Remove from Folder"
 msgstr "Aus dem _Ordner entfernen"
 
-#: src/ui/app-grid.ui:25
+#: src/ui/app-grid.ui:26
 msgid "Search apps…"
 msgstr "Anwendungen suchen …"
 
@@ -588,6 +605,14 @@ msgstr "Eingabegeräte"
 #: src/ui/audio-settings.ui:136
 msgid "Sound Settings"
 msgstr "Klangeinstellungen"
+
+#: src/ui/brightness-settings.ui:87
+msgid "Automatic Brightness"
+msgstr "Automatische Helligkeit"
+
+#: src/ui/brightness-settings.ui:120
+msgid "Brightness Settings"
+msgstr "Helligkeitseinstellungen"
 
 #: src/ui/bt-status-page.ui:39
 msgid "Enable Bluetooth"
@@ -671,6 +696,7 @@ msgid "Authentication required"
 msgstr "Legitimierung erforderlich"
 
 #: src/ui/network-auth-prompt.ui:37
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Abbrechen"
@@ -699,15 +725,15 @@ msgstr "Notfall"
 msgid "Run Command"
 msgstr "Befehl ausführen"
 
-#: src/ui/settings.ui:138
+#: src/ui/settings.ui:121
 msgid "No notifications"
 msgstr "Keine Benachrichtigungen"
 
-#: src/ui/settings.ui:167
+#: src/ui/settings.ui:150
 msgid "Notifications"
 msgstr "Benachrichtigungen"
 
-#: src/ui/settings.ui:176
+#: src/ui/settings.ui:159
 msgid "Clear all"
 msgstr "Alles leeren"
 
@@ -788,29 +814,95 @@ msgid "Cellular"
 msgstr "Mobilfunk"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:53
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
 msgid "Phosh on caffeine"
 msgstr "Phosh auf Koffein"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:132
-msgctxt "caffeine-enabled"
-msgid "On"
-msgstr "An"
-
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:132
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "Aus"
 
-#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:36
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+msgctxt "caffeine-enabled"
+msgid "On"
+msgstr "An"
+
+#: plugins/caffeine-quick-setting/qs.ui:15
+msgid "Caffeine timers"
+msgstr "Koffein-Timer"
+
+#: plugins/caffeine-quick-setting/qs.ui:37
+msgid "No caffeine intervals"
+msgstr "Keine Koffein-Intervalle"
+
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+msgid "No timeout (∞)"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:7
+msgid "Caffeine Quick Setting Preferences"
+msgstr "Koffein-Schnelleinstellungen"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:11
+msgid "Caffeine Duration"
+msgstr "Koffein-Dauer"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:15
+msgid "Manage Caffeine Duration"
+msgstr "Koffein-Dauer verwalten"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:16
+msgid "Add or remove custom caffeine intervals"
+msgstr "Benutzerdefinierte Koffein-Intervalle hinzufügen oder entfernen"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:22
+msgid "Add interval"
+msgstr "Intervall hinzufügen"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+msgid "Add New Interval"
+msgstr "Neues Intervall hinzufügen"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
+msgid "_Add"
+msgstr "_Hinzufügen"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+msgid "Quickstart Intervals"
+msgstr "Schnellstart-Intervalle"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+msgid "5 m"
+msgstr "5 min"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+msgid "15 m"
+msgstr "15 min"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+msgid "30 m"
+msgstr "30 min"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+msgid "1 h"
+msgstr "1 h"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+msgid "Choose Interval"
+msgstr "Intervall auswählen"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
 msgid "Default style"
 msgstr "Standardstil"
 
-#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:37
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:35
 msgid "Dark mode"
 msgstr "Dunkler Modus"
 
-#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:38
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:36
 msgid "Light mode"
 msgstr "Heller Modus"
 
@@ -916,10 +1008,6 @@ msgstr "Kontakt hinzufügen"
 msgid "Add New Contact"
 msgstr "Neuen Kontakt hinzufügen"
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
-msgid "_Add"
-msgstr "_Hinzufügen"
-
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:240
 msgid "_Contact Name"
 msgstr "_Kontaktname"
@@ -940,52 +1028,60 @@ msgstr "Keine Starter eingerichtet"
 msgid "Launchers"
 msgstr "Starter"
 
+#: plugins/location-quick-setting/location-quick-setting.c:65
+msgid "Location On"
+msgstr "Standort ein"
+
+#: plugins/location-quick-setting/location-quick-setting.c:65
+msgid "Location Off"
+msgstr "Standort aus"
+
 #: plugins/media-players/media-players.ui:20
 msgid "No running media players"
 msgstr "Keine laufenden Medienspieler"
 
-#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:82
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
 msgid "Mobile Data On"
 msgstr "Mobile Daten an"
 
-#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:82
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
 msgid "Mobile Data Off"
 msgstr "Mobile Daten aus"
 
-#: plugins/night-light-quick-setting/night-light-quick-setting.c:65
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
 msgid "Night Light On"
 msgstr "Nachtmodus an"
 
-#: plugins/night-light-quick-setting/night-light-quick-setting.c:65
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
 msgid "Night Light Off"
 msgstr "Nachtmodus aus"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:71
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
 msgid "Pomodoro start"
 msgstr "Pomodoro Start"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 #, c-format
 msgid "Focus on your task for %d minutes"
 msgstr "Konzentrieren Sie sich für %d Minuten auf Ihre Aufgabe"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:77
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
 msgid "Take a break"
 msgstr "Legen Sie eine Pause ein"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:79
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
 #, c-format
 msgid "You have %d minutes until next Pomodoro"
 msgstr "Sie haben %d Minuten bis zum nächsten Pomodoro"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:94
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
 msgid "Pomodoro Timer"
 msgstr "Pomodoro-Zeitmesser"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:117
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
 #, c-format
 msgid "Pomodoro Off"
 msgstr "Pomodoro Aus"
@@ -1013,6 +1109,14 @@ msgstr "_Pausendauer"
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:30
 msgid "Duration of the break between sessions"
 msgstr "Dauer der Pause zwischen den Sitzungen"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:44
+msgid "_Start on unlock"
+msgstr "Beim Entsperren _starten"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:45
+msgid "Whether to start the timer on screen unlock"
+msgstr "Ob beim Entsperren des Bildschirms der Timer gestartet werden soll"
 
 #: plugins/ticket-box/ticket-box.ui:18
 msgid "No documents to display"
@@ -1058,12 +1162,11 @@ msgstr "Heute"
 msgid "Tomorrow"
 msgstr "Morgen"
 
-#: plugins/upcoming-events/event-list.c:150
+#. Translators: The current date and weekday for display in a calendar entry
+#: plugins/upcoming-events/event-list.c:151
 #, c-format
-msgid "In %u day"
-msgid_plural "In %u days"
-msgstr[0] "In %u Tag"
-msgstr[1] "In %u Tagen"
+msgid "%x %a"
+msgstr ""
 
 #: plugins/upcoming-events/event-list.ui:26
 msgid "No events"
@@ -1094,6 +1197,15 @@ msgstr "Endet"
 msgid "Untitled event"
 msgstr "Unbenannter Termin"
 
+#: plugins/upcoming-events/upcoming-events.c:372
+#, c-format
+msgid "No events for the next %d days"
+msgstr "Kein Termin für die nächsten %d Tage"
+
+#: plugins/upcoming-events/upcoming-events.ui:28
+msgid "No upcoming events"
+msgstr "Keine anstehenden Termine"
+
 #: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:6
 msgid "Upcoming Events Preferences"
 msgstr "Einstellungen für anstehende Termine"
@@ -1117,18 +1229,24 @@ msgstr ""
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
-#: plugins/scaling-quick-setting/scaling-quick-setting.c:93
+#: plugins/scaling-quick-setting/scaling-quick-setting.c:91
 #, c-format
 msgid "%d%%"
 msgstr "%d %%"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:79
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:75
 msgid "Hotspot On"
 msgstr "Hotspot an"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:81
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:77
 msgid "Hotspot Off"
 msgstr "Hotspot aus"
+
+#, c-format
+#~ msgid "In %u day"
+#~ msgid_plural "In %u days"
+#~ msgstr[0] "In %u Tag"
+#~ msgstr[1] "In %u Tagen"
 
 #~ msgid "Add"
 #~ msgstr "Hinzufügen"
