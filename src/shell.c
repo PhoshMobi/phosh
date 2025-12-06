@@ -383,6 +383,9 @@ setup_primary_monitor_signal_handlers (PhoshShell *self)
 {
   PhoshShellPrivate *priv = phosh_shell_get_instance_private (self);
 
+  if (!priv->primary_monitor)
+    return;
+
   g_signal_connect_swapped (priv->primary_monitor,
                             "notify::power-mode",
                             G_CALLBACK (on_primary_monitor_power_mode_changed),
