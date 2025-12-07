@@ -79,37 +79,37 @@ typedef struct {
   gboolean            require_unlock;
 
   /* info page */
-  GtkWidget         *box_info;
-  GtkWidget         *box_datetime;
-  GtkListBox        *list_calls;
-  GtkWidget         *lbl_clock;
-  GtkWidget         *lbl_date;
-  GtkWidget         *list_notifications;
-  GtkRevealer       *rev_call_notifications;
-  GtkRevealer       *rev_media_player;
-  GtkRevealer       *rev_notifications;
-  GSettings         *notification_settings;
-  guint              reveals;
+  GtkWidget          *box_info;
+  GtkWidget          *box_datetime;
+  GtkListBox         *list_calls;
+  GtkWidget          *lbl_clock;
+  GtkWidget          *lbl_date;
+  GtkWidget          *list_notifications;
+  GtkRevealer        *rev_call_notifications;
+  GtkRevealer        *rev_media_player;
+  GtkRevealer        *rev_notifications;
+  GSettings          *notification_settings;
+  guint reveals;
 
   /* unlock page */
-  GtkWidget         *box_unlock;
-  GtkWidget         *keypad_revealer;
-  GtkWidget         *keypad;
-  GtkWidget         *entry_pin;
-  GtkGesture        *long_press_del_gesture;
-  GtkWidget         *lbl_unlock_status;
-  GtkWidget         *btn_submit;
-  GtkWidget         *btn_keyboard;
-  guint              idle_timer;
-  gint64             last_input;
-  PhoshAuth         *auth;
-  GSettings         *lockscreen_settings;
+  GtkWidget          *box_unlock;
+  GtkWidget          *keypad_revealer;
+  GtkWidget          *keypad;
+  GtkWidget          *entry_pin;
+  GtkGesture         *long_press_del_gesture;
+  GtkWidget          *lbl_unlock_status;
+  GtkWidget          *btn_submit;
+  GtkWidget          *btn_keyboard;
+  guint idle_timer;
+  gint64 last_input;
+  PhoshAuth          *auth;
+  GSettings          *lockscreen_settings;
 
   /* Volume Gesture */
   struct {
-    GtkGesture        *gesture;
-    double             x_start, y_start;
-    double             base;
+    GtkGesture *gesture;
+    double      x_start, y_start;
+    double      base;
   } brightness;
 
   /* extra page */
@@ -123,7 +123,7 @@ typedef struct {
   CuiCallDisplay    *call_display;
 
   PhoshCallsManager *calls_manager;
-  char              *active; /* opaque handle to the active call */
+  char *active;              /* opaque handle to the active call */
 
   PhoshLockscreenBg *background;
 } PhoshLockscreenPrivate;
