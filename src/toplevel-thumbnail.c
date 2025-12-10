@@ -25,11 +25,11 @@
  */
 
 enum {
-  PHOSH_TOPLEVEL_THUMBNAIL_PROP_0,
-  PHOSH_TOPLEVEL_THUMBNAIL_PROP_HANDLE,
-  PHOSH_TOPLEVEL_THUMBNAIL_PROP_LAST_PROP,
+  PROP_0,
+  PROP_HANDLE,
+  PROP_LAST_PROP,
 };
-static GParamSpec *props[PHOSH_TOPLEVEL_THUMBNAIL_PROP_LAST_PROP];
+static GParamSpec *props[PROP_LAST_PROP];
 
 struct _PhoshToplevelThumbnail {
   GObject        parent;
@@ -158,7 +158,7 @@ phosh_toplevel_thumbnail_set_property (GObject      *object,
   PhoshToplevelThumbnail *self = PHOSH_TOPLEVEL_THUMBNAIL (object);
 
   switch (property_id) {
-  case PHOSH_TOPLEVEL_THUMBNAIL_PROP_HANDLE:
+  case PROP_HANDLE:
     self->handle = g_value_get_pointer (value);
     break;
   default:
@@ -177,7 +177,7 @@ phosh_toplevel_thumbnail_get_property (GObject    *object,
   PhoshToplevelThumbnail *self = PHOSH_TOPLEVEL_THUMBNAIL (object);
 
   switch (property_id) {
-  case PHOSH_TOPLEVEL_THUMBNAIL_PROP_HANDLE:
+  case PROP_HANDLE:
     g_value_set_pointer (value, self->handle);
     break;
   default:
@@ -235,15 +235,17 @@ phosh_toplevel_thumbnail_class_init (PhoshToplevelThumbnailClass *klass)
   klass->parent_class.get_size = phosh_toplevel_thumbnail_get_size;
   klass->parent_class.set_ready = phosh_toplevel_thumbnail_set_ready;
 
-  props[PHOSH_TOPLEVEL_THUMBNAIL_PROP_HANDLE] =
-    g_param_spec_pointer ("handle",
-                          "handle",
-                          "The zwlr_screencopy_frame_v1 object associated with this thumbnail",
-                          G_PARAM_READWRITE |
-                          G_PARAM_CONSTRUCT_ONLY |
-                          G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshToplevelThumbnail:handle:
+   *
+   * The zwlr_screencopy_frame_v1 object associated with this
+   * thumbnail
+   */
+  props[PROP_HANDLE] =
+    g_param_spec_pointer ("handle", "", "",
+                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
 
-  g_object_class_install_properties (object_class, PHOSH_TOPLEVEL_THUMBNAIL_PROP_LAST_PROP, props);
+  g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 }
 
 
