@@ -72,34 +72,10 @@ phosh_thumbnail_get_property (GObject    *object,
 
 
 static void
-phosh_thumbnail_constructed (GObject *object)
-{
-  G_OBJECT_CLASS (phosh_thumbnail_parent_class)->constructed (object);
-}
-
-
-static void
-phosh_thumbnail_dispose (GObject *object)
-{
-  G_OBJECT_CLASS (phosh_thumbnail_parent_class)->dispose (object);
-}
-
-
-static void
-phosh_thumbnail_finalize (GObject *object)
-{
-  G_OBJECT_CLASS (phosh_thumbnail_parent_class)->finalize (object);
-}
-
-
-static void
 phosh_thumbnail_class_init (PhoshThumbnailClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  object_class->constructed = phosh_thumbnail_constructed;
-  object_class->dispose = phosh_thumbnail_dispose;
-  object_class->finalize = phosh_thumbnail_finalize;
   object_class->get_property = phosh_thumbnail_get_property;
   object_class->set_property = phosh_thumbnail_set_property;
 
