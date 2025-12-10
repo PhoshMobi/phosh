@@ -267,10 +267,7 @@ get_scale (PhoshActivity *self)
   image_width = cairo_image_surface_get_width (priv->surface);
   image_height = cairo_image_surface_get_height (priv->surface);
 
-  scale = width / (float)image_width;
-
-  if (height / (float)image_height < scale)
-    scale = height / (float)image_height;
+  scale = MIN (width / (float)image_width, height / (float)image_height);
 
   return scale;
 }
