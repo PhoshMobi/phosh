@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2018 Purism SPC
+ *               2024-2025 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -207,16 +208,15 @@ on_unfullscreen_clicked (PhoshActivity *self)
 }
 
 
-static gboolean
-remove_timeout_cb (PhoshActivity *self)
+static void
+on_remove_timeout (gpointer data)
 {
+  PhoshActivity *self = PHOSH_ACTIVITY (data);
   PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
 
   phosh_swipe_away_bin_undo (PHOSH_SWIPE_AWAY_BIN (priv->swipe_bin));
 
   priv->remove_timeout_id = 0;
-
-  return G_SOURCE_REMOVE;
 }
 
 
@@ -228,8 +228,7 @@ removed_cb (PhoshActivity *self)
   if (priv->remove_timeout_id)
     g_source_remove (priv->remove_timeout_id);
 
-  priv->remove_timeout_id =
-    g_timeout_add_seconds (1, (GSourceFunc) remove_timeout_cb, self);
+  priv->remove_timeout_id = g_timeout_add_seconds_once (1, on_remove_timeout, self);
   g_source_set_name_by_id (priv->remove_timeout_id, "[phosh] remove_timeout_id");
 
   g_signal_emit (self, signals[CLOSED], 0);
