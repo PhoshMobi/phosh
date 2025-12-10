@@ -11,10 +11,8 @@
 #include "phosh-wayland.h"
 #include "shell-priv.h"
 #include "toplevel-thumbnail.h"
-#include "util.h"
 #include "wl-buffer.h"
 
-#include <errno.h>
 #include <fcntl.h>
 #include <sys/mman.h>
 
