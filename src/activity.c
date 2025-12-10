@@ -99,6 +99,34 @@ set_fullscreen (PhoshActivity *self, gboolean fullscreen)
 
 
 static void
+set_win_width (PhoshActivity *self, int width)
+{
+  PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
+
+  if (width == priv->win_width)
+    return;
+
+  priv->win_width = width;
+  gtk_widget_queue_resize (GTK_WIDGET (self));
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_WIN_WIDTH]);
+}
+
+
+static void
+set_win_height (PhoshActivity *self, int height)
+{
+  PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
+
+  if (height == priv->win_height)
+    return;
+
+  priv->win_height = height;
+  gtk_widget_queue_resize (GTK_WIDGET (self));
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_WIN_HEIGHT]);
+}
+
+
+static void
 phosh_activity_set_property (GObject      *object,
                              guint         property_id,
                              const GValue *value,
@@ -106,7 +134,6 @@ phosh_activity_set_property (GObject      *object,
 {
   PhoshActivity *self = PHOSH_ACTIVITY (object);
   PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
-  int height, width;
 
   switch (property_id) {
   case PROP_APP_ID:
@@ -125,20 +152,10 @@ phosh_activity_set_property (GObject      *object,
     set_fullscreen (self, g_value_get_boolean (value));
     break;
   case PROP_WIN_WIDTH:
-    width = g_value_get_int (value);
-    if (width != priv->win_width) {
-      priv->win_width = width;
-      gtk_widget_queue_resize (GTK_WIDGET (self));
-      g_object_notify_by_pspec (G_OBJECT (self), props[PROP_WIN_WIDTH]);
-    }
+    set_win_width (self, g_value_get_int (value));
     break;
   case PROP_WIN_HEIGHT:
-    height = g_value_get_int (value);
-    if (height != priv->win_height) {
-      priv->win_height = height;
-      gtk_widget_queue_resize (GTK_WIDGET (self));
-      g_object_notify_by_pspec (G_OBJECT (self), props[PROP_WIN_HEIGHT]);
-    }
+    set_win_height (self, g_value_get_int (value));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
