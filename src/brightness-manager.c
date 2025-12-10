@@ -461,9 +461,25 @@ on_primary_monitor_changed (PhoshBrightnessManager *self, GParamSpec *psepc, Pho
 
 
 static void
-adjust_brightness (PhoshBrightnessManager *self, gboolean up)
+show_osd (PhoshBrightnessManager *self, double brightness)
 {
   PhoshShell *shell = phosh_shell_get_default ();
+
+  if (phosh_shell_get_state (shell) & PHOSH_STATE_SETTINGS)
+    return;
+
+  phosh_shell_show_osd (shell,
+                        NULL,
+                        self->icon_name,
+                        NULL,
+                        100.0 * brightness,
+                        100.0);
+}
+
+
+static void
+adjust_brightness (PhoshBrightnessManager *self, gboolean up)
+{
   int levels;
   double brightness, step;
 
@@ -483,15 +499,7 @@ adjust_brightness (PhoshBrightnessManager *self, gboolean up)
   brightness = CLAMP (brightness, 0.0, 1.0);
   phosh_backlight_set_relative (self->backlight, brightness);
 
-  if (phosh_shell_get_state (shell) & PHOSH_STATE_SETTINGS)
-    return;
-
-  phosh_shell_show_osd (phosh_shell_get_default (),
-                        NULL,
-                        self->icon_name,
-                        NULL,
-                        100.0 * brightness,
-                        100.0);
+  show_osd (self, brightness);
 }
 
 
@@ -724,4 +732,43 @@ phosh_brightness_manager_get_auto_brightness_enabled (PhoshBrightnessManager *se
   g_return_val_if_fail (PHOSH_IS_BRIGHTNESS_MANAGER (self), FALSE);
 
   return self->auto_brightness.enabled;
+}
+
+/**
+ * phosh_brightness_manager_get_value:
+ * @PhoshBrightnessManager: The brightness manager
+ *
+ * Get the value of the brightness adjustment. The interpretation of the value depends
+ * on whether auto brightness is enabled or not.
+ *
+ * Returns: The current value of the adjustment [0.0, 1.0]
+ */
+double
+phosh_brightness_manager_get_value (PhoshBrightnessManager *self)
+{
+  g_return_val_if_fail (PHOSH_IS_BRIGHTNESS_MANAGER (self), 0.5);
+
+  return gtk_adjustment_get_value (self->adjustment);
+}
+
+/**
+ * phosh_brightness_manager_set_value:
+ * @PhoshBrightnessManager: The brightness manager
+ * @value: The brightness adjustment value [0.0, 1.0].
+ * @osd: Whether to show the osd when setting the value
+ *
+ * Set the value of the brightness adjustment. The interpretation of the value depends
+ * on whether auto brightness is enabled or not.
+ */
+void
+phosh_brightness_manager_set_value (PhoshBrightnessManager *self,
+                                    double                  value,
+                                    gboolean                osd)
+{
+  g_return_if_fail (PHOSH_IS_BRIGHTNESS_MANAGER (self));
+  g_return_if_fail (0.0 <= value && value <= 1.0);
+
+  gtk_adjustment_set_value (self->adjustment, value);
+  if (osd)
+    show_osd (self, value);
 }

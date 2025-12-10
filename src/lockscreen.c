@@ -79,31 +79,38 @@ typedef struct {
   gboolean            require_unlock;
 
   /* info page */
-  GtkWidget         *box_info;
-  GtkWidget         *box_datetime;
-  GtkListBox        *list_calls;
-  GtkWidget         *lbl_clock;
-  GtkWidget         *lbl_date;
-  GtkWidget         *list_notifications;
-  GtkRevealer       *rev_call_notifications;
-  GtkRevealer       *rev_media_player;
-  GtkRevealer       *rev_notifications;
-  GSettings         *notification_settings;
-  guint              reveals;
+  GtkWidget          *box_info;
+  GtkWidget          *box_datetime;
+  GtkListBox         *list_calls;
+  GtkWidget          *lbl_clock;
+  GtkWidget          *lbl_date;
+  GtkWidget          *list_notifications;
+  GtkRevealer        *rev_call_notifications;
+  GtkRevealer        *rev_media_player;
+  GtkRevealer        *rev_notifications;
+  GSettings          *notification_settings;
+  guint reveals;
 
   /* unlock page */
-  GtkWidget         *box_unlock;
-  GtkWidget         *keypad_revealer;
-  GtkWidget         *keypad;
-  GtkWidget         *entry_pin;
-  GtkGesture        *long_press_del_gesture;
-  GtkWidget         *lbl_unlock_status;
-  GtkWidget         *btn_submit;
-  GtkWidget         *btn_keyboard;
-  guint              idle_timer;
-  gint64             last_input;
-  PhoshAuth         *auth;
-  GSettings         *lockscreen_settings;
+  GtkWidget          *box_unlock;
+  GtkWidget          *keypad_revealer;
+  GtkWidget          *keypad;
+  GtkWidget          *entry_pin;
+  GtkGesture         *long_press_del_gesture;
+  GtkWidget          *lbl_unlock_status;
+  GtkWidget          *btn_submit;
+  GtkWidget          *btn_keyboard;
+  guint idle_timer;
+  gint64 last_input;
+  PhoshAuth          *auth;
+  GSettings          *lockscreen_settings;
+
+  /* Volume Gesture */
+  struct {
+    GtkGesture *gesture;
+    double      x_start, y_start;
+    double      base;
+  } brightness;
 
   /* extra page */
   GtkWidget         *extra_page;
@@ -116,12 +123,88 @@ typedef struct {
   CuiCallDisplay    *call_display;
 
   PhoshCallsManager *calls_manager;
-  char              *active; /* opaque handle to the active call */
+  char *active;              /* opaque handle to the active call */
 
   PhoshLockscreenBg *background;
 } PhoshLockscreenPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (PhoshLockscreen, phosh_lockscreen, PHOSH_TYPE_LAYER_SURFACE)
+
+
+static void
+on_zoom_gesture_end (PhoshLockscreen  *self,
+                     GdkEventSequence *sequence,
+                     GtkGesture       *gesture)
+{
+  gtk_gesture_set_state (gesture, GTK_EVENT_SEQUENCE_CLAIMED);
+}
+
+
+static void
+on_zoom_gesture_update (PhoshLockscreen  *self,
+                        GdkEventSequence *sequence,
+                        GtkGesture       *gesture)
+{
+  PhoshLockscreenPrivate *priv = phosh_lockscreen_get_instance_private (self);
+  PhoshBrightnessManager *manager;
+  gboolean active;
+  double x_center, y_center, brightness;
+  uint width, height;
+
+  g_return_if_fail (PHOSH_IS_LOCKSCREEN (self));
+
+  active = gtk_gesture_get_bounding_box_center (gesture, &x_center, &y_center);
+  if (!active) {
+    gtk_gesture_set_state (gesture, GTK_EVENT_SEQUENCE_DENIED);
+    return;
+  }
+
+  width = gtk_widget_get_allocated_width (GTK_WIDGET (self));
+  height = gtk_widget_get_allocated_height (GTK_WIDGET (self));
+
+  /* Swipe must happen in the upper screen half */
+  if (y_center > 0.5 * height) {
+    gtk_gesture_set_state (gesture, GTK_EVENT_SEQUENCE_DENIED);
+    return;
+  }
+
+  gtk_gesture_set_state (gesture, GTK_EVENT_SEQUENCE_CLAIMED);
+  manager = phosh_shell_get_brightness_manager (phosh_shell_get_default ());
+  brightness = priv->brightness.base + (x_center - priv->brightness.x_start) / width;
+
+  g_debug ("Brightness gesture updating: %f", brightness);
+  phosh_brightness_manager_set_value (manager, CLAMP (brightness, 0.0, 1.0), TRUE);
+}
+
+
+static void
+on_zoom_gesture_begin (PhoshLockscreen  *self,
+                       GdkEventSequence *sequence,
+                       GtkGesture       *gesture)
+{
+  gboolean active;
+  gdouble x_center, y_center;
+  PhoshLockscreenPrivate *priv = phosh_lockscreen_get_instance_private (self);
+  PhoshBrightnessManager *manager;
+
+  g_return_if_fail (PHOSH_IS_LOCKSCREEN (self));
+
+  active = gtk_gesture_get_bounding_box_center (gesture, &x_center, &y_center);
+  if (!active) {
+    gtk_gesture_set_state (gesture, GTK_EVENT_SEQUENCE_DENIED);
+    return;
+  }
+
+  gtk_gesture_set_state (gesture, GTK_EVENT_SEQUENCE_CLAIMED);
+  manager = phosh_shell_get_brightness_manager (phosh_shell_get_default ());
+  priv->brightness.x_start = x_center;
+  priv->brightness.y_start = y_center;
+  priv->brightness.base = phosh_brightness_manager_get_value (manager);
+  g_debug ("Brightness gesture start at: %f,%f (%f)",
+           priv->brightness.x_start,
+           priv->brightness.y_start,
+           priv->brightness.base);
+}
 
 
 static void
@@ -901,6 +984,7 @@ phosh_lockscreen_dispose (GObject *object)
   PhoshLockscreen *self = PHOSH_LOCKSCREEN (object);
   PhoshLockscreenPrivate *priv = phosh_lockscreen_get_instance_private (self);
 
+  g_clear_object (&priv->brightness.gesture);
   g_clear_object (&priv->notification_settings);
   g_clear_handle_id (&priv->idle_timer, g_source_remove);
   g_clear_object (&priv->calls_manager);
@@ -1108,6 +1192,15 @@ phosh_lockscreen_init (PhoshLockscreen *self)
   /* LTR doesn't work for the deck
    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1132 */
   gtk_widget_set_direction (GTK_WIDGET (priv->deck), GTK_TEXT_DIR_LTR);
+
+  priv->brightness.gesture = gtk_gesture_zoom_new (GTK_WIDGET (self));
+  g_object_connect (priv->brightness.gesture,
+                    "swapped-object-signal::begin", on_zoom_gesture_begin, self,
+                    "swapped-object-signal::update", on_zoom_gesture_update, self,
+                    "swapped-object-signal::end", on_zoom_gesture_end, self,
+                    NULL);
+  gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (priv->brightness.gesture),
+                                              GTK_PHASE_CAPTURE);
 }
 
 
