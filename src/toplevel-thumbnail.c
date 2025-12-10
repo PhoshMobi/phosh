@@ -32,7 +32,7 @@ enum {
 static GParamSpec *props[PROP_LAST_PROP];
 
 struct _PhoshToplevelThumbnail {
-  GObject        parent;
+  PhoshThumbnail parent;
 
   struct zwlr_screencopy_frame_v1 *handle;
   PhoshWlBuffer *buffer;
