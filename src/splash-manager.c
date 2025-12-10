@@ -21,7 +21,7 @@
  *
  * Handles splash screens
  *
- * Spawn, keeps track and closes splash screens.
+ * Spawns, keeps track and closes splash screens.
  */
 
 enum {
@@ -242,7 +242,7 @@ phosh_splash_manager_class_init (PhoshSplashManagerClass *klass)
   props[PROP_APP_TRACKER] =
     g_param_spec_object ("app-tracker", "", "",
                          PHOSH_TYPE_APP_TRACKER,
-                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 }
