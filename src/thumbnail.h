@@ -10,11 +10,7 @@
 
 #define PHOSH_TYPE_THUMBNAIL (phosh_thumbnail_get_type ())
 
-G_DECLARE_DERIVABLE_TYPE (PhoshThumbnail,
-                          phosh_thumbnail,
-                          PHOSH,
-                          THUMBNAIL,
-                          GObject)
+G_DECLARE_DERIVABLE_TYPE (PhoshThumbnail, phosh_thumbnail, PHOSH, THUMBNAIL, GObject)
 
 /**
  * PhoshThumbnailClass:
