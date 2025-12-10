@@ -17,8 +17,6 @@
 #include "util.h"
 #include "app-grid-button.h"
 
-#include <gio/gdesktopappinfo.h>
-
 /**
  * PhoshActivity:
  *
@@ -41,6 +39,7 @@ static guint signals[N_SIGNALS] = { 0 };
 
 enum {
   PROP_0,
+  PROP_APP_INFO,
   PROP_APP_ID,
   PROP_PARENT_APP_ID,
   PROP_MAXIMIZED,
@@ -78,6 +77,8 @@ typedef struct {
   gboolean         hovering;
   guint            remove_timeout_id;
   GtkAllocation    allocation;
+
+  GAppInfo        *app_info;
 } PhoshActivityPrivate;
 
 
@@ -138,6 +139,9 @@ phosh_activity_set_property (GObject      *object,
   PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
 
   switch (property_id) {
+  case PROP_APP_INFO:
+    g_set_object (&priv->app_info, g_value_get_object (value));
+    break;
   case PROP_APP_ID:
     g_free (priv->app_id);
     priv->app_id = g_value_dup_string (value);
@@ -176,8 +180,11 @@ phosh_activity_get_property (GObject    *object,
   PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
 
   switch (property_id) {
+  case PROP_APP_INFO:
+    g_value_set_object (value, phosh_activity_get_app_info (self));
+    break;
   case PROP_APP_ID:
-    g_value_set_string (value, priv->app_id);
+    g_value_set_string (value, phosh_activity_get_app_id (self));
     break;
   case PROP_PARENT_APP_ID:
     g_value_set_string (value, priv->parent_app_id);
@@ -333,26 +340,30 @@ phosh_activity_constructed (GObject *object)
 {
   PhoshActivity *self = PHOSH_ACTIVITY (object);
   PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
-  g_autoptr (GDesktopAppInfo) app_info = NULL;
   GIcon *icon = NULL;
 
-  app_info = phosh_get_desktop_app_info_for_app_id (priv->app_id);
-  if (app_info)
-    icon = g_app_info_get_icon (G_APP_INFO (app_info));
+  if (priv->app_info == NULL)
+    priv->app_info = G_APP_INFO (phosh_get_desktop_app_info_for_app_id (priv->app_id));
+
+  if (priv->app_info)
+    icon = g_app_info_get_icon (priv->app_info);
 
   if (!icon && priv->parent_app_id) {
-    app_info = phosh_get_desktop_app_info_for_app_id (priv->parent_app_id);
-    if (app_info)
-      icon = g_app_info_get_icon (G_APP_INFO (app_info));
+    priv->app_info = G_APP_INFO (phosh_get_desktop_app_info_for_app_id (priv->parent_app_id));
+    if (priv->app_info)
+      icon = g_app_info_get_icon (priv->app_info);
   }
 
   if (icon) {
     gtk_image_set_from_gicon (GTK_IMAGE (priv->icon), icon, ACTIVITY_ICON_SIZE);
   } else {
-    gtk_image_set_from_icon_name (GTK_IMAGE (priv->icon), PHOSH_APP_UNKNOWN_ICON,
+    gtk_image_set_from_icon_name (GTK_IMAGE (priv->icon),
+                                  PHOSH_APP_UNKNOWN_ICON,
                                   ACTIVITY_ICON_SIZE);
-    phosh_util_toggle_style_class (GTK_WIDGET (self), "phosh-empty", TRUE);
   }
+
+  /* TODO: handle light mode */
+  phosh_util_toggle_style_class (GTK_WIDGET (self), "phosh-empty", TRUE);
 
   G_OBJECT_CLASS (phosh_activity_parent_class)->constructed (object);
 }
@@ -366,6 +377,7 @@ phosh_activity_dispose (GObject *object)
 
   g_clear_pointer (&priv->surface, cairo_surface_destroy);
   g_clear_object (&priv->thumbnail);
+  g_clear_object (&priv->app_info);
 
   if (priv->remove_timeout_id) {
     g_source_remove (priv->remove_timeout_id);
@@ -597,6 +609,15 @@ phosh_activity_class_init (PhoshActivityClass *klass)
   widget_class->unmap = phosh_activity_unmap;
 
   /**
+   * PhoshActivity:app-info:
+   *
+   * The app-info of the activity
+   */
+  props[PROP_APP_INFO] =
+    g_param_spec_object ("app-info", "", "",
+                         G_TYPE_APP_INFO,
+                         G_PARAM_CONSTRUCT | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+  /**
    * PhoshActivity:app-id:
    *
    * The app-id of the activity
@@ -604,7 +625,7 @@ phosh_activity_class_init (PhoshActivityClass *klass)
   props[PROP_APP_ID] =
     g_param_spec_string ("app-id", "", "",
                          "",
-                         G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+                         G_PARAM_CONSTRUCT | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
   /**
    * PhoshActivity:parent-app-id:
    *
@@ -613,7 +634,7 @@ phosh_activity_class_init (PhoshActivityClass *klass)
   props[PROP_PARENT_APP_ID] =
     g_param_spec_string ("parent-app-id", "", "",
                          NULL,
-                         G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+                         G_PARAM_CONSTRUCT | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
   /**
    * PhoshActivity:maximized:
    *
@@ -828,4 +849,15 @@ phosh_activity_get_has_thumbnail (PhoshActivity *self)
   g_return_val_if_fail (PHOSH_IS_ACTIVITY (self), FALSE);
 
   return !!priv->thumbnail;
+}
+
+
+GAppInfo *
+phosh_activity_get_app_info (PhoshActivity *self)
+{
+  PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
+
+  g_return_val_if_fail (PHOSH_IS_ACTIVITY (self), NULL);
+
+  return priv->app_info;
 }
