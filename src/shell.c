@@ -1954,6 +1954,26 @@ phosh_shell_get_session_manager (PhoshShell *self)
 }
 
 /**
+ * phosh_shell_get_splash_manager:
+ * @self: The shell singleton
+ *
+ * Get the splash manager
+ *
+ * Returns: (transfer none): The splash manager
+ */
+PhoshSplashManager *
+phosh_shell_get_splash_manager (PhoshShell *self)
+{
+  PhoshShellPrivate *priv;
+
+  g_return_val_if_fail (PHOSH_IS_SHELL (self), NULL);
+  priv = phosh_shell_get_instance_private (self);
+  g_return_val_if_fail (PHOSH_IS_SPLASH_MANAGER (priv->splash_manager), NULL);
+
+  return priv->splash_manager;
+}
+
+/**
  * phosh_shell_get_wifi_manager:
  * @self: The shell singleton
  *
