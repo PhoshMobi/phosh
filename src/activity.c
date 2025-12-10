@@ -50,47 +50,45 @@ enum {
 };
 static GParamSpec *props[LAST_PROP];
 
-typedef struct
-{
-  GtkWidget *swipe_bin;
-  GtkWidget *icon;
-  GtkWidget *box;
-  GtkWidget *revealer_close;
-  GtkWidget *revealer_unfullscreen;
-  GtkWidget *btn_close;
-  GtkWidget *btn_unfullscreen;
-  GtkWidget *preview;
-  GtkWidget *button;
+typedef struct {
+  GtkWidget       *swipe_bin;
+  GtkWidget       *icon;
+  GtkWidget       *box;
+  GtkWidget       *revealer_close;
+  GtkWidget       *revealer_unfullscreen;
+  GtkWidget       *btn_close;
+  GtkWidget       *btn_unfullscreen;
+  GtkWidget       *preview;
+  GtkWidget       *button;
 
-  gboolean maximized;
-  gboolean fullscreen;
-  int win_width;
-  int win_height;
+  gboolean         maximized;
+  gboolean         fullscreen;
+  int              win_width;
+  int              win_height;
 
-  char *app_id;
-  char *parent_app_id;
+  char            *app_id;
+  char            *parent_app_id;
 
   cairo_surface_t *surface;
-  PhoshThumbnail *thumbnail;
+  PhoshThumbnail  *thumbnail;
 
-  gboolean hovering;
-  guint remove_timeout_id;
-  GtkAllocation allocation;
+  gboolean         hovering;
+  guint            remove_timeout_id;
+  GtkAllocation    allocation;
 } PhoshActivityPrivate;
 
 
-struct _PhoshActivity
-{
+struct _PhoshActivity {
   GtkEventBox parent;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE(PhoshActivity, phosh_activity, GTK_TYPE_EVENT_BOX)
+G_DEFINE_TYPE_WITH_PRIVATE (PhoshActivity, phosh_activity, GTK_TYPE_EVENT_BOX)
 
 
 static void
 set_fullscreen (PhoshActivity *self, gboolean fullscreen)
 {
-  PhoshActivityPrivate *priv = phosh_activity_get_instance_private(self);
+  PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
 
   priv->fullscreen = fullscreen;
   phosh_util_toggle_style_class (GTK_WIDGET (self), "phosh-fullscreen", priv->fullscreen);
@@ -100,87 +98,87 @@ set_fullscreen (PhoshActivity *self, gboolean fullscreen)
 
 
 static void
-phosh_activity_set_property (GObject *object,
-                             guint property_id,
+phosh_activity_set_property (GObject      *object,
+                             guint         property_id,
                              const GValue *value,
-                             GParamSpec *pspec)
+                             GParamSpec   *pspec)
 {
   PhoshActivity *self = PHOSH_ACTIVITY (object);
-  PhoshActivityPrivate *priv = phosh_activity_get_instance_private(self);
+  PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
   int height, width;
 
   switch (property_id) {
-    case PROP_APP_ID:
-      g_free (priv->app_id);
-      priv->app_id = g_value_dup_string (value);
-      g_object_notify_by_pspec (G_OBJECT (self), props[PROP_APP_ID]);
-      break;
-    case PROP_PARENT_APP_ID:
-      g_free (priv->parent_app_id);
-      priv->parent_app_id = g_value_dup_string (value);
-      g_object_notify_by_pspec (G_OBJECT (self), props[PROP_PARENT_APP_ID]);
-      break;
-    case PROP_MAXIMIZED:
-      priv->maximized = g_value_get_boolean (value);
-      phosh_util_toggle_style_class (GTK_WIDGET (self), "phosh-maximized", priv->maximized);
-      break;
-    case PROP_FULLSCREEN:
-      set_fullscreen (self, g_value_get_boolean (value));
-      break;
-    case PROP_WIN_WIDTH:
-      width = g_value_get_int (value);
-      if (width != priv->win_width) {
-        priv->win_width = width;
-        gtk_widget_queue_resize (GTK_WIDGET (self));
-        g_object_notify_by_pspec (G_OBJECT (self), props[PROP_WIN_WIDTH]);
-      }
-      break;
-    case PROP_WIN_HEIGHT:
-      height = g_value_get_int (value);
-      if (height != priv->win_height) {
-        priv->win_height = height;
-        gtk_widget_queue_resize (GTK_WIDGET (self));
-        g_object_notify_by_pspec (G_OBJECT (self), props[PROP_WIN_HEIGHT]);
-      }
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-      break;
+  case PROP_APP_ID:
+    g_free (priv->app_id);
+    priv->app_id = g_value_dup_string (value);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_APP_ID]);
+    break;
+  case PROP_PARENT_APP_ID:
+    g_free (priv->parent_app_id);
+    priv->parent_app_id = g_value_dup_string (value);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_PARENT_APP_ID]);
+    break;
+  case PROP_MAXIMIZED:
+    priv->maximized = g_value_get_boolean (value);
+    phosh_util_toggle_style_class (GTK_WIDGET (self), "phosh-maximized", priv->maximized);
+    break;
+  case PROP_FULLSCREEN:
+    set_fullscreen (self, g_value_get_boolean (value));
+    break;
+  case PROP_WIN_WIDTH:
+    width = g_value_get_int (value);
+    if (width != priv->win_width) {
+      priv->win_width = width;
+      gtk_widget_queue_resize (GTK_WIDGET (self));
+      g_object_notify_by_pspec (G_OBJECT (self), props[PROP_WIN_WIDTH]);
+    }
+    break;
+  case PROP_WIN_HEIGHT:
+    height = g_value_get_int (value);
+    if (height != priv->win_height) {
+      priv->win_height = height;
+      gtk_widget_queue_resize (GTK_WIDGET (self));
+      g_object_notify_by_pspec (G_OBJECT (self), props[PROP_WIN_HEIGHT]);
+    }
+    break;
+  default:
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+    break;
   }
 }
 
 
 static void
-phosh_activity_get_property (GObject *object,
-                             guint property_id,
-                             GValue *value,
+phosh_activity_get_property (GObject    *object,
+                             guint       property_id,
+                             GValue     *value,
                              GParamSpec *pspec)
 {
   PhoshActivity *self = PHOSH_ACTIVITY (object);
-  PhoshActivityPrivate *priv = phosh_activity_get_instance_private(self);
+  PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
 
   switch (property_id) {
-    case PROP_APP_ID:
-      g_value_set_string (value, priv->app_id);
-      break;
-    case PROP_PARENT_APP_ID:
-      g_value_set_string (value, priv->parent_app_id);
-      break;
-    case PROP_MAXIMIZED:
-      g_value_set_boolean (value, priv->maximized);
-      break;
-    case PROP_FULLSCREEN:
-      g_value_set_boolean (value, priv->fullscreen);
-      break;
-    case PROP_WIN_WIDTH:
-      g_value_set_int (value, priv->win_width);
-      break;
-    case PROP_WIN_HEIGHT:
-      g_value_set_int (value, priv->win_height);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-      break;
+  case PROP_APP_ID:
+    g_value_set_string (value, priv->app_id);
+    break;
+  case PROP_PARENT_APP_ID:
+    g_value_set_string (value, priv->parent_app_id);
+    break;
+  case PROP_MAXIMIZED:
+    g_value_set_boolean (value, priv->maximized);
+    break;
+  case PROP_FULLSCREEN:
+    g_value_set_boolean (value, priv->fullscreen);
+    break;
+  case PROP_WIN_WIDTH:
+    g_value_set_int (value, priv->win_width);
+    break;
+  case PROP_WIN_HEIGHT:
+    g_value_set_int (value, priv->win_height);
+    break;
+  default:
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+    break;
   }
 }
 
@@ -335,7 +333,8 @@ phosh_activity_constructed (GObject *object)
   if (icon) {
     gtk_image_set_from_gicon (GTK_IMAGE (priv->icon), icon, ACTIVITY_ICON_SIZE);
   } else {
-    gtk_image_set_from_icon_name (GTK_IMAGE (priv->icon), PHOSH_APP_UNKNOWN_ICON, ACTIVITY_ICON_SIZE);
+    gtk_image_set_from_icon_name (GTK_IMAGE (priv->icon), PHOSH_APP_UNKNOWN_ICON,
+                                  ACTIVITY_ICON_SIZE);
     gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (self)), "phosh-empty");
   }
 
@@ -440,7 +439,8 @@ phosh_activity_get_preferred_width_for_height (GtkWidget *widget,
   margin_bottom = gtk_widget_get_margin_bottom (priv->preview);
 
   aspect_ratio = (double) priv->win_width / priv->win_height;
-  size = MAX (smallest, (height - margin_top - margin_bottom) * aspect_ratio) + margin_start + margin_end;
+  size = MAX (smallest,
+              (height - margin_top - margin_bottom) * aspect_ratio) + margin_start + margin_end;
 
   if (min)
     *min = size;
@@ -464,7 +464,7 @@ static void
 set_hovering (PhoshActivity *self,
               gboolean       hovering)
 {
-  PhoshActivityPrivate *priv = phosh_activity_get_instance_private(self);
+  PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
 
   if (hovering == priv->hovering)
     return;
@@ -577,15 +577,16 @@ phosh_activity_class_init (PhoshActivityClass *klass)
   widget_class->key_press_event = phosh_activity_key_press_event;
   widget_class->unmap = phosh_activity_unmap;
 
+  /**
+   * PhoshActivity:app-id:
+   *
+   * The app-id of the activity
+   */
   props[PROP_APP_ID] =
-    g_param_spec_string (
-      "app-id",
-      "app-id",
-      "The application id",
-      "",
-      G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE |
-      G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
+    g_param_spec_string ("app-id", "", "",
+                         "",
+                         G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE |
+                         G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
   /**
    * PhoshActivity:parent-app-id:
    *
@@ -621,9 +622,7 @@ phosh_activity_class_init (PhoshActivityClass *klass)
    */
   props[PROP_WIN_WIDTH] =
     g_param_spec_int ("win-width", "", "",
-                      0,
-                      G_MAXINT,
-                      300,
+                      0, G_MAXINT, 300,
                       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
   /**
    * PhoshActivity:win-height:
@@ -632,9 +631,7 @@ phosh_activity_class_init (PhoshActivityClass *klass)
    */
   props[PROP_WIN_HEIGHT] =
     g_param_spec_int ("win-height", "", "",
-                      0,
-                      G_MAXINT,
-                      300,
+                      0, G_MAXINT, 300,
                       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
   g_object_class_install_properties (object_class, LAST_PROP, props);
@@ -749,7 +746,7 @@ phosh_activity_set_thumbnail (PhoshActivity *self, PhoshThumbnail *thumbnail)
   phosh_thumbnail_get_size (thumbnail, &width, &height, &stride);
 
   priv->surface = cairo_image_surface_create_for_data (
-      data, CAIRO_FORMAT_ARGB32, width, height, stride);
+    data, CAIRO_FORMAT_ARGB32, width, height, stride);
   priv->thumbnail = thumbnail;
 
   phosh_util_toggle_style_class (GTK_WIDGET (self), "phosh-empty", FALSE);
