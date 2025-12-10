@@ -43,13 +43,15 @@ G_DEFINE_TYPE (PhoshToplevelThumbnail, phosh_toplevel_thumbnail, PHOSH_TYPE_THUM
 
 
 static void
-phosh_toplevel_thumbnail_set_ready (PhoshThumbnail *self, gboolean ready)
+phosh_toplevel_thumbnail_set_ready (PhoshThumbnail *thumbnail, gboolean ready)
 {
+  PhoshToplevelThumbnail *self = PHOSH_TOPLEVEL_THUMBNAIL (thumbnail);
+
   g_return_if_fail (PHOSH_IS_TOPLEVEL_THUMBNAIL (self));
 
-  PHOSH_TOPLEVEL_THUMBNAIL (self)->ready = ready;
+  self->ready = ready;
 
-  PHOSH_THUMBNAIL_CLASS (phosh_toplevel_thumbnail_parent_class)->set_ready (self, ready);
+  PHOSH_THUMBNAIL_CLASS (phosh_toplevel_thumbnail_parent_class)->set_ready (thumbnail, ready);
 }
 
 
@@ -130,22 +132,28 @@ phosh_toplevel_thumbnail_get_image (PhoshThumbnail *thumbnail)
 }
 
 static void
-phosh_toplevel_thumbnail_get_size (PhoshThumbnail *self, guint *width, guint *height, guint *stride)
+phosh_toplevel_thumbnail_get_size (PhoshThumbnail *thumbnail,
+                                   guint          *width,
+                                   guint          *height,
+                                   guint          *stride)
 {
-  PhoshToplevelThumbnail *thumbnail = PHOSH_TOPLEVEL_THUMBNAIL (self);
+  PhoshToplevelThumbnail *self = PHOSH_TOPLEVEL_THUMBNAIL (thumbnail);
   if (width)
-    *width = thumbnail->buffer->width;
+    *width = self->buffer->width;
   if (height)
-    *height = thumbnail->buffer->height;
+    *height = self->buffer->height;
   if (stride)
-    *stride = thumbnail->buffer->stride;
+    *stride = self->buffer->stride;
 }
 
 static gboolean
-phosh_toplevel_thumbnail_is_ready (PhoshThumbnail *self)
+phosh_toplevel_thumbnail_is_ready (PhoshThumbnail *thumbnail)
 {
+  PhoshToplevelThumbnail *self = PHOSH_TOPLEVEL_THUMBNAIL (thumbnail);
+
   g_return_val_if_fail (PHOSH_IS_TOPLEVEL_THUMBNAIL (self), FALSE);
-  return PHOSH_TOPLEVEL_THUMBNAIL (self)->ready;
+
+  return self->ready;
 }
 
 
