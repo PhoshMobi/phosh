@@ -11,16 +11,12 @@
 #include "phosh-config.h"
 
 #include "activity.h"
-#include "app-grid-button.h"
 #include "app-grid.h"
 #include "overview.h"
-#include "wlr-screencopy-unstable-v1-client-protocol.h"
-#include "phosh-private-client-protocol.h"
 #include "phosh-wayland.h"
 #include "shell-priv.h"
 #include "toplevel-manager.h"
 #include "toplevel-thumbnail.h"
-#include "util.h"
 
 #include <gio/gdesktopappinfo.h>
 
