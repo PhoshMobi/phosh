@@ -223,6 +223,7 @@ static void
 phosh_toplevel_thumbnail_class_init (PhoshToplevelThumbnailClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  PhoshThumbnailClass *thumbnail_class = PHOSH_THUMBNAIL_CLASS (klass);
 
   object_class->set_property = phosh_toplevel_thumbnail_set_property;
   object_class->get_property = phosh_toplevel_thumbnail_get_property;
@@ -230,10 +231,10 @@ phosh_toplevel_thumbnail_class_init (PhoshToplevelThumbnailClass *klass)
   object_class->dispose = phosh_toplevel_thumbnail_dispose;
   object_class->finalize = phosh_toplevel_thumbnail_finalize;
 
-  klass->parent_class.is_ready = phosh_toplevel_thumbnail_is_ready;
-  klass->parent_class.get_image = phosh_toplevel_thumbnail_get_image;
-  klass->parent_class.get_size = phosh_toplevel_thumbnail_get_size;
-  klass->parent_class.set_ready = phosh_toplevel_thumbnail_set_ready;
+  thumbnail_class->is_ready = phosh_toplevel_thumbnail_is_ready;
+  thumbnail_class->get_image = phosh_toplevel_thumbnail_get_image;
+  thumbnail_class->get_size = phosh_toplevel_thumbnail_get_size;
+  thumbnail_class->set_ready = phosh_toplevel_thumbnail_set_ready;
 
   /**
    * PhoshToplevelThumbnail:handle:
