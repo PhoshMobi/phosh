@@ -170,7 +170,7 @@ phosh_toplevel_thumbnail_set_property (GObject      *object,
     self->handle = g_value_get_pointer (value);
     break;
   default:
-    PHOSH_THUMBNAIL_CLASS (self)->parent_class.set_property (object, property_id, value, pspec);
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     break;
   }
 }
@@ -189,7 +189,7 @@ phosh_toplevel_thumbnail_get_property (GObject    *object,
     g_value_set_pointer (value, self->handle);
     break;
   default:
-    PHOSH_THUMBNAIL_CLASS (self)->parent_class.get_property (object, property_id, value, pspec);
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     break;
   }
 }
