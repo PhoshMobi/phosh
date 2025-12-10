@@ -377,19 +377,29 @@ add_activity (PhoshOverview *self, PhoshToplevel *toplevel)
 
 
 static void
+set_has_activities (PhoshOverview *self)
+{
+  PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
+  gboolean has_activities;
+
+  has_activities = !!hdy_carousel_get_n_pages (HDY_CAROUSEL (priv->carousel_running_activities));
+  if (priv->has_activities == has_activities)
+    return;
+
+  priv->has_activities = has_activities;
+  gtk_widget_set_visible (priv->carousel_running_activities, has_activities);
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_HAS_ACTIVITIES]);
+}
+
+
+static void
 get_running_activities (PhoshOverview *self)
 {
-  PhoshOverviewPrivate *priv;
   PhoshShell *shell = phosh_shell_get_default ();
   PhoshToplevelManager *toplevel_manager = phosh_shell_get_toplevel_manager (shell);
   guint toplevels_num = phosh_toplevel_manager_get_num_toplevels (toplevel_manager);
 
-  g_return_if_fail (PHOSH_IS_OVERVIEW (self));
-  priv = phosh_overview_get_instance_private (self);
-
-  priv->has_activities = !!toplevels_num;
-  if (toplevels_num == 0)
-    gtk_widget_set_visible (priv->carousel_running_activities, FALSE);
+  set_has_activities (self);
 
   for (guint i = 0; i < toplevels_num; i++) {
     PhoshToplevel *toplevel = phosh_toplevel_manager_get_toplevel (toplevel_manager, i);
@@ -432,24 +442,11 @@ toplevel_changed_cb (PhoshOverview        *self,
 
 
 static void
-num_toplevels_cb (PhoshOverview        *self,
-                  GParamSpec           *pspec,
-                  PhoshToplevelManager *manager)
+on_n_pages_changed (PhoshOverview *self)
 {
-  PhoshOverviewPrivate *priv;
-  gboolean has_activities;
-
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
-  g_return_if_fail (PHOSH_IS_TOPLEVEL_MANAGER (manager));
-  priv = phosh_overview_get_instance_private (self);
 
-  has_activities = !!phosh_toplevel_manager_get_num_toplevels (manager);
-  if (priv->has_activities == has_activities)
-    return;
-
-  priv->has_activities = has_activities;
-  gtk_widget_set_visible (priv->carousel_running_activities, has_activities);
-  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_HAS_ACTIVITIES]);
+  set_has_activities (self);
 }
 
 
@@ -540,8 +537,8 @@ phosh_overview_constructed (GObject *object)
                            self,
                            G_CONNECT_SWAPPED);
 
-  g_signal_connect_object (toplevel_manager, "notify::num-toplevels",
-                           G_CALLBACK (num_toplevels_cb),
+  g_signal_connect_object (priv->carousel_running_activities, "notify::n-pages",
+                           G_CALLBACK (on_n_pages_changed),
                            self,
                            G_CONNECT_SWAPPED);
 
@@ -618,6 +615,9 @@ phosh_overview_class_init (PhoshOverviewClass *klass)
 static void
 phosh_overview_init (PhoshOverview *self)
 {
+  PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
+
+  priv->has_activities = -1;
   gtk_widget_init_template (GTK_WIDGET (self));
 }
 

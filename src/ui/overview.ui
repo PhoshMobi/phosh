@@ -7,7 +7,6 @@
     <property name="orientation">vertical</property>
     <child>
       <object class="HdyCarousel" id="carousel_running_activities">
-        <property name="visible">1</property>
         <property name="spacing">18</property>
         <property name="margin-bottom">6</property>
         <property name="hexpand">1</property>
