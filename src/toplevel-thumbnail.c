@@ -32,11 +32,11 @@ enum {
 static GParamSpec *props[PHOSH_TOPLEVEL_THUMBNAIL_PROP_LAST_PROP];
 
 struct _PhoshToplevelThumbnail {
-  GObject                          parent;
+  GObject        parent;
 
   struct zwlr_screencopy_frame_v1 *handle;
-  PhoshWlBuffer                   *buffer;
-  gboolean                         ready;
+  PhoshWlBuffer *buffer;
+  gboolean       ready;
 };
 
 G_DEFINE_TYPE (PhoshToplevelThumbnail, phosh_toplevel_thumbnail, PHOSH_TYPE_THUMBNAIL);
@@ -46,18 +46,20 @@ static void
 phosh_toplevel_thumbnail_set_ready (PhoshThumbnail *self, gboolean ready)
 {
   g_return_if_fail (PHOSH_IS_TOPLEVEL_THUMBNAIL (self));
+
   PHOSH_TOPLEVEL_THUMBNAIL (self)->ready = ready;
+
   PHOSH_THUMBNAIL_CLASS (phosh_toplevel_thumbnail_parent_class)->set_ready (self, ready);
 }
 
 
 static void
-screencopy_handle_buffer (void *data,
+screencopy_handle_buffer (void                            *data,
                           struct zwlr_screencopy_frame_v1 *zwlr_screencopy_frame_v1,
-                          uint32_t format,
-                          uint32_t width,
-                          uint32_t height,
-                          uint32_t stride)
+                          uint32_t                         format,
+                          uint32_t                         width,
+                          uint32_t                         height,
+                          uint32_t                         stride)
 {
   PhoshToplevelThumbnail *self = PHOSH_TOPLEVEL_THUMBNAIL (data);
 
@@ -72,38 +74,40 @@ screencopy_handle_buffer (void *data,
   zwlr_screencopy_frame_v1_copy (zwlr_screencopy_frame_v1, self->buffer->wl_buffer);
 }
 
+
 static void
-screencopy_handle_flags(void *data,
-                        struct zwlr_screencopy_frame_v1 *zwlr_screencopy_frame_v1,
-                        uint32_t flags)
+screencopy_handle_flags (void                            *data,
+                         struct zwlr_screencopy_frame_v1 *zwlr_screencopy_frame_v1,
+                         uint32_t                         flags)
 {
   /* Nothing to do */
 }
 
+
 static void
-screencopy_handle_ready(void *data,
-                        struct zwlr_screencopy_frame_v1 *zwlr_screencopy_frame_v1,
-                        uint32_t tv_sec_hi,
-                        uint32_t tv_sec_lo,
-                        uint32_t tv_nsec)
+screencopy_handle_ready (void                            *data,
+                         struct zwlr_screencopy_frame_v1 *zwlr_screencopy_frame_v1,
+                         uint32_t                         tv_sec_hi,
+                         uint32_t                         tv_sec_lo,
+                         uint32_t                         tv_nsec)
 {
   phosh_toplevel_thumbnail_set_ready (PHOSH_THUMBNAIL (data), TRUE);
 }
 
 static void
-screencopy_handle_failed (void *data,
+screencopy_handle_failed (void                            *data,
                           struct zwlr_screencopy_frame_v1 *zwlr_screencopy_frame_v1)
 {
   g_warning ("screencopy failed! %p", data);
 }
 
 static void
-screencopy_handle_damage (void *data,
+screencopy_handle_damage (void                            *data,
                           struct zwlr_screencopy_frame_v1 *zwlr_screencopy_frame_v1,
-                          uint32_t x,
-                          uint32_t y,
-                          uint32_t width,
-                          uint32_t height)
+                          uint32_t                         x,
+                          uint32_t                         y,
+                          uint32_t                         width,
+                          uint32_t                         height)
 {
 }
 
@@ -129,15 +133,12 @@ static void
 phosh_toplevel_thumbnail_get_size (PhoshThumbnail *self, guint *width, guint *height, guint *stride)
 {
   PhoshToplevelThumbnail *thumbnail = PHOSH_TOPLEVEL_THUMBNAIL (self);
-  if (width) {
+  if (width)
     *width = thumbnail->buffer->width;
-  }
-  if (height) {
+  if (height)
     *height = thumbnail->buffer->height;
-  }
-  if (stride) {
+  if (stride)
     *stride = thumbnail->buffer->stride;
-  }
 }
 
 static gboolean
@@ -149,39 +150,39 @@ phosh_toplevel_thumbnail_is_ready (PhoshThumbnail *self)
 
 
 static void
-phosh_toplevel_thumbnail_set_property (GObject *object,
-                                       guint property_id,
+phosh_toplevel_thumbnail_set_property (GObject      *object,
+                                       guint         property_id,
                                        const GValue *value,
-                                       GParamSpec *pspec)
+                                       GParamSpec   *pspec)
 {
   PhoshToplevelThumbnail *self = PHOSH_TOPLEVEL_THUMBNAIL (object);
 
   switch (property_id) {
-    case PHOSH_TOPLEVEL_THUMBNAIL_PROP_HANDLE:
-      self->handle = g_value_get_pointer (value);
-      break;
-    default:
-      PHOSH_THUMBNAIL_CLASS (self)->parent_class.set_property (object, property_id, value, pspec);
-      break;
+  case PHOSH_TOPLEVEL_THUMBNAIL_PROP_HANDLE:
+    self->handle = g_value_get_pointer (value);
+    break;
+  default:
+    PHOSH_THUMBNAIL_CLASS (self)->parent_class.set_property (object, property_id, value, pspec);
+    break;
   }
 }
 
 
 static void
-phosh_toplevel_thumbnail_get_property (GObject *object,
-                                       guint property_id,
-                                       GValue *value,
+phosh_toplevel_thumbnail_get_property (GObject    *object,
+                                       guint       property_id,
+                                       GValue     *value,
                                        GParamSpec *pspec)
 {
   PhoshToplevelThumbnail *self = PHOSH_TOPLEVEL_THUMBNAIL (object);
 
   switch (property_id) {
-    case PHOSH_TOPLEVEL_THUMBNAIL_PROP_HANDLE:
-      g_value_set_pointer (value, self->handle);
-      break;
-    default:
-      PHOSH_THUMBNAIL_CLASS (self)->parent_class.get_property (object, property_id, value, pspec);
-      break;
+  case PHOSH_TOPLEVEL_THUMBNAIL_PROP_HANDLE:
+    g_value_set_pointer (value, self->handle);
+    break;
+  default:
+    PHOSH_THUMBNAIL_CLASS (self)->parent_class.get_property (object, property_id, value, pspec);
+    break;
   }
 }
 
@@ -243,7 +244,6 @@ phosh_toplevel_thumbnail_class_init (PhoshToplevelThumbnailClass *klass)
                           G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PHOSH_TOPLEVEL_THUMBNAIL_PROP_LAST_PROP, props);
-
 }
 
 
@@ -260,7 +260,9 @@ phosh_toplevel_thumbnail_new_from_handle (struct zwlr_screencopy_frame_v1 *handl
 }
 
 PhoshToplevelThumbnail *
-phosh_toplevel_thumbnail_new_from_toplevel (PhoshToplevel *toplevel, guint32 max_width, guint32 max_height)
+phosh_toplevel_thumbnail_new_from_toplevel (PhoshToplevel *toplevel,
+                                            guint32        max_width,
+                                            guint32        max_height)
 {
   struct zwlr_foreign_toplevel_handle_v1 *handle = phosh_toplevel_get_handle (toplevel);
   struct phosh_private *phosh = phosh_wayland_get_phosh_private (phosh_wayland_get_default ());
@@ -270,13 +272,9 @@ phosh_toplevel_thumbnail_new_from_toplevel (PhoshToplevel *toplevel, guint32 max
     return NULL;
 
   g_debug ("Requesting a %dx%d thumbnail for toplevel %p [%s]", max_width, max_height,
-          toplevel, phosh_toplevel_get_title (toplevel));
+           toplevel, phosh_toplevel_get_title (toplevel));
 
-  frame = phosh_private_get_thumbnail (
-    phosh,
-    handle,
-    max_width, max_height
-   );
+  frame = phosh_private_get_thumbnail (phosh, handle, max_width, max_height);
 
   return phosh_toplevel_thumbnail_new_from_handle (frame);
 }
