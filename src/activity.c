@@ -112,12 +112,10 @@ phosh_activity_set_property (GObject      *object,
   case PROP_APP_ID:
     g_free (priv->app_id);
     priv->app_id = g_value_dup_string (value);
-    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_APP_ID]);
     break;
   case PROP_PARENT_APP_ID:
     g_free (priv->parent_app_id);
     priv->parent_app_id = g_value_dup_string (value);
-    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_PARENT_APP_ID]);
     break;
   case PROP_MAXIMIZED:
     priv->maximized = g_value_get_boolean (value);
@@ -584,8 +582,7 @@ phosh_activity_class_init (PhoshActivityClass *klass)
   props[PROP_APP_ID] =
     g_param_spec_string ("app-id", "", "",
                          "",
-                         G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE |
-                         G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+                         G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
   /**
    * PhoshActivity:parent-app-id:
    *
@@ -594,8 +591,7 @@ phosh_activity_class_init (PhoshActivityClass *klass)
   props[PROP_PARENT_APP_ID] =
     g_param_spec_string ("parent-app-id", "", "",
                          NULL,
-                         G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE |
-                         G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+                         G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
   /**
    * PhoshActivity:maximized:
    *
