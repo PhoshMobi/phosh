@@ -262,7 +262,7 @@ phosh_toplevel_thumbnail_new_from_handle (struct zwlr_screencopy_frame_v1 *handl
 PhoshToplevelThumbnail *
 phosh_toplevel_thumbnail_new_from_toplevel (PhoshToplevel *toplevel, guint32 max_width, guint32 max_height)
 {
-  struct zwlr_foreign_toplevel_handle_v1 *handle = phosh_toplevel_get_handle (PHOSH_TOPLEVEL (toplevel));
+  struct zwlr_foreign_toplevel_handle_v1 *handle = phosh_toplevel_get_handle (toplevel);
   struct phosh_private *phosh = phosh_wayland_get_phosh_private (phosh_wayland_get_default ());
   struct zwlr_screencopy_frame_v1 *frame;
 
