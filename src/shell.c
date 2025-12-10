@@ -834,6 +834,7 @@ setup_idle_cb (PhoshShell *self)
 
   priv->debug_control = phosh_debug_control_new ();
   priv->app_tracker = phosh_app_tracker_new ();
+  priv->splash_manager = phosh_splash_manager_new (priv->app_tracker);
   priv->session_manager = phosh_session_manager_new ();
   priv->mode_manager = phosh_mode_manager_new ();
   priv->wifi_manager = phosh_wifi_manager_new ();
@@ -903,7 +904,6 @@ setup_idle_cb (PhoshShell *self)
 
   priv->gnome_shell_manager = phosh_gnome_shell_manager_get_default ();
   priv->screenshot_manager = phosh_screenshot_manager_new ();
-  priv->splash_manager = phosh_splash_manager_new (priv->app_tracker);
   priv->run_command_manager = phosh_run_command_manager_new ();
   priv->network_auth_manager = phosh_network_auth_manager_new ();
   priv->portal_access_manager = phosh_portal_access_manager_new ();
