@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2020 Purism SPC
+ *               2025 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -10,6 +11,7 @@
 
 #include "phosh-wayland.h"
 #include "shell-priv.h"
+#include "thumbnail-priv.h"
 #include "toplevel-thumbnail.h"
 #include "wl-buffer.h"
 
@@ -34,23 +36,9 @@ struct _PhoshToplevelThumbnail {
 
   struct zwlr_screencopy_frame_v1 *handle;
   PhoshWlBuffer *buffer;
-  gboolean       ready;
 };
 
 G_DEFINE_TYPE (PhoshToplevelThumbnail, phosh_toplevel_thumbnail, PHOSH_TYPE_THUMBNAIL);
-
-
-static void
-phosh_toplevel_thumbnail_set_ready (PhoshThumbnail *thumbnail, gboolean ready)
-{
-  PhoshToplevelThumbnail *self = PHOSH_TOPLEVEL_THUMBNAIL (thumbnail);
-
-  g_return_if_fail (PHOSH_IS_TOPLEVEL_THUMBNAIL (self));
-
-  self->ready = ready;
-
-  PHOSH_THUMBNAIL_CLASS (phosh_toplevel_thumbnail_parent_class)->set_ready (thumbnail, ready);
-}
 
 
 static void
@@ -91,7 +79,7 @@ screencopy_handle_ready (void                            *data,
                          uint32_t                         tv_sec_lo,
                          uint32_t                         tv_nsec)
 {
-  phosh_toplevel_thumbnail_set_ready (PHOSH_THUMBNAIL (data), TRUE);
+  phosh_thumbnail_set_ready (PHOSH_THUMBNAIL (data), TRUE);
 }
 
 static void
@@ -142,16 +130,6 @@ phosh_toplevel_thumbnail_get_size (PhoshThumbnail *thumbnail,
     *height = self->buffer->height;
   if (stride)
     *stride = self->buffer->stride;
-}
-
-static gboolean
-phosh_toplevel_thumbnail_is_ready (PhoshThumbnail *thumbnail)
-{
-  PhoshToplevelThumbnail *self = PHOSH_TOPLEVEL_THUMBNAIL (thumbnail);
-
-  g_return_val_if_fail (PHOSH_IS_TOPLEVEL_THUMBNAIL (self), FALSE);
-
-  return self->ready;
 }
 
 
@@ -237,10 +215,8 @@ phosh_toplevel_thumbnail_class_init (PhoshToplevelThumbnailClass *klass)
   object_class->dispose = phosh_toplevel_thumbnail_dispose;
   object_class->finalize = phosh_toplevel_thumbnail_finalize;
 
-  thumbnail_class->is_ready = phosh_toplevel_thumbnail_is_ready;
   thumbnail_class->get_image = phosh_toplevel_thumbnail_get_image;
   thumbnail_class->get_size = phosh_toplevel_thumbnail_get_size;
-  thumbnail_class->set_ready = phosh_toplevel_thumbnail_set_ready;
 
   /**
    * PhoshToplevelThumbnail:handle:

@@ -8,7 +8,7 @@
 
 #define G_LOG_DOMAIN "phosh-thumbnail"
 
-#include "thumbnail.h"
+#include "thumbnail-priv.h"
 
 /**
  * PhoshThumbnail:
@@ -23,14 +23,12 @@ enum {
 };
 static GParamSpec *props[PROP_LAST_PROP];
 
-G_DEFINE_TYPE (PhoshThumbnail, phosh_thumbnail, G_TYPE_OBJECT);
+typedef struct _PhoshThumbnailPrivate {
+  gboolean ready;
+} PhoshThumbnailPrivate;
 
+G_DEFINE_TYPE_WITH_PRIVATE (PhoshThumbnail, phosh_thumbnail, G_TYPE_OBJECT);
 
-static void
-phosh_thumbnail_set_ready (PhoshThumbnail *self, gboolean ready)
-{
-  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_READY]);
-}
 
 static void
 phosh_thumbnail_set_property (GObject      *object,
@@ -39,11 +37,10 @@ phosh_thumbnail_set_property (GObject      *object,
                               GParamSpec   *pspec)
 {
   PhoshThumbnail *self = PHOSH_THUMBNAIL (object);
-  PhoshThumbnailClass *klass = PHOSH_THUMBNAIL_GET_CLASS (self);
 
   switch (property_id) {
   case PROP_READY:
-    klass->set_ready (self, g_value_get_boolean (value));
+    phosh_thumbnail_set_ready (self, g_value_get_boolean (value));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -78,8 +75,6 @@ phosh_thumbnail_class_init (PhoshThumbnailClass *klass)
 
   object_class->get_property = phosh_thumbnail_get_property;
   object_class->set_property = phosh_thumbnail_set_property;
-
-  klass->set_ready = phosh_thumbnail_set_ready;
 
   /**
    * PhoshThumbnail:ready:
@@ -132,12 +127,25 @@ phosh_thumbnail_get_size (PhoshThumbnail *self, guint *width, guint *height, gui
 gboolean
 phosh_thumbnail_is_ready (PhoshThumbnail *self)
 {
-  PhoshThumbnailClass *klass;
+  PhoshThumbnailPrivate *priv = phosh_thumbnail_get_instance_private (self);
 
   g_return_val_if_fail (PHOSH_IS_THUMBNAIL (self), FALSE);
 
-  klass = PHOSH_THUMBNAIL_GET_CLASS (self);
-  g_return_val_if_fail (klass->is_ready != NULL, FALSE);
+  return priv->ready;
+}
 
-  return klass->is_ready (self);
+
+void
+phosh_thumbnail_set_ready (PhoshThumbnail *self, gboolean ready)
+{
+  PhoshThumbnailPrivate *priv = phosh_thumbnail_get_instance_private (self);
+
+  g_return_if_fail (PHOSH_IS_THUMBNAIL (self));
+
+  if (priv->ready == ready)
+    return;
+
+  priv->ready = ready;
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_READY]);
+
 }
