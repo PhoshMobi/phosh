@@ -740,6 +740,13 @@ phosh_activity_get_app_id (PhoshActivity *self)
   return priv->app_id;
 }
 
+/**
+ * phosh_activity_set_thumbnail:
+ * @self: the activity
+ * @thumbnail:(transfer full): the thumbnail
+ *
+ * Sets the given thumbnail
+ */
 void
 phosh_activity_set_thumbnail (PhoshActivity *self, PhoshThumbnail *thumbnail)
 {
@@ -751,15 +758,16 @@ phosh_activity_set_thumbnail (PhoshActivity *self, PhoshThumbnail *thumbnail)
   g_return_if_fail (PHOSH_IS_ACTIVITY (self));
   priv = phosh_activity_get_instance_private (self);
 
-  g_clear_pointer (&priv->surface, cairo_surface_destroy);
   g_clear_object (&priv->thumbnail);
+  priv->thumbnail = thumbnail;
 
   data = phosh_thumbnail_get_image (thumbnail);
   phosh_thumbnail_get_size (thumbnail, &width, &height, &stride);
 
-  priv->surface = cairo_image_surface_create_for_data (
-    data, CAIRO_FORMAT_ARGB32, width, height, stride);
-  priv->thumbnail = thumbnail;
+  g_clear_pointer (&priv->surface, cairo_surface_destroy);
+  priv->surface = cairo_image_surface_create_for_data (data,
+                                                       CAIRO_FORMAT_ARGB32,
+                                                       width, height, stride);
 
   phosh_util_toggle_style_class (GTK_WIDGET (self), "phosh-empty", FALSE);
 
