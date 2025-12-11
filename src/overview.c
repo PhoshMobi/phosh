@@ -572,6 +572,8 @@ phosh_overview_class_init (PhoshOverviewClass *klass)
                           FALSE,
                           G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
 
+  g_object_class_install_properties (object_class, LAST_PROP, props);
+
   signals[ACTIVITY_LAUNCHED] =
     g_signal_new ("activity-launched",
                   G_TYPE_FROM_CLASS (klass),
