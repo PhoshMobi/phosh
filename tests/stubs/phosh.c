@@ -136,6 +136,20 @@ phosh_shell_get_launcher_entry_manager (PhoshShell *self)
 }
 
 
+PhoshSplashManager *
+phosh_shell_get_splash_manager (PhoshShell *self)
+{
+  return NULL;
+}
+
+
+gboolean
+phosh_shell_get_show_splash (PhoshShell *self)
+{
+  return FALSE;
+}
+
+
 gboolean
 phosh_shell_get_blanked (PhoshShell *self)
 {

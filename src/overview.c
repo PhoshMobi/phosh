@@ -60,6 +60,7 @@ typedef struct {
   PhoshActivity      *activity;
 
   PhoshAppTracker    *app_tracker;     /* unowned */
+  PhoshSplashManager *splash_manager;  /* unowned */
 
   int has_activities;
 } PhoshOverviewPrivate;
@@ -765,6 +766,8 @@ phosh_overview_init (PhoshOverview *self)
                       "swapped-object-signal::app-ready", on_app_ready, self,
                       NULL);
   }
+
+  priv->splash_manager = phosh_shell_get_splash_manager (shell);
 }
 
 
