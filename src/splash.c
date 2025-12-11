@@ -318,3 +318,25 @@ phosh_splash_hide (PhoshSplash *self)
                                        self);
   phosh_animation_start (priv->fadeout);
 }
+
+
+void
+phosh_splash_lower (PhoshSplash *self)
+{
+  g_return_if_fail (PHOSH_IS_SPLASH (self));
+
+  phosh_layer_surface_set_layer (PHOSH_LAYER_SURFACE (self),
+                                 ZWLR_LAYER_SHELL_V1_LAYER_BOTTOM);
+  gtk_widget_queue_draw (GTK_WIDGET (self));
+}
+
+
+void
+phosh_splash_raise (PhoshSplash *self)
+{
+  g_return_if_fail (PHOSH_IS_SPLASH (self));
+
+  phosh_layer_surface_set_layer (PHOSH_LAYER_SURFACE (self),
+                                 ZWLR_LAYER_SHELL_V1_LAYER_TOP);
+  gtk_widget_queue_draw (GTK_WIDGET (self));
+}
