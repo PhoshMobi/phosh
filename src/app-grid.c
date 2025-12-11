@@ -378,10 +378,11 @@ toggle_favorites_revealer (PhoshAppGrid *self)
 {
   PhoshAppGridPrivate *priv = phosh_app_grid_get_instance_private (self);
   PhoshFavoriteListModel *favorites = phosh_favorite_list_model_get_default ();
+  gboolean criteria;
 
   /* Hide favorites when there are none or a search is in progress */
-  gboolean criteria = (g_list_model_get_n_items (G_LIST_MODEL (favorites)) == 0) ||
-    !gm_str_is_null_or_empty (priv->search_string);
+  criteria = ((g_list_model_get_n_items (G_LIST_MODEL (favorites)) == 0) ||
+              !gm_str_is_null_or_empty (priv->search_string));
 
   gtk_revealer_set_reveal_child (GTK_REVEALER (priv->favs_revealer), !criteria);
 }
