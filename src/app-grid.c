@@ -466,7 +466,7 @@ phosh_app_grid_init (PhoshAppGrid *self)
 
   priv->actions = g_simple_action_group_new ();
   gtk_widget_insert_action_group (GTK_WIDGET (self), "app-grid", G_ACTION_GROUP (priv->actions));
-  action = (GAction*) g_property_action_new ("filter-adaptive", self, "filter-adaptive");
+  action = G_ACTION (g_property_action_new ("filter-adaptive", self, "filter-adaptive"));
   g_action_map_add_action (G_ACTION_MAP (priv->actions), action);
 
   toggle_favorites_revealer (self);
