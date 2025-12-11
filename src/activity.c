@@ -346,7 +346,7 @@ phosh_activity_constructed (GObject *object)
   } else {
     gtk_image_set_from_icon_name (GTK_IMAGE (priv->icon), PHOSH_APP_UNKNOWN_ICON,
                                   ACTIVITY_ICON_SIZE);
-    gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (self)), "phosh-empty");
+    phosh_util_toggle_style_class (GTK_WIDGET (self), "phosh-empty", TRUE);
   }
 
   G_OBJECT_CLASS (phosh_activity_parent_class)->constructed (object);
