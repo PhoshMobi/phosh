@@ -524,17 +524,15 @@ do_search (gpointer data)
   PhoshAppGrid *self = data;
   PhoshAppGridPrivate *priv = phosh_app_grid_get_instance_private (self);
   GtkAdjustment *adjustment;
+  gboolean search_active = TRUE;
 
-  if (priv->search_string && *priv->search_string != '\0') {
-    gtk_style_context_add_class (gtk_widget_get_style_context (priv->apps),
-                                 ACTIVE_SEARCH_CLASS);
-  } else {
+  if (gm_str_is_null_or_empty (priv->search_string)) {
     adjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (priv->scrolled_window));
     gtk_adjustment_set_value (adjustment, 0);
-    gtk_style_context_remove_class (gtk_widget_get_style_context (priv->apps),
-                                    ACTIVE_SEARCH_CLASS);
+    search_active = FALSE;
   }
 
+  phosh_util_toggle_style_class (GTK_WIDGET (priv->apps), ACTIVE_SEARCH_CLASS, search_active);
   toggle_favorites_revealer (self);
   gtk_filter_list_model_refilter (priv->model);
 
@@ -653,8 +651,7 @@ on_search_lost_focus (GtkWidget    *widget,
 {
   PhoshAppGridPrivate *priv = phosh_app_grid_get_instance_private (self);
 
-  gtk_style_context_remove_class (gtk_widget_get_style_context (priv->apps),
-                                  ACTIVE_SEARCH_CLASS);
+  phosh_util_toggle_style_class (GTK_WIDGET (priv->apps), ACTIVE_SEARCH_CLASS, FALSE);
 
   return GDK_EVENT_PROPAGATE;
 }
@@ -667,10 +664,8 @@ on_search_gained_focus (GtkWidget    *widget,
 {
   PhoshAppGridPrivate *priv = phosh_app_grid_get_instance_private (self);
 
-  if (priv->search_string && *priv->search_string != '\0') {
-    gtk_style_context_add_class (gtk_widget_get_style_context (priv->apps),
-                                 ACTIVE_SEARCH_CLASS);
-  }
+  if (!gm_str_is_null_or_empty (priv->search_string))
+    phosh_util_toggle_style_class (GTK_WIDGET (priv->apps), ACTIVE_SEARCH_CLASS, TRUE);
 
   return GDK_EVENT_PROPAGATE;
 }
