@@ -601,7 +601,8 @@ phosh_overview_class_init (PhoshOverviewClass *klass)
                   G_TYPE_NONE, 0);
 
   /* ensure used custom types */
-  PHOSH_TYPE_APP_GRID;
+  g_type_ensure (PHOSH_TYPE_APP_GRID);
+
   gtk_widget_class_set_template_from_resource (widget_class, "/mobi/phosh/ui/overview.ui");
 
   gtk_widget_class_bind_template_child_private (widget_class, PhoshOverview, app_grid);
