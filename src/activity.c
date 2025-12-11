@@ -47,6 +47,7 @@ enum {
   PROP_FULLSCREEN,
   PROP_WIN_WIDTH,
   PROP_WIN_HEIGHT,
+  PROP_HAS_THUMBNAIL,
   LAST_PROP,
 };
 static GParamSpec *props[LAST_PROP];
@@ -61,6 +62,7 @@ typedef struct {
   GtkWidget       *btn_unfullscreen;
   GtkWidget       *preview;
   GtkWidget       *button;
+  GtkWidget       *spinner;
 
   gboolean         maximized;
   gboolean         fullscreen;
@@ -191,6 +193,9 @@ phosh_activity_get_property (GObject    *object,
     break;
   case PROP_WIN_HEIGHT:
     g_value_set_int (value, priv->win_height);
+    break;
+  case PROP_HAS_THUMBNAIL:
+    g_value_set_boolean (value, phosh_activity_get_has_thumbnail (self));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -642,6 +647,15 @@ phosh_activity_class_init (PhoshActivityClass *klass)
     g_param_spec_int ("win-height", "", "",
                       0, G_MAXINT, 300,
                       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshActivity:has-thumbnail:
+   *
+   * Whether the activity is backed by a thumbnail
+   */
+  props[PROP_HAS_THUMBNAIL] =
+    g_param_spec_boolean ("has-thumbnail", "", "",
+                          FALSE,
+                          G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
   g_object_class_install_properties (object_class, LAST_PROP, props);
 
@@ -694,6 +708,7 @@ phosh_activity_class_init (PhoshActivityClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, PhoshActivity, box);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshActivity, revealer_close);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshActivity, revealer_unfullscreen);
+  gtk_widget_class_bind_template_child_private (widget_class, PhoshActivity, spinner);
   gtk_widget_class_bind_template_callback (widget_class, clicked_cb);
   gtk_widget_class_bind_template_callback (widget_class, closed_cb);
   gtk_widget_class_bind_template_callback (widget_class, draw_cb);
@@ -751,10 +766,12 @@ phosh_activity_set_thumbnail (PhoshActivity *self, PhoshThumbnail *thumbnail)
   gpointer data;
   guint w, width, height, stride, margin;
   float scale;
+  gboolean has_thumbnail;
 
   g_return_if_fail (PHOSH_IS_ACTIVITY (self));
   priv = phosh_activity_get_instance_private (self);
 
+  has_thumbnail = !!priv->thumbnail;
   g_clear_object (&priv->thumbnail);
   priv->thumbnail = thumbnail;
 
@@ -776,6 +793,9 @@ phosh_activity_set_thumbnail (PhoshActivity *self, PhoshThumbnail *thumbnail)
   gtk_widget_set_margin_end (priv->btn_close, margin);
 
   gtk_widget_queue_draw (GTK_WIDGET (self));
+
+  if (has_thumbnail != !!priv->thumbnail)
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_HAS_THUMBNAIL]);
 }
 
 void
@@ -788,4 +808,15 @@ phosh_activity_get_thumbnail_allocation (PhoshActivity *self, GtkAllocation *all
   priv = phosh_activity_get_instance_private (self);
 
   *allocation = priv->allocation;
+}
+
+
+gboolean
+phosh_activity_get_has_thumbnail (PhoshActivity *self)
+{
+  PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
+
+  g_return_val_if_fail (PHOSH_IS_ACTIVITY (self), FALSE);
+
+  return !!priv->thumbnail;
 }

@@ -18,3 +18,4 @@ void        phosh_activity_set_thumbnail (PhoshActivity *self,
                                           PhoshThumbnail *thumbnail);
 void        phosh_activity_get_thumbnail_allocation (PhoshActivity *self,
                                                      GtkAllocation *allocation);
+gboolean    phosh_activity_get_has_thumbnail (PhoshActivity *self);
