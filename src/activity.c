@@ -752,7 +752,13 @@ phosh_activity_get_app_id (PhoshActivity *self)
   g_return_val_if_fail (PHOSH_IS_ACTIVITY (self), NULL);
   priv = phosh_activity_get_instance_private (self);
 
-  return priv->app_id;
+  if (priv->app_id)
+    return priv->app_id;
+
+  if (priv->app_info)
+    return g_app_info_get_id (priv->app_info);
+
+  return NULL;
 }
 
 /**
