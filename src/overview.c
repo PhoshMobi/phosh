@@ -284,18 +284,33 @@ scroll_to_activity (PhoshOverview *self, PhoshActivity *activity)
 static void
 on_activity_clicked (PhoshOverview *self, PhoshActivity *activity)
 {
+  PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
   PhoshToplevel *toplevel;
+
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
   g_return_if_fail (PHOSH_IS_ACTIVITY (activity));
 
   toplevel = get_toplevel_from_activity (activity);
-  g_return_if_fail (toplevel);
 
-  g_debug ("Will raise %s (%s)",
-           phosh_activity_get_app_id (activity),
-           phosh_toplevel_get_title (toplevel));
+  if (toplevel) {
+    g_return_if_fail (toplevel);
 
-  phosh_toplevel_activate (toplevel, phosh_wayland_get_wl_seat (phosh_wayland_get_default ()));
+    g_debug ("Will raise %s (%s)",
+             phosh_activity_get_app_id (activity),
+             phosh_toplevel_get_title (toplevel));
+
+    phosh_toplevel_activate (toplevel, phosh_wayland_get_wl_seat (phosh_wayland_get_default ()));
+
+    phosh_splash_manager_lower_all (priv->splash_manager);
+  } else {
+    const char *startup_id = g_object_get_data (G_OBJECT (activity), "startup-id");
+
+    if (startup_id)
+      phosh_splash_manager_raise (priv->splash_manager, startup_id);
+    else
+      g_warning ("No startup-id for %s, can't raise splash", phosh_activity_get_app_id (activity));
+  }
+
   g_signal_emit (self, signals[ACTIVITY_RAISED], 0);
 }
 
@@ -500,6 +515,7 @@ toplevel_to_activity (PhoshOverview *self, PhoshToplevel *toplevel)
                   "fullscreen", phosh_toplevel_is_fullscreen (toplevel),
                   NULL);
 
+    g_object_set_data (G_OBJECT (activity), "startup-id", NULL);
     request_thumbnail (activity, toplevel);
   } else {
     g_debug ("Building activator for '%s' (%s)", app_id, title);
