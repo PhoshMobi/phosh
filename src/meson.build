@@ -351,6 +351,7 @@ phosh_headers = files(
   'style-manager.h',
   'system-prompt.h',
   'system-prompter.h',
+  'thumbnail-priv.h',
   'thumbnail.h',
   'top-panel-bg.h',
   'top-panel.h',

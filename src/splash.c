@@ -12,6 +12,8 @@
 
 #include "animation.h"
 #include "layersurface-priv.h"
+#include "phosh-wayland.h"
+#include "monitor.h"
 #include "shell-priv.h"
 #include "splash.h"
 
@@ -149,10 +151,10 @@ phosh_splash_constructed (GObject *object)
   g_object_set (PHOSH_LAYER_SURFACE (self),
                 "layer-shell", phosh_wayland_get_zwlr_layer_shell_v1 (wl),
                 "wl-output", phosh_monitor_get_wl_output (monitor),
-                "anchor", ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP |
-                ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM |
-                ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT |
-                ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT,
+                "anchor", (ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP |
+                           ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM |
+                           ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT |
+                           ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT),
                 "layer", ZWLR_LAYER_SHELL_V1_LAYER_TOP,
                 "kbd-interactivity", TRUE,
                 "exclusive-zone", -1,
@@ -207,7 +209,7 @@ phosh_splash_show (GtkWidget *widget)
 static void
 phosh_splash_class_init (PhoshSplashClass *klass)
 {
-  GObjectClass *object_class = (GObjectClass *)klass;
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->get_property = phosh_splash_get_property;
@@ -218,13 +220,11 @@ phosh_splash_class_init (PhoshSplashClass *klass)
   widget_class->key_press_event = phosh_splash_key_press_event;
 
   /**
-   * PhoshSplash:app:
+   * PhoshSplash:app-info:
    *
    * The appinfo this splash is for
    */
-  props[PROP_APP_INFO] = g_param_spec_object ("app",
-                                              "",
-                                              "",
+  props[PROP_APP_INFO] = g_param_spec_object ("app-info", "", "",
                                               G_TYPE_DESKTOP_APP_INFO,
                                               G_PARAM_CONSTRUCT_ONLY |
                                               G_PARAM_READWRITE |
@@ -234,13 +234,12 @@ phosh_splash_class_init (PhoshSplashClass *klass)
    *
    * Whether the splash should prefer dark theming
    */
-  props[PROP_PREFER_DARK] = g_param_spec_boolean ("prefer-dark",
-                                                  "",
-                                                  "",
+  props[PROP_PREFER_DARK] = g_param_spec_boolean ("prefer-dark", "", "",
                                                   FALSE,
                                                   G_PARAM_CONSTRUCT_ONLY |
                                                   G_PARAM_READWRITE |
                                                   G_PARAM_STATIC_STRINGS);
+
   g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 
   /**
@@ -249,11 +248,13 @@ phosh_splash_class_init (PhoshSplashClass *klass)
    * The splash should be closed
    */
   signals[CLOSED] = g_signal_new ("closed",
-                                  G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST, 0, NULL, NULL,
-                                  NULL, G_TYPE_NONE, 0);
+                                  G_TYPE_FROM_CLASS (klass),
+                                  G_SIGNAL_RUN_LAST, 0, NULL, NULL,
+                                  NULL,
+                                  G_TYPE_NONE,
+                                  0);
 
-  gtk_widget_class_set_template_from_resource (widget_class,
-                                               "/mobi/phosh/ui/splash.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/mobi/phosh/ui/splash.ui");
   gtk_widget_class_bind_template_child_private (widget_class, PhoshSplash, img_app);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshSplash, box);
 
@@ -269,25 +270,28 @@ phosh_splash_init (PhoshSplash *self)
 
 
 GtkWidget *
-phosh_splash_new (GDesktopAppInfo *app, gboolean prefer_dark)
+phosh_splash_new (GDesktopAppInfo *info, gboolean prefer_dark)
 {
   return g_object_new (PHOSH_TYPE_SPLASH,
-                       "app", app,
+                       "app-info", info,
                        "prefer-dark", prefer_dark,
                        NULL);
 }
 
 
 static void
-fadeout_value_cb (double value, PhoshSplash *self)
+fadeout_value_cb (double value, gpointer data)
 {
+  PhoshSplash *self = data;
+
   phosh_layer_surface_set_alpha (PHOSH_LAYER_SURFACE (self), 1.0 - value);
 }
 
 
 static void
-fadeout_done_cb (PhoshSplash *self)
+fadeout_done_cb (gpointer data)
 {
+  PhoshSplash *self = data;
   PhoshSplashPrivate *priv = phosh_splash_get_instance_private (self);
 
   g_clear_pointer (&priv->fadeout, phosh_animation_unref);
@@ -309,8 +313,8 @@ phosh_splash_hide (PhoshSplash *self)
                                        1.0,
                                        200 * PHOSH_ANIMATION_SLOWDOWN,
                                        PHOSH_ANIMATION_TYPE_EASE_IN_QUINTIC,
-                                       (PhoshAnimationValueCallback) fadeout_value_cb,
-                                       (PhoshAnimationDoneCallback) fadeout_done_cb,
+                                       fadeout_value_cb,
+                                       fadeout_done_cb,
                                        self);
   phosh_animation_start (priv->fadeout);
 }

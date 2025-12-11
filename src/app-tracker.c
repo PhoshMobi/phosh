@@ -412,10 +412,10 @@ on_dbus_app_launched (GDBusConnection *connection,
                       const char      *interface_name,
                       const char      *signal_name,
                       GVariant        *parameters,
-                      PhoshAppTracker *self)
+                      gpointer         data)
 {
   gint64 pid;
-
+  PhoshAppTracker *self = PHOSH_APP_TRACKER (data);
   g_autoptr (GVariant) var_dict = NULL, var_desktop_file = NULL;
   g_autofree char *startup_id = NULL;
   const char *desktop_file = NULL;
@@ -479,10 +479,9 @@ on_dbus_app_launched (GDBusConnection *connection,
 
 
 static void
-on_bus_get_finished (GObject         *source_object,
-                     GAsyncResult    *res,
-                     PhoshAppTracker *self)
+on_bus_get_finished (GObject *source_object, GAsyncResult *res, gpointer data)
 {
+  PhoshAppTracker *self = PHOSH_APP_TRACKER (data);
   g_autoptr (GError) err = NULL;
   GDBusConnection *session_bus;
 
@@ -501,7 +500,7 @@ on_bus_get_finished (GObject         *source_object,
                                                       "/org/gtk/gio/DesktopAppInfo",
                                                       NULL,
                                                       G_DBUS_SIGNAL_FLAGS_NONE,
-                                                      (GDBusSignalCallback)on_dbus_app_launched,
+                                                      on_dbus_app_launched,
                                                       self, NULL);
 }
 
@@ -509,10 +508,7 @@ on_bus_get_finished (GObject         *source_object,
 static gboolean
 on_idle (PhoshAppTracker *self)
 {
-  g_bus_get (G_BUS_TYPE_SESSION,
-             self->cancel,
-             (GAsyncReadyCallback)on_bus_get_finished,
-             self);
+  g_bus_get (G_BUS_TYPE_SESSION, self->cancel, on_bus_get_finished, self);
 
   self->idle_id = 0;
   return G_SOURCE_REMOVE;
