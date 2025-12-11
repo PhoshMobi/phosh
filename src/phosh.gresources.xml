@@ -52,7 +52,6 @@
     <file compressed="true">stylesheet/adwaita-dark.css</file>
     <file compressed="true">stylesheet/adwaita-hc-light.css</file>
     <file compressed="true">stylesheet/common.css</file>
-    <file compressed="true" alias="fake-app.svg">../data/icons/fake-app.svg</file>
   </gresource>
   <gresource prefix="/mobi/phosh/icons/">
     <file alias="app-icon-unknown.svg">../data/icons/app-icon-unknown.svg</file>
