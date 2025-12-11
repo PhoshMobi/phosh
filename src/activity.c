@@ -482,6 +482,9 @@ set_hovering (PhoshActivity *self,
 {
   PhoshActivityPrivate *priv = phosh_activity_get_instance_private (self);
 
+  if (!phosh_activity_get_has_thumbnail (self))
+    return;
+
   if (hovering == priv->hovering)
     return;
 

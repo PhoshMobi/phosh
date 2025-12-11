@@ -7,6 +7,7 @@
     <child>
       <object class="PhoshSwipeAwayBin" id="swipe_bin">
         <property name="visible">1</property>
+        <property name="enabled" bind-source="PhoshActivity" bind-property="has-thumbnail" bind-flags="sync-create"/>
         <property name="orientation">vertical</property>
         <signal name="removed" handler="removed_cb" swapped="true"/>
         <child>
