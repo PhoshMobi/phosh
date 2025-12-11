@@ -1,4 +1,5 @@
-phosh-wifi-hotspot-status-page #entry {
+phosh-wifi-hotspot-status-page .password-entry,
+phosh-wifi-hotspot-status-page .ssid {
   font-size: 1.25rem;
   font-weight: bold;
 }

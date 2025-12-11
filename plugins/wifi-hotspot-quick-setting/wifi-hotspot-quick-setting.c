@@ -19,14 +19,15 @@
  */
 
 struct _PhoshWifiHotspotQuickSetting {
-  PhoshQuickSetting  parent;
+  PhoshQuickSetting parent;
 
-  PhoshStatusIcon   *info;
-  gboolean           connecting;
-  PhoshWifiManager  *wifi;
+  PhoshStatusIcon  *info;
+  gboolean          connecting;
+  PhoshWifiManager *wifi;
 };
 
-G_DEFINE_TYPE (PhoshWifiHotspotQuickSetting, phosh_wifi_hotspot_quick_setting, PHOSH_TYPE_QUICK_SETTING);
+G_DEFINE_TYPE (PhoshWifiHotspotQuickSetting, phosh_wifi_hotspot_quick_setting,
+               PHOSH_TYPE_QUICK_SETTING);
 
 
 static void
@@ -37,6 +38,9 @@ on_clicked (PhoshWifiHotspotQuickSetting *self)
   self->connecting = TRUE;
   active = phosh_quick_setting_get_active (PHOSH_QUICK_SETTING (self));
   phosh_wifi_manager_set_hotspot_master (self->wifi, !active);
+
+  if (active)
+    g_signal_emit_by_name (self, "hide-status", 0);
 }
 
 

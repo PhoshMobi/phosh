@@ -31,6 +31,7 @@ struct _PhoshWifiHotspotStatusPage {
   GtkEntry         *entry;
   GtkImage         *image;
   PhoshStatusPagePlaceholder *placeholder;
+  GtkLabel         *ssid;
   GtkStack         *stack;
   GtkButton        *turn_on_btn;
 
@@ -381,6 +382,7 @@ phosh_wifi_hotspot_status_page_class_init (PhoshWifiHotspotStatusPageClass *klas
   gtk_widget_class_bind_template_child (widget_class, PhoshWifiHotspotStatusPage, entry);
   gtk_widget_class_bind_template_child (widget_class, PhoshWifiHotspotStatusPage, image);
   gtk_widget_class_bind_template_child (widget_class, PhoshWifiHotspotStatusPage, placeholder);
+  gtk_widget_class_bind_template_child (widget_class, PhoshWifiHotspotStatusPage, ssid);
   gtk_widget_class_bind_template_child (widget_class, PhoshWifiHotspotStatusPage, stack);
   gtk_widget_class_bind_template_child (widget_class, PhoshWifiHotspotStatusPage, turn_on_btn);
   gtk_widget_class_bind_template_callback (widget_class, on_turn_on_clicked);
@@ -408,6 +410,7 @@ phosh_wifi_hotspot_status_page_init (PhoshWifiHotspotStatusPage *self)
                     "swapped-object-signal::notify::is-hotspot-master",
                     G_CALLBACK (on_wifi_notify), self,
                     NULL);
+  g_object_bind_property (self->wifi, "ssid", self->ssid, "label", G_BINDING_SYNC_CREATE);
 }
 
 
