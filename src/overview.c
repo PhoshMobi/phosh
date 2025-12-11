@@ -103,22 +103,21 @@ get_toplevel_from_activity (PhoshActivity *activity)
 static PhoshActivity *
 find_activity_by_toplevel (PhoshOverview *self, PhoshToplevel *needle)
 {
-  g_autoptr (GList) children;
-  PhoshActivity *activity = NULL;
+  g_autoptr (GList) children = NULL;
   PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
 
   children = gtk_container_get_children (GTK_CONTAINER (priv->carousel_running_activities));
   for (GList *l = children; l; l = l->next) {
+    PhoshActivity *activity = PHOSH_ACTIVITY (l->data);
     PhoshToplevel *toplevel;
 
-    activity = PHOSH_ACTIVITY (l->data);
     toplevel = get_toplevel_from_activity (activity);
     if (toplevel == needle)
-      break;
+      return activity;
   }
 
-  g_return_val_if_fail (activity, NULL);
-  return activity;
+  g_return_val_if_reached (NULL);
+  return NULL;
 }
 
 
