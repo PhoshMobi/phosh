@@ -470,9 +470,7 @@ phosh_overview_size_allocate (GtkWidget     *widget,
 
 
 static void
-app_launched_cb (PhoshOverview *self,
-                 GAppInfo      *info,
-                 GtkWidget     *widget)
+on_app_launched (PhoshOverview *self, GAppInfo *info, GtkWidget *widget)
 {
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
 
@@ -534,9 +532,6 @@ phosh_overview_constructed (GObject *object)
                            G_CONNECT_SWAPPED);
 
   get_running_activities (self);
-
-  g_signal_connect_swapped (priv->app_grid, "app-launched",
-                            G_CALLBACK (app_launched_cb), self);
 
   g_signal_connect_swapped (priv->carousel_running_activities, "page-changed",
                             G_CALLBACK (page_changed_cb), self);
@@ -601,6 +596,7 @@ phosh_overview_class_init (PhoshOverviewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, PhoshOverview, app_grid);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshOverview,
                                                 carousel_running_activities);
+  gtk_widget_class_bind_template_callback (widget_class, on_app_launched);
 
   gtk_widget_class_set_css_name (widget_class, "phosh-overview");
 }

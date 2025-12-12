@@ -20,6 +20,7 @@
         <property name="visible">1</property>
         <child>
           <object class="PhoshAppGrid" id="app_grid">
+            <signal name="app-launched" handler="on_app_launched" object="PhoshOverview" swapped="yes"/>
             <property name="visible">1</property>
           </object>
         </child>
