@@ -7,6 +7,8 @@
     <property name="orientation">vertical</property>
     <child>
       <object class="HdyCarousel" id="carousel_running_activities">
+        <signal name="notify::n-pages" handler="on_n_pages_changed" object="PhoshOverview" swapped="yes"/>
+        <signal name="page-changed" handler="on_page_changed" object="PhoshOverview" swapped="yes"/>
         <property name="spacing">18</property>
         <property name="margin-bottom">6</property>
         <property name="hexpand">1</property>

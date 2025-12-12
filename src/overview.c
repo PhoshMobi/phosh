@@ -479,9 +479,7 @@ on_app_launched (PhoshOverview *self, GAppInfo *info, GtkWidget *widget)
 
 
 static void
-page_changed_cb (PhoshOverview *self,
-                 guint          index,
-                 HdyCarousel   *carousel)
+on_page_changed (PhoshOverview *self, guint index, HdyCarousel *carousel)
 {
   PhoshActivity *activity;
   PhoshToplevel *toplevel;
@@ -515,7 +513,6 @@ static void
 phosh_overview_constructed (GObject *object)
 {
   PhoshOverview *self = PHOSH_OVERVIEW (object);
-  PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
   PhoshToplevelManager *toplevel_manager =
     phosh_shell_get_toplevel_manager (phosh_shell_get_default ());
 
@@ -526,15 +523,7 @@ phosh_overview_constructed (GObject *object)
                     "swapped-object-signal::toplevel-changed", on_toplevel_changed, self,
                     NULL);
 
-  g_signal_connect_object (priv->carousel_running_activities, "notify::n-pages",
-                           G_CALLBACK (on_n_pages_changed),
-                           self,
-                           G_CONNECT_SWAPPED);
-
   get_running_activities (self);
-
-  g_signal_connect_swapped (priv->carousel_running_activities, "page-changed",
-                            G_CALLBACK (page_changed_cb), self);
 }
 
 
@@ -597,6 +586,8 @@ phosh_overview_class_init (PhoshOverviewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, PhoshOverview,
                                                 carousel_running_activities);
   gtk_widget_class_bind_template_callback (widget_class, on_app_launched);
+  gtk_widget_class_bind_template_callback (widget_class, on_n_pages_changed);
+  gtk_widget_class_bind_template_callback (widget_class, on_page_changed);
 
   gtk_widget_class_set_css_name (widget_class, "phosh-overview");
 }
