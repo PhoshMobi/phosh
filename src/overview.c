@@ -53,9 +53,9 @@ static GParamSpec *props[LAST_PROP];
 
 typedef struct {
   /* Running activities */
-  GtkWidget     *carousel_running_activities;
-  GtkWidget     *app_grid;
-  PhoshActivity *activity;
+  HdyCarousel        *carousel_running_activities;
+  GtkWidget          *app_grid;
+  PhoshActivity      *activity;
 
   int has_activities;
 } PhoshOverviewPrivate;
@@ -125,7 +125,7 @@ static void
 scroll_to_activity (PhoshOverview *self, PhoshActivity *activity)
 {
   PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
-  hdy_carousel_scroll_to (HDY_CAROUSEL (priv->carousel_running_activities), GTK_WIDGET (activity));
+  hdy_carousel_scroll_to (priv->carousel_running_activities, GTK_WIDGET (activity));
   gtk_widget_grab_focus (GTK_WIDGET (activity));
 }
 
@@ -279,8 +279,7 @@ on_activity_has_focus_changed (PhoshOverview *self, GParamSpec *pspec, PhoshActi
   priv = phosh_overview_get_instance_private (self);
 
   if (gtk_widget_has_focus (GTK_WIDGET (activity)))
-    hdy_carousel_scroll_to (HDY_CAROUSEL (priv->carousel_running_activities),
-                            GTK_WIDGET (activity));
+    hdy_carousel_scroll_to (priv->carousel_running_activities, GTK_WIDGET (activity));
 }
 
 
@@ -348,7 +347,7 @@ add_activity (PhoshOverview *self, PhoshToplevel *toplevel)
 
   pos = get_last_app_id_pos (self, parent_app_id);
   if (pos)
-    hdy_carousel_insert (HDY_CAROUSEL (priv->carousel_running_activities), activity, pos);
+    hdy_carousel_insert (priv->carousel_running_activities, activity, pos);
   else
     gtk_container_add (GTK_CONTAINER (priv->carousel_running_activities), activity);
   gtk_widget_set_visible (activity, TRUE);
@@ -386,7 +385,7 @@ set_has_activities (PhoshOverview *self)
     return;
 
   priv->has_activities = has_activities;
-  gtk_widget_set_visible (priv->carousel_running_activities, has_activities);
+  gtk_widget_set_visible (GTK_WIDGET (priv->carousel_running_activities), has_activities);
   g_object_notify_by_pspec (G_OBJECT (self), props[PROP_HAS_ACTIVITIES]);
 }
 
