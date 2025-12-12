@@ -258,8 +258,14 @@ request_thumbnail (PhoshActivity *activity, PhoshToplevel *toplevel)
 
 
 static void
-on_activity_resized (PhoshActivity *activity, GtkAllocation *alloc, PhoshToplevel *toplevel)
+on_activity_resized (PhoshOverview *self, GtkAllocation *alloc, PhoshActivity *activity)
 {
+  PhoshToplevel *toplevel;
+
+  g_return_if_fail (PHOSH_IS_ACTIVITY (activity));
+  toplevel = g_object_get_data (G_OBJECT (activity), "toplevel");
+  g_return_if_fail (PHOSH_IS_TOPLEVEL (toplevel));
+
   request_thumbnail (activity, toplevel);
 }
 
@@ -353,6 +359,7 @@ add_activity (PhoshOverview *self, PhoshToplevel *toplevel)
                     "swapped-signal::closed", on_activity_closed, self,
                     "swapped-signal::fullscreened", on_activity_fullscreened, self,
                     "swapped-signal::notify::has-focus", on_activity_has_focus_changed, self,
+                    "swapped-signal::resized", on_activity_resized, self,
                     NULL);
 
   g_signal_connect_object (toplevel, "closed", G_CALLBACK (on_toplevel_closed), self, 0);
@@ -363,8 +370,6 @@ add_activity (PhoshOverview *self, PhoshToplevel *toplevel)
                            0);
   g_object_bind_property (toplevel, "maximized", activity, "maximized", G_BINDING_DEFAULT);
   g_object_bind_property (toplevel, "fullscreen", activity, "fullscreen", G_BINDING_DEFAULT);
-
-  g_signal_connect (activity, "resized", G_CALLBACK (on_activity_resized), toplevel);
 
   if (phosh_toplevel_is_activated (toplevel)) {
     scroll_to_activity (self, PHOSH_ACTIVITY (activity));
