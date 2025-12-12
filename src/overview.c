@@ -409,9 +409,7 @@ get_running_activities (PhoshOverview *self)
 
 
 static void
-toplevel_added_cb (PhoshOverview        *self,
-                   PhoshToplevel        *toplevel,
-                   PhoshToplevelManager *manager)
+on_toplevel_added (PhoshOverview *self, PhoshToplevel *toplevel, PhoshToplevelManager *manager)
 {
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
   g_return_if_fail (PHOSH_IS_TOPLEVEL (toplevel));
@@ -421,9 +419,7 @@ toplevel_added_cb (PhoshOverview        *self,
 
 
 static void
-toplevel_changed_cb (PhoshOverview        *self,
-                     PhoshToplevel        *toplevel,
-                     PhoshToplevelManager *manager)
+on_toplevel_changed (PhoshOverview *self, PhoshToplevel *toplevel, PhoshToplevelManager *manager)
 {
   PhoshActivity *activity;
 
@@ -527,15 +523,10 @@ phosh_overview_constructed (GObject *object)
 
   G_OBJECT_CLASS (phosh_overview_parent_class)->constructed (object);
 
-  g_signal_connect_object (toplevel_manager, "toplevel-added",
-                           G_CALLBACK (toplevel_added_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-
-  g_signal_connect_object (toplevel_manager, "toplevel-changed",
-                           G_CALLBACK (toplevel_changed_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
+  g_object_connect (toplevel_manager,
+                    "swapped-object-signal::toplevel-added", on_toplevel_added, self,
+                    "swapped-object-signal::toplevel-changed", on_toplevel_changed, self,
+                    NULL);
 
   g_signal_connect_object (priv->carousel_running_activities, "notify::n-pages",
                            G_CALLBACK (on_n_pages_changed),
