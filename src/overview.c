@@ -362,12 +362,10 @@ add_activity (PhoshOverview *self, PhoshToplevel *toplevel)
                     "swapped-signal::resized", on_activity_resized, self,
                     NULL);
 
-  g_signal_connect_object (toplevel, "closed", G_CALLBACK (on_toplevel_closed), self, 0);
-  g_signal_connect_object (toplevel,
-                           "notify::activated",
-                           G_CALLBACK (on_toplevel_activated_changed),
-                           self,
-                           0);
+  g_object_connect (toplevel,
+                    "object-signal::closed", on_toplevel_closed, self,
+                    "object-signal::notify::activated", on_toplevel_activated_changed, self,
+                    NULL);
   g_object_bind_property (toplevel, "maximized", activity, "maximized", G_BINDING_DEFAULT);
   g_object_bind_property (toplevel, "fullscreen", activity, "fullscreen", G_BINDING_DEFAULT);
 
