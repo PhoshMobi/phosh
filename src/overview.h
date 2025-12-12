@@ -12,7 +12,7 @@
 
 G_BEGIN_DECLS
 
-#define PHOSH_TYPE_OVERVIEW (phosh_overview_get_type())
+#define PHOSH_TYPE_OVERVIEW (phosh_overview_get_type ())
 
 G_DECLARE_FINAL_TYPE (PhoshOverview, phosh_overview, PHOSH, OVERVIEW, GtkBox)
 
