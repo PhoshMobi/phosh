@@ -352,6 +352,7 @@ add_activity (PhoshOverview *self, PhoshToplevel *toplevel)
                     "swapped-signal::clicked", on_activity_clicked, self,
                     "swapped-signal::closed", on_activity_closed, self,
                     "swapped-signal::fullscreened", on_activity_fullscreened, self,
+                    "swapped-signal::notify::has-focus", on_activity_has_focus_changed, self,
                     NULL);
 
   g_signal_connect_object (toplevel, "closed", G_CALLBACK (on_toplevel_closed), self, 0);
@@ -364,10 +365,6 @@ add_activity (PhoshOverview *self, PhoshToplevel *toplevel)
   g_object_bind_property (toplevel, "fullscreen", activity, "fullscreen", G_BINDING_DEFAULT);
 
   g_signal_connect (activity, "resized", G_CALLBACK (on_activity_resized), toplevel);
-  g_signal_connect_swapped (activity,
-                            "notify::has-focus",
-                            G_CALLBACK (on_activity_has_focus_changed),
-                            self);
 
   if (phosh_toplevel_is_activated (toplevel)) {
     scroll_to_activity (self, PHOSH_ACTIVITY (activity));
