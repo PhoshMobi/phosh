@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2018 Purism SPC
  *               2024-2025 The Phosh Developers
+ *               2025 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -766,145 +767,175 @@ phosh_util_remove_from_strv (GStrv array, const char *element)
   return g_strv_builder_end (builder);
 }
 
-static void
-on_dbus_proxy_call_ready (GDBusProxy *proxy, GAsyncResult *res, gpointer user_data)
-{
-  g_autoptr (GError) err = NULL;
-  g_autoptr (GVariant) output = NULL;
-  g_autofree char* panel = user_data;
-
-  output = g_dbus_proxy_call_finish (proxy, res, &err);
-  if (output == NULL)
-    g_warning ("Can't open %s panel: %s", panel, err->message);
-
-  g_object_unref (proxy);
-}
 
 static void
-on_dbus_proxy_new_ready (GObject *source_object, GAsyncResult *res, char *panel)
+on_activate_action_dbus_call_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
 {
-  GDBusProxy *proxy;
+  g_autoptr (GTask) task = G_TASK (user_data);
   g_autoptr (GError) err = NULL;
-  GVariantBuilder builder;
-  GVariant *params[3];
-  GVariant *array[1];
+  g_autoptr (GVariant) result = NULL;
 
-  proxy = g_dbus_proxy_new_for_bus_finish (res, &err);
-
-  if (err != NULL) {
-    g_warning ("Can't open panel %s: %s", panel, err->message);
-    g_free (panel);
+  result = g_dbus_proxy_call_finish (G_DBUS_PROXY (source_object), res, &err);
+  if (result == NULL) {
+    g_task_return_error (task, g_steal_pointer (&err));
     return;
   }
 
-  g_variant_builder_init (&builder, G_VARIANT_TYPE ("av"));
-  g_variant_builder_add (&builder, "v", g_variant_new_string (""));
+  g_task_return_boolean (task, TRUE);
+}
 
-  array[0] = g_variant_new ("v", g_variant_new ("(sav)", panel, &builder));
 
-  params[0] = g_variant_new_string ("launch-panel");
-  params[1] = g_variant_new_array (G_VARIANT_TYPE ("v"), array, 1);
-  params[2] = g_variant_new_array (G_VARIANT_TYPE ("{sv}"), NULL, 0);
+static void
+on_activate_action_dbus_proxy_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
+{
+  g_autoptr (GTask) task = G_TASK (user_data);
+  g_autoptr (GDBusProxy) proxy = NULL;
+  g_autoptr (GError) err = NULL;
+  GCancellable *cancel;
+  GVariant *params;
 
+  proxy = g_dbus_proxy_new_for_bus_finish (res, &err);
+  if (proxy == NULL) {
+    g_task_return_error (task, g_steal_pointer (&err));
+    return;
+  }
+
+  params = g_task_get_task_data (task);
+  cancel = g_task_get_cancellable (task);
   g_dbus_proxy_call (proxy,
-                     "Activate",
-                     g_variant_new_tuple (params, 3),
+                     "ActivateAction",
+                     params,
                      G_DBUS_CALL_FLAGS_NONE,
                      -1,
-                     NULL,
-                     (GAsyncReadyCallback) on_dbus_proxy_call_ready,
-                     g_steal_pointer (&panel));
+                     cancel,
+                     on_activate_action_dbus_call_ready,
+                     g_steal_pointer (&task));
+}
+
+/**
+ * phosh_util_activate_action:
+ * @info: The app info
+ * @action: The action name
+ * @params:(nullable): The action parameters
+ * @cancel:(nullable): A cancellable
+ * @callback:(scope async): The callback to invoked
+ * @user_data:(nullable): user data
+ *
+ * Asynchronously invoke the given action on the app corresponding to
+ * `info`.
+ */
+static void
+phosh_util_activate_action (GAppInfo           *info,
+                            const char         *action,
+                            GVariant           *params,
+                            const char         *object_path,
+                            GCancellable       *cancellable,
+                            GAsyncReadyCallback callback,
+                            gpointer            user_data)
+{
+  g_autoptr (GTask) task = NULL;
+  g_autoptr (GVariant) args = NULL;
+  g_autofree char *app_id = NULL;
+
+  g_return_if_fail (G_IS_APP_INFO (info) || info == NULL);
+  g_return_if_fail (!gm_str_is_null_or_empty (action));
+  g_return_if_fail (params == NULL || g_variant_is_of_type (params,  G_VARIANT_TYPE ("av")));
+
+  app_id = phosh_strip_suffix_from_app_id (g_app_info_get_id (info));
+  g_return_if_fail (app_id);
+
+  task = g_task_new (NULL, cancellable, callback, user_data);
+  g_task_set_source_tag (task, phosh_util_activate_action);
+
+  if (!params)
+    params = g_variant_new("av", NULL);
+
+  /* Sink ref so we can use `g_variant_unref` for the task's `destroy_notify` */
+  args = g_variant_ref_sink (g_variant_new ("(s@av@a{sv})",
+                                            action,
+                                            params,
+                                            g_variant_new("a{sv}", NULL)));
+  g_task_set_task_data (task, g_steal_pointer (&args), (GDestroyNotify) g_variant_unref);
+
+  g_dbus_proxy_new_for_bus (G_BUS_TYPE_SESSION,
+                            G_DBUS_PROXY_FLAGS_NONE,
+                            NULL,
+                            app_id,
+                            object_path,
+                            "org.freedesktop.Application",
+                            cancellable,
+                            on_activate_action_dbus_proxy_ready,
+                            g_steal_pointer (&task));
+}
+
+/**
+ * phosh_util_activate_action_finish:
+ * @info: The app info
+ * @action: The action name
+ * @params:(nullable): The action parameters
+ * @cancel:(nullable): A cancellable
+ * @callback:(scope async): The callback to invoke when the async operation finished
+ * @user_data:(nullable): user data
+ *
+ * Completes the async operation started with `phosh_util_activate_action`.
+ */
+static gboolean
+phosh_util_activate_action_finish (GAsyncResult *res, GError **err)
+{
+  g_return_val_if_fail (G_IS_ASYNC_RESULT (res), FALSE);
+  g_return_val_if_fail (err == NULL || (err != 0 && *err == NULL), FALSE);
+
+  return g_task_propagate_boolean (G_TASK (res), err);
 }
 
 /**
  * phosh_util_open_settings_panel:
  * @panel: A settings panel name
+ * @mobile: panel is in mobile settings app
+ * @cancellable:(nullable): A cancellable
+ * @callback:(scope async): The callback to invoke when the async operation finished
  *
  * Open the settings panel corresponding to the given name.
  */
 void
-phosh_util_open_settings_panel (const char *panel)
+phosh_util_open_settings_panel (const char         *panel,
+                                gboolean            mobile,
+                                GCancellable       *cancellable,
+                                GAsyncReadyCallback callback,
+                                gpointer            user_data)
 {
-  g_dbus_proxy_new_for_bus (G_BUS_TYPE_SESSION,
-                            G_DBUS_PROXY_FLAGS_NONE,
-                            NULL,
-                            "org.gnome.Settings",
-                            "/org/gnome/Settings",
-                            "org.gtk.Actions",
-                            NULL,
-                            (GAsyncReadyCallback) on_dbus_proxy_new_ready,
-                            g_strdup (panel));
-}
-
-
-static void
-on_mobile_settings_activate_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
-{
-  g_autoptr (GDBusProxy) proxy = G_DBUS_PROXY (source_object);
-  g_autoptr (GError) err = NULL;
-  g_autoptr (GVariant) output = NULL;
-  g_autofree char* panel = user_data;
-
-  output = g_dbus_proxy_call_finish (proxy, res, &err);
-  if (output == NULL)
-    g_warning ("Can't open %s panel: %s", panel, err->message);
-}
-
-
-static void
-on_mobile_settings_dbus_proxy_new_ready (GObject *source_object, GAsyncResult *res, gpointer data)
-{
-  GDBusProxy *proxy;
-  g_autoptr (GError) err = NULL;
-  g_autofree char *panel = data;
+  g_autoptr (GDesktopAppInfo) info = NULL;
+  const char *object_path, *action;
   GVariantBuilder builder;
-  GVariant *params[3];
-  GVariant *array[1];
 
-  proxy = g_dbus_proxy_new_for_bus_finish (res, &err);
-  if (!proxy) {
-    g_warning ("Can't open panel %s: %s", panel, err->message);
-    return;
+  if (mobile) {
+    info = g_desktop_app_info_new ("mobi.phosh.MobileSettings.desktop");
+    object_path = "/mobi/phosh/MobileSettings";
+    action = "set-panel";
+  } else {
+    info = g_desktop_app_info_new ("org.gnome.Settings.desktop");
+    object_path = "/org/gnome/Settings";
+    action = "launch-panel";
   }
 
-  g_variant_builder_init (&builder, G_VARIANT_TYPE ("av"));
-  g_variant_builder_add (&builder, "v", g_variant_new_string (""));
-
-  array[0] = g_variant_new ("v", g_variant_new ("(sav)", panel, &builder));
-
-  params[0] = g_variant_new_string ("set-panel");
-  params[1] = g_variant_new_array (G_VARIANT_TYPE ("v"), array, 1);
-  params[2] = g_variant_new_array (G_VARIANT_TYPE ("{sv}"), NULL, 0);
-
-  g_dbus_proxy_call (proxy,
-                     "Activate",
-                     g_variant_new_tuple (params, 3),
-                     G_DBUS_CALL_FLAGS_NONE,
-                     -1,
-                     NULL,
-                     on_mobile_settings_activate_ready,
-                     g_steal_pointer (&panel));
+  g_variant_builder_init_static (&builder, G_VARIANT_TYPE ("av"));
+  g_variant_builder_add (&builder, "v", g_variant_new ("(sav)", panel, NULL));
+  phosh_util_activate_action (G_APP_INFO (info),
+                              action,
+                              g_variant_builder_end (&builder),
+                              object_path,
+                              cancellable,
+                              callback,
+                              user_data);
 }
 
-/**
- * phosh_util_open_mobile_settings_panel:
- * @panel: A settings panel name
- *
- * Open the settings panel corresponding to the given name.
- */
-void
-phosh_util_open_mobile_settings_panel (const char *panel)
+
+gboolean
+phosh_util_open_settings_panel_finish (GAsyncResult *res, GError **err)
 {
-  g_dbus_proxy_new_for_bus (G_BUS_TYPE_SESSION,
-                            G_DBUS_PROXY_FLAGS_NONE,
-                            NULL,
-                            "mobi.phosh.MobileSettings",
-                            "/mobi/phosh/MobileSettings",
-                            "org.gtk.Actions",
-                            NULL,
-                            on_mobile_settings_dbus_proxy_new_ready,
-                            g_strdup (panel));
+  return phosh_util_activate_action_finish (res, err);
 }
+
 
 #define MINIMUM_SCALE_FACTOR 1.0f
 #define MAXIMUM_SCALE_FACTOR 4.0f

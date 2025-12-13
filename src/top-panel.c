@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2018-2022 Purism SPC
  *               2023-2024 The Phosh Developers
+ *                    2025 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -103,6 +104,8 @@ typedef struct _PhoshTopPanel {
 
   PhoshTopPanelBg *background;
   GtkCssProvider  *cutout_css_provider;
+
+  GCancellable    *cancel;
 } PhoshTopPanel;
 
 G_DEFINE_TYPE (PhoshTopPanel, phosh_top_panel, PHOSH_TYPE_DRAG_SURFACE)
@@ -254,17 +257,37 @@ on_logout_action (GSimpleAction *action,
 
 
 static void
+on_open_panel_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
+{
+  PhoshTopPanel *self = PHOSH_TOP_PANEL (user_data);
+  g_autoptr (GError) err = NULL;
+  gboolean success;
+
+  success = phosh_util_open_settings_panel_finish (res, &err);
+  if (!success) {
+    if (g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+      return;
+
+    /* TODO: show notification */
+    g_warning ("Failed to open panel: %s", err->message);
+    return;
+  }
+
+  phosh_top_panel_fold (self);
+}
+
+
+static void
 open_settings_panel (PhoshTopPanel *self, gboolean mobile, const char *panel)
 {
   if (self->on_lockscreen)
     return;
 
-  if (mobile)
-    phosh_util_open_mobile_settings_panel (panel);
-  else
-    phosh_util_open_settings_panel (panel);
-
-  phosh_top_panel_fold (self);
+  phosh_util_open_settings_panel (panel,
+                                  mobile,
+                                  self->cancel,
+                                  on_open_panel_ready,
+                                  self);
 }
 
 
@@ -726,6 +749,9 @@ phosh_top_panel_dispose (GObject *object)
 {
   PhoshTopPanel *self = PHOSH_TOP_PANEL (object);
 
+  g_cancellable_cancel (self->cancel);
+  g_clear_object (&self->cancel);
+
   g_clear_object (&self->kb_settings);
   g_clear_object (&self->xkbinfo);
   g_clear_object (&self->input_settings);
@@ -965,6 +991,7 @@ phosh_top_panel_init (PhoshTopPanel *self)
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
+  self->cancel = g_cancellable_new ();
   self->state = PHOSH_TOP_PANEL_STATE_UNFOLDED;
   self->kb_settings = g_settings_new (KEYBINDINGS_SCHEMA_ID);
   g_signal_connect (self, "configure-event", G_CALLBACK (on_configure_event), NULL);

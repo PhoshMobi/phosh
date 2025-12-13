@@ -11,6 +11,8 @@
 #include <gtk/gtk.h>
 #include <gio/gdesktopappinfo.h>
 
+G_BEGIN_DECLS
+
 #define phosh_async_error_warn(err, ...) \
   phosh_error_warnv (G_LOG_DOMAIN, err, G_IO_ERROR, G_IO_ERROR_CANCELLED, __VA_ARGS__)
 
@@ -75,9 +77,14 @@ GdkPixbuf *      phosh_utils_pixbuf_scale_to_min (GdkPixbuf *src, int min_width,
 gboolean         phosh_util_matches_app_info (GAppInfo *info, const char *search);
 GStrv            phosh_util_append_to_strv (GStrv array, const char *element);
 GStrv            phosh_util_remove_from_strv (GStrv array, const char *element);
-void             phosh_util_open_settings_panel (const char *panel);
-void             phosh_util_open_mobile_settings_panel (const char *panel);
+void             phosh_util_open_settings_panel (const char         *panel,
+                                                 gboolean            mobile,
+                                                 GCancellable       *cancellable,
+                                                 GAsyncReadyCallback callback,
+                                                 gpointer            user_data);
+gboolean         phosh_util_open_settings_panel_finish (GAsyncResult *res, GError **err);
 float *          phosh_util_calculate_supported_mode_scales (guint32   width,
                                                              guint32   height,
                                                              int      *n_supported_scales,
                                                              gboolean  fractional);
+G_END_DECLS
