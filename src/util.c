@@ -793,6 +793,7 @@ on_activate_action_dbus_proxy_ready (GObject *source_object, GAsyncResult *res, 
   g_autoptr (GError) err = NULL;
   GCancellable *cancel;
   GVariant *params;
+  gboolean has_actions = FALSE;
 
   proxy = g_dbus_proxy_new_for_bus_finish (res, &err);
   if (proxy == NULL) {
@@ -801,9 +802,12 @@ on_activate_action_dbus_proxy_ready (GObject *source_object, GAsyncResult *res, 
   }
 
   params = g_task_get_task_data (task);
+  if (g_variant_is_of_type (params,  G_VARIANT_TYPE ("(sava{sv})")))
+    has_actions = TRUE;
+
   cancel = g_task_get_cancellable (task);
   g_dbus_proxy_call (proxy,
-                     "ActivateAction",
+                     has_actions ? "ActivateAction" : "Activate",
                      params,
                      G_DBUS_CALL_FLAGS_NONE,
                      -1,
@@ -815,14 +819,15 @@ on_activate_action_dbus_proxy_ready (GObject *source_object, GAsyncResult *res, 
 /**
  * phosh_util_activate_action:
  * @info: The app info
- * @action: The action name
+ * @action:(nullable): The action name
  * @params:(nullable): The action parameters
  * @cancel:(nullable): A cancellable
  * @callback:(scope async): The callback to invoked
  * @user_data:(nullable): user data
  *
- * Asynchronously invoke the given action on the app corresponding to
- * `info`.
+ * Asynchronously activate the given app corresponding to `info` and
+ * invoke the given action on it. If `action` is `NULL` the app is merely
+ * activated.
  */
 static void
 phosh_util_activate_action (GAppInfo           *info,
@@ -838,7 +843,7 @@ phosh_util_activate_action (GAppInfo           *info,
   g_autofree char *app_id = NULL;
 
   g_return_if_fail (G_IS_APP_INFO (info) || info == NULL);
-  g_return_if_fail (!gm_str_is_null_or_empty (action));
+  g_return_if_fail (!action || !gm_str_is_null_or_empty (action));
   g_return_if_fail (params == NULL || g_variant_is_of_type (params,  G_VARIANT_TYPE ("av")));
 
   app_id = phosh_strip_suffix_from_app_id (g_app_info_get_id (info));
@@ -847,14 +852,18 @@ phosh_util_activate_action (GAppInfo           *info,
   task = g_task_new (NULL, cancellable, callback, user_data);
   g_task_set_source_tag (task, phosh_util_activate_action);
 
-  if (!params)
-    params = g_variant_new("av", NULL);
+  if (action) {
+    if (!params)
+      params = g_variant_new ("av", NULL);
 
-  /* Sink ref so we can use `g_variant_unref` for the task's `destroy_notify` */
-  args = g_variant_ref_sink (g_variant_new ("(s@av@a{sv})",
-                                            action,
-                                            params,
-                                            phosh_util_get_platform_data (info)));
+    /* Sink ref so we can use `g_variant_unref` for the task's `destroy_notify` */
+    args = g_variant_ref_sink (g_variant_new ("(s@av@a{sv})",
+                                              action,
+                                              params,
+                                              phosh_util_get_platform_data (info)));
+  } else {
+    args = g_variant_ref_sink (g_variant_new ("(@a{sv})", phosh_util_get_platform_data (info)));
+  }
   g_task_set_task_data (task, g_steal_pointer (&args), (GDestroyNotify) g_variant_unref);
 
   g_dbus_proxy_new_for_bus (G_BUS_TYPE_SESSION,
