@@ -829,7 +829,7 @@ on_activate_action_dbus_proxy_ready (GObject *source_object, GAsyncResult *res, 
  * invoke the given action on it. If `action` is `NULL` the app is merely
  * activated.
  */
-static void
+void
 phosh_util_activate_action (GAppInfo           *info,
                             const char         *action,
                             GVariant           *params,
@@ -888,7 +888,7 @@ phosh_util_activate_action (GAppInfo           *info,
  *
  * Completes the async operation started with `phosh_util_activate_action`.
  */
-static gboolean
+gboolean
 phosh_util_activate_action_finish (GAsyncResult *res, GError **err)
 {
   g_return_val_if_fail (G_IS_ASYNC_RESULT (res), FALSE);
