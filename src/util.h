@@ -87,4 +87,7 @@ float *          phosh_util_calculate_supported_mode_scales (guint32   width,
                                                              guint32   height,
                                                              int      *n_supported_scales,
                                                              gboolean  fractional);
+GVariant *       phosh_util_get_platform_data (GAppInfo *info);
+
+
 G_END_DECLS

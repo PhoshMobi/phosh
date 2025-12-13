@@ -854,7 +854,7 @@ phosh_util_activate_action (GAppInfo           *info,
   args = g_variant_ref_sink (g_variant_new ("(s@av@a{sv})",
                                             action,
                                             params,
-                                            g_variant_new("a{sv}", NULL)));
+                                            phosh_util_get_platform_data (info)));
   g_task_set_task_data (task, g_steal_pointer (&args), (GDestroyNotify) g_variant_unref);
 
   g_dbus_proxy_new_for_bus (G_BUS_TYPE_SESSION,
@@ -1073,4 +1073,36 @@ phosh_util_calculate_supported_mode_scales (guint32   width,
 
   *n_supported_scales = supported_scales->len;
   return (float *) g_array_free (supported_scales, FALSE);
+}
+
+/**
+ * phosh_util_get_platform_data:
+ * @info: An app info
+ *
+ * Get platform data to pass to DBus invocation
+ *
+ * Returns: the platform data
+ */
+GVariant *
+phosh_util_get_platform_data (GAppInfo *info)
+{
+  g_autoptr (GdkAppLaunchContext) context = NULL;
+  GdkDisplay *display = gdk_display_get_default ();
+  GVariantBuilder builder;
+  char *startup_id;
+
+  g_variant_builder_init (&builder, G_VARIANT_TYPE_VARDICT);
+  context = gdk_display_get_app_launch_context (display);
+  startup_id = g_app_launch_context_get_startup_notify_id (G_APP_LAUNCH_CONTEXT (context),
+                                                           info,
+                                                           NULL);
+  if (!startup_id)
+    return g_variant_builder_end (&builder);
+
+  g_variant_builder_add (&builder, "{sv}",
+                         "desktop-startup-id", g_variant_new_string (startup_id));
+  g_variant_builder_add (&builder, "{sv}",
+                         "activation-token", g_variant_new_take_string (startup_id));
+
+  return g_variant_builder_end (&builder);
 }
