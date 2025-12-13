@@ -90,7 +90,6 @@ float *          phosh_util_calculate_supported_mode_scales (guint32   width,
 void             phosh_util_activate_action (GAppInfo           *info,
                                              const char         *action,
                                              GVariant           *params,
-                                             const char         *object_path,
                                              GCancellable       *cancellable,
                                              GAsyncReadyCallback callback,
                                              gpointer            user_data);

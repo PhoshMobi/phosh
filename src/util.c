@@ -816,6 +816,25 @@ on_activate_action_dbus_proxy_ready (GObject *source_object, GAsyncResult *res, 
                      g_steal_pointer (&task));
 }
 
+
+
+static char *
+app_path_for_id (const char *app_id)
+{
+  char *path;
+  int i;
+
+  path = g_strconcat ("/", app_id, NULL);
+  for (i = 0; path[i]; i++) {
+    if (path[i] == '.')
+      path[i] = '/';
+    if (path[i] == '-')
+      path[i] = '_';
+  }
+
+  return path;
+}
+
 /**
  * phosh_util_activate_action:
  * @info: The app info
@@ -833,14 +852,13 @@ void
 phosh_util_activate_action (GAppInfo           *info,
                             const char         *action,
                             GVariant           *params,
-                            const char         *object_path,
                             GCancellable       *cancellable,
                             GAsyncReadyCallback callback,
                             gpointer            user_data)
 {
   g_autoptr (GTask) task = NULL;
   g_autoptr (GVariant) args = NULL;
-  g_autofree char *app_id = NULL;
+  g_autofree char *app_id = NULL, *object_path = NULL;
 
   g_return_if_fail (G_IS_APP_INFO (info) || info == NULL);
   g_return_if_fail (!action || !gm_str_is_null_or_empty (action));
@@ -866,6 +884,7 @@ phosh_util_activate_action (GAppInfo           *info,
   }
   g_task_set_task_data (task, g_steal_pointer (&args), (GDestroyNotify) g_variant_unref);
 
+  object_path = app_path_for_id (app_id);
   g_dbus_proxy_new_for_bus (G_BUS_TYPE_SESSION,
                             G_DBUS_PROXY_FLAGS_NONE,
                             NULL,
@@ -914,16 +933,14 @@ phosh_util_open_settings_panel (const char         *panel,
                                 gpointer            user_data)
 {
   g_autoptr (GDesktopAppInfo) info = NULL;
-  const char *object_path, *action;
+  const char *action;
   GVariantBuilder builder;
 
   if (mobile) {
     info = g_desktop_app_info_new ("mobi.phosh.MobileSettings.desktop");
-    object_path = "/mobi/phosh/MobileSettings";
     action = "set-panel";
   } else {
     info = g_desktop_app_info_new ("org.gnome.Settings.desktop");
-    object_path = "/org/gnome/Settings";
     action = "launch-panel";
   }
 
@@ -932,7 +949,6 @@ phosh_util_open_settings_panel (const char         *panel,
   phosh_util_activate_action (G_APP_INFO (info),
                               action,
                               g_variant_builder_end (&builder),
-                              object_path,
                               cancellable,
                               callback,
                               user_data);
