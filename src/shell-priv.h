@@ -9,6 +9,7 @@
 #include "ambient.h"
 #include "app-tracker.h"
 #include "background-manager.h"
+#include "battery-manager.h"
 #include "brightness-manager.h"
 #include "bt-manager.h"
 #include "calls-manager.h"
@@ -91,11 +92,12 @@ PhoshFeedbackManager   *phosh_shell_get_feedback_manager   (PhoshShell *self);
 PhoshGtkMountManager   *phosh_shell_get_gtk_mount_manager  (PhoshShell *self);
 PhoshLayoutManager     *phosh_shell_get_layout_manager     (PhoshShell *self);
 PhoshModeManager       *phosh_shell_get_mode_manager       (PhoshShell *self);
-PhoshStyleManager      *phosh_shell_get_style_manager     (PhoshShell *self);
+PhoshStyleManager      *phosh_shell_get_style_manager      (PhoshShell *self);
 PhoshToplevelManager   *phosh_shell_get_toplevel_manager   (PhoshShell *self);
 PhoshScreenSaverManager *phosh_shell_get_screen_saver_manager (PhoshShell *self);
 /* Created on the fly */
 PhoshBtManager         *phosh_shell_get_bt_manager         (PhoshShell *self);
+PhoshBatteryManager    *phosh_shell_get_battery_manager    (PhoshShell *self);
 PhoshConnectivityManager *phosh_shell_get_connectivity_manager (PhoshShell *self);
 PhoshDockedManager     *phosh_shell_get_docked_manager     (PhoshShell *self);
 PhoshHksManager        *phosh_shell_get_hks_manager        (PhoshShell *self);

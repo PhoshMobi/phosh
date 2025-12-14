@@ -24,7 +24,7 @@ src/arrow.c
 src/auth.c
 src/background.c
 src/background-manager.c
-src/batteryinfo.c
+src/battery-info.c
 src/bt-device-row.c
 src/bt-info.c
 src/bt-status-page.c
