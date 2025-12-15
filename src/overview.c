@@ -146,6 +146,11 @@ create_new_activity (PhoshOverview *self,
                     "swapped-signal::clicked", on_activity_clicked, self,
                     NULL);
 
+  if (!toplevel) {
+    gboolean light_mode = !phosh_splash_manager_get_prefer_dark (priv->splash_manager);
+    phosh_util_toggle_style_class (GTK_WIDGET (activity), "light", light_mode);
+  }
+
   if (parent_app_id)
     pos = get_last_app_id_pos (self, parent_app_id);
 

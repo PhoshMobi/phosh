@@ -362,7 +362,6 @@ phosh_activity_constructed (GObject *object)
                                   ACTIVITY_ICON_SIZE);
   }
 
-  /* TODO: handle light mode */
   phosh_util_toggle_style_class (GTK_WIDGET (self), "phosh-empty", TRUE);
 
   G_OBJECT_CLASS (phosh_activity_parent_class)->constructed (object);

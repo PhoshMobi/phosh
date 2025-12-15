@@ -307,3 +307,12 @@ phosh_splash_manager_raise (PhoshSplashManager *self, const char *startup_id)
 
   phosh_splash_raise (splash);
 }
+
+
+gboolean
+phosh_splash_manager_get_prefer_dark (PhoshSplashManager *self)
+{
+  g_return_val_if_fail (PHOSH_IS_SPLASH_MANAGER (self), FALSE);
+
+  return self->prefer_dark;
+}

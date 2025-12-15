@@ -318,6 +318,7 @@ phosh-activity box button {
 }
 
 phosh-activity.phosh-empty.light {
+  color: @phosh_splash_fg_color;
   background-color: @phosh_splash_bg_color;
 }
 
