@@ -319,10 +319,14 @@ phosh-activity box button {
 
 phosh-activity.phosh-empty.light {
   color: @phosh_splash_fg_color;
+}
+
+phosh-activity.phosh-empty.light .phosh-drawingarea {
+  color: @phosh_splash_fg_color;
   background-color: @phosh_splash_bg_color;
 }
 
-phosh-activity.phosh-empty {
+phosh-activity.phosh-empty .phosh-drawingarea {
   background-color: @theme_bg_color;
 }
 
