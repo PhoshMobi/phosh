@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-11-15 10:33+0000\n"
+"POT-Creation-Date: 2025-12-14 14:33+0000\n"
 "PO-Revision-Date: 2025-11-16 08:00+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
@@ -287,11 +287,11 @@ msgid "No"
 msgstr "Hayır"
 
 #. give visual feedback on error
-#: src/lockscreen.c:313 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "Parolayı Gir"
 
-#: src/lockscreen.c:956
+#: src/lockscreen.c:1040
 msgid "Checking…"
 msgstr "Denetleniyor…"
 
@@ -732,6 +732,7 @@ msgid "Wi-Fi"
 msgstr "Kablosuz"
 
 #: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
 msgstr "Kablosuz Ayarları"
 
@@ -1167,7 +1168,7 @@ msgstr "Bitiş"
 msgid "Untitled event"
 msgstr "Adsız olay"
 
-#: plugins/upcoming-events/upcoming-events.c:372
+#: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
 msgid "No events for the next %d days"
 msgstr "Sonraki %d gün için olay yok"
@@ -1204,10 +1205,18 @@ msgstr "Monitör ölçeği"
 msgid "%d%%"
 msgstr "%%%d"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:75
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+msgid "Wi-Fi Hotspot"
+msgstr "Kablosuz Erişim Noktası"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
+msgid "Turn On"
+msgstr "Aç"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
 msgid "Hotspot On"
 msgstr "Erişim Noktası Açık"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:77
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Erişim Noktası Kapalı"
