@@ -284,10 +284,23 @@ get_scale (PhoshActivity *self)
   return scale;
 }
 
+
+static void
+draw_rounded_rect (cairo_t *ctx, double x, double y,  double width, double height, double radius)
+{
+  cairo_new_sub_path (ctx);
+  cairo_arc (ctx, x + width - radius, y + radius, radius, -0.5 * M_PI, 0);
+  cairo_arc (ctx, x + width - radius, y + height - radius, radius, 0, 0.5 * M_PI);
+  cairo_arc (ctx, x + radius, y + height - radius, radius, 0.5 * M_PI, M_PI);
+  cairo_arc (ctx, x + radius, y + radius, radius, M_PI, 1.5 * M_PI);
+  cairo_close_path (ctx);
+}
+
+
 static gboolean
 draw_cb (PhoshActivity *self, cairo_t *cairo, GtkDrawingArea *area)
 {
-  int width, height, image_width, image_height, x, y = 0;
+  int width, height, image_width, image_height, border_radius, x, y = 0;
   float scale;
   PhoshActivityPrivate *priv;
   GtkStyleContext *context;
@@ -314,7 +327,11 @@ draw_cb (PhoshActivity *self, cairo_t *cairo, GtkDrawingArea *area)
 
   x = (width - image_width * scale) / 2.0 / scale;
 
-  cairo_rectangle (cairo, x, y, image_width, image_height);
+  gtk_style_context_get (context,
+                         gtk_style_context_get_state (context),
+                         GTK_STYLE_PROPERTY_BORDER_RADIUS, &border_radius,
+                         NULL);
+  draw_rounded_rect (cairo, x, y, image_width, image_height, border_radius);
   cairo_set_source_surface (cairo, priv->surface, x, y);
   cairo_fill (cairo);
 

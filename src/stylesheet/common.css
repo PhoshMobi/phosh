@@ -327,10 +327,12 @@ phosh-activity.phosh-empty.light .phosh-drawingarea {
 }
 
 phosh-activity.phosh-empty .phosh-drawingarea {
+  border-radius: 8px;
   background-color: @theme_bg_color;
 }
 
 phosh-activity.phosh-maximized .phosh-drawingarea {
+  border-radius: 8px;
   background-color: @phosh_activity_bg_color;
 }
 
