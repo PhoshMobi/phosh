@@ -2,7 +2,7 @@
 msgid ""
 msgstr "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-12-02 23:30+0000\n"
+"POT-Creation-Date: 2025-12-15 18:28+0000\n"
 "PO-Revision-Date: 2025-12-03 12:37+0200\n"
 "Last-Translator: Asier Saratsua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
@@ -54,7 +54,6 @@ msgid "Toggle dark mode"
 msgstr "Txandakatu modu iluna"
 
 #: plugins/emergency-info/emergency-info.desktop.in.in:4
-#| msgid "_Emergency"
 msgid "Emergency Info"
 msgstr "Larrialdi-informazioa"
 
@@ -68,7 +67,6 @@ msgid "Launcher Box"
 msgstr "Abiarazle-kutxa"
 
 #: plugins/launcher-box/launcher-box.desktop.in.in:5
-#| msgid "Show PDFs on the lock screen. <b>This plugin is experimental.</b>"
 msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
 msgstr "Gehitu abiarazleak blokeo-pantailari. <b>Plugin hau esperimentala da.</b>"
 
@@ -133,7 +131,6 @@ msgid "Show upcoming calendar events"
 msgstr "Erakutsi etorkizuneko egutegi-gertaerak"
 
 #: src/app-grid-button.c:144
-#| msgid "Add to _Favorites"
 msgid "Add to Folder"
 msgstr "Gehitu karpetari"
 
@@ -173,7 +170,6 @@ msgid "No connectable Bluetooth Devices found"
 msgstr "Ez da aurkitu konektatu daitekeen Bluetooth gailurik"
 
 #: src/bt-status-page.c:127
-#| msgid "Bluetooth"
 msgid "Bluetooth disabled"
 msgstr "Bluetootha desaktibatuta"
 
@@ -286,18 +282,17 @@ msgid "No"
 msgstr "Ez"
 
 #. give visual feedback on error
-#: src/lockscreen.c:313 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "Sartu pasakodea"
 
-#: src/lockscreen.c:956
+#: src/lockscreen.c:1040
 msgid "Checking…"
 msgstr "Egiaztatzen…"
 
 #. Translators: '%s' is the filename of a screenshot
 #: src/screenshot-manager.c:238
 #, c-format
-#| msgid "Screenshot copied to clipboard"
 msgid "Screenshot saved to '%s'"
 msgstr "Pantaila-argazkia hemen gorde da: '%s'"
 
@@ -311,7 +306,6 @@ msgstr "Pantaila-argazkia"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
 #: src/screenshot-manager.c:554
-#| msgid "Screenshot"
 msgid "Screenshots"
 msgstr "Pantaila-argazkiak"
 
@@ -359,13 +353,11 @@ msgstr "Ezezaguna"
 
 #: src/network-auth-prompt.c:202
 #, c-format
-#| msgid "Authentication type of wifi network “%s” not supported"
 msgid "Authentication type of Wi-Fi network “%s” not supported"
 msgstr "“%s” wifi-sarearen autentifikazio mota ez da onartzen"
 
 #: src/network-auth-prompt.c:207
 #, c-format
-#| msgid "Enter password for the wifi network “%s”"
 msgid "Enter password for the Wi-Fi network “%s”"
 msgstr "Sartu “%s” wifi-sarearen pasahitza"
 
@@ -436,7 +428,6 @@ msgstr "~1e"
 #. Please stick to a maximum of 4 chars for the time unit
 #: src/notifications/timestamp-label.c:129
 #, c-format
-#| msgid "Add"
 msgid "%dd"
 msgid_plural "%dd"
 msgstr[0] "%de"
@@ -471,7 +462,6 @@ msgstr[1] "~%du"
 #. Please stick to a maximum of 4 chars for the time unit
 #: src/notifications/timestamp-label.c:153
 #, c-format
-#| msgid "Over %dy"
 msgid "Over %dy"
 msgid_plural "Over %dy"
 msgstr[0] "%du baino gehiago"
@@ -481,7 +471,6 @@ msgstr[1] "%du baino gehiago"
 #. Please stick to a maximum of 4 chars for the time unit
 #: src/notifications/timestamp-label.c:158
 #, c-format
-#| msgid "Almost %dy"
 msgid "Almost %dy"
 msgid_plural "Almost %dy"
 msgstr[0] "Ia %du"
@@ -570,7 +559,6 @@ msgid "Uninstall"
 msgstr "Desinstalatu"
 
 #: src/ui/app-grid-button.ui:53
-#| msgid "Remove from _Favorites"
 msgid "_Remove from Folder"
 msgstr "_Kendu karpetatik"
 
@@ -595,17 +583,14 @@ msgid "Automatic Brightness"
 msgstr "Distira automatikoa"
 
 #: src/ui/brightness-settings.ui:120
-#| msgid "Sound Settings"
 msgid "Brightness Settings"
 msgstr "Distiraren ezarpenak"
 
 #: src/ui/bt-status-page.ui:39
-#| msgid "Bluetooth"
 msgid "Enable Bluetooth"
 msgstr "Gaitu Bluetootha"
 
 #: src/ui/bt-status-page.ui:54
-#| msgid "Bluetooth"
 msgid "Bluetooth Settings"
 msgstr "Bluetootharen ezarpenak"
 
@@ -651,7 +636,6 @@ msgid "Do not disturb"
 msgstr "Ez gogaitu"
 
 #: src/ui/feedback-status-page.ui:52
-#| msgid "Folder Settings"
 msgid "Feedback Settings"
 msgstr ""
 
@@ -698,17 +682,14 @@ msgid "Authenticate"
 msgstr "Autentifikatu"
 
 #: src/ui/power-menu.ui:112
-#| msgid "_Suspend…"
 msgid "Suspend"
 msgstr "Eseki"
 
 #: src/ui/power-menu.ui:158
-#| msgid "_Lock"
 msgid "Lock"
 msgstr "Blokeatu"
 
 #: src/ui/power-menu.ui:240
-#| msgid "_Emergency"
 msgid "Emergency"
 msgstr "Larrialdia"
 
@@ -721,7 +702,6 @@ msgid "No notifications"
 msgstr "Jakinarazpenik ez"
 
 #: src/ui/settings.ui:150
-#| msgid "Notification"
 msgid "Notifications"
 msgstr "Jakinarazpenak"
 
@@ -754,8 +734,7 @@ msgid "Wi-Fi"
 msgstr "Wifia"
 
 #: src/ui/wifi-status-page.ui:89
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
-#| msgid "Folder Settings"
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
 msgstr "Wifiaren ezarpenak"
 
@@ -813,15 +792,11 @@ msgid "Phosh on caffeine"
 msgstr "Phosh kafeinarekin"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
-#| msgctxt "automatic-screen-rotation-disabled"
-#| msgid "Off"
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "Desaktibatuta"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
-#| msgctxt "bluetooth:enabled"
-#| msgid "On"
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "Aktibatuta"
@@ -840,7 +815,6 @@ msgid "No timeout (∞)"
 msgstr "Ez dago denbora-mugarik(∞)"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:7
-#| msgid "Ticket Box Preferences"
 msgid "Caffeine Quick Setting Preferences"
 msgstr ""
 
@@ -857,12 +831,10 @@ msgid "Add or remove custom caffeine intervals"
 msgstr "Gehitu edo kendu kafeina-tarte pertsonalizatuak"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:22
-#| msgid "Add Contact"
 msgid "Add interval"
 msgstr "Gehitu tartea"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:66
-#| msgid "Add New Contact"
 msgid "Add New Interval"
 msgstr "Gehitu tarte berria"
 
@@ -892,7 +864,6 @@ msgid "1 h"
 msgstr "1 o"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:188
-#| msgid "Choose Folder"
 msgid "Choose Interval"
 msgstr "Aukeratu tartea"
 
@@ -971,17 +942,14 @@ msgid "Done"
 msgstr "Egina"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:67
-#| msgid "Owner Name"
 msgid "_Owner Name"
 msgstr "_Jabearen izena"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:73
-#| msgid "Date of Birth"
 msgid "_Date of Birth"
 msgstr "J_aiotze-data"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:79
-#| msgid "Preferred Language"
 msgid "_Preferred Language"
 msgstr "_Hizkuntza hobetsia"
 
@@ -990,17 +958,14 @@ msgid "_Age"
 msgstr "A_dina"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:111
-#| msgid "Blood Type"
 msgid "_Blood Type"
 msgstr "_Odol mota"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:117
-#| msgid "Height"
 msgid "_Height"
 msgstr "A_ltuera"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:123
-#| msgid "Weight"
 msgid "_Weight"
 msgstr "P_isua"
 
@@ -1017,7 +982,6 @@ msgid "Add New Contact"
 msgstr "Gehitu kontaktu berria"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:240
-#| msgid "New Contact Name"
 msgid "_Contact Name"
 msgstr "_Kontaktuaren izena"
 
@@ -1026,7 +990,6 @@ msgid "Relationship"
 msgstr "Erlazioa"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:252
-#| msgid "New Contact Name"
 msgid "_Contact Number"
 msgstr "_Kontaktuaren zenbakia"
 
@@ -1039,12 +1002,10 @@ msgid "Launchers"
 msgstr "Abiarazleak"
 
 #: plugins/location-quick-setting/location-quick-setting.c:65
-#| msgid "Geolocation"
 msgid "Location On"
 msgstr "Kokalekua aktibatuta"
 
 #: plugins/location-quick-setting/location-quick-setting.c:65
-#| msgid "Geolocation"
 msgid "Location Off"
 msgstr "Kokalekua desaktibatuta"
 
@@ -1095,12 +1056,10 @@ msgstr "Pomodoo tenporizadorea"
 #. Translators: Pomodoro is a technique, no need to translate it
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
 #, c-format
-#| msgid "Power Off"
 msgid "Pomodoro Off"
 msgstr "Pomodoro desaktibatuta"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:6
-#| msgid "Ticket Box Preferences"
 msgid "Pomodoro Quick Setting Preferences"
 msgstr ""
 
@@ -1217,12 +1176,10 @@ msgid "No events for the next %d days"
 msgstr "Ez dago gertaerarik hurrengo %d egunetarako"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
-#| msgid "Upcoming Events"
 msgid "No upcoming events"
 msgstr "Ez dago gertaerarik etorkizunean"
 
 #: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:6
-#| msgid "Upcoming Events"
 msgid "Upcoming Events Preferences"
 msgstr "Etorkizuneko gertaeren hobespenak"
 
@@ -1254,15 +1211,15 @@ msgstr "%% %d"
 msgid "Wi-Fi Hotspot"
 msgstr "Wifigunea"
 
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
 msgid "Turn On"
 msgstr "Aktibatu"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
 msgid "Hotspot On"
 msgstr "Wifigunea aktibatuta"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Wifigunea desaktibatuta"
 
