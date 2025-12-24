@@ -6,11 +6,6 @@
 
 #define G_LOG_DOMAIN "phosh-app-grid"
 
-#define ACTIVE_SEARCH_CLASS "search-active"
-
-#define SEARCH_DEBOUNCE 350
-#define DEFAULT_GTK_DEBOUNCE 150
-
 #define _GNU_SOURCE
 #include <string.h>
 
@@ -26,6 +21,11 @@
 #include "gtk-list-models/gtkfilterlistmodel.h"
 
 #include <gmobile.h>
+
+#define ACTIVE_SEARCH_CLASS "search-active"
+
+#define SEARCH_DEBOUNCE 350
+#define DEFAULT_GTK_DEBOUNCE 150
 
 enum {
   PROP_0,
@@ -168,9 +168,7 @@ show_folder_page (PhoshAppGrid *self)
 
 
 static void
-app_launched_cb (GtkWidget    *widget,
-                 GAppInfo     *info,
-                 PhoshAppGrid *self)
+app_launched_cb (GtkWidget *widget, GAppInfo *info, PhoshAppGrid *self)
 {
   g_signal_emit (self, signals[APP_LAUNCHED], 0, info);
 }
@@ -224,20 +222,25 @@ folder_launched_cb (GtkWidget       *widget,
   priv->folder_model = model;
   g_set_object (&priv->open_folder, info);
   priv->open_folder_idx = get_app_info_index (self, G_APP_INFO (info));
-  g_signal_connect_object (model, "items-changed", G_CALLBACK (show_folder_page), self, G_CONNECT_SWAPPED);
+  g_signal_connect_object (model,
+                           "items-changed",
+                           G_CALLBACK (show_folder_page),
+                           self,
+                           G_CONNECT_SWAPPED);
   gtk_entry_set_text (GTK_ENTRY (priv->folder_name_entry), "");
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->folder_name_btn), FALSE);
   show_folder_page (self);
 
   gtk_flow_box_bind_model (GTK_FLOW_BOX (priv->folder_apps),
-                           model, create_folder_app_launcher, self, NULL);
+                           model,
+                           create_folder_app_launcher,
+                           self,
+                           NULL);
 }
 
 
 static int
-sort_apps (gconstpointer a,
-           gconstpointer b,
-           gpointer      data)
+sort_apps (gconstpointer a, gconstpointer b, gpointer data)
 {
   const char *empty = "";
   GAppInfo *info1 = G_APP_INFO (a);
@@ -283,10 +286,8 @@ on_filter_setting_changed (PhoshAppGrid *self,
   priv = phosh_app_grid_get_instance_private (self);
 
   g_strfreev (priv->force_adaptive);
-  priv->force_adaptive = g_settings_get_strv (priv->settings,
-                                              "force-adaptive");
-  priv->filter_mode = g_settings_get_flags (priv->settings,
-                                            "app-filter-mode");
+  priv->force_adaptive = g_settings_get_strv (priv->settings, "force-adaptive");
+  priv->filter_mode = g_settings_get_flags (priv->settings, "app-filter-mode");
 
   show = !!(priv->filter_mode & PHOSH_APP_FILTER_MODE_FLAGS_ADAPTIVE);
   gtk_widget_set_visible (priv->btn_adaptive, show);
@@ -308,14 +309,12 @@ filter_adaptive (PhoshAppGrid *self, GDesktopAppInfo *info)
   if (!priv->filter_adaptive)
     return TRUE;
 
-  mobile = g_desktop_app_info_get_string (G_DESKTOP_APP_INFO (info),
-                                          "X-Purism-FormFactor");
+  mobile = g_desktop_app_info_get_string (G_DESKTOP_APP_INFO (info), "X-Purism-FormFactor");
   if (mobile && strcasestr (mobile, "mobile;"))
     return TRUE;
 
   g_free (mobile);
-  mobile = g_desktop_app_info_get_string (G_DESKTOP_APP_INFO (info),
-                                          "X-KDE-FormFactor");
+  mobile = g_desktop_app_info_get_string (G_DESKTOP_APP_INFO (info), "X-KDE-FormFactor");
   if (mobile && strcasestr (mobile, "handset;"))
     return TRUE;
 
@@ -363,13 +362,11 @@ search_apps (gpointer item, gpointer data)
 
 
 static GtkWidget *
-create_favorite_launcher (gpointer item,
-                          gpointer self)
+create_favorite_launcher (gpointer item, gpointer self)
 {
   GtkWidget *btn = phosh_app_grid_button_new_favorite (G_APP_INFO (item));
 
-  g_signal_connect (btn, "app-launched",
-                    G_CALLBACK (app_launched_cb), self);
+  g_signal_connect (btn, "app-launched", G_CALLBACK (app_launched_cb), self);
 
   gtk_widget_set_visible (btn, TRUE);
 
@@ -381,21 +378,18 @@ toggle_favorites_revealer (PhoshAppGrid *self)
 {
   PhoshAppGridPrivate *priv = phosh_app_grid_get_instance_private (self);
   PhoshFavoriteListModel *favorites = phosh_favorite_list_model_get_default ();
+  gboolean criteria;
 
   /* Hide favorites when there are none or a search is in progress */
-  gboolean criteria = (g_list_model_get_n_items (G_LIST_MODEL (favorites)) == 0) ||
-    !gm_str_is_null_or_empty (priv->search_string);
+  criteria = ((g_list_model_get_n_items (G_LIST_MODEL (favorites)) == 0) ||
+              !gm_str_is_null_or_empty (priv->search_string));
 
   gtk_revealer_set_reveal_child (GTK_REVEALER (priv->favs_revealer), !criteria);
 }
 
 
 static void
-favorites_changed (GListModel   *list,
-                   guint         position,
-                   guint         removed,
-                   guint         added,
-                   PhoshAppGrid *self)
+favorites_changed (GListModel *list, guint pos, guint removed, guint added, PhoshAppGrid *self)
 {
   PhoshAppGridPrivate *priv = phosh_app_grid_get_instance_private (self);
 
@@ -407,19 +401,16 @@ favorites_changed (GListModel   *list,
 
 
 static GtkWidget *
-create_launcher (gpointer item,
-                 gpointer self)
+create_launcher (gpointer item, gpointer self)
 {
   GtkWidget *btn;
 
   if (PHOSH_IS_FOLDER_INFO (item)) {
     btn = phosh_app_grid_folder_button_new_from_folder_info (item);
-    g_signal_connect (btn, "folder-launched",
-                      G_CALLBACK (folder_launched_cb), self);
+    g_signal_connect (btn, "folder-launched", G_CALLBACK (folder_launched_cb), self);
   } else {
     btn = phosh_app_grid_button_new (G_APP_INFO (item));
-    g_signal_connect (btn, "app-launched",
-                      G_CALLBACK (app_launched_cb), self);
+    g_signal_connect (btn, "app-launched", G_CALLBACK (app_launched_cb), self);
   }
 
   gtk_widget_set_visible (btn, TRUE);
@@ -442,7 +433,9 @@ phosh_app_grid_init (PhoshAppGrid *self)
 
   gtk_flow_box_bind_model (GTK_FLOW_BOX (priv->favs),
                            G_LIST_MODEL (favorites),
-                           create_favorite_launcher, self, NULL);
+                           create_favorite_launcher,
+                           self,
+                           NULL);
   g_signal_connect (favorites,
                     "items-changed",
                     G_CALLBACK (favorites_changed),
@@ -460,21 +453,20 @@ phosh_app_grid_init (PhoshAppGrid *self)
   g_object_unref (sorted);
   gtk_flow_box_bind_model (GTK_FLOW_BOX (priv->apps),
                            G_LIST_MODEL (priv->model),
-                           create_launcher, self, NULL);
+                           create_launcher,
+                           self,
+                           NULL);
 
   priv->settings = g_settings_new ("sm.puri.phosh");
   g_object_connect (priv->settings,
-                    "swapped-signal::changed::force-adaptive",
-                    G_CALLBACK (on_filter_setting_changed), self,
-                    "swapped-signal::changed::app-filter-mode",
-                    G_CALLBACK (on_filter_setting_changed), self,
+                    "swapped-signal::changed::force-adaptive", on_filter_setting_changed, self,
+                    "swapped-signal::changed::app-filter-mode", on_filter_setting_changed, self,
                     NULL);
   on_filter_setting_changed (self, NULL, NULL);
 
   priv->actions = g_simple_action_group_new ();
-  gtk_widget_insert_action_group (GTK_WIDGET (self), "app-grid",
-                                  G_ACTION_GROUP (priv->actions));
-  action = (GAction*) g_property_action_new ("filter-adaptive", self, "filter-adaptive");
+  gtk_widget_insert_action_group (GTK_WIDGET (self), "app-grid", G_ACTION_GROUP (priv->actions));
+  action = G_ACTION (g_property_action_new ("filter-adaptive", self, "filter-adaptive"));
   g_action_map_add_action (G_ACTION_MAP (priv->actions), action);
 
   toggle_favorites_revealer (self);
@@ -532,17 +524,15 @@ do_search (gpointer data)
   PhoshAppGrid *self = data;
   PhoshAppGridPrivate *priv = phosh_app_grid_get_instance_private (self);
   GtkAdjustment *adjustment;
+  gboolean search_active = TRUE;
 
-  if (priv->search_string && *priv->search_string != '\0') {
-    gtk_style_context_add_class (gtk_widget_get_style_context (priv->apps),
-                                 ACTIVE_SEARCH_CLASS);
-  } else {
+  if (gm_str_is_null_or_empty (priv->search_string)) {
     adjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (priv->scrolled_window));
     gtk_adjustment_set_value (adjustment, 0);
-    gtk_style_context_remove_class (gtk_widget_get_style_context (priv->apps),
-                                    ACTIVE_SEARCH_CLASS);
+    search_active = FALSE;
   }
 
+  phosh_util_toggle_style_class (GTK_WIDGET (priv->apps), ACTIVE_SEARCH_CLASS, search_active);
   toggle_favorites_revealer (self);
   gtk_filter_list_model_refilter (priv->model);
 
@@ -661,8 +651,7 @@ on_search_lost_focus (GtkWidget    *widget,
 {
   PhoshAppGridPrivate *priv = phosh_app_grid_get_instance_private (self);
 
-  gtk_style_context_remove_class (gtk_widget_get_style_context (priv->apps),
-                                  ACTIVE_SEARCH_CLASS);
+  phosh_util_toggle_style_class (GTK_WIDGET (priv->apps), ACTIVE_SEARCH_CLASS, FALSE);
 
   return GDK_EVENT_PROPAGATE;
 }
@@ -675,10 +664,8 @@ on_search_gained_focus (GtkWidget    *widget,
 {
   PhoshAppGridPrivate *priv = phosh_app_grid_get_instance_private (self);
 
-  if (priv->search_string && *priv->search_string != '\0') {
-    gtk_style_context_add_class (gtk_widget_get_style_context (priv->apps),
-                                 ACTIVE_SEARCH_CLASS);
-  }
+  if (!gm_str_is_null_or_empty (priv->search_string))
+    phosh_util_toggle_style_class (GTK_WIDGET (priv->apps), ACTIVE_SEARCH_CLASS, TRUE);
 
   return GDK_EVENT_PROPAGATE;
 }
@@ -713,9 +700,10 @@ phosh_app_grid_class_init (PhoshAppGridClass *klass)
   signals[APP_LAUNCHED] =
     g_signal_new ("app-launched",
                   G_TYPE_FROM_CLASS (klass),
-                  G_SIGNAL_RUN_LAST, 0,
-                  NULL, NULL, NULL,
-                  G_TYPE_NONE, 1, G_TYPE_APP_INFO);
+                  G_SIGNAL_RUN_LAST, 0, NULL, NULL, NULL,
+                  G_TYPE_NONE,
+                  1,
+                  G_TYPE_APP_INFO);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/mobi/phosh/ui/app-grid.ui");
 
