@@ -30,18 +30,17 @@ enum {
 static GParamSpec *props[LAST_PROP];
 
 
-struct _PhoshSwipeAwayBin
-{
-  GtkEventBox parent_instance;
+struct _PhoshSwipeAwayBin {
+  GtkEventBox      parent_instance;
 
-  GtkOrientation orientation;
-  gboolean allow_negative;
-  gboolean reserve_size;
+  GtkOrientation   orientation;
+  gboolean         allow_negative;
+  gboolean         reserve_size;
 
-  double progress;
+  double           progress;
   int distance;
   HdySwipeTracker *tracker;
-  PhoshAnimation *animation;
+  PhoshAnimation  *animation;
 };
 
 static void phosh_swipe_away_bin_swipeable_init (HdySwipeableInterface *iface);
@@ -209,15 +208,15 @@ phosh_swipe_away_bin_set_property (GObject      *object,
     break;
 
   case PROP_ORIENTATION:
-    {
-      GtkOrientation orientation = g_value_get_enum (value);
-      if (orientation != self->orientation) {
-        self->orientation = orientation;
-        update_orientation (self);
-        g_object_notify (G_OBJECT (self), "orientation");
-      }
+  {
+    GtkOrientation orientation = g_value_get_enum (value);
+    if (orientation != self->orientation) {
+      self->orientation = orientation;
+      update_orientation (self);
+      g_object_notify (G_OBJECT (self), "orientation");
     }
-    break;
+  }
+  break;
 
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -341,18 +340,18 @@ phosh_swipe_away_bin_class_init (PhoshSwipeAwayBinClass *klass)
   widget_class->direction_changed = phosh_swipe_away_bin_direction_changed;
 
   props[PROP_ALLOW_NEGATIVE] =
-      g_param_spec_boolean ("allow-negative",
-                            "Allow Negative",
-                            "Use [-1:1] progress range instead of [0:1]",
-                            FALSE,
-                            G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+    g_param_spec_boolean ("allow-negative",
+                          "Allow Negative",
+                          "Use [-1:1] progress range instead of [0:1]",
+                          FALSE,
+                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
   props[PROP_RESERVE_SIZE] =
-      g_param_spec_boolean ("reserve-size",
-                            "Reserve Size",
-                            "Allocate larger size than the child so that the child is never clipped when animating",
-                            FALSE,
-                            G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+    g_param_spec_boolean ("reserve-size",
+                          "Reserve Size",
+                          "Allocate larger size than the child so that the child is never clipped when animating",
+                          FALSE,
+                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
   g_object_class_install_properties (object_class, LAST_PROP, props);
 

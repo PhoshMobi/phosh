@@ -258,8 +258,14 @@ request_thumbnail (PhoshActivity *activity, PhoshToplevel *toplevel)
 
 
 static void
-on_activity_resized (PhoshActivity *activity, GtkAllocation *alloc, PhoshToplevel *toplevel)
+on_activity_resized (PhoshOverview *self, GtkAllocation *alloc, PhoshActivity *activity)
 {
+  PhoshToplevel *toplevel;
+
+  g_return_if_fail (PHOSH_IS_ACTIVITY (activity));
+  toplevel = g_object_get_data (G_OBJECT (activity), "toplevel");
+  g_return_if_fail (PHOSH_IS_TOPLEVEL (toplevel));
+
   request_thumbnail (activity, toplevel);
 }
 
@@ -352,22 +358,16 @@ add_activity (PhoshOverview *self, PhoshToplevel *toplevel)
                     "swapped-signal::clicked", on_activity_clicked, self,
                     "swapped-signal::closed", on_activity_closed, self,
                     "swapped-signal::fullscreened", on_activity_fullscreened, self,
+                    "swapped-signal::notify::has-focus", on_activity_has_focus_changed, self,
+                    "swapped-signal::resized", on_activity_resized, self,
                     NULL);
 
-  g_signal_connect_object (toplevel, "closed", G_CALLBACK (on_toplevel_closed), self, 0);
-  g_signal_connect_object (toplevel,
-                           "notify::activated",
-                           G_CALLBACK (on_toplevel_activated_changed),
-                           self,
-                           0);
+  g_object_connect (toplevel,
+                    "object-signal::closed", on_toplevel_closed, self,
+                    "object-signal::notify::activated", on_toplevel_activated_changed, self,
+                    NULL);
   g_object_bind_property (toplevel, "maximized", activity, "maximized", G_BINDING_DEFAULT);
   g_object_bind_property (toplevel, "fullscreen", activity, "fullscreen", G_BINDING_DEFAULT);
-
-  g_signal_connect (activity, "resized", G_CALLBACK (on_activity_resized), toplevel);
-  g_signal_connect_swapped (activity,
-                            "notify::has-focus",
-                            G_CALLBACK (on_activity_has_focus_changed),
-                            self);
 
   if (phosh_toplevel_is_activated (toplevel)) {
     scroll_to_activity (self, PHOSH_ACTIVITY (activity));
@@ -409,9 +409,7 @@ get_running_activities (PhoshOverview *self)
 
 
 static void
-toplevel_added_cb (PhoshOverview        *self,
-                   PhoshToplevel        *toplevel,
-                   PhoshToplevelManager *manager)
+on_toplevel_added (PhoshOverview *self, PhoshToplevel *toplevel, PhoshToplevelManager *manager)
 {
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
   g_return_if_fail (PHOSH_IS_TOPLEVEL (toplevel));
@@ -421,9 +419,7 @@ toplevel_added_cb (PhoshOverview        *self,
 
 
 static void
-toplevel_changed_cb (PhoshOverview        *self,
-                     PhoshToplevel        *toplevel,
-                     PhoshToplevelManager *manager)
+on_toplevel_changed (PhoshOverview *self, PhoshToplevel *toplevel, PhoshToplevelManager *manager)
 {
   PhoshActivity *activity;
 
@@ -474,9 +470,7 @@ phosh_overview_size_allocate (GtkWidget     *widget,
 
 
 static void
-app_launched_cb (PhoshOverview *self,
-                 GAppInfo      *info,
-                 GtkWidget     *widget)
+on_app_launched (PhoshOverview *self, GAppInfo *info, GtkWidget *widget)
 {
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
 
@@ -485,9 +479,7 @@ app_launched_cb (PhoshOverview *self,
 
 
 static void
-page_changed_cb (PhoshOverview *self,
-                 guint          index,
-                 HdyCarousel   *carousel)
+on_page_changed (PhoshOverview *self, guint index, HdyCarousel *carousel)
 {
   PhoshActivity *activity;
   PhoshToplevel *toplevel;
@@ -521,34 +513,17 @@ static void
 phosh_overview_constructed (GObject *object)
 {
   PhoshOverview *self = PHOSH_OVERVIEW (object);
-  PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
   PhoshToplevelManager *toplevel_manager =
     phosh_shell_get_toplevel_manager (phosh_shell_get_default ());
 
   G_OBJECT_CLASS (phosh_overview_parent_class)->constructed (object);
 
-  g_signal_connect_object (toplevel_manager, "toplevel-added",
-                           G_CALLBACK (toplevel_added_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-
-  g_signal_connect_object (toplevel_manager, "toplevel-changed",
-                           G_CALLBACK (toplevel_changed_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-
-  g_signal_connect_object (priv->carousel_running_activities, "notify::n-pages",
-                           G_CALLBACK (on_n_pages_changed),
-                           self,
-                           G_CONNECT_SWAPPED);
+  g_object_connect (toplevel_manager,
+                    "swapped-object-signal::toplevel-added", on_toplevel_added, self,
+                    "swapped-object-signal::toplevel-changed", on_toplevel_changed, self,
+                    NULL);
 
   get_running_activities (self);
-
-  g_signal_connect_swapped (priv->app_grid, "app-launched",
-                            G_CALLBACK (app_launched_cb), self);
-
-  g_signal_connect_swapped (priv->carousel_running_activities, "page-changed",
-                            G_CALLBACK (page_changed_cb), self);
 }
 
 
@@ -571,6 +546,8 @@ phosh_overview_class_init (PhoshOverviewClass *klass)
     g_param_spec_boolean ("has-activities", "", "",
                           FALSE,
                           G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
+
+  g_object_class_install_properties (object_class, LAST_PROP, props);
 
   signals[ACTIVITY_LAUNCHED] =
     g_signal_new ("activity-launched",
@@ -601,12 +578,16 @@ phosh_overview_class_init (PhoshOverviewClass *klass)
                   G_TYPE_NONE, 0);
 
   /* ensure used custom types */
-  PHOSH_TYPE_APP_GRID;
+  g_type_ensure (PHOSH_TYPE_APP_GRID);
+
   gtk_widget_class_set_template_from_resource (widget_class, "/mobi/phosh/ui/overview.ui");
 
   gtk_widget_class_bind_template_child_private (widget_class, PhoshOverview, app_grid);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshOverview,
                                                 carousel_running_activities);
+  gtk_widget_class_bind_template_callback (widget_class, on_app_launched);
+  gtk_widget_class_bind_template_callback (widget_class, on_n_pages_changed);
+  gtk_widget_class_bind_template_callback (widget_class, on_page_changed);
 
   gtk_widget_class_set_css_name (widget_class, "phosh-overview");
 }
