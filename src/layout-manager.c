@@ -257,7 +257,9 @@ get_corner_shift (PhoshLayoutManager *self)
     goto out;
 
   scale = phosh_monitor_get_fractional_scale (self->builtin);
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   r = c = gm_display_panel_get_border_radius (self->panel) / scale;
+G_GNUC_END_IGNORE_DEPRECATIONS
 
   if (G_APPROX_VALUE (r, 0, FLT_EPSILON))
     goto out;
