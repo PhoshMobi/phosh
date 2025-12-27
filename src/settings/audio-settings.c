@@ -75,7 +75,7 @@ update_output_vol_bar (PhoshAudioSettings *self)
   phosh_channel_bar_set_is_amplified (self->output_vol_bar,
                                       self->allow_volume_above_100_percent &&
                                       gvc_mixer_stream_get_can_decibel (self->output_stream));
-  adj = GTK_ADJUSTMENT (phosh_channel_bar_get_adjustment (self->output_vol_bar));
+  adj = phosh_channel_bar_get_adjustment (self->output_vol_bar);
   g_debug ("Adjusting volume to %d", gvc_mixer_stream_get_volume (self->output_stream));
   gtk_adjustment_set_value (adj, gvc_mixer_stream_get_volume (self->output_stream));
   self->setting_volume = FALSE;
