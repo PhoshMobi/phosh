@@ -49,7 +49,7 @@ struct _PhoshAudioSettings {
   gboolean           allow_volume_above_100_percent;
   gboolean           setting_volume;
   gboolean           is_headphone;
-  GtkWidget         *output_vol_bar;
+  PhoshChannelBar   *output_vol_bar;
 
   /* Device select */
   GtkWidget         *stack_audio_details;
@@ -70,12 +70,12 @@ update_output_vol_bar (PhoshAudioSettings *self)
   GtkAdjustment *adj;
 
   self->setting_volume = TRUE;
-  phosh_channel_bar_set_base_volume (PHOSH_CHANNEL_BAR (self->output_vol_bar),
+  phosh_channel_bar_set_base_volume (self->output_vol_bar,
                                      gvc_mixer_stream_get_base_volume (self->output_stream));
-  phosh_channel_bar_set_is_amplified (PHOSH_CHANNEL_BAR (self->output_vol_bar),
+  phosh_channel_bar_set_is_amplified (self->output_vol_bar,
                                       self->allow_volume_above_100_percent &&
                                       gvc_mixer_stream_get_can_decibel (self->output_stream));
-  adj = GTK_ADJUSTMENT (phosh_channel_bar_get_adjustment (PHOSH_CHANNEL_BAR (self->output_vol_bar)));
+  adj = GTK_ADJUSTMENT (phosh_channel_bar_get_adjustment (self->output_vol_bar));
   g_debug ("Adjusting volume to %d", gvc_mixer_stream_get_volume (self->output_stream));
   gtk_adjustment_set_value (adj, gvc_mixer_stream_get_volume (self->output_stream));
   self->setting_volume = FALSE;
@@ -90,7 +90,7 @@ output_stream_notify_is_muted_cb (GvcMixerStream *stream, GParamSpec *pspec, gpo
 
   muted = gvc_mixer_stream_get_is_muted (stream);
   if (!self->setting_volume) {
-    phosh_channel_bar_set_is_muted (PHOSH_CHANNEL_BAR (self->output_vol_bar), muted);
+    phosh_channel_bar_set_is_muted (self->output_vol_bar, muted);
     if (!muted)
       update_output_vol_bar (self);
   }
@@ -160,7 +160,7 @@ on_output_stream_port_changed (GvcMixerStream *stream, GParamSpec *pspec, gpoint
   if (gm_str_is_null_or_empty (icon) || g_str_has_prefix (icon, "audio-card"))
     icon = "audio-speakers";
 
-  phosh_channel_bar_set_icon_name (PHOSH_CHANNEL_BAR (self->output_vol_bar), icon);
+  phosh_channel_bar_set_icon_name (self->output_vol_bar, icon);
 
   if (is_headphone == self->is_headphone)
     return;
