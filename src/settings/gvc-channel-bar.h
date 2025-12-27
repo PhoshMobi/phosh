@@ -1,9 +1,10 @@
 /*
  * Copyright (C) 2018 Purism SPC
+ *               2025 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * based on gvc-channel-bar.h from g-c-c which is
+ * based on Phosh-channel-bar.h from g-c-c which is
  * Copyright (C) 2008 Red Hat, Inc.
  */
 
@@ -13,42 +14,32 @@
 
 G_BEGIN_DECLS
 
-#define GVC_TYPE_CHANNEL_BAR (gvc_channel_bar_get_type ())
-G_DECLARE_FINAL_TYPE (GvcChannelBar, gvc_channel_bar, GVC, CHANNEL_BAR, GtkBox)
+#define PHOSH_TYPE_CHANNEL_BAR (phosh_channel_bar_get_type ())
+G_DECLARE_FINAL_TYPE (PhoshChannelBar, phosh_channel_bar, PHOSH, CHANNEL_BAR, GtkBox)
 
-GtkWidget *         gvc_channel_bar_new                 (void);
+GtkWidget *    phosh_channel_bar_new                 (void);
 
-void                gvc_channel_bar_set_name            (GvcChannelBar *bar,
-                                                         const char    *name);
-void                gvc_channel_bar_set_icon_name       (GvcChannelBar *bar,
-                                                         const char    *icon_name);
-void                gvc_channel_bar_set_low_icon_name   (GvcChannelBar *bar,
-                                                         const char    *icon_name);
-void                gvc_channel_bar_set_high_icon_name  (GvcChannelBar *bar,
-                                                         const char    *icon_name);
+void           phosh_channel_bar_set_name            (PhoshChannelBar *bar, const char *name);
+void           phosh_channel_bar_set_icon_name       (PhoshChannelBar *bar, const char *icon_name);
+void           phosh_channel_bar_set_low_icon_name   (PhoshChannelBar *bar, const char *icon_name);
+void           phosh_channel_bar_set_high_icon_name  (PhoshChannelBar *bar, const char *icon_name);
 
-void                gvc_channel_bar_set_orientation     (GvcChannelBar *bar,
-                                                         GtkOrientation orientation);
-GtkOrientation      gvc_channel_bar_get_orientation     (GvcChannelBar *bar);
+void           phosh_channel_bar_set_orientation     (PhoshChannelBar *bar,
+                                                      GtkOrientation   orientation);
+GtkOrientation phosh_channel_bar_get_orientation     (PhoshChannelBar *bar);
 
-GtkAdjustment *     gvc_channel_bar_get_adjustment      (GvcChannelBar *bar);
+GtkAdjustment *phosh_channel_bar_get_adjustment      (PhoshChannelBar *bar);
 
-gboolean            gvc_channel_bar_get_is_muted        (GvcChannelBar *bar);
-void                gvc_channel_bar_set_is_muted        (GvcChannelBar *bar,
-                                                         gboolean       is_muted);
-gboolean            gvc_channel_bar_get_show_mute       (GvcChannelBar *bar);
-void                gvc_channel_bar_set_show_mute       (GvcChannelBar *bar,
-                                                         gboolean       show_mute);
-void                gvc_channel_bar_set_size_group      (GvcChannelBar *bar,
-                                                         GtkSizeGroup  *group);
-void                gvc_channel_bar_set_is_amplified    (GvcChannelBar *bar,
-                                                         gboolean amplified);
-void                gvc_channel_bar_set_base_volume     (GvcChannelBar *bar,
-                                                         guint32        base_volume);
-gboolean            gvc_channel_bar_get_ellipsize       (GvcChannelBar *bar);
-void                gvc_channel_bar_set_ellipsize       (GvcChannelBar *bar,
-                                                         gboolean       ellipsized);
+gboolean       phosh_channel_bar_get_is_muted        (PhoshChannelBar *bar);
+void           phosh_channel_bar_set_is_muted        (PhoshChannelBar *bar, gboolean is_muted);
+gboolean       phosh_channel_bar_get_show_mute       (PhoshChannelBar *bar);
+void           phosh_channel_bar_set_show_mute       (PhoshChannelBar *bar, gboolean show_mute);
+void           phosh_channel_bar_set_size_group      (PhoshChannelBar *bar, GtkSizeGroup *group);
+void           phosh_channel_bar_set_is_amplified    (PhoshChannelBar *bar, gboolean amplified);
+void           phosh_channel_bar_set_base_volume     (PhoshChannelBar *bar, guint32 base_volume);
+gboolean       phosh_channel_bar_get_ellipsize       (PhoshChannelBar *bar);
+void           phosh_channel_bar_set_ellipsize       (PhoshChannelBar *bar, gboolean ellipsized);
 
-double              gvc_channel_bar_get_volume          (GvcChannelBar *self);
+double         phosh_channel_bar_get_volume          (PhoshChannelBar *self);
 
 G_END_DECLS

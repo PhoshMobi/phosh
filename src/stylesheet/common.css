@@ -163,11 +163,11 @@ phosh-brightness-settings scale {
 /*
  * Volume slider in settings
  */
-phosh-gvc-channel-bar image {
+phosh-channel-bar image {
   -gtk-icon-style: symbolic;
 }
 
-phosh-gvc-channel-bar scale {
+phosh-channel-bar scale {
   padding-right: 4px;
 }
 

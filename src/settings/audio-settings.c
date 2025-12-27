@@ -70,12 +70,12 @@ update_output_vol_bar (PhoshAudioSettings *self)
   GtkAdjustment *adj;
 
   self->setting_volume = TRUE;
-  gvc_channel_bar_set_base_volume (GVC_CHANNEL_BAR (self->output_vol_bar),
-                                   gvc_mixer_stream_get_base_volume (self->output_stream));
-  gvc_channel_bar_set_is_amplified (GVC_CHANNEL_BAR (self->output_vol_bar),
-                                    self->allow_volume_above_100_percent &&
-                                    gvc_mixer_stream_get_can_decibel (self->output_stream));
-  adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (self->output_vol_bar)));
+  phosh_channel_bar_set_base_volume (PHOSH_CHANNEL_BAR (self->output_vol_bar),
+                                     gvc_mixer_stream_get_base_volume (self->output_stream));
+  phosh_channel_bar_set_is_amplified (PHOSH_CHANNEL_BAR (self->output_vol_bar),
+                                      self->allow_volume_above_100_percent &&
+                                      gvc_mixer_stream_get_can_decibel (self->output_stream));
+  adj = GTK_ADJUSTMENT (phosh_channel_bar_get_adjustment (PHOSH_CHANNEL_BAR (self->output_vol_bar)));
   g_debug ("Adjusting volume to %d", gvc_mixer_stream_get_volume (self->output_stream));
   gtk_adjustment_set_value (adj, gvc_mixer_stream_get_volume (self->output_stream));
   self->setting_volume = FALSE;
@@ -90,7 +90,7 @@ output_stream_notify_is_muted_cb (GvcMixerStream *stream, GParamSpec *pspec, gpo
 
   muted = gvc_mixer_stream_get_is_muted (stream);
   if (!self->setting_volume) {
-    gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (self->output_vol_bar), muted);
+    phosh_channel_bar_set_is_muted (PHOSH_CHANNEL_BAR (self->output_vol_bar), muted);
     if (!muted)
       update_output_vol_bar (self);
   }
@@ -160,7 +160,7 @@ on_output_stream_port_changed (GvcMixerStream *stream, GParamSpec *pspec, gpoint
   if (gm_str_is_null_or_empty (icon) || g_str_has_prefix (icon, "audio-card"))
     icon = "audio-speakers";
 
-  gvc_channel_bar_set_icon_name (GVC_CHANNEL_BAR (self->output_vol_bar), icon);
+  phosh_channel_bar_set_icon_name (PHOSH_CHANNEL_BAR (self->output_vol_bar), icon);
 
   if (is_headphone == self->is_headphone)
     return;
@@ -206,7 +206,7 @@ mixer_control_output_update_cb (GvcMixerControl *mixer, guint id, gpointer data)
 
 
 static void
-vol_bar_value_changed_cb (GvcChannelBar *bar, PhoshAudioSettings *self)
+vol_bar_value_changed_cb (PhoshChannelBar *bar, PhoshAudioSettings *self)
 {
   double volume, rounded;
   g_autofree char *name = NULL;
@@ -214,7 +214,7 @@ vol_bar_value_changed_cb (GvcChannelBar *bar, PhoshAudioSettings *self)
   if (!self->output_stream)
     self->output_stream = g_object_ref (phosh_audio_manager_get_default_sink (self->audio_manager));
 
-  volume = gvc_channel_bar_get_volume (bar);
+  volume = phosh_channel_bar_get_volume (bar);
   rounded = round (volume);
 
   g_object_get (self->output_vol_bar, "name", &name, NULL);
@@ -318,7 +318,7 @@ phosh_audio_settings_class_init (PhoshAudioSettingsClass *klass)
 
   g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 
-  g_type_ensure (GVC_TYPE_CHANNEL_BAR);
+  g_type_ensure (PHOSH_TYPE_CHANNEL_BAR);
   g_type_ensure (PHOSH_TYPE_FADING_LABEL);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/mobi/phosh/ui/audio-settings.ui");

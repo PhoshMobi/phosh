@@ -10,7 +10,7 @@
           <object class="GtkBox" id="box_ouput_vol_slider">
             <property name="visible">1</property>
             <child>
-              <object class="GvcChannelBar" id="output_vol_bar">
+              <object class="PhoshChannelBar" id="output_vol_bar">
                 <property name="visible">1</property>
                 <property name="icon-name">audio-speakers</property>
               </object>
