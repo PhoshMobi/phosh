@@ -10,8 +10,7 @@ configure_file(
   configuration: service_data,
 )
 
-sources = files('testlib-search-provider-app.c'
-, 'testlib-search-provider.c')
+sources = files('testlib-search-provider-app.c', 'testlib-search-provider.c')
 
 sources += gnome.gdbus_codegen(
   'phosh-search-provider-mock-generated',
