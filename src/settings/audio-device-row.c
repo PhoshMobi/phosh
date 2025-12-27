@@ -10,7 +10,7 @@
 
 #include "phosh-config.h"
 
-#include "audio-device.h"
+#include "audio/audio-device.h"
 #include "audio-device-row.h"
 
 /**

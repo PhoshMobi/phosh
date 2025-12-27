@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "settings/audio-devices.h"
+#include "audio/audio-devices.h"
 
 #include "gvc-mixer-control.h"
 

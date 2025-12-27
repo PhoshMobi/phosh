@@ -203,6 +203,8 @@ phosh_tool_sources = files(
   'app-grid.c',
   'app-list-model.c',
   'audio-manager.c',
+  'audio/audio-device.c',
+  'audio/audio-devices.c',
   'auth-prompt-option.c',
   'auto-brightness-bucket.c',
   'auto-brightness.c',
@@ -309,6 +311,8 @@ libphosh_headers = files(
 phosh_headers = files(
   'app-tracker.h',
   'arrow.h',
+  'audio/audio-device.h',
+  'audio/audio-devices.h',
   'auth.h',
   'background-manager.h',
   'backlight-sysfs.h',

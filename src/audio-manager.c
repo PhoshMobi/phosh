@@ -11,7 +11,7 @@
 #include "phosh-config.h"
 
 #include "audio-manager.h"
-#include "settings/audio-devices.h"
+#include "audio/audio-devices.h"
 
 #include "gvc-mixer-control.h"
 

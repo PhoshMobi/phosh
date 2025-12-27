@@ -12,10 +12,10 @@
 
 #include <pulse/pulseaudio.h>
 
+#include "audio/audio-device.h"
 #include "audio-manager.h"
 #include "fading-label.h"
 #include "settings/audio-device-row.h"
-#include "settings/audio-device.h"
 #include "settings/audio-settings.h"
 #include "settings/gvc-channel-bar.h"
 #include "util.h"
