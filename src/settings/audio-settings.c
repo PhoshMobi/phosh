@@ -17,7 +17,7 @@
 #include "fading-label.h"
 #include "settings/audio-device-row.h"
 #include "settings/audio-settings.h"
-#include "settings/gvc-channel-bar.h"
+#include "settings/channel-bar.h"
 #include "util.h"
 
 #include "gvc-mixer-stream.h"

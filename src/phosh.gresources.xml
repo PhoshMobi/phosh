@@ -14,12 +14,12 @@
     <file preprocess="xml-stripblanks">ui/bt-status-page.ui</file>
     <file preprocess="xml-stripblanks">ui/call-notification.ui</file>
     <file preprocess="xml-stripblanks">ui/cell-broadcast-prompt.ui</file>
+    <file preprocess="xml-stripblanks">ui/channel-bar.ui</file>
     <file preprocess="xml-stripblanks">ui/emergency-contact-row.ui</file>
     <file preprocess="xml-stripblanks">ui/emergency-menu.ui</file>
     <file preprocess="xml-stripblanks">ui/end-session-dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/feedback-status-page.ui</file>
     <file preprocess="xml-stripblanks">ui/gtk-mount-prompt.ui</file>
-    <file preprocess="xml-stripblanks">ui/gvc-channel-bar.ui</file>
     <file preprocess="xml-stripblanks">ui/home.ui</file>
     <file preprocess="xml-stripblanks">ui/keypad.ui</file>
     <file preprocess="xml-stripblanks">ui/lockscreen.ui</file>

@@ -1,6 +1,6 @@
 src/gtk-list-models/gtkfilterlistmodel.c
 src/gtk-list-models/gtksortlistmodel.c
-src/settings/gvc-channel-bar.c
+src/settings/channel-bar.c
 subprojects/
 plugins/simple-custom-quick-setting/qs.ui
 plugins/simple-custom-quick-setting/simple-custom-quick-setting.c
