@@ -334,7 +334,7 @@ phosh_audio_devices_init (PhoshAudioDevices *self)
  * input or output devices as a list model.
  */
 PhoshAudioDevices *
-phosh_audio_devices_new (gpointer mixer_control, gboolean is_input)
+phosh_audio_devices_new (GvcMixerControl *mixer_control, gboolean is_input)
 {
   return g_object_new (PHOSH_TYPE_AUDIO_DEVICES,
                        "mixer-control", mixer_control,
