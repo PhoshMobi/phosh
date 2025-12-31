@@ -188,6 +188,13 @@ phosh (0.52~rc1) experimental; urgency=medium
     xdg-cutouts-v1¹ (adjusted for layer surfaces) we'll get the correct radii
     without having to worry about screen transforms.
     ¹) https://gitlab.freedesktop.org/wayland/wayland-protocols/-/merge_requests/372
+  * torch-info: Always use 100% brightness if torch can't scale.
+    If the torch can't scale brightnes we want to show 100% indepent
+    from any min and max brightness set via udev.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1293
+  * lockscreen: Ignore gesture when user wants to zoom.
+    This allows zoom to work in the ticket box again.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1294
 
   [ Victor Dargallo ]
   * Update Catalan translation
