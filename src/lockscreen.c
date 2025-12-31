@@ -131,12 +131,31 @@ typedef struct {
 G_DEFINE_TYPE_WITH_PRIVATE (PhoshLockscreen, phosh_lockscreen, PHOSH_TYPE_LAYER_SURFACE)
 
 
-static void
-on_zoom_gesture_end (PhoshLockscreen  *self,
-                     GdkEventSequence *sequence,
-                     GtkGesture       *gesture)
+static gboolean
+is_valid (PhoshLockscreen *self, GtkGesture *gesture, double *x_center)
 {
-  gtk_gesture_set_state (gesture, GTK_EVENT_SEQUENCE_CLAIMED);
+  double y_center, scale;
+  uint height;
+  gboolean active;
+
+  active = gtk_gesture_get_bounding_box_center (gesture, x_center, &y_center);
+  if (!active) {
+    return FALSE;
+  }
+
+  height = gtk_widget_get_allocated_height (GTK_WIDGET (self));
+  /* Swipe must happen in the upper screen half */
+  if (y_center > 0.5 * height) {
+    return FALSE;
+  }
+
+  scale = gtk_gesture_zoom_get_scale_delta (GTK_GESTURE_ZOOM (gesture));
+  /* We don't want to actually zoom */
+  if (scale >= 0.9 && scale <= 1.1) {
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
 
@@ -147,29 +166,17 @@ on_zoom_gesture_update (PhoshLockscreen  *self,
 {
   PhoshLockscreenPrivate *priv = phosh_lockscreen_get_instance_private (self);
   PhoshBrightnessManager *manager;
-  gboolean active;
-  double x_center, y_center, brightness;
-  uint width, height;
+  double x_center;
+  uint width;
+  double brightness;
 
   g_return_if_fail (PHOSH_IS_LOCKSCREEN (self));
 
-  active = gtk_gesture_get_bounding_box_center (gesture, &x_center, &y_center);
-  if (!active) {
-    gtk_gesture_set_state (gesture, GTK_EVENT_SEQUENCE_DENIED);
+  if (!is_valid (self, gesture, &x_center))
     return;
-  }
 
-  width = gtk_widget_get_allocated_width (GTK_WIDGET (self));
-  height = gtk_widget_get_allocated_height (GTK_WIDGET (self));
-
-  /* Swipe must happen in the upper screen half */
-  if (y_center > 0.5 * height) {
-    gtk_gesture_set_state (gesture, GTK_EVENT_SEQUENCE_DENIED);
-    return;
-  }
-
-  gtk_gesture_set_state (gesture, GTK_EVENT_SEQUENCE_CLAIMED);
   manager = phosh_shell_get_brightness_manager (phosh_shell_get_default ());
+  width = gtk_widget_get_allocated_width (GTK_WIDGET (self));
   brightness = priv->brightness.base + (x_center - priv->brightness.x_start) / width;
 
   g_debug ("Brightness gesture updating: %f", brightness);
@@ -182,27 +189,21 @@ on_zoom_gesture_begin (PhoshLockscreen  *self,
                        GdkEventSequence *sequence,
                        GtkGesture       *gesture)
 {
-  gboolean active;
-  gdouble x_center, y_center;
+  gdouble x_center;
   PhoshLockscreenPrivate *priv = phosh_lockscreen_get_instance_private (self);
   PhoshBrightnessManager *manager;
 
   g_return_if_fail (PHOSH_IS_LOCKSCREEN (self));
 
-  active = gtk_gesture_get_bounding_box_center (gesture, &x_center, &y_center);
-  if (!active) {
-    gtk_gesture_set_state (gesture, GTK_EVENT_SEQUENCE_DENIED);
+  if (!is_valid (self, gesture, &x_center))
     return;
-  }
 
   gtk_gesture_set_state (gesture, GTK_EVENT_SEQUENCE_CLAIMED);
   manager = phosh_shell_get_brightness_manager (phosh_shell_get_default ());
   priv->brightness.x_start = x_center;
-  priv->brightness.y_start = y_center;
   priv->brightness.base = phosh_brightness_manager_get_value (manager);
-  g_debug ("Brightness gesture start at: %f,%f (%f)",
+  g_debug ("Brightness gesture start at: %f (%f)",
            priv->brightness.x_start,
-           priv->brightness.y_start,
            priv->brightness.base);
 }
 
@@ -1197,7 +1198,6 @@ phosh_lockscreen_init (PhoshLockscreen *self)
   g_object_connect (priv->brightness.gesture,
                     "swapped-object-signal::begin", on_zoom_gesture_begin, self,
                     "swapped-object-signal::update", on_zoom_gesture_update, self,
-                    "swapped-object-signal::end", on_zoom_gesture_end, self,
                     NULL);
   gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (priv->brightness.gesture),
                                               GTK_PHASE_CAPTURE);
