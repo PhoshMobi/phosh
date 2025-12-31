@@ -4,12 +4,14 @@ Released December 2025
 * Add `DebugControl` debug interface to control debug options at runtime
 * Add brightness gesture to lockscreen
 * Wi-Fi hotspot: Show QR code to ease connecting devices
-* Internal cleanups and bug fixes
+* Bug fixes and internal cleanups
 * Issues fixed:
     * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/814
     * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1259
     * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1285
     * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1286
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1293
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1294
 * Contributors:
     * Achill Gilgenast
     * Arun Mani J
