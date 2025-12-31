@@ -74,6 +74,10 @@ update_info (PhoshTorchInfo *self, GParamSpec *pspec, PhoshTorchManager *torch)
     g_autofree char *str = NULL;
     double frac = phosh_torch_manager_get_scaled_brightness (self->torch);
 
+    /* If the flashlight can't scale brightness on means 100% */
+    if (!phosh_torch_manager_get_can_scale (self->torch))
+      frac = 1.0;
+
     str = g_strdup_printf ("%d%%", (int)(frac * 100.0));
     phosh_status_icon_set_info (PHOSH_STATUS_ICON (self), str);
   } else {
