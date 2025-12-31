@@ -1,3 +1,272 @@
+phosh (0.52~rc1) experimental; urgency=medium
+
+  [ Guido Günther ]
+  * ruff: Set line length.
+    This lets
+      meson test -C _build/ --suite lint --print-errorlogs
+    pass again.
+  * build: Bump minimum glib version to 2.80.
+    Needed for `g_log_writer_default_set_debug_domains`
+  * tests: Use g_log_writer_default_set_debug_domains directly.
+    No need to go through a custom implementation
+  * shell: Track log domains
+  * debug-control: New DBus interface to control debug settings.
+    For now we allow to set log levels via DBus. This is similar
+    to what we do in phoc.
+  * shell: Export debug control interface.
+    Allows to set log domains via DBus
+  * log: Drop custom log handling.
+    Just use glib's default handler, we can set log domains
+    via DBus now.
+  * tests/integration: Use DBus call instead of timeout.
+    Now that we have a DBus interface that is exported once the
+    shell is up we can drop the timeout check in favor of a DBus
+    call thus speeding up the tests.
+  * ambient: Return early when release got cancelled.
+    This means `self` is no longer valid so don't try
+    to set any values on it.
+  * docs: Document Python dbusmock based integration tests
+  * docs: Document the screenshot tests
+  * plugin-prefs-standalone: Add option to show lockscreen plugins.
+    This allows us to specify the plugin type in all cases.
+  * plugin-prefs-standalone: Exit gracefully on SIGTERM.
+    This allows e.g. coverage information to be written out.
+  * test-take-screenshots: Simplify testing one page
+  * plugins-prefs: Screenshot upcoming events prefs too
+  * test-take-screenshot: Wait for toplevels rather than sleeping.
+    Instead of just guessing whether the app started, make sure it's there
+    and check when the dialog opened by counting the toplevels.
+    We also send keyboard shortcuts more than once so we don't have to worry
+    about them being missed because e.g. the old dialog didn't go away yet
+    or the window didn't get focus yet.
+  * test-take-screenshots: Screenshot quick setting prefs too
+  * test-take-screenshots: Wait for OSD to show
+  * test-take-screenshots: Introduce context.
+    About all functions want a loop, a timer, a keyboard and a waiter.
+    Wrap them in one context.
+  * test-take-screenshots: Add and remove a keybinding.
+    We have the proxy anyway so let's make sure we can do this without
+    throwing any criticals.
+  * test-take-screenshots: Drop unneeded cast
+  * tests/integration: Check for running process later.
+    This improve error reporting as we make sure we read the last output
+    bits. This is especially useful when phosh fails to start as we'd
+    otherwise completely swallow the error message.
+  * tests/integration: Check that we detect Wi-Fi networks.
+    This exercises more of our Wi-Fi code
+  * tests/integration: Check that we detect VPNs.
+    Make sure we can detect VPNs without raising criticals
+  * dbus: Fix swapped arguments for PhoshIdleDBus.
+    Otherwise targets depending only on the headers can get it wrong.
+    See https://gitlab.gnome.org/World/Phosh/phosh/-/jobs/5808582
+    Fixes: 6376839df ("build: Separate dbus headers and sources")
+  * tests/integration: Build udev mocks manually.
+    This will allow us to tweak them in the tests.
+  * tests/integration: Test brightness setting
+  * brightness-manager: Don't raise brightness on idle.
+    When idle dimming is enabled we never want to increase the brightness.
+    If current brightness is below target dimming brightness just don't do
+    anything.
+    Fixes: 57ee80353 ("brightness-manager: Add Brightness DBus interface")
+  * tests/integration: Move Wayland socket and runtime dir into a tmpdir.
+    This improves test isolation
+  * tests/integration: Allow to use keyfile backend.
+    We set a separate homedir so we can maintain a custom keyfile and allow
+    to pass the settings backend when creating the Phosh object.
+  * tests/integration: Load a custom keyfile
+  * tests/integration: Load quick settings.
+    Load quick settings and check for the hotspot one that it got loaded
+  * brightness-manager: Allow to set the adjustment value.
+    This makes it simper for other parts of the shell to get and
+    set the value avoiding to have to get the adjustment first.
+  * brightness-manager: Split out osd handling.
+    We'll use it from other places as well
+  * brightness-manager: Allow to show the osd.
+    Allow to show the OSD when setting the value
+  * lockscreen-manager: Add a brightness gesture.
+    Two finger swipe left to right increases brightness. The new
+    brightness is calculated as offset to the current brightness
+    based on the swipe distance.
+    This means that if something else sets brightness in the meantime it
+    will be overwritten. If we'd just add the difference between two events
+    this might be too small to make an actual difference thus increasing the
+    brightness too slowly.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/814
+  * shell: Don't setup primary monitor handler without one.
+    When running nested the window can be closed leaving us without
+    a monitor. We shouldn't try to setup any handlers in this case.
+  * activity: Fix indent
+  * activity: Use _once function for timeout.
+    We only run it once. While at that avoid function cast for type
+    safety.
+  * activity: Drop explicit notify.
+    No point in doing so for CONSTRUCT_ONLY properties.
+  * activity: Minimize set_property.
+    We don't want to have any logic within the `switch` so simplify
+    things like we do it in other classes.
+  * activity: Clarify set_thumbnail.
+    It is transfer full. Make that more obvious by moving the thumbnail
+    setting to the top too and adding a doc string.
+  * overview: Remove unused headers
+  * overview: Simplify has-activities settings.
+    Set it in a single place and based on the widgets in the carousel.
+    No point in counting toplevels.
+  * app-tracker: Avoid casts
+  * splash: Modernize.
+    Avoid function casts, fix indent.
+    No functional change.
+  * toplevel-thumbnail: Remove superfluous cast
+  * toplevel-thumbnail: Modernize property definition
+  * toplevel-thumbnail: Use correct parent class.
+    The parent class is PhoshThumbnail not GObject
+    Fixes: 58d280ba2 ("Introduce PhoshThumbnail and PhoshToplevelThumbnail")
+  * toplevel-thumbnail: Don't assume specific parent class.
+    Use `PHOSH_THUMBNAIL_CLASS` to get the class as we do it elsewhere
+    to set the vfuncs.
+  * toplevel-thumbnail: Use canonical naming
+    `self` is the instance of the current type (like everywhere else in
+    phosh) while we name the parent class type ones consistently
+    `thumbnail`. The code was a mix of both before with hard to read
+    casts.
+  * toplevel-thumbnail: No need to chain properties up to parent class.
+    GObject does that for us.
+  * toplevel-thumbnail: Remove unused headers
+  * thumbnail: Remove superfluous implementations.
+    They're completely empty
+  * thumbnail: Unclutter ready handling.
+    Lots of indirection to set a boolean. Just use the common pattern
+    where the derived classes set the property on the parent so we save
+    two vfuncs.
+  * thumbnail: Remove set_property.
+    Superfluous for read-only properties.
+  * battery-manager: New class to track battery and charging.
+    Needed to move things out of `PhoshBatteryInfo`
+    Helps: https://gitlab.gnome.org/World/Phosh/meta-phosh/-/issues/25
+  * shell: Allow to instantiate battery manager
+  * battery-info: Name source file properly.
+    We use a `-` between words. Another reminiscence from the early days
+    cleaned up.
+  * battery-info: Use PhoshBatteryManager.
+    This avoids having multiple upower clients around.
+  * tests/integration: Allow to save DBus traffic.
+    This can be helpful to figure out if a message was actually sent
+  * integration-test: Test battery manager.
+    Test that the battery manager picks up charging related changes
+    correctly.
+  * util: Unify panel launching.
+    This reduces the code and we also pass on platform data for proper
+    activation. We'll reuse `phosh_util_activate_action` in other places
+    too.
+  * util: Pass platform data when launching panels.
+    This ensures the app is brought to the foreground if already running.
+  * overview: Use g_type_ensure() to ensure types
+  * overview: Install properties.
+    As we only connect to the notify signal noone noticed.
+  * overview: Connect notify::has-focus with the others
+  * overview: Connect activity signal with the others.
+    Although we strictly don't need overview here we'll do so
+    at some later point and also check there's a toplevel (which
+    will also be useful later too).
+  * overview: Use `g_connect_object`
+    Reads a bit better here.
+  * overview: Simplify connecting to toplevel_manager
+  * overview: Bind app-grid signal via UI template.
+    Less to worry about
+  * overview: Connect carousel signal handlers via UI file.
+    Less to worry about.
+  * swipe-away-bin: Fix indent
+  * app-grid: Move declaration to the top.
+    This is borderline but as we can better indent the
+    criteria let's do it.
+  * app-grid: Use type checked cast.
+    This is no performance critical path
+  * app-grid: Simplify app search focus handling.
+    Use `gm_str_is_null_or_empty()` and  `phosh_util_toggle_style_class()`
+  * splash-manager: Use G_PARAM_STATIC_STRINGS
+  * layout-manager: Avoid gmobile deprecation.
+    We don't take the effort to handle different radii as with
+    xdg-cutouts-v1¹ (adjusted for layer surfaces) we'll get the correct radii
+    without having to worry about screen transforms.
+    ¹) https://gitlab.freedesktop.org/wayland/wayland-protocols/-/merge_requests/372
+
+  [ Victor Dargallo ]
+  * Update Catalan translation
+
+  [ Rafael Fontenelle ]
+  * Update Brazilian Portuguese translation
+
+  [ Yaron Shahrabani ]
+  * Update Hebrew translation
+
+  [ Arun Mani J ]
+  * wifi-manager: Allow to get active connection
+  * tree: Export few symbols of Wi-Fi manager
+  * wifi-hotspot-quick-setting: Load `style.css`
+    Will be used by status-page in subsequent commits.
+  * wifi-hotspot-quick-setting: Add `PhoshWifiHotspotStatusPage`
+  * wifi-hotspot-quick-setting: Add status-page.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1259
+  * wifi-hotpsot-quick-setting: Uncrustify
+  * wifi-hotspot-quick-setting: Use class for style
+  * wifi-hotspot-quick-setting: Show hotspot SSID.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1285
+  * wifi-hotspot-quick-setting: Close status-page on deactivation.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1286
+
+  [ Martin ]
+  * Update Slovenian translation
+
+  [ Juliano de Souza Camargo ]
+  * Update Brazilian Portuguese translation
+
+  [ Yuri Chornoivan ]
+  * Update Ukrainian translation
+
+  [ Achill Gilgenast ]
+  * ci: Add qrcodegen-dev dependency for Alpine edge
+    also removed duplicates and sorted the list again
+
+  [ Jiri Grönroos ]
+  * Update Finnish translation
+
+  [ Antonio Marin ]
+  * Update Romanian translation
+
+  [ Rudra Pratap Singh ]
+  * upcoming-events: Use GListStore to store event lists.
+    We replace the use of `GPtrArray` with a
+    `GListStore` as we can then use it in
+    combination with a `GtkFilterListModel`.
+  * upcoming-events: Use GtkFilterListModel to filter empty days.
+    Additionally make `events_box` a `GtkListBox` instead
+    so as to bind it to the filtered model.
+  * upcoming-events: Add CSS class for PhoshEventList listbox.
+    Allows us to keep styling separate for event-list
+    listbox and events listbox.
+
+  [ Artur S0 ]
+  * Update Russian translation
+
+  [ Ekaterine Papava ]
+  * Update Georgian translation
+
+  [ Asier Saratsua Garmendia ]
+  * Update Basque translation
+
+  [ Jürgen Benvenuti ]
+  * Update German translation
+
+  [ Danial Behzadi ]
+  * Update Persian translation
+
+  [ Emin Tufan Çetin ]
+  * Update Turkish translation
+
+  [ Anders Jonsson ]
+  * Update Swedish translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Mon, 29 Dec 2025 18:22:14 +0100
+
 phosh (0.51.0) experimental; urgency=medium
 
   [ Artur S0 ]
