@@ -69,7 +69,10 @@ struct _PhoshBrightnessManager {
 
   struct {
     double target;
-    double step;
+    double start;
+    double interval;
+    double duration;
+    double elapsed;
     uint   id;
   } transition;
 
@@ -86,32 +89,38 @@ G_DEFINE_TYPE_WITH_CODE (PhoshBrightnessManager,
                          G_IMPLEMENT_INTERFACE (PHOSH_DBUS_TYPE_BRIGHTNESS,
                                                 phosh_brightness_manager_brightness_init))
 
+/* https://en.wikipedia.org/wiki/Smoothstep */
+static double
+smoothstep (float t)
+{
+  return t * t * (3.0 - 2.0 * t);
+}
+
+
 static gboolean
 on_transition_step (gpointer user_data)
 {
   PhoshBrightnessManager *self = user_data;
-  double current, next;
+  double next, current, smooth;
 
+  self->transition.elapsed += self->transition.interval;
   current = phosh_backlight_get_relative (self->backlight);
-  next = current + self->transition.step;
+  smooth = smoothstep (CLAMP (self->transition.elapsed / self->transition.duration, 0.0, 1.0));
+  next = self->transition.start + (self->transition.target - self->transition.start) * smooth;
 
   if (!self->auto_brightness.enabled) {
     g_debug ("Brightness transition aborted");
-    self->transition.target = current;
-
     goto end;
   }
 
-  if ((self->transition.step > 0 && next >= self->transition.target) ||
-      (self->transition.step < 0 && next <= self->transition.target)) {
-    g_debug ("Brightness transition done at %f", self->transition.target);
-    phosh_backlight_set_relative (self->backlight, self->transition.target);
-
+  if (self->transition.elapsed >= self->transition.duration) {
+    g_debug ("Brightness transition done at %f, target: %f", next, self->transition.target);
+    phosh_backlight_set_relative (self->backlight, next);
     goto end;
   }
 
-  g_debug ("Brightness transition step: current %.3f, next %.3f, step: %.3f, target: %.3f",
-           current, next, self->transition.step, self->transition.target);
+  g_debug ("Brightness transition step: current %.3f, next %.3f, target: %.3f",
+           current, next, self->transition.target);
   phosh_backlight_set_relative (self->backlight, next);
   return G_SOURCE_CONTINUE;
 
@@ -123,31 +132,37 @@ on_transition_step (gpointer user_data)
 /* Human eye adapts faster to higher brightness values */
 #define AUTO_UP_INTERVAL   150 /* ms */
 #define AUTO_DOWN_INTERVAL 400 /* ms */
+#define AUTO_MAX_DURATION  4000 /* ms */
+#define AUTO_STEP_CHANGE   0.025
 
 static void
 transition_to_brightness (PhoshBrightnessManager *self, double target)
 {
-  double current;
-  int interval;
+  double current = phosh_backlight_get_relative (self->backlight);
+  uint steps;
 
-  current = phosh_backlight_get_relative (self->backlight);
+  g_clear_handle_id (&self->transition.id, g_source_remove);
 
   self->transition.target = target;
   if (G_APPROX_VALUE (current, self->transition.target, FLT_EPSILON))
     return;
 
-  self->transition.step = 1.0 / phosh_backlight_get_levels (self->backlight);
-  /* Don't do too many steps, even for large changes */
-  self->transition.step = MAX (0.025, self->transition.step);
-  if (self->transition.target < current)
-    self->transition.step *= -1.0;
+  self->transition.interval = target > current ? AUTO_UP_INTERVAL : AUTO_DOWN_INTERVAL;
 
-  g_debug ("Starting auto brightness transition from %.2f to %.2f in steps of %f",
-           current, target, self->transition.step);
+  self->transition.elapsed = 0;
+  self->transition.start = current;
+  steps = ceil (ABS (self->transition.target - self->transition.start) / 0.025);
+  if (steps * self->transition.interval > AUTO_MAX_DURATION) {
+    g_debug ("Limiting max transition duration from %.0fms to %dms",
+             steps * self->transition.interval, AUTO_MAX_DURATION);
+    steps = ceil (AUTO_MAX_DURATION / self->transition.interval);
+  }
+  self->transition.duration = steps * self->transition.interval;
 
-  interval = self->transition.step > 1.0 ? AUTO_UP_INTERVAL : AUTO_DOWN_INTERVAL;
-  g_clear_handle_id (&self->transition.id, g_source_remove);
-  self->transition.id = g_timeout_add (interval, on_transition_step, self);
+  g_debug ("Starting auto brightness transition from %.2f to %.2f, duration: %.2fms",
+           self->transition.start, self->transition.target, self->transition.duration);
+
+  self->transition.id = g_timeout_add (self->transition.interval, on_transition_step, self);
 }
 
 
