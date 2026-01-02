@@ -65,6 +65,8 @@ struct _PhoshBrightnessManager {
     PhoshAutoBrightness *tracker;
     double   base;
     double   offset;
+    guint    night_light_temp;
+    gboolean can_night_light;
   } auto_brightness;
 
   struct {
@@ -167,18 +169,58 @@ transition_to_brightness (PhoshBrightnessManager *self, double target)
 
 
 static double
+compensate_night_light (PhoshBrightnessManager *self)
+{
+  guint temp = self->auto_brightness.night_light_temp;
+  typedef struct {
+    guint32 color_temp; /* K */
+    double  correction;
+  } ColorCorrection;
+
+  const ColorCorrection corrections[] = {
+    { 2000, 1.90 },
+    { 2250, 1.80 },
+    { 2500, 1.70 },
+    { 2750, 1.60 },
+    { 3000, 1.50 },
+    { 3250, 1.40 },
+    { 3500, 1.30 },
+    { 4000, 1.20 },
+    { 5000, 1.10 },
+    { 6500, 1.00 },
+  };
+
+  if (!self->auto_brightness.can_night_light)
+    return 1.0;
+
+  for (int i = 0; i < G_N_ELEMENTS (corrections); i++) {
+    const ColorCorrection *correction = &corrections[i];
+
+    if (temp < correction->color_temp)
+      return correction->correction;
+  }
+
+  return 1.0;
+}
+
+
+static double
 calc_auto_brightness (PhoshBrightnessManager *self)
 {
   double new_brightness = self->auto_brightness.base;
+  double night_light_correction = compensate_night_light (self);
 
+  /* Compensate for night light */
+  new_brightness *= night_light_correction;
   /* Apply any offset the user has set */
   new_brightness += self->auto_brightness.offset;
   new_brightness = CLAMP (new_brightness, 0.0, 1.0);
 
-  g_debug ("New auto brightness %.2f (base: %.2f, offset: %.2f)",
+  g_debug ("New auto brightness %.2f (base: %.2f, offset: %.2f, nightlight: %.2f)",
            new_brightness,
            self->auto_brightness.base,
-           self->auto_brightness.offset);
+           self->auto_brightness.offset,
+           night_light_correction);
 
   return new_brightness;
 }
@@ -203,6 +245,27 @@ on_auto_brightness_changed (PhoshBrightnessManager *self)
   new_brightness = calc_auto_brightness (self);
 
   transition_to_brightness (self, new_brightness);
+}
+
+
+static void
+on_night_light_temp_changed (PhoshBrightnessManager *self,
+                             GParamSpec             *pspec,
+                             PhoshMonitorManager    *monitor_manager)
+{
+  guint temp;
+
+  g_return_if_fail (PHOSH_IS_BRIGHTNESS_MANAGER (self));
+  g_return_if_fail (PHOSH_IS_MONITOR_MANAGER (monitor_manager));
+
+  temp = phosh_monitor_manager_get_night_light_temp (monitor_manager);
+  if (self->auto_brightness.night_light_temp == temp)
+    return;
+  self->auto_brightness.night_light_temp = temp;
+
+  if (self->auto_brightness.enabled)
+    g_debug ("Night light temp changed, getting new offset");
+  on_auto_brightness_changed (self);
 }
 
 
@@ -475,8 +538,10 @@ on_primary_monitor_changed (PhoshBrightnessManager *self, GParamSpec *psepc, Pho
   if (!backlight)
     monitor = phosh_shell_get_builtin_monitor (shell);
 
-  if (monitor)
+  if (monitor) {
     backlight = monitor->backlight;
+    self->auto_brightness.can_night_light = phosh_monitor_has_gamma (monitor);
+  }
 
   set_backlight (self, backlight);
   phosh_dbus_brightness_set_has_brightness_control (PHOSH_DBUS_BRIGHTNESS (self),
@@ -715,6 +780,12 @@ phosh_brightness_manager_init (PhoshBrightnessManager *self)
                       self,
                       NULL);
   }
+
+  g_signal_connect_object (phosh_shell_get_monitor_manager (shell),
+                           "notify::night-light-temp",
+                           G_CALLBACK (on_night_light_temp_changed),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   /* TODO: Drop once we can rely on GNOME 49 schema for the keybindings */
   schema = g_settings_schema_source_lookup (source, KEYBINDINGS_SCHEMA_ID, TRUE);
