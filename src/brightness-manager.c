@@ -97,23 +97,27 @@ on_transition_step (gpointer user_data)
 
   if (!self->auto_brightness.enabled) {
     g_debug ("Brightness transition aborted");
-    self->transition.id = 0;
     self->transition.target = current;
-    return G_SOURCE_REMOVE;
+
+    goto end;
   }
 
   if ((self->transition.step > 0 && next >= self->transition.target) ||
       (self->transition.step < 0 && next <= self->transition.target)) {
     g_debug ("Brightness transition done at %f", self->transition.target);
     phosh_backlight_set_relative (self->backlight, self->transition.target);
-    self->transition.id = 0;
-    return G_SOURCE_REMOVE;
+
+    goto end;
   }
 
   g_debug ("Brightness transition step: current %.3f, next %.3f, step: %.3f, target: %.3f",
            current, next, self->transition.step, self->transition.target);
   phosh_backlight_set_relative (self->backlight, next);
   return G_SOURCE_CONTINUE;
+
+ end:
+  self->transition.id = 0;
+  return G_SOURCE_REMOVE;
 }
 
 /* Human eye adapts faster to higher brightness values */
