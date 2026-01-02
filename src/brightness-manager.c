@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2025 Phosh.mobi e.V.
+ * Copyright (C) 2025-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -116,11 +116,15 @@ on_transition_step (gpointer user_data)
   return G_SOURCE_CONTINUE;
 }
 
+/* Human eye adapts faster to higher brightness values */
+#define AUTO_UP_INTERVAL   150 /* ms */
+#define AUTO_DOWN_INTERVAL 400 /* ms */
 
 static void
 transition_to_brightness (PhoshBrightnessManager *self, double target)
 {
   double current;
+  int interval;
 
   current = phosh_backlight_get_relative (self->backlight);
 
@@ -137,8 +141,9 @@ transition_to_brightness (PhoshBrightnessManager *self, double target)
   g_debug ("Starting auto brightness transition from %.2f to %.2f in steps of %f",
            current, target, self->transition.step);
 
+  interval = self->transition.step > 1.0 ? AUTO_UP_INTERVAL : AUTO_DOWN_INTERVAL;
   g_clear_handle_id (&self->transition.id, g_source_remove);
-  self->transition.id = g_timeout_add (250, on_transition_step, self);
+  self->transition.id = g_timeout_add (interval, on_transition_step, self);
 }
 
 
