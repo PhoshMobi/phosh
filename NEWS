@@ -1,6 +1,6 @@
-phosh 0.52~rc1
---------------
-Released December 2025
+phosh 0.52.0
+------------
+Released January 2026
 * Add `DebugControl` debug interface to control debug options at runtime
 * Add brightness gesture to lockscreen
 * Wi-Fi hotspot: Show QR code to ease connecting devices
