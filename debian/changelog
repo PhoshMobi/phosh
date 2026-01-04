@@ -1,3 +1,9 @@
+phosh (0.52.0) experimental; urgency=medium
+
+  * No changes from 0.52~rc1
+
+ -- Guido Günther <agx@sigxcpu.org>  Sun, 04 Jan 2026 15:44:21 +0100
+
 phosh (0.52~rc1) experimental; urgency=medium
 
   [ Guido Günther ]
