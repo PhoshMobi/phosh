@@ -22,7 +22,7 @@
 #define KEYBINDING_KEY_BRIGHTNESS_UP_MONITOR "screen-brightness-up-monitor"
 #define KEYBINDING_KEY_BRIGHTNESS_DOWN_MONITOR "screen-brightness-down-monitor"
 
-#define POWER_SCHEMA "org.gnome.settings-daemon.plugins.power"
+#define POWER_SCHEMA_ID "org.gnome.settings-daemon.plugins.power"
 
 /**
  * PhoshBrightnessManager:
@@ -657,7 +657,7 @@ phosh_brightness_manager_init (PhoshBrightnessManager *self)
 
   self->saved_brightness = -1.0;
   self->icon_name = "display-brightness-symbolic";
-  self->settings_power = g_settings_new (POWER_SCHEMA);
+  self->settings_power = g_settings_new (POWER_SCHEMA_ID);
   self->adjustment = g_object_ref_sink (gtk_adjustment_new (0, 0, 1.0, 0.01, 0.01, 0));
   self->value_changed_id = g_signal_connect_swapped (self->adjustment,
                                                      "value-changed",
