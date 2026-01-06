@@ -26,6 +26,10 @@ GSettings
 
 These gsettings are used by ``phosh``:
 
+- `mobi.phosh.shell.brightness`
+
+    - `auto-brightness-offset`: Offset added to the calculated auto brightness value
+
 - `mobi.phosh.shell.cell-broadcast`
 
     - `enabled`: Whether receiving cell broadcasts is enabled

@@ -24,6 +24,9 @@
 
 #define POWER_SCHEMA_ID "org.gnome.settings-daemon.plugins.power"
 
+#define BRIGHTNESS_SCHEMA_ID "mobi.phosh.shell.brightness"
+#define BRIGHTNESS_KEY_AUTO_BRIGHTNESS_OFFSET "auto-brightness-offset"
+
 /**
  * PhoshBrightnessManager:
  *
@@ -59,6 +62,7 @@ struct _PhoshBrightnessManager {
   gboolean        setting_brightness;
 
   GSettings      *settings_power;
+  GSettings      *settings_brightness;
   gboolean        dimmed;
   struct {
     gboolean enabled;
@@ -304,6 +308,9 @@ on_ambient_auto_brightness_changed (PhoshBrightnessManager *self,
   g_object_notify_by_pspec (G_OBJECT (self), props[PROP_ICON_NAME]);
 
   if (self->auto_brightness.enabled) {
+    self->auto_brightness.offset = g_settings_get_double (self->settings_brightness,
+                                                          BRIGHTNESS_KEY_AUTO_BRIGHTNESS_OFFSET);
+    /* Adjustment is [0.0, 1.0] */
     value = self->auto_brightness.offset + 0.5;
     set_auto_brightness_tracker (self);
     on_auto_brightness_changed (self);
@@ -477,7 +484,6 @@ on_value_changed (PhoshBrightnessManager *self, GtkAdjustment *adjustment)
   /* With auto brightness the slider gives an offset to the auto brightness target */
   if (self->auto_brightness.enabled) {
     /* TODO: should we go through the brightness curve? */
-    /* TODO: preserve as setting */
     /* Auto-brightness offset is [-0.5, +0.5] */
     double offset = CLAMP (value - 0.5, -0.5, 0.5);
 
@@ -488,6 +494,11 @@ on_value_changed (PhoshBrightnessManager *self, GtkAdjustment *adjustment)
     new_brightness = calc_auto_brightness (self);
     /* Cancel any ongoing transition, the user likely wants the new brightness right away */
     g_clear_handle_id (&self->transition.id, g_source_remove);
+
+    g_debug ("Updating auto-brightness offset %f", offset);
+    g_settings_set_double (self->settings_brightness,
+                           BRIGHTNESS_KEY_AUTO_BRIGHTNESS_OFFSET,
+                           offset);
   } else {
     new_brightness = value;
   }
@@ -546,6 +557,23 @@ on_primary_monitor_changed (PhoshBrightnessManager *self, GParamSpec *psepc, Pho
   set_backlight (self, backlight);
   phosh_dbus_brightness_set_has_brightness_control (PHOSH_DBUS_BRIGHTNESS (self),
                                                     !!self->backlight);
+}
+
+
+static void
+on_auto_brightness_offset_changed (PhoshBrightnessManager *self,
+                                   const char             *key,
+                                   GSettings              *settings)
+{
+  double offset = g_settings_get_double (settings, BRIGHTNESS_KEY_AUTO_BRIGHTNESS_OFFSET);
+
+  /* If auto brightness is disabled we'll pick up the offset when it gets enabled */
+  if (!self->auto_brightness.enabled)
+    return;
+
+  /* Adjustment goes from [0.0, 1.0] */
+  offset += 0.5;
+  phosh_brightness_manager_set_value (self, offset, FALSE);
 }
 
 
@@ -695,6 +723,7 @@ phosh_brightness_manager_dispose (GObject *object)
   g_clear_pointer (&self->action_names, g_strfreev);
   g_clear_object (&self->settings);
   g_clear_object (&self->settings_power);
+  g_clear_object (&self->settings_brightness);
   g_clear_signal_handler (&self->value_changed_id, self->adjustment);
   g_clear_object (&self->adjustment);
 
@@ -745,6 +774,13 @@ phosh_brightness_manager_init (PhoshBrightnessManager *self)
   self->saved_brightness = -1.0;
   self->icon_name = "display-brightness-symbolic";
   self->settings_power = g_settings_new (POWER_SCHEMA_ID);
+
+  self->settings_brightness = g_settings_new (BRIGHTNESS_SCHEMA_ID);
+  g_signal_connect_swapped (self->settings_brightness,
+                            "changed::" BRIGHTNESS_KEY_AUTO_BRIGHTNESS_OFFSET,
+                            G_CALLBACK (on_auto_brightness_offset_changed),
+                            self);
+
   self->adjustment = g_object_ref_sink (gtk_adjustment_new (0, 0, 1.0, 0.01, 0.01, 0));
   self->value_changed_id = g_signal_connect_swapped (self->adjustment,
                                                      "value-changed",
