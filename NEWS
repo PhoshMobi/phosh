@@ -1,3 +1,10 @@
+phosh 0.52.1
+------------
+Released January 2026
+* Prevent crash in gvc with newer pipewire 1.5.84 / wireplumber 0.5.13
+* Contributors:
+    * Guido Günther
+
 phosh 0.52.0
 ------------
 Released January 2026

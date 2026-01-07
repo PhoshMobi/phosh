@@ -1,3 +1,12 @@
+phosh (0.52.1) experimental; urgency=medium
+
+  * gvc: Handle port changes on streams.
+    Use a gvc version that handles an existing stream replacing its
+    active port.
+    This works with pipewire 1.5.84 and wireplumber 0.5.13
+
+ -- Guido Günther <agx@sigxcpu.org>  Tue, 06 Jan 2026 14:04:46 +0100
+
 phosh (0.52.0) experimental; urgency=medium
 
   * No changes from 0.52~rc1
