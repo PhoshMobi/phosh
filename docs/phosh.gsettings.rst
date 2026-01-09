@@ -78,7 +78,7 @@ These gsettings are used by ``phosh``:
 
 - `sm.puri.phosh.plugins.launcher-box`
 
-   - `folder`
+   - `folder`: The folder containing the desktop files to show in the launcher box
 
 - `sm.puri.phosh.plugins.ticket-box`
 
@@ -86,7 +86,7 @@ These gsettings are used by ``phosh``:
 
 - `sm.puri.phosh.plugins.upcoming-events`
 
-   - `days`
+   - `days`: Number of days to show in the upcoming events list
 
 - `org.gnome.desktop.app-folders.folder`: Folder support
 
