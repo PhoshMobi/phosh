@@ -1,14 +1,14 @@
 # Romanian translation for phosh.
 # Copyright (C) 2020 phosh's COPYRIGHT HOLDER
 # This file is distributed under the same license as the phosh package.
-# Antonio Marin <gnmer.6qxyg@slmail.me>, 2024-2025.
+# Antonio Marin <gnmer.6qxyg@slmail.me>, 2024-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-11-27 21:54+0000\n"
-"PO-Revision-Date: 2025-11-28 15:35+0100\n"
+"POT-Creation-Date: 2025-12-31 16:32+0000\n"
+"PO-Revision-Date: 2026-01-09 14:55+0100\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -153,11 +153,11 @@ msgstr "Creează un dosar nou"
 msgid "Application"
 msgstr "Aplicație"
 
-#: src/app-grid.c:261
+#: src/app-grid.c:264
 msgid "Show All Apps"
 msgstr "Arată toate aplicațiile"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:267
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Arată numai aplicații pentru mobil"
 
@@ -242,9 +242,9 @@ msgstr "Oprește"
 #, c-format
 msgid "The system will power off automatically in %d second."
 msgid_plural "The system will power off automatically in %d seconds."
-msgstr[0] "Sistemul se va opri automat în %d secundă."
-msgstr[1] "Sistemul se va opri automat în %d secunde."
-msgstr[2] "Sistemul se va opri automat în %d de secunde."
+msgstr[0] "Sistemul se va opri automat după %d secundă."
+msgstr[1] "Sistemul se va opri automat după %d secunde."
+msgstr[2] "Sistemul se va opri automat după %d de secunde."
 
 #: src/end-session-dialog.c:189
 msgid "Restart"
@@ -254,9 +254,9 @@ msgstr "Repornește"
 #, c-format
 msgid "The system will restart automatically in %d second."
 msgid_plural "The system will restart automatically in %d seconds."
-msgstr[0] "Sistemul va reporni automat în %d secundă."
-msgstr[1] "Sistemul va reporni automat în %d secunde."
-msgstr[2] "Sistemul va reporni automat în %d de secunde."
+msgstr[0] "Sistemul va reporni automat după %d secundă."
+msgstr[1] "Sistemul va reporni automat după %d secunde."
+msgstr[2] "Sistemul va reporni automat după %d de secunde."
 
 #. Translators: quiet and silent are fbd profiles names:
 #. see https://source.puri.sm/Librem5/feedbackd#profiles
@@ -296,11 +296,11 @@ msgid "No"
 msgstr "Nu"
 
 #. give visual feedback on error
-#: src/lockscreen.c:313 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:397 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "Introdu codul de acces"
 
-#: src/lockscreen.c:956
+#: src/lockscreen.c:1041
 msgid "Checking…"
 msgstr "Se verifică…"
 
@@ -312,16 +312,16 @@ msgstr "Instantaneu de ecran salvat ca „%s”"
 
 #: src/screenshot-manager.c:240
 msgid "Failed to save screenshot"
-msgstr "Nu s-a putut salva instantaneul"
+msgstr "Nu s-a putut salva instantaneul de ecran"
 
 #: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
 msgid "Screenshot"
-msgstr "Instantaneu"
+msgstr "Instantaneu de ecran"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
 #: src/screenshot-manager.c:554
 msgid "Screenshots"
-msgstr "Instantanee"
+msgstr "Instantanee de ecran"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
@@ -329,7 +329,7 @@ msgstr "Instantanee"
 #: src/screenshot-manager.c:574
 #, c-format
 msgid "Screenshot from %s%s.png"
-msgstr "Instantaneu de ecran %s%s.png"
+msgstr "Imagine %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
 #: src/media-player.c:690 src/ui/media-player.ui:208
@@ -550,7 +550,7 @@ msgstr "Parolele nu se potrivesc."
 msgid "Password cannot be blank"
 msgstr "Parola nu poate fi goală"
 
-#: src/torch-info.c:80
+#: src/torch-info.c:84
 msgid "Torch"
 msgstr "Lanternă"
 
@@ -755,7 +755,7 @@ msgid "Wi-Fi"
 msgstr "Wi-Fi"
 
 #: src/ui/wifi-status-page.ui:89
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
 msgstr "Opțiuni Wi-Fi"
 
@@ -1191,7 +1191,7 @@ msgstr "Se termină"
 msgid "Untitled event"
 msgstr "Eveniment fără titlu"
 
-#: plugins/upcoming-events/upcoming-events.c:372
+#: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
 msgid "No events for the next %d days"
 msgstr "Niciun eveniment pentru următoarele %d zile"
@@ -1232,14 +1232,14 @@ msgstr "%d%%"
 msgid "Wi-Fi Hotspot"
 msgstr "Punct de acces Wi-Fi"
 
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
 msgid "Turn On"
 msgstr "Pornește"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
 msgid "Hotspot On"
 msgstr "Punct de acces Activ"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Punct de acces Oprit"
