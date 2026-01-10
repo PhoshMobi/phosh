@@ -122,11 +122,6 @@ endif
 
 add_project_arguments(global_c_args, language: 'c')
 
-run_data = configuration_data()
-run_data.set('ABS_BUILDDIR', meson.current_build_dir())
-run_data.set('ABS_SRCDIR', meson.current_source_dir())
-configure_file(input: 'run.in', output: 'run', configuration: run_data)
-
 gnome = import('gnome')
 i18n = import('i18n')
 pkgconfig = import('pkgconfig')
@@ -254,11 +249,19 @@ configure_file(
   install_dir: lib_inc_dir,
 )
 
+
 subdir('data')
 subdir('po')
 subdir('protocol')
 subdir('src')
 subdir('plugins')
+
+run_data = configuration_data()
+run_data.set('ABS_BUILDDIR', meson.current_build_dir())
+run_data.set('ABS_SRCDIR', meson.current_source_dir())
+run_data.set('PLUGIN_SCHEMA_PATH', plugin_schema_path)
+configure_file(input: 'run.in', output: 'run', configuration: run_data)
+
 subdir('searchd')
 subdir('tests')
 subdir('tools')
