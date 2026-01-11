@@ -793,6 +793,7 @@ on_activate_action_dbus_proxy_ready (GObject *source_object, GAsyncResult *res, 
   g_autoptr (GError) err = NULL;
   GCancellable *cancel;
   GVariant *params;
+  gboolean has_actions = FALSE;
 
   proxy = g_dbus_proxy_new_for_bus_finish (res, &err);
   if (proxy == NULL) {
@@ -801,9 +802,12 @@ on_activate_action_dbus_proxy_ready (GObject *source_object, GAsyncResult *res, 
   }
 
   params = g_task_get_task_data (task);
+  if (g_variant_is_of_type (params,  G_VARIANT_TYPE ("(sava{sv})")))
+    has_actions = TRUE;
+
   cancel = g_task_get_cancellable (task);
   g_dbus_proxy_call (proxy,
-                     "ActivateAction",
+                     has_actions ? "ActivateAction" : "Activate",
                      params,
                      G_DBUS_CALL_FLAGS_NONE,
                      -1,
@@ -812,33 +816,52 @@ on_activate_action_dbus_proxy_ready (GObject *source_object, GAsyncResult *res, 
                      g_steal_pointer (&task));
 }
 
+
+
+static char *
+app_path_for_id (const char *app_id)
+{
+  char *path;
+  int i;
+
+  path = g_strconcat ("/", app_id, NULL);
+  for (i = 0; path[i]; i++) {
+    if (path[i] == '.')
+      path[i] = '/';
+    if (path[i] == '-')
+      path[i] = '_';
+  }
+
+  return path;
+}
+
 /**
  * phosh_util_activate_action:
  * @info: The app info
- * @action: The action name
+ * @action:(nullable): The action name
  * @params:(nullable): The action parameters
  * @cancel:(nullable): A cancellable
  * @callback:(scope async): The callback to invoked
  * @user_data:(nullable): user data
  *
- * Asynchronously invoke the given action on the app corresponding to
- * `info`.
+ * Asynchronously activate the given app corresponding to `info` and
+ * invoke the given action on it. If `action` is `NULL` the app is merely
+ * activated.
  */
-static void
+void
 phosh_util_activate_action (GAppInfo           *info,
                             const char         *action,
                             GVariant           *params,
-                            const char         *object_path,
                             GCancellable       *cancellable,
                             GAsyncReadyCallback callback,
                             gpointer            user_data)
 {
   g_autoptr (GTask) task = NULL;
   g_autoptr (GVariant) args = NULL;
-  g_autofree char *app_id = NULL;
+  g_autofree char *app_id = NULL, *object_path = NULL;
 
   g_return_if_fail (G_IS_APP_INFO (info) || info == NULL);
-  g_return_if_fail (!gm_str_is_null_or_empty (action));
+  g_return_if_fail (!action || !gm_str_is_null_or_empty (action));
   g_return_if_fail (params == NULL || g_variant_is_of_type (params,  G_VARIANT_TYPE ("av")));
 
   app_id = phosh_strip_suffix_from_app_id (g_app_info_get_id (info));
@@ -847,16 +870,21 @@ phosh_util_activate_action (GAppInfo           *info,
   task = g_task_new (NULL, cancellable, callback, user_data);
   g_task_set_source_tag (task, phosh_util_activate_action);
 
-  if (!params)
-    params = g_variant_new("av", NULL);
+  if (action) {
+    if (!params)
+      params = g_variant_new ("av", NULL);
 
-  /* Sink ref so we can use `g_variant_unref` for the task's `destroy_notify` */
-  args = g_variant_ref_sink (g_variant_new ("(s@av@a{sv})",
-                                            action,
-                                            params,
-                                            phosh_util_get_platform_data (info)));
+    /* Sink ref so we can use `g_variant_unref` for the task's `destroy_notify` */
+    args = g_variant_ref_sink (g_variant_new ("(s@av@a{sv})",
+                                              action,
+                                              params,
+                                              phosh_util_get_platform_data (info)));
+  } else {
+    args = g_variant_ref_sink (g_variant_new ("(@a{sv})", phosh_util_get_platform_data (info)));
+  }
   g_task_set_task_data (task, g_steal_pointer (&args), (GDestroyNotify) g_variant_unref);
 
+  object_path = app_path_for_id (app_id);
   g_dbus_proxy_new_for_bus (G_BUS_TYPE_SESSION,
                             G_DBUS_PROXY_FLAGS_NONE,
                             NULL,
@@ -879,7 +907,7 @@ phosh_util_activate_action (GAppInfo           *info,
  *
  * Completes the async operation started with `phosh_util_activate_action`.
  */
-static gboolean
+gboolean
 phosh_util_activate_action_finish (GAsyncResult *res, GError **err)
 {
   g_return_val_if_fail (G_IS_ASYNC_RESULT (res), FALSE);
@@ -905,16 +933,14 @@ phosh_util_open_settings_panel (const char         *panel,
                                 gpointer            user_data)
 {
   g_autoptr (GDesktopAppInfo) info = NULL;
-  const char *object_path, *action;
+  const char *action;
   GVariantBuilder builder;
 
   if (mobile) {
     info = g_desktop_app_info_new ("mobi.phosh.MobileSettings.desktop");
-    object_path = "/mobi/phosh/MobileSettings";
     action = "set-panel";
   } else {
     info = g_desktop_app_info_new ("org.gnome.Settings.desktop");
-    object_path = "/org/gnome/Settings";
     action = "launch-panel";
   }
 
@@ -923,7 +949,6 @@ phosh_util_open_settings_panel (const char         *panel,
   phosh_util_activate_action (G_APP_INFO (info),
                               action,
                               g_variant_builder_end (&builder),
-                              object_path,
                               cancellable,
                               callback,
                               user_data);
