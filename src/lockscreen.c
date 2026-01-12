@@ -139,15 +139,13 @@ is_valid (PhoshLockscreen *self, GtkGesture *gesture, double *x_center)
   gboolean active;
 
   active = gtk_gesture_get_bounding_box_center (gesture, x_center, &y_center);
-  if (!active) {
+  if (!active)
     return FALSE;
-  }
 
   height = gtk_widget_get_allocated_height (GTK_WIDGET (self));
   /* Swipe must happen in the upper screen half */
-  if (y_center > 0.5 * height) {
+  if (y_center > 0.5 * height)
     return FALSE;
-  }
 
   scale = gtk_gesture_zoom_get_scale_delta (GTK_GESTURE_ZOOM (gesture));
   /* We don't want to actually zoom */
@@ -286,11 +284,10 @@ clear_input (PhoshLockscreen *self, gboolean clear_all)
 {
   PhoshLockscreenPrivate *priv = phosh_lockscreen_get_instance_private (self);
 
-  if (clear_all) {
+  if (clear_all)
     gtk_editable_delete_text (GTK_EDITABLE (priv->entry_pin), 0, -1);
-  } else {
+  else
     g_signal_emit_by_name (priv->entry_pin, "backspace", NULL);
-  }
 }
 
 
@@ -437,9 +434,8 @@ on_osk_visibility_changed (PhoshLockscreen *self,
   g_assert (PHOSH_IS_LOCKSCREEN (self));
   priv = phosh_lockscreen_get_instance_private (self);
 
-  if (!phosh_osk_manager_get_visible (osk)) {
+  if (!phosh_osk_manager_get_visible (osk))
     g_object_set (priv->entry_pin, "im-module", "gtk-im-context-none", NULL);
-  }
 }
 
 
@@ -690,14 +686,13 @@ on_deck_visible_child_changed (PhoshLockscreen *self, GParamSpec *pspec, HdyDeck
 
   /* Avoid forward swipe to calls page if there's no active call */
   if (visible_child == priv->box_info &&
-      phosh_calls_manager_get_active_call_handle (priv->calls_manager) == NULL) {
+      phosh_calls_manager_get_active_call_handle (priv->calls_manager) == NULL)
     swipe_forward = FALSE;
-  }
 
   /* Avoid backward swipe to widget-box if there's no plugin */
-  if (visible_child == priv->box_info && !phosh_widget_box_has_plugins (PHOSH_WIDGET_BOX (priv->widget_box))) {
+  if (visible_child == priv->box_info &&
+      !phosh_widget_box_has_plugins (PHOSH_WIDGET_BOX (priv->widget_box)))
     swipe_back = FALSE;
-  }
 
   hdy_deck_set_can_swipe_forward (deck, swipe_forward);
   hdy_deck_set_can_swipe_back (deck, swipe_back);
@@ -1110,8 +1105,11 @@ phosh_lockscreen_class_init (PhoshLockscreenClass *klass)
    * session should be unlocked.
    */
   signals[LOCKSCREEN_UNLOCK] = g_signal_new ("lockscreen-unlock",
-                                             G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST, 0, NULL, NULL,
-                                             NULL, G_TYPE_NONE, 0);
+                                             G_TYPE_FROM_CLASS (klass),
+                                             G_SIGNAL_RUN_LAST,
+                                             0, NULL, NULL, NULL,
+                                             G_TYPE_NONE,
+                                             0);
   /**
    * PhoshLockscreen::wakeup-output
    * @self: The #PhoshLockscreen emitting this signal
@@ -1120,8 +1118,11 @@ phosh_lockscreen_class_init (PhoshLockscreenClass *klass)
    * up.
    */
   signals[WAKEUP_OUTPUT] = g_signal_new ("wakeup-output",
-                                         G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST, 0, NULL, NULL,
-                                         NULL, G_TYPE_NONE, 0);
+                                         G_TYPE_FROM_CLASS (klass),
+                                         G_SIGNAL_RUN_LAST,
+                                         0, NULL, NULL, NULL,
+                                         G_TYPE_NONE,
+                                         0);
 
   g_type_ensure (PHOSH_TYPE_KEYPAD);
   g_type_ensure (PHOSH_TYPE_WIDGET_BOX);
@@ -1149,7 +1150,8 @@ phosh_lockscreen_class_init (PhoshLockscreenClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, keypad_revealer);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, entry_pin);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, lbl_unlock_status);
-  gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, long_press_del_gesture);
+  gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen,
+                                                long_press_del_gesture);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, btn_submit);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, btn_keyboard);
 
@@ -1166,7 +1168,8 @@ phosh_lockscreen_class_init (PhoshLockscreenClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, lbl_date);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, list_calls);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, list_notifications);
-  gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, rev_call_notifications);
+  gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen,
+                                                rev_call_notifications);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, rev_media_player);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, rev_notifications);
   gtk_widget_class_bind_template_callback (widget_class, on_call_notification_activated);
@@ -1205,19 +1208,19 @@ phosh_lockscreen_init (PhoshLockscreen *self)
 
 
 GtkWidget *
-phosh_lockscreen_new (GType lockscreen_type,
-                      gpointer layer_shell,
-                      gpointer wl_output,
+phosh_lockscreen_new (GType              lockscreen_type,
+                      gpointer           layer_shell,
+                      gpointer           wl_output,
                       PhoshCallsManager *calls_manager)
 {
   g_assert (g_type_is_a (lockscreen_type, phosh_lockscreen_get_type ()));
   return g_object_new (lockscreen_type,
                        "layer-shell", layer_shell,
                        "wl-output", wl_output,
-                       "anchor", ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP |
-                                 ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM |
-                                 ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT |
-                                 ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT,
+                       "anchor", (ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP |
+                                  ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM |
+                                  ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT |
+                                  ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT),
                        "layer", ZWLR_LAYER_SHELL_V1_LAYER_OVERLAY,
                        "kbd-interactivity", TRUE,
                        "exclusive-zone", -1,

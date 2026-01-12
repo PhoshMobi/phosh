@@ -37,8 +37,7 @@ G_DECLARE_DERIVABLE_TYPE (PhoshLockscreen, phosh_lockscreen, PHOSH, LOCKSCREEN, 
  *     keypad. It allows to implement a custom authentication mechanism. To indicate success the
  *     `lockscreen-unlock` signal should be emitted.
  */
-struct _PhoshLockscreenClass
-{
+struct _PhoshLockscreenClass {
   PhoshLayerSurfaceClass parent_class;
   void (*unlock_submit) (PhoshLockscreen *self);
 
@@ -55,10 +54,10 @@ struct _PhoshLockscreenClass
 };
 
 
-void                phosh_lockscreen_set_page         (PhoshLockscreen *self,
+void                phosh_lockscreen_set_page         (PhoshLockscreen    *self,
                                                        PhoshLockscreenPage page);
 PhoshLockscreenPage phosh_lockscreen_get_page         (PhoshLockscreen *self);
-void                phosh_lockscreen_set_default_page (PhoshLockscreen *self,
+void                phosh_lockscreen_set_default_page (PhoshLockscreen    *self,
                                                        PhoshLockscreenPage page);
 
 const char *        phosh_lockscreen_get_pin_entry   (PhoshLockscreen *self);
