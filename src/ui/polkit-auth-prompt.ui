@@ -17,11 +17,10 @@
           </object>
         </child>
         <child>
-          <object class="GtkImage" id="img_icon">
+          <object class="HdyAvatar" id="img_icon">
             <property name="visible">1</property>
             <property name="halign">center</property>
-            <property name="icon-name">dialog-password-symbolic</property>
-            <property name="pixel-size">48</property>
+            <property name="size">48</property>
           </object>
         </child>
         <child>

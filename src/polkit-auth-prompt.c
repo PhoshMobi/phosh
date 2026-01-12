@@ -13,6 +13,8 @@
 
 #include "phosh-config.h"
 
+#include "accounts-dbus.h"
+#include "accounts-user-dbus.h"
 #include "polkit-auth-prompt.h"
 
 #define GCR_API_SUBJECT_TO_CHANGE
@@ -22,6 +24,7 @@
 #include <polkitagent/polkitagent.h>
 
 #include <glib/gi18n.h>
+#include <handy.h>
 
 /**
  * PhoshPolkitAuthPrompt:
@@ -68,6 +71,9 @@ struct _PhoshPolkitAuthPrompt {
   char *icon_name;
   char *cookie;
   GStrv user_names;
+
+  const char *user_name;
+  GCancellable *cancel;
 
   PolkitIdentity     *identity;
   PolkitAgentSession *session;
@@ -143,6 +149,93 @@ set_icon_name (PhoshPolkitAuthPrompt *self, const char *icon_name)
 
 
 static void
+on_accounts_user_proxy_ready (GObject *source, GAsyncResult *result, gpointer data)
+{
+  PhoshPolkitAuthPrompt *self = data;
+  g_autoptr (GError) error = NULL;
+  g_autoptr (PhoshDBusAccountsUser) user = NULL;
+  const char *real_name = NULL;
+  const char *icon_path = NULL;
+  g_autoptr (GFile) icon_file = NULL;
+  g_autoptr (GIcon) icon = NULL;
+
+  user = phosh_dbus_accounts_user_proxy_new_finish (result, &error);
+  if (error) {
+    if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+      g_debug ("Skipping create user proxy: %s", error->message);
+    else
+      g_warning ("Failed to create user proxy %s: %s", self->user_name, error->message);
+    return;
+  }
+  g_debug ("Created proxy for user name: %s", self->user_name);
+
+  real_name = phosh_dbus_accounts_user_get_real_name (user);
+  hdy_avatar_set_text (HDY_AVATAR (self->img_icon), real_name);
+  gtk_label_set_text (GTK_LABEL (self->lbl_user_name), real_name);
+
+  icon_path = phosh_dbus_accounts_user_get_icon_file (user);
+  icon_file = g_file_new_for_path (icon_path);
+  icon = g_file_icon_new (icon_file);
+  hdy_avatar_set_loadable_icon (HDY_AVATAR (self->img_icon), G_LOADABLE_ICON (icon));
+}
+
+
+static void
+on_find_user_by_name_ready (GObject *source, GAsyncResult *result, gpointer data)
+{
+  g_autoptr (PhoshDBusAccounts) accounts = PHOSH_DBUS_ACCOUNTS (source);
+  PhoshPolkitAuthPrompt *self = data;
+  g_autoptr (GError) error = NULL;
+  g_autofree char *user_path = NULL;
+
+  phosh_dbus_accounts_call_find_user_by_name_finish (accounts, &user_path, result, &error);
+  if (error) {
+    if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+      g_debug ("Skipping find user: %s", error->message);
+    else
+      g_warning ("Failed to find user %s: %s", self->user_name, error->message);
+    return;
+  }
+  g_debug ("Found user for user name: %s at %s", self->user_name, user_path);
+
+  g_debug ("Creating proxy for user name: %s", self->user_name);
+  phosh_dbus_accounts_user_proxy_new_for_bus (G_BUS_TYPE_SYSTEM,
+                                              G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS,
+                                              "org.freedesktop.Accounts",
+                                              user_path,
+                                              self->cancel,
+                                              on_accounts_user_proxy_ready,
+                                              self);
+}
+
+
+static void
+on_accounts_proxy_ready (GObject *source, GAsyncResult *result, gpointer data)
+{
+  PhoshDBusAccounts *accounts;
+  PhoshPolkitAuthPrompt *self = data;
+  g_autoptr (GError) error = NULL;
+
+  accounts = phosh_dbus_accounts_proxy_new_finish (result, &error);
+  if (error) {
+    if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+      g_debug ("Skipping create Accounts proxy: %s", error->message);
+    else
+      g_warning ("Failed to create Accounts proxy: %s", error->message);
+    return;
+  }
+  g_debug ("Created Accounts proxy for user name: %s", self->user_name);
+
+  g_debug ("Finding user for user name: %s", self->user_name);
+  phosh_dbus_accounts_call_find_user_by_name (accounts,
+                                              self->user_name,
+                                              self->cancel,
+                                              on_find_user_by_name_ready,
+                                              self);
+}
+
+
+static void
 set_user_names (PhoshPolkitAuthPrompt *self, const GStrv user_names)
 {
   const char *user_name = NULL;
@@ -181,7 +274,20 @@ set_user_names (PhoshPolkitAuthPrompt *self, const GStrv user_names)
     return;
   }
 
+  hdy_avatar_set_text (HDY_AVATAR (self->img_icon), user_name);
   gtk_label_set_text (GTK_LABEL (self->lbl_user_name), user_name);
+
+  self->user_name = user_name;
+  g_debug ("Creating Accounts proxy for user name: %s", self->user_name);
+  phosh_dbus_accounts_proxy_new_for_bus (G_BUS_TYPE_SYSTEM,
+                                         (G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES |
+                                          G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS),
+                                         "org.freedesktop.Accounts",
+                                         "/org/freedesktop/Accounts",
+                                         self->cancel,
+                                         on_accounts_proxy_ready,
+                                         self);
+
   g_object_notify_by_pspec (G_OBJECT (self), props[PROP_USER_NAMES]);
 }
 
@@ -394,6 +500,9 @@ phosh_polkit_auth_prompt_dispose (GObject *object)
 {
   PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (object);
 
+  g_cancellable_cancel (self->cancel);
+  g_clear_object (&self->cancel);
+  self->user_name = NULL;
   g_clear_object (&self->identity);
   g_clear_object (&self->session);
 
@@ -422,6 +531,8 @@ phosh_polkit_auth_prompt_constructed (GObject *object)
   PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (object);
 
   G_OBJECT_CLASS (phosh_polkit_auth_prompt_parent_class)->constructed (object);
+
+  self->cancel = g_cancellable_new ();
 
   self->password_buffer = gcr_secure_entry_buffer_new ();
   gtk_entry_set_buffer (GTK_ENTRY (self->entry_password),
