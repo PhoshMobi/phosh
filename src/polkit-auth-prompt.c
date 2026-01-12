@@ -47,7 +47,7 @@ enum {
   DONE,
   N_SIGNALS
 };
-static guint signals[N_SIGNALS] = { 0 };
+static guint signals[N_SIGNALS];
 
 struct _PhoshPolkitAuthPrompt {
   PhoshSystemModalDialog parent;
@@ -74,6 +74,7 @@ struct _PhoshPolkitAuthPrompt {
 
   gboolean done_emitted;
 };
+
 G_DEFINE_TYPE (PhoshPolkitAuthPrompt, phosh_polkit_auth_prompt, PHOSH_TYPE_SYSTEM_MODAL_DIALOG);
 
 
@@ -186,14 +187,14 @@ set_user_names (PhoshPolkitAuthPrompt *self, const GStrv user_names)
 
 
 static void
-phosh_polkit_auth_prompt_set_property (GObject      *obj,
-                                       guint         prop_id,
+phosh_polkit_auth_prompt_set_property (GObject      *object,
+                                       guint         property_id,
                                        const GValue *value,
                                        GParamSpec   *pspec)
 {
-  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (obj);
+  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (object);
 
-  switch (prop_id) {
+  switch (property_id) {
   case PROP_ACTION_ID:
     set_action_id (self, g_value_get_string (value));
     break;
@@ -210,38 +211,38 @@ phosh_polkit_auth_prompt_set_property (GObject      *obj,
     set_user_names (self, g_value_get_boxed (value));
     break;
   default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (obj, prop_id, pspec);
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     break;
   }
 }
 
 
 static void
-phosh_polkit_auth_prompt_get_property (GObject    *obj,
-                                       guint       prop_id,
+phosh_polkit_auth_prompt_get_property (GObject    *object,
+                                       guint       property_id,
                                        GValue     *value,
                                        GParamSpec *pspec)
 {
-  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (obj);
+  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (object);
 
-  switch (prop_id) {
+  switch (property_id) {
   case PROP_ACTION_ID:
-    g_value_set_string (value, self->action_id?: "");
+    g_value_set_string (value, self->action_id ?: "");
     break;
   case PROP_COOKIE:
-    g_value_set_string (value, self->cookie?: "");
+    g_value_set_string (value, self->cookie ?: "");
     break;
   case PROP_MESSAGE:
-    g_value_set_string (value, self->message?: "");
+    g_value_set_string (value, self->message ?: "");
     break;
   case PROP_ICON_NAME:
-    g_value_set_string (value, self->icon_name?: "");
+    g_value_set_string (value, self->icon_name ?: "");
     break;
   case PROP_USER_NAMES:
     g_value_set_boxed (value, self->user_names ? g_strdupv (self->user_names) : NULL);
     break;
   default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (obj, prop_id, pspec);
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     break;
   }
 }
@@ -389,21 +390,21 @@ on_btn_authenticate_clicked (PhoshPolkitAuthPrompt *self, GtkButton *btn)
 
 
 static void
-phosh_polkit_auth_prompt_dispose (GObject *obj)
+phosh_polkit_auth_prompt_dispose (GObject *object)
 {
-  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (obj);
+  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (object);
 
   g_clear_object (&self->identity);
   g_clear_object (&self->session);
 
-  G_OBJECT_CLASS (phosh_polkit_auth_prompt_parent_class)->dispose (obj);
+  G_OBJECT_CLASS (phosh_polkit_auth_prompt_parent_class)->dispose (object);
 }
 
 
 static void
-phosh_polkit_auth_prompt_finalize (GObject *obj)
+phosh_polkit_auth_prompt_finalize (GObject *object)
 {
-  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (obj);
+  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (object);
 
   g_free (self->message);
   g_free (self->icon_name);
@@ -411,7 +412,7 @@ phosh_polkit_auth_prompt_finalize (GObject *obj)
   g_free (self->cookie);
   g_strfreev (self->user_names);
 
-  G_OBJECT_CLASS (phosh_polkit_auth_prompt_parent_class)->finalize (obj);
+  G_OBJECT_CLASS (phosh_polkit_auth_prompt_parent_class)->finalize (object);
 }
 
 
@@ -433,7 +434,7 @@ phosh_polkit_auth_prompt_constructed (GObject *object)
 static void
 phosh_polkit_auth_prompt_class_init (PhoshPolkitAuthPromptClass *klass)
 {
-  GObjectClass *object_class = (GObjectClass *)klass;
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->get_property = phosh_polkit_auth_prompt_get_property;
@@ -481,7 +482,7 @@ phosh_polkit_auth_prompt_class_init (PhoshPolkitAuthPromptClass *klass)
   /**
    * PolkitAuthPrompt:user-names:
    *
-   * The user name's to authenticate as
+   * The user names to authenticate as
    */
   props[PROP_USER_NAMES] =
     g_param_spec_boxed ("user-names", "", "",
