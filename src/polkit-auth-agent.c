@@ -8,6 +8,8 @@
 
 #define G_LOG_DOMAIN "phosh-polkit-auth-agent"
 
+#include "phosh-config.h"
+
 #include "polkit-auth-agent.h"
 #include "polkit-auth-prompt.h"
 #include "shell-priv.h"
@@ -121,7 +123,7 @@ agent_register_async (PhoshPolkitAuthAgent *self,
 }
 
 static void
-agent_registered_cb (GObject      *source_object,
+on_agent_registered (GObject      *source_object,
                      GAsyncResult *res,
                      gpointer      user_data)
 {
@@ -371,7 +373,7 @@ phosh_polkit_auth_agent_constructed (GObject *object)
   G_OBJECT_CLASS (phosh_polkit_auth_agent_parent_class)->constructed (object);
 
   self->cancellable = g_cancellable_new ();
-  agent_register_async (self, self->cancellable, agent_registered_cb, NULL);
+  agent_register_async (self, self->cancellable, on_agent_registered, NULL);
 }
 
 
