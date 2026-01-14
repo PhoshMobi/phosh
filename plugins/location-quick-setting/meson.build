@@ -7,6 +7,7 @@ location_quick_setting_resources = gnome.compile_resources(
 )
 
 location_quick_setting_plugin_sources = files(
+  'accuracy-row.c',
   'location-quick-setting.c',
   'phosh-plugin-location-quick-setting.c',
 )

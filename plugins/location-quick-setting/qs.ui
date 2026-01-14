@@ -3,10 +3,89 @@
   <requires lib="gtk+" version="3.24"/>
   <template class="PhoshLocationQuickSetting" parent="PhoshQuickSetting">
     <property name="status-icon">info</property>
+    <property name="status-page">status_page</property>
     <signal name="clicked" handler="on_clicked" object="PhoshLocationQuickSetting" swapped="yes"/>
   </template>
   <object class="PhoshStatusIcon" id="info">
     <property name="visible">1</property>
     <property name="pixel-size">16</property>
+  </object>
+  <object class="PhoshStatusPage" id="status_page">
+    <property name="visible">1</property>
+    <property name="title" translatable="yes">Location Accuracy</property>
+    <property name="content">stack</property>
+    <property name="footer">footer</property>
+  </object>
+  <object class="GtkStack" id="stack">
+    <property name="visible">1</property>
+    <child>
+      <object class="GtkListBox" id="listbox">
+        <property name="visible">1</property>
+        <property name="selection-mode">none</property>
+        <signal name="row-activated" handler="on_accuracy_row_activated" object="PhoshLocationQuickSetting" swapped="no"/>
+        <style>
+          <class name="content"/>
+        </style>
+        <!-- Exact accuracy -->
+        <child>
+          <object class="PhoshAccuracyRow">
+            <property name="level">4</property>
+          </object>
+        </child>
+        <!-- City accuracy -->
+        <child>
+          <object class="PhoshAccuracyRow">
+            <property name="level">1</property>
+          </object>
+        </child>
+        <!-- Country accuracy -->
+        <child>
+          <object class="PhoshAccuracyRow">
+            <property name="level">0</property>
+          </object>
+        </child>
+        <!-- Custom accuracy row -->
+        <child>
+          <object class="PhoshAccuracyRow" id="custom_row">
+            <property name="visible">0</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="name">listbox</property>
+      </packing>
+    </child>
+    <child>
+      <object class="PhoshStatusPagePlaceholder" id="empty_state">
+        <property name="visible">1</property>
+        <property name="icon-name">location-services-disabled-symbolic</property>
+        <property name="title" translatable="yes">Location Disabled</property>
+        <property name="extra-widget">enable_button</property>
+      </object>
+      <packing>
+        <property name="name">empty-state</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkButton" id="enable_button">
+    <property name="visible">1</property>
+    <property name="label" translatable="yes">Enable Location</property>
+    <property name="halign">center</property>
+    <property name="focus-on-click">0</property>
+    <signal name="clicked" handler="on_enable_clicked" object="PhoshLocationQuickSetting" swapped="yes"/>
+  </object>
+  <object class="GtkButton" id="footer">
+    <property name="visible">1</property>
+    <property name="hexpand">1</property>
+    <property name="focus-on-click">0</property>
+    <property name="action-name">panel.launch-panel</property>
+    <property name="action-target">(&quot;privacy&quot;, [&lt;&quot;&quot;&gt;])</property>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">1</property>
+        <property name="ellipsize">end</property>
+        <property name="label" translatable="yes">Location Settings</property>
+      </object>
+    </child>
   </object>
 </interface>
