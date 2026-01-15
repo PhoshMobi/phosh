@@ -11,6 +11,17 @@
     </key>
   </schema>
 
+  <schema id="mobi.phosh.shell.brightness" path="/mobi/phosh/shell/brightness/">
+    <key name="auto-brightness-offset" type="d">
+      <default>0.0</default>
+      <range min="-0.5" max="0.5"/>
+      <summary>Auto brightness offset</summary>
+      <description>
+        Fixed offset added to the calculated auto brightnes value.
+      </description>
+    </key>
+  </schema>
+
   <!-- Legacy schema -->
 
   <schema id="sm.puri.phosh" path="/sm/puri/phosh/">

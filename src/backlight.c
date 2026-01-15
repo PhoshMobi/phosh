@@ -104,7 +104,7 @@ phosh_backlight_brightness_to_level (PhoshBacklight *self, double brightness)
   if (priv->scale == PHOSH_BACKLIGHT_SCALE_NON_LINEAR)
     return round (brightness);
 
-  level = exp10 (brightness);
+  level = round (exp10 (brightness));
   return CLAMP (level, priv->level.min, priv->level.max);
 }
 

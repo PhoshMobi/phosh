@@ -26,6 +26,10 @@ GSettings
 
 These gsettings are used by ``phosh``:
 
+- `mobi.phosh.shell.brightness`
+
+    - `auto-brightness-offset`: Offset added to the calculated auto brightness value
+
 - `mobi.phosh.shell.cell-broadcast`
 
     - `enabled`: Whether receiving cell broadcasts is enabled
@@ -78,7 +82,7 @@ These gsettings are used by ``phosh``:
 
 - `sm.puri.phosh.plugins.launcher-box`
 
-   - `folder`
+   - `folder`: The folder containing the desktop files to show in the launcher box
 
 - `sm.puri.phosh.plugins.ticket-box`
 
@@ -86,7 +90,7 @@ These gsettings are used by ``phosh``:
 
 - `sm.puri.phosh.plugins.upcoming-events`
 
-   - `days`
+   - `days`: Number of days to show in the upcoming events list
 
 - `org.gnome.desktop.app-folders.folder`: Folder support
 
