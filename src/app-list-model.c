@@ -21,7 +21,7 @@ typedef struct _PhoshAppListModelPrivate PhoshAppListModelPrivate;
 struct _PhoshAppListModelPrivate {
   GAppInfoMonitor *monitor;
 
-  GSequence *items;
+  GSequence       *items;
 
   guint debounce;
 
@@ -32,7 +32,7 @@ struct _PhoshAppListModelPrivate {
     GSequenceIter *iter;
   } last;
 
-  GSettings *settings;
+  GSettings  *settings;
 
   GHashTable *startup_wm_class;
 };

@@ -10,7 +10,7 @@
 #include "app-list-model.h"
 
 static void
-test_phosh_app_list_model_get_default(void)
+test_phosh_app_list_model_get_default (void)
 {
   PhoshAppListModel *model1 = phosh_app_list_model_get_default ();
   PhoshAppListModel *model2 = phosh_app_list_model_get_default ();
@@ -29,7 +29,7 @@ test_phosh_app_list_model_get_default(void)
 typedef struct {
   GMainLoop *loop;
   PhoshAppListModel *model;
-  gboolean changed;
+  gboolean   changed;
 } ItemsChangedContext;
 
 
@@ -85,8 +85,8 @@ main (int argc, char *argv[])
 {
   g_test_init (&argc, &argv, NULL);
 
-  g_test_add_func("/phosh/app-list-model/new", test_phosh_app_list_model_get_default);
-  g_test_add_func("/phosh/app-list-model/api", test_phosh_app_list_model_api);
+  g_test_add_func ("/phosh/app-list-model/new", test_phosh_app_list_model_get_default);
+  g_test_add_func ("/phosh/app-list-model/api", test_phosh_app_list_model_api);
 
-  return g_test_run();
+  return g_test_run ();
 }
