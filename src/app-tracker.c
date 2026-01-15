@@ -10,6 +10,7 @@
 
 #include "phosh-config.h"
 
+#include "app-list-model.h"
 #include "app-tracker.h"
 #include "phosh-wayland.h"
 #include "shell-priv.h"
@@ -689,7 +690,7 @@ phosh_app_tracker_launch_app_info (PhoshAppTracker *self, GAppInfo *info)
   g_autoptr (GError) error = NULL;
   PhoshShell *shell = phosh_shell_get_default ();
   PhoshToplevelManager *toplevel_manager = phosh_shell_get_toplevel_manager (shell);
-  g_autofree char *app_id = NULL;
+  g_autofree char *app_id = NULL, *exec = NULL;
   gboolean success;
 
   app_id = phosh_strip_suffix_from_app_id (g_app_info_get_id (G_APP_INFO (info)));
@@ -722,6 +723,10 @@ phosh_app_tracker_launch_app_info (PhoshAppTracker *self, GAppInfo *info)
                             "launch-failed",
                             G_CALLBACK (on_app_launch_failed),
                             self);
+
+  exec = g_desktop_app_info_get_string (G_DESKTOP_APP_INFO (info), "Exec");
+  if (exec)
+    phosh_app_list_model_add_exec (phosh_app_list_model_get_default (), exec, info);
 
   success = g_desktop_app_info_launch_uris_as_manager (G_DESKTOP_APP_INFO (info),
                                                        NULL,

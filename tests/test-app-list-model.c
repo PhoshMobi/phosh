@@ -62,6 +62,7 @@ test_phosh_app_list_model_api (void)
 {
   PhoshAppListModel *model = phosh_app_list_model_get_default ();
   g_autoptr (GMainLoop) loop = g_main_loop_new (NULL, FALSE);
+  g_autoptr (GAppInfo) info = NULL;
   ItemsChangedContext context = {
     .loop = loop,
     .model = model,
@@ -70,12 +71,19 @@ test_phosh_app_list_model_api (void)
   g_assert_true (PHOSH_IS_APP_LIST_MODEL (model));
   g_assert_true (G_IS_LIST_MODEL (model));
   g_assert_cmpint (g_list_model_get_n_items (G_LIST_MODEL (model)), ==, 0);
+
   g_assert_null (phosh_app_list_model_lookup_by_startup_wm_class (model, "whatever"));
+
   g_assert_true (g_list_model_get_item_type (G_LIST_MODEL (model)) == G_TYPE_APP_INFO);
   g_signal_connect (model, "items-changed", G_CALLBACK (on_items_changed), &context);
   g_main_loop_run (loop);
-
   g_assert_true (context.changed);
+
+  info = g_list_model_get_item (G_LIST_MODEL (model), 0);
+  phosh_app_list_model_add_exec (model, "an/exec/with/odd/path1", info);
+  g_assert_true (G_IS_APP_INFO (phosh_app_list_model_lookup_by_exec (model, "path1")));
+  g_assert_null (phosh_app_list_model_lookup_by_exec (model, "path2"));
+
   g_assert_finalize_object (model);
 }
 

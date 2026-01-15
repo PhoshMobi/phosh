@@ -20,7 +20,11 @@ struct _PhoshAppListModelClass
 };
 
 PhoshAppListModel *phosh_app_list_model_get_default (void);
-GDesktopAppInfo   *phosh_app_list_model_lookup_by_startup_wm_class (PhoshAppListModel *self,
+GDesktopAppInfo *  phosh_app_list_model_lookup_by_startup_wm_class (PhoshAppListModel *self,
                                                                     const char        *class);
+GDesktopAppInfo *  phosh_app_list_model_lookup_by_exec (PhoshAppListModel *self, const char *exec);
+void               phosh_app_list_model_add_exec (PhoshAppListModel *self,
+                                                  const char        *exec,
+                                                  GAppInfo          *info);
 
 G_END_DECLS
