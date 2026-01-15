@@ -687,18 +687,19 @@ phosh_app_tracker_launch_app_info (PhoshAppTracker *self, GAppInfo *info)
 {
   g_autoptr (GdkAppLaunchContext) context = NULL;
   g_autoptr (GError) error = NULL;
-  PhoshToplevelManager *toplevel_manager = phosh_shell_get_toplevel_manager (phosh_shell_get_default ());
+  PhoshShell *shell = phosh_shell_get_default ();
+  PhoshToplevelManager *toplevel_manager = phosh_shell_get_toplevel_manager (shell);
   g_autofree char *app_id = NULL;
   gboolean success;
 
   app_id = phosh_strip_suffix_from_app_id (g_app_info_get_id (G_APP_INFO (info)));
   g_debug ("Launching '%s'", app_id);
 
-  for (guint i=0; i < phosh_toplevel_manager_get_num_toplevels (toplevel_manager); i++) {
+  for (guint i = 0; i < phosh_toplevel_manager_get_num_toplevels (toplevel_manager); i++) {
     PhoshToplevel *toplevel = phosh_toplevel_manager_get_toplevel (toplevel_manager, i);
     const char *window_id = phosh_toplevel_get_app_id (toplevel);
-    g_autoptr (GDesktopAppInfo) toplevel_app_info = phosh_get_desktop_app_info_for_app_id (window_id);
-    if (toplevel_app_info && g_app_info_equal (G_APP_INFO (toplevel_app_info), G_APP_INFO (info))) {
+    g_autoptr (GDesktopAppInfo) toplevel_info = phosh_get_desktop_app_info_for_app_id (window_id);
+    if (toplevel_info && g_app_info_equal (G_APP_INFO (toplevel_info), G_APP_INFO (info))) {
       /* activate the first matching window for now, since we don't have toplevels sorted by last-focus yet */
       phosh_toplevel_activate (toplevel, phosh_wayland_get_wl_seat (phosh_wayland_get_default ()));
       g_signal_emit (self, signals[APP_ACTIVATED], 0, info);
