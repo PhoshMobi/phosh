@@ -83,8 +83,12 @@ phosh_get_desktop_app_info_for_app_id (const char *app_id)
   if (app_info)
     return g_object_ref (app_info);
 
+  app_info = phosh_app_list_model_lookup_by_exec (model, app_id);
+  if (app_info)
+    return g_object_ref (app_info);
+
   /* try to handle the case where app-id is rev-DNS, but desktop file is not */
-  last_component = strrchr(app_id, '.');
+  last_component = strrchr (app_id, '.');
   if (last_component) {
     /* Skip past '.' */
     last_component++;
@@ -101,6 +105,10 @@ phosh_get_desktop_app_info_for_app_id (const char *app_id)
   g_clear_pointer (&desktop_id, g_free);
 
   app_info = phosh_app_list_model_lookup_by_startup_wm_class (model, lowercase);
+  if (app_info)
+    return g_object_ref (app_info);
+
+  app_info = phosh_app_list_model_lookup_by_exec (model, lowercase);
   if (app_info)
     return g_object_ref (app_info);
 

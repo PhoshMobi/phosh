@@ -15,13 +15,15 @@
 #include "app-list-model.h"
 #include "folder-info.h"
 
+#include <gmobile.h>
+
 #include <gio/gio.h>
 
 typedef struct _PhoshAppListModelPrivate PhoshAppListModelPrivate;
 struct _PhoshAppListModelPrivate {
   GAppInfoMonitor *monitor;
 
-  GSequence *items;
+  GSequence       *items;
 
   guint debounce;
 
@@ -32,9 +34,10 @@ struct _PhoshAppListModelPrivate {
     GSequenceIter *iter;
   } last;
 
-  GSettings *settings;
+  GSettings  *settings;
 
   GHashTable *startup_wm_class;
+  GHashTable *exec_to_id;
 };
 
 static void list_iface_init (GListModelInterface *iface);
@@ -53,6 +56,7 @@ phosh_app_list_model_finalize (GObject *object)
   g_clear_handle_id (&priv->debounce, g_source_remove);
 
   g_clear_pointer (&priv->startup_wm_class, g_hash_table_destroy);
+  g_clear_pointer (&priv->exec_to_id, g_hash_table_destroy);
   g_clear_object (&priv->monitor);
   g_clear_object (&priv->settings);
 
@@ -182,6 +186,7 @@ items_changed (gpointer data)
   g_sequence_remove_range (g_sequence_get_begin_iter (priv->items),
                            g_sequence_get_end_iter (priv->items));
   g_hash_table_remove_all (priv->startup_wm_class);
+  g_hash_table_remove_all (priv->exec_to_id);
 
   folder_paths = g_settings_get_strv (priv->settings, "folder-children");
 
@@ -267,6 +272,10 @@ phosh_app_list_model_init (PhoshAppListModel *self)
                                                   g_str_equal,
                                                   g_free,
                                                   g_object_unref);
+  priv->exec_to_id = g_hash_table_new_full (g_str_hash,
+                                            g_str_equal,
+                                            g_free,
+                                            g_object_unref);
 
   priv->last.is_valid = FALSE;
 
@@ -281,7 +290,6 @@ phosh_app_list_model_init (PhoshAppListModel *self)
 
   on_monitor_changed_cb (priv->monitor, self);
 }
-
 
 /**
  * phosh_app_list_model_get_default:
@@ -321,4 +329,38 @@ phosh_app_list_model_lookup_by_startup_wm_class (PhoshAppListModel *self,
   g_return_val_if_fail (class, NULL);
 
   return g_hash_table_lookup (priv->startup_wm_class, class);
+}
+
+
+void
+phosh_app_list_model_add_exec (PhoshAppListModel *self,
+                               const char        *exec,
+                               GAppInfo          *info)
+{
+  PhoshAppListModelPrivate *priv = phosh_app_list_model_get_instance_private (self);
+  g_autofree char *bin = NULL, *cmd = NULL;
+  g_auto (GStrv) parts = NULL;
+
+  g_return_if_fail (PHOSH_IS_APP_LIST_MODEL (self));
+  g_return_if_fail (G_IS_APP_INFO (info));
+  g_return_if_fail (exec);
+
+  parts = g_strsplit (exec, " ", -1);
+  if (gm_strv_is_null_or_empty (parts))
+    return;
+
+  cmd = g_path_get_basename (parts[0]);
+  if (gm_str_is_null_or_empty (cmd))
+    return;
+
+  g_hash_table_insert (priv->exec_to_id, g_steal_pointer (&cmd), g_object_ref (info));
+}
+
+
+GDesktopAppInfo *
+phosh_app_list_model_lookup_by_exec (PhoshAppListModel *self, const char *exec)
+{
+  PhoshAppListModelPrivate *priv = phosh_app_list_model_get_instance_private (self);
+
+  return g_hash_table_lookup (priv->exec_to_id, exec);
 }

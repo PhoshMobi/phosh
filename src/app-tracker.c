@@ -10,6 +10,7 @@
 
 #include "phosh-config.h"
 
+#include "app-list-model.h"
 #include "app-tracker.h"
 #include "phosh-wayland.h"
 #include "shell-priv.h"
@@ -687,18 +688,19 @@ phosh_app_tracker_launch_app_info (PhoshAppTracker *self, GAppInfo *info)
 {
   g_autoptr (GdkAppLaunchContext) context = NULL;
   g_autoptr (GError) error = NULL;
-  PhoshToplevelManager *toplevel_manager = phosh_shell_get_toplevel_manager (phosh_shell_get_default ());
-  g_autofree char *app_id = NULL;
+  PhoshShell *shell = phosh_shell_get_default ();
+  PhoshToplevelManager *toplevel_manager = phosh_shell_get_toplevel_manager (shell);
+  g_autofree char *app_id = NULL, *exec = NULL;
   gboolean success;
 
   app_id = phosh_strip_suffix_from_app_id (g_app_info_get_id (G_APP_INFO (info)));
   g_debug ("Launching '%s'", app_id);
 
-  for (guint i=0; i < phosh_toplevel_manager_get_num_toplevels (toplevel_manager); i++) {
+  for (guint i = 0; i < phosh_toplevel_manager_get_num_toplevels (toplevel_manager); i++) {
     PhoshToplevel *toplevel = phosh_toplevel_manager_get_toplevel (toplevel_manager, i);
     const char *window_id = phosh_toplevel_get_app_id (toplevel);
-    g_autoptr (GDesktopAppInfo) toplevel_app_info = phosh_get_desktop_app_info_for_app_id (window_id);
-    if (toplevel_app_info && g_app_info_equal (G_APP_INFO (toplevel_app_info), G_APP_INFO (info))) {
+    g_autoptr (GDesktopAppInfo) toplevel_info = phosh_get_desktop_app_info_for_app_id (window_id);
+    if (toplevel_info && g_app_info_equal (G_APP_INFO (toplevel_info), G_APP_INFO (info))) {
       /* activate the first matching window for now, since we don't have toplevels sorted by last-focus yet */
       phosh_toplevel_activate (toplevel, phosh_wayland_get_wl_seat (phosh_wayland_get_default ()));
       g_signal_emit (self, signals[APP_ACTIVATED], 0, info);
@@ -721,6 +723,10 @@ phosh_app_tracker_launch_app_info (PhoshAppTracker *self, GAppInfo *info)
                             "launch-failed",
                             G_CALLBACK (on_app_launch_failed),
                             self);
+
+  exec = g_desktop_app_info_get_string (G_DESKTOP_APP_INFO (info), "Exec");
+  if (exec)
+    phosh_app_list_model_add_exec (phosh_app_list_model_get_default (), exec, info);
 
   success = g_desktop_app_info_launch_uris_as_manager (G_DESKTOP_APP_INFO (info),
                                                        NULL,
