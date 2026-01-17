@@ -590,23 +590,22 @@ get_running_activities (PhoshOverview *self)
 
 
 static void
-on_toplevel_added (PhoshOverview *self, PhoshToplevel *toplevel, PhoshToplevelManager *manager)
+on_toplevel_added (PhoshOverview *self, PhoshToplevel *toplevel)
 {
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
   g_return_if_fail (PHOSH_IS_TOPLEVEL (toplevel));
-  g_return_if_fail (PHOSH_IS_TOPLEVEL_MANAGER (manager));
+
   toplevel_to_activity (self, toplevel);
 }
 
 
 static void
-on_toplevel_changed (PhoshOverview *self, PhoshToplevel *toplevel, PhoshToplevelManager *manager)
+on_toplevel_changed (PhoshOverview *self, PhoshToplevel *toplevel)
 {
   PhoshActivity *activity;
 
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
   g_return_if_fail (PHOSH_IS_TOPLEVEL (toplevel));
-  g_return_if_fail (PHOSH_IS_TOPLEVEL_MANAGER (manager));
 
   if (phosh_shell_get_state (phosh_shell_get_default ()) & PHOSH_STATE_OVERVIEW)
     return;
