@@ -10,7 +10,7 @@
 
 #include "toplevel.h"
 
-#define PHOSH_TYPE_TOPLEVEL_MANAGER (phosh_toplevel_manager_get_type())
+#define PHOSH_TYPE_TOPLEVEL_MANAGER (phosh_toplevel_manager_get_type ())
 
 G_DECLARE_FINAL_TYPE (PhoshToplevelManager,
                       phosh_toplevel_manager,

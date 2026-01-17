@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2019 Purism SPC
- *               2024 The Phosh Developers
+ *               2023-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -33,15 +33,18 @@ enum {
 };
 static GParamSpec *props[PROP_LAST_PROP];
 
+
 enum {
-  SIGNAL_TOPLEVEL_ADDED,
-  SIGNAL_TOPLEVEL_CHANGED,
+  TOPLEVEL_ADDED,
+  TOPLEVEL_CHANGED,
   N_SIGNALS
 };
-static guint signals[N_SIGNALS] = { 0 };
+static guint signals[N_SIGNALS];
+
 
 struct _PhoshToplevelManager {
   GObject parent;
+
   GPtrArray *toplevels;         /* (element-type: PhoshToplevel) */
   GPtrArray *toplevels_pending; /* (element-type: PhoshToplevel) */
 };
@@ -104,11 +107,11 @@ on_toplevel_configured (PhoshToplevelManager *self, GParamSpec *pspec, PhoshTopl
     return;
 
   if (g_ptr_array_find (self->toplevels, toplevel, NULL)) {
-    g_signal_emit (self, signals[SIGNAL_TOPLEVEL_CHANGED], 0, toplevel);
+    g_signal_emit (self, signals[TOPLEVEL_CHANGED], 0, toplevel);
   } else {
     g_assert_true (g_ptr_array_remove (self->toplevels_pending, toplevel));
     g_ptr_array_add (self->toplevels, toplevel);
-    g_signal_emit (self, signals[SIGNAL_TOPLEVEL_ADDED], 0, toplevel);
+    g_signal_emit (self, signals[TOPLEVEL_ADDED], 0, toplevel);
     g_object_notify_by_pspec (G_OBJECT (self), props[PROP_NUM_TOPLEVELS]);
   }
 }
@@ -175,16 +178,16 @@ phosh_toplevel_manager_class_init (PhoshToplevelManagerClass *klass)
   object_class->dispose = phosh_toplevel_manager_dispose;
   object_class->get_property = phosh_toplevel_get_property;
 
+  /**
+   * PhoshToplevelManager:num-toplevels:
+   *
+   * The current number of toplevels
+   */
   props[PROP_NUM_TOPLEVELS] =
-    g_param_spec_int ("num-toplevels",
-                      "Number of toplevels",
-                      "The current number of toplevels",
-                      0,
-                      G_MAXINT,
-                      0,
-                      G_PARAM_READABLE |
-                      G_PARAM_STATIC_STRINGS |
-                      G_PARAM_EXPLICIT_NOTIFY);
+    g_param_spec_int ("num-toplevels", "", "",
+                      0, G_MAXINT, 0,
+                      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+
   g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 
   /**
@@ -194,10 +197,13 @@ phosh_toplevel_manager_class_init (PhoshToplevelManagerClass *klass)
    *
    * Emitted whenever a toplevel has been added to the list.
    */
-  signals[SIGNAL_TOPLEVEL_ADDED] = g_signal_new (
-    "toplevel-added",
-    G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST, 0, NULL, NULL,
-    NULL, G_TYPE_NONE, 1, PHOSH_TYPE_TOPLEVEL);
+  signals[TOPLEVEL_ADDED] = g_signal_new ("toplevel-added",
+                                          G_TYPE_FROM_CLASS (klass),
+                                          G_SIGNAL_RUN_LAST,
+                                          0, NULL, NULL, NULL,
+                                          G_TYPE_NONE,
+                                          1,
+                                          PHOSH_TYPE_TOPLEVEL);
   /**
    * PhoshToplevelManager::toplevel-changed:
    * @manager: The #PhoshToplevelManager emitting the signal.
@@ -205,10 +211,13 @@ phosh_toplevel_manager_class_init (PhoshToplevelManagerClass *klass)
    *
    * Emitted whenever a toplevel has changed properties.
    */
-  signals[SIGNAL_TOPLEVEL_CHANGED] = g_signal_new (
-    "toplevel-changed",
-    G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST, 0, NULL, NULL,
-    NULL, G_TYPE_NONE, 1, PHOSH_TYPE_TOPLEVEL);
+  signals[TOPLEVEL_CHANGED] = g_signal_new ("toplevel-changed",
+                                            G_TYPE_FROM_CLASS (klass),
+                                            G_SIGNAL_RUN_LAST,
+                                            0, NULL, NULL, NULL,
+                                            G_TYPE_NONE,
+                                            1,
+                                            PHOSH_TYPE_TOPLEVEL);
 }
 
 
@@ -216,11 +225,11 @@ static void
 phosh_toplevel_manager_init (PhoshToplevelManager *self)
 {
   struct zwlr_foreign_toplevel_manager_v1 *toplevel_manager;
+  PhoshWayland *wayland = phosh_wayland_get_default ();
 
-  toplevel_manager =
-    phosh_wayland_get_zwlr_foreign_toplevel_manager_v1 (phosh_wayland_get_default ());
+  toplevel_manager = phosh_wayland_get_zwlr_foreign_toplevel_manager_v1 (wayland);
 
-  self->toplevels = g_ptr_array_new_with_free_func ((GDestroyNotify) (g_object_unref));
+  self->toplevels = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
   self->toplevels_pending = g_ptr_array_new ();
 
   if (!toplevel_manager) {
@@ -229,7 +238,8 @@ phosh_toplevel_manager_init (PhoshToplevelManager *self)
   }
 
   zwlr_foreign_toplevel_manager_v1_add_listener (toplevel_manager,
-                                                 &zwlr_foreign_toplevel_manager_listener, self);
+                                                 &zwlr_foreign_toplevel_manager_listener,
+                                                 self);
 }
 
 

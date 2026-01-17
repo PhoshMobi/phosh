@@ -11,8 +11,8 @@
 
 
 enum {
-  SIGNAL_TOPLEVEL_ADDED,
-  SIGNAL_TOPLEVEL_CHANGED,
+  TOPLEVEL_ADDED,
+  TOPLEVEL_CHANGED,
   N_SIGNALS
 };
 static guint signals[N_SIGNALS] = { 0 };
@@ -27,14 +27,21 @@ G_DEFINE_TYPE (PhoshToplevelManager, phosh_toplevel_manager, G_TYPE_OBJECT);
 static void
 phosh_toplevel_manager_class_init (PhoshToplevelManagerClass *klass)
 {
-  signals[SIGNAL_TOPLEVEL_ADDED] = g_signal_new (
-    "toplevel-added",
-    G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST, 0, NULL, NULL,
-    NULL, G_TYPE_NONE, 1, PHOSH_TYPE_TOPLEVEL);
-  signals[SIGNAL_TOPLEVEL_ADDED] = g_signal_new (
-    "toplevel-changed",
-    G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST, 0, NULL, NULL,
-    NULL, G_TYPE_NONE, 1, PHOSH_TYPE_TOPLEVEL);
+  signals[TOPLEVEL_ADDED] = g_signal_new ("toplevel-added",
+                                          G_TYPE_FROM_CLASS (klass),
+                                          G_SIGNAL_RUN_LAST,
+                                          0, NULL, NULL, NULL,
+                                          G_TYPE_NONE,
+                                          1,
+                                          PHOSH_TYPE_TOPLEVEL);
+
+  signals[TOPLEVEL_ADDED] = g_signal_new ("toplevel-changed",
+                                          G_TYPE_FROM_CLASS (klass),
+                                          G_SIGNAL_RUN_LAST,
+                                          0, NULL, NULL, NULL,
+                                          G_TYPE_NONE,
+                                          1,
+                                          PHOSH_TYPE_TOPLEVEL);
 }
 
 
