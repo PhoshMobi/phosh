@@ -74,8 +74,6 @@ on_toplevel_closed (PhoshToplevelManager *self, PhoshToplevel *toplevel)
 {
   g_return_if_fail (PHOSH_IS_TOPLEVEL_MANAGER (self));
   g_return_if_fail (PHOSH_IS_TOPLEVEL (toplevel));
-  g_return_if_fail (self->toplevels);
-  g_return_if_fail (self->toplevels_pending);
 
   /* Check if toplevel exists in toplevels_pending, in that case it is
    * not yet configured and we just remove it from toplevels_pending
@@ -98,8 +96,6 @@ on_toplevel_configured (PhoshToplevelManager *self, GParamSpec *pspec, PhoshTopl
   gboolean configured;
   g_return_if_fail (PHOSH_IS_TOPLEVEL_MANAGER (self));
   g_return_if_fail (PHOSH_IS_TOPLEVEL (toplevel));
-  g_return_if_fail (self->toplevels);
-  g_return_if_fail (self->toplevels_pending);
 
   configured = phosh_toplevel_is_configured (toplevel);
 
