@@ -16,15 +16,15 @@
 # Tim Sabsch <tim@sabsch.com>, 2020, 2024.
 # Michael Oppliger <mj.oppliger@gmail.com>, 2021.
 # Philipp Kiemle <l10n@prly.mozmail.com>, 2021, 2023-2025.
-# Jürgen Benvenuti <gastornis@posteo.org>, 2022-2025.
+# Jürgen Benvenuti <gastornis@posteo.org>, 2022-2026.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-11-21 07:43+0000\n"
-"PO-Revision-Date: 2025-11-23 11:03+0100\n"
+"POT-Creation-Date: 2025-12-31 16:32+0000\n"
+"PO-Revision-Date: 2026-01-08 21:56+0100\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -168,11 +168,11 @@ msgstr "Neuen Ordner erstellen"
 msgid "Application"
 msgstr "Anwendung"
 
-#: src/app-grid.c:261
+#: src/app-grid.c:264
 msgid "Show All Apps"
 msgstr "Alle Anwendungen anzeigen"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:267
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Nur mobiloptimierte Anwendungen anzeigen"
 
@@ -308,11 +308,11 @@ msgid "No"
 msgstr "Nein"
 
 #. give visual feedback on error
-#: src/lockscreen.c:313 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:397 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "Zugangscode eingeben"
 
-#: src/lockscreen.c:956
+#: src/lockscreen.c:1041
 msgid "Checking…"
 msgstr "Überprüfung läuft …"
 
@@ -557,7 +557,7 @@ msgstr "Die Passwörter stimmen nicht überein."
 msgid "Password cannot be blank"
 msgstr "Das Passwort darf nicht leer sein"
 
-#: src/torch-info.c:80
+#: src/torch-info.c:84
 msgid "Torch"
 msgstr "Taschenlampe"
 
@@ -762,6 +762,7 @@ msgid "Wi-Fi"
 msgstr "WLAN"
 
 #: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
 msgstr "WLAN-Einstellungen"
 
@@ -839,7 +840,7 @@ msgstr "Keine Koffein-Intervalle"
 #: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:171
 msgid "No timeout (∞)"
-msgstr ""
+msgstr "Keine Zeitüberschreitung (∞)"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:7
 msgid "Caffeine Quick Setting Preferences"
@@ -1197,7 +1198,7 @@ msgstr "Endet"
 msgid "Untitled event"
 msgstr "Unbenannter Termin"
 
-#: plugins/upcoming-events/upcoming-events.c:372
+#: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
 msgid "No events for the next %d days"
 msgstr "Kein Termin für die nächsten %d Tage"
@@ -1225,7 +1226,7 @@ msgstr "Anzahl der Tage, für die Termine angezeigt werden sollen"
 
 #: plugins/scaling-quick-setting/qs.ui:14
 msgid "Monitor scales"
-msgstr ""
+msgstr "Bildschirmskalierung"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
@@ -1234,11 +1235,19 @@ msgstr ""
 msgid "%d%%"
 msgstr "%d %%"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:75
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+msgid "Wi-Fi Hotspot"
+msgstr "WLAN-Hotspot"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
+msgid "Turn On"
+msgstr "Einschalten"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
 msgid "Hotspot On"
 msgstr "Hotspot an"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:77
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Hotspot aus"
 
