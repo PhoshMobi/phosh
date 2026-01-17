@@ -13,6 +13,7 @@
 enum {
   TOPLEVEL_ADDED,
   TOPLEVEL_CHANGED,
+  TOPLEVEL_MISSING,
   N_SIGNALS
 };
 static guint signals[N_SIGNALS] = { 0 };
@@ -42,6 +43,14 @@ phosh_toplevel_manager_class_init (PhoshToplevelManagerClass *klass)
                                           G_TYPE_NONE,
                                           1,
                                           PHOSH_TYPE_TOPLEVEL);
+
+  signals[TOPLEVEL_MISSING] = g_signal_new ("toplevel-missing",
+                                            G_TYPE_FROM_CLASS (klass),
+                                            G_SIGNAL_RUN_LAST,
+                                            0, NULL, NULL, NULL,
+                                            G_TYPE_NONE,
+                                            1,
+                                            G_TYPE_APP_INFO);
 }
 
 
