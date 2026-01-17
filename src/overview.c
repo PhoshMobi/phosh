@@ -195,7 +195,6 @@ on_app_ready (PhoshOverview   *self,
   g_return_if_fail (G_IS_APP_INFO (info));
 
   g_debug ("Activity '%s' started", g_app_info_get_id (info));
-  /* TODO: add timer to clean up in case we never get a toplevel */
 }
 
 
@@ -618,6 +617,27 @@ on_toplevel_changed (PhoshOverview *self, PhoshToplevel *toplevel)
 
 
 static void
+on_toplevel_missing (PhoshOverview *self, GAppInfo *info)
+{
+  PhoshActivity *activity;
+
+  g_return_if_fail (PHOSH_IS_OVERVIEW (self));
+  g_return_if_fail (G_IS_APP_INFO (info));
+
+  activity = find_activity_by_app_info (self, info);
+  if (!activity)
+    return;
+
+  /* Activity is not a splash screen, so keep it */
+  if (phosh_activity_get_has_thumbnail (activity))
+    return;
+
+  g_warning ("App %s didn't present a toplevel, hiding splash", g_app_info_get_id (info));
+  gtk_widget_destroy (GTK_WIDGET (activity));
+}
+
+
+static void
 on_n_pages_changed (PhoshOverview *self)
 {
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
@@ -701,6 +721,7 @@ phosh_overview_constructed (GObject *object)
   g_object_connect (toplevel_manager,
                     "swapped-object-signal::toplevel-added", on_toplevel_added, self,
                     "swapped-object-signal::toplevel-changed", on_toplevel_changed, self,
+                    "swapped-object-signal::toplevel-missing", on_toplevel_missing, self,
                     NULL);
 
   get_running_activities (self);
