@@ -105,10 +105,9 @@ typedef struct {
   PhoshAuth          *auth;
   GSettings          *lockscreen_settings;
 
-  /* Volume Gesture */
   struct {
-    GtkGesture *gesture;
-    double      x_start, y_start;
+    GtkGesture *swipe_gesture;
+    double      x_start;
     double      base;
   } brightness;
 
@@ -134,7 +133,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (PhoshLockscreen, phosh_lockscreen, PHOSH_TYPE_LAYER_
 static gboolean
 is_valid (PhoshLockscreen *self, GtkGesture *gesture, double *x_center)
 {
-  double y_center, scale;
+  double y_center, v_x, v_y;
   uint height;
   gboolean active;
 
@@ -147,20 +146,20 @@ is_valid (PhoshLockscreen *self, GtkGesture *gesture, double *x_center)
   if (y_center > 0.5 * height)
     return FALSE;
 
-  scale = gtk_gesture_zoom_get_scale_delta (GTK_GESTURE_ZOOM (gesture));
-  /* We don't want to actually zoom */
-  if (scale >= 0.9 && scale <= 1.1) {
+  if (!gtk_gesture_swipe_get_velocity (GTK_GESTURE_SWIPE (gesture), &v_x, &v_y))
+    return FALSE;
+
+  if (ABS (v_x) > 3.0 * ABS (v_y))
     return TRUE;
-  }
 
   return FALSE;
 }
 
 
 static void
-on_zoom_gesture_update (PhoshLockscreen  *self,
-                        GdkEventSequence *sequence,
-                        GtkGesture       *gesture)
+on_swipe_gesture_update (PhoshLockscreen  *self,
+                         GdkEventSequence *sequence,
+                         GtkGesture       *gesture)
 {
   PhoshLockscreenPrivate *priv = phosh_lockscreen_get_instance_private (self);
   PhoshBrightnessManager *manager;
@@ -175,7 +174,10 @@ on_zoom_gesture_update (PhoshLockscreen  *self,
 
   manager = phosh_shell_get_brightness_manager (phosh_shell_get_default ());
   width = gtk_widget_get_allocated_width (GTK_WIDGET (self));
-  brightness = priv->brightness.base + (x_center - priv->brightness.x_start) / width;
+
+  brightness = priv->brightness.base;
+  /* Use at least 1% steps to avoid too many updates */
+  brightness += 0.01 * (int)(100 * (x_center - priv->brightness.x_start) / width);
 
   g_debug ("Brightness gesture updating: %f", brightness);
   phosh_brightness_manager_set_value (manager, CLAMP (brightness, 0.0, 1.0), TRUE);
@@ -183,9 +185,9 @@ on_zoom_gesture_update (PhoshLockscreen  *self,
 
 
 static void
-on_zoom_gesture_begin (PhoshLockscreen  *self,
-                       GdkEventSequence *sequence,
-                       GtkGesture       *gesture)
+on_swipe_gesture_begin (PhoshLockscreen  *self,
+                        GdkEventSequence *sequence,
+                        GtkGesture       *gesture)
 {
   gdouble x_center;
   PhoshLockscreenPrivate *priv = phosh_lockscreen_get_instance_private (self);
@@ -979,7 +981,6 @@ phosh_lockscreen_dispose (GObject *object)
   PhoshLockscreen *self = PHOSH_LOCKSCREEN (object);
   PhoshLockscreenPrivate *priv = phosh_lockscreen_get_instance_private (self);
 
-  g_clear_object (&priv->brightness.gesture);
   g_clear_object (&priv->notification_settings);
   g_clear_handle_id (&priv->idle_timer, g_source_remove);
   g_clear_object (&priv->calls_manager);
@@ -1135,6 +1136,14 @@ phosh_lockscreen_class_init (PhoshLockscreenClass *klass)
   gtk_widget_class_bind_template_callback_full (widget_class,
                                                 "carousel_page_changed_cb",
                                                 G_CALLBACK (carousel_page_changed_cb));
+  gtk_widget_class_bind_template_child_full (widget_class,
+                                             "swipe_gesture",
+                                             FALSE,
+                                             G_PRIVATE_OFFSET (PhoshLockscreen,
+                                                               brightness.swipe_gesture));
+
+  gtk_widget_class_bind_template_callback (widget_class, on_swipe_gesture_begin);
+  gtk_widget_class_bind_template_callback (widget_class, on_swipe_gesture_update);
 
   /* main deck */
   gtk_widget_class_bind_template_callback (widget_class, deck_forward_clicked_cb);
@@ -1195,14 +1204,6 @@ phosh_lockscreen_init (PhoshLockscreen *self)
   /* LTR doesn't work for the deck
    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1132 */
   gtk_widget_set_direction (GTK_WIDGET (priv->deck), GTK_TEXT_DIR_LTR);
-
-  priv->brightness.gesture = gtk_gesture_zoom_new (GTK_WIDGET (self));
-  g_object_connect (priv->brightness.gesture,
-                    "swapped-object-signal::begin", on_zoom_gesture_begin, self,
-                    "swapped-object-signal::update", on_zoom_gesture_update, self,
-                    NULL);
-  gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (priv->brightness.gesture),
-                                              GTK_PHASE_CAPTURE);
 }
 
 
