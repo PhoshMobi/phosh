@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2018 Purism SPC
+ *               2025 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -9,22 +10,19 @@
  * Copyright (C) 2008 Red Hat, Inc.
  */
 
-#define G_LOG_DOMAIN "phosh-settings-volctrl"
+#define G_LOG_DOMAIN "phosh-channel-bar"
 
 #include "phosh-config.h"
 
-#include "gvc-channel-bar.h"
+#include "channel-bar.h"
 
 #include <glib/gi18n-lib.h>
 #include <math.h>
 #include <pulse/pulseaudio.h>
 
-#define SCALE_SIZE 128
 #define ADJUSTMENT_MAX_NORMAL PA_VOLUME_NORM
 #define ADJUSTMENT_MAX_AMPLIFIED PA_VOLUME_UI_MAX
 #define ADJUSTMENT_MAX (self->is_amplified ? ADJUSTMENT_MAX_AMPLIFIED : ADJUSTMENT_MAX_NORMAL)
-#define SCROLLSTEP (ADJUSTMENT_MAX / 100.0 * 5.0)
-
 
 enum
 {
@@ -44,8 +42,7 @@ enum {
 static guint signals[N_SIGNALS] = { 0 };
 
 
-struct _GvcChannelBar
-{
+struct _PhoshChannelBar {
   GtkBox         parent_instance;
 
   GtkWidget     *scale_box;
@@ -60,17 +57,17 @@ struct _GvcChannelBar
   guint32        base_volume;
 };
 
-G_DEFINE_TYPE (GvcChannelBar, gvc_channel_bar, GTK_TYPE_BOX)
+G_DEFINE_TYPE (PhoshChannelBar, phosh_channel_bar, GTK_TYPE_BOX)
 
 
 static void
-update_image (GvcChannelBar *self)
+update_image (PhoshChannelBar *self)
 {
   g_autoptr (GIcon) gicon = NULL;
 
   if (self->icon_name) {
-      gicon = g_themed_icon_new_with_default_fallbacks (self->icon_name);
-      gtk_image_set_from_gicon (GTK_IMAGE (self->image), gicon, -1);
+    gicon = g_themed_icon_new_with_default_fallbacks (self->icon_name);
+    gtk_image_set_from_gicon (GTK_IMAGE (self->image), gicon, -1);
   }
 
   gtk_widget_set_visible (self->image, self->icon_name != NULL);
@@ -78,10 +75,9 @@ update_image (GvcChannelBar *self)
 
 
 void
-gvc_channel_bar_set_size_group (GvcChannelBar *self,
-                                GtkSizeGroup  *group)
+phosh_channel_bar_set_size_group (PhoshChannelBar *self, GtkSizeGroup *group)
 {
-  g_return_if_fail (GVC_IS_CHANNEL_BAR (self));
+  g_return_if_fail (PHOSH_IS_CHANNEL_BAR (self));
 
   self->size_group = group;
 
@@ -93,10 +89,9 @@ gvc_channel_bar_set_size_group (GvcChannelBar *self,
 
 
 void
-gvc_channel_bar_set_icon_name (GvcChannelBar  *self,
-                               const char     *name)
+phosh_channel_bar_set_icon_name (PhoshChannelBar *self, const char *name)
 {
-  g_return_if_fail (GVC_IS_CHANNEL_BAR (self));
+  g_return_if_fail (PHOSH_IS_CHANNEL_BAR (self));
 
   if (g_strcmp0 (self->icon_name, name) == 0)
     return;
@@ -109,18 +104,18 @@ gvc_channel_bar_set_icon_name (GvcChannelBar  *self,
 
 
 GtkAdjustment *
-gvc_channel_bar_get_adjustment (GvcChannelBar *self)
+phosh_channel_bar_get_adjustment (PhoshChannelBar *self)
 {
-  g_return_val_if_fail (GVC_IS_CHANNEL_BAR (self), NULL);
+  g_return_val_if_fail (PHOSH_IS_CHANNEL_BAR (self), NULL);
 
   return self->adjustment;
 }
 
 
 static gboolean
-on_scale_button_press_event (GtkWidget      *widget,
-                             GdkEventButton *event,
-                             GvcChannelBar  *self)
+on_scale_button_press_event (GtkWidget       *widget,
+                             GdkEventButton  *event,
+                             PhoshChannelBar *self)
 {
   self->click_lock = TRUE;
 
@@ -129,9 +124,9 @@ on_scale_button_press_event (GtkWidget      *widget,
 
 
 static gboolean
-on_scale_button_release_event (GtkWidget      *widget,
-                               GdkEventButton *event,
-                               GvcChannelBar  *self)
+on_scale_button_release_event (GtkWidget       *widget,
+                               GdkEventButton  *event,
+                               PhoshChannelBar *self)
 {
   double value;
 
@@ -140,14 +135,14 @@ on_scale_button_release_event (GtkWidget      *widget,
 
   /* this means the adjustment moved away from zero and
    * therefore we should unmute and set the volume. */
-  gvc_channel_bar_set_is_muted (self, ((int)value == (int)0.0));
+  phosh_channel_bar_set_is_muted (self, ((int)value == (int)0.0));
 
   return FALSE;
 }
 
 
 static void
-on_adjustment_value_changed (GtkAdjustment *adjustment, GvcChannelBar *self)
+on_adjustment_value_changed (GtkAdjustment *adjustment, PhoshChannelBar *self)
 {
   if (!self->is_muted || self->click_lock)
     g_signal_emit (self, signals[VALUE_CHANGED], 0);
@@ -155,10 +150,9 @@ on_adjustment_value_changed (GtkAdjustment *adjustment, GvcChannelBar *self)
 
 
 void
-gvc_channel_bar_set_is_muted (GvcChannelBar *self,
-                              gboolean       is_muted)
+phosh_channel_bar_set_is_muted (PhoshChannelBar *self, gboolean is_muted)
 {
-  g_return_if_fail (GVC_IS_CHANNEL_BAR (self));
+  g_return_if_fail (PHOSH_IS_CHANNEL_BAR (self));
 
   if (is_muted == self->is_muted)
     return;
@@ -174,17 +168,17 @@ gvc_channel_bar_set_is_muted (GvcChannelBar *self,
 
 
 gboolean
-gvc_channel_bar_get_is_muted  (GvcChannelBar *self)
+phosh_channel_bar_get_is_muted  (PhoshChannelBar *self)
 {
-  g_return_val_if_fail (GVC_IS_CHANNEL_BAR (self), FALSE);
+  g_return_val_if_fail (PHOSH_IS_CHANNEL_BAR (self), FALSE);
   return self->is_muted;
 }
 
 
 void
-gvc_channel_bar_set_is_amplified (GvcChannelBar *self, gboolean amplified)
+phosh_channel_bar_set_is_amplified (PhoshChannelBar *self, gboolean amplified)
 {
-  g_return_if_fail (GVC_IS_CHANNEL_BAR (self));
+  g_return_if_fail (PHOSH_IS_CHANNEL_BAR (self));
 
   if (self->is_amplified == amplified)
     return;
@@ -222,10 +216,9 @@ gvc_channel_bar_set_is_amplified (GvcChannelBar *self, gboolean amplified)
 
 
 void
-gvc_channel_bar_set_base_volume (GvcChannelBar *self,
-                                 pa_volume_t    base_volume)
+phosh_channel_bar_set_base_volume (PhoshChannelBar *self, pa_volume_t base_volume)
 {
-  g_return_if_fail (GVC_IS_CHANNEL_BAR (self));
+  g_return_if_fail (PHOSH_IS_CHANNEL_BAR (self));
 
   if (base_volume == 0) {
     self->base_volume = ADJUSTMENT_MAX_NORMAL;
@@ -238,22 +231,22 @@ gvc_channel_bar_set_base_volume (GvcChannelBar *self,
 
 
 static void
-gvc_channel_bar_set_property (GObject       *object,
-                              guint          prop_id,
-                              const GValue  *value,
-                              GParamSpec    *pspec)
+phosh_channel_bar_set_property (GObject      *object,
+                                guint         prop_id,
+                                const GValue *value,
+                                GParamSpec   *pspec)
 {
-  GvcChannelBar *self = GVC_CHANNEL_BAR (object);
+  PhoshChannelBar *self = PHOSH_CHANNEL_BAR (object);
 
   switch (prop_id) {
   case PROP_IS_MUTED:
-    gvc_channel_bar_set_is_muted (self, g_value_get_boolean (value));
+    phosh_channel_bar_set_is_muted (self, g_value_get_boolean (value));
     break;
   case PROP_ICON_NAME:
-    gvc_channel_bar_set_icon_name (self, g_value_get_string (value));
+    phosh_channel_bar_set_icon_name (self, g_value_get_string (value));
     break;
   case PROP_IS_AMPLIFIED:
-    gvc_channel_bar_set_is_amplified (self, g_value_get_boolean (value));
+    phosh_channel_bar_set_is_amplified (self, g_value_get_boolean (value));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -263,12 +256,12 @@ gvc_channel_bar_set_property (GObject       *object,
 
 
 static void
-gvc_channel_bar_get_property (GObject     *object,
-                              guint        prop_id,
-                              GValue      *value,
-                              GParamSpec  *pspec)
+phosh_channel_bar_get_property (GObject    *object,
+                                guint       prop_id,
+                                GValue     *value,
+                                GParamSpec *pspec)
 {
-  GvcChannelBar *self = GVC_CHANNEL_BAR (object);
+  PhoshChannelBar *self = PHOSH_CHANNEL_BAR (object);
 
   switch (prop_id) {
   case PROP_IS_MUTED:
@@ -288,28 +281,28 @@ gvc_channel_bar_get_property (GObject     *object,
 
 
 static void
-gvc_channel_bar_finalize (GObject *object)
+phosh_channel_bar_finalize (GObject *object)
 {
-  GvcChannelBar *self = GVC_CHANNEL_BAR (object);
+  PhoshChannelBar *self = PHOSH_CHANNEL_BAR (object);
 
   g_free (self->icon_name);
 
-  G_OBJECT_CLASS (gvc_channel_bar_parent_class)->finalize (object);
+  G_OBJECT_CLASS (phosh_channel_bar_parent_class)->finalize (object);
 }
 
 
 static void
-gvc_channel_bar_class_init (GvcChannelBarClass *klass)
+phosh_channel_bar_class_init (PhoshChannelBarClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  object_class->finalize = gvc_channel_bar_finalize;
-  object_class->set_property = gvc_channel_bar_set_property;
-  object_class->get_property = gvc_channel_bar_get_property;
+  object_class->finalize = phosh_channel_bar_finalize;
+  object_class->set_property = phosh_channel_bar_set_property;
+  object_class->get_property = phosh_channel_bar_get_property;
 
   /**
-   * GvcChannelBar:is-muted:
+   * PhoshChannelBar:is-muted:
    *
    * Whether the stream is muted
    */
@@ -319,7 +312,7 @@ gvc_channel_bar_class_init (GvcChannelBarClass *klass)
                           G_PARAM_EXPLICIT_NOTIFY |
                           G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_CONSTRUCT);
   /**
-   * GvcChannelBar:icon-name:
+   * PhoshChannelBar:icon-name:
    *
    * The name of icon to display for this stream
    */
@@ -329,7 +322,7 @@ gvc_channel_bar_class_init (GvcChannelBarClass *klass)
                          G_PARAM_EXPLICIT_NOTIFY |
                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_CONSTRUCT);
   /**
-   * GvcChannelBar:is-amplified:
+   * PhoshChannelBar:is-amplified:
    *
    * Whether the stream is digitally amplified
    */
@@ -348,21 +341,21 @@ gvc_channel_bar_class_init (GvcChannelBarClass *klass)
                                          G_TYPE_NONE,
                                          0);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/mobi/phosh/ui/gvc-channel-bar.ui");
-  gtk_widget_class_bind_template_child (widget_class, GvcChannelBar, adjustment);
-  gtk_widget_class_bind_template_child (widget_class, GvcChannelBar, scale_box);
-  gtk_widget_class_bind_template_child (widget_class, GvcChannelBar, image);
-  gtk_widget_class_bind_template_child (widget_class, GvcChannelBar, scale);
+  gtk_widget_class_set_template_from_resource (widget_class, "/mobi/phosh/ui/channel-bar.ui");
+  gtk_widget_class_bind_template_child (widget_class, PhoshChannelBar, adjustment);
+  gtk_widget_class_bind_template_child (widget_class, PhoshChannelBar, scale_box);
+  gtk_widget_class_bind_template_child (widget_class, PhoshChannelBar, image);
+  gtk_widget_class_bind_template_child (widget_class, PhoshChannelBar, scale);
   gtk_widget_class_bind_template_callback (widget_class, on_adjustment_value_changed);
   gtk_widget_class_bind_template_callback (widget_class, on_scale_button_press_event);
   gtk_widget_class_bind_template_callback (widget_class, on_scale_button_release_event);
 
-  gtk_widget_class_set_css_name (widget_class, "phosh-gvc-channel-bar");
+  gtk_widget_class_set_css_name (widget_class, "phosh-channel-bar");
 }
 
 
 static void
-gvc_channel_bar_init (GvcChannelBar *self)
+phosh_channel_bar_init (PhoshChannelBar *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
 
@@ -376,18 +369,18 @@ gvc_channel_bar_init (GvcChannelBar *self)
 
 
 GtkWidget *
-gvc_channel_bar_new (void)
+phosh_channel_bar_new (void)
 {
-  return g_object_new (GVC_TYPE_CHANNEL_BAR,
+  return g_object_new (PHOSH_TYPE_CHANNEL_BAR,
                        "icon-name", "audio-speakers-symbolic",
                        NULL);
 }
 
 
 double
-gvc_channel_bar_get_volume (GvcChannelBar *self)
+phosh_channel_bar_get_volume (PhoshChannelBar *self)
 {
-  g_return_val_if_fail (GVC_IS_CHANNEL_BAR (self), 0.0);
+  g_return_val_if_fail (PHOSH_IS_CHANNEL_BAR (self), 0.0);
 
   return gtk_adjustment_get_value (self->adjustment);
 }

@@ -16,7 +16,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (PhoshAudioDevices, phosh_audio_devices, PHOSH, AUDIO_DEVICES, GObject)
 
-PhoshAudioDevices         *phosh_audio_devices_new       (gpointer  mixer_control,
-                                                          gboolean  is_input);
+PhoshAudioDevices         *phosh_audio_devices_new       (GvcMixerControl *mixer_control,
+                                                          gboolean         is_input);
 
 G_END_DECLS

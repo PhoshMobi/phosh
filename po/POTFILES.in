@@ -21,6 +21,7 @@ src/app-grid-button.c
 src/app-grid.c
 src/app-list-model.c
 src/arrow.c
+src/audio-manager.c
 src/auth.c
 src/background.c
 src/background-manager.c

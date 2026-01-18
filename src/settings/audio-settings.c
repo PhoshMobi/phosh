@@ -12,15 +12,14 @@
 
 #include <pulse/pulseaudio.h>
 
+#include "audio/audio-device.h"
+#include "audio-manager.h"
 #include "fading-label.h"
 #include "settings/audio-device-row.h"
-#include "settings/audio-device.h"
-#include "settings/audio-devices.h"
 #include "settings/audio-settings.h"
-#include "settings/gvc-channel-bar.h"
+#include "settings/channel-bar.h"
 #include "util.h"
 
-#include "gvc-mixer-control.h"
 #include "gvc-mixer-stream.h"
 
 #include <gmobile.h>
@@ -45,14 +44,12 @@ static GParamSpec *props[PROP_LAST_PROP];
 struct _PhoshAudioSettings {
   GtkBin             parent;
 
-  GvcMixerControl   *mixer_control;
-
   /* Volume slider */
   GvcMixerStream    *output_stream;
   gboolean           allow_volume_above_100_percent;
   gboolean           setting_volume;
   gboolean           is_headphone;
-  GtkWidget         *output_vol_bar;
+  PhoshChannelBar   *output_vol_bar;
 
   /* Device select */
   GtkWidget         *stack_audio_details;
@@ -61,8 +58,8 @@ struct _PhoshAudioSettings {
   GtkWidget         *box_audio_output_devices;
   GtkWidget         *listbox_audio_input_devices;
   GtkWidget         *listbox_audio_output_devices;
-  PhoshAudioDevices *audio_input_devices;
-  PhoshAudioDevices *audio_output_devices;
+
+  PhoshAudioManager *audio_manager;
 };
 G_DEFINE_TYPE (PhoshAudioSettings, phosh_audio_settings, GTK_TYPE_BIN)
 
@@ -73,12 +70,12 @@ update_output_vol_bar (PhoshAudioSettings *self)
   GtkAdjustment *adj;
 
   self->setting_volume = TRUE;
-  gvc_channel_bar_set_base_volume (GVC_CHANNEL_BAR (self->output_vol_bar),
-                                   gvc_mixer_stream_get_base_volume (self->output_stream));
-  gvc_channel_bar_set_is_amplified (GVC_CHANNEL_BAR (self->output_vol_bar),
-                                    self->allow_volume_above_100_percent &&
-                                    gvc_mixer_stream_get_can_decibel (self->output_stream));
-  adj = GTK_ADJUSTMENT (gvc_channel_bar_get_adjustment (GVC_CHANNEL_BAR (self->output_vol_bar)));
+  phosh_channel_bar_set_base_volume (self->output_vol_bar,
+                                     gvc_mixer_stream_get_base_volume (self->output_stream));
+  phosh_channel_bar_set_is_amplified (self->output_vol_bar,
+                                      self->allow_volume_above_100_percent &&
+                                      gvc_mixer_stream_get_can_decibel (self->output_stream));
+  adj = phosh_channel_bar_get_adjustment (self->output_vol_bar);
   g_debug ("Adjusting volume to %d", gvc_mixer_stream_get_volume (self->output_stream));
   gtk_adjustment_set_value (adj, gvc_mixer_stream_get_volume (self->output_stream));
   self->setting_volume = FALSE;
@@ -93,7 +90,7 @@ output_stream_notify_is_muted_cb (GvcMixerStream *stream, GParamSpec *pspec, gpo
 
   muted = gvc_mixer_stream_get_is_muted (stream);
   if (!self->setting_volume) {
-    gvc_channel_bar_set_is_muted (GVC_CHANNEL_BAR (self->output_vol_bar), muted);
+    phosh_channel_bar_set_is_muted (self->output_vol_bar, muted);
     if (!muted)
       update_output_vol_bar (self);
   }
@@ -142,7 +139,9 @@ on_output_stream_port_changed (GvcMixerStream *stream, GParamSpec *pspec, gpoint
   const char *icon = NULL;
   gboolean is_headphone = FALSE;
   const GvcMixerStreamPort *port;
+  GvcMixerControl *mixer_control;
 
+  mixer_control = phosh_audio_manager_get_mixer_control (self->audio_manager);
   port = gvc_mixer_stream_get_port (stream);
   if (port)
     g_debug ("Port changed: %s (%s)", port->human_port ?: port->port, port->port);
@@ -153,7 +152,7 @@ on_output_stream_port_changed (GvcMixerStream *stream, GParamSpec *pspec, gpoint
   } else {
     GvcMixerUIDevice *output;
 
-    output = gvc_mixer_control_lookup_device_from_stream (self->mixer_control, stream);
+    output = gvc_mixer_control_lookup_device_from_stream (mixer_control, stream);
     if (output)
       icon = gvc_mixer_ui_device_get_icon_name (output);
   }
@@ -161,7 +160,7 @@ on_output_stream_port_changed (GvcMixerStream *stream, GParamSpec *pspec, gpoint
   if (gm_str_is_null_or_empty (icon) || g_str_has_prefix (icon, "audio-card"))
     icon = "audio-speakers";
 
-  gvc_channel_bar_set_icon_name (GVC_CHANNEL_BAR (self->output_vol_bar), icon);
+  phosh_channel_bar_set_icon_name (self->output_vol_bar, icon);
 
   if (is_headphone == self->is_headphone)
     return;
@@ -183,7 +182,7 @@ mixer_control_output_update_cb (GvcMixerControl *mixer, guint id, gpointer data)
   if (self->output_stream)
     g_signal_handlers_disconnect_by_data (self->output_stream, self);
 
-  g_set_object (&self->output_stream, gvc_mixer_control_get_default_sink (self->mixer_control));
+  g_set_object (&self->output_stream, phosh_audio_manager_get_default_sink (self->audio_manager));
   g_return_if_fail (self->output_stream);
 
   g_signal_connect_object (self->output_stream,
@@ -207,15 +206,15 @@ mixer_control_output_update_cb (GvcMixerControl *mixer, guint id, gpointer data)
 
 
 static void
-vol_bar_value_changed_cb (GvcChannelBar *bar, PhoshAudioSettings *self)
+vol_bar_value_changed_cb (PhoshChannelBar *bar, PhoshAudioSettings *self)
 {
   double volume, rounded;
   g_autofree char *name = NULL;
 
   if (!self->output_stream)
-    self->output_stream = g_object_ref (gvc_mixer_control_get_default_sink (self->mixer_control));
+    self->output_stream = g_object_ref (phosh_audio_manager_get_default_sink (self->audio_manager));
 
-  volume = gvc_channel_bar_get_volume (bar);
+  volume = phosh_channel_bar_get_volume (bar);
   rounded = round (volume);
 
   g_object_get (self->output_vol_bar, "name", &name, NULL);
@@ -235,13 +234,12 @@ on_audio_input_device_row_activated (PhoshAudioSettings  *self,
                                      GtkListBox          *list)
 {
   PhoshAudioDevice *audio_device = phosh_audio_device_row_get_audio_device (row);
-  GvcMixerUIDevice *device;
   guint id;
 
   g_return_if_fail (PHOSH_IS_AUDIO_DEVICE (audio_device));
   id = phosh_audio_device_get_id (audio_device);
-  device = gvc_mixer_control_lookup_input_id (self->mixer_control, id);
-  gvc_mixer_control_change_input (self->mixer_control, device);
+
+  phosh_audio_manager_change_input (self->audio_manager, id);
 }
 
 
@@ -251,13 +249,12 @@ on_audio_output_device_row_activated (PhoshAudioSettings  *self,
                                       GtkListBox          *list)
 {
   PhoshAudioDevice *audio_device = phosh_audio_device_row_get_audio_device (row);
-  GvcMixerUIDevice *device;
   guint id;
 
   g_return_if_fail (PHOSH_IS_AUDIO_DEVICE (audio_device));
   id = phosh_audio_device_get_id (audio_device);
-  device = gvc_mixer_control_lookup_output_id (self->mixer_control, id);
-  gvc_mixer_control_change_output (self->mixer_control, device);
+
+  phosh_audio_manager_change_output (self->audio_manager, id);
 }
 
 
@@ -295,21 +292,8 @@ phosh_audio_settings_dispose (GObject *object)
   PhoshAudioSettings *self = PHOSH_AUDIO_SETTINGS (object);
 
   g_clear_object (&self->output_stream);
-  g_clear_object (&self->audio_output_devices);
-  g_clear_object (&self->audio_input_devices);
 
   G_OBJECT_CLASS (phosh_audio_settings_parent_class)->dispose (object);
-}
-
-
-static void
-phosh_audio_settings_finalize (GObject *object)
-{
-  PhoshAudioSettings *self = PHOSH_AUDIO_SETTINGS (object);
-
-  g_clear_object (&self->mixer_control);
-
-  G_OBJECT_CLASS (phosh_audio_settings_parent_class)->finalize (object);
 }
 
 
@@ -321,7 +305,6 @@ phosh_audio_settings_class_init (PhoshAudioSettingsClass *klass)
 
   object_class->get_property = phosh_audio_settings_get_property;
   object_class->dispose = phosh_audio_settings_dispose;
-  object_class->finalize = phosh_audio_settings_finalize;
 
   /**
    * PhoshAudioSettings:is-headphone:
@@ -335,7 +318,7 @@ phosh_audio_settings_class_init (PhoshAudioSettingsClass *klass)
 
   g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 
-  g_type_ensure (GVC_TYPE_CHANNEL_BAR);
+  g_type_ensure (PHOSH_TYPE_CHANNEL_BAR);
   g_type_ensure (PHOSH_TYPE_FADING_LABEL);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/mobi/phosh/ui/audio-settings.ui");
@@ -371,17 +354,23 @@ transform_toggle_stack_child_name (GBinding     *binding,
 static void
 phosh_audio_settings_init (PhoshAudioSettings *self)
 {
+  PhoshAudioDevices *input_devices, *output_devices;
+  GvcMixerControl *mixer_control;
+
+  self->audio_manager = g_object_ref (phosh_audio_manager_get_default ());
+
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  self->mixer_control = gvc_mixer_control_new (_("Phone Shell Volume Control"));
-  g_return_if_fail (self->mixer_control);
+  mixer_control = phosh_audio_manager_get_mixer_control (self->audio_manager);
+  if (mixer_control)
+    g_return_if_fail (mixer_control);
 
   /* Volume slider */
-  gvc_mixer_control_open (self->mixer_control);
-  g_signal_connect (self->mixer_control,
-                    "active-output-update",
-                    G_CALLBACK (mixer_control_output_update_cb),
-                    self);
+  g_signal_connect_object (mixer_control,
+                           "active-output-update",
+                           G_CALLBACK (mixer_control_output_update_cb),
+                           self,
+                           G_CONNECT_DEFAULT);
   g_signal_connect (self->output_vol_bar,
                     "value-changed",
                     G_CALLBACK (vol_bar_value_changed_cb),
@@ -395,23 +384,23 @@ phosh_audio_settings_init (PhoshAudioSettings *self)
                                NULL, NULL, NULL);
 
   /* Audio device selection */
-  self->audio_output_devices = phosh_audio_devices_new (self->mixer_control, FALSE);
+  output_devices = phosh_audio_manager_get_output_devices (self->audio_manager);
   gtk_list_box_bind_model (GTK_LIST_BOX (self->listbox_audio_output_devices),
-                           G_LIST_MODEL (self->audio_output_devices),
+                           G_LIST_MODEL (output_devices),
                            create_audio_device_row,
                            self,
                            NULL);
-  g_object_bind_property (self->audio_output_devices, "has-devices",
+  g_object_bind_property (output_devices, "has-devices",
                           self->box_audio_output_devices, "visible",
                           G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
 
-  self->audio_input_devices = phosh_audio_devices_new (self->mixer_control, TRUE);
+  input_devices = phosh_audio_manager_get_input_devices (self->audio_manager);
   gtk_list_box_bind_model (GTK_LIST_BOX (self->listbox_audio_input_devices),
-                           G_LIST_MODEL (self->audio_input_devices),
+                           G_LIST_MODEL (input_devices),
                            create_audio_device_row,
                            self,
                            NULL);
-  g_object_bind_property (self->audio_input_devices, "has-devices",
+  g_object_bind_property (input_devices, "has-devices",
                           self->box_audio_input_devices, "visible",
                           G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
 }

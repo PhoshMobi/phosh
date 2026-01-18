@@ -11,6 +11,7 @@
 
 #include "phosh-config.h"
 
+#include "audio-manager.h"
 #include "shell-priv.h"
 #include "phosh-wayland.h"
 #include "wall-clock.h"
@@ -109,6 +110,7 @@ main (int argc, char *argv[])
   g_autoptr (PhoshMetainfoCache) metainfo_cache = NULL;
   g_autoptr (GTimer) timer = g_timer_new ();
   g_autoptr (PhoshWallClock) wall_clock = NULL;
+  g_autoptr (PhoshAudioManager) audio_manager = NULL;
 
   const GOptionEntry options [] = {
     {"unlocked", 'U', 0, G_OPTION_ARG_NONE, &unlocked,
@@ -146,6 +148,7 @@ main (int argc, char *argv[])
   wl = phosh_wayland_get_default ();
   background_cache = phosh_background_cache_get_default ();
   metainfo_cache = phosh_metainfo_cache_get_default ();
+  audio_manager = phosh_audio_manager_get_default ();
   shell = phosh_shell_new ();
   phosh_shell_set_default (shell);
 
