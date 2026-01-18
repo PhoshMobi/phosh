@@ -116,7 +116,7 @@ typedef struct {
   GtkWidget         *extra_page;
 
   /* widget box */
-  GtkWidget         *widget_box;
+  PhoshWidgetBox    *widget_box;
 
   /* Call page */
   GtkBox            *box_call_display;
@@ -690,8 +690,7 @@ on_deck_visible_child_changed (PhoshLockscreen *self, GParamSpec *pspec, HdyDeck
     swipe_forward = FALSE;
 
   /* Avoid backward swipe to widget-box if there's no plugin */
-  if (visible_child == priv->box_info &&
-      !phosh_widget_box_has_plugins (PHOSH_WIDGET_BOX (priv->widget_box)))
+  if (visible_child == priv->box_info && !phosh_widget_box_has_plugins (priv->widget_box))
     swipe_back = FALSE;
 
   hdy_deck_set_can_swipe_forward (deck, swipe_forward);
