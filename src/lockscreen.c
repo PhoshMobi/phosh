@@ -1154,11 +1154,11 @@ phosh_lockscreen_class_init (PhoshLockscreenClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, btn_submit);
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, btn_keyboard);
 
-  gtk_widget_class_bind_template_callback (widget_class, long_press_del_cb);
   gtk_widget_class_bind_template_callback (widget_class, delete_button_clicked_cb);
+  gtk_widget_class_bind_template_callback (widget_class, input_changed_cb);
+  gtk_widget_class_bind_template_callback (widget_class, long_press_del_cb);
   gtk_widget_class_bind_template_callback (widget_class, osk_button_clicked_cb);
   gtk_widget_class_bind_template_callback (widget_class, submit_cb);
-  gtk_widget_class_bind_template_callback (widget_class, input_changed_cb);
 
   /* info page */
   gtk_widget_class_bind_template_child_private (widget_class, PhoshLockscreen, box_info);
