@@ -267,8 +267,10 @@ on_night_light_temp_changed (PhoshBrightnessManager *self,
     return;
   self->auto_brightness.night_light_temp = temp;
 
-  if (self->auto_brightness.enabled)
-    g_debug ("Night light temp changed, getting new offset");
+  if (!self->auto_brightness.enabled)
+    return;
+
+  g_debug ("Night light temp changed, getting new offset");
   on_auto_brightness_changed (self);
 }
 
