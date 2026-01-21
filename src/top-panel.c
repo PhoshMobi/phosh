@@ -292,12 +292,21 @@ open_settings_panel (PhoshTopPanel *self, gboolean mobile, const char *panel)
 
 
 static void
+parse_panel_options (GSimpleAction *action, GVariant *data, const char **panel)
+{
+  g_assert (panel);
+
+  *panel = g_variant_get_string (data, NULL);
+}
+
+
+static void
 on_launch_panel_activated (GSimpleAction *action, GVariant *param, gpointer data)
 {
   PhoshTopPanel *self = PHOSH_TOP_PANEL (data);
   const char *panel;
 
-  panel = g_variant_get_string (param, NULL);
+  parse_panel_options (action, param, &panel);
 
   open_settings_panel (self, FALSE, panel);
   phosh_settings_hide_details (PHOSH_SETTINGS (self->settings));
@@ -310,7 +319,7 @@ on_launch_mobile_panel_activated (GSimpleAction *action, GVariant *param, gpoint
   PhoshTopPanel *self = PHOSH_TOP_PANEL (data);
   const char *panel;
 
-  panel = g_variant_get_string (param, NULL);
+  parse_panel_options (action, param, &panel);
 
   open_settings_panel (self, TRUE, panel);
   phosh_settings_hide_details (PHOSH_SETTINGS (self->settings));
