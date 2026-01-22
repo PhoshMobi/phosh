@@ -160,14 +160,15 @@ update_position (PhoshMediaPlayer *self)
 {
   PhoshMediaPlayerPrivate *priv = phosh_media_player_get_instance_private (self);
   g_autofree char *position_text = NULL;
-  double level;
+  double level = 0.0;
 
   if (priv->track_position >= 0)
     position_text = cui_call_format_duration ((double) priv->track_position / G_USEC_PER_SEC);
 
   gtk_label_set_label (GTK_LABEL (priv->lbl_position), position_text ?: "-");
 
-  level = priv->track_position >= 0 ? ((double) priv->track_position) / priv->track_length : 0.0;
+  if (priv->track_position > 0 && priv->track_length > 0)
+    level = ((double) priv->track_position) / priv->track_length;
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->prb_position), level);
 }
 
