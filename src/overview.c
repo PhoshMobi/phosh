@@ -211,6 +211,11 @@ on_app_failed (PhoshOverview   *self,
   g_return_if_fail (G_IS_APP_INFO (info));
 
   activity = find_activity_by_app_info (self, info);
+  if (!activity) {
+    g_debug ("Activity '%s' already gone", g_app_info_get_id (info));
+    return;
+  }
+
   if (get_toplevel_from_activity (activity))
     return;
 
