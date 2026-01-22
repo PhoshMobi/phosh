@@ -7,6 +7,7 @@
     <child>
       <object class="PhoshSwipeAwayBin" id="swipe_bin">
         <property name="visible">1</property>
+        <property name="enabled" bind-source="PhoshActivity" bind-property="has-thumbnail" bind-flags="sync-create"/>
         <property name="orientation">vertical</property>
         <signal name="removed" handler="removed_cb" swapped="true"/>
         <child>
@@ -109,6 +110,18 @@
                         </style>
                       </object>
                     </child>
+                  </object>
+                  <packing>
+                    <property name="pass-through">1</property>
+                    <property name="index">1</property>
+                  </packing>
+                </child>
+                <child type="overlay">
+                  <object class="GtkSpinner" id="spinner">
+                    <property name="visible" bind-source="PhoshActivity" bind-property="has-thumbnail" bind-flags="sync-create|invert-boolean"/>
+                    <property name="active" bind-source="PhoshActivity" bind-property="has-thumbnail" bind-flags="sync-create|invert-boolean"/>
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
                   </object>
                   <packing>
                     <property name="pass-through">1</property>

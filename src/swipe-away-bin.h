@@ -13,6 +13,9 @@
 
 G_DECLARE_FINAL_TYPE (PhoshSwipeAwayBin, phosh_swipe_away_bin, PHOSH, SWIPE_AWAY_BIN, GtkEventBox)
 
+gboolean phosh_swipe_away_bin_get_enabled (PhoshSwipeAwayBin *self);
+void     phosh_swipe_away_bin_set_enabled (PhoshSwipeAwayBin *self, gboolean enabled);
+
 gboolean phosh_swipe_away_bin_get_allow_negative (PhoshSwipeAwayBin *self);
 void     phosh_swipe_away_bin_set_allow_negative (PhoshSwipeAwayBin *self,
                                                   gboolean           allow_negative);

@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2018 Purism SPC
+ *               2025 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -17,6 +18,7 @@
 #include "shell-priv.h"
 #include "toplevel-manager.h"
 #include "toplevel-thumbnail.h"
+#include "util.h"
 
 #include <gio/gdesktopappinfo.h>
 
@@ -53,9 +55,12 @@ static GParamSpec *props[LAST_PROP];
 
 typedef struct {
   /* Running activities */
-  GtkWidget     *carousel_running_activities;
-  GtkWidget     *app_grid;
-  PhoshActivity *activity;
+  HdyCarousel        *carousel_running_activities;
+  GtkWidget          *app_grid;
+  PhoshActivity      *activity;
+
+  PhoshAppTracker    *app_tracker;     /* unowned */
+  PhoshSplashManager *splash_manager;  /* unowned */
 
   int has_activities;
 } PhoshOverviewPrivate;
@@ -66,6 +71,153 @@ struct _PhoshOverview {
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (PhoshOverview, phosh_overview, GTK_TYPE_BOX)
+
+
+static PhoshToplevel *get_toplevel_from_activity (PhoshActivity *activity);
+static void           on_activity_clicked (PhoshOverview *self, PhoshActivity *activity);
+static int            get_last_app_id_pos (PhoshOverview *self, const char *app_id);
+
+
+static PhoshActivity *
+find_activity_by_app_info (PhoshOverview *self, GAppInfo *needle)
+{
+  g_autoptr (GList) children = NULL;
+  PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
+
+  children = gtk_container_get_children (GTK_CONTAINER (priv->carousel_running_activities));
+  for (GList *l = children; l; l = l->next) {
+    PhoshActivity *activity = PHOSH_ACTIVITY (l->data);
+    GAppInfo *app_info = phosh_activity_get_app_info (activity);
+
+    if (app_info && g_app_info_equal (needle, app_info))
+      return activity;
+  }
+
+  return NULL;
+}
+
+
+static PhoshActivity *
+find_activity_by_app_id (PhoshOverview *self, const char *needle)
+{
+  g_autoptr (GList) children = NULL;
+  g_autoptr (GAppInfo) needle_info = NULL;
+
+  g_return_val_if_fail (needle, NULL);
+  needle_info = G_APP_INFO (phosh_get_desktop_app_info_for_app_id (needle));
+  if (!needle_info)
+    return NULL;
+
+  return find_activity_by_app_info (self, needle_info);
+}
+
+
+static PhoshActivity *
+create_new_activity (PhoshOverview *self,
+                     GAppInfo      *info,
+                     PhoshToplevel *toplevel,
+                     const char    *app_id,
+                     const char    *parent_app_id)
+{
+  PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
+  PhoshShell *shell = phosh_shell_get_default ();
+  PhoshActivity *activity;
+  int width, height, pos = 0;
+  gboolean fullscreen = FALSE, maximized = FALSE;
+
+  phosh_shell_get_usable_area (shell, NULL, NULL, &width, &height);
+
+  if (toplevel) {
+    maximized = phosh_toplevel_is_maximized (toplevel);
+    fullscreen = phosh_toplevel_is_fullscreen (toplevel);
+  }
+
+  activity = g_object_new (PHOSH_TYPE_ACTIVITY,
+                           "app-info", info,
+                           "app-id", app_id,
+                           "parent-app-id", parent_app_id,
+                           "win-width", width,
+                           "win-height", height,
+                           "maximized", maximized,
+                           "fullscreen", fullscreen,
+                           NULL);
+
+  g_object_connect (activity,
+                    "swapped-signal::clicked", on_activity_clicked, self,
+                    NULL);
+
+  if (!toplevel) {
+    gboolean light_mode = !phosh_splash_manager_get_prefer_dark (priv->splash_manager);
+    phosh_util_toggle_style_class (GTK_WIDGET (activity), "light", light_mode);
+  }
+
+  if (parent_app_id)
+    pos = get_last_app_id_pos (self, parent_app_id);
+
+  if (pos)
+    hdy_carousel_insert (priv->carousel_running_activities, GTK_WIDGET (activity), pos);
+  else
+    gtk_container_add (GTK_CONTAINER (priv->carousel_running_activities), GTK_WIDGET (activity));
+
+  return activity;
+}
+
+
+static void
+on_app_launch_started (PhoshOverview   *self,
+                       GAppInfo        *info,
+                       const char      *startup_id,
+                       PhoshAppTracker *app_tracker)
+{
+  PhoshActivity *activity;
+
+  g_return_if_fail (PHOSH_IS_OVERVIEW (self));
+  g_return_if_fail (G_IS_APP_INFO (info));
+
+  g_debug ("Building splash for '%s'", g_app_info_get_id (info));
+
+  activity = create_new_activity (self, info, NULL, NULL, NULL);
+
+  g_object_set_data_full (G_OBJECT (activity),
+                          "startup-id",
+                          g_strdup (startup_id),
+                          g_free);
+}
+
+
+static void
+on_app_ready (PhoshOverview   *self,
+              GAppInfo        *info,
+              const char      *startup_id,
+              PhoshAppTracker *app_tracker)
+{
+  g_return_if_fail (PHOSH_IS_OVERVIEW (self));
+  g_return_if_fail (G_IS_APP_INFO (info));
+
+  g_debug ("Activity '%s' started", g_app_info_get_id (info));
+  /* TODO: add timer to clean up in case we never get a toplevel */
+}
+
+
+static void
+on_app_failed (PhoshOverview   *self,
+               GAppInfo        *info,
+               const char      *startup_id,
+               PhoshAppTracker *app_tracker)
+{
+  PhoshActivity *activity;
+
+  g_return_if_fail (PHOSH_IS_OVERVIEW (self));
+  g_return_if_fail (G_IS_APP_INFO (info));
+
+  activity = find_activity_by_app_info (self, info);
+  if (get_toplevel_from_activity (activity))
+    return;
+
+  /* TODO: show error state / notification */
+  g_debug ("Activity '%s' failed to start, closing", g_app_info_get_id (info));
+  gtk_widget_destroy (GTK_WIDGET (activity));
+}
 
 
 static void
@@ -93,8 +245,12 @@ get_toplevel_from_activity (PhoshActivity *activity)
 {
   PhoshToplevel *toplevel;
   g_return_val_if_fail (PHOSH_IS_ACTIVITY (activity), NULL);
+
   toplevel = g_object_get_data (G_OBJECT (activity), "toplevel");
-  g_return_val_if_fail (PHOSH_IS_TOPLEVEL (toplevel), NULL);
+  if (!toplevel) {
+    g_return_val_if_fail (!phosh_activity_get_has_thumbnail (activity), NULL);
+    return NULL;
+  }
 
   return toplevel;
 }
@@ -103,22 +259,21 @@ get_toplevel_from_activity (PhoshActivity *activity)
 static PhoshActivity *
 find_activity_by_toplevel (PhoshOverview *self, PhoshToplevel *needle)
 {
-  g_autoptr (GList) children;
-  PhoshActivity *activity = NULL;
+  g_autoptr (GList) children = NULL;
   PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
 
   children = gtk_container_get_children (GTK_CONTAINER (priv->carousel_running_activities));
   for (GList *l = children; l; l = l->next) {
+    PhoshActivity *activity = PHOSH_ACTIVITY (l->data);
     PhoshToplevel *toplevel;
 
-    activity = PHOSH_ACTIVITY (l->data);
     toplevel = get_toplevel_from_activity (activity);
     if (toplevel == needle)
-      break;
+      return activity;
   }
 
-  g_return_val_if_fail (activity, NULL);
-  return activity;
+  g_return_val_if_reached (NULL);
+  return NULL;
 }
 
 
@@ -126,7 +281,7 @@ static void
 scroll_to_activity (PhoshOverview *self, PhoshActivity *activity)
 {
   PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
-  hdy_carousel_scroll_to (HDY_CAROUSEL (priv->carousel_running_activities), GTK_WIDGET (activity));
+  hdy_carousel_scroll_to (priv->carousel_running_activities, GTK_WIDGET (activity));
   gtk_widget_grab_focus (GTK_WIDGET (activity));
 }
 
@@ -134,18 +289,33 @@ scroll_to_activity (PhoshOverview *self, PhoshActivity *activity)
 static void
 on_activity_clicked (PhoshOverview *self, PhoshActivity *activity)
 {
+  PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
   PhoshToplevel *toplevel;
+
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
   g_return_if_fail (PHOSH_IS_ACTIVITY (activity));
 
   toplevel = get_toplevel_from_activity (activity);
-  g_return_if_fail (toplevel);
 
-  g_debug ("Will raise %s (%s)",
-           phosh_activity_get_app_id (activity),
-           phosh_toplevel_get_title (toplevel));
+  if (toplevel) {
+    g_return_if_fail (toplevel);
 
-  phosh_toplevel_activate (toplevel, phosh_wayland_get_wl_seat (phosh_wayland_get_default ()));
+    g_debug ("Will raise %s (%s)",
+             phosh_activity_get_app_id (activity),
+             phosh_toplevel_get_title (toplevel));
+
+    phosh_toplevel_activate (toplevel, phosh_wayland_get_wl_seat (phosh_wayland_get_default ()));
+
+    phosh_splash_manager_lower_all (priv->splash_manager);
+  } else {
+    const char *startup_id = g_object_get_data (G_OBJECT (activity), "startup-id");
+
+    if (startup_id)
+      phosh_splash_manager_raise (priv->splash_manager, startup_id);
+    else
+      g_warning ("No startup-id for %s, can't raise splash", phosh_activity_get_app_id (activity));
+  }
+
   g_signal_emit (self, signals[ACTIVITY_RAISED], 0);
 }
 
@@ -222,6 +392,7 @@ on_toplevel_activated_changed (PhoshToplevel *toplevel, GParamSpec *pspec, Phosh
   if (phosh_toplevel_is_activated (toplevel)) {
     activity = find_activity_by_toplevel (overview, toplevel);
     priv->activity = activity;
+    g_return_if_fail (PHOSH_IS_ACTIVITY (activity));
     scroll_to_activity (overview, activity);
   }
 }
@@ -280,8 +451,7 @@ on_activity_has_focus_changed (PhoshOverview *self, GParamSpec *pspec, PhoshActi
   priv = phosh_overview_get_instance_private (self);
 
   if (gtk_widget_has_focus (GTK_WIDGET (activity)))
-    hdy_carousel_scroll_to (HDY_CAROUSEL (priv->carousel_running_activities),
-                            GTK_WIDGET (activity));
+    hdy_carousel_scroll_to (priv->carousel_running_activities, GTK_WIDGET (activity));
 }
 
 
@@ -313,19 +483,17 @@ get_last_app_id_pos (PhoshOverview *self, const char *app_id)
 
 
 static void
-add_activity (PhoshOverview *self, PhoshToplevel *toplevel)
+toplevel_to_activity (PhoshOverview *self, PhoshToplevel *toplevel)
 {
-  PhoshOverviewPrivate *priv;
-  GtkWidget *activity;
+  PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
+  PhoshActivity *activity;
   const char *app_id, *title;
   const char *parent_app_id = NULL;
   int width, height;
   PhoshToplevelManager *m = phosh_shell_get_toplevel_manager (phosh_shell_get_default ());
   PhoshToplevel *parent = NULL;
-  gint pos;
 
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
-  priv = phosh_overview_get_instance_private (self);
 
   app_id = phosh_toplevel_get_app_id (toplevel);
   title = phosh_toplevel_get_title (toplevel);
@@ -335,27 +503,34 @@ add_activity (PhoshOverview *self, PhoshToplevel *toplevel)
   if (parent)
     parent_app_id = phosh_toplevel_get_app_id (parent);
 
-  g_debug ("Building activator for '%s' (%s)", app_id, title);
-  phosh_shell_get_usable_area (phosh_shell_get_default (), NULL, NULL, &width, &height);
-  activity = g_object_new (PHOSH_TYPE_ACTIVITY,
-                           "app-id", app_id,
-                           "parent-app-id", parent_app_id,
-                           "win-width", width,
-                           "win-height", height,
-                           "maximized", phosh_toplevel_is_maximized (toplevel),
-                           "fullscreen", phosh_toplevel_is_fullscreen (toplevel),
-                           NULL);
-  g_object_set_data (G_OBJECT (activity), "toplevel", toplevel);
+  activity = find_activity_by_app_id (self, app_id);
+  if (activity && get_toplevel_from_activity (activity)) {
+    /* Multi window apps */
+    g_debug ("Existing activity '%s' already has a toplevel", app_id);
+    activity = NULL;
+  }
 
-  pos = get_last_app_id_pos (self, parent_app_id);
-  if (pos)
-    hdy_carousel_insert (HDY_CAROUSEL (priv->carousel_running_activities), activity, pos);
-  else
-    gtk_container_add (GTK_CONTAINER (priv->carousel_running_activities), activity);
-  gtk_widget_set_visible (activity, TRUE);
+  phosh_shell_get_usable_area (phosh_shell_get_default (), NULL, NULL, &width, &height);
+  if (activity) {
+    g_debug ("Using existing activity for '%s' (%s)", app_id, title);
+    g_object_set (activity,
+                  "win-width", width,
+                  "win-height", height,
+                  "maximized", phosh_toplevel_is_maximized (toplevel),
+                  "fullscreen", phosh_toplevel_is_fullscreen (toplevel),
+                  NULL);
+
+    g_object_set_data (G_OBJECT (activity), "startup-id", NULL);
+    request_thumbnail (activity, toplevel);
+  } else {
+    g_debug ("Building activator for '%s' (%s)", app_id, title);
+    activity = create_new_activity (self, NULL, toplevel, app_id, parent_app_id);
+  }
+
+  g_object_set_data (G_OBJECT (activity), "toplevel", toplevel);
+  gtk_widget_set_visible (GTK_WIDGET (activity), TRUE);
 
   g_object_connect (activity,
-                    "swapped-signal::clicked", on_activity_clicked, self,
                     "swapped-signal::closed", on_activity_closed, self,
                     "swapped-signal::fullscreened", on_activity_fullscreened, self,
                     "swapped-signal::notify::has-focus", on_activity_has_focus_changed, self,
@@ -366,6 +541,7 @@ add_activity (PhoshOverview *self, PhoshToplevel *toplevel)
                     "object-signal::closed", on_toplevel_closed, self,
                     "object-signal::notify::activated", on_toplevel_activated_changed, self,
                     NULL);
+
   g_object_bind_property (toplevel, "maximized", activity, "maximized", G_BINDING_DEFAULT);
   g_object_bind_property (toplevel, "fullscreen", activity, "fullscreen", G_BINDING_DEFAULT);
 
@@ -387,7 +563,7 @@ set_has_activities (PhoshOverview *self)
     return;
 
   priv->has_activities = has_activities;
-  gtk_widget_set_visible (priv->carousel_running_activities, has_activities);
+  gtk_widget_set_visible (GTK_WIDGET (priv->carousel_running_activities), has_activities);
   g_object_notify_by_pspec (G_OBJECT (self), props[PROP_HAS_ACTIVITIES]);
 }
 
@@ -403,7 +579,7 @@ get_running_activities (PhoshOverview *self)
 
   for (guint i = 0; i < toplevels_num; i++) {
     PhoshToplevel *toplevel = phosh_toplevel_manager_get_toplevel (toplevel_manager, i);
-    add_activity (self, toplevel);
+    toplevel_to_activity (self, toplevel);
   }
 }
 
@@ -414,7 +590,7 @@ on_toplevel_added (PhoshOverview *self, PhoshToplevel *toplevel, PhoshToplevelMa
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
   g_return_if_fail (PHOSH_IS_TOPLEVEL (toplevel));
   g_return_if_fail (PHOSH_IS_TOPLEVEL_MANAGER (manager));
-  add_activity (self, toplevel);
+  toplevel_to_activity (self, toplevel);
 }
 
 
@@ -596,10 +772,23 @@ phosh_overview_class_init (PhoshOverviewClass *klass)
 static void
 phosh_overview_init (PhoshOverview *self)
 {
+  PhoshShell *shell = phosh_shell_get_default ();
   PhoshOverviewPrivate *priv = phosh_overview_get_instance_private (self);
 
   priv->has_activities = -1;
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  priv->app_tracker = phosh_shell_get_app_tracker (shell);
+  /* Allow it to be empty for tests */
+  if (priv->app_tracker) {
+    g_object_connect (priv->app_tracker,
+                      "swapped-object-signal::app-launch-started", on_app_launch_started, self,
+                      "swapped-object-signal::app-failed", on_app_failed, self,
+                      "swapped-object-signal::app-ready", on_app_ready, self,
+                      NULL);
+  }
+
+  priv->splash_manager = phosh_shell_get_splash_manager (shell);
 }
 
 

@@ -317,12 +317,22 @@ phosh-activity box button {
   /* box-shadow: 0 2px 2px rgba(0,0,0,0.4), 0 3px 16px rgba(0,0,0,0.3); */
 }
 
-phosh-activity.phosh-empty {
-  background: url('resource:///mobi/phosh/fake-app.svg');
-  background-size: cover;
+phosh-activity.phosh-empty.light {
+  color: @phosh_splash_fg_color;
+}
+
+phosh-activity.phosh-empty.light .phosh-drawingarea {
+  color: @phosh_splash_fg_color;
+  background-color: @phosh_splash_bg_color;
+}
+
+phosh-activity.phosh-empty .phosh-drawingarea {
+  border-radius: 8px;
+  background-color: @theme_bg_color;
 }
 
 phosh-activity.phosh-maximized .phosh-drawingarea {
+  border-radius: 8px;
   background-color: @phosh_activity_bg_color;
 }
 

@@ -272,3 +272,47 @@ phosh_splash_manager_new (PhoshAppTracker *app_tracker)
                                              "app-tracker", app_tracker,
                                              NULL));
 }
+
+
+void
+phosh_splash_manager_lower_all (PhoshSplashManager *self)
+{
+  GHashTableIter iter;
+  gpointer key, value;
+
+  g_return_if_fail (PHOSH_IS_SPLASH_MANAGER (self));
+
+  g_hash_table_iter_init (&iter, self->splashes);
+
+  while (g_hash_table_iter_next (&iter, &key, &value)) {
+    PhoshSplash *splash = PHOSH_SPLASH (value);
+
+    phosh_splash_lower (splash);
+  }
+}
+
+
+void
+phosh_splash_manager_raise (PhoshSplashManager *self, const char *startup_id)
+{
+  PhoshSplash *splash;
+
+  g_return_if_fail (PHOSH_IS_SPLASH_MANAGER (self));
+
+  splash = g_hash_table_lookup (self->splashes, startup_id);
+  if (splash == NULL) {
+    g_warning ("Invalid startup-id %s", startup_id);
+    return;
+  }
+
+  phosh_splash_raise (splash);
+}
+
+
+gboolean
+phosh_splash_manager_get_prefer_dark (PhoshSplashManager *self)
+{
+  g_return_val_if_fail (PHOSH_IS_SPLASH_MANAGER (self), FALSE);
+
+  return self->prefer_dark;
+}

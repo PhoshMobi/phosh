@@ -834,6 +834,7 @@ setup_idle_cb (PhoshShell *self)
 
   priv->debug_control = phosh_debug_control_new ();
   priv->app_tracker = phosh_app_tracker_new ();
+  priv->splash_manager = phosh_splash_manager_new (priv->app_tracker);
   priv->session_manager = phosh_session_manager_new ();
   priv->mode_manager = phosh_mode_manager_new ();
   priv->wifi_manager = phosh_wifi_manager_new ();
@@ -903,7 +904,6 @@ setup_idle_cb (PhoshShell *self)
 
   priv->gnome_shell_manager = phosh_gnome_shell_manager_get_default ();
   priv->screenshot_manager = phosh_screenshot_manager_new ();
-  priv->splash_manager = phosh_splash_manager_new (priv->app_tracker);
   priv->run_command_manager = phosh_run_command_manager_new ();
   priv->network_auth_manager = phosh_network_auth_manager_new ();
   priv->portal_access_manager = phosh_portal_access_manager_new ();
@@ -1951,6 +1951,26 @@ phosh_shell_get_session_manager (PhoshShell *self)
   g_return_val_if_fail (PHOSH_IS_SESSION_MANAGER (priv->session_manager), NULL);
 
   return priv->session_manager;
+}
+
+/**
+ * phosh_shell_get_splash_manager:
+ * @self: The shell singleton
+ *
+ * Get the splash manager
+ *
+ * Returns: (transfer none): The splash manager
+ */
+PhoshSplashManager *
+phosh_shell_get_splash_manager (PhoshShell *self)
+{
+  PhoshShellPrivate *priv;
+
+  g_return_val_if_fail (PHOSH_IS_SHELL (self), NULL);
+  priv = phosh_shell_get_instance_private (self);
+  g_return_val_if_fail (PHOSH_IS_SPLASH_MANAGER (priv->splash_manager), NULL);
+
+  return priv->splash_manager;
 }
 
 /**
