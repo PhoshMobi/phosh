@@ -292,11 +292,17 @@ open_settings_panel (PhoshTopPanel *self, gboolean mobile, const char *panel)
 
 
 static void
-parse_panel_options (GSimpleAction *action, GVariant *data, const char **panel)
+parse_panel_options (GSimpleAction *action, GVariant *data, const char **panel, GVariant **params)
 {
   g_assert (panel);
 
-  *panel = g_variant_get_string (data, NULL);
+  if (!params) {
+    g_critical ("Failed to parse panel options: 'params' NULL");
+
+    return;
+  }
+
+  g_variant_get (data, "(&s@av)", panel, params);
 }
 
 
@@ -305,8 +311,9 @@ on_launch_panel_activated (GSimpleAction *action, GVariant *param, gpointer data
 {
   PhoshTopPanel *self = PHOSH_TOP_PANEL (data);
   const char *panel;
+  g_autoptr (GVariant) params = NULL;
 
-  parse_panel_options (action, param, &panel);
+  parse_panel_options (action, param, &panel, &params);
 
   open_settings_panel (self, FALSE, panel);
   phosh_settings_hide_details (PHOSH_SETTINGS (self->settings));
@@ -318,8 +325,9 @@ on_launch_mobile_panel_activated (GSimpleAction *action, GVariant *param, gpoint
 {
   PhoshTopPanel *self = PHOSH_TOP_PANEL (data);
   const char *panel;
+  g_autoptr (GVariant) params = NULL;
 
-  parse_panel_options (action, param, &panel);
+  parse_panel_options (action, param, &panel, &params);
 
   open_settings_panel (self, TRUE, panel);
   phosh_settings_hide_details (PHOSH_SETTINGS (self->settings));
@@ -632,10 +640,10 @@ static GActionEntry entries[] = {
   { .name = "suspend", .activate = on_suspend_action },
   { .name = "lockscreen", .activate = on_lockscreen_action },
   { .name = "logout", .activate = on_logout_action },
-  { .name = "launch-panel", .activate = on_launch_panel_activated, .parameter_type = "s" },
+  { .name = "launch-panel", .activate = on_launch_panel_activated, .parameter_type = "(sav)" },
   { .name = "launch-mobile-panel",
     .activate = on_launch_mobile_panel_activated,
-    .parameter_type = "s" },
+    .parameter_type = "(sav)" },
 };
 
 

@@ -102,7 +102,7 @@ on_battery_clicked (PhoshQuickSettings *self, PhoshQuickSetting *child)
   g_return_if_fail (group);
   g_action_group_activate_action (group,
                                   "launch-panel",
-                                  g_variant_new_string ("power"));
+                                  g_variant_new ("(s@av)", "power", g_variant_new ("av", NULL)));
 }
 
 

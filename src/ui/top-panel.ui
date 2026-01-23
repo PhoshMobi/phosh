@@ -361,7 +361,8 @@
                       <object class="GtkButton">
                         <property name="visible">1</property>
                         <property name="action-name">panel.launch-mobile-panel</property>
-                        <property name="action-target">&quot;topbar&quot;</property>
+                        <!-- We send an (sav) parameter, where array contains one variant: empty string -->
+                        <property name="action-target">(&quot;topbar&quot;, [&lt;&quot;&quot;&gt;])</property>
                         <property name="valign">end</property>
                         <property name="halign">end</property>
                         <property name="name">settings-gear</property>

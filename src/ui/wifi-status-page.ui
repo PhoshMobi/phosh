@@ -81,7 +81,7 @@
     <property name="hexpand">1</property>
     <property name="focus-on-click">0</property>
     <property name="action-name">panel.launch-panel</property>
-    <property name="action-target">&quot;wifi&quot;</property>
+    <property name="action-target">(&quot;wifi&quot;, [&lt;&quot;&quot;&gt;])</property>
     <child>
       <object class="GtkLabel">
         <property name="visible">1</property>
