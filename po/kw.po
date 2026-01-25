@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
 "POT-Creation-Date: 2026-01-22 11:47+0000\n"
-"PO-Revision-Date: 2026-01-24 14:21+0000\n"
+"PO-Revision-Date: 2026-01-25 22:27+0000\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
 "Language: kw\n"
@@ -243,14 +243,14 @@ msgstr[1] "%s a wra omdhigelmys yn awtomatek yn %d eylennow."
 
 #: src/end-session-dialog.c:182 src/ui/power-menu.ui:72
 msgid "Power Off"
-msgstr "Marowya"
+msgstr "Marowhe"
 
 #: src/end-session-dialog.c:183
 #, c-format
 msgid "The system will power off automatically in %d second."
 msgid_plural "The system will power off automatically in %d seconds."
-msgstr[0] "An system a wra marowya yn awtomatek yn %d eylen."
-msgstr[1] "An system a wra marowya yn awtomatek yn %d eylennow."
+msgstr[0] "An system a wra marowhe yn awtomatek yn %d eylen."
+msgstr[1] "An system a wra marowhe yn awtomatek yn %d eylennow."
 
 #: src/end-session-dialog.c:189
 msgid "Restart"
@@ -730,7 +730,7 @@ msgstr "Konfirmya:"
 
 #: src/ui/top-panel.ui:34
 msgid "_Power Off…"
-msgstr "_Marowya…"
+msgstr "_Marowhe…"
 
 #: src/ui/top-panel.ui:61
 msgid "_Restart…"
@@ -790,7 +790,7 @@ msgstr "Hotspot Wi-Fi Byw"
 
 #: src/wifi-status-page.c:62
 msgid "Turn Off"
-msgstr "Marowya"
+msgstr "Marowhe"
 
 #: src/wifi-status-page.c:65
 msgid "No Wi-Fi Hotspots"
