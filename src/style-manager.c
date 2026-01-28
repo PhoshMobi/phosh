@@ -114,7 +114,7 @@ on_accent_color_changed (PhoshStyleManager *self)
   gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
                                              GTK_STYLE_PROVIDER (provider),
                                              GTK_STYLE_PROVIDER_PRIORITY_APPLICATION + 1);
-  g_set_object (&self->css_provider, provider);
+  g_set_object (&self->accent_css_provider, provider);
 }
 
 
