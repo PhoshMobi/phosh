@@ -2,7 +2,7 @@
 
 COMPOSITOR="@compositor@"
 PHOC_INI="@pkgdatadir@/phoc.ini"
-GNOME_SESSION=${GNOME_SESSION:-gnome-session}
+PHOSH_SESSION_BIN=${PHOSH_SESSION_BIN:-gnome-session}
 
 help()
 {
@@ -52,6 +52,4 @@ fi
 
 [ -n "$WLR_BACKENDS" ] || WLR_BACKENDS=drm,libinput
 export WLR_BACKENDS
-# Run gnome-session through a login shell so it picks
-# variables from /etc/profile.d (XDG_*)
-exec $SYSTEMD_CAT "${COMPOSITOR}" -v -S -C "${PHOC_INI}" -E "bash -lc 'exec ${GNOME_SESSION} --disable-acceleration-check --session=phosh'"
+exec $SYSTEMD_CAT "${COMPOSITOR}" -v -S -C "${PHOC_INI}" -E "${PHOSH_SESSION_BIN} --session=phosh"
