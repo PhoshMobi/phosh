@@ -345,6 +345,14 @@
       </object>
     </child>
   </template>
+  <object class="GtkGestureSwipe" id="swipe_gesture">
+    <property name="widget">PhoshLockscreen</property>
+    <property name="propagation-phase">capture</property>
+    <property name="touch-only">1</property>
+    <property name="n-points">2</property>
+    <signal name="begin" handler="on_swipe_gesture_begin" swapped="true"/>
+    <signal name="update" handler="on_swipe_gesture_update" swapped="true"/>
+  </object>
   <object class="GtkButton" id="btn_delete">
     <property name="visible">1</property>
     <property name="can-focus">1</property>
