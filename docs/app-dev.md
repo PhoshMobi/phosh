@@ -26,6 +26,10 @@ additional entries:
   feedbackd to trigger audio, haptic or led feedback. This is useful for setting
   applications so they can show entries for individual apps.
   Example: `X-Phosh-UsesFeedback=true`
+* `X-GNOME-UsesNotifications`: Used to indicate that application submit notifications
+  This is useful for setting applications so they can show entries for
+  individual apps to fine tune their feedback.
+  Example: `X-GNOME-UsesNotifications=true`
 
 ## Desktop Notification Specification
 
