@@ -113,10 +113,10 @@ phosh_bt_device_row_set_device (PhoshBtDeviceRow *self, BluetoothDevice *device)
                           G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
 
   g_object_connect (self->device,
-    "swapped-object-signal::notify::battery-percentage", bat_level_cb, self,
-    "swapped-object-signal::notify::battery-type", bat_level_cb, self,
-    "swapped-object-signal::notify::connected", bat_level_cb, self,
-    NULL);
+                    "swapped-object-signal::notify::battery-percentage", bat_level_cb, self,
+                    "swapped-object-signal::notify::battery-type", bat_level_cb, self,
+                    "swapped-object-signal::notify::connected", bat_level_cb, self,
+                    NULL);
   bat_level_cb (self, NULL, device);
 }
 
