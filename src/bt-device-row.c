@@ -95,7 +95,7 @@ phosh_bt_device_row_set_device (PhoshBtDeviceRow *self, BluetoothDevice *device)
                           G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
 
   g_object_bind_property (self->device,
-                          "name",
+                          "alias",
                           self,
                           "title",
                           G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
@@ -180,7 +180,7 @@ on_bt_row_activated (PhoshBtDeviceRow *self)
   gboolean connected;
   g_autofree char *name = NULL;
 
-  g_object_get (self->device, "connected", &connected, "name", &name, NULL);
+  g_object_get (self->device, "connected", &connected, "alias", &name, NULL);
 
   g_cancellable_cancel (self->cancellable);
   g_set_object (&self->cancellable, g_cancellable_new ());
