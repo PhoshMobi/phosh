@@ -13,6 +13,8 @@
 
 #include "phosh-config.h"
 
+#include "accounts-dbus.h"
+#include "accounts-user-dbus.h"
 #include "polkit-auth-prompt.h"
 
 #define GCR_API_SUBJECT_TO_CHANGE
@@ -22,6 +24,7 @@
 #include <polkitagent/polkitagent.h>
 
 #include <glib/gi18n.h>
+#include <handy.h>
 
 /**
  * PhoshPolkitAuthPrompt:
@@ -47,7 +50,7 @@ enum {
   DONE,
   N_SIGNALS
 };
-static guint signals[N_SIGNALS] = { 0 };
+static guint signals[N_SIGNALS];
 
 struct _PhoshPolkitAuthPrompt {
   PhoshSystemModalDialog parent;
@@ -69,11 +72,15 @@ struct _PhoshPolkitAuthPrompt {
   char *cookie;
   GStrv user_names;
 
+  const char *user_name;
+  GCancellable *cancel;
+
   PolkitIdentity     *identity;
   PolkitAgentSession *session;
 
   gboolean done_emitted;
 };
+
 G_DEFINE_TYPE (PhoshPolkitAuthPrompt, phosh_polkit_auth_prompt, PHOSH_TYPE_SYSTEM_MODAL_DIALOG);
 
 
@@ -142,6 +149,93 @@ set_icon_name (PhoshPolkitAuthPrompt *self, const char *icon_name)
 
 
 static void
+on_accounts_user_proxy_ready (GObject *source, GAsyncResult *result, gpointer data)
+{
+  PhoshPolkitAuthPrompt *self = data;
+  g_autoptr (GError) error = NULL;
+  g_autoptr (PhoshDBusAccountsUser) user = NULL;
+  const char *real_name = NULL;
+  const char *icon_path = NULL;
+  g_autoptr (GFile) icon_file = NULL;
+  g_autoptr (GIcon) icon = NULL;
+
+  user = phosh_dbus_accounts_user_proxy_new_finish (result, &error);
+  if (error) {
+    if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+      g_debug ("Skipping create user proxy: %s", error->message);
+    else
+      g_warning ("Failed to create user proxy %s: %s", self->user_name, error->message);
+    return;
+  }
+  g_debug ("Created proxy for user name: %s", self->user_name);
+
+  real_name = phosh_dbus_accounts_user_get_real_name (user);
+  hdy_avatar_set_text (HDY_AVATAR (self->img_icon), real_name);
+  gtk_label_set_text (GTK_LABEL (self->lbl_user_name), real_name);
+
+  icon_path = phosh_dbus_accounts_user_get_icon_file (user);
+  icon_file = g_file_new_for_path (icon_path);
+  icon = g_file_icon_new (icon_file);
+  hdy_avatar_set_loadable_icon (HDY_AVATAR (self->img_icon), G_LOADABLE_ICON (icon));
+}
+
+
+static void
+on_find_user_by_name_ready (GObject *source, GAsyncResult *result, gpointer data)
+{
+  g_autoptr (PhoshDBusAccounts) accounts = PHOSH_DBUS_ACCOUNTS (source);
+  PhoshPolkitAuthPrompt *self = data;
+  g_autoptr (GError) error = NULL;
+  g_autofree char *user_path = NULL;
+
+  phosh_dbus_accounts_call_find_user_by_name_finish (accounts, &user_path, result, &error);
+  if (error) {
+    if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+      g_debug ("Skipping find user: %s", error->message);
+    else
+      g_warning ("Failed to find user %s: %s", self->user_name, error->message);
+    return;
+  }
+  g_debug ("Found user for user name: %s at %s", self->user_name, user_path);
+
+  g_debug ("Creating proxy for user name: %s", self->user_name);
+  phosh_dbus_accounts_user_proxy_new_for_bus (G_BUS_TYPE_SYSTEM,
+                                              G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS,
+                                              "org.freedesktop.Accounts",
+                                              user_path,
+                                              self->cancel,
+                                              on_accounts_user_proxy_ready,
+                                              self);
+}
+
+
+static void
+on_accounts_proxy_ready (GObject *source, GAsyncResult *result, gpointer data)
+{
+  PhoshDBusAccounts *accounts;
+  PhoshPolkitAuthPrompt *self = data;
+  g_autoptr (GError) error = NULL;
+
+  accounts = phosh_dbus_accounts_proxy_new_finish (result, &error);
+  if (error) {
+    if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+      g_debug ("Skipping create Accounts proxy: %s", error->message);
+    else
+      g_warning ("Failed to create Accounts proxy: %s", error->message);
+    return;
+  }
+  g_debug ("Created Accounts proxy for user name: %s", self->user_name);
+
+  g_debug ("Finding user for user name: %s", self->user_name);
+  phosh_dbus_accounts_call_find_user_by_name (accounts,
+                                              self->user_name,
+                                              self->cancel,
+                                              on_find_user_by_name_ready,
+                                              self);
+}
+
+
+static void
 set_user_names (PhoshPolkitAuthPrompt *self, const GStrv user_names)
 {
   const char *user_name = NULL;
@@ -180,20 +274,33 @@ set_user_names (PhoshPolkitAuthPrompt *self, const GStrv user_names)
     return;
   }
 
+  hdy_avatar_set_text (HDY_AVATAR (self->img_icon), user_name);
   gtk_label_set_text (GTK_LABEL (self->lbl_user_name), user_name);
+
+  self->user_name = user_name;
+  g_debug ("Creating Accounts proxy for user name: %s", self->user_name);
+  phosh_dbus_accounts_proxy_new_for_bus (G_BUS_TYPE_SYSTEM,
+                                         (G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES |
+                                          G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS),
+                                         "org.freedesktop.Accounts",
+                                         "/org/freedesktop/Accounts",
+                                         self->cancel,
+                                         on_accounts_proxy_ready,
+                                         self);
+
   g_object_notify_by_pspec (G_OBJECT (self), props[PROP_USER_NAMES]);
 }
 
 
 static void
-phosh_polkit_auth_prompt_set_property (GObject      *obj,
-                                       guint         prop_id,
+phosh_polkit_auth_prompt_set_property (GObject      *object,
+                                       guint         property_id,
                                        const GValue *value,
                                        GParamSpec   *pspec)
 {
-  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (obj);
+  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (object);
 
-  switch (prop_id) {
+  switch (property_id) {
   case PROP_ACTION_ID:
     set_action_id (self, g_value_get_string (value));
     break;
@@ -210,38 +317,38 @@ phosh_polkit_auth_prompt_set_property (GObject      *obj,
     set_user_names (self, g_value_get_boxed (value));
     break;
   default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (obj, prop_id, pspec);
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     break;
   }
 }
 
 
 static void
-phosh_polkit_auth_prompt_get_property (GObject    *obj,
-                                       guint       prop_id,
+phosh_polkit_auth_prompt_get_property (GObject    *object,
+                                       guint       property_id,
                                        GValue     *value,
                                        GParamSpec *pspec)
 {
-  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (obj);
+  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (object);
 
-  switch (prop_id) {
+  switch (property_id) {
   case PROP_ACTION_ID:
-    g_value_set_string (value, self->action_id?: "");
+    g_value_set_string (value, self->action_id ?: "");
     break;
   case PROP_COOKIE:
-    g_value_set_string (value, self->cookie?: "");
+    g_value_set_string (value, self->cookie ?: "");
     break;
   case PROP_MESSAGE:
-    g_value_set_string (value, self->message?: "");
+    g_value_set_string (value, self->message ?: "");
     break;
   case PROP_ICON_NAME:
-    g_value_set_string (value, self->icon_name?: "");
+    g_value_set_string (value, self->icon_name ?: "");
     break;
   case PROP_USER_NAMES:
     g_value_set_boxed (value, self->user_names ? g_strdupv (self->user_names) : NULL);
     break;
   default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (obj, prop_id, pspec);
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     break;
   }
 }
@@ -389,21 +496,24 @@ on_btn_authenticate_clicked (PhoshPolkitAuthPrompt *self, GtkButton *btn)
 
 
 static void
-phosh_polkit_auth_prompt_dispose (GObject *obj)
+phosh_polkit_auth_prompt_dispose (GObject *object)
 {
-  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (obj);
+  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (object);
 
+  g_cancellable_cancel (self->cancel);
+  g_clear_object (&self->cancel);
+  self->user_name = NULL;
   g_clear_object (&self->identity);
   g_clear_object (&self->session);
 
-  G_OBJECT_CLASS (phosh_polkit_auth_prompt_parent_class)->dispose (obj);
+  G_OBJECT_CLASS (phosh_polkit_auth_prompt_parent_class)->dispose (object);
 }
 
 
 static void
-phosh_polkit_auth_prompt_finalize (GObject *obj)
+phosh_polkit_auth_prompt_finalize (GObject *object)
 {
-  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (obj);
+  PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (object);
 
   g_free (self->message);
   g_free (self->icon_name);
@@ -411,7 +521,7 @@ phosh_polkit_auth_prompt_finalize (GObject *obj)
   g_free (self->cookie);
   g_strfreev (self->user_names);
 
-  G_OBJECT_CLASS (phosh_polkit_auth_prompt_parent_class)->finalize (obj);
+  G_OBJECT_CLASS (phosh_polkit_auth_prompt_parent_class)->finalize (object);
 }
 
 
@@ -421,6 +531,8 @@ phosh_polkit_auth_prompt_constructed (GObject *object)
   PhoshPolkitAuthPrompt *self = PHOSH_POLKIT_AUTH_PROMPT (object);
 
   G_OBJECT_CLASS (phosh_polkit_auth_prompt_parent_class)->constructed (object);
+
+  self->cancel = g_cancellable_new ();
 
   self->password_buffer = gcr_secure_entry_buffer_new ();
   gtk_entry_set_buffer (GTK_ENTRY (self->entry_password),
@@ -433,7 +545,7 @@ phosh_polkit_auth_prompt_constructed (GObject *object)
 static void
 phosh_polkit_auth_prompt_class_init (PhoshPolkitAuthPromptClass *klass)
 {
-  GObjectClass *object_class = (GObjectClass *)klass;
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->get_property = phosh_polkit_auth_prompt_get_property;
@@ -481,7 +593,7 @@ phosh_polkit_auth_prompt_class_init (PhoshPolkitAuthPromptClass *klass)
   /**
    * PolkitAuthPrompt:user-names:
    *
-   * The user name's to authenticate as
+   * The user names to authenticate as
    */
   props[PROP_USER_NAMES] =
     g_param_spec_boxed ("user-names", "", "",

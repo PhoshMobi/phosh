@@ -8,6 +8,8 @@
 
 #define G_LOG_DOMAIN "phosh-polkit-auth-agent"
 
+#include "phosh-config.h"
+
 #include "polkit-auth-agent.h"
 #include "polkit-auth-prompt.h"
 #include "shell-priv.h"
@@ -16,9 +18,12 @@
 #include <pwd.h>
 
 #ifdef PHOSH_POLKIT_AUTH_DEBUG
-#define auth_debug(...) g_debug(__VA_ARGS__)
+#define auth_debug(...) g_debug (__VA_ARGS__)
 #else
-static void auth_debug(const char *str, ...) {}
+static void
+auth_debug (const char *str, ...)
+{
+}
 #endif
 
 /**
@@ -33,30 +38,29 @@ static void auth_debug(const char *str, ...) {}
 typedef struct {
   /* not holding ref */
   PhoshPolkitAuthAgent *agent;
-  GCancellable *cancellable;
+  GCancellable         *cancellable;
   gulong handler_id;
 
   /* copies */
-  char           *action_id;
-  char           *message;
-  char           *icon_name;
-  PolkitDetails  *details;
-  char           *cookie;
-  GList          *identities;
+  char  *action_id;
+  char  *message;
+  char  *icon_name;
+  PolkitDetails *details;
+  char  *cookie;
+  GList *identities;
 
   GTask *simple;
 } AuthRequest;
 
-struct _PhoshPolkitAuthAgent
-{
-  PolkitAgentListener parent;
+struct _PhoshPolkitAuthAgent {
+  PolkitAgentListener    parent;
 
   GList *scheduled_requests;
-  AuthRequest *current_request;
+  AuthRequest           *current_request;
   PhoshPolkitAuthPrompt *current_prompt;
 
   gpointer handle;
-  GCancellable *cancellable;
+  GCancellable          *cancellable;
 };
 G_DEFINE_TYPE (PhoshPolkitAuthAgent, phosh_polkit_auth_agent, POLKIT_AGENT_TYPE_LISTENER);
 
@@ -121,7 +125,7 @@ agent_register_async (PhoshPolkitAuthAgent *self,
 }
 
 static void
-agent_registered_cb (GObject      *source_object,
+on_agent_registered (GObject      *source_object,
                      GAsyncResult *res,
                      gpointer      user_data)
 {
@@ -176,39 +180,39 @@ on_prompt_done (PhoshPolkitAuthPrompt *prompt, gboolean cancelled, AuthRequest *
 static void
 auth_request_initiate (AuthRequest *request)
 {
-  g_auto(GStrv) user_names = NULL;
+  g_auto (GStrv) user_names = NULL;
   GPtrArray *p;
   GList *l;
 
   p = g_ptr_array_new ();
   for (l = request->identities; l != NULL; l = l->next) {
-      if (POLKIT_IS_UNIX_USER (l->data)) {
-          PolkitUnixUser *user = POLKIT_UNIX_USER (l->data);
-          int uid;
-          char buf[4096];
-          struct passwd pwd;
-          struct passwd *ppwd;
-          int ret;
+    if (POLKIT_IS_UNIX_USER (l->data)) {
+      PolkitUnixUser *user = POLKIT_UNIX_USER (l->data);
+      int uid;
+      char buf[4096];
+      struct passwd pwd;
+      struct passwd *ppwd;
+      int ret;
 
-          uid = polkit_unix_user_get_uid (user);
-          ret = getpwuid_r (uid, &pwd, buf, sizeof (buf), &ppwd);
-          if (!ret) {
-            if (!g_utf8_validate (pwd.pw_name, -1, NULL))
-              g_warning ("Invalid UTF-8 in username for uid %d. Skipping", uid);
-            else
-              g_ptr_array_add (p, g_strdup (pwd.pw_name));
-          } else {
-            g_warning ("Error looking up user name for uid %d: %d", uid, ret);
-          }
+      uid = polkit_unix_user_get_uid (user);
+      ret = getpwuid_r (uid, &pwd, buf, sizeof (buf), &ppwd);
+      if (!ret) {
+        if (!g_utf8_validate (pwd.pw_name, -1, NULL))
+          g_warning ("Invalid UTF-8 in username for uid %d. Skipping", uid);
+        else
+          g_ptr_array_add (p, g_strdup (pwd.pw_name));
       } else {
-        g_warning ("Unsupporting identity of GType %s", g_type_name (G_TYPE_FROM_INSTANCE (l->data)));
+        g_warning ("Error looking up user name for uid %d: %d", uid, ret);
       }
+    } else {
+      g_warning ("Unsupporting identity of GType %s", g_type_name (G_TYPE_FROM_INSTANCE (l->data)));
+    }
   }
 
   g_ptr_array_add (p, NULL);
   user_names = (char **) g_ptr_array_free (p, FALSE);
 
-  g_debug("New prompt for %s", request->message);
+  g_debug ("New prompt for %s", request->message);
   /* We must not issue a new prompt when there's one already */
   g_return_if_fail (!request->agent->current_prompt);
   request->agent->current_prompt = PHOSH_POLKIT_AUTH_PROMPT (
@@ -318,16 +322,16 @@ on_request_cancelled (GCancellable *cancellable,
 
 
 static void
-initiate_authentication (PolkitAgentListener  *listener,
-                         const char           *action_id,
-                         const char           *message,
-                         const char           *icon_name,
-                         PolkitDetails        *details,
-                         const char           *cookie,
-                         GList                *identities,
-                         GCancellable         *cancellable,
-                         GAsyncReadyCallback   callback,
-                         gpointer              user_data)
+initiate_authentication (PolkitAgentListener *listener,
+                         const char          *action_id,
+                         const char          *message,
+                         const char          *icon_name,
+                         PolkitDetails       *details,
+                         const char          *cookie,
+                         GList               *identities,
+                         GCancellable        *cancellable,
+                         GAsyncReadyCallback  callback,
+                         gpointer             user_data)
 {
   PhoshPolkitAuthAgent *self = PHOSH_POLKIT_AUTH_AGENT (listener);
   AuthRequest *request;
@@ -355,9 +359,9 @@ initiate_authentication (PolkitAgentListener  *listener,
 }
 
 static gboolean
-initiate_authentication_finish (PolkitAgentListener  *listener,
-                                GAsyncResult         *res,
-                                GError              **error)
+initiate_authentication_finish (PolkitAgentListener *listener,
+                                GAsyncResult        *res,
+                                GError             **error)
 {
   return g_task_propagate_boolean (G_TASK (res), error);
 }
@@ -371,7 +375,7 @@ phosh_polkit_auth_agent_constructed (GObject *object)
   G_OBJECT_CLASS (phosh_polkit_auth_agent_parent_class)->constructed (object);
 
   self->cancellable = g_cancellable_new ();
-  agent_register_async (self, self->cancellable, agent_registered_cb, NULL);
+  agent_register_async (self, self->cancellable, on_agent_registered, NULL);
 }
 
 
