@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-12-08 06:52+0000\n"
-"PO-Revision-Date: 2025-12-08 21:55+0330\n"
+"POT-Creation-Date: 2026-02-04 11:02+0000\n"
+"PO-Revision-Date: 2026-02-04 16:18+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
@@ -153,13 +153,17 @@ msgstr "ایجاد شاخهٔ جدید"
 msgid "Application"
 msgstr "برنامه"
 
-#: src/app-grid.c:261
+#: src/app-grid.c:264
 msgid "Show All Apps"
 msgstr "نمایش تمامی کاره‌ها"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:267
 msgid "Show Only Mobile Friendly Apps"
 msgstr "فقط نمایش کاره‌های سازگار با تلفن همراه"
+
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "واپایش حجم صدای پوستهٔ تلفن"
 
 #. Translators: a battery level in percent
 #: src/bt-device-row.c:81
@@ -293,11 +297,11 @@ msgid "No"
 msgstr "نه"
 
 #. give visual feedback on error
-#: src/lockscreen.c:313 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "ورود رمز عبور"
 
-#: src/lockscreen.c:956
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "در حال بررسی…"
 
@@ -329,27 +333,27 @@ msgid "Screenshot from %s%s.png"
 msgstr "نماگرفت از ‪%s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:690 src/ui/media-player.ui:208
+#: src/media-player.c:691 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "عنوان ناشناخته"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:698 src/ui/media-player.ui:196
+#: src/media-player.c:699 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "هنرمند ناشناخته"
 
-#: src/monitor-manager.c:128
+#: src/monitor-manager.c:129
 msgid "Built-in display"
 msgstr "نمایشگر توکار"
 
-#: src/monitor-manager.c:146
+#: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:153
+#: src/monitor-manager.c:154
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -358,7 +362,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:162
+#: src/monitor-manager.c:163
 msgid "Unknown"
 msgstr "ناشناخته"
 
@@ -487,17 +491,17 @@ msgid_plural "Almost %dy"
 msgstr[0] "تقریباً %Idسا"
 msgstr[1] "تقریباً %Idسا"
 
-#: src/polkit-auth-agent.c:271
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "گفت‌وگوی تأیید هویت از سمت کاربر رد شد"
 
-#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
-#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
 #: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "گذرواژه:"
 
-#: src/polkit-auth-prompt.c:322
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "متاسفانه اثری نداشت! لطفاً دوباره تلاش کنید."
 
@@ -528,10 +532,6 @@ msgstr "برای بستن، گریز را بزنید"
 msgid "Running '%s' failed"
 msgstr "اجرای «%s» شکست خورد"
 
-#: src/settings/audio-settings.c:376
-msgid "Phone Shell Volume Control"
-msgstr "واپایش حجم صدای پوستهٔ تلفن"
-
 #: src/system-prompt.c:376
 msgid "Passwords do not match."
 msgstr "گذرواژه‌های مطابق نیستند."
@@ -540,7 +540,7 @@ msgstr "گذرواژه‌های مطابق نیستند."
 msgid "Password cannot be blank"
 msgstr "گذرواژه نمی‌تواند خالی باشد"
 
-#: src/torch-info.c:80
+#: src/torch-info.c:84
 msgid "Torch"
 msgstr "چراغ"
 
@@ -646,7 +646,7 @@ msgstr "بازخورد"
 msgid "Do not disturb"
 msgstr "مزاحم نشوید"
 
-#: src/ui/feedback-status-page.ui:52
+#: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
 msgstr "تنظیمات بازخورد"
 
@@ -688,7 +688,7 @@ msgstr "_لغو"
 msgid "C_onnect"
 msgstr "_وصل شدن"
 
-#: src/ui/polkit-auth-prompt.ui:97
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "تأیید هویت"
 
@@ -745,7 +745,7 @@ msgid "Wi-Fi"
 msgstr "وای‌فای"
 
 #: src/ui/wifi-status-page.ui:89
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
 msgstr "تنظیمات وای‌فای"
 
@@ -816,9 +816,13 @@ msgstr "روشن"
 msgid "Caffeine timers"
 msgstr "شمارش معکوس کافئین"
 
-#: plugins/caffeine-quick-setting/qs.ui:37
+#: plugins/caffeine-quick-setting/qs.ui:38
 msgid "No caffeine intervals"
 msgstr "بدون دورهٔ کافئین"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+msgid "Caffeine Settings"
+msgstr "تنظیمات کافئین"
 
 #: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:171
@@ -1222,14 +1226,14 @@ msgstr "%Id٪"
 msgid "Wi-Fi Hotspot"
 msgstr "نقطهٔ داغ وای‌فای"
 
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
 msgid "Turn On"
 msgstr "روشن کردن"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
 msgid "Hotspot On"
 msgstr "نقطهٔ داغ روشن"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "نقطهٔ داغ خاموش"
