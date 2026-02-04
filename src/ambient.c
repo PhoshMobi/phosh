@@ -45,6 +45,7 @@ enum {
   PROP_SENSOR_PROXY_MANAGER,
   PROP_AUTO_BRIGHTNESS_ENABLED,
   PROP_LIGHT_LEVEL,
+  PROP_HAS_SENSOR,
   LAST_PROP,
 };
 static GParamSpec *props[LAST_PROP];
@@ -65,6 +66,7 @@ typedef struct _PhoshAmbient {
   gboolean                 auto_brightness;
   double                   light_level;
   gboolean                 blanked;
+  gboolean                 has_sensor;
 
   guint                    sample_id;
   GArray                  *values;
@@ -113,6 +115,9 @@ phosh_ambient_get_property (GObject    *object,
     break;
   case PROP_LIGHT_LEVEL:
     g_value_set_double (value, self->light_level);
+    break;
+  case PROP_HAS_SENSOR:
+    g_value_set_boolean (value, self->has_sensor);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -400,12 +405,19 @@ on_has_ambient_light_changed (PhoshAmbient         *self,
                               GParamSpec           *pspec,
                               PhoshDBusSensorProxy *proxy)
 {
-  gboolean has_ambient;
+  gboolean has_sensor;
 
   g_return_if_fail (self->claimed >= 0);
 
-  has_ambient = phosh_dbus_sensor_proxy_get_has_ambient_light (proxy);
-  if (has_ambient) {
+  has_sensor = phosh_dbus_sensor_proxy_get_has_ambient_light (proxy);
+
+  if (has_sensor != self->has_sensor) {
+    g_debug ("Ambient light sensor %sappeared", has_sensor ? "" : "dis");
+    self->has_sensor = has_sensor;
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_HAS_SENSOR]);
+  }
+
+  if (has_sensor) {
     g_debug ("Ambient sensor appeared");
     maybe_claim (self);
     return;
@@ -550,6 +562,16 @@ phosh_ambient_class_init (PhoshAmbientClass *klass)
     g_param_spec_double ("light-level", "", "",
                          0.0, G_MAXDOUBLE, 0.0,
                          G_PARAM_READABLE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
+
+  /**
+   * PhoshAmbient:has-sensor:
+   *
+   * Whether a ambient light sensor is available or not.
+   */
+  props[PROP_HAS_SENSOR] =
+    g_param_spec_boolean ("has-sensor", "", "",
+                          FALSE,
+                          G_PARAM_READABLE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
 
 
   g_object_class_install_properties (object_class, LAST_PROP, props);
