@@ -52,27 +52,27 @@ static GParamSpec *props[LAST_PROP];
 
 
 typedef struct _PhoshAmbient {
-  GObject                  parent;
+  GObject       parent;
 
-  int                      claimed;
+  int           claimed;
   PhoshSensorProxyManager *sensor_proxy_manager;
-  GCancellable            *cancel;
+  GCancellable *cancel;
 
-  GSettings               *phosh_settings;
-  GSettings               *interface_settings;
-  GSettings               *power_settings;
-  gboolean                 auto_hc;
-  gboolean                 use_hc;
-  gboolean                 auto_brightness;
-  double                   light_level;
-  gboolean                 blanked;
-  gboolean                 has_sensor;
+  GSettings    *phosh_settings;
+  GSettings    *interface_settings;
+  GSettings    *power_settings;
+  gboolean      auto_hc;
+  gboolean      use_hc;
+  gboolean      auto_brightness;
+  double        light_level;
+  gboolean      blanked;
+  gboolean      has_sensor;
 
-  guint                    sample_id;
-  GArray                  *values;
+  guint         sample_id;
+  GArray       *values;
 
-  PhoshFader              *fader;
-  guint                    fader_id;
+  PhoshFader   *fader;
+  guint         fader_id;
 } PhoshAmbient;
 
 G_DEFINE_TYPE (PhoshAmbient, phosh_ambient, G_TYPE_OBJECT);
