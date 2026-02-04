@@ -109,7 +109,7 @@ phosh_brightness_settings_init (PhoshBrightnessSettings *self)
   gtk_range_set_adjustment (GTK_RANGE (self->scale), adjustment);
 
   g_settings_bind (self->settings, KEY_AMBIENT_ENABLED, self->auto_switch, "active",
-                   G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+                   G_SETTINGS_BIND_DEFAULT);
 
   g_object_bind_property (brightness_manager, "icon-name",
                           self->image, "icon-name",
