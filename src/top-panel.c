@@ -278,12 +278,13 @@ on_open_panel_ready (GObject *source_object, GAsyncResult *res, gpointer user_da
 
 
 static void
-open_settings_panel (PhoshTopPanel *self, gboolean mobile, const char *panel)
+open_settings_panel (PhoshTopPanel *self, gboolean mobile, const char *panel, GVariant *params)
 {
   if (self->on_lockscreen)
     return;
 
   phosh_util_open_settings_panel (panel,
+                                  params,
                                   mobile,
                                   self->cancel,
                                   on_open_panel_ready,
@@ -292,14 +293,30 @@ open_settings_panel (PhoshTopPanel *self, gboolean mobile, const char *panel)
 
 
 static void
+parse_panel_options (GSimpleAction *action, GVariant *data, const char **panel, GVariant **params)
+{
+  g_assert (panel);
+
+  if (!params) {
+    g_critical ("Failed to parse panel options: 'params' NULL");
+
+    return;
+  }
+
+  g_variant_get (data, "(&s@av)", panel, params);
+}
+
+
+static void
 on_launch_panel_activated (GSimpleAction *action, GVariant *param, gpointer data)
 {
   PhoshTopPanel *self = PHOSH_TOP_PANEL (data);
   const char *panel;
+  g_autoptr (GVariant) params = NULL;
 
-  panel = g_variant_get_string (param, NULL);
+  parse_panel_options (action, param, &panel, &params);
 
-  open_settings_panel (self, FALSE, panel);
+  open_settings_panel (self, FALSE, panel, params);
   phosh_settings_hide_details (PHOSH_SETTINGS (self->settings));
 }
 
@@ -309,10 +326,11 @@ on_launch_mobile_panel_activated (GSimpleAction *action, GVariant *param, gpoint
 {
   PhoshTopPanel *self = PHOSH_TOP_PANEL (data);
   const char *panel;
+  g_autoptr (GVariant) params = NULL;
 
-  panel = g_variant_get_string (param, NULL);
+  parse_panel_options (action, param, &panel, &params);
 
-  open_settings_panel (self, TRUE, panel);
+  open_settings_panel (self, TRUE, panel, params);
   phosh_settings_hide_details (PHOSH_SETTINGS (self->settings));
 }
 
@@ -623,10 +641,10 @@ static GActionEntry entries[] = {
   { .name = "suspend", .activate = on_suspend_action },
   { .name = "lockscreen", .activate = on_lockscreen_action },
   { .name = "logout", .activate = on_logout_action },
-  { .name = "launch-panel", .activate = on_launch_panel_activated, .parameter_type = "s" },
+  { .name = "launch-panel", .activate = on_launch_panel_activated, .parameter_type = "(sav)" },
   { .name = "launch-mobile-panel",
     .activate = on_launch_mobile_panel_activated,
-    .parameter_type = "s" },
+    .parameter_type = "(sav)" },
 };
 
 

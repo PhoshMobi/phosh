@@ -43,7 +43,8 @@
     <property name="visible">1</property>
     <property name="hexpand">1</property>
     <property name="action-name">panel.launch-mobile-panel</property>
-    <property name="action-target">&quot;feedback&quot;</property>
+    <!-- We send an (sav) parameter, where array contains one variant: empty string -->
+    <property name="action-target">(&quot;feedback&quot;, [&lt;&quot;&quot;&gt;])</property>
     <property name="focus-on-click">0</property>
     <child>
       <object class="GtkLabel">

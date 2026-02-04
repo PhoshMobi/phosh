@@ -45,7 +45,7 @@
     <property name="visible">1</property>
     <property name="hexpand">1</property>
     <property name="action-name">panel.launch-panel</property>
-    <property name="action-target">&quot;bluetooth&quot;</property>
+    <property name="action-target">(&quot;bluetooth&quot;, [&lt;&quot;&quot;&gt;])</property>
     <property name="focus-on-click">0</property>
     <child>
       <object class="GtkLabel">

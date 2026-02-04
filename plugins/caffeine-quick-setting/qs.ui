@@ -14,6 +14,7 @@
     <property name="visible">1</property>
     <property name="title" translatable="yes">Caffeine timers</property>
     <property name="content">stack</property>
+    <property name="footer">footer</property>
   </object>
   <object class="GtkStack" id="stack">
     <property name="visible">1</property>
@@ -39,6 +40,20 @@
       <packing>
         <property name="name">empty-state</property>
       </packing>
+    </child>
+  </object>
+  <object class="GtkButton" id="footer">
+    <property name="visible">1</property>
+    <property name="hexpand">1</property>
+    <property name="action-name">panel.launch-mobile-panel</property>
+    <property name="action-target">(&quot;topbar&quot;, [&lt;&quot;caffeine-quick-setting&quot;&gt;])</property>
+    <property name="focus-on-click">0</property>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">1</property>
+        <property name="ellipsize">end</property>
+        <property name="label" translatable="yes">Caffeine Settings</property>
+      </object>
     </child>
   </object>
 </interface>
