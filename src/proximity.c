@@ -324,31 +324,32 @@ phosh_proximity_class_init (PhoshProximityClass *klass)
   object_class->set_property = phosh_proximity_set_property;
   object_class->get_property = phosh_proximity_get_property;
 
+  /* PhoshProximity:sensor-proxy-manager:
+   *
+   * The sensor proxy manager
+   */
   props[PROP_SENSOR_PROXY_MANAGER] =
-    g_param_spec_object (
-      "sensor-proxy-manager",
-      "Sensor proxy manager",
-      "The object inerfacing with iio-sensor-proxy",
-      PHOSH_TYPE_SENSOR_PROXY_MANAGER,
-      G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+    g_param_spec_object ("sensor-proxy-manager", "", "",
+                         PHOSH_TYPE_SENSOR_PROXY_MANAGER,
+                         G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
+  /* PhoshProximity:calls-manager:
+   *
+   * The calls manager
+   */
   props[PROP_CALLS_MANAGER] =
-    g_param_spec_object (
-      "calls-manager",
-      "",
-      "",
-      PHOSH_TYPE_CALLS_MANAGER,
-      G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+    g_param_spec_object ("calls-manager", "", "",
+                         PHOSH_TYPE_CALLS_MANAGER,
+                         G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
   /* PhoshProximity:fader:
    *
    * %TRUE if the fader to prevent accidental user input is currently active
    */
   props[PROP_FADER] =
-    g_param_spec_boolean (
-      "fader", "", "",
-      FALSE,
-      G_PARAM_READABLE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
+    g_param_spec_boolean ("fader", "", "",
+                          FALSE,
+                          G_PARAM_READABLE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, LAST_PROP, props);
 
