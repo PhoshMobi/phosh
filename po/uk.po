@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the phosh package.
 #
 # Roman Riabenko <roman@riabenko.com>, 2020. #zanata.
-# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022, 2023, 2024, 2025.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-11-28 12:32+0000\n"
-"PO-Revision-Date: 2025-11-28 20:47+0200\n"
+"POT-Creation-Date: 2026-02-04 11:02+0000\n"
+"PO-Revision-Date: 2026-02-04 22:09+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -151,13 +151,17 @@ msgstr "Створити теку"
 msgid "Application"
 msgstr "Програма"
 
-#: src/app-grid.c:261
+#: src/app-grid.c:264
 msgid "Show All Apps"
 msgstr "Показати усі програми"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:267
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Показати лише програми для мобільних"
+
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "Керування гучністю оболонки телефону"
 
 #. Translators: a battery level in percent
 #: src/bt-device-row.c:81
@@ -294,11 +298,11 @@ msgid "No"
 msgstr "Ні"
 
 #. give visual feedback on error
-#: src/lockscreen.c:313 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "Уведіть пароль"
 
-#: src/lockscreen.c:956
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "Звіряю…"
 
@@ -330,27 +334,27 @@ msgid "Screenshot from %s%s.png"
 msgstr "Знімок вікна %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:690 src/ui/media-player.ui:208
+#: src/media-player.c:691 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Невідома назва"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:698 src/ui/media-player.ui:196
+#: src/media-player.c:699 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Невідомий виконавець"
 
-#: src/monitor-manager.c:128
+#: src/monitor-manager.c:129
 msgid "Built-in display"
 msgstr "Вбудований дисплей"
 
-#: src/monitor-manager.c:146
+#: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:153
+#: src/monitor-manager.c:154
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -359,7 +363,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:162
+#: src/monitor-manager.c:163
 msgid "Unknown"
 msgstr "Нетиповий"
 
@@ -495,17 +499,17 @@ msgstr[0] "Майже %dр."
 msgstr[1] "Майже %dр."
 msgstr[2] "Майже %dр."
 
-#: src/polkit-auth-agent.c:271
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "Користувач перервав діалог автентифікації"
 
-#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
-#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
 #: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "Пароль:"
 
-#: src/polkit-auth-prompt.c:322
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "На жаль, це не спрацювало. Будь ласка, спробуйте ще."
 
@@ -536,10 +540,6 @@ msgstr "Натисніть клавішу «Esc», щоб закрити"
 msgid "Running '%s' failed"
 msgstr "Не вдалося запустити «%s»"
 
-#: src/settings/audio-settings.c:376
-msgid "Phone Shell Volume Control"
-msgstr "Керування гучністю оболонки телефону"
-
 #: src/system-prompt.c:376
 msgid "Passwords do not match."
 msgstr "Паролі не збігаються."
@@ -548,7 +548,7 @@ msgstr "Паролі не збігаються."
 msgid "Password cannot be blank"
 msgstr "Пароль не може бути порожнім"
 
-#: src/torch-info.c:80
+#: src/torch-info.c:84
 msgid "Torch"
 msgstr "Факел"
 
@@ -654,7 +654,7 @@ msgstr "Відгук"
 msgid "Do not disturb"
 msgstr "Не турбувати"
 
-#: src/ui/feedback-status-page.ui:52
+#: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
 msgstr "Параметри відгуку"
 
@@ -696,7 +696,7 @@ msgstr "_Скасувати"
 msgid "C_onnect"
 msgstr "З'_єднатися"
 
-#: src/ui/polkit-auth-prompt.ui:97
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "Автентифікуватися"
 
@@ -753,7 +753,7 @@ msgid "Wi-Fi"
 msgstr "Wi-Fi"
 
 #: src/ui/wifi-status-page.ui:89
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
 msgstr "Параметри Wi-Fi"
 
@@ -824,9 +824,14 @@ msgstr "❙"
 msgid "Caffeine timers"
 msgstr "Таймери caffeine"
 
-#: plugins/caffeine-quick-setting/qs.ui:37
+#: plugins/caffeine-quick-setting/qs.ui:38
 msgid "No caffeine intervals"
 msgstr "Немає інтервалів caffeine"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+#| msgid "Caffeine Quick Setting"
+msgid "Caffeine Settings"
+msgstr "Параметри Caffeine"
 
 #: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:171
@@ -1189,7 +1194,7 @@ msgstr "Завершується"
 msgid "Untitled event"
 msgstr "Подія без назви"
 
-#: plugins/upcoming-events/upcoming-events.c:372
+#: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
 msgid "No events for the next %d days"
 msgstr "Немає подій протягом наступних %d днів"
@@ -1227,20 +1232,18 @@ msgid "%d%%"
 msgstr "%d%%"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
-#| msgid "No Wi-Fi Hotspots"
 msgid "Wi-Fi Hotspot"
 msgstr "Хот-спот Wi-Fi"
 
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
-#| msgid "Turn Off"
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
 msgid "Turn On"
 msgstr "Увімкнути"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
 msgid "Hotspot On"
 msgstr "Точку доступу увімкнено"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Точку доступу вимкнено"
 
