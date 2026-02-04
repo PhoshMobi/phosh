@@ -30,7 +30,7 @@
 /**
  * PhoshBrightnessManager:
  *
- * Manage backglight brightness. Handle auto-brightness and maintain a
+ * Manage backlight brightness. Handle auto-brightness and maintain a
  * `GtkAdjustment` that can be used for brightness sliders.
  *
  * For auto brightness the `PhoshBrightnessManager` gets the ambient
