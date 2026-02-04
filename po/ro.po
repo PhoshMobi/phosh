@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-12-31 16:32+0000\n"
-"PO-Revision-Date: 2026-01-09 14:55+0100\n"
+"POT-Creation-Date: 2026-02-04 11:02+0000\n"
+"PO-Revision-Date: 2026-02-04 17:32+0100\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -161,6 +161,10 @@ msgstr "Arată toate aplicațiile"
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Arată numai aplicații pentru mobil"
 
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "Controlul sunetului"
+
 #. Translators: a battery level in percent
 #: src/bt-device-row.c:81
 #, c-format
@@ -296,11 +300,11 @@ msgid "No"
 msgstr "Nu"
 
 #. give visual feedback on error
-#: src/lockscreen.c:397 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "Introdu codul de acces"
 
-#: src/lockscreen.c:1041
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "Se verifică…"
 
@@ -332,27 +336,27 @@ msgid "Screenshot from %s%s.png"
 msgstr "Imagine %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:690 src/ui/media-player.ui:208
+#: src/media-player.c:691 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Titlu necunoscut"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:698 src/ui/media-player.ui:196
+#: src/media-player.c:699 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Artist necunoscut"
 
-#: src/monitor-manager.c:128
+#: src/monitor-manager.c:129
 msgid "Built-in display"
 msgstr "Ecran integrat"
 
-#: src/monitor-manager.c:146
+#: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:153
+#: src/monitor-manager.c:154
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -361,7 +365,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:162
+#: src/monitor-manager.c:163
 msgid "Unknown"
 msgstr "Necunoscut"
 
@@ -497,17 +501,17 @@ msgstr[0] "Aproape %d an"
 msgstr[1] "Aproape %d ani"
 msgstr[2] "Aproape %d ani"
 
-#: src/polkit-auth-agent.c:271
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "Fereastra de autentificare a fost închisă de utilizator"
 
-#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
-#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
 #: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "Parola:"
 
-#: src/polkit-auth-prompt.c:322
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "Nu a funcționat. Încearcă din nou."
 
@@ -537,10 +541,6 @@ msgstr "Apasă ESC pentru a închide"
 #, c-format
 msgid "Running '%s' failed"
 msgstr "Executarea „%s” a eșuat"
-
-#: src/settings/audio-settings.c:376
-msgid "Phone Shell Volume Control"
-msgstr "Controlul sunetului"
 
 #: src/system-prompt.c:376
 msgid "Passwords do not match."
@@ -656,7 +656,7 @@ msgstr "Reacții"
 msgid "Do not disturb"
 msgstr "Nu deranja"
 
-#: src/ui/feedback-status-page.ui:52
+#: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
 msgstr "Opțiuni pentru reacții"
 
@@ -698,7 +698,7 @@ msgstr "_Anulează"
 msgid "C_onnect"
 msgstr "C_onectează"
 
-#: src/ui/polkit-auth-prompt.ui:97
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "Autentificare"
 
@@ -826,9 +826,13 @@ msgstr "Pornit"
 msgid "Caffeine timers"
 msgstr "Timpi Cafeină"
 
-#: plugins/caffeine-quick-setting/qs.ui:37
+#: plugins/caffeine-quick-setting/qs.ui:38
 msgid "No caffeine intervals"
 msgstr "Niciun interval Cafeină"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+msgid "Caffeine Settings"
+msgstr "Opțiuni Cafeină"
 
 #: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:171
