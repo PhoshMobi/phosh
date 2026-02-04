@@ -14,5 +14,3 @@ G_DECLARE_FINAL_TYPE (PhoshSensorProxyManager, phosh_sensor_proxy_manager,
                       PHOSH, SENSOR_PROXY_MANAGER, PhoshDBusSensorProxyProxy)
 
 PhoshSensorProxyManager *phosh_sensor_proxy_manager_new (GError **err);
-gboolean phosh_sensor_proxy_manager_claim_proximity_sync (PhoshSensorProxyManager *self,
-                                                          GError **err);
