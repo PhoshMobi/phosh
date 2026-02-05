@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-12-02 16:11+0000\n"
-"PO-Revision-Date: 2025-12-03 00:28+0100\n"
+"POT-Creation-Date: 2026-02-04 11:02+0000\n"
+"PO-Revision-Date: 2026-02-05 08:39+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.8\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
@@ -37,7 +37,7 @@ msgstr "ეს სესია Phosh-ში შეგიყვანთ"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:4
 msgid "Caffeine Quick Setting"
-msgstr "კოფეინის სწრაფი მორგება"
+msgstr "Caffeine-ის სწრაფი მორგება"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:6
 msgid "Prevent the session from going idle"
@@ -151,13 +151,17 @@ msgstr "ახალი საქაღალდის შექმნა"
 msgid "Application"
 msgstr "აპლიკაცია"
 
-#: src/app-grid.c:261
+#: src/app-grid.c:264
 msgid "Show All Apps"
 msgstr "ყველა აპლიკაციის ჩვენება"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:267
 msgid "Show Only Mobile Friendly Apps"
 msgstr "მხოლოდ მობილურზე მორგებული აპლიკაციების ჩვენება"
+
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "ტელეფონის გარსის ხმის კონტროლი"
 
 #. Translators: a battery level in percent
 #: src/bt-device-row.c:81
@@ -229,6 +233,7 @@ msgstr "გამოსვლა"
 msgid "%s will be logged out automatically in %d second."
 msgid_plural "%s will be logged out automatically in %d seconds."
 msgstr[0] "%s გამოვა ავტომატურად, %d წამში."
+msgstr[1] "%s გამოვა ავტომატურად, %d წამში."
 
 #: src/end-session-dialog.c:182 src/ui/power-menu.ui:72
 msgid "Power Off"
@@ -239,6 +244,7 @@ msgstr "გამორთვა"
 msgid "The system will power off automatically in %d second."
 msgid_plural "The system will power off automatically in %d seconds."
 msgstr[0] "სისტემა გამოირთვება ავტომატურად %d წამში."
+msgstr[1] "სისტემა გამოირთვება ავტომატურად %d წამში."
 
 #: src/end-session-dialog.c:189
 msgid "Restart"
@@ -249,6 +255,7 @@ msgstr "გადატვრთვა"
 msgid "The system will restart automatically in %d second."
 msgid_plural "The system will restart automatically in %d seconds."
 msgstr[0] "სისტემა გადაიტვირთება ავტომატურად %d წამში."
+msgstr[1] "სისტემა გადაიტვირთება ავტომატურად %d წამში."
 
 #. Translators: quiet and silent are fbd profiles names:
 #. see https://source.puri.sm/Librem5/feedbackd#profiles
@@ -288,11 +295,11 @@ msgid "No"
 msgstr "არა"
 
 #. give visual feedback on error
-#: src/lockscreen.c:313 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "შეიყვანეთ კოდი"
 
-#: src/lockscreen.c:956
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "შემოწმება…"
 
@@ -324,27 +331,27 @@ msgid "Screenshot from %s%s.png"
 msgstr "ეკრანის ანაბეჭდი %s%s.png-დან"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:690 src/ui/media-player.ui:208
+#: src/media-player.c:691 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "უცნობი სათაური"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:698 src/ui/media-player.ui:196
+#: src/media-player.c:699 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "უცნობი შემსრულებელი"
 
-#: src/monitor-manager.c:128
+#: src/monitor-manager.c:129
 msgid "Built-in display"
 msgstr "ჩაშენებული ეკრანი"
 
-#: src/monitor-manager.c:146
+#: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:153
+#: src/monitor-manager.c:154
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -353,7 +360,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:162
+#: src/monitor-manager.c:163
 msgid "Unknown"
 msgstr "უცნობი"
 
@@ -412,6 +419,7 @@ msgstr "~1წთ"
 msgid "%dm"
 msgid_plural "%dm"
 msgstr[0] "%dწთ"
+msgstr[1] "%dწთ"
 
 #. Translators: abbreviated time difference "About 3 hours ago"
 #. Please stick to a maximum of 4 chars for the time unit
@@ -420,6 +428,7 @@ msgstr[0] "%dწთ"
 msgid "~%dh"
 msgid_plural "~%dh"
 msgstr[0] "~%dსთ"
+msgstr[1] "~%dსთ"
 
 #. Translators: abbreviated time difference "About 1 day ago"
 #. Please stick to a maximum of 4 chars for the time unit
@@ -435,6 +444,7 @@ msgstr "~1დ"
 msgid "%dd"
 msgid_plural "%dd"
 msgstr[0] "%dდღე"
+msgstr[1] "%dდღე"
 
 #. Translators: abbreviated time difference "About 1 month ago"
 #. Please stick to a maximum of 4 chars for the time unit
@@ -450,6 +460,7 @@ msgstr "~1თვე"
 msgid "%dmo"
 msgid_plural "%dmos"
 msgstr[0] "%dთვე"
+msgstr[1] "%dთვე"
 
 #. Translators: abbreviated time difference "About 5 years ago"
 #. Please stick to a maximum of 4 chars for the time unit
@@ -458,6 +469,7 @@ msgstr[0] "%dთვე"
 msgid "~%dy"
 msgid_plural "~%dy"
 msgstr[0] "~%dწ"
+msgstr[1] "~%dწ"
 
 #. Translators: abbreviated time difference "Over 5 years ago"
 #. Please stick to a maximum of 4 chars for the time unit
@@ -466,6 +478,7 @@ msgstr[0] "~%dწ"
 msgid "Over %dy"
 msgid_plural "Over %dy"
 msgstr[0] "%d წელზე მეტი"
+msgstr[1] "%d წელზე მეტი"
 
 #. Translators: abbreviated time difference "almost 5 years ago"
 #. Please stick to a maximum of 4 chars for the time unit
@@ -474,18 +487,19 @@ msgstr[0] "%d წელზე მეტი"
 msgid "Almost %dy"
 msgid_plural "Almost %dy"
 msgstr[0] "თითქმის %dწ"
+msgstr[1] "თითქმის %dწ"
 
-#: src/polkit-auth-agent.c:271
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "ავთენტიკაციის ფანჯარა დახურულია მომხმარებლის მიერ"
 
-#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
-#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
 #: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "პაროლი:"
 
-#: src/polkit-auth-prompt.c:322
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "უკაცრავად, არ იმუშავა. კიდევ სცადეთ."
 
@@ -516,10 +530,6 @@ msgstr "დასახურად დააწექით ESC-ს"
 msgid "Running '%s' failed"
 msgstr "%s-ის გაშვების შეცდომა"
 
-#: src/settings/audio-settings.c:376
-msgid "Phone Shell Volume Control"
-msgstr "ტელეფონის გარსის ხმის კონტროლი"
-
 #: src/system-prompt.c:376
 msgid "Passwords do not match."
 msgstr "პაროლები არ ემთხვევა."
@@ -528,7 +538,7 @@ msgstr "პაროლები არ ემთხვევა."
 msgid "Password cannot be blank"
 msgstr "პაროლები ცარიელი ვერ იქნება"
 
-#: src/torch-info.c:80
+#: src/torch-info.c:84
 msgid "Torch"
 msgstr "შეხება"
 
@@ -634,7 +644,7 @@ msgstr "უკუკავშირი"
 msgid "Do not disturb"
 msgstr "არ შემაწუხო"
 
-#: src/ui/feedback-status-page.ui:52
+#: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
 msgstr "უკუკავშირის მორგება"
 
@@ -676,7 +686,7 @@ msgstr "_გაუქმება"
 msgid "C_onnect"
 msgstr "_კავშირი"
 
-#: src/ui/polkit-auth-prompt.ui:97
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "ავთენტიკაცია"
 
@@ -733,7 +743,7 @@ msgid "Wi-Fi"
 msgstr "Wi-Fi"
 
 #: src/ui/wifi-status-page.ui:89
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
 msgstr "Wi-Fi-ის მორგება"
 
@@ -802,11 +812,16 @@ msgstr "ჩართ"
 
 #: plugins/caffeine-quick-setting/qs.ui:15
 msgid "Caffeine timers"
-msgstr "კოფეინის ტაიმერები"
+msgstr "Caffeine-ის ტაიმერები"
 
-#: plugins/caffeine-quick-setting/qs.ui:37
+#: plugins/caffeine-quick-setting/qs.ui:38
 msgid "No caffeine intervals"
 msgstr "კოფეინის შუალედების გარეშე"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+#| msgid "Caffeine Quick Setting"
+msgid "Caffeine Settings"
+msgstr "Caffeine-iის მორგება"
 
 #: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:171
@@ -815,7 +830,7 @@ msgstr "უვადო (∞)"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:7
 msgid "Caffeine Quick Setting Preferences"
-msgstr "კოფეინის სწრაფი მორგების პარამეტრები"
+msgstr "Caffeine-ის სწრაფი მორგების პარამეტრები"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:11
 msgid "Caffeine Duration"
@@ -1210,15 +1225,15 @@ msgstr "%d%%"
 msgid "Wi-Fi Hotspot"
 msgstr "Wi-Fi ჰოტსპოტი"
 
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
 msgid "Turn On"
 msgstr "ჩართვა"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
 msgid "Hotspot On"
 msgstr "ჰოტსპოტი ჩართ"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "ჰოტსპოტი გამორთ"
 
