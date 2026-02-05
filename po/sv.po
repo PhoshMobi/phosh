@@ -1,14 +1,14 @@
 # Ludwig Johnson <public@ludwigjohnson.se>, 2018. #zanata
 # Nami <namii@tutamail.com>, 2019. #zanata
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2020, 2021, 2022, 2023, 2024, 2025.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2020, 2021, 2022, 2023, 2024, 2025, 2026.
 # Luna Jernberg <droidbittin@gmail.com>, 2021, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-12-24 16:01+0000\n"
-"PO-Revision-Date: 2025-12-25 00:09+0100\n"
+"POT-Creation-Date: 2026-02-04 11:02+0000\n"
+"PO-Revision-Date: 2026-02-05 22:46+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -159,6 +159,10 @@ msgstr "Visa alla appar"
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Visa endast mobilanpassade appar"
 
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "Volymkontroll för Phone Shell"
+
 #. Translators: a battery level in percent
 #: src/bt-device-row.c:81
 #, c-format
@@ -296,7 +300,7 @@ msgstr "Nej"
 msgid "Enter Passcode"
 msgstr "Ange lösenord"
 
-#: src/lockscreen.c:1040
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "Kontrollerar…"
 
@@ -328,27 +332,27 @@ msgid "Screenshot from %s%s.png"
 msgstr "Skärmbild från %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:690 src/ui/media-player.ui:208
+#: src/media-player.c:691 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Okänd titel"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:698 src/ui/media-player.ui:196
+#: src/media-player.c:699 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Okänd artist"
 
-#: src/monitor-manager.c:128
+#: src/monitor-manager.c:129
 msgid "Built-in display"
 msgstr "Inbyggd skärm"
 
-#: src/monitor-manager.c:146
+#: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:153
+#: src/monitor-manager.c:154
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -357,7 +361,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:162
+#: src/monitor-manager.c:163
 msgid "Unknown"
 msgstr "Okänd"
 
@@ -486,17 +490,17 @@ msgid_plural "Almost %dy"
 msgstr[0] "Nästan %dår"
 msgstr[1] "Nästan %dår"
 
-#: src/polkit-auth-agent.c:271
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "Autentiseringsdialogen avvisades av användaren"
 
-#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
-#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
 #: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "Lösenord:"
 
-#: src/polkit-auth-prompt.c:322
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "Tyvärr, det fungerade inte. Var god försök igen."
 
@@ -527,10 +531,6 @@ msgstr "Tryck Esc för att stänga"
 msgid "Running '%s' failed"
 msgstr "Körning av ”%s” misslyckades"
 
-#: src/settings/audio-settings.c:376
-msgid "Phone Shell Volume Control"
-msgstr "Volymkontroll för Phone Shell"
-
 #: src/system-prompt.c:376
 msgid "Passwords do not match."
 msgstr "Lösenorden matchar inte."
@@ -539,7 +539,7 @@ msgstr "Lösenorden matchar inte."
 msgid "Password cannot be blank"
 msgstr "Lösenordet får inte vara tomt"
 
-#: src/torch-info.c:80
+#: src/torch-info.c:84
 msgid "Torch"
 msgstr "Ficklampa"
 
@@ -645,7 +645,7 @@ msgstr "Återkoppling"
 msgid "Do not disturb"
 msgstr "Stör ej"
 
-#: src/ui/feedback-status-page.ui:52
+#: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
 msgstr "Återkopplingsinställningar"
 
@@ -687,7 +687,7 @@ msgstr "A_vbryt"
 msgid "C_onnect"
 msgstr "A_nslut"
 
-#: src/ui/polkit-auth-prompt.ui:97
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "Godkänn"
 
@@ -815,9 +815,13 @@ msgstr "På"
 msgid "Caffeine timers"
 msgstr "Koffeintidtagare"
 
-#: plugins/caffeine-quick-setting/qs.ui:37
+#: plugins/caffeine-quick-setting/qs.ui:38
 msgid "No caffeine intervals"
 msgstr "Inga koffeinintervall"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+msgid "Caffeine Settings"
+msgstr "Koffeininställningar"
 
 #: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:171
