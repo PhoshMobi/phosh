@@ -44,6 +44,7 @@
 enum {
   PROP_0,
   PROP_AUTO_BRIGHTNESS_ENABLED,
+  PROP_AUTO_BRIGHTNESS_PRESENT,
   PROP_ICON_NAME,
   LAST_PROP,
 };
@@ -66,6 +67,7 @@ struct _PhoshBrightnessManager {
   gboolean        dimmed;
   struct {
     gboolean enabled;
+    gboolean present;
     PhoshAutoBrightness *tracker;
     double   base;
     double   offset;
@@ -689,6 +691,26 @@ on_keybindings_changed (PhoshBrightnessManager *self)
 
 
 static void
+phosh_brightness_manager_set_property (GObject      *object,
+                                       uint          property_id,
+                                       const GValue *value,
+                                       GParamSpec   *pspec)
+{
+  PhoshBrightnessManager *self = PHOSH_BRIGHTNESS_MANAGER (object);
+
+  switch (property_id) {
+  case PROP_AUTO_BRIGHTNESS_PRESENT:
+    self->auto_brightness.present = g_value_get_boolean (value);
+    g_debug ("Set auto-brightness-present to %d", self->auto_brightness.present);
+    break;
+  default:
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+    break;
+  }
+}
+
+
+static void
 phosh_brightness_manager_get_property (GObject    *object,
                                        guint       property_id,
                                        GValue     *value,
@@ -699,6 +721,9 @@ phosh_brightness_manager_get_property (GObject    *object,
   switch (property_id) {
   case PROP_AUTO_BRIGHTNESS_ENABLED:
     g_value_set_boolean (value, self->auto_brightness.enabled);
+    break;
+  case PROP_AUTO_BRIGHTNESS_PRESENT:
+    g_value_set_boolean (value, phosh_brightness_manager_get_auto_brightness_present (self));
     break;
   case PROP_ICON_NAME:
     g_value_set_string (value, self->icon_name);
@@ -741,6 +766,7 @@ phosh_brightness_manager_class_init (PhoshBrightnessManagerClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   object_class->dispose = phosh_brightness_manager_dispose;
+  object_class->set_property = phosh_brightness_manager_set_property;
   object_class->get_property = phosh_brightness_manager_get_property;
 
   /**
@@ -753,6 +779,15 @@ phosh_brightness_manager_class_init (PhoshBrightnessManagerClass *klass)
     g_param_spec_boolean ("auto-brightness-enabled", "", "",
                           FALSE,
                           G_PARAM_READABLE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshBrightnessManager:auto-brightness-present:
+   *
+   * Whether a hardware sensor is present allowing setting brightness automatically
+   */
+  props[PROP_AUTO_BRIGHTNESS_PRESENT] =
+    g_param_spec_boolean ("auto-brightness-present", "", "",
+                          FALSE,
+                          G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_STATIC_STRINGS);
   /**
    * PhoshBrightnessManager:icon-name:
    *
@@ -815,6 +850,10 @@ phosh_brightness_manager_init (PhoshBrightnessManager *self)
                       on_ambient_light_level_changed,
                       self,
                       NULL);
+
+    g_object_bind_property (ambient, "has-sensor",
+                            self, "auto-brightness-present",
+                            G_BINDING_SYNC_CREATE);
   }
 
   g_signal_connect_object (phosh_shell_get_monitor_manager (shell),
@@ -848,7 +887,30 @@ phosh_brightness_manager_get_adjustment (PhoshBrightnessManager *self)
   return self->adjustment;
 }
 
+/**
+ * phosh_brightness_manager_get_auto_brightness_present:
+ * @PhoshBrightnessManager: The brightness manager
+ *
+ * Get whether hardware is present that allows brightness to be controlled automatically.
+ * When it returns `FALSE` this may indicate that there is no (working)
+ * ambient light sensor.
+ *
+ * Returns: `TRUE` when auto brightness control is available, otherwise `FALSE`
+ */
+gboolean
+phosh_brightness_manager_get_auto_brightness_present (PhoshBrightnessManager *self)
+{
+  g_return_val_if_fail (PHOSH_IS_BRIGHTNESS_MANAGER (self), FALSE);
 
+  return self->auto_brightness.present;
+}
+
+/**
+ * phosh_brightness_manager_get_auto_brightness_enabled:
+ * @PhoshBrightnessManager: The brightness manager
+ *
+ * Returns: Whether the brightness is being controlled automatically.
+ */
 gboolean
 phosh_brightness_manager_get_auto_brightness_enabled (PhoshBrightnessManager *self)
 {
