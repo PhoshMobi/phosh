@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-01-22 11:47+0000\n"
-"PO-Revision-Date: 2026-01-25 22:27+0000\n"
+"POT-Creation-Date: 2026-02-04 11:02+0000\n"
+"PO-Revision-Date: 2026-02-08 22:24+0000\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
 "Language: kw\n"
@@ -301,11 +301,11 @@ msgid "No"
 msgstr "Na"
 
 #. give visual feedback on error
-#: src/lockscreen.c:397 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "Ynworra Kod-Tremena"
 
-#: src/lockscreen.c:1041
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "Ow Checkya…"
 
@@ -337,12 +337,12 @@ msgid "Screenshot from %s%s.png"
 msgstr "Skrin-Imach dhyworth %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:690 src/ui/media-player.ui:208
+#: src/media-player.c:691 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Titel Ankoth"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:698 src/ui/media-player.ui:196
+#: src/media-player.c:699 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Awtour Ankoth"
 
@@ -495,17 +495,17 @@ msgid_plural "Almost %dy"
 msgstr[0] "Ogas %db"
 msgstr[1] "Ogas %db"
 
-#: src/polkit-auth-agent.c:271
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "Fenester omgelmyans yw naghys gans an usyer"
 
-#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
-#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
 #: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "Ger-tremena:"
 
-#: src/polkit-auth-prompt.c:322
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "Drog yw genev, na na oberi. Mar pleg assaya arta."
 
@@ -650,7 +650,7 @@ msgstr "Dasliv"
 msgid "Do not disturb"
 msgstr "Na ankresya"
 
-#: src/ui/feedback-status-page.ui:52
+#: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
 msgstr "Settyansow Dasliv"
 
@@ -692,7 +692,7 @@ msgstr "_Hedhi"
 msgid "C_onnect"
 msgstr "_Junya"
 
-#: src/ui/polkit-auth-prompt.ui:97
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "Omgelmi"
 
@@ -820,9 +820,13 @@ msgstr "Byw"
 msgid "Caffeine timers"
 msgstr "Termynador kaffin"
 
-#: plugins/caffeine-quick-setting/qs.ui:37
+#: plugins/caffeine-quick-setting/qs.ui:38
 msgid "No caffeine intervals"
 msgstr "Spysow kaffin vyth"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+msgid "Caffeine Settings"
+msgstr "Settyansow Kaffin"
 
 #: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:171
