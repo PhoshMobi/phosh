@@ -834,6 +834,7 @@ setup_idle_cb (PhoshShell *self)
 
   priv->debug_control = phosh_debug_control_new ();
   priv->app_tracker = phosh_app_tracker_new ();
+  phosh_toplevel_manager_set_app_tracker (priv->toplevel_manager, priv->app_tracker);
   priv->splash_manager = phosh_splash_manager_new (priv->app_tracker);
   priv->session_manager = phosh_session_manager_new ();
   priv->mode_manager = phosh_mode_manager_new ();

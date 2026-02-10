@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2019 Purism SPC
- *               2024 The Phosh Developers
+ *               2023-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -33,20 +33,133 @@ enum {
 };
 static GParamSpec *props[PROP_LAST_PROP];
 
+
 enum {
-  SIGNAL_TOPLEVEL_ADDED,
-  SIGNAL_TOPLEVEL_CHANGED,
+  TOPLEVEL_ADDED,
+  TOPLEVEL_CHANGED,
+  TOPLEVEL_MISSING,
   N_SIGNALS
 };
-static guint signals[N_SIGNALS] = { 0 };
+static guint signals[N_SIGNALS];
+
+#define MAX_INITIAL_TOPLEVEL_TIMEOUT 30 /* s */
+
+typedef struct {
+  GAppInfo *app_info;
+  guint     timeout_id;
+  PhoshToplevelManager *manager; /* unowned */
+} LaunchingAppInfo;
 
 struct _PhoshToplevelManager {
-  GObject parent;
-  GPtrArray *toplevels;         /* (element-type: PhoshToplevel) */
-  GPtrArray *toplevels_pending; /* (element-type: PhoshToplevel) */
+  GObject          parent;
+
+  GPtrArray       *toplevels;         /* (element-type: PhoshToplevel) */
+  GPtrArray       *toplevels_pending; /* (element-type: PhoshToplevel) */
+
+  PhoshAppTracker *app_tracker;
+  GPtrArray       *launching_apps;    /* (element-type: LaunchingToplevelInfo */
 };
 
 G_DEFINE_TYPE (PhoshToplevelManager, phosh_toplevel_manager, G_TYPE_OBJECT);
+
+
+static void
+on_initial_toplevel_timeout (gpointer data)
+{
+  LaunchingAppInfo *info = data;
+
+  g_signal_emit (info->manager, signals[TOPLEVEL_MISSING], 0, info->app_info);
+  info->timeout_id = 0;
+
+  if (!g_ptr_array_remove_fast (info->manager->launching_apps, info))
+    g_critical ("Failed to find launching info for %s", g_app_info_get_id (info->app_info));
+}
+
+
+static void
+launching_app_info_free (LaunchingAppInfo *info)
+{
+  g_clear_handle_id (&info->timeout_id, g_source_remove);
+  g_clear_object (&info->app_info);
+  g_free (info);
+}
+
+
+static LaunchingAppInfo *
+launching_app_info_new (PhoshToplevelManager *toplevel_manager, GAppInfo *app_info)
+{
+  LaunchingAppInfo *info = g_new0 (LaunchingAppInfo, 1);
+
+  info->app_info = g_object_ref (app_info);
+  info->manager = toplevel_manager;
+
+  info->timeout_id = g_timeout_add_seconds_once (MAX_INITIAL_TOPLEVEL_TIMEOUT,
+                                                 on_initial_toplevel_timeout,
+                                                 info);
+  return info;
+}
+
+
+static gboolean
+app_info_has_toplevel (PhoshToplevelManager *self, GAppInfo *app_info)
+{
+  const char *app_id = g_app_info_get_id (app_info);
+
+  for (int i = 0; i < self->toplevels->len; i++) {
+    PhoshToplevel *toplevel = g_ptr_array_index (self->toplevels, i);
+
+    if (g_strcmp0 (phosh_toplevel_get_app_id (toplevel), app_id) == 0)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+
+static void
+remove_from_launching (PhoshToplevelManager *self, PhoshToplevel *toplevel)
+{
+  g_autoptr (GAppInfo) needle = NULL;
+  const char *app_id;
+
+  app_id = phosh_toplevel_get_app_id (toplevel);
+  if (app_id)
+    return;
+
+  needle = G_APP_INFO (phosh_get_desktop_app_info_for_app_id (app_id));
+  if (!needle)
+    return;
+
+  for (int i = 0; i < self->launching_apps->len; i++) {
+    LaunchingAppInfo *info = g_ptr_array_index (self->launching_apps, i);
+
+    if (g_app_info_equal (G_APP_INFO (needle), info->app_info)) {
+      g_ptr_array_remove_index_fast (self->launching_apps, i);
+      g_debug ("Found toplevel for launching app %s", g_app_info_get_id (needle));
+      return;
+    }
+  }
+
+  g_debug ("Couldn't find app info toplevel %s", app_id);
+}
+
+
+static void
+on_app_launched (PhoshToplevelManager *self, GAppInfo *app_info, const char *startup_id)
+{
+  LaunchingAppInfo *info;
+  const char *app_id = g_app_info_get_id (app_info);
+
+  if (app_info_has_toplevel (self, app_info)) {
+    g_debug ("App info %s already has a toplevel", app_id);
+    return;
+  }
+
+  g_warning ("Tracking %s as there's no toplevel yet", app_id);
+  info = launching_app_info_new (self, app_info);
+  g_ptr_array_add (self->launching_apps, info);
+}
+
 
 static void
 phosh_toplevel_get_property (GObject    *object,
@@ -71,8 +184,6 @@ on_toplevel_closed (PhoshToplevelManager *self, PhoshToplevel *toplevel)
 {
   g_return_if_fail (PHOSH_IS_TOPLEVEL_MANAGER (self));
   g_return_if_fail (PHOSH_IS_TOPLEVEL (toplevel));
-  g_return_if_fail (self->toplevels);
-  g_return_if_fail (self->toplevels_pending);
 
   /* Check if toplevel exists in toplevels_pending, in that case it is
    * not yet configured and we just remove it from toplevels_pending
@@ -95,8 +206,6 @@ on_toplevel_configured (PhoshToplevelManager *self, GParamSpec *pspec, PhoshTopl
   gboolean configured;
   g_return_if_fail (PHOSH_IS_TOPLEVEL_MANAGER (self));
   g_return_if_fail (PHOSH_IS_TOPLEVEL (toplevel));
-  g_return_if_fail (self->toplevels);
-  g_return_if_fail (self->toplevels_pending);
 
   configured = phosh_toplevel_is_configured (toplevel);
 
@@ -104,12 +213,14 @@ on_toplevel_configured (PhoshToplevelManager *self, GParamSpec *pspec, PhoshTopl
     return;
 
   if (g_ptr_array_find (self->toplevels, toplevel, NULL)) {
-    g_signal_emit (self, signals[SIGNAL_TOPLEVEL_CHANGED], 0, toplevel);
+    g_signal_emit (self, signals[TOPLEVEL_CHANGED], 0, toplevel);
   } else {
     g_assert_true (g_ptr_array_remove (self->toplevels_pending, toplevel));
     g_ptr_array_add (self->toplevels, toplevel);
-    g_signal_emit (self, signals[SIGNAL_TOPLEVEL_ADDED], 0, toplevel);
+    g_signal_emit (self, signals[TOPLEVEL_ADDED], 0, toplevel);
     g_object_notify_by_pspec (G_OBJECT (self), props[PROP_NUM_TOPLEVELS]);
+
+    remove_from_launching (self, toplevel);
   }
 }
 
@@ -163,6 +274,10 @@ phosh_toplevel_manager_dispose (GObject *object)
     g_ptr_array_free (self->toplevels_pending, TRUE);
     self->toplevels_pending = NULL;
   }
+
+  g_clear_pointer (&self->launching_apps, g_ptr_array_unref);
+  g_clear_object (&self->app_tracker);
+
   G_OBJECT_CLASS (phosh_toplevel_manager_parent_class)->dispose (object);
 }
 
@@ -175,16 +290,16 @@ phosh_toplevel_manager_class_init (PhoshToplevelManagerClass *klass)
   object_class->dispose = phosh_toplevel_manager_dispose;
   object_class->get_property = phosh_toplevel_get_property;
 
+  /**
+   * PhoshToplevelManager:num-toplevels:
+   *
+   * The current number of toplevels
+   */
   props[PROP_NUM_TOPLEVELS] =
-    g_param_spec_int ("num-toplevels",
-                      "Number of toplevels",
-                      "The current number of toplevels",
-                      0,
-                      G_MAXINT,
-                      0,
-                      G_PARAM_READABLE |
-                      G_PARAM_STATIC_STRINGS |
-                      G_PARAM_EXPLICIT_NOTIFY);
+    g_param_spec_int ("num-toplevels", "", "",
+                      0, G_MAXINT, 0,
+                      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+
   g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 
   /**
@@ -194,10 +309,13 @@ phosh_toplevel_manager_class_init (PhoshToplevelManagerClass *klass)
    *
    * Emitted whenever a toplevel has been added to the list.
    */
-  signals[SIGNAL_TOPLEVEL_ADDED] = g_signal_new (
-    "toplevel-added",
-    G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST, 0, NULL, NULL,
-    NULL, G_TYPE_NONE, 1, PHOSH_TYPE_TOPLEVEL);
+  signals[TOPLEVEL_ADDED] = g_signal_new ("toplevel-added",
+                                          G_TYPE_FROM_CLASS (klass),
+                                          G_SIGNAL_RUN_LAST,
+                                          0, NULL, NULL, NULL,
+                                          G_TYPE_NONE,
+                                          1,
+                                          PHOSH_TYPE_TOPLEVEL);
   /**
    * PhoshToplevelManager::toplevel-changed:
    * @manager: The #PhoshToplevelManager emitting the signal.
@@ -205,10 +323,28 @@ phosh_toplevel_manager_class_init (PhoshToplevelManagerClass *klass)
    *
    * Emitted whenever a toplevel has changed properties.
    */
-  signals[SIGNAL_TOPLEVEL_CHANGED] = g_signal_new (
-    "toplevel-changed",
-    G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST, 0, NULL, NULL,
-    NULL, G_TYPE_NONE, 1, PHOSH_TYPE_TOPLEVEL);
+  signals[TOPLEVEL_CHANGED] = g_signal_new ("toplevel-changed",
+                                            G_TYPE_FROM_CLASS (klass),
+                                            G_SIGNAL_RUN_LAST,
+                                            0, NULL, NULL, NULL,
+                                            G_TYPE_NONE,
+                                            1,
+                                            PHOSH_TYPE_TOPLEVEL);
+  /**
+   * PhoshToplevelManager::toplevel-missing:
+   * @manager: The #PhoshToplevelManager emitting the signal.
+   * @appinfo: The app info that didn't see a toplevel
+   *
+   * Emitted whenever an app from launching app list didn't see a
+   * toplevel in time.
+   */
+  signals[TOPLEVEL_MISSING] = g_signal_new ("toplevel-missing",
+                                            G_TYPE_FROM_CLASS (klass),
+                                            G_SIGNAL_RUN_LAST,
+                                            0, NULL, NULL, NULL,
+                                            G_TYPE_NONE,
+                                            1,
+                                            G_TYPE_APP_INFO);
 }
 
 
@@ -216,11 +352,12 @@ static void
 phosh_toplevel_manager_init (PhoshToplevelManager *self)
 {
   struct zwlr_foreign_toplevel_manager_v1 *toplevel_manager;
+  PhoshWayland *wayland = phosh_wayland_get_default ();
 
-  toplevel_manager =
-    phosh_wayland_get_zwlr_foreign_toplevel_manager_v1 (phosh_wayland_get_default ());
+  toplevel_manager = phosh_wayland_get_zwlr_foreign_toplevel_manager_v1 (wayland);
 
-  self->toplevels = g_ptr_array_new_with_free_func ((GDestroyNotify) (g_object_unref));
+  self->launching_apps = g_ptr_array_new_with_free_func ((GDestroyNotify)launching_app_info_free);
+  self->toplevels = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
   self->toplevels_pending = g_ptr_array_new ();
 
   if (!toplevel_manager) {
@@ -229,7 +366,8 @@ phosh_toplevel_manager_init (PhoshToplevelManager *self)
   }
 
   zwlr_foreign_toplevel_manager_v1_add_listener (toplevel_manager,
-                                                 &zwlr_foreign_toplevel_manager_listener, self);
+                                                 &zwlr_foreign_toplevel_manager_listener,
+                                                 self);
 }
 
 
@@ -297,4 +435,27 @@ phosh_toplevel_manager_get_parent (PhoshToplevelManager *self, PhoshToplevel *to
       return t;
   }
   return NULL;
+}
+
+
+void
+phosh_toplevel_manager_set_app_tracker (PhoshToplevelManager *self,
+                                        PhoshAppTracker      *app_tracker)
+{
+  g_return_if_fail (PHOSH_IS_TOPLEVEL_MANAGER (self));
+  g_return_if_fail (PHOSH_IS_APP_TRACKER (app_tracker));
+
+  if (self->app_tracker) {
+    g_signal_handlers_disconnect_by_data (self->app_tracker, self);
+    g_clear_object (&self->app_tracker);
+  }
+
+
+  if (app_tracker) {
+    self->app_tracker = g_object_ref (app_tracker);
+    g_signal_connect_swapped (self->app_tracker,
+                              "app-launched",
+                              G_CALLBACK (on_app_launched),
+                              self);
+  }
 }
