@@ -1,3 +1,234 @@
+phosh (0.53~rc1) experimental; urgency=medium
+
+  [ Efstathios Iosifidis ]
+  * Update Greek translation
+
+  [ Antonio Marin ]
+  * Update Romanian translation
+
+  [ Guido Günther ]
+  * run: Use plugin_schema_path.
+    We have it already so no need to maintain it in two locations
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1298o
+  * util: Allow to activate without actions
+  * util: Make platform-data helpers public.  We'll use them for
+    notifications
+  * util: Determine object path automatically.
+    Code taken from xdg-desktop-portal-phosh
+  * notification: Activate applications when sending notifications.
+    We activate the app and send the signal.
+    Should our heuristic to determine the bus name fail to work well we
+    can send `org.freedesktop.Notifications.ActivationToken` in
+    `on_app_activated` as a future improvement.
+    Helps: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/852
+  * doc: Document missing plugin schema entries
+  * brightness-manager: Use _ID for schema consistently.
+    No point in having one schema with that suffix and the other without it.
+  * brightness-manager: Use faster up interval.
+    The human eye adjust to brightness gains more rapidly.
+  * backlight: Round backlight level.
+    This gives us more precise values than integer cutoff.
+  * brightness-manager: Simplify ending the transition
+  * brightness-manager: Smoothen brightness transition.
+    Use smoothstep to make things look less jittering
+  * monitor-manager: Add night light temperature property.
+    This allows us to track whether it is in use
+  * brightness-manager: Add additional factor when night light is on.
+    Night light reduces contrast as the eye is less susceptible to contrast
+    in the red spectrum. Lets make the display a bit brighter in those
+    cases.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1292
+  * brightness-manager: Drop schema check.  We can assume the 49 schema
+    now.
+  * brightness-manager: Add auto-brightness offset.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1297
+  * util: Fix indent.
+    Gbp-dch: Ignore
+  * app-tracker: Fix indent.
+    We shorten a variable name and add get the shell variable in an extra
+    step for readability.
+  * app-list-model: Allow app-info lookup by recently launched executable.
+    The shell is usually used to launch apps so when launching remember the
+    executable. This will allow us look up app-info by exectable.
+    This is useful for DBus activated apps too as they still usually `Exec`
+    have an exec line in the desktop file.
+  * audio-manager: Manage audio devices.
+    Track the input and output audio devices
+  * audio-settings: Use audio-devices and mixer control from audio-manager.
+    This will allow us to use audio devices outside settings
+  * audio-devices: Move out of settings.
+    They're used in the audio manager now
+  * channel-bar: Use proper namespace.
+    It's a widget in Phosh so use that namespace. This also removes some
+    confusion between the gvc submodule and our internal widget.
+  * channel-bar: Rename source files.
+    Do that in an extra commit to ease review
+  * audio-settings: Avoid channel-bar casts.
+    Just use the most specific type right away.
+  * audio-settings: Avoid pointless cast
+  * channel-bar: Remove unused defines
+  * audio-devices: Use type.
+    We used gpointer to not leak it into libphosh but the library
+    is more self contained nowadays.
+  * overview: Use common pattern for find_activity_by_toplevel()
+    Return early from the loop instead of breaking and make the `l->data`
+    assignment the first thing in the loop.
+    Also make sure `g_autoptr ()` is always initialized.
+    Again fewer lines with easier to read code.
+  * overview: Use most specific type for carousel.
+    Avoids the long casts
+  * activity: Just use `MIN`
+    No need to open code this.
+  * activity: Use phosh_util_toggle_style_class consistently.
+    We use it to remove the class, use it for adding it too
+  * shell: Create splash manager earlier.
+    We want to use it from the overview so it has to be there with the
+    panels.
+  * shell: Allow to get splash manager
+  * swipe-tracker: Allow to disable swipes
+  * splash: Allow to lower/raise the splash
+  * splash-manager: Allow to lower all splashs and to raise base on startup-id
+  * overview: Use splash colors instead of fake app.
+    The fake app wasn't very useful. Use the splash screen
+    colors instead.
+  * activity: Show spinner when we don't have a thumbnail.
+    Add a spinner and show it when we don't have a thumbnail of the
+    application yet.
+  * activity: Disable swipe and close button while app is loading.
+    We can't stop it sensibly atm.
+  * activity: Try harder to get an app-id
+  * overview: Show activity for launching apps.
+    This gives the user feedback that the app is launching.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/647
+  * overview: Add splash manager
+  * overview: Raise and lower launch splashs.
+    When activating a splash we raise it to the top, when activating
+    an activity we lower all splashs so the app becomes visible.
+    This is not the ideal place to do it as it doesn't concernt the overview
+    but we track the toplevels here only atm (see
+    https://gitlab.gnome.org/World/Phosh/phosh/-/issues/327)
+    Helps: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/812
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/813
+  * overview: Use light mode based on what the splash manager does.
+    We won't switch when the user flips the theme during launch but
+    that's o.k. for the moment.
+  * activity: Render empty state only on drawing area.
+    This makes the thumbnail look more like the app
+  * activity: Use slightly rounded corners
+  * phosh-session: Drop disable-acceleration-check.
+    It is a noop nowadays
+  * phosh-session: Avoid the extra shell exec
+    gnome-session handles that for us
+  * phosh-session: Use name variable.
+    This ensures we don't accidentally clash with something set
+    in the environment
+  * media-player: Avoid nan when track length is empty.
+    Zero track length (as happens with gapless) can lead to -NAN
+    which trips up the progress bar. Use 0.0 in that case.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1287
+  * brightness-manager: Skip brightenss update.
+    We can skip the brightness update on night light changes when
+    auto brightness is disabled.
+  * lockscreen: Sort callbacks alphabetically
+  * lockscreen: Use two finger swipe gesture for brightness.
+    This works better then trying to fit a zoom gesture. Move
+    to the UI file while at that.
+    Fixes: 336929ca4 ("lockscreen: Ignore gesture when user wants to zoom")
+    Co-authored-by: Arun Mani J <j.arunmani@proton.me>
+  * packaging: Update dependencies.
+    We need recent schema to start successfully. Drop an ancient
+    conflict on calls and require stevia so we always have a working
+    OSK (user can still switch ofc).
+  * docs: Mention UsesNotifications.
+    This is is similar to UsesFeedback.
+  * gvc: Switch back to blessed repo.
+    Most of our patches are in. The leak fix is still missing but hopefully
+    we get that soon.
+    Update to 664eba4 ("mixer-control: Document that add_stream is transfer full")
+  * overview: Ignore missing activity.
+    When an app failed to start and we can't find a matching
+    activity that is usually because it crashed or exited
+    already. Avoid a critical in that case.
+  * toplevel-manager: Drop super-cautious checks.
+    The pointer arrays are created in init and never unref'ed or
+    free'd until dispose so no need to check this every call.
+  * overview: Drop unused arguments from signal handler.
+    No need to check types we never use
+  * toplevel-manager: Track launched apps.
+    When an app is reporting that it launced we track its app-id
+    and wait for a matching toplevel in toplevel-manager. When
+    that doesn't happen in time, we send out a signal.
+  * overview: Remove splash if we never get a toplevel.
+    In the unlikely case that we don't see a toplevel from a launched
+    app, remove the splash when toplevel-manager tells us that the
+    toplevel will likely never show up.
+
+  [ Jürgen Benvenuti ]
+  * Update German translation
+
+  [ Fredrik Fyksen ]
+  * Update Norwegian Bokmål translation
+
+  [ twlvnn kraftwerk ]
+  * Update Bulgarian translation
+
+  [ Flynn Peck ]
+  * Add Cornish translation
+
+  [ Arun Mani J ]
+  * pokit-auth-agent: Follow our coding style
+  * polkit-auth-prompt: Follow our coding style
+  * polkit-auth-agent: Uncrustify
+  * polkit-auth-prompt: Uncrustify
+  * polkit-auth-prompt: Display more information about user.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1229
+
+  [ Rudra Pratap Singh ]
+  * top-panel: Add a common parsing function for panel options.
+    This way, we can keep the parsing in
+    sync for both mobile and non mobile panels.
+  * top-panel: Make panel launching actions take parameters.
+    Instead of a string we use (sav) parameter type
+    so we can pass additional parameters.
+  * util: Allow to open settings panel with additional parameters.
+    We add a second parameter to
+    `phosh_util_open_mobile_settings_panel`, allowing
+    one to send panel options alongside. The panel
+    name and options can then be packed to remotely
+    activate settings app accordingly.
+  * caffeine-quick-setting: Allow to open prefs via mobile settings.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1280
+
+  [ Danial Behzadi ]
+  * Update Persian translation
+
+  [ Yuri Chornoivan ]
+  * Update Ukrainian translation
+
+  [ Martin ]
+  * Update Slovenian translation
+
+  [ Ekaterine Papava ]
+  * Update Georgian translation
+
+  [ Anders Jonsson ]
+  * Update Swedish translation
+
+  [ Sabri Ünal ]
+  * Update Turkish translation
+
+  [ AJ Dunevent ]
+  * device-row: Use 'alias' instead of 'name' for device display.
+    The 'alias' property is preferred as it contains user-defined names
+    while falling back to the hardware name if no alias is set.  Stays
+    consistent with other UI elements, similar environments, etc.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1300
+
+  [ Artur S0 ]
+  * Update Russian translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Tue, 10 Feb 2026 18:03:17 +0100
+
 phosh (0.52.1) experimental; urgency=medium
 
   * gvc: Handle port changes on streams.

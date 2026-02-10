@@ -1,3 +1,47 @@
+phosh 0.53~rc1
+--------------
+Released February 2026
+* Various auto brightness improvements, e.g.
+  * remember auto brightness offset
+  * compensate for night light
+* overview: Show thumbnails for launching apps
+* overview: Style improvements
+* polkit-prompt: Show more user data
+* Activation fixes for notifications
+  (Needs https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/9269)
+* caffeine: Allow to open plugin prefs from the status page
+* Multiple other fixes (Use alias for Bluetooth devices, improve app icon
+  lookup, …)
+* Issues fixed:
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/647
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/813
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1229
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1280
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1287
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1292
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1297
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1300
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1298
+* Contributors:
+    * AJ Dunevent
+    * Arun Mani J
+    * Guido Günther
+    * Rudra Pratap Singh
+* UI translations:
+    * Anders Jonsson (sv)
+    * Antonio Marin (ro)
+    * Artur S0 (ru)
+    * Danial Behzadi (fa)
+    * Efstathios Iosifidis (el)
+    * Ekaterine Papava (ka)
+    * Flynn Peck (kw)
+    * Fredrik Fyksen (nb)
+    * Jürgen Benvenuti (de)
+    * Martin (sl)
+    * Sabri Ünal (tr)
+    * twlvnn kraftwerk (bg)
+    * Yuri Chornoivan (uk)
+
 phosh 0.52.1
 ------------
 Released January 2026
