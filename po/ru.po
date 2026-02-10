@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-11-28 12:32+0000\n"
-"PO-Revision-Date: 2025-11-28 18:03+0300\n"
+"POT-Creation-Date: 2026-02-04 11:02+0000\n"
+"PO-Revision-Date: 2026-02-07 22:08+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -151,13 +151,17 @@ msgstr "Создать новую папку"
 msgid "Application"
 msgstr "Приложение"
 
-#: src/app-grid.c:261
+#: src/app-grid.c:264
 msgid "Show All Apps"
 msgstr "Показать все приложения"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:267
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Показать приложения только для мобильных устройств"
+
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "Регулятор громкости оболочки телефона"
 
 #. Translators: a battery level in percent
 #: src/bt-device-row.c:81
@@ -294,11 +298,11 @@ msgid "No"
 msgstr "Нет"
 
 #. give visual feedback on error
-#: src/lockscreen.c:313 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "Введите код доступа"
 
-#: src/lockscreen.c:956
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "Проверка…"
 
@@ -330,27 +334,27 @@ msgid "Screenshot from %s%s.png"
 msgstr "Снимок экрана от %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:690 src/ui/media-player.ui:208
+#: src/media-player.c:691 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Неизвестное название"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:698 src/ui/media-player.ui:196
+#: src/media-player.c:699 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Неизвестный исполнитель"
 
-#: src/monitor-manager.c:128
+#: src/monitor-manager.c:129
 msgid "Built-in display"
 msgstr "Встроенный дисплей"
 
-#: src/monitor-manager.c:146
+#: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:153
+#: src/monitor-manager.c:154
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -359,7 +363,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:162
+#: src/monitor-manager.c:163
 msgid "Unknown"
 msgstr "Неизвестный"
 
@@ -495,17 +499,17 @@ msgstr[0] "Почти %d г"
 msgstr[1] "Почти %d г"
 msgstr[2] "Почти %d л"
 
-#: src/polkit-auth-agent.c:271
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "Диалог аутентификации был отклонен пользователем"
 
-#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
-#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
 #: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "Пароль:"
 
-#: src/polkit-auth-prompt.c:322
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "Извините, это не сработало. Попробуйте снова."
 
@@ -536,10 +540,6 @@ msgstr "Нажмите Esc чтобы закрыть"
 msgid "Running '%s' failed"
 msgstr "Выполнение '%s' не удалось"
 
-#: src/settings/audio-settings.c:376
-msgid "Phone Shell Volume Control"
-msgstr "Регулятор громкости оболочки телефона"
-
 #: src/system-prompt.c:376
 msgid "Passwords do not match."
 msgstr "Пароли не совпадают."
@@ -548,7 +548,7 @@ msgstr "Пароли не совпадают."
 msgid "Password cannot be blank"
 msgstr "Пароль не может быть пустым"
 
-#: src/torch-info.c:80
+#: src/torch-info.c:84
 msgid "Torch"
 msgstr "Фонарик"
 
@@ -654,7 +654,7 @@ msgstr "Обратная связь"
 msgid "Do not disturb"
 msgstr "Не беспокоить"
 
-#: src/ui/feedback-status-page.ui:52
+#: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
 msgstr "Настройки обратной связи"
 
@@ -696,7 +696,7 @@ msgstr "_Отменить"
 msgid "C_onnect"
 msgstr "П_одключить"
 
-#: src/ui/polkit-auth-prompt.ui:97
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "Подтвердить"
 
@@ -753,7 +753,7 @@ msgid "Wi-Fi"
 msgstr "Wi-Fi"
 
 #: src/ui/wifi-status-page.ui:89
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
 msgstr "Настройки Wi-Fi"
 
@@ -824,9 +824,13 @@ msgstr "Вкл"
 msgid "Caffeine timers"
 msgstr "Таймеры кофеина"
 
-#: plugins/caffeine-quick-setting/qs.ui:37
+#: plugins/caffeine-quick-setting/qs.ui:38
 msgid "No caffeine intervals"
 msgstr "Нет интервалов кофеина"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+msgid "Caffeine Settings"
+msgstr "Настройки кофеина"
 
 #: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:171
@@ -1055,7 +1059,7 @@ msgstr "Запустить Pomodoro"
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 #, c-format
 msgid "Focus on your task for %d minutes"
-msgstr "Сфокусироваться на задаче на %d мин."
+msgstr "Сфокусироваться на задаче на %d мин"
 
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
 msgid "Take a break"
@@ -1189,7 +1193,7 @@ msgstr "Конец"
 msgid "Untitled event"
 msgstr "Безымянное событие"
 
-#: plugins/upcoming-events/upcoming-events.c:372
+#: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
 msgid "No events for the next %d days"
 msgstr "Нет событий в течение следующих %d дней"
@@ -1230,15 +1234,15 @@ msgstr "%d%%"
 msgid "Wi-Fi Hotspot"
 msgstr "Точка доступа Wi-Fi"
 
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
 msgid "Turn On"
 msgstr "Включить"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
 msgid "Hotspot On"
 msgstr "Точка доступа включена"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Точка доступа выключена"
 
