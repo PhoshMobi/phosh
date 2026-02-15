@@ -1,3 +1,19 @@
+phosh (0.53.0) experimental; urgency=medium
+
+  [ Guido Günther ]
+  * portal: Use Rust based GUI variants by default. We want to drop the C
+    variants so let's switch.
+  * gvc: Update to latest upstream commit. We landed another bugfix, let's
+    grab it
+
+  [ Álvaro Burns ]
+  * Update Brazilian Portuguese translation
+
+  [ Quentin PAGÈS ]
+  * Update Occitan translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Sun, 15 Feb 2026 09:23:10 +0100
+
 phosh (0.53~rc1) experimental; urgency=medium
 
   [ Efstathios Iosifidis ]
