@@ -366,13 +366,13 @@ phosh_pomodoro_quick_setting_init (PhoshPomodoroQuickSetting *self)
 
   g_object_bind_property_full (self, "state",
                                self, "active",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_to_active,
                                NULL, NULL, NULL);
 
   g_object_bind_property_full (self, "state",
                                self->info, "icon-name",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_to_icon_name,
                                NULL, NULL, NULL);
 

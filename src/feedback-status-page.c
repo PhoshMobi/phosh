@@ -172,17 +172,13 @@ phosh_feedback_status_page_init (PhoshFeedbackStatusPage *self)
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  g_object_bind_property (self,
-                          "do-not-disturb",
-                          self->dnd_switch,
-                          "active",
+  g_object_bind_property (self, "do-not-disturb",
+                          self->dnd_switch, "active",
                           G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
-  g_object_bind_property_full (self,
-                               "do-not-disturb",
-                               self->icon,
-                               "icon-name",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+  g_object_bind_property_full (self, "do-not-disturb",
+                               self->icon, "icon-name",
+                               G_BINDING_SYNC_CREATE,
                                dnd_to_icon_name,
                                NULL, NULL, NULL);
 

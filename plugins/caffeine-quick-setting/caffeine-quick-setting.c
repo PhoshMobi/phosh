@@ -370,7 +370,8 @@ on_intervals_changed (PhoshCaffeineQuickSetting *self)
 
 
 static void
-phosh_caffeine_quick_setting_init (PhoshCaffeineQuickSetting *self) {
+phosh_caffeine_quick_setting_init (PhoshCaffeineQuickSetting *self)
+{
   gtk_widget_init_template (GTK_WIDGET (self));
 
   gtk_icon_theme_add_resource_path (gtk_icon_theme_get_default (),
@@ -393,18 +394,17 @@ phosh_caffeine_quick_setting_init (PhoshCaffeineQuickSetting *self) {
 
   g_object_bind_property (self, "inhibited",
                           self, "active",
-                          G_BINDING_DEFAULT |
                           G_BINDING_SYNC_CREATE);
 
   g_object_bind_property_full (self, "inhibited",
                                self->info, "icon-name",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_to_icon_name,
                                NULL, NULL, NULL);
 
   g_object_bind_property_full (self, "inhibited",
                                self->info, "info",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_to_label,
                                NULL, self, NULL);
 

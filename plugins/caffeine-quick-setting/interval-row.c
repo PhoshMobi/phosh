@@ -48,11 +48,9 @@ phosh_interval_row_set_value (PhoshIntervalRow *self, uint value)
     hdy_preferences_row_set_title (HDY_PREFERENCES_ROW (self), "∞");
   }
 
-  g_object_bind_property (self,
-                          "selected",
-                          self->revealer,
-                          "reveal-child",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self, "selected",
+                          self->revealer, "reveal-child",
+                          G_BINDING_SYNC_CREATE);
 }
 
 

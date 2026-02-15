@@ -108,18 +108,18 @@ phosh_night_light_quick_setting_init (PhoshNightLightQuickSetting *self)
 
   g_object_bind_property_full (self, "active",
                                self->info, "icon-name",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_to_icon_name,
                                NULL, NULL, NULL);
 
   g_object_bind_property_full (self, "active",
                                self->info, "info",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_to_label,
                                NULL, NULL, NULL);
 
   monitor_manager = phosh_shell_get_monitor_manager (phosh_shell_get_default ());
   g_object_bind_property (monitor_manager, "night-light-supported",
                           self, "sensitive",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+                          G_BINDING_SYNC_CREATE);
 }

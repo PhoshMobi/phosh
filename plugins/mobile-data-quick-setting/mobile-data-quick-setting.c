@@ -107,17 +107,17 @@ phosh_mobile_data_quick_setting_init (PhoshMobileDataQuickSetting *self)
 
   g_object_bind_property (wwan, "data-enabled",
                           self, "active",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+                          G_BINDING_SYNC_CREATE);
 
   g_object_bind_property_full (self, "active",
                                self->info, "icon-name",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_to_icon_name,
                                NULL, NULL, NULL);
 
   g_object_bind_property_full (self, "active",
                                self->info, "info",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_to_label,
                                NULL, NULL, NULL);
 

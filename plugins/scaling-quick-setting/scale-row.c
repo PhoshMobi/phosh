@@ -45,15 +45,13 @@ phosh_scale_row_set_device (PhoshScaleRow *self, double scale)
   self->scale = scale;
 
   /* Translators: This is scale factor of a monitor in percent */
-  label = g_strdup_printf (_("%d%%"), (int)round((scale * 100)));
+  label = g_strdup_printf (_("%d%%"), (int)round (scale * 100.0));
 
   hdy_preferences_row_set_title (HDY_PREFERENCES_ROW (self), label);
 
-  g_object_bind_property (self,
-                          "selected",
-                          self->revealer,
-                          "reveal-child",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self, "selected",
+                          self->revealer, "reveal-child",
+                          G_BINDING_SYNC_CREATE);
 }
 
 

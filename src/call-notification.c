@@ -149,27 +149,27 @@ phosh_call_notification_set_call (PhoshCallNotification *self, PhoshCall *call)
 
   g_object_bind_property (call, "display-name",
                           self->avatar, "text",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+                          G_BINDING_SYNC_CREATE);
   g_object_bind_property_full (call, "display-name",
                                self->avatar, "show-initials",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_display_name_initals,
                                NULL,
                                NULL,
                                NULL);
   g_object_bind_property (call, "avatar-icon",
                           self->avatar, "loadable-icon",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+                          G_BINDING_SYNC_CREATE);
   g_object_bind_property_full (call, "active-time",
                                self->call_duration, "label",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_active_time,
                                NULL,
                                NULL,
                                NULL);
   g_object_bind_property_full (call, "state",
                                self->call_state, "label",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_call_state,
                                NULL,
                                NULL,
@@ -178,7 +178,7 @@ phosh_call_notification_set_call (PhoshCallNotification *self, PhoshCall *call)
   /* Only show detail label when non-empty */
   g_object_bind_property_full (self->caller_detail, "label",
                                self->caller_detail, "visible",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_label_to_visible,
                                NULL,
                                NULL,

@@ -871,11 +871,9 @@ phosh_quick_settings_box_add (PhoshQuickSettingsBox *self, PhoshQuickSetting *ch
   g_ptr_array_add (self->children, child);
   gtk_widget_set_parent (GTK_WIDGET (child), GTK_WIDGET (self));
 
-  g_object_bind_property (self,
-                          "can-show-status",
-                          child,
-                          "can-show-status",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self, "can-show-status",
+                          child, "can-show-status",
+                          G_BINDING_SYNC_CREATE);
   g_object_connect (child,
                     "swapped-object-signal::show-status",
                     G_CALLBACK (on_show_status), self,
