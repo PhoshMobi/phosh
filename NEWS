@@ -1,5 +1,5 @@
-phosh 0.53~rc1
---------------
+phosh 0.53.0
+------------
 Released February 2026
 * Various auto brightness improvements, e.g.
   * remember auto brightness offset
@@ -31,6 +31,7 @@ Released February 2026
     * Anders Jonsson (sv)
     * Antonio Marin (ro)
     * Artur S0 (ru)
+    * Álvaro Burns (pt_BR)
     * Danial Behzadi (fa)
     * Efstathios Iosifidis (el)
     * Ekaterine Papava (ka)
@@ -38,9 +39,10 @@ Released February 2026
     * Fredrik Fyksen (nb)
     * Jürgen Benvenuti (de)
     * Martin (sl)
+    * Quentin PAGÈS (oc)
     * Sabri Ünal (tr)
-    * twlvnn kraftwerk (bg)
     * Yuri Chornoivan (uk)
+    * twlvnn kraftwerk (bg)
 
 phosh 0.52.1
 ------------
