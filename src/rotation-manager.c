@@ -465,12 +465,9 @@ phosh_rotation_manager_constructed (GObject *object)
 
   self->settings = g_settings_new (ORIENTATION_LOCK_SCHEMA_ID);
 
-  g_settings_bind (self->settings,
-                   ORIENTATION_LOCK_KEY,
-                   self,
-                   "orientation-locked",
-                   G_BINDING_SYNC_CREATE
-                   | G_BINDING_BIDIRECTIONAL);
+  g_settings_bind (self->settings, ORIENTATION_LOCK_KEY,
+                   self, "orientation-locked",
+                   G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
 
   g_signal_connect_swapped (self->lockscreen_manager,
                             "notify::locked",

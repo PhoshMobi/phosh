@@ -183,10 +183,8 @@ phosh_feedback_status_page_init (PhoshFeedbackStatusPage *self)
                                NULL, NULL, NULL);
 
   settings = g_settings_new (PHOSH_NOTIFICATIONS_SCHEMA_ID);
-  g_settings_bind (settings,
-                   PHOSH_NOTIFICATIONS_KEY_SHOW_BANNERS,
-                   self,
-                   "do-not-disturb",
+  g_settings_bind (settings, PHOSH_NOTIFICATIONS_KEY_SHOW_BANNERS,
+                   self, "do-not-disturb",
                    G_SETTINGS_BIND_DEFAULT | G_SETTINGS_BIND_INVERT_BOOLEAN);
 }
 
