@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-02-04 11:02+0000\n"
-"PO-Revision-Date: 2026-02-08 22:24+0000\n"
+"POT-Creation-Date: 2026-02-10 17:02+0000\n"
+"PO-Revision-Date: 2026-02-16 13:04+0000\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
 "Language: kw\n"
@@ -27,11 +27,11 @@ msgstr ""
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
-msgstr "Shell Kellgowser"
+msgstr "Shell Klapkodh"
 
 #: data/mobi.phosh.Shell.desktop.in.in:4
 msgid "Window management and application launching for mobile"
-msgstr "Dyghtyans fenestri ha lonchyans appys rag kellgowsoryon"
+msgstr "Dyghtyans fenestri ha lonchyans appys rag klapkodhow"
 
 #. Translators: this is the session name, no need to translate it
 #: data/phosh.session.desktop.in.in:3 data/wayland-sessions/phosh.desktop:2
@@ -104,11 +104,11 @@ msgstr "Helerghi gwarioryon media a'n jydh"
 
 #: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:4
 msgid "Mobile Data Quick Setting"
-msgstr "Settyans Uskis Data Kellgowser"
+msgstr "Settyans Uskis Data Klapkodh"
 
 #: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:6
 msgid "Toggle mobile data on/off"
-msgstr "Dewis data kellgowser byw/marow"
+msgstr "Dewis data klapkodh byw/marow"
 
 #: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:4
 msgid "Night Light Quick Setting"
@@ -163,7 +163,7 @@ msgstr "Diskwedhes Oll Appys"
 
 #: src/app-grid.c:267
 msgid "Show Only Mobile Friendly Apps"
-msgstr "Diskwedhes Appys Kellgowser-Kowethek Hepken"
+msgstr "Diskwedhes Appys Klapkodh-Kowethek Hepken"
 
 #: src/audio-manager.c:74
 msgid "Phone Shell Volume Control"
@@ -294,7 +294,7 @@ msgstr "GPS"
 
 #: src/location-manager.c:272
 msgid "Yes"
-msgstr "Ea"
+msgstr "Ya"
 
 #: src/location-manager.c:272
 msgid "No"
@@ -799,7 +799,7 @@ msgstr "Hotspotys Wi-Fi Vyth"
 #. Translators: Refers to the cellular wireless network
 #: src/wwan-info.c:210
 msgid "Cellular"
-msgstr "Data Kellgowser"
+msgstr "Data Klapkodh"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
@@ -1034,11 +1034,11 @@ msgstr "Gwarioyon media ow seni vyth"
 
 #: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
 msgid "Mobile Data On"
-msgstr "Data Kellgowser Byw"
+msgstr "Data Klapkodh Byw"
 
 #: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
 msgid "Mobile Data Off"
-msgstr "Data Kellgowser Marow"
+msgstr "Data Klapkodh Marow"
 
 #: plugins/night-light-quick-setting/night-light-quick-setting.c:63
 msgid "Night Light On"
