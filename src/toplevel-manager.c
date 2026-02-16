@@ -133,6 +133,8 @@ remove_from_launching (PhoshToplevelManager *self, PhoshToplevel *toplevel)
   for (int i = 0; i < self->launching_apps->len; i++) {
     LaunchingAppInfo *info = g_ptr_array_index (self->launching_apps, i);
 
+    /* TODO: we don't know the toplevels activation token (startup-id) so we can just go
+     * by app-id and thus can't distinguish multi window apps */
     if (g_app_info_equal (G_APP_INFO (needle), info->app_info)) {
       g_ptr_array_remove_index_fast (self->launching_apps, i);
       g_debug ("Found toplevel for launching app %s", g_app_info_get_id (needle));
