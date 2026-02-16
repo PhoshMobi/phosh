@@ -702,6 +702,11 @@ on_page_changed (PhoshOverview *self, guint index, HdyCarousel *carousel)
   list = gtk_container_get_children (GTK_CONTAINER (carousel));
   activity = PHOSH_ACTIVITY (g_list_nth_data (list, index));
   toplevel = get_toplevel_from_activity (activity);
+
+  /* TODO: Mark activation as pending an activate ones the toplevels shows up */
+  if (!toplevel)
+    return;
+
   phosh_toplevel_activate (toplevel, phosh_wayland_get_wl_seat (phosh_wayland_get_default ()));
 
   if (!gtk_widget_has_focus (GTK_WIDGET (activity)))
