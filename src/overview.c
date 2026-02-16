@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2018 Purism SPC
- *               2025 Phosh.mobi e.V.
+ *               2025-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -173,6 +173,11 @@ on_app_launch_started (PhoshOverview   *self,
 
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
   g_return_if_fail (G_IS_APP_INFO (info));
+
+  if (find_activity_by_app_info (self, info)) {
+    g_debug ("Already have an activity for '%s'", g_app_info_get_id (info));
+    return;
+  }
 
   g_debug ("Building splash for '%s'", g_app_info_get_id (info));
 
