@@ -58,6 +58,7 @@ variables:
   RUST_BINDINGS_BRANCH: main
   LIBPHOSH: libphosh-0.45
   BUILD_OPTS: -Dcallui-i18n=true -Dphoc_tests=enabled -Dsearchd=true ${COMMON_BUILD_OPTS}
+  SIG_PKGS: libevince-gtk3-dev
 
 .test_before_script: &test_before_script
   before_script:
@@ -199,7 +200,6 @@ integration:native-debian-forky:
     - build:native-debian-forky
   <<: *test_before_script
   variables:
-    SID_PKGS: phoc
     # exports
     LC_ALL: C.UTF-8
     NO_AT_BRIDGE: 1
