@@ -54,6 +54,9 @@ G_DEFINE_TYPE (PhoshLayoutManager, phosh_layout_manager, G_TYPE_OBJECT)
 /* Width of an item in the indicator box */
 #define BOX_ITEM_WIDTH 24 /* px */
 
+/* Height of the clock box */
+#define CLOCK_BOX_HEIGHT 16 /* px */
+
 /* The minimum space needed when shifting the indicator area due to a
  * cutout. This is less than the `*_box_rect.width` as the clock will
  * just be shifted by GTK in those cases */
@@ -99,6 +102,7 @@ get_clock_pos (PhoshLayoutManager *self, guint *clock_shift)
   PhoshShellLayout layout;
   GListModel *cutouts;
   GdkRectangle clock_rect;
+  GdkRectangle clock_box_rect;
   float scale;
   guint shift = 0;
 
@@ -117,6 +121,8 @@ get_clock_pos (PhoshLayoutManager *self, guint *clock_shift)
   scale = phosh_monitor_get_fractional_scale (self->builtin);
   clock_rect = center_clock_rect;
   clock_rect.x = (self->builtin->width / scale / 2.0) - center_clock_rect.width / 2.0;
+  clock_box_rect.width = self->builtin->width / scale;
+  clock_box_rect.height = CLOCK_BOX_HEIGHT;
 
   cutouts = gm_display_panel_get_cutouts (self->panel);
   for (int i = 0; i < g_list_model_get_n_items (cutouts); i++) {
@@ -133,10 +139,12 @@ get_clock_pos (PhoshLayoutManager *self, guint *clock_shift)
       .height = ceil (bounds->height / scale),
     };
 
+    if (gdk_rectangle_intersect (&notch, &clock_box_rect, NULL))
+      shift = MAX (shift, notch.height + notch.y);
+
     /* Look for top-bar notch */
     if (!gdk_rectangle_intersect (&notch, &clock_rect, NULL))
         continue;
-    shift = notch.height + notch.y;
 
     overlap_left = network_box_rect.width + center_clock_rect.width - notch.x;
     if (overlap_left <= 0) {
