@@ -731,7 +731,7 @@ on_page_changed (PhoshOverview *self, guint index, HdyCarousel *carousel)
   activity = PHOSH_ACTIVITY (g_list_nth_data (list, index));
   toplevel = get_toplevel_from_activity (activity);
 
-  /* TODO: Mark activation as pending an activate ones the toplevels shows up */
+  /* TODO: Mark activation as pending and activate once the toplevel shows up */
   if (!toplevel)
     return;
 
