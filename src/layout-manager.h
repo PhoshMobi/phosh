@@ -20,7 +20,7 @@ G_DECLARE_FINAL_TYPE (PhoshLayoutManager, phosh_layout_manager, PHOSH, LAYOUT_MA
 
 PhoshLayoutManager          *phosh_layout_manager_new (void);
 PhoshLayoutClockPosition     phosh_layout_manager_get_clock_pos        (PhoshLayoutManager *self);
-guint                        phosh_layout_manager_get_clock_shift      (PhoshLayoutManager *self);
+guint                        phosh_layout_manager_get_clock_box_shift  (PhoshLayoutManager *self);
 void                         phosh_layout_manager_get_box_shifts       (PhoshLayoutManager *self,
                                                                         guint *network_shift,
                                                                         guint *indicators_shift,

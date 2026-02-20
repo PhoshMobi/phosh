@@ -42,7 +42,7 @@ struct _PhoshLayoutManager {
   GmDisplayPanel             *panel;
   GSettings                  *settings;
   PhoshLayoutClockPosition    clock_pos;
-  guint                       clock_shift;
+  guint                       clock_box_shift;
   guint                       corner_shift;
   guint                       network_box_shift;
   guint                       indicators_box_shift;
@@ -83,7 +83,7 @@ static const GdkRectangle indicators_box_rect = {
 /**
  * get_clock_pos:
  * @self: The layout manager
- * @clock_shift:(out): How far to shift the settings clock downwards
+ * @clock_box_shift:(out): How far to shift the settings clock box downwards
  *
  * Update the clock's positions.
  *
@@ -96,7 +96,7 @@ static const GdkRectangle indicators_box_rect = {
  * Returns: The desired clock position
  */
 static PhoshLayoutClockPosition
-get_clock_pos (PhoshLayoutManager *self, guint *clock_shift)
+get_clock_pos (PhoshLayoutManager *self, guint *clock_box_shift)
 {
   PhoshLayoutClockPosition clock_pos = PHOSH_LAYOUT_CLOCK_POS_CENTER;
   PhoshShellLayout layout;
@@ -166,8 +166,8 @@ get_clock_pos (PhoshLayoutManager *self, guint *clock_shift)
     break;
   }
 
-  if (clock_shift)
-    *clock_shift = shift;
+  if (clock_box_shift)
+    *clock_box_shift = shift;
 
   g_debug ("Center clock pos: %d, margin: %u", clock_pos, shift);
   return clock_pos;
@@ -301,12 +301,12 @@ static void
 update_layout (PhoshLayoutManager *self)
 {
   PhoshLayoutClockPosition pos;
-  guint corner_shift, clock_shift = 0;
+  guint corner_shift, clock_box_shift = 0;
   guint network_box_shift = 0, indicators_box_shift = 0;
 
   corner_shift = get_corner_shift (self);
   get_cutout_shifts (self, &network_box_shift, &indicators_box_shift);
-  pos = get_clock_pos (self, &clock_shift);
+  pos = get_clock_pos (self, &clock_box_shift);
 
   indicators_box_shift = MAX (indicators_box_shift, corner_shift);
   network_box_shift = MAX (network_box_shift, corner_shift);
@@ -315,12 +315,12 @@ update_layout (PhoshLayoutManager *self)
       self->network_box_shift == network_box_shift &&
       self->indicators_box_shift == indicators_box_shift &&
       self->clock_pos == pos &&
-      self->clock_shift == clock_shift) {
+      self->clock_box_shift == clock_box_shift) {
     return;
   }
 
   self->clock_pos = pos;
-  self->clock_shift = clock_shift;
+  self->clock_box_shift = clock_box_shift;
   self->corner_shift = corner_shift;
   self->network_box_shift = network_box_shift;
   self->indicators_box_shift = indicators_box_shift;
@@ -448,19 +448,19 @@ phosh_layout_manager_get_clock_pos (PhoshLayoutManager *self)
 }
 
 /**
- * phosh_layout_manager_get_clock_shift:
+ * phosh_layout_manager_get_clock_box_shift:
  * @self: The layout manager
  *
- * The settings clock position
+ * The settings clock box position
  *
- * Returns: How far the settings clock is shifted down
+ * Returns: How far the settings clock box is shifted down
  */
 guint
-phosh_layout_manager_get_clock_shift (PhoshLayoutManager *self)
+phosh_layout_manager_get_clock_box_shift (PhoshLayoutManager *self)
 {
   g_return_val_if_fail (PHOSH_IS_LAYOUT_MANAGER (self), 0);
 
-  return self->clock_shift;
+  return self->clock_box_shift;
 }
 
 /**

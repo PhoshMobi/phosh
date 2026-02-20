@@ -934,13 +934,13 @@ set_clock_position (PhoshTopPanel *self, PhoshLayoutManager *layout_manager)
     gtk_box_pack_start (GTK_BOX (self->box_top_bar), self->lbl_clock, FALSE, FALSE, 0);
     gtk_box_reorder_child (GTK_BOX (self->box_top_bar), self->lbl_clock, 0);
     phosh_util_toggle_style_class (self->lbl_clock, "left", TRUE);
-    top_margin = phosh_layout_manager_get_clock_shift (layout_manager);
+    top_margin = phosh_layout_manager_get_clock_box_shift (layout_manager);
     break;
   case PHOSH_LAYOUT_CLOCK_POS_RIGHT:
     gtk_box_pack_end (GTK_BOX (self->box_top_bar), self->lbl_clock, FALSE, FALSE, 0);
     gtk_box_reorder_child (GTK_BOX (self->box_top_bar), self->lbl_clock, 1);
     phosh_util_toggle_style_class (self->lbl_clock, "right", TRUE);
-    top_margin = phosh_layout_manager_get_clock_shift (layout_manager);
+    top_margin = phosh_layout_manager_get_clock_box_shift (layout_manager);
     break;
   case PHOSH_LAYOUT_CLOCK_POS_CENTER:
     gtk_box_set_center_widget (GTK_BOX (self->box_top_bar), self->lbl_clock);
