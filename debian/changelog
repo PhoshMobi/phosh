@@ -1,3 +1,20 @@
+phosh (0.53.1) experimental; urgency=medium
+
+  [ Flynn Peck ]
+  * Update Cornish translation
+
+  [ Guido Günther ]
+  * ci: Switch to libevince-gtk3-dev.
+    It got renamed in Debian. While at that drop our phoc override
+    for the integration tests as it is no longer needed.
+  * toplevel-manager: Add comment why we go by app-id.
+    Toplevel-manager just doesn't have any startup-ids / activation-tokens
+  * overview: Only activate if we have a toplevel.
+    Avoids a critical when swiping in the overview
+  * overview: Only add splash if the app-id isn't already known.
+
+ -- Guido Günther <agx@sigxcpu.org>  Sat, 21 Feb 2026 08:17:13 +0100
+
 phosh (0.53.0) experimental; urgency=medium
 
   [ Guido Günther ]

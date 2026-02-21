@@ -1,3 +1,12 @@
+phosh 0.53.1
+------------
+Released February 2026
+* Fix persistent splash with e.g. Firefox on overview
+* Contributors:
+    * Guido Günther
+* UI translations:
+    * Flynn Peck (kw)
+
 phosh 0.53.0
 ------------
 Released February 2026
