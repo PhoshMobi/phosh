@@ -189,7 +189,7 @@ individual C files should be structured as (top to bottom of file):
                         const GValue *value,
                         GParamSpec   *pspec)
   {
-     PhoshThing *self = PHOSH_TING (object);
+     PhoshThing *self = PHOSH_THING (object);
 
      switch (property_id) {
      case PROP_FOO:
