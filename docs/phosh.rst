@@ -78,6 +78,8 @@ ENVIRONMENT VARIABLES
 
     - ``always-splash``: Always use splash screen when starting apps
       (even when in docked mode)
+    - ``app-activation``: Use longer timeout before force-closing the app
+      splash. Enable this flag to help debug activation issues.
     - ``backlight-non-linear``: Assume backlight brightness changes `non-linear`.
       Set if kernel should report the backlight as `non-linear` but doesn't.
     - ``fake-builtin``: Fake a builtin screen when using a virtual output like

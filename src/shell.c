@@ -1430,6 +1430,10 @@ static GDebugKey debug_keys[] = {
     .value = PHOSH_SHELL_DEBUG_FLAG_ALWAYS_SPLASH,
   },
   {
+    .key = "app-activation",
+    .value = PHOSH_SHELL_DEBUG_APP_ACTIVATION,
+  },
+  {
     .key = "backlight-non-linear",
     .value = PHOSH_SHELL_DEBUG_BACKLIGHT_NON_LINEAR,
   },
