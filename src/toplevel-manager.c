@@ -157,7 +157,7 @@ on_app_launched (PhoshToplevelManager *self, GAppInfo *app_info, const char *sta
     return;
   }
 
-  g_warning ("Tracking %s as there's no toplevel yet", app_id);
+  g_debug ("Tracking %s as there's no toplevel yet", app_id);
   info = launching_app_info_new (self, app_info);
   g_ptr_array_add (self->launching_apps, info);
 }
