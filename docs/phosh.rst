@@ -78,6 +78,8 @@ ENVIRONMENT VARIABLES
 
     - ``always-splash``: Always use splash screen when starting apps
       (even when in docked mode)
+    - ``backlight-non-linear``: Assume backlight brightness changes `non-linear`.
+      Set if kernel should report the backlight as `non-linear` but doesn't.
     - ``fake-builtin``: Fake a builtin screen when using a virtual output like
       in a nested Wayland session.
 - ``PHOSH_FAKE_CLOCK``: Allowed values are ISO8601 formatted strings
