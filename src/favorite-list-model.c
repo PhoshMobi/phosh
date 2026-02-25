@@ -106,9 +106,7 @@ list_iface_init (GListModelInterface *iface)
 
 
 static void
-favorites_changed (GSettings              *settings,
-                   const char             *key,
-                   PhoshFavoriteListModel *self)
+favorites_changed (GSettings *settings, const char *key, PhoshFavoriteListModel *self)
 {
   PhoshFavoriteListModelPrivate *priv = phosh_favorite_list_model_get_instance_private (self);
   int removed;
@@ -187,11 +185,10 @@ phosh_favorite_list_model_get_default (void)
  * @self: (nullable): the #PhoshFavoriteListModel, use %NULL for the default
  * @app: a #GAppInfo to lookup
  *
- * Returns: %TRUE if @app if currently favorited, otherwise %FALSE
+ * Returns: %TRUE if @app if currently a favorite, otherwise %FALSE
  */
 gboolean
-phosh_favorite_list_model_app_is_favorite (PhoshFavoriteListModel *self,
-                                           GAppInfo               *app)
+phosh_favorite_list_model_app_is_favorite (PhoshFavoriteListModel *self, GAppInfo *app)
 {
   PhoshFavoriteListModel *list = self != NULL ? self : phosh_favorite_list_model_get_default ();
   PhoshFavoriteListModelPrivate *priv = phosh_favorite_list_model_get_instance_private (list);
@@ -204,21 +201,18 @@ phosh_favorite_list_model_app_is_favorite (PhoshFavoriteListModel *self,
 
   id = g_app_info_get_id (app);
 
-  if (G_UNLIKELY (id == NULL)) {
+  if (G_UNLIKELY (id == NULL))
     return FALSE;
-  }
 
-  if (g_strv_contains ((const char *const *) priv->items_inc_missing, id)) {
+  if (g_strv_contains ((const char *const *) priv->items_inc_missing, id))
     return TRUE;
-  }
 
   return FALSE;
 }
 
 
 void
-phosh_favorite_list_model_add_app (PhoshFavoriteListModel *self,
-                                   GAppInfo               *app)
+phosh_favorite_list_model_add_app (PhoshFavoriteListModel *self, GAppInfo *app)
 {
   PhoshFavoriteListModel *list = self != NULL ? self : phosh_favorite_list_model_get_default ();
   PhoshFavoriteListModelPrivate *priv = phosh_favorite_list_model_get_instance_private (list);
@@ -261,8 +255,7 @@ phosh_favorite_list_model_add_app (PhoshFavoriteListModel *self,
 
 
 void
-phosh_favorite_list_model_remove_app (PhoshFavoriteListModel *self,
-                                      GAppInfo               *app)
+phosh_favorite_list_model_remove_app (PhoshFavoriteListModel *self, GAppInfo *app)
 {
   PhoshFavoriteListModel *list = self != NULL ? self : phosh_favorite_list_model_get_default ();
   PhoshFavoriteListModelPrivate *priv = phosh_favorite_list_model_get_instance_private (list);

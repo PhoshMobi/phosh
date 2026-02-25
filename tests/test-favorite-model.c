@@ -9,7 +9,7 @@
 #include "favorite-list-model.h"
 
 static void
-test_phosh_favorite_list_model_get_default(void)
+test_phosh_favorite_list_model_get_default (void)
 {
   PhoshFavoriteListModel *model1 = phosh_favorite_list_model_get_default ();
   PhoshFavoriteListModel *model2 = phosh_favorite_list_model_get_default ();
@@ -273,12 +273,17 @@ main (int   argc,
   g_test_add_func ("/phosh/favorites-list-model/length", test_phosh_favorite_list_model_get_length);
   g_test_add_func ("/phosh/favorites-list-model/get", test_phosh_favorite_list_model_get_item);
   g_test_add_func ("/phosh/favorites-list-model/add", test_phosh_favorite_list_model_add);
-  g_test_add_func ("/phosh/favorites-list-model/add_dup_invalid",test_phosh_favorite_list_model_add_dup_invalid);
-  g_test_add_func ("/phosh/favorites-list-model/add_no_id_invalid",test_phosh_favorite_list_model_add_no_id_invalid);
+  g_test_add_func ("/phosh/favorites-list-model/add_dup_invalid",
+                   test_phosh_favorite_list_model_add_dup_invalid);
+  g_test_add_func ("/phosh/favorites-list-model/add_no_id_invalid",
+                   test_phosh_favorite_list_model_add_no_id_invalid);
   g_test_add_func ("/phosh/favorites-list-model/remove", test_phosh_favorite_list_model_remove);
-  g_test_add_func ("/phosh/favorites-list-model/remove_favorite_invalid", test_phosh_favorite_list_model_remove_favorite_invalid);
-  g_test_add_func ("/phosh/favorites-list-model/remove_no_id_invalid", test_phosh_favorite_list_model_remove_no_id_invalid);
-  g_test_add_func ("/phosh/favorites-list-model/is_favorite", test_phosh_favorite_list_model_is_favorite);
+  g_test_add_func ("/phosh/favorites-list-model/remove_favorite_invalid",
+                   test_phosh_favorite_list_model_remove_favorite_invalid);
+  g_test_add_func ("/phosh/favorites-list-model/remove_no_id_invalid",
+                   test_phosh_favorite_list_model_remove_no_id_invalid);
+  g_test_add_func ("/phosh/favorites-list-model/is_favorite",
+                   test_phosh_favorite_list_model_is_favorite);
 
   return g_test_run ();
 }
