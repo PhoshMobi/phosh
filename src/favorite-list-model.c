@@ -156,10 +156,6 @@ phosh_favorite_list_model_init (PhoshFavoriteListModel *self)
 {
   PhoshFavoriteListModelPrivate *priv = phosh_favorite_list_model_get_instance_private (self);
 
-  priv->items_inc_missing = NULL;
-  priv->items = NULL;
-  priv->len = 0;
-
   priv->settings = g_settings_new ("sm.puri.phosh");
   g_signal_connect (priv->settings, "changed::" FAVORITES_KEY,
                     G_CALLBACK (favorites_changed), self);
