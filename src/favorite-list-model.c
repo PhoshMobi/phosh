@@ -109,10 +109,8 @@ static void
 favorites_changed (GSettings *settings, const char *key, PhoshFavoriteListModel *self)
 {
   PhoshFavoriteListModelPrivate *priv = phosh_favorite_list_model_get_instance_private (self);
+  g_autoptr (GStrvBuilder) builder = g_strv_builder_new ();
   int removed;
-  int added = 0;
-  int new_length = 0;
-  int i = 0;
 
   /* Clear the old items */
   removed = priv->len;
@@ -122,30 +120,25 @@ favorites_changed (GSettings *settings, const char *key, PhoshFavoriteListModel 
 
   /* Get the new list */
   priv->items_inc_missing = g_settings_get_strv (settings, key);
-  new_length = g_strv_length (priv->items_inc_missing);
 
-  priv->items = g_new (char *, new_length + 1);
-
-  while (priv->items_inc_missing[i]) {
+  for (int i = 0; priv->items_inc_missing[i]; i++) {
     g_autoptr (GDesktopAppInfo) info = NULL;
 
     /* We don't actually care about this value, just that it isn't NULL */
     info = g_desktop_app_info_new (priv->items_inc_missing[i]);
 
-    if (G_LIKELY (info != NULL)) {
-      priv->items[added] = g_strdup (priv->items_inc_missing[i]);
-      added++;
-    } else {
+    if (G_UNLIKELY (info == NULL)) {
       g_debug ("Missing favorite %s, skipping", priv->items_inc_missing[i]);
+      continue;
     }
 
-    i++;
+    g_strv_builder_add (builder, priv->items_inc_missing[i]);
   }
-  priv->items[added] = NULL;
 
-  priv->len = added;
+  priv->items = g_strv_builder_end (builder);
+  priv->len  = g_strv_length (priv->items);
 
-  g_list_model_items_changed (G_LIST_MODEL (self), 0, removed, added);
+  g_list_model_items_changed (G_LIST_MODEL (self), 0, removed, priv->len);
 }
 
 
@@ -217,40 +210,31 @@ phosh_favorite_list_model_add_app (PhoshFavoriteListModel *self, GAppInfo *app)
   PhoshFavoriteListModel *list = self != NULL ? self : phosh_favorite_list_model_get_default ();
   PhoshFavoriteListModelPrivate *priv = phosh_favorite_list_model_get_instance_private (list);
   const char *id;
-  int old_length = 0;
+  g_autoptr (GStrvBuilder) builder = g_strv_builder_new ();
   g_auto (GStrv) new_favorites = NULL;
 
   g_return_if_fail (G_IS_APP_INFO (app));
 
   id = g_app_info_get_id (app);
-
   if (G_UNLIKELY (id == NULL)) {
     g_critical ("Can't add `%p`, doesn't have an id", app);
-
     return;
   }
 
-  old_length = g_strv_length (priv->items_inc_missing);
-
-  new_favorites = g_new0 (char *, old_length + 2);
-
-  for (int i = 0; i < old_length; i++) {
+  for (int i = 0; priv->items_inc_missing[i]; i++) {
     /* Avoid having the same favorite twice */
     if (G_UNLIKELY (g_strcmp0 (priv->items_inc_missing[i], id) == 0)) {
       g_warning ("%s is already a favorite", id);
-
       return;
     }
-    new_favorites[i] = g_strdup (priv->items_inc_missing[i]);
+    g_strv_builder_add (builder, priv->items_inc_missing[i]);
   }
   /* Add the new id */
-  new_favorites[old_length] = g_strdup (id);
-  new_favorites[old_length + 1] = NULL;
+  g_strv_builder_add (builder, id);
+  new_favorites = g_strv_builder_end (builder);
 
   /* Indirectly calls favorites_changed which updates the model */
-  g_settings_set_strv (priv->settings,
-                       FAVORITES_KEY,
-                       (const char *const *) new_favorites);
+  g_settings_set_strv (priv->settings, FAVORITES_KEY, (const char *const *) new_favorites);
 }
 
 
@@ -260,10 +244,8 @@ phosh_favorite_list_model_remove_app (PhoshFavoriteListModel *self, GAppInfo *ap
   PhoshFavoriteListModel *list = self != NULL ? self : phosh_favorite_list_model_get_default ();
   PhoshFavoriteListModelPrivate *priv = phosh_favorite_list_model_get_instance_private (list);
   const char *id;
-  int old_length = 0;
-  int new_idx = 0;
-  int old_idx = 0;
-  g_auto(GStrv) new_favorites = NULL;
+  g_autoptr (GStrvBuilder) builder = g_strv_builder_new ();
+  g_auto (GStrv) new_favorites = NULL;
 
   g_return_if_fail (G_IS_APP_INFO (app));
 
@@ -271,33 +253,24 @@ phosh_favorite_list_model_remove_app (PhoshFavoriteListModel *self, GAppInfo *ap
 
   if (G_UNLIKELY (id == NULL)) {
     g_critical ("Can't remove `%p`, doesn't have an id", app);
-
     return;
   }
 
-  old_length = g_strv_length (priv->items_inc_missing);
-
-  new_favorites = g_new (char *, old_length + 1);
-
-  while (priv->items_inc_missing[old_idx]) {
+  for (int i = 0; priv->items_inc_missing[i]; i++) {
     /* Skip over the favorite being removed */
-    if (G_LIKELY (g_strcmp0 (priv->items_inc_missing[old_idx], id) != 0)) {
-      new_favorites[new_idx] = g_strdup (priv->items_inc_missing[old_idx]);
-      new_idx++;
-    }
-    old_idx++;
+    if (g_strcmp0 (priv->items_inc_missing[i], id) == 0)
+      continue;
+
+    g_strv_builder_add (builder, priv->items_inc_missing[i]);
   }
-  new_favorites[new_idx] = NULL;
 
-  /* If we actually removed id then old_idx should be ahead of new_idx */
-  if (G_UNLIKELY (old_idx <= new_idx)) {
+  new_favorites = g_strv_builder_end (builder);
+  /* If we actually removed id then there should be 1 item less */
+  if (!(g_strv_length (new_favorites) < g_strv_length (priv->items_inc_missing))) {
     g_warning ("%s wasn't a favorite", id);
-
     return;
   }
 
   /* Indirectly calls favorites_changed which updates the model */
-  g_settings_set_strv (priv->settings,
-                       FAVORITES_KEY,
-                       (const char *const *) new_favorites);
+  g_settings_set_strv (priv->settings, FAVORITES_KEY, (const char *const *) new_favorites);
 }
