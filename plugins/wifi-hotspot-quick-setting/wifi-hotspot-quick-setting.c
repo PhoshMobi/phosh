@@ -142,7 +142,7 @@ phosh_wifi_hotspot_quick_setting_init (PhoshWifiHotspotQuickSetting *self)
 
   g_object_bind_property (self->wifi, "is-hotspot-master",
                           self, "active",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+                          G_BINDING_SYNC_CREATE);
 
   g_signal_connect_object (shell,
                            "notify::locked",

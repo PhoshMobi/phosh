@@ -223,8 +223,7 @@ phosh_power_menu_manager_init (PhoshPowerMenuManager *self)
   dst_action = g_action_map_lookup_action (G_ACTION_MAP (self->menu_actions), "emergency-call");
   g_object_bind_property (src_action, "enabled", dst_action, "enabled", G_BINDING_SYNC_CREATE);
 
-  g_settings_bind (phosh_settings,
-                   "enable-suspend",
+  g_settings_bind (phosh_settings, "enable-suspend",
                    g_action_map_lookup_action (G_ACTION_MAP (self->menu_actions), "suspend"),
                    "enabled",
                    G_SETTINGS_BIND_GET);

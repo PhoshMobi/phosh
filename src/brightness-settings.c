@@ -125,7 +125,7 @@ phosh_brightness_settings_init (PhoshBrightnessSettings *self)
 
   g_object_bind_property_full (self->toggle_btn, "active",
                                self->toggle_stack, "visible-child-name",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_toggle_to_stack_child_name, NULL, NULL, NULL);
 }
 

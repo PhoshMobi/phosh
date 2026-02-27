@@ -88,29 +88,21 @@ phosh_bt_device_row_set_device (PhoshBtDeviceRow *self, BluetoothDevice *device)
 {
   g_set_object (&self->device, device);
 
-  g_object_bind_property (self->device,
-                          "connectable",
-                          self,
-                          "visible",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self->device, "connectable",
+                          self, "visible",
+                          G_BINDING_SYNC_CREATE);
 
-  g_object_bind_property (self->device,
-                          "alias",
-                          self,
-                          "title",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self->device, "alias",
+                          self,"title",
+                          G_BINDING_SYNC_CREATE);
 
-  g_object_bind_property (self->device,
-                          "icon",
-                          self->icon,
-                          "icon-name",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self->device, "icon",
+                          self->icon, "icon-name",
+                          G_BINDING_SYNC_CREATE);
 
-  g_object_bind_property (self->device,
-                          "connected",
-                          self->revealer,
-                          "reveal-child",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self->device, "connected",
+                          self->revealer, "reveal-child",
+                          G_BINDING_SYNC_CREATE);
 
   g_object_connect (self->device,
                     "swapped-object-signal::notify::battery-percentage", bat_level_cb, self,

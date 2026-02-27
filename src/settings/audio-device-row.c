@@ -64,17 +64,17 @@ set_audio_device (PhoshAudioDeviceRow *self, PhoshAudioDevice *device)
 
   g_object_bind_property (device, "description",
                           self->description, "label",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+                          G_BINDING_SYNC_CREATE);
 
   g_object_bind_property_full (device, "icon-name",
                                self->icon, "gicon",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_icon_name_to_icon,
                                NULL, NULL, NULL);
 
   g_object_bind_property (device, "active",
                           self->revealer, "reveal-child",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+                          G_BINDING_SYNC_CREATE);
 }
 
 

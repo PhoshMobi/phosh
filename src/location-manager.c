@@ -460,10 +460,8 @@ phosh_location_manager_constructed (GObject *object)
   G_OBJECT_CLASS (phosh_location_manager_parent_class)->constructed (object);
 
   self->location_settings = g_settings_new ("org.gnome.system.location");
-  g_settings_bind (self->location_settings,
-                   "enabled",
-                   self,
-                   "enabled",
+  g_settings_bind (self->location_settings, "enabled",
+                   self, "enabled",
                    G_SETTINGS_BIND_DEFAULT);
 
   g_bus_get (G_BUS_TYPE_SYSTEM, self->cancel, on_bus_acquired, self);

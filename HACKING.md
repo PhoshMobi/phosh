@@ -189,7 +189,7 @@ individual C files should be structured as (top to bottom of file):
                         const GValue *value,
                         GParamSpec   *pspec)
   {
-     PhoshThing *self = PHOSH_TING (object);
+     PhoshThing *self = PHOSH_THING (object);
 
      switch (property_id) {
      case PROP_FOO:
@@ -443,7 +443,7 @@ If the state of a property depends on the state of another one prefer
 ```c
   g_object_bind_property (self, "bar",
                           self->avatar, "loadable-icon",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+                          G_BINDING_SYNC_CREATE);
 ```
 
 This has the upside that the binding goes away automatically when

@@ -716,10 +716,9 @@ phosh_top_panel_constructed (GObject *object)
     g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
   }
 
-  g_settings_bind (phosh_settings,
-                   "enable-suspend",
-                   g_action_map_lookup_action (G_ACTION_MAP (self->actions), "suspend"),
-                   "enabled",
+  action = g_action_map_lookup_action (G_ACTION_MAP (self->actions), "suspend");
+  g_settings_bind (phosh_settings, "enable-suspend",
+                   action, "enabled",
                    G_SETTINGS_BIND_GET);
 
   action = g_action_map_lookup_action (G_ACTION_MAP (self->actions), "launch-panel");
@@ -738,10 +737,8 @@ phosh_top_panel_constructed (GObject *object)
                           G_BINDING_SYNC_CREATE | G_BINDING_INVERT_BOOLEAN);
 
   self->interface_settings = g_settings_new ("org.gnome.desktop.interface");
-  g_settings_bind (self->interface_settings,
-                   "show-battery-percentage",
-                   self->batteryinfo,
-                   "show-detail",
+  g_settings_bind (self->interface_settings, "show-battery-percentage",
+                   self->batteryinfo, "show-detail",
                    G_SETTINGS_BIND_GET);
 
   g_signal_connect_swapped (self->kb_settings,

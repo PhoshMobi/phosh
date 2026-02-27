@@ -580,7 +580,7 @@ phosh_home_constructed (GObject *object)
   osk_manager = phosh_shell_get_osk_manager (phosh_shell_get_default ());
   g_object_bind_property (osk_manager, "available",
                           self, "osk-enabled",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+                          G_BINDING_SYNC_CREATE);
 
   g_signal_connect (self, "notify::drag-state", G_CALLBACK (on_drag_state_changed), NULL);
 

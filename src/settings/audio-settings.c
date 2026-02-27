@@ -379,7 +379,7 @@ phosh_audio_settings_init (PhoshAudioSettings *self)
   /* Toggle details button */
   g_object_bind_property_full (self->toggle_audio_details, "active",
                                self->stack_audio_details, "visible-child-name",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_toggle_stack_child_name,
                                NULL, NULL, NULL);
 
@@ -392,7 +392,7 @@ phosh_audio_settings_init (PhoshAudioSettings *self)
                            NULL);
   g_object_bind_property (output_devices, "has-devices",
                           self->box_audio_output_devices, "visible",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+                          G_BINDING_SYNC_CREATE);
 
   input_devices = phosh_audio_manager_get_input_devices (self->audio_manager);
   gtk_list_box_bind_model (GTK_LIST_BOX (self->listbox_audio_input_devices),
@@ -402,7 +402,7 @@ phosh_audio_settings_init (PhoshAudioSettings *self)
                            NULL);
   g_object_bind_property (input_devices, "has-devices",
                           self->box_audio_input_devices, "visible",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+                          G_BINDING_SYNC_CREATE);
 }
 
 

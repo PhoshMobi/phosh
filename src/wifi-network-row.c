@@ -57,39 +57,29 @@ set_network (PhoshWifiNetworkRow *self, PhoshWifiNetwork *network)
   g_assert (self->network == NULL);
   self->network = g_object_ref (network);
 
-  g_object_bind_property (self->network,
-                          "active",
-                          self->active_indicator,
-                          "visible",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self->network, "active",
+                          self->active_indicator, "visible",
+                          G_BINDING_SYNC_CREATE);
 
-  g_object_bind_property (self->network,
-                          "ssid",
-                          self,
-                          "title",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self->network, "ssid",
+                          self, "title",
+                          G_BINDING_SYNC_CREATE);
 
-  g_object_bind_property (self->network,
-                          "secured",
-                          self->encrypted_icon,
-                          "visible",
-                          G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self->network, "secured",
+                          self->encrypted_icon, "visible",
+                          G_BINDING_SYNC_CREATE);
 
-  g_object_bind_property_full (self->network,
-                               "strength",
-                               self->wifi_icon,
-                               "icon_name",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+  g_object_bind_property_full (self->network, "strength",
+                               self->wifi_icon, "icon_name",
+                               G_BINDING_SYNC_CREATE,
                                update_icon,
                                NULL,
                                self,
                                NULL);
 
-  g_object_bind_property_full (self->network,
-                               "is-connecting",
-                               self->wifi_icon,
-                               "icon_name",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+  g_object_bind_property_full (self->network, "is-connecting",
+                               self->wifi_icon, "icon_name",
+                               G_BINDING_SYNC_CREATE,
                                update_icon,
                                NULL,
                                self,

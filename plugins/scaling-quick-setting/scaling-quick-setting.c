@@ -209,7 +209,7 @@ phosh_scaling_quick_setting_init (PhoshScalingQuickSetting *self)
   monitor_manager = phosh_shell_get_monitor_manager (shell);
   g_object_bind_property_full (monitor_manager, "n-monitors",
                                self, "sensitive",
-                               G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                               G_BINDING_SYNC_CREATE,
                                transform_to_sensitive,
                                NULL, NULL, NULL);
 
