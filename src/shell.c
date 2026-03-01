@@ -1424,17 +1424,23 @@ phosh_shell_class_init (PhoshShellClass *klass)
 }
 
 
-static GDebugKey debug_keys[] =
-{
- { .key = "always-splash",
-   .value = PHOSH_SHELL_DEBUG_FLAG_ALWAYS_SPLASH,
- },
- { .key = "fake-builtin",
-   .value = PHOSH_SHELL_DEBUG_FLAG_FAKE_BUILTIN,
- },
- { .key = "backlight-non-linear",
-   .value = PHOSH_SHELL_DEBUG_BACKLIGHT_NON_LINEAR,
- },
+static GDebugKey debug_keys[] = {
+  {
+    .key = "always-splash",
+    .value = PHOSH_SHELL_DEBUG_FLAG_ALWAYS_SPLASH,
+  },
+  {
+    .key = "app-activation",
+    .value = PHOSH_SHELL_DEBUG_APP_ACTIVATION,
+  },
+  {
+    .key = "backlight-non-linear",
+    .value = PHOSH_SHELL_DEBUG_BACKLIGHT_NON_LINEAR,
+  },
+  {
+    .key = "fake-builtin",
+    .value = PHOSH_SHELL_DEBUG_FLAG_FAKE_BUILTIN,
+  },
 };
 
 

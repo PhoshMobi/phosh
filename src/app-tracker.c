@@ -26,6 +26,7 @@
 #include <gio/gdesktopappinfo.h>
 
 #define STARTUP_TIMEOUT 5
+#define DEBUG_STARTUP_TIMEOUT 30
 
 /**
  * PhoshAppTracker:
@@ -140,13 +141,17 @@ phosh_app_state_new (GDesktopAppInfo    *info,
                      PhoshAppTracker    *tracker)
 {
   PhoshAppState *state = g_new0 (PhoshAppState, 1);
+  guint timeout = STARTUP_TIMEOUT;
+
+  if (G_UNLIKELY (phosh_shell_get_debug_flags () & PHOSH_SHELL_DEBUG_APP_ACTIVATION))
+    timeout = DEBUG_STARTUP_TIMEOUT;
 
   state->startup_id = g_strdup (startup_id);
   state->pid = pid;
   state->state = flags;
   state->info = g_object_ref (info);
   state->tracker = tracker;
-  state->timeout_id = g_timeout_add_seconds (STARTUP_TIMEOUT, on_startup_timeout, state);
+  state->timeout_id = g_timeout_add_seconds (timeout, on_startup_timeout, state);
   g_source_set_name_by_id (state->timeout_id, "[phosh] state timeout");
 
   g_debug ("Pid %" G_GINT64_FORMAT ", '%s', startup-id: %s got state %d",
