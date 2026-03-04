@@ -14,6 +14,7 @@
 #include "activity.h"
 #include "app-grid.h"
 #include "overview.h"
+#include "notifications/notify-manager.h"
 #include "phosh-wayland.h"
 #include "shell-priv.h"
 #include "toplevel-manager.h"
@@ -204,6 +205,28 @@ on_app_ready (PhoshOverview   *self,
 
 
 static void
+app_failed_noti (PhoshOverview *self, GAppInfo *info)
+{
+  PhoshNotifyManager *nm = phosh_notify_manager_get_default ();
+  g_autoptr (PhoshNotification) noti = NULL;
+  g_autofree char *msg = NULL;
+  const char *name;
+  GIcon *icon;
+
+  name = g_app_info_get_name (G_APP_INFO (info));
+  /* If app doesn't have an icon the notification server adds one */
+  icon = g_app_info_get_icon (info);
+  noti = g_object_new (PHOSH_TYPE_NOTIFICATION,
+                       "summary", name,
+                       "body", _("Application failed to start"),
+                       "image", icon,
+                       NULL);
+
+  phosh_notify_manager_add_shell_notification (nm, noti, 0, 5000);
+}
+
+
+static void
 on_app_failed (PhoshOverview   *self,
                GAppInfo        *info,
                const char      *startup_id,
@@ -223,8 +246,8 @@ on_app_failed (PhoshOverview   *self,
   if (get_toplevel_from_activity (activity))
     return;
 
-  /* TODO: show error state / notification */
   g_debug ("Activity '%s' failed to start, closing", g_app_info_get_id (info));
+  app_failed_noti (self, info);
   gtk_widget_destroy (GTK_WIDGET (activity));
 }
 
