@@ -425,7 +425,7 @@ on_dbus_app_launched (GDBusConnection *connection,
   g_autoptr (GVariant) var_dict = NULL, var_desktop_file = NULL;
   g_autofree char *startup_id = NULL;
   const char *desktop_file = NULL;
-  GVariantDict dict;
+  g_auto (GVariantDict) dict = G_VARIANT_DICT_INIT (NULL);
 
   g_return_if_fail (PHOSH_IS_APP_TRACKER (self));
   /*

@@ -257,6 +257,7 @@ phosh_connectivity_manager_finalize (GObject *object)
   g_clear_object (&self->nmclient);
   g_clear_object (&self->noti);
   g_clear_pointer (&self->ssid, g_free);
+  g_clear_pointer (&self->icon_name, g_free);
 
   G_OBJECT_CLASS (phosh_connectivity_manager_parent_class)->finalize (object);
 }
