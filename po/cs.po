@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-02-20 19:27+0000\n"
-"PO-Revision-Date: 2026-02-24 15:16+0100\n"
+"POT-Creation-Date: 2026-03-04 10:45+0000\n"
+"PO-Revision-Date: 2026-03-04 13:58+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -498,6 +498,10 @@ msgid_plural "Almost %dy"
 msgstr[0] "Téměř %d rok"
 msgstr[1] "Téměř %d roky"
 msgstr[2] "Téměř %d let"
+
+#: src/overview.c:221
+msgid "Application failed to start"
+msgstr "Spuštění aplikace se nezdařilo"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
