@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-02-04 11:02+0000\n"
-"PO-Revision-Date: 2026-02-04 21:09+0100\n"
+"POT-Creation-Date: 2026-03-04 10:45+0000\n"
+"PO-Revision-Date: 2026-03-04 11:51+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && "
-"n%100<=4 ? 2 : 3);\n"
-"X-Generator: Poedit 3.8\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
+"%100<=4 ? 2 : 3);\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SourceCharset: ISO-8859-1\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
@@ -508,6 +508,10 @@ msgstr[0] "Skoraj %d leto"
 msgstr[1] "Skoraj %d leti"
 msgstr[2] "Skoraj %d leta"
 msgstr[3] "Skoraj %d let"
+
+#: src/overview.c:221
+msgid "Application failed to start"
+msgstr "Aplikacija se ni zagnala"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
