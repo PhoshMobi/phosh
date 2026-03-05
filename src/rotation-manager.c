@@ -114,9 +114,10 @@ match_orientation (PhoshRotationManager *self)
   const char *orient;
   PhoshMonitorTransform transform;
 
-  if (self->orientation_locked || !self->claimed ||
-      phosh_lockscreen_manager_get_locked (self->lockscreen_manager) ||
-      self->mode == PHOSH_ROTATION_MANAGER_MODE_OFF)
+  if (self->orientation_locked || !self->claimed || self->mode == PHOSH_ROTATION_MANAGER_MODE_OFF)
+    return FALSE;
+
+  if (phosh_lockscreen_manager_get_locked (self->lockscreen_manager) && is_phone (self))
     return FALSE;
 
   orient = phosh_dbus_sensor_proxy_get_accelerometer_orientation (
