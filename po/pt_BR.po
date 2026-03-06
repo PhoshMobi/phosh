@@ -4,16 +4,16 @@
 # Luís Fernando Stürmer da Rosa <luisfsr@dismail.de>, 2018-2020.
 # Matheus Barbosa <mdpb.matheus@gmail.com>, 2022.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2020-2025.
-# Juliano de Souza Camargo <julianosc@pm.me>, 2024-2025.
 # Álvaro Burns <>, 2025-2026.
+# Juliano de Souza Camargo <julianosc@pm.me>, 2024-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-02-09 12:22+0000\n"
-"PO-Revision-Date: 2026-02-09 18:07-0300\n"
-"Last-Translator: Álvaro Burns <>\n"
+"POT-Creation-Date: 2026-03-04 10:45+0000\n"
+"PO-Revision-Date: 2026-03-06 10:39-0300\n"
+"Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -490,6 +490,10 @@ msgid "Almost %dy"
 msgid_plural "Almost %dy"
 msgstr[0] "Quase %dy"
 msgstr[1] "Quase %dy"
+
+#: src/overview.c:221
+msgid "Application failed to start"
+msgstr "A aplicação falhou ao iniciar"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
