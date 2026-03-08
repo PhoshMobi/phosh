@@ -1,9 +1,14 @@
+# Basque translation for phosh.
+# Copyright (C) 2025 phosh's COPYRIGHT HOLDER
+# This file is distributed under the same license as the phosh package.
 # alarra <antonlarrahi@gmail.com>, 2019. #zanata
+# Asier Saratsua Garmendia <asiersarasua@ni.eus>,  2025, 2026.
+#
 msgid ""
 msgstr "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-12-15 18:28+0000\n"
-"PO-Revision-Date: 2025-12-03 12:37+0200\n"
+"POT-Creation-Date: 2026-03-04 10:45+0000\n"
+"PO-Revision-Date: 2026-03-08 12:37+0200\n"
 "Last-Translator: Asier Saratsua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -142,13 +147,17 @@ msgstr "Sortu karpeta berria"
 msgid "Application"
 msgstr "Aplikazioa"
 
-#: src/app-grid.c:261
+#: src/app-grid.c:264
 msgid "Show All Apps"
 msgstr "Erakutsi aplikazio guztiak"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:267
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Erakutsi mugikorrean ongi doazen aplikazioak soilik"
+
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "Shell mugikorraren bolumen-kontrola"
 
 #. Translators: a battery level in percent
 #: src/bt-device-row.c:81
@@ -286,7 +295,7 @@ msgstr "Ez"
 msgid "Enter Passcode"
 msgstr "Sartu pasakodea"
 
-#: src/lockscreen.c:1040
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "Egiaztatzen…"
 
@@ -318,27 +327,27 @@ msgid "Screenshot from %s%s.png"
 msgstr "Pantaila-argazkia: %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:690 src/ui/media-player.ui:208
+#: src/media-player.c:691 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Titulu ezezaguna"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:698 src/ui/media-player.ui:196
+#: src/media-player.c:699 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Artista ezezaguna"
 
-#: src/monitor-manager.c:128
+#: src/monitor-manager.c:129
 msgid "Built-in display"
 msgstr "Pantaila integratuta"
 
-#: src/monitor-manager.c:146
+#: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:153
+#: src/monitor-manager.c:154
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -347,7 +356,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:162
+#: src/monitor-manager.c:163
 msgid "Unknown"
 msgstr "Ezezaguna"
 
@@ -476,17 +485,21 @@ msgid_plural "Almost %dy"
 msgstr[0] "Ia %du"
 msgstr[1] "Ia %du"
 
-#: src/polkit-auth-agent.c:271
+#: src/overview.c:221
+msgid "Application failed to start"
+msgstr "Aplikazioaren abioak huts egin du"
+
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "Erabiltzaileak autentifikazio-koadroa baztertu du"
 
-#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
-#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
 #: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "Pasahitza:"
 
-#: src/polkit-auth-prompt.c:322
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "Barkatu, horrek ez du funtzionatu. Saiatu berriro."
 
@@ -517,10 +530,6 @@ msgstr "Sakatu ESC ixteko"
 msgid "Running '%s' failed"
 msgstr "'%s' exekutatzeak huts egin du"
 
-#: src/settings/audio-settings.c:376
-msgid "Phone Shell Volume Control"
-msgstr "Shell mugikorraren bolumen-kontrola"
-
 #: src/system-prompt.c:376
 msgid "Passwords do not match."
 msgstr "Pasahitzak ez datoz bat."
@@ -529,7 +538,7 @@ msgstr "Pasahitzak ez datoz bat."
 msgid "Password cannot be blank"
 msgstr "Pasahitza ezin da hutsik egon"
 
-#: src/torch-info.c:80
+#: src/torch-info.c:84
 msgid "Torch"
 msgstr "Torch"
 
@@ -629,15 +638,15 @@ msgstr "Aplikazio batzuk lanpetuta daude edo gorde gabeko lanak dituzte."
 
 #: src/ui/feedback-status-page.ui:6
 msgid "Feedback"
-msgstr ""
+msgstr "Iritziak"
 
 #: src/ui/feedback-status-page.ui:19
 msgid "Do not disturb"
 msgstr "Ez gogaitu"
 
-#: src/ui/feedback-status-page.ui:52
+#: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
-msgstr ""
+msgstr "Iritzien ezarpenak"
 
 #: src/ui/gtk-mount-prompt.ui:74
 msgid "User:"
@@ -677,7 +686,7 @@ msgstr "_Utzi"
 msgid "C_onnect"
 msgstr "_Konektatu"
 
-#: src/ui/polkit-auth-prompt.ui:97
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "Autentifikatu"
 
@@ -805,9 +814,13 @@ msgstr "Aktibatuta"
 msgid "Caffeine timers"
 msgstr "Kafeina-tenporizadoreak"
 
-#: plugins/caffeine-quick-setting/qs.ui:37
+#: plugins/caffeine-quick-setting/qs.ui:38
 msgid "No caffeine intervals"
 msgstr "Ez dago kafeina-tarterik"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+msgid "Caffeine Settings"
+msgstr "Kafeina-ezarpenak"
 
 #: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:171
@@ -816,7 +829,7 @@ msgstr "Ez dago denbora-mugarik(∞)"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:7
 msgid "Caffeine Quick Setting Preferences"
-msgstr ""
+msgstr "Kafeinaren ezarpen azkarren hobespenak"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:11
 msgid "Caffeine Duration"
@@ -1061,7 +1074,7 @@ msgstr "Pomodoro desaktibatuta"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:6
 msgid "Pomodoro Quick Setting Preferences"
-msgstr ""
+msgstr "Pomodororen ezarpen azkarren hobespenak"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:11
 msgid "Pomodoro Technique"
@@ -1085,11 +1098,11 @@ msgstr "Saioen arteko etenaldiaren iraupena"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:44
 msgid "_Start on unlock"
-msgstr ""
+msgstr "_Abiarazi desblokeatzean"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:45
 msgid "Whether to start the timer on screen unlock"
-msgstr ""
+msgstr "Pantaila desblokeatzean tenporizadorea abiaraziko den ala ez"
 
 #: plugins/ticket-box/ticket-box.ui:18
 msgid "No documents to display"
@@ -1198,7 +1211,7 @@ msgstr "Gertaerak zenbat egunetarako erakutsiko diren"
 
 #: plugins/scaling-quick-setting/qs.ui:14
 msgid "Monitor scales"
-msgstr ""
+msgstr "Monitorearen eskalak"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
