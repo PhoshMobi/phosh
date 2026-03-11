@@ -1,14 +1,14 @@
 # Georgian translation for phosh.
 # Copyright (C) 2023, phosh authors
 # This file is distributed under the same license as the phosh package.
-# Ekaterine Papava <papava.e@gtu.ge>, 2023-2025.
+# Ekaterine Papava <papava.e@gtu.ge>, 2023-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-02-04 11:02+0000\n"
-"PO-Revision-Date: 2026-02-05 08:39+0100\n"
+"POT-Creation-Date: 2026-03-04 10:45+0000\n"
+"PO-Revision-Date: 2026-03-11 06:09+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -489,6 +489,10 @@ msgid_plural "Almost %dy"
 msgstr[0] "თითქმის %dწ"
 msgstr[1] "თითქმის %dწ"
 
+#: src/overview.c:221
+msgid "Application failed to start"
+msgstr "აპლიკაციის გაშვება ჩავარდა"
+
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "ავთენტიკაციის ფანჯარა დახურულია მომხმარებლის მიერ"
@@ -819,7 +823,6 @@ msgid "No caffeine intervals"
 msgstr "კოფეინის შუალედების გარეშე"
 
 #: plugins/caffeine-quick-setting/qs.ui:55
-#| msgid "Caffeine Quick Setting"
 msgid "Caffeine Settings"
 msgstr "Caffeine-iის მორგება"
 
