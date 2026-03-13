@@ -29,9 +29,8 @@ power-button-action='nothing'
 unlock-sim=true
 
 [sm.puri.phosh:Phosh]
-# gnome-calendar: https://gitlab.gnome.org/World/Phosh/phosh/-/merge_requests/1697
-# Loupe and Showtime will be fixed with GNOME 49
-force-adaptive=['firefox-esr.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Loupe.desktop', 'org.gnome.Showtime.desktop']
+# bazaar: https://github.com/kolunmi/bazaar/pull/1243
+force-adaptive=['firefox-esr.desktop', 'io.github.kolunmi.Bazaar.desktop']
 
 [sm.puri.phosh.plugins:Phosh]
 quick-settings=['wifi-hotspot-quick-setting', 'mobile-data-quick-setting']
