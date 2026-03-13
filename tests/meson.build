@@ -117,7 +117,7 @@ tests_unit = [
   'connectivity-info',
   'css',
   'fading-label',
-  'favourite-model',
+  'favorite-model',
   'folder-info',
   'gamma-table',
   'head',
