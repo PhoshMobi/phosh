@@ -2,16 +2,16 @@
 # Copyright (C) 2019-2025 sm.puri.Phosh's copyright holder
 # This file is distributed under the same license as the sm.puri.Phosh package.
 #
-# Sabri Ünal <yakushabb@gmail.com>, 2023, 2024.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2019-2025.
+# Sabri Ünal <yakushabb@gmail.com>, 2023, 2024, 2026.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2019-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-02-04 11:02+0000\n"
-"PO-Revision-Date: 2026-02-06 00:18+0300\n"
-"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
+"POT-Creation-Date: 2026-03-04 10:45+0000\n"
+"PO-Revision-Date: 2026-03-13 08:00+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -477,6 +477,10 @@ msgstr[0] "%d yılı aşkın"
 msgid "Almost %dy"
 msgid_plural "Almost %dy"
 msgstr[0] "Neredeyse %d yıl"
+
+#: src/overview.c:221
+msgid "Application failed to start"
+msgstr "Uygulama başlatılamadı"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
