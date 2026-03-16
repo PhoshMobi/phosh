@@ -76,6 +76,7 @@ quick_setting_plugins = [
   'pomodoro-quick-setting',
   'scaling-quick-setting',
   'simple-custom-quick-setting',
+  'syncthing-quick-setting',
   'wifi-hotspot-quick-setting',
 ]
 

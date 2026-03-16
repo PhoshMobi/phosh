@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gresources>
+  <gresource prefix="/mobi/phosh/plugins/syncthing-quick-setting/">
+    <file>icons/cloud-disabled-symbolic.svg</file>
+    <file>icons/cloud-filled-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">folder-row.ui</file>
+    <file preprocess="xml-stripblanks">qs.ui</file>
+  </gresource>
+</gresources>
