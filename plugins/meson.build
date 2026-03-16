@@ -99,6 +99,7 @@ if get_option('lockscreen-plugins') or get_option('quick-setting-plugins')
       libhandy_dep,
       libnm_dep,
       phosh_plugins_dep,
+      gsettings_desktop_schemas_dep,
     ],
   )
 

@@ -124,7 +124,9 @@ plugins/emergency-info/prefs/emergency-info-prefs.ui
 plugins/emergency-info/prefs/emergency-info-prefs-row.c
 plugins/emergency-info/prefs/emergency-info-prefs-row.ui
 plugins/launcher-box/launcher-box.ui
+plugins/location-quick-setting/accuracy-row.c
 plugins/location-quick-setting/location-quick-setting.c
+plugins/location-quick-setting/qs.ui
 plugins/media-players/media-players.ui
 plugins/mobile-data-quick-setting/mobile-data-quick-setting.c
 plugins/night-light-quick-setting/night-light-quick-setting.c

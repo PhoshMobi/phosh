@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <gresources>
   <gresource prefix="/mobi/phosh/plugins/location-quick-setting/">
+    <file preprocess="xml-stripblanks">accuracy-row.ui</file>
     <file preprocess="xml-stripblanks">qs.ui</file>
+    <file compressed="true">icons/city-symbolic.svg</file>
+    <file compressed="true">icons/earth-symbolic.svg</file>
+    <file compressed="true">icons/pin-symbolic.svg</file>
+    <file compressed="true">icons/shop-symbolic.svg</file>
+    <file compressed="true">icons/traffic-lights-symbolic.svg</file>
   </gresource>
 </gresources>
