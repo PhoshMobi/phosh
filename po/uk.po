@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-04 10:45+0000\n"
-"PO-Revision-Date: 2026-03-04 21:39+0200\n"
+"POT-Creation-Date: 2026-03-16 09:49+0000\n"
+"PO-Revision-Date: 2026-03-16 19:16+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1028,13 +1028,58 @@ msgstr "Не налаштовано жодного засобу запуску"
 msgid "Launchers"
 msgstr "Засоби запуску"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
+#. Translators: Location precision level - country-wide
+#: plugins/location-quick-setting/accuracy-row.c:44
+msgid "Country"
+msgstr "Країна"
+
+#. Translators: Location precision level - city-wide
+#: plugins/location-quick-setting/accuracy-row.c:47
+msgid "City"
+msgstr "Місто"
+
+#. Translators: Location precision level - neighborhood
+#: plugins/location-quick-setting/accuracy-row.c:50
+msgid "Neighborhood"
+msgstr "Район"
+
+#. Translators: Location precision level - street
+#: plugins/location-quick-setting/accuracy-row.c:53
+msgid "Street"
+msgstr "Вулиця"
+
+#. Translators: Location precision level - exact position
+#: plugins/location-quick-setting/accuracy-row.c:56
+msgid "Exact"
+msgstr "Точно"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location On"
 msgstr "Позиціювання увімкнено"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location Off"
 msgstr "Позиціювання вимкнено"
+
+#: plugins/location-quick-setting/qs.ui:15
+#| msgid "Location On"
+msgid "Location Accuracy"
+msgstr "Точність розташування"
+
+#: plugins/location-quick-setting/qs.ui:62
+#| msgid "Wi-Fi Disabled"
+msgid "Location Disabled"
+msgstr "Позиціювання вимкнено"
+
+#: plugins/location-quick-setting/qs.ui:72
+#| msgid "Location On"
+msgid "Enable Location"
+msgstr "Увімкнути позиціювання"
+
+#: plugins/location-quick-setting/qs.ui:87
+#| msgid "Location Quick Setting"
+msgid "Location Settings"
+msgstr "Параметри розташування"
 
 #: plugins/media-players/media-players.ui:20
 msgid "No running media players"
