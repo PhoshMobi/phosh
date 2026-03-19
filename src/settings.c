@@ -415,10 +415,8 @@ phosh_settings_class_init (PhoshSettingsClass *klass)
   object_class->set_property = phosh_settings_set_property;
   object_class->get_property = phosh_settings_get_property;
 
-  gtk_widget_class_set_template_from_resource (widget_class,
-                                               "/mobi/phosh/ui/settings.ui");
-
-  /* PhoshSettings:on-lockscreen:
+  /**
+   * PhoshSettings:on-lockscreen:
    *
    * Whether settings are shown on lockscreen (%TRUE) or in the unlocked shell
    * (%FALSE).
@@ -427,28 +425,27 @@ phosh_settings_class_init (PhoshSettingsClass *klass)
    * use a property binding with the [type@Shell]s "locked" property.
    */
   props[PROP_ON_LOCKSCREEN] =
-    g_param_spec_boolean (
-      "on-lockscreen", "", "",
-      FALSE,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-  /* PhoshSettings:handle-offset:
+    g_param_spec_boolean ("on-lockscreen", "", "",
+                          FALSE,
+                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshSettings:handle-offset:
    *
    * The offset from the bottom of the widget where it's safe to start
    * dragging. See phosh_settings_get_drag_drag_handle_offset().
    */
   props[PROP_DRAG_HANDLE_OFFSET] =
-    g_param_spec_int (
-      "drag-handle-offset", "", "",
-      0,
-      G_MAXINT,
-      0,
-      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+    g_param_spec_int ("drag-handle-offset", "", "",
+                      0, G_MAXINT, 0,
+                      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
   g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 
   g_type_ensure (PHOSH_TYPE_AUDIO_SETTINGS);
   g_type_ensure (PHOSH_TYPE_BRIGHTNESS_SETTINGS);
   g_type_ensure (PHOSH_TYPE_QUICK_SETTINGS);
+
+  gtk_widget_class_set_template_from_resource (widget_class, "/mobi/phosh/ui/settings.ui");
 
   gtk_widget_class_bind_template_child (widget_class, PhoshSettings, audio_settings);
   gtk_widget_class_bind_template_child (widget_class, PhoshSettings, brightness_settings);
