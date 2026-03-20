@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-16 09:49+0000\n"
-"PO-Revision-Date: 2026-03-17 10:20+0100\n"
+"POT-Creation-Date: 2026-03-20 08:01+0000\n"
+"PO-Revision-Date: 2026-03-20 10:36+0100\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -198,12 +198,12 @@ msgid "Wi-Fi network '%s' uses a captive portal"
 msgstr "Rețeaua Wi-Fi „%s” utilizează un portal captiv"
 
 #: src/connectivity-manager.c:116
-msgid "The Wi-Fi network uses a captive portal"
-msgstr "Rețeaua Wi-Fi utilizează un portal captiv"
+msgid "The network uses a captive portal"
+msgstr "Rețeaua utilizează un portal captiv"
 
 #: src/connectivity-manager.c:123
-msgid "Sign into Wi-Fi network"
-msgstr "Autentificare în rețeaua Wi-Fi"
+msgid "Sign into network"
+msgstr "Autentificare în rețea"
 
 #: src/docked-info.c:81
 msgid "Docked"
