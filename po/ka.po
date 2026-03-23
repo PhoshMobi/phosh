@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-16 09:49+0000\n"
-"PO-Revision-Date: 2026-03-19 09:10+0100\n"
+"POT-Creation-Date: 2026-03-20 08:01+0000\n"
+"PO-Revision-Date: 2026-03-23 03:35+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -196,12 +196,12 @@ msgid "Wi-Fi network '%s' uses a captive portal"
 msgstr "Wifi ქსელი '%s' ავტორიზაციის პორტალს იყენებს"
 
 #: src/connectivity-manager.c:116
-msgid "The Wi-Fi network uses a captive portal"
-msgstr "WiFi ქსელი ავტორიზაციის პორტალს იყენებს"
+msgid "The network uses a captive portal"
+msgstr "ქსელი ავტორიზაციის პორტალს იყენებს"
 
 #: src/connectivity-manager.c:123
-msgid "Sign into Wi-Fi network"
-msgstr "შესვლა Wi-Fi ქსელში"
+msgid "Sign into network"
+msgstr "შესვლა ქსელში"
 
 #: src/docked-info.c:81
 msgid "Docked"
