@@ -1461,6 +1461,7 @@ phosh_shell_init (PhoshShell *self)
 
   g_io_extension_point_register (PHOSH_EXTENSION_POINT_LOCKSCREEN_WIDGET);
   g_io_extension_point_register (PHOSH_EXTENSION_POINT_QUICK_SETTING_WIDGET);
+  g_io_extension_point_register (PHOSH_EXTENSION_POINT_STATUS_ICON_WIDGET);
 
   debug_flags = g_parse_debug_string (g_getenv ("PHOSH_DEBUG"),
                                       debug_keys,

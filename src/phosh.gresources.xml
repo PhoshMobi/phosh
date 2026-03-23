@@ -40,6 +40,7 @@
     <file preprocess="xml-stripblanks">ui/settings.ui</file>
     <file preprocess="xml-stripblanks">ui/splash.ui</file>
     <file preprocess="xml-stripblanks">ui/status-icon.ui</file>
+    <file preprocess="xml-stripblanks">ui/status-icons-box.ui</file>
     <file preprocess="xml-stripblanks">ui/status-page.ui</file>
     <file preprocess="xml-stripblanks">ui/status-page-placeholder.ui</file>
     <file preprocess="xml-stripblanks">ui/system-modal-dialog.ui</file>

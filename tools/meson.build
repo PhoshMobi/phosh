@@ -81,6 +81,12 @@ if get_option('tools')
     dependencies: [phosh_tool_dep, test_stubs_dep],
   )
 
+  executable(
+    'status-icons-box-standalone',
+    ['status-icons-box-standalone.c'],
+    dependencies: [phosh_tool_dep, test_stubs_dep],
+  )
+
   if get_option('lockscreen-plugins')
     executable(
       'widget-box',
@@ -101,6 +107,20 @@ if get_option('tools')
       c_args: [
         '-DBUILD_DIR="@0@"'.format(meson.project_build_root()),
         '-DPLUGINS="@0@"'.format(' '.join(quick_setting_plugins)),
+      ],
+      link_args: phosh_export_sym_link_arg,
+      link_with: [phosh_lib],
+      dependencies: [gmodule_dep, phosh_tool_dep, test_stubs_dep],
+    )
+  endif
+
+  if get_option('status-icon-plugins')
+    executable(
+      'custom-status-icons',
+      ['custom-status-icons-standalone.c'],
+      c_args: [
+        '-DBUILD_DIR="@0@"'.format(meson.project_build_root()),
+        '-DPLUGINS="@0@"'.format(' '.join(status_icon_plugins)),
       ],
       link_args: phosh_export_sym_link_arg,
       link_with: [phosh_lib],

@@ -198,6 +198,13 @@ do_settings (void)
                        (const char *const[]) { "caffeine-quick-setting",
                                                "simple-custom-quick-setting",
                                                NULL });
+
+  g_clear_object (&settings);
+  settings = g_settings_new ("mobi.phosh.shell.plugins");
+  /* Enable status-icon plugins */
+  g_settings_set_strv (settings, "status-icons",
+                       (const char *const[]) { "simple-custom-status-icon",
+                                               NULL });
 }
 
 

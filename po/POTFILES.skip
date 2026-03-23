@@ -5,3 +5,4 @@ subprojects/
 plugins/simple-custom-quick-setting/qs.ui
 plugins/simple-custom-quick-setting/simple-custom-quick-setting.c
 plugins/simple-custom-quick-setting/simple-custom-quick-setting.desktop.in.in
+plugins/simple-custom-status-icon/simple-custom-status-icon.desktop.in.in

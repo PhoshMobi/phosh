@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <template class="PhoshSimpleCustomStatusIcon" parent="PhoshStatusIcon">
+    <property name="visible">1</property>
+    <property name="pixel-size">16</property>
+    <property name="priority">5</property>
+  </template>
+</interface>
