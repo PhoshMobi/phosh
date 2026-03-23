@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-16 09:49+0000\n"
+"POT-Creation-Date: 2026-03-20 08:01+0000\n"
 "PO-Revision-Date: 2026-03-19 08:00+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
@@ -195,12 +195,12 @@ msgid "Wi-Fi network '%s' uses a captive portal"
 msgstr "'%s' Wi-Fi ağı oturum kapısı kullanıyor"
 
 #: src/connectivity-manager.c:116
-msgid "The Wi-Fi network uses a captive portal"
-msgstr "Wi-Fi ağı oturum kapısı kullanıyor"
+msgid "The network uses a captive portal"
+msgstr "Ağ oturum kapısı kullanıyor"
 
 #: src/connectivity-manager.c:123
-msgid "Sign into Wi-Fi network"
-msgstr "Wi-Fi ağında oturum aç"
+msgid "Sign into network"
+msgstr "Ağda oturum aç"
 
 #: src/docked-info.c:81
 msgid "Docked"
