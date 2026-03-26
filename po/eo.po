@@ -3,22 +3,22 @@
 # This file is distributed under the same license as the phosh package
 # Martin CHANG <marty188586@gmail.com>, 2018-2019.
 # Colin REEDER <colin@vpzom.click>, 2021.
-# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2021-2025.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2021-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-09-20 15:32+0000\n"
-"PO-Revision-Date: 2025-09-20 23:08+0200\n"
+"POT-Creation-Date: 2026-03-23 13:53+0000\n"
+"PO-Revision-Date: 2026-03-26 23:22+0100\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 48.0\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 49.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -76,7 +76,19 @@ msgstr "Lanĉilujo"
 
 #: plugins/launcher-box/launcher-box.desktop.in.in:5
 msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
-msgstr "Aldoni lanĉilojn al la ŝlosekrano. <b>Tiu kromprogramo estas eksperimenta.</b>"
+msgstr ""
+"Aldoni lanĉilojn al la ŝlosekrano. <b>Tiu kromprogramo estas eksperimenta.</"
+"b>"
+
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
+#| msgid "Caffeine Quick Setting"
+msgid "Location Quick Setting"
+msgstr "Rapida agordo: Loko"
+
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:6
+#| msgid "Toggle mobile data on/off"
+msgid "Toggle location services on/off"
+msgstr "Ŝalti/malŝalti lokservojn"
 
 #: plugins/media-players/media-players.desktop.in.in:3
 #: plugins/media-players/media-players.ui:19
@@ -120,7 +132,8 @@ msgstr "Biletujo"
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:5
 msgid "Show PDFs on the lock screen. <b>This plugin is experimental.</b>"
-msgstr "Montri PDF-ojn en la ŝlosekrano. <b>Tiu kromprogramo estas eksperimenta.</b>"
+msgstr ""
+"Montri PDF-ojn en la ŝlosekrano. <b>Tiu kromprogramo estas eksperimenta.</b>"
 
 #: plugins/upcoming-events/upcoming-events.desktop.in.in:3
 msgid "Upcoming Events"
@@ -142,13 +155,17 @@ msgstr "Krei novan dosierujon"
 msgid "Application"
 msgstr "Aplikaĵo"
 
-#: src/app-grid.c:261
+#: src/app-grid.c:264
 msgid "Show All Apps"
 msgstr "Montri ĉiujn aplikaĵojn"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:267
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Montri nur por poŝtelefono taŭgajn aplikaĵojn"
+
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "Laŭtecregilo de telefona ŝelo"
 
 #. Translators: a battery level in percent
 #: src/bt-device-row.c:81
@@ -183,12 +200,14 @@ msgid "Wi-Fi network '%s' uses a captive portal"
 msgstr "Vifio-reto '%s' uzas kaptan portalon"
 
 #: src/connectivity-manager.c:116
-msgid "The Wi-Fi network uses a captive portal"
-msgstr "La vifio-reto uzas kaptan portalon"
+#| msgid "The Wi-Fi network uses a captive portal"
+msgid "The network uses a captive portal"
+msgstr "La reto uzas kaptan portalon"
 
 #: src/connectivity-manager.c:123
-msgid "Sign into Wi-Fi network"
-msgstr "Ensaluti al vifio-reto"
+#| msgid "Sign into Wi-Fi network"
+msgid "Sign into network"
+msgstr "Ensaluti al reto"
 
 #: src/docked-info.c:81
 msgid "Docked"
@@ -264,29 +283,29 @@ msgctxt "feedback:enabled"
 msgid "On"
 msgstr "Ŝaltita"
 
-#: src/location-manager.c:268
+#: src/location-manager.c:266
 #, c-format
 msgid "Allow '%s' to access your location information?"
 msgstr "Ĉu permesi al '%s' aliri viajn lokinformojn?"
 
-#: src/location-manager.c:273
+#: src/location-manager.c:271
 msgid "Geolocation"
 msgstr "Geolokigo"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:272
 msgid "Yes"
 msgstr "Jes"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:272
 msgid "No"
 msgstr "Ne"
 
 #. give visual feedback on error
-#: src/lockscreen.c:313 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "Enigu pasvorton"
 
-#: src/lockscreen.c:956
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "Kontroli…"
 
@@ -318,27 +337,27 @@ msgid "Screenshot from %s%s.png"
 msgstr "Ekrankopio de %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:646 src/ui/media-player.ui:208
+#: src/media-player.c:691 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Nekonata titolo"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:654 src/ui/media-player.ui:196
+#: src/media-player.c:699 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Nekonata artisto"
 
-#: src/monitor-manager.c:127
+#: src/monitor-manager.c:129
 msgid "Built-in display"
 msgstr "Enkonstruita ekrano"
 
-#: src/monitor-manager.c:145
+#: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:152
+#: src/monitor-manager.c:154
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -347,15 +366,17 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:161
+#: src/monitor-manager.c:163
 msgid "Unknown"
 msgstr "Nekonata"
 
 #: src/network-auth-prompt.c:202
+#, c-format
 msgid "Authentication type of Wi-Fi network “%s” not supported"
 msgstr "Tipo de aŭtentigo de vifio-reto “%s” ne estas subtenata"
 
 #: src/network-auth-prompt.c:207
+#, c-format
 msgid "Enter password for the Wi-Fi network “%s”"
 msgstr "Enigu pasvorton por la vifio-reto “%s”"
 
@@ -366,7 +387,7 @@ msgstr "Malfermi"
 #. We don't just set the app_info but name and icon separately to
 #. * not overwrite values set by the caller
 #: src/notifications/notification.c:422 src/notifications/notification.c:695
-#: src/notifications/notify-manager.c:1012
+#: src/notifications/notify-manager.c:1009
 msgid "Notification"
 msgstr "Sciigo"
 
@@ -459,6 +480,7 @@ msgstr[1] "~%dy"
 #. Translators: abbreviated time difference "Over 5 years ago"
 #. Please stick to a maximum of 4 chars for the time unit
 #: src/notifications/timestamp-label.c:153
+#, c-format
 msgid "Over %dy"
 msgid_plural "Over %dy"
 msgstr[0] "Pli ol %dj"
@@ -467,22 +489,27 @@ msgstr[1] "Pli ol %dj"
 #. Translators: abbreviated time difference "almost 5 years ago"
 #. Please stick to a maximum of 4 chars for the time unit
 #: src/notifications/timestamp-label.c:158
+#, c-format
 msgid "Almost %dy"
 msgid_plural "Almost %dy"
 msgstr[0] "Preskaŭ %dj"
 msgstr[1] "Preskaŭ %dj"
 
-#: src/polkit-auth-agent.c:271
+#: src/overview.c:221
+msgid "Application failed to start"
+msgstr "Aplikaĵo malsukcesis lanĉiĝi"
+
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "La aŭtentiga dialogo estis forigita de la uzanto"
 
-#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
-#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
 #: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "Pasvorto:"
 
-#: src/polkit-auth-prompt.c:322
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "Pardonu, ĉi tio ne sukcesas. Bonvolu reprovi."
 
@@ -513,10 +540,6 @@ msgstr "Premu ESC por fermi"
 msgid "Running '%s' failed"
 msgstr "Rulo de '%s' malsukcesis"
 
-#: src/settings/audio-settings.c:376
-msgid "Phone Shell Volume Control"
-msgstr "Laŭtecregilo de telefona ŝelo"
-
 #: src/system-prompt.c:376
 msgid "Passwords do not match."
 msgstr "Pasvortoj ne kongruas."
@@ -525,7 +548,7 @@ msgstr "Pasvortoj ne kongruas."
 msgid "Password cannot be blank"
 msgstr "Pasvorto ne povas esti malplena"
 
-#: src/torch-info.c:80
+#: src/torch-info.c:84
 msgid "Torch"
 msgstr "Poŝlampo"
 
@@ -573,6 +596,15 @@ msgstr "Eniraj aparatoj"
 #: src/ui/audio-settings.ui:136
 msgid "Sound Settings"
 msgstr "Sonaj agordoj"
+
+#: src/ui/brightness-settings.ui:87
+msgid "Automatic Brightness"
+msgstr "Aŭtomata brileco"
+
+#: src/ui/brightness-settings.ui:120
+#| msgid "Sound Settings"
+msgid "Brightness Settings"
+msgstr "Agordoj de brileco"
 
 #: src/ui/bt-status-page.ui:39
 msgid "Enable Bluetooth"
@@ -623,7 +655,7 @@ msgstr "Reago"
 msgid "Do not disturb"
 msgstr "Ne ĝenu"
 
-#: src/ui/feedback-status-page.ui:52
+#: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
 msgstr "Agordoj de reago"
 
@@ -656,6 +688,7 @@ msgid "Authentication required"
 msgstr "Aŭtentigo estas deviga"
 
 #: src/ui/network-auth-prompt.ui:37
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Nuligi"
@@ -664,7 +697,7 @@ msgstr "_Nuligi"
 msgid "C_onnect"
 msgstr "K_onekti"
 
-#: src/ui/polkit-auth-prompt.ui:97
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "Aŭtentigi"
 
@@ -684,15 +717,15 @@ msgstr "Krizo"
 msgid "Run Command"
 msgstr "Ruli komandon"
 
-#: src/ui/settings.ui:138
+#: src/ui/settings.ui:121
 msgid "No notifications"
 msgstr "Neniuj sciigoj"
 
-#: src/ui/settings.ui:167
+#: src/ui/settings.ui:150
 msgid "Notifications"
 msgstr "Sciigoj"
 
-#: src/ui/settings.ui:176
+#: src/ui/settings.ui:159
 msgid "Clear all"
 msgstr "Forigi ĉion"
 
@@ -721,6 +754,7 @@ msgid "Wi-Fi"
 msgstr "Vifio"
 
 #: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
 msgstr "Agordoj de vifio"
 
@@ -773,29 +807,105 @@ msgid "Cellular"
 msgstr "Ĉela"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:53
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
 msgid "Phosh on caffeine"
 msgstr "Phosh sur kafeino"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:132
-msgctxt "caffeine-enabled"
-msgid "On"
-msgstr "Ŝaltita"
-
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:132
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "Malŝaltita"
 
-#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:36
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+msgctxt "caffeine-enabled"
+msgid "On"
+msgstr "Ŝaltita"
+
+#: plugins/caffeine-quick-setting/qs.ui:15
+msgid "Caffeine timers"
+msgstr "Kafeinaj tempigiloj"
+
+#: plugins/caffeine-quick-setting/qs.ui:38
+msgid "No caffeine intervals"
+msgstr "Neniuj kafeinaj intervaloj"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+#| msgid "Caffeine Quick Setting"
+msgid "Caffeine Settings"
+msgstr "Agordoj de kafeino"
+
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+msgid "No timeout (∞)"
+msgstr "Sen tempofino (∞)"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:7
+#| msgid "Caffeine Quick Setting"
+msgid "Caffeine Quick Setting Preferences"
+msgstr "Preferoj de rapida agordo: Kafeino"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:11
+#| msgid "_Active Duration"
+msgid "Caffeine Duration"
+msgstr "Kafeina daŭro"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:15
+msgid "Manage Caffeine Duration"
+msgstr "Administri kafeinan daŭron"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:16
+msgid "Add or remove custom caffeine intervals"
+msgstr "Aldoni aŭ forigi proprajn kafeinajn intervalojn"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:22
+#| msgid "Add Contact"
+msgid "Add interval"
+msgstr "Aldoni intervalon"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+#| msgid "Add New Contact"
+msgid "Add New Interval"
+msgstr "Aldoni novan intervalon"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
+msgid "_Add"
+msgstr "_Aldoni"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+msgid "Quickstart Intervals"
+msgstr "Intervaloj por rapida komenco"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+msgid "5 m"
+msgstr "5 m"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+msgid "15 m"
+msgstr "15 m"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+msgid "30 m"
+msgstr "30 m"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+msgid "1 h"
+msgstr "1 h"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+#| msgid "Choose Folder"
+msgid "Choose Interval"
+msgstr "Elekti intervalon"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
 msgid "Default style"
 msgstr "Defaŭlta stilo"
 
-#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:37
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:35
 msgid "Dark mode"
 msgstr "Malhela reĝimo"
 
-#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:38
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:36
 msgid "Light mode"
 msgstr "Hela reĝimo"
 
@@ -901,10 +1011,6 @@ msgstr "Aldoni kontakton"
 msgid "Add New Contact"
 msgstr "Aldoni novan kontakton"
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
-msgid "_Add"
-msgstr "_Aldoni"
-
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:240
 msgid "_Contact Name"
 msgstr "_Nomo de kontakto"
@@ -925,52 +1031,107 @@ msgstr "Neniuj lanĉiloj agorditaj"
 msgid "Launchers"
 msgstr "Lanĉiloj"
 
+#. Translators: Location precision level - country-wide
+#: plugins/location-quick-setting/accuracy-row.c:44
+msgid "Country"
+msgstr "Lando"
+
+#. Translators: Location precision level - city-wide
+#: plugins/location-quick-setting/accuracy-row.c:47
+msgid "City"
+msgstr "Urbo"
+
+#. Translators: Location precision level - neighborhood
+#: plugins/location-quick-setting/accuracy-row.c:50
+msgid "Neighborhood"
+msgstr "Najbareco"
+
+#. Translators: Location precision level - street
+#: plugins/location-quick-setting/accuracy-row.c:53
+msgid "Street"
+msgstr "Strato"
+
+#. Translators: Location precision level - exact position
+#: plugins/location-quick-setting/accuracy-row.c:56
+msgid "Exact"
+msgstr "Precize"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
+#| msgid "Geolocation"
+msgid "Location On"
+msgstr "Loko ŝaltita"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
+#| msgid "Geolocation"
+msgid "Location Off"
+msgstr "Loko malŝaltita"
+
+#: plugins/location-quick-setting/qs.ui:15
+msgid "Location Accuracy"
+msgstr "Loka precizeco"
+
+#: plugins/location-quick-setting/qs.ui:62
+#| msgid "Wi-Fi Disabled"
+msgid "Location Disabled"
+msgstr "Loko malŝaltita"
+
+#: plugins/location-quick-setting/qs.ui:72
+#| msgid "Geolocation"
+msgid "Enable Location"
+msgstr "Ebligi lokon"
+
+#: plugins/location-quick-setting/qs.ui:87
+#| msgid "Sound Settings"
+msgid "Location Settings"
+msgstr "Agordoj de loko"
+
 #: plugins/media-players/media-players.ui:20
 msgid "No running media players"
 msgstr "Neniuj rulantaj medioludiloj"
 
-#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:82
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
 msgid "Mobile Data On"
 msgstr "Poŝtelefonaj datumoj ŝaltitaj"
 
-#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:82
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
 msgid "Mobile Data Off"
 msgstr "Poŝtelefonaj datumoj malŝaltitaj"
 
-#: plugins/night-light-quick-setting/night-light-quick-setting.c:65
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
 msgid "Night Light On"
 msgstr "Nokta lumo ŝaltita"
 
-#: plugins/night-light-quick-setting/night-light-quick-setting.c:65
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
 msgid "Night Light Off"
 msgstr "Nokta lumo malŝaltita"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
 msgid "Pomodoro start"
 msgstr "Komenco de Pomodoro"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:76
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 #, c-format
 msgid "Focus on your task for %d minutes"
 msgstr "Fokusiĝu je via tasko dum %d minutoj"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
 msgid "Take a break"
 msgstr "Faru paŭzon"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:83
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
 #, c-format
 msgid "You have %d minutes until next Pomodoro"
 msgstr "Vi havas %d minutojn ĝis la sekva Pomodoro"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:98
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
 msgid "Pomodoro Timer"
 msgstr "Temporizilo de Pomodoro"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:121
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#, c-format
 msgid "Pomodoro Off"
 msgstr "Pomodoro malŝaltita"
 
@@ -1085,6 +1246,16 @@ msgstr "Finiĝas"
 msgid "Untitled event"
 msgstr "Sennoma evento"
 
+#: plugins/upcoming-events/upcoming-events.c:408
+#, c-format
+msgid "No events for the next %d days"
+msgstr "Neniuj eventoj dum la sekvaj %d tagoj"
+
+#: plugins/upcoming-events/upcoming-events.ui:28
+#| msgid "Upcoming Events"
+msgid "No upcoming events"
+msgstr "Neniuj baldaŭaj eventoj"
+
 #: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:6
 msgid "Upcoming Events Preferences"
 msgstr "Preferoj de Baldaŭaj Eventoj"
@@ -1108,74 +1279,25 @@ msgstr "Skaloj de ekrano"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
-#: plugins/scaling-quick-setting/scaling-quick-setting.c:93
+#: plugins/scaling-quick-setting/scaling-quick-setting.c:91
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:79
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+#| msgid "No Wi-Fi Hotspots"
+msgid "Wi-Fi Hotspot"
+msgstr "Vifia alirpunkto"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
+#| msgid "Turn Off"
+msgid "Turn On"
+msgstr "Ŝalti"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
 msgid "Hotspot On"
 msgstr "Alirpunkto ŝaltita"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:81
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Alirpunkto malŝaltita"
-
-#~ msgid "Unknown application"
-#~ msgstr "Nekonata aplikaĵo"
-
-#~ msgctxt "timestamp-suffix-seconds"
-#~ msgid "s"
-#~ msgstr "s"
-
-#~ msgctxt "timestamp-suffix-minute"
-#~ msgid "m"
-#~ msgstr "m"
-
-#~ msgctxt "timestamp-suffix-minutes"
-#~ msgid "m"
-#~ msgstr "m"
-
-#~ msgctxt "timestamp-suffix-hour"
-#~ msgid "h"
-#~ msgstr "h"
-
-#~ msgctxt "timestamp-suffix-hours"
-#~ msgid "h"
-#~ msgstr "h"
-
-#~ msgctxt "timestamp-suffix-day"
-#~ msgid "d"
-#~ msgstr "t"
-
-#~ msgctxt "timestamp-suffix-days"
-#~ msgid "d"
-#~ msgstr "t"
-
-#~ msgctxt "timestamp-suffix-month"
-#~ msgid "mo"
-#~ msgstr "mo"
-
-#~ msgctxt "timestamp-suffix-months"
-#~ msgid "mos"
-#~ msgstr "mo"
-
-#~ msgctxt "timestamp-suffix-year"
-#~ msgid "y"
-#~ msgstr "j"
-
-#~ msgctxt "timestamp-suffix-years"
-#~ msgid "y"
-#~ msgstr "j"
-
-#~ msgid "App"
-#~ msgstr "Aplikaĵo"
-
-#~ msgid "Show only adaptive apps"
-#~ msgstr "Montri nur adapta aplikaĵojn"
-
-#~ msgid "Lock Screen"
-#~ msgstr "Ŝlosita Ekrano"
-
-#~ msgid "Logout"
-#~ msgstr "Elsaluti"
