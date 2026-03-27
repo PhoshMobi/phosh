@@ -1,3 +1,39 @@
+phosh 0.54~rc1
+--------------
+Released March 2026
+* Status icons can now be implemented as plugins
+* Show notification when app fails to start
+* Status page to location quick setting allows to set accuracy
+* Make sure cutouts don't overlap buttons in settings panel
+* Update list of adaptive apps
+* Make sure phosh-session always has a DBus session
+* Drop gsd-wwan from session, it's gone in gsd
+* Leak fixes and internal cleanups
+* Contributors:
+    * Achill Gilgenast
+    * Andrey Skvortsov
+    * Arun Mani J
+    * Evangelos Ribeiro Tzaras
+    * Gotam Gorabh
+    * Guido Günther
+* UI translations:
+    * Alexander Alexandrov Shopov (bg)
+    * Anders Jonsson (sv)
+    * Antonio Marin (ro)
+    * Asier Saratsua Garmendia (eu)
+    * Balázs Úr (hu)
+    * Daniel Rusek (cs)
+    * Ekaterine Papava (ka)
+    * Emin Tufan Çetin (tr)
+    * Hugo Carvalho (pt)
+    * Juliano de Souza Camargo (pt_BR)
+    * Martin (sl)
+    * Ryo Nakano (ja)
+    * twlvnn kraftwerk (bg)
+    * Yaron Shahrabani (he)
+    * Yuri Chornoivan (uk)
+    * Марко Костић (sr)
+
 phosh 0.53.0
 ------------
 Released February 2026

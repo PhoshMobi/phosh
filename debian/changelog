@@ -1,3 +1,148 @@
+phosh (0.54~rc1) experimental; urgency=medium
+
+  [ Flynn Peck ]
+  * Update Cornish translation
+
+  [ Guido Günther ]
+  * ci: Switch to libevince-gtk3-dev.
+    It got renamed in Debian. While at that drop our phoc override
+    for the integration tests as it is no longer needed.
+  * toplevel-manager: Add comment why we go by app-id.
+  * overview: Only activate if we have a toplevel.
+    Avoids a critical when swiping in the overview
+  * overview: Only add splash if the app-id isn't already known.
+    This if for the case of 2nd activation: app already running and being
+    reactivated by another instance.
+  * app-tracker: Allow to use longer startup timeout.
+    This allows us to easily debug apps that have activation problems.
+    We'll notice this by the splash being up for way too long but can
+    disable it easily.
+  * overview: Show notification when app fails to start.
+    Let's leverage some of our recent rework. This helps #602 for the case
+    where we're certain that the app failed to start.
+    Helps: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/602
+  * app-tracker: Don't leak dict
+  * connectivity-manager: Don't leak icon name
+  * favorite-list-model: Use consistent spelling.
+    No point in using the UK spelling in the file name
+  * favorite-list-model: Use GStrvBuilder.
+    This simplifies the code, we can remove index tracking and no longer
+    return a non-NULL terminated GStrv from
+    phosh_favorite_list_model_add_app.
+    It also makes all three functions use the same `for` style loop
+
+  [ Achill Gilgenast ]
+  * phosh-session: Launch dbus session if none is already running.
+    In OpenRC we have to manually run the dbus session since (unlike
+    systemd) OpenRC isn't already providing one.
+    By checking $DBUS_SESSION_BUS_ADDRESS, we can safely assume it is not
+    already running (either by systemd or manually added in OpenRC setups).
+    Downstream-Issue: https://gitlab.alpinelinux.org/alpine/aports/-/issues/17737
+  * layout-manager: Set clock box shift if it intersects clock box.
+    Without it, it just sets the shift, if the notch intersects with the
+    center clock in the top bar. However the camera cutout can be on the
+    left, like nothing,spacewar.
+    So instead just check if it's on the top of the display and would
+    intersect with the whole clock box.
+    Closes: <https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1306>
+  * layout-manager: Rename clock_shift to clock_box_shift.
+    The variable shifts the whole clock box including lock and power button
+    down and not just the clock in settings. So include the "box"-suffix, to
+    also avoid confusion with the central clock of the top-bar itself.
+  * top-panel: Set top margin of clock box regardless of clock shift.
+    The clock box shift also applies when the central clock element is not in
+    the center e.g. when the cutout is in the left, and would hide other
+    parts of clock box.
+  * data: Update list of adaptive apps.
+    All three application added the X-Purism-FormFactor tag in GNOME 49.
+  * data: Remove gsd-wacom as required component from session.
+    The Wacom g-s-d plugin has been removed and therefore Phosh would fail to
+    launch since the dependency cannot be fullfilled.
+    Ref: https://gitlab.gnome.org/GNOME/gnome-settings-daemon/-/merge_requests/416
+
+  [ Hugo Carvalho ]
+  * Update Portuguese translation
+
+  [ Daniel Rusek ]
+  * Update Czech translation
+
+  [ Evangelos Ribeiro Tzaras ]
+  * docs: Drop G_BINDING_DEFAULT in property bindings.
+    The semantics clearly state that it's a no-op.
+    Also: Logical OR'ing it won't change anything, as it is zero.
+
+  [ Yaron Shahrabani ]
+  * Update Hebrew translation
+
+  [ Martin ]
+  * Update Slovenian translation
+
+  [ Yuri Chornoivan ]
+  * Update Ukrainian translation
+
+  [ Alexander Alexandrov Shopov ]
+  * Update Bulgarian translation
+
+  [ Antonio Marin ]
+  * Update Romanian translation
+
+  [ Juliano de Souza Camargo ]
+  * Update Brazilian Portuguese translation
+
+  [ Asier Saratsua Garmendia ]
+  * Update Basque translation
+
+  [ Balázs Úr ]
+  * Update Hungarian translation
+
+  [ Ekaterine Papava ]
+  * Update Georgian translation
+
+  [ Emin Tufan Çetin ]
+  * Update Turkish translation
+
+  [ Gotam Gorabh ]
+  * location-quick-setting: Add status page.
+    Allows selecting the maximum location accuracy.
+
+  [ Марко Костић ]
+  * Update Serbian translation
+
+  [ twlvnn kraftwerk ]
+  * Update Bulgarian translation
+
+  [ Andrey Skvortsov ]
+  * connectivity-manager: Use generic terms, when ssid isn't available.
+    Captive portal may be used on mobile networks as well. For example, if
+    account doesn't have enough money or subscription plan doesn't include
+    data plan, mobile operator may redirect user to website with
+    corresponding information.
+
+  [ Ryo Nakano ]
+  * Update Japanese translation
+
+  [ Arun Mani J ]
+  * status-icon: Add `priority`
+    This property can be used as a conflict-breaker to determine which icon
+    to display in space-constrained places. It will be used in the
+    subsequent commits related status-icons-box.
+  * tree: Add `PhoshStatusIconsBox`
+    This box is roughly similar to a `GtkBox`, but instead of trying to
+    squeeze all children within given space, it only allocates for available
+    width and gives null allocation for the remaining. As the name says, its
+    children can be only `PhoshStatusIcon` or `PhoshRevealer` with a
+    `PhoshStatusIcon` as child.
+  * tree: Move indicators to `PhoshStatusIconsBox`
+  * tree: Allow custom status-icons as plugins
+  * top-panel: Load custom status-icons
+  * plugins: Add simple custom status-icon
+  * tests: Add custom status-icons to screenshots
+
+  [ Anders Jonsson ]
+  * Update Swedish translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Thu, 26 Mar 2026 18:23:17 +0100
+
 phosh (0.53.0) experimental; urgency=medium
 
   [ Guido Günther ]
