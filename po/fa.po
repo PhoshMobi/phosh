@@ -1,14 +1,14 @@
 # Persian translation for phosh.
 # Copyright (C) 2020 phosh's COPYRIGHT HOLDER
 # This file is distributed under the same license as the phosh package.
-# Danial Behzadi <dani.behzi@ubuntu.com>, 2020-2025.
+# Danial Behzadi <dani.behzi@ubuntu.com>, 2020-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-02-04 11:02+0000\n"
-"PO-Revision-Date: 2026-02-04 16:18+0330\n"
+"POT-Creation-Date: 2026-03-23 13:53+0000\n"
+"PO-Revision-Date: 2026-03-29 13:27+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-DL-Lang: fa\n"
 "X-DL-Module: phosh\n"
 "X-DL-Branch: main\n"
@@ -198,12 +198,12 @@ msgid "Wi-Fi network '%s' uses a captive portal"
 msgstr "شبکهٔ وای‌فای «%s» از درگاهی گیرنده استفاده می‌کند"
 
 #: src/connectivity-manager.c:116
-msgid "The Wi-Fi network uses a captive portal"
-msgstr "شبکهٔ وای‌فای از درگاهی گیرنده استفاده می‌کند"
+msgid "The network uses a captive portal"
+msgstr "شبکه از درگاهی گیرنده استفاده می‌کند"
 
 #: src/connectivity-manager.c:123
-msgid "Sign into Wi-Fi network"
-msgstr "ورود به شبکهٔ وای‌فای"
+msgid "Sign into network"
+msgstr "ورود به شبکه"
 
 #: src/docked-info.c:81
 msgid "Docked"
@@ -490,6 +490,10 @@ msgid "Almost %dy"
 msgid_plural "Almost %dy"
 msgstr[0] "تقریباً %Idسا"
 msgstr[1] "تقریباً %Idسا"
+
+#: src/overview.c:221
+msgid "Application failed to start"
+msgstr "شکست در آغاز کاره"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
@@ -1016,13 +1020,54 @@ msgstr "هیچ اجراگری پیکربندی نشده"
 msgid "Launchers"
 msgstr "اجراگرها"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
+#. Translators: Location precision level - country-wide
+#: plugins/location-quick-setting/accuracy-row.c:44
+msgid "Country"
+msgstr "کشور"
+
+#. Translators: Location precision level - city-wide
+#: plugins/location-quick-setting/accuracy-row.c:47
+msgid "City"
+msgstr "شهر"
+
+#. Translators: Location precision level - neighborhood
+#: plugins/location-quick-setting/accuracy-row.c:50
+msgid "Neighborhood"
+msgstr "محله"
+
+#. Translators: Location precision level - street
+#: plugins/location-quick-setting/accuracy-row.c:53
+msgid "Street"
+msgstr "خیابان"
+
+#. Translators: Location precision level - exact position
+#: plugins/location-quick-setting/accuracy-row.c:56
+msgid "Exact"
+msgstr "دقیق"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location On"
 msgstr "مکان روشن"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location Off"
 msgstr "مکان خاموش"
+
+#: plugins/location-quick-setting/qs.ui:15
+msgid "Location Accuracy"
+msgstr "دقّت مکان"
+
+#: plugins/location-quick-setting/qs.ui:62
+msgid "Location Disabled"
+msgstr "مکان از کار افتاده"
+
+#: plugins/location-quick-setting/qs.ui:72
+msgid "Enable Location"
+msgstr "به کار انداختن مکان"
+
+#: plugins/location-quick-setting/qs.ui:87
+msgid "Location Settings"
+msgstr "تنظیمات مکان"
 
 #: plugins/media-players/media-players.ui:20
 msgid "No running media players"
