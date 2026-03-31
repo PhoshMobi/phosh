@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-02-10 17:02+0000\n"
-"PO-Revision-Date: 2026-02-16 13:04+0000\n"
+"POT-Creation-Date: 2026-03-23 13:53+0000\n"
+"PO-Revision-Date: 2026-03-31 11:05+0100\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
 "Language: kw\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-DL-Branch: main\n"
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
-"X-Generator: Gtranslator 49.0\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -199,15 +199,15 @@ msgstr "Galowyer ankoth"
 #: src/connectivity-manager.c:114
 #, c-format
 msgid "Wi-Fi network '%s' uses a captive portal"
-msgstr "Rosweyth Wi-Fi '%s' devnydhya unn portal keth"
+msgstr "Rosweyth DiWi '%s' devnydhya unn portal keth"
 
 #: src/connectivity-manager.c:116
-msgid "The Wi-Fi network uses a captive portal"
-msgstr "An rosweyth Wi-Fi devnydhya unn portal keth"
+msgid "The network uses a captive portal"
+msgstr "An rosweyth DiWi devnydhya portal keth"
 
 #: src/connectivity-manager.c:123
-msgid "Sign into Wi-Fi network"
-msgstr "Omgelmi yn rosweyth Wi-Fi"
+msgid "Sign into network"
+msgstr "Omgelmi yn rosweyth DiWi"
 
 #: src/docked-info.c:81
 msgid "Docked"
@@ -373,12 +373,12 @@ msgstr "Ankoth"
 #: src/network-auth-prompt.c:202
 #, c-format
 msgid "Authentication type of Wi-Fi network “%s” not supported"
-msgstr "Eghen omgelmyans a rosweyth Wi-Fi “%s” anskoodhys"
+msgstr "Eghen omgelmyans a rosweyth DiWi “%s” anskoodhys"
 
 #: src/network-auth-prompt.c:207
 #, c-format
 msgid "Enter password for the Wi-Fi network “%s”"
-msgstr "Ynworra ger-tremena rag an rosweyth Wi-Fi “%s”"
+msgstr "Ynworra ger-tremena rag an rosweyth DiWi “%s”"
 
 #: src/notifications/mount-notification.c:121
 msgid "Open"
@@ -494,6 +494,10 @@ msgid "Almost %dy"
 msgid_plural "Almost %dy"
 msgstr[0] "Ogas %db"
 msgstr[1] "Ogas %db"
+
+#: src/overview.c:221
+msgid "Application failed to start"
+msgstr "App fyllis dalleth"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
@@ -746,12 +750,12 @@ msgstr "_Omdhigelmi…"
 
 #: src/ui/wifi-status-page.ui:6 src/wifi-info.c:90
 msgid "Wi-Fi"
-msgstr "Wi-Fi"
+msgstr "DiWi"
 
 #: src/ui/wifi-status-page.ui:89
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
-msgstr "Settyansow Wi-Fi"
+msgstr "Settyansow DiWi"
 
 #: src/vpn-info.c:89
 msgid "VPN"
@@ -774,19 +778,19 @@ msgstr "An ystynnans '%s' na gallos bos karga."
 
 #: src/wifi-status-page.c:53
 msgid "No Wi-Fi Device Found"
-msgstr "Devis Wi-Fi Kavosys Vyth"
+msgstr "Devis DiWi Kevys Vyth"
 
 #: src/wifi-status-page.c:57
 msgid "Wi-Fi Disabled"
-msgstr "Wi-Fi Marow"
+msgstr "DiWi Marow"
 
 #: src/wifi-status-page.c:58
 msgid "Enable Wi-Fi"
-msgstr "Gallosegi Wi-Fi"
+msgstr "Bywhe DiWi"
 
 #: src/wifi-status-page.c:61
 msgid "Wi-Fi Hotspot Active"
-msgstr "Hotspot Wi-Fi Byw"
+msgstr "Hotspot DiWi Byw"
 
 #: src/wifi-status-page.c:62
 msgid "Turn Off"
@@ -794,7 +798,7 @@ msgstr "Marowhe"
 
 #: src/wifi-status-page.c:65
 msgid "No Wi-Fi Hotspots"
-msgstr "Hotspotys Wi-Fi Vyth"
+msgstr "Hotspotys DiWi Vyth"
 
 #. Translators: Refers to the cellular wireless network
 #: src/wwan-info.c:210
@@ -1020,13 +1024,54 @@ msgstr "Lonchyoryon selys vyth"
 msgid "Launchers"
 msgstr "Lonchyoryon"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
+#. Translators: Location precision level - country-wide
+#: plugins/location-quick-setting/accuracy-row.c:44
+msgid "Country"
+msgstr "Bro"
+
+#. Translators: Location precision level - city-wide
+#: plugins/location-quick-setting/accuracy-row.c:47
+msgid "City"
+msgstr "Cita"
+
+#. Translators: Location precision level - neighborhood
+#: plugins/location-quick-setting/accuracy-row.c:50
+msgid "Neighborhood"
+msgstr "Kentreveth"
+
+#. Translators: Location precision level - street
+#: plugins/location-quick-setting/accuracy-row.c:53
+msgid "Street"
+msgstr "Stret"
+
+#. Translators: Location precision level - exact position
+#: plugins/location-quick-setting/accuracy-row.c:56
+msgid "Exact"
+msgstr "Kewar"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location On"
 msgstr "GPS Byw"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location Off"
 msgstr "GPS Marow"
+
+#: plugins/location-quick-setting/qs.ui:15
+msgid "Location Accuracy"
+msgstr "Kewerder GPS"
+
+#: plugins/location-quick-setting/qs.ui:62
+msgid "Location Disabled"
+msgstr "GPS Marow"
+
+#: plugins/location-quick-setting/qs.ui:72
+msgid "Enable Location"
+msgstr "Bywhe GPS"
+
+#: plugins/location-quick-setting/qs.ui:87
+msgid "Location Settings"
+msgstr "Settyansow GPS"
 
 #: plugins/media-players/media-players.ui:20
 msgid "No running media players"
@@ -1228,7 +1273,7 @@ msgstr "%d%%"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
 msgid "Wi-Fi Hotspot"
-msgstr "Hotspot Wi-Fi"
+msgstr "Hotspot DiWi"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:71
 msgid "Turn On"
