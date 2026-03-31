@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
 "POT-Creation-Date: 2026-03-23 13:53+0000\n"
-"PO-Revision-Date: 2026-03-31 20:54+0500\n"
+"PO-Revision-Date: 2026-03-31 21:02+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <Kazakh>\n"
 "Language: kk\n"
@@ -63,11 +63,11 @@ msgstr "Қараңғы режимді қосу/сөндіру"
 
 #: plugins/emergency-info/emergency-info.desktop.in.in:4
 msgid "Emergency Info"
-msgstr "Шұғыл ақпарат"
+msgstr "Төтенше жағдай ақпараты"
 
 #: plugins/emergency-info/emergency-info.desktop.in.in:6
 msgid "Show emergency information and contacts"
-msgstr "Шұғыл ақпаратты және контактілерді көрсету"
+msgstr "Төтенше жағдай ақпаратты және контактілерді көрсету"
 
 #: plugins/launcher-box/launcher-box.desktop.in.in:3
 #: plugins/launcher-box/launcher-box.ui:17
@@ -220,7 +220,7 @@ msgstr "Ок"
 
 #: src/emergency-menu.c:100
 msgid "Unable to place emergency call"
-msgstr "Шұғыл қоңырау шалу мүмкін емес"
+msgstr "Төтенше жағдай қоңырауын шалу мүмкін емес"
 
 #: src/emergency-menu.c:105
 msgid "Internal error"
@@ -604,19 +604,19 @@ msgstr "Bluetooth баптаулары"
 
 #: src/ui/emergency-menu.ui:26
 msgid "Close the emergency call dialog"
-msgstr "Шұғыл қоңырау сұхбат терезесін жабу"
+msgstr "Төтенше жағдай қоңырауы сұхбат терезесін жабу"
 
 #: src/ui/emergency-menu.ui:52
 msgid "Emergency _Contacts"
-msgstr "Шұғыл _контактілер"
+msgstr "Төтенше жағдай _контактілері"
 
 #: src/ui/emergency-menu.ui:59
 msgid "Go to the emergency contacts page"
-msgstr "Шұғыл контактілер бетіне өту"
+msgstr "Төтенше жағдай контактілер бетіне өту"
 
 #: src/ui/emergency-menu.ui:82
 msgid "Go back to the emergency dialpad page"
-msgstr "Шұғыл теру бетіне қайту"
+msgstr "Төтенше жағдай теру бетіне қайту"
 
 #: src/ui/emergency-menu.ui:105
 msgid "Owner unknown"
@@ -625,11 +625,11 @@ msgstr "Иесі белгісіз"
 #: src/ui/emergency-menu.ui:123 plugins/emergency-info/emergency-info.ui:211
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:170
 msgid "Emergency Contacts"
-msgstr "Шұғыл контактілер"
+msgstr "Төтенше жағдай контактілері"
 
 #: src/ui/emergency-menu.ui:142
 msgid "No emergency contacts available."
-msgstr "Шұғыл контактілер қолжетімді емес."
+msgstr "Төтенше жағдай контактілері қолжетімді емес."
 
 #: src/ui/end-session-dialog.ui:27
 msgid "Some applications are busy or have unsaved work"
@@ -699,7 +699,7 @@ msgstr "Құлыптау"
 
 #: src/ui/power-menu.ui:240
 msgid "Emergency"
-msgstr "Шұғыл жағдай"
+msgstr "Төтенше жағдай"
 
 #: src/ui/run-command-dialog.ui:5
 msgid "Run Command"
@@ -948,7 +948,7 @@ msgstr "Басқа ақпарат"
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:6
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:16
 msgid "Emergency Info Preferences"
-msgstr "Шұғыл ақпарат баптаулары"
+msgstr "Төтенше жағдай ақпарат баптаулары"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:36
 msgid "Done"
