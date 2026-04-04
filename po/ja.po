@@ -9,13 +9,12 @@
 # 寮 <renraku@076.ne.jp>, 2021.
 # Ryo Nakano <ryonakaknock3@gmail.com>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
 "POT-Creation-Date: 2026-03-20 08:01+0000\n"
-"PO-Revision-Date: 2026-03-21 21:20+0900\n"
+"PO-Revision-Date: 2026-04-04 12:17+0900\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -81,7 +80,7 @@ msgstr "ランチャーボックス"
 #: plugins/launcher-box/launcher-box.desktop.in.in:5
 msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
 msgstr ""
-"ランチャーをロック画面に追加します。<b>このプラグインは試験段階です。</b>"
+"ランチャーをロック画面に追加します。<b>このプラグインは試験機能です。</b>"
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
 msgid "Location Quick Setting"
@@ -126,14 +125,17 @@ msgstr "ポモドーロのクイック設定"
 msgid "Simple Pomodoro Timer"
 msgstr "シンプルなポモドーロタイマー"
 
+# 直訳の「チケットボックス」は旅行の思い出を飾るケースのことですが、
+# ここでは現在有効な搭乗券やイベントチケット、証明書などをロック画面から瞬時に
+# 表示する機能を指しています。そのため、その機能を持つモノを指す単語に訳しました。
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
-msgstr ""
+msgstr "チケットホルダー"
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:5
 msgid "Show PDFs on the lock screen. <b>This plugin is experimental.</b>"
-msgstr "PDF をロック画面に表示します。<b>このプラグインは試験段階です。</b>"
+msgstr "PDF をロック画面に表示します。<b>このプラグインは試験機能です。</b>"
 
 #: plugins/upcoming-events/upcoming-events.desktop.in.in:3
 msgid "Upcoming Events"
@@ -209,11 +211,11 @@ msgstr "ネットワークにサインイン"
 
 #: src/docked-info.c:81
 msgid "Docked"
-msgstr "ドック中"
+msgstr "ドッキング中"
 
 #: src/docked-info.c:81 src/docked-info.c:199
 msgid "Undocked"
-msgstr "非ドック中"
+msgstr "非ドッキング中"
 
 #: src/emergency-menu.c:97 src/ui/app-auth-prompt.ui:64
 #: src/ui/cell-broadcast-prompt.ui:18 src/ui/end-session-dialog.ui:62
@@ -318,13 +320,13 @@ msgstr "スクリーンショットの保存に失敗しました"
 msgid "Screenshot"
 msgstr "スクリーンショット"
 
-# GNOME Shell同様、原文ママとします
+# GNOME Shell 同様、原文ママとします
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
 #: src/screenshot-manager.c:554
 msgid "Screenshots"
 msgstr "Screenshots"
 
-# GNOME Shell同様、原文ママとします
+# GNOME Shell 同様、原文ママとします
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
@@ -638,16 +640,15 @@ msgstr "一部のアプリケーションがビジー状態であるか、未保
 
 #: src/ui/feedback-status-page.ui:6
 msgid "Feedback"
-msgstr "触覚フィードバック"
+msgstr "フィードバック"
 
-# コンテキスト: 通知ポップアップではなく、触覚フィードバック
 #: src/ui/feedback-status-page.ui:19
 msgid "Do not disturb"
-msgstr "再生しない"
+msgstr "通知を非表示"
 
 #: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
-msgstr "触覚フィードバック設定"
+msgstr "フィードバック設定"
 
 #: src/ui/gtk-mount-prompt.ui:74
 msgid "User:"
@@ -1018,27 +1019,27 @@ msgstr "ランチャー"
 #. Translators: Location precision level - country-wide
 #: plugins/location-quick-setting/accuracy-row.c:44
 msgid "Country"
-msgstr ""
+msgstr "国"
 
 #. Translators: Location precision level - city-wide
 #: plugins/location-quick-setting/accuracy-row.c:47
 msgid "City"
-msgstr ""
+msgstr "市町村"
 
 #. Translators: Location precision level - neighborhood
 #: plugins/location-quick-setting/accuracy-row.c:50
 msgid "Neighborhood"
-msgstr ""
+msgstr "地域"
 
 #. Translators: Location precision level - street
 #: plugins/location-quick-setting/accuracy-row.c:53
 msgid "Street"
-msgstr ""
+msgstr "番地"
 
 #. Translators: Location precision level - exact position
 #: plugins/location-quick-setting/accuracy-row.c:56
 msgid "Exact"
-msgstr ""
+msgstr "正確な現在地"
 
 #: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location On"
@@ -1152,7 +1153,7 @@ msgstr "表示する文書なし"
 
 #: plugins/ticket-box/ticket-box.ui:82
 msgid "Tickets"
-msgstr ""
+msgstr "チケット"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.c:94
 msgid "_Open"
@@ -1164,7 +1165,7 @@ msgstr "フォルダーを選択"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.ui:6
 msgid "Ticket Box Preferences"
-msgstr ""
+msgstr "チケットホルダーの設定"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.ui:10
 msgid "Paths"
@@ -1176,11 +1177,11 @@ msgstr "フォルダー設定"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.ui:15
 msgid "Where Phosh looks for your tickets"
-msgstr ""
+msgstr "Phosh がチケットを検索する場所"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.ui:18
 msgid "Ticket Folder"
-msgstr ""
+msgstr "チケットフォルダー"
 
 #: plugins/upcoming-events/event-list.c:142
 msgid "Today"
