@@ -1,3 +1,31 @@
+phosh (0.54.0) experimental; urgency=medium
+
+  [ Guido Günther ]
+  * icons: Minimize SVGs.
+    Some old ones weren't minimized when adding them.
+  * doc: Add missing default value
+
+  [ Bruce Cowan ]
+  * Update British English translation
+
+  [ Danial Behzadi ]
+  * Update Persian translation
+
+  [ Juliano de Souza Camargo ]
+  * Update Brazilian Portuguese translation
+
+  [ Flynn Peck ]
+  * Update Cornish translation
+
+  [ Baurzhan Muftakhidinov ]
+  * Add Kazakh translation
+  * Update Kazakh translation
+
+  [ Ryo Nakano ]
+  * Update Japanese translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Sun, 05 Apr 2026 08:57:28 +0200
+
 phosh (0.54~rc1) experimental; urgency=medium
 
   [ Flynn Peck ]
