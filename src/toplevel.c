@@ -53,76 +53,71 @@ G_DEFINE_TYPE (PhoshToplevel, phosh_toplevel, G_TYPE_OBJECT);
 
 
 static void
-handle_zwlr_foreign_toplevel_handle_title(
-  void *data,
-  struct zwlr_foreign_toplevel_handle_v1 *zwlr_foreign_toplevel_handle_v1,
-  const char* title)
+handle_zwlr_foreign_toplevel_handle_title (void                                   *data,
+                                           struct zwlr_foreign_toplevel_handle_v1 *handle,
+                                           const char                             *title)
 {
   PhoshToplevel *self = data;
   g_return_if_fail (PHOSH_IS_TOPLEVEL (self));
   g_free (self->title);
   self->title = g_strdup (title);
-  g_debug ("%p: Got title %s", zwlr_foreign_toplevel_handle_v1, title);
+  g_debug ("%p: Got title %s", handle, title);
   g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_TOPLEVEL_PROP_TITLE]);
 }
 
 
 static void
-handle_zwlr_foreign_toplevel_handle_app_id(
-  void *data,
-  struct zwlr_foreign_toplevel_handle_v1 *zwlr_foreign_toplevel_handle_v1,
-  const char* app_id)
+handle_zwlr_foreign_toplevel_handle_app_id (void                                   *data,
+                                            struct zwlr_foreign_toplevel_handle_v1 *handle,
+                                            const char                             *app_id)
 {
   PhoshToplevel *self = data;
   g_return_if_fail (PHOSH_IS_TOPLEVEL (self));
   g_free (self->app_id);
   self->app_id = g_strdup (app_id);
-  g_debug ("%p: Got app_id %s", zwlr_foreign_toplevel_handle_v1, app_id);
+  g_debug ("%p: Got app_id %s", handle, app_id);
   g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_TOPLEVEL_PROP_APP_ID]);
 }
 
 
 static void
-handle_zwlr_foreign_toplevel_handle_output_enter(
-  void *data,
-  struct zwlr_foreign_toplevel_handle_v1 *zwlr_foreign_toplevel_handle_v1,
-  struct wl_output *output)
+handle_zwlr_foreign_toplevel_handle_output_enter (void                                   *data,
+                                                  struct zwlr_foreign_toplevel_handle_v1 *handle,
+                                                  struct wl_output                       *output)
 {
 }
 
 
 static void
-handle_zwlr_foreign_toplevel_handle_output_leave(
-  void *data,
-  struct zwlr_foreign_toplevel_handle_v1 *zwlr_foreign_toplevel_handle_v1,
-  struct wl_output *output)
+handle_zwlr_foreign_toplevel_handle_output_leave (void                                   *data,
+                                                  struct zwlr_foreign_toplevel_handle_v1 *handle,
+                                                  struct wl_output                       *output)
 {
 }
 
 
 static void
-handle_zwlr_foreign_toplevel_handle_state(
-  void *data,
-  struct zwlr_foreign_toplevel_handle_v1 *zwlr_foreign_toplevel_handle_v1,
-  struct wl_array *state)
+handle_zwlr_foreign_toplevel_handle_state (void                                   *data,
+                                           struct zwlr_foreign_toplevel_handle_v1 *handle,
+                                           struct wl_array                        *state)
 {
   PhoshToplevel *self = data;
   enum zwlr_foreign_toplevel_handle_v1_state *value;
   gboolean activated = FALSE, maximized = FALSE, fullscreen = FALSE;
 
   g_return_if_fail (PHOSH_IS_TOPLEVEL (self));
-  wl_array_for_each (value, state) {
-    g_debug("toplevel_handle %p: has state %d", self, *value);
 
-    if (*value == ZWLR_FOREIGN_TOPLEVEL_HANDLE_V1_STATE_ACTIVATED) {
+  wl_array_for_each (value, state) {
+    g_debug ("toplevel_handle %p: has state %d", self, *value);
+
+    if (*value == ZWLR_FOREIGN_TOPLEVEL_HANDLE_V1_STATE_ACTIVATED)
       activated = TRUE;
-    }
-    if (*value == ZWLR_FOREIGN_TOPLEVEL_HANDLE_V1_STATE_MAXIMIZED) {
+
+    if (*value == ZWLR_FOREIGN_TOPLEVEL_HANDLE_V1_STATE_MAXIMIZED)
       maximized = TRUE;
-    }
-    if (*value == ZWLR_FOREIGN_TOPLEVEL_HANDLE_V1_STATE_FULLSCREEN) {
+
+    if (*value == ZWLR_FOREIGN_TOPLEVEL_HANDLE_V1_STATE_FULLSCREEN)
       fullscreen = TRUE;
-    }
   }
 
   if (self->activated != activated) {
@@ -143,9 +138,8 @@ handle_zwlr_foreign_toplevel_handle_state(
 
 
 static void
-handle_zwlr_foreign_toplevel_handle_done(
-  void *data,
-  struct zwlr_foreign_toplevel_handle_v1 *zwlr_foreign_toplevel_handle_v1)
+handle_zwlr_foreign_toplevel_handle_done (void                                   *data,
+                                          struct zwlr_foreign_toplevel_handle_v1 *handle)
 {
   PhoshToplevel *self = data;
   g_return_if_fail (PHOSH_IS_TOPLEVEL (self));
@@ -155,9 +149,8 @@ handle_zwlr_foreign_toplevel_handle_done(
 
 
 static void
-handle_zwlr_foreign_toplevel_handle_closed(
-  void *data,
-  struct zwlr_foreign_toplevel_handle_v1 *zwlr_foreign_toplevel_handle_v1)
+handle_zwlr_foreign_toplevel_handle_closed (void                                   *data,
+                                            struct zwlr_foreign_toplevel_handle_v1 *handle)
 {
   PhoshToplevel *self = data;
   g_return_if_fail (PHOSH_IS_TOPLEVEL (self));
@@ -166,10 +159,9 @@ handle_zwlr_foreign_toplevel_handle_closed(
 
 
 static void
-handle_zwlr_foreign_toplevel_handle_parent (
-  void *data,
-  struct zwlr_foreign_toplevel_handle_v1 *zwlr_foreign_toplevel_handle_v1,
-  struct zwlr_foreign_toplevel_handle_v1 *parent)
+handle_zwlr_foreign_toplevel_handle_parent (void                                   *data,
+                                            struct zwlr_foreign_toplevel_handle_v1 *handle,
+                                            struct zwlr_foreign_toplevel_handle_v1 *parent)
 {
   PhoshToplevel *self = PHOSH_TOPLEVEL (data);
 

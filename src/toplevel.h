@@ -11,11 +11,7 @@
 
 #define PHOSH_TYPE_TOPLEVEL (phosh_toplevel_get_type())
 
-G_DECLARE_FINAL_TYPE (PhoshToplevel,
-                      phosh_toplevel,
-                      PHOSH,
-                      TOPLEVEL,
-                      GObject)
+G_DECLARE_FINAL_TYPE (PhoshToplevel, phosh_toplevel, PHOSH, TOPLEVEL, GObject)
 
 PhoshToplevel *phosh_toplevel_new_from_handle (struct zwlr_foreign_toplevel_handle_v1 *handle);
 const char *phosh_toplevel_get_title (PhoshToplevel *self);
