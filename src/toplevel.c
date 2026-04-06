@@ -253,25 +253,25 @@ phosh_toplevel_get_property (GObject    *object,
 
   switch (property_id) {
   case PROP_HANDLE:
-    g_value_set_pointer (value, self->handle);
+    g_value_set_pointer (value, phosh_toplevel_get_handle (self));
     break;
   case PROP_CONFIGURED:
-    g_value_set_boolean (value, self->configured);
+    g_value_set_boolean (value, phosh_toplevel_is_configured (self));
     break;
   case PROP_ACTIVATED:
-    g_value_set_boolean (value, self->activated);
+    g_value_set_boolean (value, phosh_toplevel_is_activated (self));
     break;
   case PROP_MAXIMIZED:
-    g_value_set_boolean (value, self->maximized);
+    g_value_set_boolean (value, phosh_toplevel_is_maximized (self));
     break;
   case PROP_FULLSCREEN:
-    g_value_set_boolean (value, self->fullscreen);
+    g_value_set_boolean (value, phosh_toplevel_is_fullscreen (self));
     break;
   case PROP_TITLE:
-    g_value_set_string (value, self->title);
+    g_value_set_string (value, phosh_toplevel_get_title (self));
     break;
   case PROP_APP_ID:
-    g_value_set_string (value, self->app_id);
+    g_value_set_string (value, phosh_toplevel_get_app_id (self));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
