@@ -186,12 +186,11 @@ on_toplevel_closed (PhoshToplevelManager *self, PhoshToplevel *toplevel)
   /* Check if toplevel exists in toplevels_pending, in that case it is
    * not yet configured and we just remove it from toplevels_pending
    * without touching the regular toplevels array. */
-  if (g_ptr_array_find (self->toplevels_pending, toplevel, NULL)) {
-    g_assert_true (g_ptr_array_remove (self->toplevels_pending, toplevel));
+  if (g_ptr_array_remove (self->toplevels_pending, toplevel))
     return;
-  }
 
-  g_assert_true (g_ptr_array_remove (self->toplevels, toplevel));
+  if (!g_ptr_array_remove (self->toplevels, toplevel))
+    g_assert_not_reached ();
 
   g_object_notify_by_pspec (G_OBJECT (self), props[PROP_NUM_TOPLEVELS]);
 }
@@ -213,7 +212,8 @@ on_toplevel_configured (PhoshToplevelManager *self, GParamSpec *pspec, PhoshTopl
     g_signal_emit (self, signals[TOPLEVEL_CHANGED], 0, toplevel);
   } else {
     g_ptr_array_add (self->toplevels, g_object_ref (toplevel));
-    g_assert_true (g_ptr_array_remove (self->toplevels_pending, toplevel));
+    if (!g_ptr_array_remove (self->toplevels_pending, toplevel))
+      g_assert_not_reached ();
 
     g_signal_emit (self, signals[TOPLEVEL_ADDED], 0, toplevel);
     g_object_notify_by_pspec (G_OBJECT (self), props[PROP_NUM_TOPLEVELS]);
