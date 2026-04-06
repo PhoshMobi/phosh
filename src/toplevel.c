@@ -207,14 +207,15 @@ phosh_toplevel_finalize (GObject *object)
 
 
 static void
-phosh_toplevel_constructed (GObject *object)
+phosh_toplevel_set_wlr_handle (PhoshToplevel *self, struct zwlr_foreign_toplevel_handle_v1 *handle)
 {
-  PhoshToplevel *self = PHOSH_TOPLEVEL (object);
+  self->handle = handle;
+
+  if (!self->handle)
+    return;
 
   zwlr_foreign_toplevel_handle_v1_add_listener (self->handle, &zwlr_foreign_toplevel_handle_listener, self);
   zwlr_foreign_toplevel_handle_v1_set_user_data (self->handle, self);
-
-  G_OBJECT_CLASS (phosh_toplevel_parent_class)->constructed (object);
 }
 
 
@@ -228,7 +229,7 @@ phosh_toplevel_set_property (GObject      *object,
 
   switch (property_id) {
   case PROP_HANDLE:
-    self->handle = g_value_get_pointer (value);
+    phosh_toplevel_set_wlr_handle (self, g_value_get_pointer (value));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -281,7 +282,6 @@ phosh_toplevel_class_init (PhoshToplevelClass *klass)
 
   object_class->set_property = phosh_toplevel_set_property;
   object_class->get_property = phosh_toplevel_get_property;
-  object_class->constructed = phosh_toplevel_constructed;
   object_class->dispose = phosh_toplevel_dispose;
   object_class->finalize = phosh_toplevel_finalize;
 
