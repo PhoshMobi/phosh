@@ -188,7 +188,6 @@ on_toplevel_closed (PhoshToplevelManager *self, PhoshToplevel *toplevel)
    * without touching the regular toplevels array. */
   if (g_ptr_array_find (self->toplevels_pending, toplevel, NULL)) {
     g_assert_true (g_ptr_array_remove (self->toplevels_pending, toplevel));
-    g_object_unref (toplevel);
     return;
   }
 
@@ -213,8 +212,9 @@ on_toplevel_configured (PhoshToplevelManager *self, GParamSpec *pspec, PhoshTopl
   if (g_ptr_array_find (self->toplevels, toplevel, NULL)) {
     g_signal_emit (self, signals[TOPLEVEL_CHANGED], 0, toplevel);
   } else {
+    g_ptr_array_add (self->toplevels, g_object_ref (toplevel));
     g_assert_true (g_ptr_array_remove (self->toplevels_pending, toplevel));
-    g_ptr_array_add (self->toplevels, toplevel);
+
     g_signal_emit (self, signals[TOPLEVEL_ADDED], 0, toplevel);
     g_object_notify_by_pspec (G_OBJECT (self), props[PROP_NUM_TOPLEVELS]);
 
@@ -264,15 +264,9 @@ static void
 phosh_toplevel_manager_dispose (GObject *object)
 {
   PhoshToplevelManager *self = PHOSH_TOPLEVEL_MANAGER (object);
-  if (self->toplevels) {
-    g_ptr_array_free (self->toplevels, TRUE);
-    self->toplevels = NULL;
-  }
-  if (self->toplevels_pending) {
-    g_ptr_array_free (self->toplevels_pending, TRUE);
-    self->toplevels_pending = NULL;
-  }
 
+  g_clear_pointer (&self->toplevels, g_ptr_array_unref);
+  g_clear_pointer (&self->toplevels_pending, g_ptr_array_unref);
   g_clear_pointer (&self->launching_apps, g_ptr_array_unref);
   g_clear_object (&self->app_tracker);
 
@@ -356,7 +350,7 @@ phosh_toplevel_manager_init (PhoshToplevelManager *self)
 
   self->launching_apps = g_ptr_array_new_with_free_func ((GDestroyNotify)launching_app_info_free);
   self->toplevels = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
-  self->toplevels_pending = g_ptr_array_new ();
+  self->toplevels_pending = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
 
   if (!toplevel_manager) {
     g_critical ("Missing wlr-foreign-toplevel-management protocol extension");
