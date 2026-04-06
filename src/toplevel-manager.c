@@ -12,9 +12,7 @@
 #include "toplevel-manager.h"
 #include "toplevel.h"
 #include "phosh-wayland.h"
-#include "shell-priv.h"
 #include "util.h"
-#include "wlr-foreign-toplevel-management-unstable-v1-client-protocol.h"
 
 #include <gdk/gdkwayland.h>
 
