@@ -58,10 +58,13 @@ handle_zwlr_foreign_toplevel_handle_title (void                                 
                                            const char                             *title)
 {
   PhoshToplevel *self = data;
+
   g_return_if_fail (PHOSH_IS_TOPLEVEL (self));
-  g_free (self->title);
-  self->title = g_strdup (title);
-  g_debug ("%p: Got title %s", handle, title);
+
+  if (!g_set_str (&self->title, title))
+    return;
+
+  g_debug ("%p: Got title '%s'", handle, title);
   g_object_notify_by_pspec (G_OBJECT (self), props[PROP_TITLE]);
 }
 
@@ -72,10 +75,13 @@ handle_zwlr_foreign_toplevel_handle_app_id (void                                
                                             const char                             *app_id)
 {
   PhoshToplevel *self = data;
+
   g_return_if_fail (PHOSH_IS_TOPLEVEL (self));
-  g_free (self->app_id);
-  self->app_id = g_strdup (app_id);
-  g_debug ("%p: Got app_id %s", handle, app_id);
+
+  if (!g_set_str (&self->app_id, app_id))
+    return;
+
+  g_debug ("%p: Got app_id '%s'", handle, app_id);
   g_object_notify_by_pspec (G_OBJECT (self), props[PROP_APP_ID]);
 }
 
