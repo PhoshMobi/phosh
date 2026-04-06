@@ -215,7 +215,6 @@ phosh_toplevel_set_wlr_handle (PhoshToplevel *self, struct zwlr_foreign_toplevel
     return;
 
   zwlr_foreign_toplevel_handle_v1_add_listener (self->handle, &zwlr_foreign_toplevel_handle_listener, self);
-  zwlr_foreign_toplevel_handle_v1_set_user_data (self->handle, self);
 }
 
 
