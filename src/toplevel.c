@@ -22,17 +22,17 @@
  */
 
 enum {
-  PHOSH_TOPLEVEL_PROP_0,
-  PHOSH_TOPLEVEL_PROP_HANDLE,
-  PHOSH_TOPLEVEL_PROP_CONFIGURED,
-  PHOSH_TOPLEVEL_PROP_TITLE,
-  PHOSH_TOPLEVEL_PROP_APP_ID,
-  PHOSH_TOPLEVEL_PROP_ACTIVATED,
-  PHOSH_TOPLEVEL_PROP_MAXIMIZED,
-  PHOSH_TOPLEVEL_PROP_FULLSCREEN,
-  PHOSH_TOPLEVEL_PROP_LAST_PROP,
+  PROP_0,
+  PROP_HANDLE,
+  PROP_CONFIGURED,
+  PROP_TITLE,
+  PROP_APP_ID,
+  PROP_ACTIVATED,
+  PROP_MAXIMIZED,
+  PROP_FULLSCREEN,
+  LAST_PROP
 };
-static GParamSpec *props[PHOSH_TOPLEVEL_PROP_LAST_PROP];
+static GParamSpec *props[LAST_PROP];
 
 enum {
   SIGNAL_CLOSED,
@@ -62,7 +62,7 @@ handle_zwlr_foreign_toplevel_handle_title (void                                 
   g_free (self->title);
   self->title = g_strdup (title);
   g_debug ("%p: Got title %s", handle, title);
-  g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_TOPLEVEL_PROP_TITLE]);
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_TITLE]);
 }
 
 
@@ -76,7 +76,7 @@ handle_zwlr_foreign_toplevel_handle_app_id (void                                
   g_free (self->app_id);
   self->app_id = g_strdup (app_id);
   g_debug ("%p: Got app_id %s", handle, app_id);
-  g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_TOPLEVEL_PROP_APP_ID]);
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_APP_ID]);
 }
 
 
@@ -122,17 +122,17 @@ handle_zwlr_foreign_toplevel_handle_state (void                                 
 
   if (self->activated != activated) {
     self->activated = activated;
-    g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_TOPLEVEL_PROP_ACTIVATED]);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_ACTIVATED]);
   }
 
   if (self->maximized != maximized) {
     self->maximized = maximized;
-    g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_TOPLEVEL_PROP_MAXIMIZED]);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_MAXIMIZED]);
   }
 
   if (self->fullscreen != fullscreen) {
     self->fullscreen = fullscreen;
-    g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_TOPLEVEL_PROP_FULLSCREEN]);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_FULLSCREEN]);
   }
 }
 
@@ -144,7 +144,7 @@ handle_zwlr_foreign_toplevel_handle_done (void                                  
   PhoshToplevel *self = data;
   g_return_if_fail (PHOSH_IS_TOPLEVEL (self));
   self->configured = TRUE;
-  g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_TOPLEVEL_PROP_CONFIGURED]);
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_CONFIGURED]);
 }
 
 
@@ -227,7 +227,7 @@ phosh_toplevel_set_property (GObject      *object,
   PhoshToplevel *self = PHOSH_TOPLEVEL (object);
 
   switch (property_id) {
-  case PHOSH_TOPLEVEL_PROP_HANDLE:
+  case PROP_HANDLE:
     self->handle = g_value_get_pointer (value);
     break;
   default:
@@ -246,25 +246,25 @@ phosh_toplevel_get_property (GObject    *object,
   PhoshToplevel *self = PHOSH_TOPLEVEL (object);
 
   switch (property_id) {
-  case PHOSH_TOPLEVEL_PROP_HANDLE:
+  case PROP_HANDLE:
     g_value_set_pointer (value, self->handle);
     break;
-  case PHOSH_TOPLEVEL_PROP_CONFIGURED:
+  case PROP_CONFIGURED:
     g_value_set_boolean (value, self->configured);
     break;
-  case PHOSH_TOPLEVEL_PROP_ACTIVATED:
+  case PROP_ACTIVATED:
     g_value_set_boolean (value, self->activated);
     break;
-  case PHOSH_TOPLEVEL_PROP_MAXIMIZED:
+  case PROP_MAXIMIZED:
     g_value_set_boolean (value, self->maximized);
     break;
-  case PHOSH_TOPLEVEL_PROP_FULLSCREEN:
+  case PROP_FULLSCREEN:
     g_value_set_boolean (value, self->fullscreen);
     break;
-  case PHOSH_TOPLEVEL_PROP_TITLE:
+  case PROP_TITLE:
     g_value_set_string (value, self->title);
     break;
-  case PHOSH_TOPLEVEL_PROP_APP_ID:
+  case PROP_APP_ID:
     g_value_set_string (value, self->app_id);
     break;
   default:
@@ -285,63 +285,70 @@ phosh_toplevel_class_init (PhoshToplevelClass *klass)
   object_class->dispose = phosh_toplevel_dispose;
   object_class->finalize = phosh_toplevel_finalize;
 
-  props[PHOSH_TOPLEVEL_PROP_HANDLE] =
-    g_param_spec_pointer ("handle",
-                          "handle",
-                          "The zwlr_foreign_toplevel_handle_v1 object associated with this toplevel",
-                          G_PARAM_READWRITE |
-                          G_PARAM_CONSTRUCT_ONLY |
-                          G_PARAM_STATIC_STRINGS);
-
-  props[PHOSH_TOPLEVEL_PROP_CONFIGURED] =
-    g_param_spec_boolean ("configured",
-                          "configured",
-                          "Whether the toplevel has been already filled with all initial data",
+  /**
+   * PhoshToplevel:handle:
+   *
+   * The zwlr_foreign_toplevel_handle_v1 object associated with this toplevel
+   */
+  props[PROP_HANDLE] =
+    g_param_spec_pointer ("handle", "", "",
+                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshToplevel:configured:
+   *
+   * Whether the toplevel has been already filled with all initial data
+   */
+  props[PROP_CONFIGURED] =
+    g_param_spec_boolean ("configured", "", "",
                           FALSE,
-                          G_PARAM_READABLE |
-                          G_PARAM_STATIC_STRINGS);
-
-  props[PHOSH_TOPLEVEL_PROP_ACTIVATED] =
-    g_param_spec_boolean ("activated",
-                          "activated",
-                          "Whether the toplevel is currently focused",
+                          G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshToplevel:activated:
+   *
+   * Whether the toplevel is currently focused
+   */
+  props[PROP_ACTIVATED] =
+    g_param_spec_boolean ("activated", "", "",
                           FALSE,
-                          G_PARAM_READABLE |
-                          G_PARAM_STATIC_STRINGS);
-
-  props[PHOSH_TOPLEVEL_PROP_MAXIMIZED] =
-    g_param_spec_boolean ("maximized",
-                          "maximized",
-                          "Whether the toplevel is currently maximized",
+                          G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshToplevel:maximized:
+   *
+   * Whether the toplevel is currently maximized
+   */
+  props[PROP_MAXIMIZED] =
+    g_param_spec_boolean ("maximized", "", "",
                           FALSE,
-                          G_PARAM_READABLE |
-                          G_PARAM_STATIC_STRINGS);
-
-  props[PHOSH_TOPLEVEL_PROP_FULLSCREEN] =
-    g_param_spec_boolean ("fullscreen",
-                          "fullscreen",
-                          "Whether the toplevel is currently presented fullscreen",
+                          G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshToplevel:fullscreen:
+   *
+   * Whether the toplevel is currently presented fullscreen
+   */
+  props[PROP_FULLSCREEN] =
+    g_param_spec_boolean ("fullscreen", "", "",
                           FALSE,
-                          G_PARAM_READABLE |
-                          G_PARAM_STATIC_STRINGS);
-
-  props[PHOSH_TOPLEVEL_PROP_TITLE] =
-    g_param_spec_string ("title",
-                         "title",
-                         "The window's title",
+                          G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshToplevel:title:
+   *
+   * The window's title
+   */
+  props[PROP_TITLE] =
+    g_param_spec_string ("title", "", "",
                          "",
-                         G_PARAM_READABLE |
-                         G_PARAM_STATIC_STRINGS);
-
-  props[PHOSH_TOPLEVEL_PROP_APP_ID] =
-    g_param_spec_string ("app-id",
-                         "app-id",
-                         "The application ID",
+                         G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshToplevel:app-id:
+   *
+   * The application ID
+   */
+  props[PROP_APP_ID] =
+    g_param_spec_string ("app-id", "", "",
                          "",
-                         G_PARAM_READABLE |
-                         G_PARAM_STATIC_STRINGS);
+                         G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
 
-  g_object_class_install_properties (object_class, PHOSH_TOPLEVEL_PROP_LAST_PROP, props);
+  g_object_class_install_properties (object_class, LAST_PROP, props);
 
   /**
    * PhoshToplevel::closed:
@@ -349,10 +356,12 @@ phosh_toplevel_class_init (PhoshToplevelClass *klass)
    *
    * Emitted when a toplevel has been closed.
    */
-  signals[SIGNAL_CLOSED] = g_signal_new (
-    "closed",
-    G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST, 0, NULL, NULL,
-    NULL, G_TYPE_NONE, 0);
+  signals[SIGNAL_CLOSED] = g_signal_new ("closed",
+                                         G_TYPE_FROM_CLASS (klass),
+                                         G_SIGNAL_RUN_LAST,
+                                         0, NULL, NULL, NULL,
+                                         G_TYPE_NONE,
+                                         0);
 }
 
 
