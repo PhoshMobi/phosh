@@ -268,7 +268,7 @@ check-license-headers:
   needs: []
   script:
     # Checks .c and .h files begin with a license header as
-    # defined in HACKING.md
+    # defined in CONTRIBUTING.md
     - ./tools/check-license-headers.py
 
 release-tarball:
