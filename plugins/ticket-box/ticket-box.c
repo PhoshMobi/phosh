@@ -25,7 +25,6 @@
 struct _PhoshTicketBox {
   GtkBox        parent;
 
-  GFileMonitor *monitor;
   GFile        *dir;
   char         *ticket_box_path;
   GCancellable *cancel;
@@ -90,7 +89,6 @@ phosh_ticket_box_finalize (GObject *object)
   g_clear_object (&self->cancel);
   g_clear_object (&self->model);
 
-  g_clear_object (&self->monitor);
   g_clear_object (&self->dir);
   g_clear_pointer (&self->ticket_box_path, g_free);
 
