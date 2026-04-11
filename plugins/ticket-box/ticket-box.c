@@ -163,7 +163,9 @@ on_file_child_enumerated (GObject *source_object, GAsyncResult *res, gpointer us
     g_autoptr (PhoshTicket) ticket = NULL;
 
     if (!g_file_enumerator_iterate (enumerator, &info, &file, self->cancel, &err)) {
-      g_warning ("Failed to list contents of ticket dir %s: $%s", self->ticket_box_path, err->message);
+      g_warning ("Failed to list contents of ticket dir %s: $%s",
+                 self->ticket_box_path,
+                 err->message);
       return;
     }
 
