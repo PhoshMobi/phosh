@@ -143,7 +143,7 @@ on_file_child_enumerated (GObject *source_object, GAsyncResult *res, gpointer us
 {
   g_autoptr (GError) err = NULL;
   GFile *dir = G_FILE (source_object);
-  GFileEnumerator *enumerator;
+  g_autoptr (GFileEnumerator) enumerator = NULL;
   PhoshTicketBox *self;
   const char *stack_child = "tickets";
 
