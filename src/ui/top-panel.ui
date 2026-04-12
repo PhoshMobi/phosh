@@ -198,6 +198,7 @@
           <object class="PhoshSettings" id="settings">
             <property name="visible">1</property>
             <signal name="notify::drag-handle-offset" handler="on_settings_drag_handle_offset_changed" swapped="true"/>
+            <signal name="setting-done" handler="phosh_top_panel_fold" swapped="true"/>
           </object>
         </child>
         <child>
