@@ -25,7 +25,6 @@
 struct _PhoshTicketBox {
   GtkBox        parent;
 
-  GFileMonitor *monitor;
   GFile        *dir;
   char         *ticket_box_path;
   GCancellable *cancel;
@@ -90,7 +89,6 @@ phosh_ticket_box_finalize (GObject *object)
   g_clear_object (&self->cancel);
   g_clear_object (&self->model);
 
-  g_clear_object (&self->monitor);
   g_clear_object (&self->dir);
   g_clear_pointer (&self->ticket_box_path, g_free);
 
@@ -145,7 +143,7 @@ on_file_child_enumerated (GObject *source_object, GAsyncResult *res, gpointer us
 {
   g_autoptr (GError) err = NULL;
   GFile *dir = G_FILE (source_object);
-  GFileEnumerator *enumerator;
+  g_autoptr (GFileEnumerator) enumerator = NULL;
   PhoshTicketBox *self;
   const char *stack_child = "tickets";
 
@@ -163,7 +161,9 @@ on_file_child_enumerated (GObject *source_object, GAsyncResult *res, gpointer us
     g_autoptr (PhoshTicket) ticket = NULL;
 
     if (!g_file_enumerator_iterate (enumerator, &info, &file, self->cancel, &err)) {
-      g_warning ("Failed to list contents of ticket dir %s: $%s", self->ticket_box_path, err->message);
+      g_warning ("Failed to list contents of ticket dir %s: $%s",
+                 self->ticket_box_path,
+                 err->message);
       return;
     }
 
