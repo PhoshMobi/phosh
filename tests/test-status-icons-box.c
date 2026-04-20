@@ -102,6 +102,29 @@ test_phosh_status_icons_box_append_status_icon (void)
 
 
 static void
+test_phosh_status_icons_box_append_widget (void)
+{
+  PhoshStatusIconsBox *box;
+  g_autoptr (GList) children = NULL;
+  GtkWidget *widget;
+  PhoshRevealer *revealer;
+
+  box = g_object_new (PHOSH_TYPE_STATUS_ICONS_BOX, NULL);
+  g_object_ref_sink (box);
+
+  widget = gtk_label_new ("");
+  phosh_status_icons_box_append (box, widget);
+
+  children = gtk_container_get_children (GTK_CONTAINER (box));
+  g_assert_cmpuint (g_list_length (children), ==, 1);
+  revealer = g_list_nth_data (children, 0);
+  g_assert_true (phosh_revealer_get_child (revealer) == widget);
+
+  g_assert_finalize_object (box);
+}
+
+
+static void
 test_phosh_status_icons_box_remove_revealer (void)
 {
   PhoshStatusIconsBox *box;
@@ -148,6 +171,28 @@ test_phosh_status_icons_box_remove_status_icon (void)
 }
 
 
+static void
+test_phosh_status_icons_box_remove_widget (void)
+{
+  PhoshStatusIconsBox *box;
+  GtkWidget *widget;
+  g_autoptr (GList) children = NULL;
+
+  box = g_object_new (PHOSH_TYPE_STATUS_ICONS_BOX, NULL);
+  g_object_ref_sink (box);
+
+  widget = gtk_label_new ("");
+  phosh_status_icons_box_append (box, widget);
+
+  phosh_status_icons_box_remove (box, widget);
+
+  children = gtk_container_get_children (GTK_CONTAINER (box));
+  g_assert_cmpuint (g_list_length (children), ==, 0);
+
+  g_assert_finalize_object (box);
+}
+
+
 int
 main (int argc, char *argv[])
 {
@@ -159,12 +204,16 @@ main (int argc, char *argv[])
                    test_phosh_status_icons_box_set_get_spacing);
   g_test_add_func ("/phosh/status-icons-box/append_revealer",
                    test_phosh_status_icons_box_append_revealer);
+  g_test_add_func ("/phosh/status-icons-box/append_widget",
+                   test_phosh_status_icons_box_append_widget);
   g_test_add_func ("/phosh/status-icons-box/append_status_icon",
                    test_phosh_status_icons_box_append_status_icon);
   g_test_add_func ("/phosh/status-icons-box/remove_revealer",
                    test_phosh_status_icons_box_remove_revealer);
   g_test_add_func ("/phosh/status-icons-box/remove_status_icon",
                    test_phosh_status_icons_box_remove_status_icon);
+  g_test_add_func ("/phosh/status-icons-box/remove_widget",
+                   test_phosh_status_icons_box_remove_widget);
 
   return g_test_run ();
 }

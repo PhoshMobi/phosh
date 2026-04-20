@@ -35,6 +35,9 @@
  * The box automatically wraps the status-icons inside a [class@Phosh.Revealer]. It also accepts
  * status-icons wrapped inside revealers.
  *
+ * To ensure that the box can seamlessly replace `GtkBox`, it also accepts any kind of `GtkWidget`
+ * as is or wrapped under a revealer. However they will be always placed at start direction.
+ *
  * [property@StatusIconsBox:align] can be used to control the alignment of the box when there is
  * extra space.
  */
@@ -313,15 +316,15 @@ on_priority_changed (PhoshStatusIconsBox *self, GParamSpec *spec, PhoshStatusIco
   high = self->children->len;
   while (low < high) {
     PhoshRevealer *other_revealer;
-    PhoshStatusIcon *other_status_icon;
-    int other_priority = 0;
+    GtkWidget *other_inner_child;
+    int other_priority = G_MAXINT;
 
     mid = (high + low) / 2;
 
     other_revealer = g_ptr_array_index (self->children, mid);
-    other_status_icon = PHOSH_STATUS_ICON (phosh_revealer_get_child (other_revealer));
-    if (PHOSH_IS_STATUS_ICON (other_status_icon))
-      other_priority = phosh_status_icon_get_priority (other_status_icon);
+    other_inner_child = phosh_revealer_get_child (other_revealer);
+    if (PHOSH_IS_STATUS_ICON (other_inner_child))
+      other_priority = phosh_status_icon_get_priority (PHOSH_STATUS_ICON (other_inner_child));
 
     if (other_priority > priority) low = mid + 1;
     else high = mid;
@@ -340,7 +343,7 @@ on_child_changed (PhoshStatusIconsBox *self, GParamSpec *spec, PhoshRevealer *re
   GtkWidget *new_child;
 
   old_child = g_hash_table_lookup (self->table, revealer);
-  if (old_child)
+  if (PHOSH_IS_STATUS_ICON (old_child))
     g_signal_handlers_disconnect_by_func (old_child, on_priority_changed, self);
 
   new_child = phosh_revealer_get_child (revealer);
@@ -350,8 +353,12 @@ on_child_changed (PhoshStatusIconsBox *self, GParamSpec *spec, PhoshRevealer *re
     return;
 
   if (!PHOSH_IS_STATUS_ICON (new_child)) {
-    g_warning ("%p: %p's child %p is not a status-icon but %s",
-               self, revealer, new_child, gtk_widget_get_name (new_child));
+    g_debug ("%p: %p's child %p is not a %s but %s, "
+             "so its priority will always be %d",
+             self, revealer, new_child,
+             g_type_name (PHOSH_TYPE_STATUS_ICON),
+             g_type_name (G_TYPE_FROM_INSTANCE (new_child)),
+             G_MAXINT);
     return;
   }
 
@@ -483,25 +490,25 @@ void
 phosh_status_icons_box_append (PhoshStatusIconsBox *self, GtkWidget *child)
 {
   PhoshRevealer *revealer;
-  PhoshStatusIcon *icon;
+  GtkWidget *inner_child;
 
   g_return_if_fail (PHOSH_IS_STATUS_ICONS_BOX (self));
+  g_return_if_fail (GTK_IS_WIDGET (child));
 
   if (PHOSH_IS_REVEALER (child)) {
     revealer = PHOSH_REVEALER (child);
-    icon = NULL;
-  } else if (PHOSH_IS_STATUS_ICON (child)) {
+    inner_child = NULL;
+  } else {
     revealer = phosh_revealer_new ();
-    icon = PHOSH_STATUS_ICON (child);
+    inner_child = child;
     phosh_revealer_set_child (revealer, child);
     phosh_revealer_set_show_child (revealer, TRUE);
-  } else {
-    g_critical ("%p: Invalid child %p of type %s", self, child, gtk_widget_get_name (child));
-    return;
   }
 
-  g_ptr_array_add (self->children, revealer);
-  g_hash_table_insert (self->table, revealer, icon);
+  /* Always insert at 0; on_priority_changed will place it in sorted position if it is a
+     status-icon. */
+  g_ptr_array_insert (self->children, 0, revealer);
+  g_hash_table_insert (self->table, revealer, inner_child);
 
   gtk_widget_set_parent (GTK_WIDGET (revealer), GTK_WIDGET (self));
 
@@ -515,17 +522,16 @@ phosh_status_icons_box_remove (PhoshStatusIconsBox *self, GtkWidget *child)
 {
   int i;
   PhoshRevealer *revealer = NULL;
-  PhoshStatusIcon *icon = NULL;
+  GtkWidget *inner_child = NULL;
 
   g_return_if_fail (PHOSH_IS_STATUS_ICONS_BOX (self));
+  g_return_if_fail (GTK_IS_WIDGET (child));
 
   for (i = 0; i < self->children->len; i++) {
     revealer = g_ptr_array_index (self->children, i);
-    icon = PHOSH_STATUS_ICON (phosh_revealer_get_child (revealer));
-    if ((PHOSH_IS_REVEALER (child) && revealer == PHOSH_REVEALER (child)) ||
-        (PHOSH_IS_STATUS_ICON (child) && icon == PHOSH_STATUS_ICON (child))) {
+    inner_child = phosh_revealer_get_child (revealer);
+    if ((PHOSH_IS_REVEALER (child) && revealer == PHOSH_REVEALER (child)) || (inner_child == child))
       break;
-    }
   }
 
   if (!revealer) {
@@ -533,8 +539,8 @@ phosh_status_icons_box_remove (PhoshStatusIconsBox *self, GtkWidget *child)
     return;
   }
 
-  if (icon)
-    g_signal_handlers_disconnect_by_func (icon, on_priority_changed, self);
+  if (PHOSH_IS_STATUS_ICON (inner_child))
+    g_signal_handlers_disconnect_by_func (inner_child, on_priority_changed, self);
   g_signal_handlers_disconnect_by_func (revealer, on_child_changed, self);
 
   gtk_widget_unparent (GTK_WIDGET (revealer));
