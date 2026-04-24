@@ -514,7 +514,8 @@ phosh-lockscreen-bg {
 }
 
 .phosh-lockscreen-arrow + label {
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  opacity: 0.55;
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 .phosh-lockscreen-status-icons {
