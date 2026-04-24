@@ -510,7 +510,7 @@ phosh-lockscreen-bg {
 .phosh-lockscreen-arrow {
   transition: 400ms linear;
   animation: pulsate 1.8s ease-out;
-  animation-iteration-count: 15;
+  animation-iteration-count: 8;
 }
 
 .phosh-lockscreen-arrow + label {
