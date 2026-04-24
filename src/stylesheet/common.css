@@ -484,7 +484,7 @@ phosh-lockscreen-bg {
   margin: 12px 0;
   transition: 200ms ease;
   padding-top: 40px;
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 #phosh-lockscreen-date {
@@ -492,7 +492,7 @@ phosh-lockscreen-bg {
   font-size: 18px;
   margin: 6px 0;
   transition: 200ms ease;
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 .p-small #phosh-lockscreen-clock {
@@ -532,11 +532,11 @@ phosh-lockscreen-bg {
   box-shadow:none;
   outline: none;
   caret-color: transparent;
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 .phosh-lockscreen-unlocker > label {
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes pulsate {
@@ -549,7 +549,7 @@ phosh-lockscreen-bg {
 phosh-keypad label.digit {
   font-size: 200%;
   font-weight: bold;
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 phosh-keypad button {
@@ -561,7 +561,7 @@ phosh-keypad button {
 }
 
 phosh-keypad image {
-  -gtk-icon-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  -gtk-icon-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 phosh-keypad button:active label,
