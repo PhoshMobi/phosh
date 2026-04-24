@@ -577,10 +577,20 @@ phosh-keypad button:focus {
   background: alpha(@phosh_fg_color, 0.3);
 }
 
-phosh-lockscreen .text-only-button {
+phosh-lockscreen button.pin-submit,
+phosh-lockscreen button.pin-submit:active,
+phosh-lockscreen button.pin-submit:hover,
+phosh-lockscreen button.pin-submit:active,
+phosh-lockscreen button.pin-submit:focus {
   font-size: 16px;
   font-weight: bold;
   padding: 16px 36px;
+  background-color: alpha(@phosh_fg_color,.3);
+}
+
+phosh-lockscreen button.pin-submit > label {
+  /* We have contrast due to the fb-color mixin above so 0.3 is enough */
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
 }
 
 phosh-lockscreen cui-call-display actionbar {
@@ -588,7 +598,7 @@ phosh-lockscreen cui-call-display actionbar {
 }
 
 phosh-lockscreen cui-call-display label {
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 phosh-lockscreen .phosh-notification-tray {
