@@ -441,6 +441,13 @@ phosh_settings_class_init (PhoshSettingsClass *klass)
 
   g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 
+  signals[SETTING_DONE] = g_signal_new ("setting-done",
+                                        G_TYPE_FROM_CLASS (klass),
+                                        G_SIGNAL_RUN_LAST,
+                                        0, NULL, NULL, NULL,
+                                        G_TYPE_NONE,
+                                        0);
+
   g_type_ensure (PHOSH_TYPE_AUDIO_SETTINGS);
   g_type_ensure (PHOSH_TYPE_BRIGHTNESS_SETTINGS);
   g_type_ensure (PHOSH_TYPE_QUICK_SETTINGS);
