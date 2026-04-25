@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-11-29 20:57+0000\n"
-"PO-Revision-Date: 2025-11-30 13:00+0200\n"
+"POT-Creation-Date: 2026-04-24 11:47+0000\n"
+"PO-Revision-Date: 2026-04-25 15:55+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish\n"
 "Language: fi\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -150,13 +150,17 @@ msgstr "Luo uusi kansio"
 msgid "Application"
 msgstr "Sovellus"
 
-#: src/app-grid.c:261
+#: src/app-grid.c:264
 msgid "Show All Apps"
 msgstr "Näytä kaikki sovellukset"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:267
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Näytä vain mobiilille suunnatut sovellukset"
+
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "Puhelimen käyttöliittymän äänihallinta"
 
 #. Translators: a battery level in percent
 #: src/bt-device-row.c:81
@@ -191,12 +195,12 @@ msgid "Wi-Fi network '%s' uses a captive portal"
 msgstr "Wi-Fi-verkko '%s' käyttää kirjautumisportaalia"
 
 #: src/connectivity-manager.c:116
-msgid "The Wi-Fi network uses a captive portal"
-msgstr "Wi-Fi-verkko käyttää kirjautumisportaalia"
+msgid "The network uses a captive portal"
+msgstr "Verkko käyttää kirjautumisportaalia"
 
 #: src/connectivity-manager.c:123
-msgid "Sign into Wi-Fi network"
-msgstr "Kirjaudu Wi–Fi-verkkoon"
+msgid "Sign into network"
+msgstr "Kirjaudu verkkoon"
 
 #: src/docked-info.c:81
 msgid "Docked"
@@ -292,11 +296,11 @@ msgid "No"
 msgstr "Ei"
 
 #. give visual feedback on error
-#: src/lockscreen.c:313 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "Syötä salasana"
 
-#: src/lockscreen.c:956
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "Tarkistetaan…"
 
@@ -328,27 +332,27 @@ msgid "Screenshot from %s%s.png"
 msgstr "Kuvakaappaus %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:690 src/ui/media-player.ui:208
+#: src/media-player.c:691 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Tuntematon kappale"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:698 src/ui/media-player.ui:196
+#: src/media-player.c:699 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Tuntematon esittäjä"
 
-#: src/monitor-manager.c:128
+#: src/monitor-manager.c:129
 msgid "Built-in display"
 msgstr "Sisäänrakennettu näyttö"
 
-#: src/monitor-manager.c:146
+#: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:153
+#: src/monitor-manager.c:154
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -357,7 +361,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:162
+#: src/monitor-manager.c:163
 msgid "Unknown"
 msgstr "Tuntematon"
 
@@ -486,17 +490,21 @@ msgid_plural "Almost %dy"
 msgstr[0] "Melkein %d v"
 msgstr[1] "Melkein %d v"
 
-#: src/polkit-auth-agent.c:271
+#: src/overview.c:221
+msgid "Application failed to start"
+msgstr "Sovelluksen käynnistäminen epäonnistui"
+
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "Tunnistautumisikkuna peruttu käyttäjän toimesta"
 
-#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
-#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
 #: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "Salasana:"
 
-#: src/polkit-auth-prompt.c:322
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "Valitettavasti se ei toiminut. Ole hyvä ja yritä uudelleen."
 
@@ -527,10 +535,6 @@ msgstr "Paina ESC sulkeaksesi"
 msgid "Running '%s' failed"
 msgstr "Kohteen '%s' suorittaminen epäonnistui"
 
-#: src/settings/audio-settings.c:376
-msgid "Phone Shell Volume Control"
-msgstr "Puhelimen käyttöliittymän äänihallinta"
-
 #: src/system-prompt.c:376
 msgid "Passwords do not match."
 msgstr "Salasanat eivät täsmää."
@@ -539,7 +543,7 @@ msgstr "Salasanat eivät täsmää."
 msgid "Password cannot be blank"
 msgstr "Salasana ei voi olla tyhjä"
 
-#: src/torch-info.c:80
+#: src/torch-info.c:84
 msgid "Torch"
 msgstr "Taskulamppu"
 
@@ -645,7 +649,7 @@ msgstr "Palaute"
 msgid "Do not disturb"
 msgstr "Älä häiritse"
 
-#: src/ui/feedback-status-page.ui:52
+#: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
 msgstr "Palautteen asetukset"
 
@@ -687,7 +691,7 @@ msgstr "_Peru"
 msgid "C_onnect"
 msgstr "_Yhdistä"
 
-#: src/ui/polkit-auth-prompt.ui:97
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "Tunnistaudu"
 
@@ -744,7 +748,7 @@ msgid "Wi-Fi"
 msgstr "Wifi"
 
 #: src/ui/wifi-status-page.ui:89
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:73
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
 msgstr "Wi-Fi-asetukset"
 
@@ -815,9 +819,13 @@ msgstr "Päällä"
 msgid "Caffeine timers"
 msgstr "Caffeine-ajastimet"
 
-#: plugins/caffeine-quick-setting/qs.ui:37
+#: plugins/caffeine-quick-setting/qs.ui:38
 msgid "No caffeine intervals"
 msgstr "Ei Caffeine-aikavälejä"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+msgid "Caffeine Settings"
+msgstr "Caffeine-asetukset"
 
 #: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:171
@@ -829,7 +837,6 @@ msgid "Caffeine Quick Setting Preferences"
 msgstr "Caffeinen pika-asetukset"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:11
-#| msgid "_Active Duration"
 msgid "Caffeine Duration"
 msgstr "Caffeine-kesto"
 
@@ -1012,13 +1019,54 @@ msgstr "Käynnistimiä ei ole määritetty"
 msgid "Launchers"
 msgstr "Käynnistimet"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
+#. Translators: Location precision level - country-wide
+#: plugins/location-quick-setting/accuracy-row.c:44
+msgid "Country"
+msgstr "Maa"
+
+#. Translators: Location precision level - city-wide
+#: plugins/location-quick-setting/accuracy-row.c:47
+msgid "City"
+msgstr "Kaupunki"
+
+#. Translators: Location precision level - neighborhood
+#: plugins/location-quick-setting/accuracy-row.c:50
+msgid "Neighborhood"
+msgstr "Kaupunginosa"
+
+#. Translators: Location precision level - street
+#: plugins/location-quick-setting/accuracy-row.c:53
+msgid "Street"
+msgstr "Katu"
+
+#. Translators: Location precision level - exact position
+#: plugins/location-quick-setting/accuracy-row.c:56
+msgid "Exact"
+msgstr "Tarkka"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location On"
 msgstr "Paikannus päällä"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location Off"
 msgstr "Paikannus pois päältä"
+
+#: plugins/location-quick-setting/qs.ui:15
+msgid "Location Accuracy"
+msgstr "Paikannuksen tarkkuus"
+
+#: plugins/location-quick-setting/qs.ui:62
+msgid "Location Disabled"
+msgstr "Paikannus pois käytöstä"
+
+#: plugins/location-quick-setting/qs.ui:72
+msgid "Enable Location"
+msgstr "Ota paikannus käyttöön"
+
+#: plugins/location-quick-setting/qs.ui:87
+msgid "Location Settings"
+msgstr "Paikannuksen asetukset"
 
 #: plugins/media-players/media-players.ui:20
 msgid "No running media players"
@@ -1181,7 +1229,7 @@ msgstr "Päättyy"
 msgid "Untitled event"
 msgstr "Nimetön tapahtuma"
 
-#: plugins/upcoming-events/upcoming-events.c:372
+#: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
 msgid "No events for the next %d days"
 msgstr "Ei tapahtumia seuraavan %d päivän aikana"
@@ -1222,15 +1270,15 @@ msgstr "%d%%"
 msgid "Wi-Fi Hotspot"
 msgstr "Wi-Fi-yhteyspiste"
 
-#: plugins/wifi-hotspot-quick-setting/status-page.ui:59
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
 msgid "Turn On"
 msgstr "Ota käyttöön"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:76
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
 msgid "Hotspot On"
 msgstr "Yhteyspiste päällä"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:78
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Yhteyspiste pois"
 
