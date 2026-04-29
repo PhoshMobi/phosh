@@ -17,16 +17,16 @@
 # Michael Oppliger <mj.oppliger@gmail.com>, 2021.
 # Philipp Kiemle <l10n@prly.mozmail.com>, 2021, 2023-2025.
 # Jürgen Benvenuti <gastornis@posteo.org>, 2022-2026.
-#
+# Achill Gilgenast <achill@achill.org>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-12-31 16:32+0000\n"
-"PO-Revision-Date: 2026-01-08 21:56+0100\n"
-"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
-"Language-Team: German <gnome-de@gnome.org>\n"
+"POT-Creation-Date: 2026-03-23 13:53+0000\n"
+"PO-Revision-Date: 2026-03-29 23:18+0200\n"
+"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
+"Language-Team: German\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,6 +176,10 @@ msgstr "Alle Anwendungen anzeigen"
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Nur mobiloptimierte Anwendungen anzeigen"
 
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "Telefon-Shell-Lautstärkeregelung"
+
 #. Translators: a battery level in percent
 #: src/bt-device-row.c:81
 #, c-format
@@ -206,15 +210,15 @@ msgstr "Unbekannter Anrufer"
 #: src/connectivity-manager.c:114
 #, c-format
 msgid "Wi-Fi network '%s' uses a captive portal"
-msgstr "Das WLAN-Netzwerk »%s« verwendet ein Captive Portal"
+msgstr "Das WLAN-Netzwerk »%s« verwendet ein Zugangsportal"
 
 #: src/connectivity-manager.c:116
-msgid "The Wi-Fi network uses a captive portal"
-msgstr "Das WLAN-Netzwerk verwendet ein Captive Portal"
+msgid "The network uses a captive portal"
+msgstr "Das Netzwerk verwendet ein Zugangsportal"
 
 #: src/connectivity-manager.c:123
-msgid "Sign into Wi-Fi network"
-msgstr "Im WLAN-Netzwerk anmelden"
+msgid "Sign into network"
+msgstr "Im Netzwerk anmelden"
 
 #: src/docked-info.c:81
 msgid "Docked"
@@ -308,11 +312,11 @@ msgid "No"
 msgstr "Nein"
 
 #. give visual feedback on error
-#: src/lockscreen.c:397 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
 msgid "Enter Passcode"
 msgstr "Zugangscode eingeben"
 
-#: src/lockscreen.c:1041
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "Überprüfung läuft …"
 
@@ -344,27 +348,27 @@ msgid "Screenshot from %s%s.png"
 msgstr "Bildschirmfoto vom %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:690 src/ui/media-player.ui:208
+#: src/media-player.c:691 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Unbekannter Titel"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:698 src/ui/media-player.ui:196
+#: src/media-player.c:699 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Unbekannter Interpret"
 
-#: src/monitor-manager.c:128
+#: src/monitor-manager.c:129
 msgid "Built-in display"
 msgstr "Eingebaute Anzeige"
 
-#: src/monitor-manager.c:146
+#: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:153
+#: src/monitor-manager.c:154
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -373,7 +377,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:162
+#: src/monitor-manager.c:163
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -503,17 +507,21 @@ msgid_plural "Almost %dy"
 msgstr[0] "Fast %d J"
 msgstr[1] "Fast %d J"
 
-#: src/polkit-auth-agent.c:271
+#: src/overview.c:221
+msgid "Application failed to start"
+msgstr "Anwendung konnte nicht gestartet werden"
+
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "Der Dialog zur Anmeldung wurde vom Benutzer geschlossen"
 
-#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
-#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
 #: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "Passwort:"
 
-#: src/polkit-auth-prompt.c:322
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr ""
 "Entschuldigung, das hat nicht funktioniert. Bitte versuchen Sie es erneut."
@@ -544,10 +552,6 @@ msgstr "Drücken Sie Esc zum Schließen"
 #, c-format
 msgid "Running '%s' failed"
 msgstr "»%s« konnte nicht ausgeführt werden"
-
-#: src/settings/audio-settings.c:376
-msgid "Phone Shell Volume Control"
-msgstr "Telefon-Shell-Lautstärkeregelung"
 
 #: src/system-prompt.c:376
 msgid "Passwords do not match."
@@ -663,7 +667,7 @@ msgstr "Feedback"
 msgid "Do not disturb"
 msgstr "Nicht stören"
 
-#: src/ui/feedback-status-page.ui:52
+#: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
 msgstr "Feedback-Einstellungen"
 
@@ -705,7 +709,7 @@ msgstr "_Abbrechen"
 msgid "C_onnect"
 msgstr "_Verbinden"
 
-#: src/ui/polkit-auth-prompt.ui:97
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "Legitimieren"
 
@@ -833,9 +837,13 @@ msgstr "An"
 msgid "Caffeine timers"
 msgstr "Koffein-Timer"
 
-#: plugins/caffeine-quick-setting/qs.ui:37
+#: plugins/caffeine-quick-setting/qs.ui:38
 msgid "No caffeine intervals"
 msgstr "Keine Koffein-Intervalle"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+msgid "Caffeine Settings"
+msgstr "Koffein-Einstellungen"
 
 #: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:171
@@ -1029,13 +1037,54 @@ msgstr "Keine Starter eingerichtet"
 msgid "Launchers"
 msgstr "Starter"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
+#. Translators: Location precision level - country-wide
+#: plugins/location-quick-setting/accuracy-row.c:44
+msgid "Country"
+msgstr "Land"
+
+#. Translators: Location precision level - city-wide
+#: plugins/location-quick-setting/accuracy-row.c:47
+msgid "City"
+msgstr "Stadt"
+
+#. Translators: Location precision level - neighborhood
+#: plugins/location-quick-setting/accuracy-row.c:50
+msgid "Neighborhood"
+msgstr "Nachbarschaft"
+
+#. Translators: Location precision level - street
+#: plugins/location-quick-setting/accuracy-row.c:53
+msgid "Street"
+msgstr "Straße"
+
+#. Translators: Location precision level - exact position
+#: plugins/location-quick-setting/accuracy-row.c:56
+msgid "Exact"
+msgstr "Exakt"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location On"
 msgstr "Standort ein"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location Off"
 msgstr "Standort aus"
+
+#: plugins/location-quick-setting/qs.ui:15
+msgid "Location Accuracy"
+msgstr "Standortgenauigkeit"
+
+#: plugins/location-quick-setting/qs.ui:62
+msgid "Location Disabled"
+msgstr "Standort ausgeschaltet"
+
+#: plugins/location-quick-setting/qs.ui:72
+msgid "Enable Location"
+msgstr "Standort einschalten"
+
+#: plugins/location-quick-setting/qs.ui:87
+msgid "Location Settings"
+msgstr "Einstellungen der Ortungsdienste"
 
 #: plugins/media-players/media-players.ui:20
 msgid "No running media players"
@@ -1167,7 +1216,7 @@ msgstr "Morgen"
 #: plugins/upcoming-events/event-list.c:151
 #, c-format
 msgid "%x %a"
-msgstr ""
+msgstr "%x %a"
 
 #: plugins/upcoming-events/event-list.ui:26
 msgid "No events"
