@@ -47,16 +47,16 @@ main (int argc, char **argv)
   gtk_window_set_deletable (GTK_WINDOW (window), FALSE);
 
   wrap = g_object_new (GTK_TYPE_BOX,
-                      "spacing", 20,
-                      "orientation", GTK_ORIENTATION_VERTICAL,
-                      "margin-start", 6,
-                      "margin-end", 6,
-                      "margin-top", 6,
-                      "margin-bottom", 6,
-                      "halign", GTK_ALIGN_CENTER,
-                      "valign", GTK_ALIGN_CENTER,
-                      "visible", TRUE,
-                      NULL);
+                       "spacing", 20,
+                       "orientation", GTK_ORIENTATION_VERTICAL,
+                       "margin-start", 6,
+                       "margin-end", 6,
+                       "margin-top", 6,
+                       "margin-bottom", 6,
+                       "halign", GTK_ALIGN_CENTER,
+                       "valign", GTK_ALIGN_CENTER,
+                       "visible", TRUE,
+                       NULL);
   gtk_container_add (GTK_CONTAINER (window), wrap);
 
   box = g_object_new (GTK_TYPE_BOX,

@@ -63,21 +63,21 @@ main (int argc, char **argv)
   gtk_container_add (GTK_CONTAINER (scrolled), box);
 
   activity = g_object_new (PHOSH_TYPE_ACTIVITY,
-                      "app-id", "org.gnome.Calculator",
-                      "title", "1 + 1 = 2",
-                      "win-width", 360,
-                      "win-height", 640,
-                      "visible", TRUE,
-                      NULL);
+                           "app-id", "org.gnome.Calculator",
+                           "title", "1 + 1 = 2",
+                           "win-width", 360,
+                           "win-height", 640,
+                           "visible", TRUE,
+                           NULL);
   gtk_container_add (GTK_CONTAINER (box), activity);
 
   activity = g_object_new (PHOSH_TYPE_ACTIVITY,
-                      "app-id", "org.gnome.Nautilus",
-                      "title", "Home",
-                      "win-width", 640,
-                      "win-height", 360,
-                      "visible", TRUE,
-                      NULL);
+                           "app-id", "org.gnome.Nautilus",
+                           "title", "Home",
+                           "win-width", 640,
+                           "win-height", 360,
+                           "visible", TRUE,
+                           NULL);
   gtk_container_add (GTK_CONTAINER (box), activity);
 
   gtk_main ();
