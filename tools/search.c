@@ -61,7 +61,7 @@ on_source_results_changed (PhoshSearchClient *client, const char *source_id, GPt
 static void
 got_last_results (GObject *source, GAsyncResult *result, gpointer user_data)
 {
-  g_autoptr (GError) error = NULL;
+  g_autoptr (GError) err = NULL;
   g_autoptr (GVariant) results = NULL;
   g_autofree const char *source_id = NULL;
   g_autoptr (GVariant) meta_array = NULL;
@@ -69,10 +69,10 @@ got_last_results (GObject *source, GAsyncResult *result, gpointer user_data)
 
   results = phosh_search_client_get_last_results_finish (PHOSH_SEARCH_CLIENT (source),
                                                          result,
-                                                         &error);
+                                                         &err);
 
   if (!results) {
-    g_warning ("Failed to get last results: %s", error->message);
+    g_warning ("Failed to get last results: %s", err->message);
     g_main_loop_quit (loop);
     return;
   }
@@ -122,13 +122,13 @@ on_query_finished (PhoshSearchClient *client, gpointer user_data)
 static void
 got_query (GObject *source, GAsyncResult *result, gpointer user_data)
 {
-  g_autoptr (GError) error = NULL;
+  g_autoptr (GError) err = NULL;
   gboolean out_searching;
 
-  out_searching = phosh_search_client_query_finish (PHOSH_SEARCH_CLIENT (source), result, &error);
+  out_searching = phosh_search_client_query_finish (PHOSH_SEARCH_CLIENT (source), result, &err);
 
-  if (error) {
-    g_warning ("Search failed: %s", error->message);
+  if (err) {
+    g_warning ("Search failed: %s", err->message);
     g_main_loop_quit (loop);
   }
 
@@ -144,13 +144,13 @@ got_query (GObject *source, GAsyncResult *result, gpointer user_data)
 static void
 source_launched (GObject *source, GAsyncResult *result, gpointer user_data)
 {
-  g_autoptr (GError) error = NULL;
+  g_autoptr (GError) err = NULL;
   gboolean success;
 
-  success = phosh_search_client_launch_source_finish (PHOSH_SEARCH_CLIENT (source), result, &error);
+  success = phosh_search_client_launch_source_finish (PHOSH_SEARCH_CLIENT (source), result, &err);
 
   if (!success)
-    g_warning ("Failed to launch source: %s", error->message);
+    g_warning ("Failed to launch source: %s", err->message);
 
   g_main_loop_quit (loop);
 }
@@ -159,13 +159,13 @@ source_launched (GObject *source, GAsyncResult *result, gpointer user_data)
 static void
 result_activated (GObject *source, GAsyncResult *result, gpointer user_data)
 {
-  g_autoptr (GError) error = NULL;
+  g_autoptr (GError) err = NULL;
   gboolean success;
 
-  success = phosh_search_client_activate_result_finish (PHOSH_SEARCH_CLIENT (source), result, &error);
+  success = phosh_search_client_activate_result_finish (PHOSH_SEARCH_CLIENT (source), result, &err);
 
   if (!success)
-    g_warning ("Failed to activate result: %s", error->message);
+    g_warning ("Failed to activate result: %s", err->message);
 
   g_main_loop_quit (loop);
 }
@@ -174,14 +174,14 @@ result_activated (GObject *source, GAsyncResult *result, gpointer user_data)
 static void
 got_client (GObject *source, GAsyncResult *result, gpointer user_data)
 {
-  g_autoptr (GError) error = NULL;
+  g_autoptr (GError) err = NULL;
   g_autoptr (PhoshSearchClient) client = NULL;
   struct SearchData *data = user_data;
 
-  client = phosh_search_client_new_finish (source, result, &error);
+  client = phosh_search_client_new_finish (source, result, &err);
 
   if (!client) {
-    g_critical ("Failed to create PhoshSearchClient: %s\n", error->message);
+    g_critical ("Failed to create PhoshSearchClient: %s\n", err->message);
     g_main_loop_quit (loop);
     return;
   }
