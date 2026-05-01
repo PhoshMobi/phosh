@@ -190,16 +190,16 @@ got_client (GObject *source, GAsyncResult *result, gpointer user_data)
     g_signal_connect (client, "source-results-changed", G_CALLBACK (on_source_results_changed), NULL);
     g_signal_connect (client, "query-finished", G_CALLBACK (on_query_finished), NULL);
 
-    phosh_search_client_query (client, (const char *)data->search_term, got_query, NULL);
+    phosh_search_client_query (client, data->search_term, got_query, NULL);
   }
 
   if (data->source_id && !data->result_id)
-    phosh_search_client_launch_source (client, (const char *)data->source_id, source_launched, NULL);
+    phosh_search_client_launch_source (client, data->source_id, source_launched, NULL);
 
   if (data->source_id && data->result_id && !data->search_term) {
     phosh_search_client_activate_result (client,
-                                         (const char *)data->source_id,
-                                         (const char *)data->result_id,
+                                         data->source_id,
+                                         data->result_id,
                                          result_activated,
                                          NULL);
   }
