@@ -187,8 +187,10 @@ got_client (GObject *source, GAsyncResult *result, gpointer user_data)
   }
 
   if (data->search_term) {
-    g_signal_connect (client, "source-results-changed", G_CALLBACK (on_source_results_changed), NULL);
-    g_signal_connect (client, "query-finished", G_CALLBACK (on_query_finished), NULL);
+    g_object_connect (client,
+                      "signal::source-results-changed", on_source_results_changed, NULL,
+                      "signal::query-finished", on_query_finished, NULL,
+                      NULL);
 
     phosh_search_client_query (client, data->search_term, got_query, NULL);
   }
