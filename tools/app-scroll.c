@@ -18,16 +18,15 @@ main (int argc, char **argv)
   GtkWidget *activity = NULL;
   GtkCssProvider *provider = NULL;
   GFile *file = NULL;
-  GError *error = NULL;
+  g_autoptr (GError) err = NULL;
 
   gtk_init (&argc, &argv);
 
   provider = gtk_css_provider_new ();
   file = g_file_new_for_uri ("resource:///mobi/phosh/stylesheet/adwaita-dark.css");
 
-  if (!gtk_css_provider_load_from_file (provider, file, &error)) {
-    g_warning ("Failed to load CSS file: %s", error->message);
-    g_clear_error (&error);
+  if (!gtk_css_provider_load_from_file (provider, file, &err)) {
+    g_warning ("Failed to load CSS file: %s", err->message);
     return 1;
   }
   gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
@@ -63,21 +62,21 @@ main (int argc, char **argv)
   gtk_container_add (GTK_CONTAINER (scrolled), box);
 
   activity = g_object_new (PHOSH_TYPE_ACTIVITY,
-                      "app-id", "org.gnome.Calculator",
-                      "title", "1 + 1 = 2",
-                      "win-width", 360,
-                      "win-height", 640,
-                      "visible", TRUE,
-                      NULL);
+                           "app-id", "org.gnome.Calculator",
+                           "title", "1 + 1 = 2",
+                           "win-width", 360,
+                           "win-height", 640,
+                           "visible", TRUE,
+                           NULL);
   gtk_container_add (GTK_CONTAINER (box), activity);
 
   activity = g_object_new (PHOSH_TYPE_ACTIVITY,
-                      "app-id", "org.gnome.Nautilus",
-                      "title", "Home",
-                      "win-width", 640,
-                      "win-height", 360,
-                      "visible", TRUE,
-                      NULL);
+                           "app-id", "org.gnome.Nautilus",
+                           "title", "Home",
+                           "win-width", 640,
+                           "win-height", 360,
+                           "visible", TRUE,
+                           NULL);
   gtk_container_add (GTK_CONTAINER (box), activity);
 
   gtk_main ();

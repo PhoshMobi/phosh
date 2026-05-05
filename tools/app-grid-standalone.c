@@ -15,14 +15,13 @@ css_setup (void)
 {
   GtkCssProvider *provider;
   GFile *file;
-  GError *error = NULL;
+  g_autoptr (GError) err = NULL;
 
   provider = gtk_css_provider_new ();
   file = g_file_new_for_uri ("resource:///mobi/phosh/stylesheet/adwaita-dark.css");
 
-  if (!gtk_css_provider_load_from_file (provider, file, &error)) {
-    g_warning ("Failed to load CSS file: %s", error->message);
-    g_clear_error (&error);
+  if (!gtk_css_provider_load_from_file (provider, file, &err)) {
+    g_warning ("Failed to load CSS file: %s", err->message);
     g_object_unref (file);
     return;
   }

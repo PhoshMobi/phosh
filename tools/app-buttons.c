@@ -18,7 +18,7 @@ main (int argc, char **argv)
   GtkWidget *btn = NULL;
   GtkCssProvider *provider = NULL;
   GFile *file = NULL;
-  GError *error = NULL;
+  g_autoptr (GError) err = NULL;
   GDesktopAppInfo *info = NULL;
 
   gtk_init (&argc, &argv);
@@ -26,9 +26,8 @@ main (int argc, char **argv)
   provider = gtk_css_provider_new ();
   file = g_file_new_for_uri ("resource:///mobi/phosh/stylesheet/adwaita-dark.css");
 
-  if (!gtk_css_provider_load_from_file (provider, file, &error)) {
-    g_warning ("Failed to load CSS file: %s", error->message);
-    g_clear_error (&error);
+  if (!gtk_css_provider_load_from_file (provider, file, &err)) {
+    g_warning ("Failed to load CSS file: %s", err->message);
     return 1;
   }
   gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
@@ -47,16 +46,16 @@ main (int argc, char **argv)
   gtk_window_set_deletable (GTK_WINDOW (window), FALSE);
 
   wrap = g_object_new (GTK_TYPE_BOX,
-                      "spacing", 20,
-                      "orientation", GTK_ORIENTATION_VERTICAL,
-                      "margin-start", 6,
-                      "margin-end", 6,
-                      "margin-top", 6,
-                      "margin-bottom", 6,
-                      "halign", GTK_ALIGN_CENTER,
-                      "valign", GTK_ALIGN_CENTER,
-                      "visible", TRUE,
-                      NULL);
+                       "spacing", 20,
+                       "orientation", GTK_ORIENTATION_VERTICAL,
+                       "margin-start", 6,
+                       "margin-end", 6,
+                       "margin-top", 6,
+                       "margin-bottom", 6,
+                       "halign", GTK_ALIGN_CENTER,
+                       "valign", GTK_ALIGN_CENTER,
+                       "visible", TRUE,
+                       NULL);
   gtk_container_add (GTK_CONTAINER (window), wrap);
 
   box = g_object_new (GTK_TYPE_BOX,
