@@ -43,6 +43,21 @@ on_auto_brightness_activated (PhoshBrightnessSettings *self, GtkListBoxRow *row)
   gtk_switch_set_active (self->auto_switch, !gtk_switch_get_active (self->auto_switch));
 }
 
+static void
+on_auto_brightness_present_changed (PhoshBrightnessSettings *self,
+                                    GParamSpec              *unused,
+                                    PhoshBrightnessManager  *manager)
+{
+  gboolean can_auto = phosh_brightness_manager_get_auto_brightness_present (manager);
+
+  g_debug ("Can AutoBrightness changed: %d", can_auto);
+  gtk_widget_set_visible (GTK_WIDGET (self->toggle_btn), can_auto);
+
+  /* toggle_stack's visible child is conveniently bound to the button's "active" */
+  if (!can_auto)
+    gtk_toggle_button_set_active (self->toggle_btn, FALSE);
+}
+
 
 static void
 phosh_brightness_settings_dispose (GObject *object)
@@ -108,8 +123,14 @@ phosh_brightness_settings_init (PhoshBrightnessSettings *self)
   adjustment = phosh_brightness_manager_get_adjustment (brightness_manager);
   gtk_range_set_adjustment (GTK_RANGE (self->scale), adjustment);
 
+  g_signal_connect_swapped (brightness_manager,
+                            "notify::auto-brightness-present",
+                            G_CALLBACK (on_auto_brightness_present_changed),
+                            self);
+  on_auto_brightness_present_changed (self, NULL, brightness_manager);
+
   g_settings_bind (self->settings, KEY_AMBIENT_ENABLED, self->auto_switch, "active",
-                   G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+                   G_SETTINGS_BIND_DEFAULT);
 
   g_object_bind_property (brightness_manager, "icon-name",
                           self->image, "icon-name",
