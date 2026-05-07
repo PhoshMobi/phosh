@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-20 08:01+0000\n"
-"PO-Revision-Date: 2026-03-20 09:05+0100\n"
+"POT-Creation-Date: 2026-05-07 14:31+0000\n"
+"PO-Revision-Date: 2026-05-07 23:12+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -1107,32 +1107,40 @@ msgstr "Nočna osvetlitev vklopljena"
 msgid "Night Light Off"
 msgstr "Nočna osvetlitev izklopljena"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "Zagon Pomodoro"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "Osredotočite se na opravilo %d minut"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Osredotočite se na opravilo %d minut"
+msgstr[1] "Osredotočite se na opravilo %d minuto"
+msgstr[2] "Osredotočite se na opravilo %d minuti"
+msgstr[3] "Osredotočite se na opravilo %d minute"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "Vzemite si odmor"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "Do naslednjega Pomodora imate %d minut"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "Do naslednjega Pomodora imate %d minut"
+msgstr[1] "Do naslednjega Pomodora imate %d minuto"
+msgstr[2] "Do naslednjega Pomodora imate %d minuti"
+msgstr[3] "Do naslednjega Pomodora imate %d minute"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "Časovnik Pomodoro"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
 msgstr "Pomodoro izklopljen"
@@ -1250,8 +1258,12 @@ msgstr "Neimenovan dogodek"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "Ni dogodkov v naslednjih %d dneh"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "Ni dogodkov v naslednjih %d dneh"
+msgstr[1] "Ni dogodkov v naslednjem %d dnevu"
+msgstr[2] "Ni dogodkov v naslednjih %d dneh"
+msgstr[3] "Ni dogodkov v naslednjih %d dneh"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
 msgid "No upcoming events"
