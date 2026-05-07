@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-20 08:01+0000\n"
-"PO-Revision-Date: 2026-03-23 14:55+0200\n"
+"POT-Creation-Date: 2026-05-07 14:31+0000\n"
+"PO-Revision-Date: 2026-05-07 21:50+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -196,12 +196,10 @@ msgid "Wi-Fi network '%s' uses a captive portal"
 msgstr "Мережа Wi-Fi «%s» використовує портал із захопленням даних"
 
 #: src/connectivity-manager.c:116
-#| msgid "The Wi-Fi network uses a captive portal"
 msgid "The network uses a captive portal"
 msgstr "Мережа використовує портал із захопленням даних"
 
 #: src/connectivity-manager.c:123
-#| msgid "Sign into Wi-Fi network"
 msgid "Sign into network"
 msgstr "Реєстрація у мережі"
 
@@ -1099,32 +1097,40 @@ msgstr "Нічні кольори увімкнено"
 msgid "Night Light Off"
 msgstr "Нічні кольори вимкнено"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "Запуск помідора"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "Зосередитися на завданні на %d хвилин"
+#| msgid "Focus on your task for %d minutes"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Зосередитися на завданні на %d хвилину"
+msgstr[1] "Зосередитися на завданні на %d хвилини"
+msgstr[2] "Зосередитися на завданні на %d хвилин"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "Зробіть перерву"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "У вас %d хвилин до наступного Помідора"
+#| msgid "You have %d minutes until next Pomodoro"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "У вас %d хвилина до наступного Помідора"
+msgstr[1] "У вас %d хвилини до наступного Помідора"
+msgstr[2] "У вас %d хвилин до наступного Помідора"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "Таймер-помідор"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
 msgstr "Вимикання помідора"
@@ -1242,8 +1248,12 @@ msgstr "Подія без назви"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "Немає подій протягом наступних %d днів"
+#| msgid "No events for the next %d days"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "Немає подій протягом наступного %d дня"
+msgstr[1] "Немає подій протягом наступних %d днів"
+msgstr[2] "Немає подій протягом наступних %d днів"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
 msgid "No upcoming events"
