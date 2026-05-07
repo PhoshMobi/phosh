@@ -66,19 +66,24 @@ show_notification (PhoshPomodoroQuickSetting *self)
   g_autoptr (GIcon) app_icon = NULL;
   const char *summary;
   g_autofree char *body = NULL;
+  int duration;
 
   switch (self->state) {
   case PHOSH_POMODORO_STATE_ACTIVE:
     summary = _("Pomodoro start");
-    body = g_strdup_printf (_("Focus on your task for %d minutes"),
-                            g_settings_get_int (self->settings, "active-duration") / 60);
+    duration = g_settings_get_int (self->settings, "active-duration");
+    body = g_strdup_printf (ngettext ("Focus on your task for %d minute",
+                                      "Focus on your task for %d minutes", duration / 60),
+                            duration / 60);
     icon = g_themed_icon_new (ACTIVE_ICON);
     break;
   case PHOSH_POMODORO_STATE_BREAK:
     summary = _("Take a break");
+    duration = g_settings_get_int (self->settings, "break-duration");
     /* Translators: Pomodoro is a technique, no need to translate it */
-    body = g_strdup_printf (_("You have %d minutes until next Pomodoro"),
-                            g_settings_get_int (self->settings, "break-duration") / 60);
+    body = g_strdup_printf (ngettext ("You have %d minute until next Pomodoro",
+                                      "You have %d minutes until next Pomodoro", duration / 60),
+                            duration / 60);
     icon = g_themed_icon_new (BREAK_ICON);
     break;
   case PHOSH_POMODORO_STATE_OFF:

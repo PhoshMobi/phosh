@@ -405,7 +405,9 @@ on_num_days_changed (PhoshUpcomingEvents *self)
                                                                            "no-events"));
 
   self->num_days = g_settings_get_uint (self->settings, UPCOMING_EVENT_DAYS_KEY);
-  desc = g_strdup_printf (_("No events for the next %d days"), self->num_days);
+  desc = g_strdup_printf (ngettext ("No events for the next %d day",
+                                    "No events for the next %d days", self->num_days),
+                          self->num_days);
 
   hdy_status_page_set_description (no_events, desc);
 
