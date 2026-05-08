@@ -1,0 +1,8 @@
+[Plugin]
+# Translators: This is an internal id, no need to translate it
+Id=@name@
+Name=Syncthing Quick Setting
+Types=quick-setting;
+Comment=A quick setting for Syncthing.
+Plugin=@plugins_dir@/libphosh-plugin-@name@.so
+NoDisplay=true

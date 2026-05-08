@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <template class="PhoshSyncthingQuickSetting" parent="PhoshQuickSetting">
+    <property name="status-icon">info</property>
+    <property name="status-page">status_page</property>
+    <signal name="clicked" handler="on_clicked" object="PhoshSyncthingQuickSetting" swapped="yes"/>
+  </template>
+  <object class="PhoshStatusIcon" id="info">
+    <property name="visible">1</property>
+    <property name="pixel-size">16</property>
+    <property name="info" translatable="yes">Syncthing</property>
+  </object>
+  <object class="PhoshStatusPage" id="status_page">
+    <property name="visible">1</property>
+    <property name="title" translatable="yes">Syncthing</property>
+    <property name="content">stack</property>
+    <property name="footer">footer</property>
+  </object>
+  <object class="GtkStack" id="stack">
+    <property name="visible">1</property>
+    <child>
+      <object class="GtkListBox" id="folders_box">
+        <property name="visible">1</property>
+        <property name="selection-mode">none</property>
+        <property name="hexpand">1</property>
+        <child type="placeholder">
+          <object class="PhoshStatusPagePlaceholder">
+            <property name="visible">1</property>
+            <property name="icon-name">folder-open-symbolic</property>
+            <property name="title" translatable="yes">No folders</property>
+          </object>
+        </child>
+        <style>
+          <class name="content"/>
+        </style>
+      </object>
+      <packing>
+        <property name="name">folders</property>
+      </packing>
+    </child>
+    <child>
+      <object class="PhoshStatusPagePlaceholder" id="placeholder">
+        <property name="visible">1</property>
+        <property name="icon-name">cloud-disabled-symbolic</property>
+        <property name="title" translatable="yes">Syncthing is disabled</property>
+        <property name="extra-widget">placeholder_btn</property>
+      </object>
+      <packing>
+        <property name="name">placeholder</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkButton" id="placeholder_btn">
+    <property name="visible">1</property>
+    <property name="halign">center</property>
+    <property name="label" translatable="yes">Enable</property>
+    <property name="focus-on-click">0</property>
+    <signal name="clicked" handler="on_clicked" object="PhoshSyncthingQuickSetting" swapped="yes"/>
+  </object>
+  <object class="GtkButton" id="footer">
+    <property name="visible">1</property>
+    <property name="hexpand">1</property>
+    <signal name="clicked" handler="on_footer_clicked" object="PhoshSyncthingQuickSetting" swapped="yes"/>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">1</property>
+        <property name="ellipsize">end</property>
+        <property name="label" translatable="yes">Open Syncthing GUI</property>
+      </object>
+    </child>
+  </object>
+</interface>
