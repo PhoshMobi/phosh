@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-07 14:31+0000\n"
-"PO-Revision-Date: 2026-05-07 21:50+0300\n"
+"POT-Creation-Date: 2026-05-08 07:09+0000\n"
+"PO-Revision-Date: 2026-05-08 21:22+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1103,7 +1103,6 @@ msgstr "Запуск помідора"
 
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-#| msgid "Focus on your task for %d minutes"
 msgid "Focus on your task for %d minute"
 msgid_plural "Focus on your task for %d minutes"
 msgstr[0] "Зосередитися на завданні на %d хвилину"
@@ -1117,7 +1116,6 @@ msgstr "Зробіть перерву"
 #. Translators: Pomodoro is a technique, no need to translate it
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-#| msgid "You have %d minutes until next Pomodoro"
 msgid "You have %d minute until next Pomodoro"
 msgid_plural "You have %d minutes until next Pomodoro"
 msgstr[0] "У вас %d хвилина до наступного Помідора"
@@ -1248,7 +1246,6 @@ msgstr "Подія без назви"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-#| msgid "No events for the next %d days"
 msgid "No events for the next %d day"
 msgid_plural "No events for the next %d days"
 msgstr[0] "Немає подій протягом наступного %d дня"
@@ -1286,6 +1283,35 @@ msgstr "Масштаби монітора"
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+#| msgid "Add to Folder"
+msgid "No folders"
+msgstr "Немає тек"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+#| msgid "Location Disabled"
+msgid "Syncthing is disabled"
+msgstr "Syncthing вимкнено"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+#| msgid "Enable Wi-Fi"
+msgid "Enable"
+msgstr "Увімкнути"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Відкрити Syncthing"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Не вдалося з'єднатися з Syncbus"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
 msgid "Wi-Fi Hotspot"
