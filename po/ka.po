@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-20 08:01+0000\n"
-"PO-Revision-Date: 2026-03-23 03:35+0100\n"
+"POT-Creation-Date: 2026-05-07 14:31+0000\n"
+"PO-Revision-Date: 2026-05-08 05:44+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -1087,32 +1087,36 @@ msgstr "ღამის ფერები ჩართულია"
 msgid "Night Light Off"
 msgstr "ღამის ფერები გათიშულია"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "პომოდოროს დაწყება"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "ფოკუსი თქვენს დავალებაზე %d წუთით"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "იქონიეთ ფოკუსი თქვენს დავალებაზე %d წუთით"
+msgstr[1] "იქონიეთ ფოკუსი თქვენს დავალებაზე %d წუთით"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "დასვენების აღება"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "გაქვთ %d წუთი შემდეგ პომოდორომდე"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "შემდეგ Pomodoro-მდე გაქვთ %d წუთი"
+msgstr[1] "შემდეგ Pomodoro-მდე გაქვთ %d წუთი"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "პომოდოროს ტაიმერი"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
 msgstr "პომოდორო გამორთულია"
@@ -1230,8 +1234,10 @@ msgstr "უსახელო მოვლენა"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "მოვლენების გარეშე შემდეგი %d დღე"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "მოვლენების გარეშე შემდეგი %d დღე"
+msgstr[1] "მოვლენების გარეშე შემდეგი %d დღე"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
 msgid "No upcoming events"
