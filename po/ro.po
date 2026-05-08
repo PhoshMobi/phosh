@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-07 14:31+0000\n"
-"PO-Revision-Date: 2026-05-07 18:06+0200\n"
+"POT-Creation-Date: 2026-05-08 07:09+0000\n"
+"PO-Revision-Date: 2026-05-08 10:29+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -86,7 +86,7 @@ msgstr "Opțiuni pentru Localizare"
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:6
 msgid "Toggle location services on/off"
-msgstr "Localizare Activată/Dezactivată"
+msgstr "Localizare Pornită/Oprită"
 
 #: plugins/media-players/media-players.desktop.in.in:3
 #: plugins/media-players/media-players.ui:19
@@ -788,7 +788,7 @@ msgstr "Niciun dispozitiv Wi-Fi"
 
 #: src/wifi-status-page.c:57
 msgid "Wi-Fi Disabled"
-msgstr "Wi-Fi Dezactivat"
+msgstr "Wi-Fi dezactivat"
 
 #: src/wifi-status-page.c:58
 msgid "Enable Wi-Fi"
@@ -1057,11 +1057,11 @@ msgstr "Exactă"
 
 #: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location On"
-msgstr "Localizare Activată"
+msgstr "Localizare Pornită"
 
 #: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location Off"
-msgstr "Localizare Dezactivată"
+msgstr "Localizare Oprită"
 
 #: plugins/location-quick-setting/qs.ui:15
 msgid "Location Accuracy"
@@ -1285,6 +1285,32 @@ msgstr "Scara monitorului"
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Sincronizare"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr "Niciun dosar"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+msgid "Syncthing is disabled"
+msgstr "Sincronizarea e dezactivată"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr "Activează"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Interfața de sincronizare"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Nu se poate conecta la Syncbus"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
 msgid "Wi-Fi Hotspot"
