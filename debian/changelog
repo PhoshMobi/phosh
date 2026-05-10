@@ -1,3 +1,82 @@
+phosh (0.55~rc1) experimental; urgency=medium
+
+  [ Guido Günther ]
+  * contributing: Add contributing information.
+    As per our https://www.apc.org review as part of
+    https://nlnet.nl/project/Phosh-Notch/ the preferred name here is
+    CONTRIBUTING.md so let's use that.
+    While at that shorten and simplify the document moving the
+    coding style recommendations to a web page thus avoiding the
+    libhandy reference.
+  * ticket-box: Remove currently unused file monitor
+  * ticket-box: Don't leak enumerator
+  * setting: Close top panel when activating media player.
+    This was accidentally dropped when moving the actions to the
+    top-panel. With GTK4 we can make the panel closing an action
+    too by using `gtk_widget_activate_action()`.
+    Fixes: e90c7e33b ("top-panel: Move lauching settings here")
+  * tools: Fix indent
+  * tools/search: Drop unneeded casts.
+    Eases readability and makes things fit in our line length
+  * tools/serach: Use g_object_connect.
+    Shortens the line
+  * tools: Rename `error` to `err`
+    Prefer automatic cleanup while at that
+
+  [ Jiri Grönroos ]
+  * Update Finnish translation
+
+  [ Christian Kirbach ]
+  * Update German translation
+
+  [ Pierre Michel Augustin ]
+  * Update Haitian Creole translation
+
+  [ Arun Mani J ]
+  * status-icons-box: Allow any kind of `GtkWidget`
+    This allows the box to be used in places where a `GtkBox` was used.
+    While at it, use the proper `GType` name for status-icons than hardcoding.
+  * top-panel: Move language label to status-icons box.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1333
+  * plugins: Add Syncthing quick-setting.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1267
+
+  [ Evangelos Ribeiro Tzaras ]
+  * sensor-proxy-manager: Remove non-existing function from headers
+  * ambient: Add has-sensor property.
+    This can be used to disable auto-brightness controls.
+  * brightness-manager: Add auto-brightness-present property.
+    This tells us whether enabling auto-brightness is supported.
+  * brightness-settings: Hide auto-brightness setting when there's no sensor.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1303
+
+  [ nicole mikołajczyk ]
+  * upcoming-events: Handle plural forms correctly
+  * pomodoro: Handle plural forms correctly
+
+  [ Antonio Marin ]
+  * Update Romanian translation
+
+  [ Yuri Chornoivan ]
+  * Update Ukrainian translation
+
+  [ Martin ]
+  * Update Slovenian translation
+
+  [ Ekaterine Papava ]
+  * Update Georgian translation
+
+  [ Anders Jonsson ]
+  * Update Swedish translation
+
+  [ Ryo Nakano ]
+  * Update Japanese translation
+
+  [ Hugo Carvalho ]
+  * Update Portuguese translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Sun, 10 May 2026 20:28:48 +0200
+
 phosh (0.54.0) experimental; urgency=medium
 
   [ Guido Günther ]
