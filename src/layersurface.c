@@ -463,149 +463,142 @@ phosh_layer_surface_class_init (PhoshLayerSurfaceClass *klass)
 
   layer_surface_class->configured = phosh_layer_surface_configured_impl;
 
+  /**
+   * PhoshLayerSurface:layer-shell:
+   *
+   * The layer shell wayland global
+   */
   props[PROP_LAYER_SHELL] =
-    g_param_spec_pointer (
-      "layer-shell",
-      "Wayland Layer Shell Global",
-      "The layer shell wayland global",
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
-
+    g_param_spec_pointer ("layer-shell", "", "",
+                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshLayerSurface:wl-output:
+   *
+   * The wl_output associated with this surface
+   */
   props[PROP_WL_OUTPUT] =
-    g_param_spec_pointer (
-      "wl-output",
-      "Wayland Output",
-      "The wl_output associated with this surface",
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
-
+    g_param_spec_pointer ("wl-output", "", "",
+                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshLayerSurface:anchor:
+   *
+   * The edges to anchor the surface to
+   */
   props[PROP_ANCHOR] =
-    g_param_spec_uint (
-      "anchor",
-      "Anchor edges",
-      "The edges to anchor the surface to",
-      0,
-      G_MAXUINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
-
+    g_param_spec_uint ("anchor", "", "",
+                       0, G_MAXUINT, 0,
+                       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshLayerSurface:layer
+   *
+   * The layer the surface should be attached to
+   */
   props[PROP_LAYER] =
-    g_param_spec_uint (
-      "layer",
-      "Layer",
-      "The layer the surface should be attached to",
-      0,
-      G_MAXUINT,
-      0,
-      G_PARAM_READWRITE |
-      G_PARAM_CONSTRUCT |
-      G_PARAM_STATIC_STRINGS |
-      G_PARAM_EXPLICIT_NOTIFY);
-
+    g_param_spec_uint ("layer", "", "",
+                       0, G_MAXUINT, 0,
+                       G_PARAM_READWRITE |
+                       G_PARAM_CONSTRUCT |
+                       G_PARAM_STATIC_STRINGS |
+                       G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:kbd-interactivity
+   *
+   * Whether the surface interacts with the keyboard
+   */
   props[PROP_KBD_INTERACTIVITY] =
-    g_param_spec_boolean (
-      "kbd-interactivity",
-      "Keyboard interactivity",
-      "Whether the surface interacts with the keyboard",
-      FALSE,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
+    g_param_spec_boolean ("kbd-interactivity", "", "",
+                          FALSE,
+                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:exclusive-zone
+   *
+   * The area that is not occluded with other surfaces
+   */
   props[PROP_EXCLUSIVE_ZONE] =
-    g_param_spec_int (
-      "exclusive-zone",
-      "Exclusive Zone",
-      "Set area that is not occluded with other surfaces",
-      -1,
-      G_MAXINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
+    g_param_spec_int ("exclusive-zone", "", "",
+                      -1, G_MAXINT, 0,
+                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:margin-left:
+   *
+   * "Distance away from the left anchor point
+   */
   props[PROP_MARGIN_LEFT] =
-    g_param_spec_int (
-      "margin-left",
-      "Left margin",
-      "Distance away from the left anchor point",
-      G_MININT,
-      G_MAXINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
+    g_param_spec_int ("margin-left", "", "",
+                      G_MININT, G_MAXINT, 0,
+                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:margin-right:
+   *
+   * Distance away from the right anchor point
+   */
   props[PROP_MARGIN_RIGHT] =
-    g_param_spec_int (
-      "margin-right",
-      "Right margin",
-      "Distance away from the right anchor point",
-      G_MININT,
-      G_MAXINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
+    g_param_spec_int ("margin-right", "", "",
+                      G_MININT, G_MAXINT, 0,
+                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:margin-top:
+   *
+   * Distance away from the top anchor point
+   */
   props[PROP_MARGIN_TOP] =
-    g_param_spec_int (
-      "margin-top",
-      "Top margin",
-      "Distance away from the top anchor point",
-      G_MININT,
-      G_MAXINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
+    g_param_spec_int ("margin-top", "", "",
+                      G_MININT, G_MAXINT, 0,
+                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:margin-bottom:
+   *
+   * Distance away from the bottom anchor point
+   */
   props[PROP_MARGIN_BOTTOM] =
-    g_param_spec_int (
-      "margin-bottom",
-      "Bottom margin",
-      "Distance away from the bottom anchor point",
-      G_MININT,
-      G_MAXINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
+    g_param_spec_int ("margin-bottom", "", "",
+                      G_MININT, G_MAXINT, 0,
+                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:layer-width:
+   *
+   * The width of the layer surface
+   */
   props[PROP_LAYER_WIDTH] =
-    g_param_spec_uint (
-      "width",
-      "Width",
-      "The width of the layer surface",
-      0,
-      G_MAXUINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
+    g_param_spec_uint ("width", "", "",
+                       0, G_MAXUINT, 0,
+                       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:layer-height:
+   *
+   * The height of the layer surface
+   */
   props[PROP_LAYER_HEIGHT] =
-    g_param_spec_uint (
-      "height",
-      "Height",
-      "The height of the layer surface",
-      0,
-      G_MAXUINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
-
+    g_param_spec_uint ("height", "", "",
+                       0, G_MAXUINT, 0,
+                       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:configured-width:
+   *
+   * The width of the layer surface set by the compositor
+   */
   props[PROP_CONFIGURED_WIDTH] =
-    g_param_spec_uint (
-      "configured-width",
-      "Configured width",
-      "The width of the layer surface set by the compositor",
-      0,
-      G_MAXUINT,
-      0,
-      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
+    g_param_spec_uint ("configured-width", "", "",
+                       0, G_MAXUINT, 0,
+                       G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:configured-height:
+   *
+   * The height of the layer surface set by the compositor
+   */
   props[PROP_CONFIGURED_HEIGHT] =
-    g_param_spec_uint (
-      "configured-height",
-      "Configured height",
-      "The height of the layer surface set by the compositor",
-      0,
-      G_MAXUINT,
-      0,
-      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
+    g_param_spec_uint ("configured-height", "", "",
+                       0, G_MAXUINT, 0,
+                       G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:namespace:
+   *
+   * Namespace of the layer surface
+   */
   props[PROP_NAMESPACE] =
-    g_param_spec_string (
-      "namespace",
-      "Namespace",
-      "Namespace of the layer surface",
-      "",
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+    g_param_spec_string ("namespace", "", "",
+                         "",
+                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, LAST_PROP, props);
 
