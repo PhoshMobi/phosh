@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-20 08:01+0000\n"
-"PO-Revision-Date: 2026-03-21 23:44+0100\n"
+"POT-Creation-Date: 2026-05-08 07:09+0000\n"
+"PO-Revision-Date: 2026-05-11 13:54+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -1097,32 +1097,38 @@ msgstr "Noční osvětlení zapnuto"
 msgid "Night Light Off"
 msgstr "Noční osvětlení vypnuto"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "Pomodoro zahájeno"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "Soustřeďte se na svůj úkol po dobu %d minut"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Soustřeďte se na svůj úkol po dobu %d minuty"
+msgstr[1] "Soustřeďte se na svůj úkol po dobu %d minut"
+msgstr[2] "Soustřeďte se na svůj úkol po dobu %d minut"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "Dejte si pauzu"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "Do příštího Pomodoro vám zbývá %d minut"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "Do příštího Pomodoro vám zbývá %d minuta"
+msgstr[1] "Do příštího Pomodoro vám zbývají %d minuty"
+msgstr[2] "Do příštího Pomodoro vám zbývá %d minut"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "Časovač Pomodoro"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
 msgstr "Pomodoro vypnuto"
@@ -1240,8 +1246,11 @@ msgstr "Bezejmenná událost"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "Žádné události na příštích %d dní"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "Žádné události na příští %d den"
+msgstr[1] "Žádné události na příští %d dny"
+msgstr[2] "Žádné události na příštích %d dní"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
 msgid "No upcoming events"
@@ -1274,6 +1283,33 @@ msgstr "Škálování monitoru"
 #, c-format
 msgid "%d%%"
 msgstr "%d %%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr "Žádné složky"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+#| msgid "Location Disabled"
+msgid "Syncthing is disabled"
+msgstr "Syncthing je zakázán"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr "Povolit"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Otevřít Syncthing GUI"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Nelze se připojit k Syncbus"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
 msgid "Wi-Fi Hotspot"
