@@ -281,7 +281,6 @@
                 <property name="visible">1</property>
                 <property name="label" translatable="yes">Enter Passcode</property>
                 <property name="wrap">1</property>
-                <property name="wrap-mode">word</property>
                 <property name="justify">center</property>
                 <attributes>
                   <attribute name="font-desc" value="16"/>
