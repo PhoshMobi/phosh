@@ -1,3 +1,30 @@
+phosh 0.55~rc1
+--------------
+Released May 2026
+* New syncthing quick setting
+* Don't dim screen when there's no ambient sensor
+* Various other bug fixes including leak fixes
+* Issues fixed:
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1333
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1267
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1303
+* Contributors:
+    * Arun Mani J
+    * Evangelos Ribeiro Tzaras
+    * Guido Günther
+    * nicole mikołajczyk
+* UI translations:
+    * Anders Jonsson (sv)
+    * Antonio Marin (ro)
+    * Christian Kirbach (de)
+    * Ekaterine Papava (ka)
+    * Hugo Carvalho (pt)
+    * Jiri Grönroos (fi)
+    * Martin (sl)
+    * Pierre Michel Augustin (ht)
+    * Ryo Nakano (ja)
+    * Yuri Chornoivan (uk)
+
 phosh 0.54.0
 ------------
 Released April 2026
