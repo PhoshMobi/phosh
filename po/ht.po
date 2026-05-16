@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-04-24 11:47+0000\n"
-"PO-Revision-Date: 2026-05-01 14:53-0400\n"
+"POT-Creation-Date: 2026-05-13 09:15+0000\n"
+"PO-Revision-Date: 2026-05-16 00:58-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ht_HT\n"
@@ -669,7 +669,7 @@ msgstr "Retounen"
 msgid "Slide up to unlock"
 msgstr "Monte pou debloke"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:334
 msgid "Unlock"
 msgstr "Debloke"
 
@@ -1084,32 +1084,36 @@ msgstr "Limyè lannwit limen"
 msgid "Night Light Off"
 msgstr "Limyè lannwit koupe"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "Pomodoro kòmanse"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "Konsantre sou travay ou pandan %d minit"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Konsantre sou travay ou a pandan %d minit"
+msgstr[1] "Konsantre sou travay ou a pandan %d minit"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "Pran yon ti repo"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "Ou gen %d minit jiska pwochen Pomodoro"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "Ou gen %d minit anvan pwochen Pomodoro a"
+msgstr[1] "Ou gen %d minit anvan pwochen Pomodoro a"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "Revèy Pomodoro"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
 msgstr "Pomodoro Fèmen"
@@ -1227,8 +1231,10 @@ msgstr "Evènman san tit"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "Pa gen okenn evènman pou pwochen %d jou yo"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "Pa gen okenn evènman pou pwochen %d jou a"
+msgstr[1] "Pa gen okenn evènman pou pwochen %d jou a"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
 msgid "No upcoming events"
@@ -1261,6 +1267,32 @@ msgstr "Balans pou siveye"
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Senkronizasyon"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr "Pa gen dosye"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+msgid "Syncthing is disabled"
+msgstr "Senkronizasyon an dezaktive"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr "Aktive"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Louvri koòdone itilizatè grafik senkronizasyon an"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Pa kapab konekte ak Syncbus"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
 msgid "Wi-Fi Hotspot"
