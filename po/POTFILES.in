@@ -12,8 +12,11 @@ plugins/media-players/media-players.desktop.in.in
 plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in
 plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in
 plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in
+plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in
+plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in
 plugins/ticket-box/ticket-box.desktop.in.in
 plugins/upcoming-events/upcoming-events.desktop.in.in
+plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in
 
 # Source files
 src/activity.c
