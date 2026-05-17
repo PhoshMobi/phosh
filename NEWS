@@ -1,5 +1,5 @@
-phosh 0.55~rc1
---------------
+phosh 0.55.0
+------------
 Released May 2026
 * New syncthing quick setting
 * Don't dim screen when there's no ambient sensor
@@ -24,6 +24,8 @@ Released May 2026
     * Pierre Michel Augustin (ht)
     * Ryo Nakano (ja)
     * Yuri Chornoivan (uk)
+    * nicole mikołajczyk (pl)
+    * Марко Костић (sr)
 
 phosh 0.54.0
 ------------
