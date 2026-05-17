@@ -1,3 +1,27 @@
+phosh (0.55.0) experimental; urgency=medium
+
+  [ Guido Günther ]
+  * lockscreen: Word wrap unlock status.
+    Phrog puts PAM responses there which can be very long in the
+    case of systemd-homed like
+      Password for home asdf is incorrect or not sufficient, and configured
+      security token not found either.
+    so make sure they wrap. The display of the message is short
+    lived so it doesn't matter that we shift things down a bit.
+  * lockscreen: Drop property at its default value.
+    Fixes: e4ebf45de ("lockscreen: Word wrap unlock status")
+
+  [ nicole mikołajczyk ]
+  * Update Polish translation
+
+  [ Марко Костић ]
+  * Update Serbian translation
+
+  [ Pierre Michel Augustin ]
+  * Update Haitian Creole translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Sun, 17 May 2026 11:31:11 +0200
+
 phosh (0.55~rc1) experimental; urgency=medium
 
   [ Guido Günther ]
