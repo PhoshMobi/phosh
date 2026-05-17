@@ -156,7 +156,8 @@ show_folder_page (PhoshAppGrid *self)
   } else {
     g_autofree char *label;
     page_name = "empty_folder";
-    label = g_strdup_printf ("%s folder is empty", phosh_folder_info_get_name (priv->open_folder));
+    label = g_strdup_printf (_("%s folder is empty"),
+                             phosh_folder_info_get_name (priv->open_folder));
     gtk_label_set_label (GTK_LABEL (priv->empty_folder_label), label);
   }
 
