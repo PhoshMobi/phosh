@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-08 07:09+0000\n"
-"PO-Revision-Date: 2026-05-11 13:54+0200\n"
+"POT-Creation-Date: 2026-05-17 19:42+0000\n"
+"PO-Revision-Date: 2026-05-17 23:18+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -120,6 +120,22 @@ msgstr "Rychlé nastavení Pomodoro"
 msgid "Simple Pomodoro Timer"
 msgstr "Jednoduchý časovač Pomodoro"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "Rychlé nastavení škálování"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "Rychlé nastavení pro úpravu škálování obrazovky."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Rychlé nastavení Syncthing"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Rychlé nastavení Syncthing."
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -138,6 +154,14 @@ msgstr "Nadcházející události"
 #: plugins/upcoming-events/upcoming-events.desktop.in.in:5
 msgid "Show upcoming calendar events"
 msgstr "Zobrazit nadcházející události kalendáře"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Rychlé nastavení přístupového bodu Wi-Fi"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Zapnutí/vypnutí přístupového bodu Wi-Fi"
 
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
@@ -682,7 +706,7 @@ msgstr "Zpět"
 msgid "Slide up to unlock"
 msgstr "Táhnutím nahoru odemknete"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:334
 msgid "Unlock"
 msgstr "Odemknout"
 
@@ -1294,7 +1318,6 @@ msgid "No folders"
 msgstr "Žádné složky"
 
 #: plugins/syncthing-quick-setting/qs.ui:46
-#| msgid "Location Disabled"
 msgid "Syncthing is disabled"
 msgstr "Syncthing je zakázán"
 
