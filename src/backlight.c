@@ -368,6 +368,8 @@ phosh_backlight_get_relative (PhoshBacklight *self)
 {
   PhoshBacklightPrivate *priv = phosh_backlight_get_instance_private (self);
 
+  g_return_val_if_fail (PHOSH_IS_BACKLIGHT (self), 1.0);
+
   return 1.0 * (priv->brightness.target - priv->brightness.min) /
     (priv->brightness.max - priv->brightness.min);
 }
