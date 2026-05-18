@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-08 07:09+0000\n"
-"PO-Revision-Date: 2026-05-08 10:29+0200\n"
+"POT-Creation-Date: 2026-05-17 19:42+0000\n"
+"PO-Revision-Date: 2026-05-18 10:29+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -123,6 +123,22 @@ msgstr "Opțiuni pentru Pomodoro"
 msgid "Simple Pomodoro Timer"
 msgstr "Cronometru Pomodoro"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "Opțiuni pentru Scară"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "O reglare rapidă pentru scara afișajului."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Opțiuni pentru Sincronizare"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "O reglare rapidă pentru Sincronizare."
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -140,6 +156,14 @@ msgstr "Evenimente viitoare"
 #: plugins/upcoming-events/upcoming-events.desktop.in.in:5
 msgid "Show upcoming calendar events"
 msgstr "Arată evenimentele viitoare din calendar"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Opțiuni Punct de acces Wi-Fi"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Punct de acces Wi-Fi Pornit/Oprit"
 
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
@@ -684,7 +708,7 @@ msgstr "Înapoi"
 msgid "Slide up to unlock"
 msgstr "Trage în sus pentru a debloca"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:334
 msgid "Unlock"
 msgstr "Deblochează"
 
