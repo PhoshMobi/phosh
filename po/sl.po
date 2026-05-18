@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-08 07:09+0000\n"
-"PO-Revision-Date: 2026-05-08 12:13+0200\n"
+"POT-Creation-Date: 2026-05-17 19:42+0000\n"
+"PO-Revision-Date: 2026-05-18 17:47+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -122,6 +122,22 @@ msgstr "Hitra nastavitev Pomodoro"
 msgid "Simple Pomodoro Timer"
 msgstr "Enostavni časovnik Pomodoro"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "Hitro nastavljanje merila"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "Hitra nastavitev za prilagajanje merila zaslona."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Hitra nastavitev za Syncthing"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Hitra nastavitev programa Syncthing."
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -138,6 +154,14 @@ msgstr "Prihodnji dogodki"
 #: plugins/upcoming-events/upcoming-events.desktop.in.in:5
 msgid "Show upcoming calendar events"
 msgstr "Pokaži prihodnje dogodke koledarja"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Hitra nastavitev vroče točke Wi-Fi"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Vklopi/izklopi dostopno točko Wi-Fi"
 
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
@@ -692,7 +716,7 @@ msgstr "Nazaj"
 msgid "Slide up to unlock"
 msgstr "Oddrsnite navzgor, da odklenete"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:334
 msgid "Unlock"
 msgstr "Odkleni"
 
