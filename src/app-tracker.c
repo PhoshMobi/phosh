@@ -188,9 +188,11 @@ update_app_state (PhoshAppTracker   *self,
   g_return_val_if_fail (state, NULL);
 
   /* Changing pid is not allowed */
-  g_return_val_if_fail (!state->pid || (state->pid && state->pid != pid), state);
+  if (state->pid && pid && state->pid != pid)
+    g_warning ("Ignoring pid change %" G_GINT64_FORMAT " to %" G_GINT64_FORMAT, state->pid, pid);
+  else if (pid)
+    state->pid = pid;
 
-  state->pid = pid;
   g_debug ("Pid %" G_GINT64_FORMAT ", startup-id: %s got state %d",
            state->pid,
            state->startup_id,
