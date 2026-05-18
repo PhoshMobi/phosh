@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-07 14:31+0000\n"
-"PO-Revision-Date: 2026-05-08 05:44+0200\n"
+"POT-Creation-Date: 2026-05-17 19:42+0000\n"
+"PO-Revision-Date: 2026-05-18 06:20+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -120,6 +120,23 @@ msgstr "პომოდოროს სწრაფი მორგება"
 msgid "Simple Pomodoro Timer"
 msgstr "მარტივი ტაიმერი პომოდორო"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "მასშტაბის სწრაფი დაყენება"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "ეკრანის მასშტაბის სწრაფი მორგება."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+#| msgid "Location Quick Setting"
+msgid "Syncthing Quick Setting"
+msgstr "Syncthing-ის სწრაფი მორგება"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "სწრაფი მორგება Syncthing-ისთვის."
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -138,6 +155,15 @@ msgstr "უახლოესი მოვლენები"
 #: plugins/upcoming-events/upcoming-events.desktop.in.in:5
 msgid "Show upcoming calendar events"
 msgstr "კალენდრის მომავალი მოვლენების ჩვენება"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Wi-Fi ჰოტსპოტის სწრაფი მორგება"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+#| msgid "Toggle night light on/off"
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Wi-Fi ჰოტსპოტის ჩართვა/გამორთვა"
 
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
@@ -672,7 +698,7 @@ msgstr "უკან"
 msgid "Slide up to unlock"
 msgstr "აქაჩეთ გასახსნელად"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:334
 msgid "Unlock"
 msgstr "გახსნა"
 
@@ -1270,6 +1296,33 @@ msgstr "ეკრანის მასშტაბები"
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr "საქაღალდეების გარეშე"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+#| msgid "Location Disabled"
+msgid "Syncthing is disabled"
+msgstr "Syncthing გამორთულია"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr "ჩართვა"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Syncthing-ის ინტერფეისის გახსნა"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Syncbus-ისთან მიერთება შეუძლებელია"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
 msgid "Wi-Fi Hotspot"
