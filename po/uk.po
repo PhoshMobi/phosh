@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-08 07:09+0000\n"
-"PO-Revision-Date: 2026-05-08 21:22+0300\n"
+"POT-Creation-Date: 2026-05-17 19:42+0000\n"
+"PO-Revision-Date: 2026-05-18 09:51+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -122,6 +122,24 @@ msgstr "Швидке налаштовування помідора"
 msgid "Simple Pomodoro Timer"
 msgstr "Простий таймер-помідор"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+#| msgid "Location Quick Setting"
+msgid "Scaling Quick Setting"
+msgstr "Параметр масштабування"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "Параметр для коригування масштабування дисплея."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+#| msgid "Location Quick Setting"
+msgid "Syncthing Quick Setting"
+msgstr "Параметр Syncthing"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Параметр для Syncthing."
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -138,6 +156,16 @@ msgstr "Майбутні події"
 #: plugins/upcoming-events/upcoming-events.desktop.in.in:5
 msgid "Show upcoming calendar events"
 msgstr "Показати майбутні події календаря"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+#| msgid "Wi-Fi Hotspot Active"
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Параметри точки доступу Wi-Fi"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+#| msgid "Toggle night light on/off"
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Увімкнути або вимкнути точку доступу Wi-Fi"
 
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
@@ -682,7 +710,7 @@ msgstr "Назад"
 msgid "Slide up to unlock"
 msgstr "Протягніть угору, щоб розблокувати"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:334
 msgid "Unlock"
 msgstr "Розблокувати"
 
@@ -1290,17 +1318,14 @@ msgid "Syncthing"
 msgstr "Syncthing"
 
 #: plugins/syncthing-quick-setting/qs.ui:31
-#| msgid "Add to Folder"
 msgid "No folders"
 msgstr "Немає тек"
 
 #: plugins/syncthing-quick-setting/qs.ui:46
-#| msgid "Location Disabled"
 msgid "Syncthing is disabled"
 msgstr "Syncthing вимкнено"
 
 #: plugins/syncthing-quick-setting/qs.ui:57
-#| msgid "Enable Wi-Fi"
 msgid "Enable"
 msgstr "Увімкнути"
 
