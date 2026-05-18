@@ -1,3 +1,5 @@
+subdir('icons')
+
 name = 'syncthing-quick-setting'
 
 syncbus_interface_files = files(
