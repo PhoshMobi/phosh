@@ -13,7 +13,7 @@ foreach session_dropin : session_dropins
   configure_file(
     input: 'phosh.session.conf.in',
     output: 'session.conf',
-    install_dir: join_paths(systemduserdir, session_dropin),
+    install_dir: systemduserdir / session_dropin,
     configuration: sessionconf,
     install: true,
   )
