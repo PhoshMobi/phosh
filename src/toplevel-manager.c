@@ -42,8 +42,6 @@ enum {
 };
 static guint signals[N_SIGNALS];
 
-#define MAX_INITIAL_TOPLEVEL_TIMEOUT 30 /* s */
-
 typedef struct {
   GAppInfo *app_info;
   guint     timeout_id;
@@ -93,7 +91,7 @@ launching_app_info_new (PhoshToplevelManager *toplevel_manager, GAppInfo *app_in
   info->app_info = g_object_ref (app_info);
   info->manager = toplevel_manager;
 
-  info->timeout_id = g_timeout_add_seconds_once (MAX_INITIAL_TOPLEVEL_TIMEOUT,
+  info->timeout_id = g_timeout_add_seconds_once (APP_TRACKER_MAX_INITIAL_TOPLEVEL_TIMEOUT,
                                                  on_initial_toplevel_timeout,
                                                  info);
   return info;

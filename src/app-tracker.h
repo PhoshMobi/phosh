@@ -14,6 +14,8 @@ G_BEGIN_DECLS
 
 #define PHOSH_TYPE_APP_TRACKER (phosh_app_tracker_get_type ())
 
+#define APP_TRACKER_MAX_INITIAL_TOPLEVEL_TIMEOUT 30 /* s */
+
 G_DECLARE_FINAL_TYPE (PhoshAppTracker, phosh_app_tracker, PHOSH, APP_TRACKER, GObject)
 
 PhoshAppTracker *phosh_app_tracker_new (void);
