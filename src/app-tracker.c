@@ -596,10 +596,8 @@ phosh_app_tracker_finalize (GObject *object)
   g_clear_pointer (&self->wl_tracker, phosh_private_startup_tracker_destroy);
 
   g_clear_handle_id (&self->idle_id, g_source_remove);
-  if (self->dbus_id) {
-    g_dbus_connection_signal_unsubscribe (self->session_bus, self->dbus_id);
-    self->dbus_id = 0;
-  }
+  g_clear_dbus_signal_subscription (&self->dbus_id, self->session_bus);
+
   g_clear_object (&self->session_bus);
 
   G_OBJECT_CLASS (phosh_app_tracker_parent_class)->finalize (object);
