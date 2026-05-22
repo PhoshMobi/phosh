@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-17 19:42+0000\n"
-"PO-Revision-Date: 2026-05-18 23:37+0100\n"
+"POT-Creation-Date: 2026-05-21 20:00+0000\n"
+"PO-Revision-Date: 2026-05-22 22:24+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese < https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-DL-Team: pt\n"
 "X-DL-Module: phosh\n"
 "X-DL-Branch: main\n"
@@ -181,11 +181,16 @@ msgstr "Criar nova pasta"
 msgid "Application"
 msgstr "Aplicação"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "%s pasta está vazia"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "Mostrar todas as aplicações"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Mostrar apenas aplicações adaptadas a telemóvel"
 
