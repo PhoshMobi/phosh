@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-17 19:42+0000\n"
-"PO-Revision-Date: 2026-05-18 06:20+0200\n"
+"POT-Creation-Date: 2026-05-21 20:00+0000\n"
+"PO-Revision-Date: 2026-05-23 10:12+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -129,7 +129,6 @@ msgid "A quick setting for adjusting the display scaling."
 msgstr "ეკრანის მასშტაბის სწრაფი მორგება."
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
-#| msgid "Location Quick Setting"
 msgid "Syncthing Quick Setting"
 msgstr "Syncthing-ის სწრაფი მორგება"
 
@@ -161,7 +160,6 @@ msgid "Wi-Fi Hotspot Quick Setting"
 msgstr "Wi-Fi ჰოტსპოტის სწრაფი მორგება"
 
 #: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
-#| msgid "Toggle night light on/off"
 msgid "Toggle Wi-Fi hotspot on/off"
 msgstr "Wi-Fi ჰოტსპოტის ჩართვა/გამორთვა"
 
@@ -177,11 +175,16 @@ msgstr "ახალი საქაღალდის შექმნა"
 msgid "Application"
 msgstr "აპლიკაცია"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "%s საქაღალდე ცარიელია"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "ყველა აპლიკაციის ჩვენება"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "მხოლოდ მობილურზე მორგებული აპლიკაციების ჩვენება"
 
@@ -1307,7 +1310,6 @@ msgid "No folders"
 msgstr "საქაღალდეების გარეშე"
 
 #: plugins/syncthing-quick-setting/qs.ui:46
-#| msgid "Location Disabled"
 msgid "Syncthing is disabled"
 msgstr "Syncthing გამორთულია"
 
