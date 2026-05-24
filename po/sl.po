@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-17 19:42+0000\n"
-"PO-Revision-Date: 2026-05-18 17:47+0200\n"
+"POT-Creation-Date: 2026-05-21 20:00+0000\n"
+"PO-Revision-Date: 2026-05-24 17:01+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -175,11 +175,16 @@ msgstr "Ustvari novo mapo"
 msgid "Application"
 msgstr "Program"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "Mapa %s je prazna"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "Pokaži vse programe"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Pokaži le na nabilnih napravah podprte programe"
 
