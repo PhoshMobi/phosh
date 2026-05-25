@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2018-2022 Purism SPC
  *               2023-2024 The Phosh Developers
- *                    2025 Phosh.mobi e.V.
+ *               2025-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -43,6 +43,8 @@
 #define CUSTOM_STATUS_ICONS_KEY "status-icons"
 
 #define PHOSH_TOP_PANEL_DRAG_THRESHOLD 0.3
+
+#define MAX_TWO_COLUMN_HEIGHT 800
 
 /**
  * PhoshTopPanel:
@@ -830,12 +832,19 @@ on_configure_event (PhoshTopPanel *self, GdkEventConfigure *event)
 static void
 phosh_top_panel_configured (PhoshLayerSurface *layer_surface)
 {
+  PhoshTopPanel *self = PHOSH_TOP_PANEL (layer_surface);
   guint width, height;
+  gboolean two_column = FALSE;
 
   width = phosh_layer_surface_get_configured_width  (layer_surface);
   height = phosh_layer_surface_get_configured_height (layer_surface);
 
-  g_debug ("%s: %dx%d", __func__, width, height);
+  g_debug ("top-panel configured: %dx%d", width, height);
+
+  if (height < width && height < MAX_TWO_COLUMN_HEIGHT)
+    two_column = TRUE;
+
+  phosh_settings_set_two_column (PHOSH_SETTINGS (self->settings), two_column);
 
   PHOSH_LAYER_SURFACE_CLASS (phosh_top_panel_parent_class)->configured (layer_surface);
 }
