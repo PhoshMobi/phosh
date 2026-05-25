@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-17 19:42+0000\n"
-"PO-Revision-Date: 2026-05-17 23:18+0200\n"
+"POT-Creation-Date: 2026-05-21 20:00+0000\n"
+"PO-Revision-Date: 2026-05-24 18:12+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -175,11 +175,16 @@ msgstr "Vytvořit novou složku"
 msgid "Application"
 msgstr "Aplikace"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "Složka %s je prázdná"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "Zobrazit všechny aplikace"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Zobrazit pouze optimalizované aplikace"
 
