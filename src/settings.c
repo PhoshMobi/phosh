@@ -54,6 +54,7 @@ typedef struct _PhoshSettings {
   gint       drag_handle_offset;
   guint      debounce_handle;
 
+  GtkBox    *box;
   GtkWidget *scrolled_window;
   GtkWidget *box_sliders;
   GtkWidget *box_settings;
@@ -454,6 +455,7 @@ phosh_settings_class_init (PhoshSettingsClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/mobi/phosh/ui/settings.ui");
 
+  gtk_widget_class_bind_template_child (widget_class, PhoshSettings, box);
   gtk_widget_class_bind_template_child (widget_class, PhoshSettings, audio_settings);
   gtk_widget_class_bind_template_child (widget_class, PhoshSettings, brightness_settings);
   gtk_widget_class_bind_template_child (widget_class, PhoshSettings, box_bottom_half);
