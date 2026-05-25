@@ -520,3 +520,22 @@ phosh_settings_hide_details (PhoshSettings *self)
   phosh_brightness_settings_hide_details (self->brightness_settings);
   phosh_quick_settings_hide_status (PHOSH_QUICK_SETTINGS (self->quick_settings));
 }
+
+
+void
+phosh_settings_set_two_column (PhoshSettings *self, gboolean enabled)
+{
+  GtkOrientation orientation = GTK_ORIENTATION_VERTICAL;
+  gboolean homogenuous = FALSE;
+  guint spacing = 0;
+
+  if (enabled) {
+    orientation = GTK_ORIENTATION_HORIZONTAL;
+    homogenuous = TRUE;
+    spacing = 6;
+  }
+
+  gtk_orientable_set_orientation (GTK_ORIENTABLE (self->box), orientation);
+  gtk_box_set_homogeneous (self->box, homogenuous);
+  gtk_box_set_spacing (self->box, spacing);
+}
