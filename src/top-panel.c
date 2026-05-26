@@ -122,6 +122,17 @@ typedef struct _PhoshTopPanel {
 
 G_DEFINE_TYPE (PhoshTopPanel, phosh_top_panel, PHOSH_TYPE_DRAG_SURFACE)
 
+
+static void
+set_on_lockscreen (PhoshTopPanel *self, gboolean on_lockscreen)
+{
+  if (self->on_lockscreen == on_lockscreen)
+    return;
+
+  self->on_lockscreen = on_lockscreen;
+}
+
+
 static void
 phosh_top_panel_set_property (GObject      *object,
                               guint         property_id,
@@ -132,7 +143,7 @@ phosh_top_panel_set_property (GObject      *object,
 
   switch (property_id) {
   case PROP_ON_LOCKSCREEN:
-    self->on_lockscreen = g_value_get_boolean (value);
+    set_on_lockscreen (self, g_value_get_boolean (value));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
