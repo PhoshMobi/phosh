@@ -32,7 +32,7 @@ i18n.merge_file(
     configuration: pluginconf,
   ),
   output: name + '.plugin',
-  po_dir: join_paths(meson.project_source_root(), 'po'),
+  po_dir: meson.project_source_root() / 'po',
   install: true,
   install_dir: plugins_dir,
   type: 'desktop',

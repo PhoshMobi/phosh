@@ -19,21 +19,21 @@ ver_parts = meson.project_version().split('.')
 lib_inc_subdir = 'libphosh-@0@'.format(libphosh_api_version)
 
 prefix = get_option('prefix')
-bindir = join_paths(prefix, get_option('bindir'))
-datadir = join_paths(prefix, get_option('datadir'))
-localedir = join_paths(prefix, get_option('localedir'))
-libdir = join_paths(prefix, get_option('libdir'))
-libexecdir = join_paths(prefix, get_option('libexecdir'))
-desktopdir = join_paths(datadir, 'applications')
-sessiondir = join_paths(datadir, 'gnome-session')
-pkgdatadir = join_paths(datadir, meson.project_name())
-pkglibdir = join_paths(libdir, meson.project_name())
-systemddir = join_paths(prefix, 'lib/systemd')
-systemduserdir = join_paths(systemddir, 'user')
-plugins_dir = join_paths(prefix, libdir, 'phosh', 'plugins')
-plugin_prefs_dir = join_paths(prefix, libdir, 'phosh', 'plugins', 'prefs')
+bindir = prefix / get_option('bindir')
+datadir = prefix / get_option('datadir')
+localedir = prefix / get_option('localedir')
+libdir = prefix / get_option('libdir')
+libexecdir = prefix / get_option('libexecdir')
+desktopdir = datadir / 'applications'
+sessiondir = datadir / 'gnome-session'
+pkgdatadir = datadir / meson.project_name()
+pkglibdir = libdir / meson.project_name()
+systemddir = prefix / 'lib' / 'systemd'
+systemduserdir = systemddir / 'user'
+plugins_dir = prefix / libdir / 'phosh' / 'plugins'
+plugin_prefs_dir = prefix / libdir / 'phosh' / 'plugins' / 'prefs'
 phosh_plugin_icon_dir = datadir / 'phosh' / 'plugins' / 'icons'
-servicedir = join_paths(datadir, 'dbus-1', 'services')
+servicedir = datadir / 'dbus-1' / 'services'
 schemasdir = datadir / 'glib-2.0/schemas'
 lib_inc_dir = prefix / get_option('includedir') / lib_inc_subdir
 vapidir = prefix / datadir / 'vala' / 'vapi'
@@ -43,7 +43,7 @@ bindings_lib = get_option('bindings-lib')
 abi_check = get_option('abi-check')
 
 if prefix != '/usr'
-  sysconfdir = join_paths(prefix, get_option('sysconfdir'))
+  sysconfdir = prefix / get_option('sysconfdir')
 else
   sysconfdir = get_option('sysconfdir')
 endif

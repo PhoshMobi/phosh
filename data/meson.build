@@ -62,7 +62,7 @@ foreach session : sessions
     output: session,
     po_dir: '../po',
     install: true,
-    install_dir: join_paths(sessiondir, 'sessions'),
+    install_dir: sessiondir / 'sessions',
     type: 'desktop',
   )
 endforeach
@@ -72,7 +72,7 @@ runconf.set('bindir', bindir)
 runconf.set('libexecdir', libexecdir)
 runconf.set('pkgdatadir', pkgdatadir)
 runconf.set('version', meson.project_version())
-runconf.set('wlrootsdir', join_paths(libexecdir, 'wlroots'))
+runconf.set('wlrootsdir', libexecdir / 'wlroots')
 runconf.set('compositor', get_option('compositor'))
 
 configure_file(
@@ -130,14 +130,14 @@ install_data(
 
 install_data(
   'phosh-shell.portal',
-  install_dir: join_paths(datadir, 'xdg-desktop-portal', 'portals'),
+  install_dir: datadir / 'xdg-desktop-portal' / 'portals',
 )
 install_data(
   'phosh-portals.conf',
-  install_dir: join_paths(datadir, 'xdg-desktop-portal'),
+  install_dir: datadir / 'xdg-desktop-portal',
 )
 
-shell_search_libexecdir = join_paths(prefix, get_option('libexecdir'))
+shell_search_libexecdir = prefix / get_option('libexecdir')
 
 serviceconf = configuration_data()
 serviceconf.set('libexecdir', shell_search_libexecdir)
