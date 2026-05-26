@@ -124,12 +124,30 @@ G_DEFINE_TYPE (PhoshTopPanel, phosh_top_panel, PHOSH_TYPE_DRAG_SURFACE)
 
 
 static void
+maybe_enable_two_column_mode (PhoshTopPanel *self)
+{
+  guint width, height;
+  gboolean two_column = FALSE;
+
+  width = phosh_layer_surface_get_configured_width  (PHOSH_LAYER_SURFACE (self));
+  height = phosh_layer_surface_get_configured_height (PHOSH_LAYER_SURFACE (self));
+
+  if (height < width && height < MAX_TWO_COLUMN_HEIGHT && !self->on_lockscreen)
+    two_column = TRUE;
+
+  phosh_settings_set_two_column (PHOSH_SETTINGS (self->settings), two_column);
+}
+
+
+static void
 set_on_lockscreen (PhoshTopPanel *self, gboolean on_lockscreen)
 {
   if (self->on_lockscreen == on_lockscreen)
     return;
 
   self->on_lockscreen = on_lockscreen;
+
+  maybe_enable_two_column_mode (self);
 }
 
 
@@ -845,17 +863,13 @@ phosh_top_panel_configured (PhoshLayerSurface *layer_surface)
 {
   PhoshTopPanel *self = PHOSH_TOP_PANEL (layer_surface);
   guint width, height;
-  gboolean two_column = FALSE;
 
   width = phosh_layer_surface_get_configured_width  (layer_surface);
   height = phosh_layer_surface_get_configured_height (layer_surface);
 
   g_debug ("top-panel configured: %dx%d", width, height);
 
-  if (height < width && height < MAX_TWO_COLUMN_HEIGHT)
-    two_column = TRUE;
-
-  phosh_settings_set_two_column (PHOSH_SETTINGS (self->settings), two_column);
+  maybe_enable_two_column_mode (self);
 
   PHOSH_LAYER_SURFACE_CLASS (phosh_top_panel_parent_class)->configured (layer_surface);
 }
