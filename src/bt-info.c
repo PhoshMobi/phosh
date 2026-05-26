@@ -30,9 +30,9 @@ enum {
   PROP_0,
   PROP_ENABLED,
   PROP_PRESENT,
-  PROP_LAST_PROP
+  LAST_PROP
 };
-static GParamSpec *props[PROP_LAST_PROP];
+static GParamSpec *props[LAST_PROP];
 
 struct _PhoshBtInfo {
   PhoshStatusIcon parent;
@@ -226,24 +226,26 @@ phosh_bt_info_class_init (PhoshBtInfoClass *klass)
 
   gtk_widget_class_set_css_name (widget_class, "phosh-bt-info");
 
+  /**
+   * PhoshBtInfo:enabled:
+   *
+   * Whether a Bluetooth adapter is enabled
+   */
   props[PROP_ENABLED] =
-    g_param_spec_boolean ("enabled",
-                          "enabled",
-                          "Whether a bt device is enabled",
+    g_param_spec_boolean ("enabled", "", "",
                           FALSE,
-                          G_PARAM_READABLE |
-                          G_PARAM_STATIC_STRINGS |
-                          G_PARAM_EXPLICIT_NOTIFY);
+                          G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshBtInfo:present:
+   *
+   * Whether a Bluetooth adapter is present
+   */
   props[PROP_PRESENT] =
-    g_param_spec_boolean ("present",
-                          "Present",
-                          "Whether bt hardware is present",
+    g_param_spec_boolean ("present", "", "",
                           FALSE,
-                          G_PARAM_READABLE |
-                          G_PARAM_STATIC_STRINGS |
-                          G_PARAM_EXPLICIT_NOTIFY);
+                          G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
-  g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
+  g_object_class_install_properties (object_class, LAST_PROP, props);
 }
 
 
