@@ -153,6 +153,7 @@ on_bt_present (PhoshBtInfo *self, GParamSpec *pspec, PhoshBtManager *bt)
   g_return_if_fail (PHOSH_IS_BT_MANAGER (bt));
 
   present = phosh_bt_manager_get_present (bt);
+  g_debug ("Updating bt present %d", present);
   if (self->present == present)
     return;
 
@@ -168,6 +169,7 @@ phosh_bt_info_idle_init (PhoshStatusIcon *icon)
 
   update_icon (self, NULL, self->bt);
   update_info (self);
+  on_bt_present (self, NULL, self->bt);
   on_bt_enabled (self, NULL, self->bt);
 }
 
