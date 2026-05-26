@@ -816,7 +816,7 @@ on_configure_event (PhoshTopPanel *self, GdkEventConfigure *event)
   if (gtk_widget_get_window (GTK_WIDGET (self)) != event->window)
     return FALSE;
 
-  g_debug ("%s: %dx%d margin: %d", __func__, event->height, event->width, margin);
+  g_debug ("top-panel: %dx%d margin: %d", event->width, event->height, margin);
 
   /* If the size changes we need to update the folded margin */
   phosh_drag_surface_set_margin (PHOSH_DRAG_SURFACE (self), margin, 0);
