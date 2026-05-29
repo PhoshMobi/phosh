@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-17 19:42+0000\n"
-"PO-Revision-Date: 2026-05-18 21:09+0330\n"
+"POT-Creation-Date: 2026-05-21 20:00+0000\n"
+"PO-Revision-Date: 2026-05-30 01:43+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
@@ -177,11 +177,16 @@ msgstr "ایجاد شاخهٔ جدید"
 msgid "Application"
 msgstr "برنامه"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "شاخهٔ %s خالی است"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "نمایش تمامی کاره‌ها"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "فقط نمایش کاره‌های سازگار با تلفن همراه"
 
