@@ -111,12 +111,14 @@ on_startup_timeout (gpointer data)
     g_warning ("Hit timeout for '%s' with startup id: '%s' although it's up",
                g_app_info_get_name (G_APP_INFO (state->info)),
                state->startup_id);
-    goto out;
+    state->timeout_id = 0;
+    return G_SOURCE_REMOVE;
   }
 
   if (!g_hash_table_contains (state->tracker->apps, state->startup_id)) {
     g_warning ("No info for startup_id '%s' found", state->startup_id);
-    goto out;
+    state->timeout_id = 0;
+    return G_SOURCE_REMOVE;
   }
 
   /* We got a "launched" signal but the compositor never reported the app as up */
@@ -127,8 +129,6 @@ on_startup_timeout (gpointer data)
   g_signal_emit (state->tracker, signals[APP_FAILED], 0, state->info, state->startup_id);
   g_hash_table_remove (state->tracker->apps, state->startup_id);
 
- out:
-  state->timeout_id = 0;
   return G_SOURCE_REMOVE;
 }
 
