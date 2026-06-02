@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-21 20:00+0000\n"
-"PO-Revision-Date: 2026-05-28 23:54+0200\n"
+"POT-Creation-Date: 2026-06-02 06:50+0000\n"
+"PO-Revision-Date: 2026-06-02 11:28+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -171,7 +171,11 @@ msgstr "Přidat do složky"
 msgid "Create new folder"
 msgstr "Vytvořit novou složku"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "Nelze odinstalovat aplikaci"
+
+#: src/app-grid-button.c:701 src/app-grid-button.c:755
 msgid "Application"
 msgstr "Aplikace"
 
@@ -528,7 +532,7 @@ msgstr[0] "Téměř %d rok"
 msgstr[1] "Téměř %d roky"
 msgstr[2] "Téměř %d let"
 
-#: src/overview.c:221
+#: src/overview.c:228
 msgid "Application failed to start"
 msgstr "Spuštění aplikace se nezdařilo"
 
@@ -1430,9 +1434,6 @@ msgstr "Přístupový bod vypnut"
 
 #~ msgid "_Screenshot"
 #~ msgstr "_Snímek obrazovky"
-
-#~ msgid "Unknown application"
-#~ msgstr "Neznámá aplikace"
 
 #~ msgid "Lock Screen"
 #~ msgstr "Zamknout obrazovku"
