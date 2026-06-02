@@ -25,7 +25,11 @@
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
 
+/* Startup timeout when we don't track the spawning process */
 #define STARTUP_TIMEOUT 5
+/* Startup timeout when we track the spawning process */
+#define STARTUP_TRACKED_TIMEOUT (APP_TRACKER_MAX_INITIAL_TOPLEVEL_TIMEOUT * 0.9)
+/* Startup timeout for debugging activation issues */
 #define DEBUG_STARTUP_TIMEOUT 30
 
 /**
@@ -82,9 +86,13 @@ typedef struct  {
   PhoshAppStateFlags state;
 
   char              *startup_id;  /* (owned) */
-  guint              timeout_id;
   GDesktopAppInfo   *info;        /* (owned) */
   PhoshAppTracker   *tracker;     /* (unowned) */
+  struct {
+    guint              id;
+    guint              waited;
+    guint              interval;
+  } timeout;
 } PhoshAppState;
 
 struct _PhoshAppTracker {
@@ -111,14 +119,31 @@ on_startup_timeout (gpointer data)
     g_warning ("Hit timeout for '%s' with startup id: '%s' although it's up",
                g_app_info_get_name (G_APP_INFO (state->info)),
                state->startup_id);
-    state->timeout_id = 0;
+    state->timeout.id = 0;
     return G_SOURCE_REMOVE;
   }
 
   if (!g_hash_table_contains (state->tracker->apps, state->startup_id)) {
     g_warning ("No info for startup_id '%s' found", state->startup_id);
-    state->timeout_id = 0;
+    state->timeout.id = 0;
     return G_SOURCE_REMOVE;
+  }
+
+  state->timeout.waited += state->timeout.interval;
+  /* If we have a PID we can be more thorough */
+  if (state->pid && state->timeout.waited < STARTUP_TRACKED_TIMEOUT) {
+    /* TODO: track pidfd on Linux*/
+    if (!kill (state->pid, 0)) {
+      g_debug ("Startup id: '%s' has PID, waited %us, giving it more time to start",
+               state->startup_id,
+               state->timeout.waited);
+
+      return G_SOURCE_CONTINUE;
+    } else {
+      /* PID is gone. As this might be a fork give it one more
+       * iteration to bring up a toplevel */
+      state->timeout.waited  = STARTUP_TRACKED_TIMEOUT;
+    }
   }
 
   /* We got a "launched" signal but the compositor never reported the app as up */
@@ -151,8 +176,9 @@ phosh_app_state_new (GDesktopAppInfo    *info,
   state->state = flags;
   state->info = g_object_ref (info);
   state->tracker = tracker;
-  state->timeout_id = g_timeout_add_seconds (timeout, on_startup_timeout, state);
-  g_source_set_name_by_id (state->timeout_id, "[phosh] state timeout");
+  state->timeout.id = g_timeout_add_seconds (timeout, on_startup_timeout, state);
+  state->timeout.interval = timeout;
+  g_source_set_name_by_id (state->timeout.id, "[phosh] state timeout");
 
   g_debug ("Pid %" G_GINT64_FORMAT ", '%s', startup-id: %s got state %d",
            state->pid,
@@ -167,7 +193,7 @@ phosh_app_state_new (GDesktopAppInfo    *info,
 static void
 phosh_app_state_free (PhoshAppState *state)
 {
-  g_clear_handle_id (&state->timeout_id, g_source_remove);
+  g_clear_handle_id (&state->timeout.id, g_source_remove);
   g_object_unref (state->info);
   g_free (state->startup_id);
 
@@ -188,9 +214,11 @@ update_app_state (PhoshAppTracker   *self,
   g_return_val_if_fail (state, NULL);
 
   /* Changing pid is not allowed */
-  g_return_val_if_fail (!state->pid || (state->pid && state->pid != pid), state);
+  if (state->pid && pid && state->pid != pid)
+    g_warning ("Ignoring pid change %" G_GINT64_FORMAT " to %" G_GINT64_FORMAT, state->pid, pid);
+  else if (pid)
+    state->pid = pid;
 
-  state->pid = pid;
   g_debug ("Pid %" G_GINT64_FORMAT ", startup-id: %s got state %d",
            state->pid,
            state->startup_id,
