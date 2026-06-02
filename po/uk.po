@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-21 20:00+0000\n"
-"PO-Revision-Date: 2026-05-22 15:50+0300\n"
+"POT-Creation-Date: 2026-06-02 06:50+0000\n"
+"PO-Revision-Date: 2026-06-02 14:33+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -171,7 +171,12 @@ msgstr "Додати до теки"
 msgid "Create new folder"
 msgstr "Створити теку"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+#| msgid "Unknown application"
+msgid "Can't uninstall application"
+msgstr "Не вдалося вилучити програму"
+
+#: src/app-grid-button.c:701 src/app-grid-button.c:755
 msgid "Application"
 msgstr "Програма"
 
@@ -528,7 +533,7 @@ msgstr[0] "Майже %dр."
 msgstr[1] "Майже %dр."
 msgstr[2] "Майже %dр."
 
-#: src/overview.c:221
+#: src/overview.c:228
 msgid "Application failed to start"
 msgstr "Не вдалося запустити програму"
 
@@ -1430,9 +1435,6 @@ msgstr "Точку доступу вимкнено"
 
 #~ msgid "App"
 #~ msgstr "Програма"
-
-#~ msgid "Unknown application"
-#~ msgstr "Невідома програма"
 
 #~ msgid "Lock Screen"
 #~ msgstr "Заблокувати екран"
