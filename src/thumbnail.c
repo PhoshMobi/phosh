@@ -127,5 +127,4 @@ phosh_thumbnail_set_ready (PhoshThumbnail *self, gboolean ready)
 
   priv->ready = ready;
   g_object_notify_by_pspec (G_OBJECT (self), props[PROP_READY]);
-
 }

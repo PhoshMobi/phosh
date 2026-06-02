@@ -1413,7 +1413,7 @@ phosh_lockscreen_set_unlock_status (PhoshLockscreen *self, const char *status)
 
 /**
  * phosh_lockscreen_set_bg_image:
- * @self: The lockscrenn
+ * @self: The lockscreen
  * @image: The background image to set
  */
 void

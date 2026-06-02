@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2018-2023 Purism SPC
+ *               2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -26,55 +27,55 @@
  */
 
 enum {
-  PHOSH_LAYER_SURFACE_PROP_0,
-  PHOSH_LAYER_SURFACE_PROP_LAYER_SHELL,
-  PHOSH_LAYER_SURFACE_PROP_WL_OUTPUT,
-  PHOSH_LAYER_SURFACE_PROP_ANCHOR,
-  PHOSH_LAYER_SURFACE_PROP_LAYER,
-  PHOSH_LAYER_SURFACE_PROP_KBD_INTERACTIVITY,
-  PHOSH_LAYER_SURFACE_PROP_EXCLUSIVE_ZONE,
-  PHOSH_LAYER_SURFACE_PROP_MARGIN_TOP,
-  PHOSH_LAYER_SURFACE_PROP_MARGIN_BOTTOM,
-  PHOSH_LAYER_SURFACE_PROP_MARGIN_LEFT,
-  PHOSH_LAYER_SURFACE_PROP_MARGIN_RIGHT,
-  PHOSH_LAYER_SURFACE_PROP_LAYER_WIDTH,
-  PHOSH_LAYER_SURFACE_PROP_LAYER_HEIGHT,
-  PHOSH_LAYER_SURFACE_PROP_CONFIGURED_WIDTH,
-  PHOSH_LAYER_SURFACE_PROP_CONFIGURED_HEIGHT,
-  PHOSH_LAYER_SURFACE_PROP_NAMESPACE,
-  PHOSH_LAYER_SURFACE_PROP_LAST_PROP
+  PROP_0,
+  PROP_LAYER_SHELL,
+  PROP_WL_OUTPUT,
+  PROP_ANCHOR,
+  PROP_LAYER,
+  PROP_KBD_INTERACTIVITY,
+  PROP_EXCLUSIVE_ZONE,
+  PROP_MARGIN_TOP,
+  PROP_MARGIN_BOTTOM,
+  PROP_MARGIN_LEFT,
+  PROP_MARGIN_RIGHT,
+  PROP_LAYER_WIDTH,
+  PROP_LAYER_HEIGHT,
+  PROP_CONFIGURED_WIDTH,
+  PROP_CONFIGURED_HEIGHT,
+  PROP_NAMESPACE,
+  LAST_PROP
 };
-static GParamSpec *props[PHOSH_LAYER_SURFACE_PROP_LAST_PROP];
+static GParamSpec *props[LAST_PROP];
 
 enum {
   CONFIGURED,
   N_SIGNALS
 };
-static guint signals [N_SIGNALS];
+static guint signals[N_SIGNALS];
 
 typedef struct {
-  struct wl_surface            *wl_surface;
-  struct zwlr_layer_surface_v1 *layer_surface;
-  struct zphoc_alpha_layer_surface_v1 *alpha_surface;
+  struct wl_surface *wl_surface;
+  struct zwlr_layer_surface_v1          *layer_surface;
+  struct zphoc_alpha_layer_surface_v1   *alpha_surface;
   struct zphoc_stacked_layer_surface_v1 *stacked_surface;
 
   /* Properties */
-  guint                         anchor;
-  guint                         layer;
-  gboolean                      kbd_interactivity;
-  int                           exclusive_zone;
-  int                           margin_top, margin_bottom;
-  int                           margin_left, margin_right;
-  int                           width, height;
-  int                           configured_width, configured_height;
-  char                         *namespace;
-  struct zwlr_layer_shell_v1   *layer_shell;
-  struct wl_output             *wl_output;
+  guint    anchor;
+  guint    layer;
+  gboolean kbd_interactivity;
+  int      exclusive_zone;
+  int      margin_top, margin_bottom;
+  int      margin_left, margin_right;
+  int      width, height;
+  int      configured_width, configured_height;
+  char    *namespace;
+  struct zwlr_layer_shell_v1 *layer_shell;
+  struct wl_output *wl_output;
   /* alpha_layer_surface_v1 */
-  double                        alpha;
+  double   alpha;
   /* stacked_layer_surface_v1 */
-  PhoshLayerSurface            *stack_target;
-  gboolean                      stack_above;
+  PhoshLayerSurface *stack_target;
+  gboolean stack_above;
 } PhoshLayerSurfacePrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (PhoshLayerSurface, phosh_layer_surface, GTK_TYPE_WINDOW)
@@ -99,13 +100,13 @@ layer_surface_configure (void                         *data,
   if (priv->configured_height != height) {
     priv->configured_height = height;
     changed = TRUE;
-    g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_LAYER_SURFACE_PROP_CONFIGURED_HEIGHT]);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_CONFIGURED_HEIGHT]);
   }
 
   if (priv->configured_width != width) {
     priv->configured_width = width;
     changed = TRUE;
-    g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_LAYER_SURFACE_PROP_CONFIGURED_WIDTH]);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_CONFIGURED_WIDTH]);
   }
 
   g_debug ("Configured '%s' (%p) (%dx%d)", priv->namespace, self, width, height);
@@ -203,61 +204,61 @@ phosh_layer_surface_set_property (GObject      *object,
   int width, height;
 
   switch (property_id) {
-  case PHOSH_LAYER_SURFACE_PROP_LAYER_SHELL:
+  case PROP_LAYER_SHELL:
     priv->layer_shell = g_value_get_pointer (value);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_WL_OUTPUT:
+  case PROP_WL_OUTPUT:
     priv->wl_output = g_value_get_pointer (value);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_ANCHOR:
+  case PROP_ANCHOR:
     priv->anchor = g_value_get_uint (value);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_LAYER:
+  case PROP_LAYER:
     phosh_layer_surface_set_layer (self, g_value_get_uint (value));
     break;
-  case PHOSH_LAYER_SURFACE_PROP_KBD_INTERACTIVITY:
+  case PROP_KBD_INTERACTIVITY:
     phosh_layer_surface_set_kbd_interactivity (self, g_value_get_boolean (value));
     break;
-  case PHOSH_LAYER_SURFACE_PROP_EXCLUSIVE_ZONE:
+  case PROP_EXCLUSIVE_ZONE:
     phosh_layer_surface_set_exclusive_zone (self, g_value_get_int (value));
     break;
-  case PHOSH_LAYER_SURFACE_PROP_MARGIN_TOP:
+  case PROP_MARGIN_TOP:
     phosh_layer_surface_set_margins (self,
                                      g_value_get_int (value),
                                      priv->margin_right,
                                      priv->margin_bottom,
                                      priv->margin_left);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_MARGIN_BOTTOM:
+  case PROP_MARGIN_BOTTOM:
     phosh_layer_surface_set_margins (self,
                                      priv->margin_top,
                                      priv->margin_right,
                                      g_value_get_int (value),
                                      priv->margin_left);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_MARGIN_LEFT:
+  case PROP_MARGIN_LEFT:
     phosh_layer_surface_set_margins (self,
                                      priv->margin_top,
                                      priv->margin_right,
                                      priv->margin_bottom,
                                      g_value_get_int (value));
     break;
-  case PHOSH_LAYER_SURFACE_PROP_MARGIN_RIGHT:
+  case PROP_MARGIN_RIGHT:
     phosh_layer_surface_set_margins (self,
                                      priv->margin_top,
                                      g_value_get_int (value),
                                      priv->margin_bottom,
                                      priv->margin_left);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_LAYER_WIDTH:
+  case PROP_LAYER_WIDTH:
     width = g_value_get_uint (value);
     phosh_layer_surface_set_size (self, width, priv->height);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_LAYER_HEIGHT:
+  case PROP_LAYER_HEIGHT:
     height = g_value_get_uint (value);
     phosh_layer_surface_set_size (self, priv->width, height);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_NAMESPACE:
+  case PROP_NAMESPACE:
     g_free (priv->namespace);
     priv->namespace = g_value_dup_string (value);
     break;
@@ -278,49 +279,49 @@ phosh_layer_surface_get_property (GObject    *object,
   PhoshLayerSurfacePrivate *priv = phosh_layer_surface_get_instance_private (self);
 
   switch (property_id) {
-  case PHOSH_LAYER_SURFACE_PROP_LAYER_SHELL:
+  case PROP_LAYER_SHELL:
     g_value_set_pointer (value, priv->layer_shell);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_WL_OUTPUT:
+  case PROP_WL_OUTPUT:
     g_value_set_pointer (value, priv->wl_output);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_ANCHOR:
+  case PROP_ANCHOR:
     g_value_set_uint (value, priv->anchor);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_LAYER:
+  case PROP_LAYER:
     g_value_set_uint (value, phosh_layer_surface_get_layer (self));
     break;
-  case PHOSH_LAYER_SURFACE_PROP_KBD_INTERACTIVITY:
+  case PROP_KBD_INTERACTIVITY:
     g_value_set_boolean (value, priv->kbd_interactivity);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_EXCLUSIVE_ZONE:
+  case PROP_EXCLUSIVE_ZONE:
     g_value_set_int (value, priv->exclusive_zone);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_MARGIN_TOP:
+  case PROP_MARGIN_TOP:
     g_value_set_int (value, priv->margin_top);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_MARGIN_BOTTOM:
+  case PROP_MARGIN_BOTTOM:
     g_value_set_int (value, priv->margin_bottom);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_MARGIN_LEFT:
+  case PROP_MARGIN_LEFT:
     g_value_set_int (value, priv->margin_left);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_MARGIN_RIGHT:
+  case PROP_MARGIN_RIGHT:
     g_value_set_int (value, priv->margin_right);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_LAYER_WIDTH:
+  case PROP_LAYER_WIDTH:
     g_value_set_uint (value, priv->width);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_LAYER_HEIGHT:
+  case PROP_LAYER_HEIGHT:
     g_value_set_uint (value, priv->height);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_CONFIGURED_WIDTH:
+  case PROP_CONFIGURED_WIDTH:
     g_value_set_uint (value, priv->configured_width);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_CONFIGURED_HEIGHT:
+  case PROP_CONFIGURED_HEIGHT:
     g_value_set_uint (value, priv->configured_height);
     break;
-  case PHOSH_LAYER_SURFACE_PROP_NAMESPACE:
+  case PROP_NAMESPACE:
     g_value_set_string (value, priv->namespace);
     break;
   default:
@@ -462,151 +463,144 @@ phosh_layer_surface_class_init (PhoshLayerSurfaceClass *klass)
 
   layer_surface_class->configured = phosh_layer_surface_configured_impl;
 
-  props[PHOSH_LAYER_SURFACE_PROP_LAYER_SHELL] =
-    g_param_spec_pointer (
-      "layer-shell",
-      "Wayland Layer Shell Global",
-      "The layer shell wayland global",
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshLayerSurface:layer-shell:
+   *
+   * The layer shell wayland global
+   */
+  props[PROP_LAYER_SHELL] =
+    g_param_spec_pointer ("layer-shell", "", "",
+                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshLayerSurface:wl-output:
+   *
+   * The wl_output associated with this surface
+   */
+  props[PROP_WL_OUTPUT] =
+    g_param_spec_pointer ("wl-output", "", "",
+                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshLayerSurface:anchor:
+   *
+   * The edges to anchor the surface to
+   */
+  props[PROP_ANCHOR] =
+    g_param_spec_uint ("anchor", "", "",
+                       0, G_MAXUINT, 0,
+                       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshLayerSurface:layer
+   *
+   * The layer the surface should be attached to
+   */
+  props[PROP_LAYER] =
+    g_param_spec_uint ("layer", "", "",
+                       0, G_MAXUINT, 0,
+                       G_PARAM_READWRITE |
+                       G_PARAM_CONSTRUCT |
+                       G_PARAM_STATIC_STRINGS |
+                       G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:kbd-interactivity
+   *
+   * Whether the surface interacts with the keyboard
+   */
+  props[PROP_KBD_INTERACTIVITY] =
+    g_param_spec_boolean ("kbd-interactivity", "", "",
+                          FALSE,
+                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:exclusive-zone
+   *
+   * The area that is not occluded with other surfaces
+   */
+  props[PROP_EXCLUSIVE_ZONE] =
+    g_param_spec_int ("exclusive-zone", "", "",
+                      -1, G_MAXINT, 0,
+                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:margin-left:
+   *
+   * "Distance away from the left anchor point
+   */
+  props[PROP_MARGIN_LEFT] =
+    g_param_spec_int ("margin-left", "", "",
+                      G_MININT, G_MAXINT, 0,
+                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:margin-right:
+   *
+   * Distance away from the right anchor point
+   */
+  props[PROP_MARGIN_RIGHT] =
+    g_param_spec_int ("margin-right", "", "",
+                      G_MININT, G_MAXINT, 0,
+                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:margin-top:
+   *
+   * Distance away from the top anchor point
+   */
+  props[PROP_MARGIN_TOP] =
+    g_param_spec_int ("margin-top", "", "",
+                      G_MININT, G_MAXINT, 0,
+                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:margin-bottom:
+   *
+   * Distance away from the bottom anchor point
+   */
+  props[PROP_MARGIN_BOTTOM] =
+    g_param_spec_int ("margin-bottom", "", "",
+                      G_MININT, G_MAXINT, 0,
+                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:layer-width:
+   *
+   * The width of the layer surface
+   */
+  props[PROP_LAYER_WIDTH] =
+    g_param_spec_uint ("width", "", "",
+                       0, G_MAXUINT, 0,
+                       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:layer-height:
+   *
+   * The height of the layer surface
+   */
+  props[PROP_LAYER_HEIGHT] =
+    g_param_spec_uint ("height", "", "",
+                       0, G_MAXUINT, 0,
+                       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:configured-width:
+   *
+   * The width of the layer surface set by the compositor
+   */
+  props[PROP_CONFIGURED_WIDTH] =
+    g_param_spec_uint ("configured-width", "", "",
+                       0, G_MAXUINT, 0,
+                       G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:configured-height:
+   *
+   * The height of the layer surface set by the compositor
+   */
+  props[PROP_CONFIGURED_HEIGHT] =
+    g_param_spec_uint ("configured-height", "", "",
+                       0, G_MAXUINT, 0,
+                       G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
+  /**
+   * PhoshLayerSurface:namespace:
+   *
+   * Namespace of the layer surface
+   */
+  props[PROP_NAMESPACE] =
+    g_param_spec_string ("namespace", "", "",
+                         "",
+                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
-  props[PHOSH_LAYER_SURFACE_PROP_WL_OUTPUT] =
-    g_param_spec_pointer (
-      "wl-output",
-      "Wayland Output",
-      "The wl_output associated with this surface",
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
-
-  props[PHOSH_LAYER_SURFACE_PROP_ANCHOR] =
-    g_param_spec_uint (
-      "anchor",
-      "Anchor edges",
-      "The edges to anchor the surface to",
-      0,
-      G_MAXUINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
-
-  props[PHOSH_LAYER_SURFACE_PROP_LAYER] =
-    g_param_spec_uint (
-      "layer",
-      "Layer",
-      "The layer the surface should be attached to",
-      0,
-      G_MAXUINT,
-      0,
-      G_PARAM_READWRITE |
-      G_PARAM_CONSTRUCT |
-      G_PARAM_STATIC_STRINGS |
-      G_PARAM_EXPLICIT_NOTIFY);
-
-  props[PHOSH_LAYER_SURFACE_PROP_KBD_INTERACTIVITY] =
-    g_param_spec_boolean (
-      "kbd-interactivity",
-      "Keyboard interactivity",
-      "Whether the surface interacts with the keyboard",
-      FALSE,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
-  props[PHOSH_LAYER_SURFACE_PROP_EXCLUSIVE_ZONE] =
-    g_param_spec_int (
-      "exclusive-zone",
-      "Exclusive Zone",
-      "Set area that is not occluded with other surfaces",
-      -1,
-      G_MAXINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
-  props[PHOSH_LAYER_SURFACE_PROP_MARGIN_LEFT] =
-    g_param_spec_int (
-      "margin-left",
-      "Left margin",
-      "Distance away from the left anchor point",
-      G_MININT,
-      G_MAXINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
-  props[PHOSH_LAYER_SURFACE_PROP_MARGIN_RIGHT] =
-    g_param_spec_int (
-      "margin-right",
-      "Right margin",
-      "Distance away from the right anchor point",
-      G_MININT,
-      G_MAXINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
-  props[PHOSH_LAYER_SURFACE_PROP_MARGIN_TOP] =
-    g_param_spec_int (
-      "margin-top",
-      "Top margin",
-      "Distance away from the top anchor point",
-      G_MININT,
-      G_MAXINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
-  props[PHOSH_LAYER_SURFACE_PROP_MARGIN_BOTTOM] =
-    g_param_spec_int (
-      "margin-bottom",
-      "Bottom margin",
-      "Distance away from the bottom anchor point",
-      G_MININT,
-      G_MAXINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
-  props[PHOSH_LAYER_SURFACE_PROP_LAYER_WIDTH] =
-    g_param_spec_uint (
-      "width",
-      "Width",
-      "The width of the layer surface",
-      0,
-      G_MAXUINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
-  props[PHOSH_LAYER_SURFACE_PROP_LAYER_HEIGHT] =
-    g_param_spec_uint (
-      "height",
-      "Height",
-      "The height of the layer surface",
-      0,
-      G_MAXUINT,
-      0,
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
-
-  props[PHOSH_LAYER_SURFACE_PROP_CONFIGURED_WIDTH] =
-    g_param_spec_uint (
-      "configured-width",
-      "Configured width",
-      "The width of the layer surface set by the compositor",
-      0,
-      G_MAXUINT,
-      0,
-      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
-  props[PHOSH_LAYER_SURFACE_PROP_CONFIGURED_HEIGHT] =
-    g_param_spec_uint (
-      "configured-height",
-      "Configured height",
-      "The height of the layer surface set by the compositor",
-      0,
-      G_MAXUINT,
-      0,
-      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-
-  props[PHOSH_LAYER_SURFACE_PROP_NAMESPACE] =
-    g_param_spec_string (
-      "namespace",
-      "Namespace",
-      "Namespace of the layer surface",
-      "",
-      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
-
-  g_object_class_install_properties (object_class, PHOSH_LAYER_SURFACE_PROP_LAST_PROP, props);
+  g_object_class_install_properties (object_class, LAST_PROP, props);
 
   /**
    * PhoshLayerSurface::configured
@@ -644,7 +638,6 @@ phosh_layer_surface_new (gpointer layer_shell,
                        NULL);
 }
 
-
 /**
  * phosh_layer_surface_get_surface:
  * @self: The #PhoshLayerSurface
@@ -662,7 +655,6 @@ phosh_layer_surface_get_layer_surface (PhoshLayerSurface *self)
   return priv->layer_surface;
 }
 
-
 /**
  * phosh_layer_surface_get_wl_surface:
  * @self: The #PhoshLayerSurface
@@ -679,7 +671,6 @@ phosh_layer_surface_get_wl_surface (PhoshLayerSurface *self)
   priv = phosh_layer_surface_get_instance_private (self);
   return priv->wl_surface;
 }
-
 
 /**
  * phosh_layer_surface_set_size:
@@ -710,15 +701,14 @@ phosh_layer_surface_set_size (PhoshLayerSurface *self, int width, int height)
   if (height != -1)
     priv->height = height;
 
-  if (gtk_widget_get_mapped (GTK_WIDGET (self))) {
+  if (gtk_widget_get_mapped (GTK_WIDGET (self)))
     zwlr_layer_surface_v1_set_size (priv->layer_surface, priv->width, priv->height);
-  }
 
   if (priv->height != old_height)
-    g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_LAYER_SURFACE_PROP_LAYER_HEIGHT]);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_LAYER_HEIGHT]);
 
   if (priv->width != old_width)
-    g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_LAYER_SURFACE_PROP_LAYER_WIDTH]);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_LAYER_WIDTH]);
 }
 
 
@@ -758,15 +748,14 @@ phosh_layer_surface_set_margins (PhoshLayerSurface *self, int top, int right, in
     zwlr_layer_surface_v1_set_margin (priv->layer_surface, top, right, bottom, left);
 
   if (old_top != top)
-    g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_LAYER_SURFACE_PROP_MARGIN_TOP]);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_MARGIN_TOP]);
   if (old_bottom != bottom)
-    g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_LAYER_SURFACE_PROP_MARGIN_BOTTOM]);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_MARGIN_BOTTOM]);
   if (old_left != left)
-    g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_LAYER_SURFACE_PROP_MARGIN_LEFT]);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_MARGIN_LEFT]);
   if (old_right != right)
-    g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_LAYER_SURFACE_PROP_MARGIN_RIGHT]);
+    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_MARGIN_RIGHT]);
 }
-
 
 /**
  * phosh_layer_surface_set_exclusive_zone:
@@ -794,9 +783,8 @@ phosh_layer_surface_set_exclusive_zone (PhoshLayerSurface *self, int zone)
   if (priv->layer_surface)
     zwlr_layer_surface_v1_set_exclusive_zone (priv->layer_surface, zone);
 
-  g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_LAYER_SURFACE_PROP_EXCLUSIVE_ZONE]);
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_EXCLUSIVE_ZONE]);
 }
-
 
 /**
  * phosh_layer_surface_set_keyboard_interactivity:
@@ -821,7 +809,7 @@ phosh_layer_surface_set_kbd_interactivity (PhoshLayerSurface *self, gboolean int
   if (priv->layer_surface)
     zwlr_layer_surface_v1_set_keyboard_interactivity (priv->layer_surface, interactivity);
 
-  g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_LAYER_SURFACE_PROP_KBD_INTERACTIVITY]);
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_KBD_INTERACTIVITY]);
 }
 
 /**
@@ -866,7 +854,7 @@ phosh_layer_surface_set_layer (PhoshLayerSurface *self, guint32 layer)
   if (priv->layer_surface)
     zwlr_layer_surface_v1_set_layer (priv->layer_surface, layer);
 
-  g_object_notify_by_pspec (G_OBJECT (self), props[PHOSH_LAYER_SURFACE_PROP_LAYER]);
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_LAYER]);
 }
 
 /**
@@ -908,7 +896,11 @@ phosh_layer_surface_wl_surface_commit (PhoshLayerSurface *self)
 
 
 void
-phosh_layer_surface_get_margins (PhoshLayerSurface *self, int *top, int *right, int *bottom, int *left)
+phosh_layer_surface_get_margins (PhoshLayerSurface *self,
+                                 int               *top,
+                                 int               *right,
+                                 int               *bottom,
+                                 int               *left)
 {
   PhoshLayerSurfacePrivate *priv;
 
