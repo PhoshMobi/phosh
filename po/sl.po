@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-21 20:00+0000\n"
-"PO-Revision-Date: 2026-05-24 17:01+0200\n"
+"POT-Creation-Date: 2026-06-02 06:50+0000\n"
+"PO-Revision-Date: 2026-06-02 11:34+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -171,7 +171,11 @@ msgstr "Dodaj v mapo"
 msgid "Create new folder"
 msgstr "Ustvari novo mapo"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "Aplikacije ni možno odstraniti"
+
+#: src/app-grid-button.c:701 src/app-grid-button.c:755
 msgid "Application"
 msgstr "Program"
 
@@ -538,7 +542,7 @@ msgstr[1] "Skoraj %d leti"
 msgstr[2] "Skoraj %d leta"
 msgstr[3] "Skoraj %d let"
 
-#: src/overview.c:221
+#: src/overview.c:228
 msgid "Application failed to start"
 msgstr "Aplikacija se ni zagnala"
 
