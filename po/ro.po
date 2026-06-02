@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-21 20:00+0000\n"
-"PO-Revision-Date: 2026-05-22 00:38+0200\n"
+"POT-Creation-Date: 2026-06-02 06:50+0000\n"
+"PO-Revision-Date: 2026-06-02 10:25+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -173,7 +173,11 @@ msgstr "Adaugă în dosar"
 msgid "Create new folder"
 msgstr "Creează un dosar nou"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "Nu se poate dezinstala aplicația"
+
+#: src/app-grid-button.c:701 src/app-grid-button.c:755
 msgid "Application"
 msgstr "Aplicație"
 
@@ -530,7 +534,7 @@ msgstr[0] "Aproape %d an"
 msgstr[1] "Aproape %d ani"
 msgstr[2] "Aproape %d ani"
 
-#: src/overview.c:221
+#: src/overview.c:228
 msgid "Application failed to start"
 msgstr "Aplicația nu s-a deschis"
 
