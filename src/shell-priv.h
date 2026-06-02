@@ -138,5 +138,8 @@ void                 phosh_shell_show_osd (PhoshShell *self,
                                            const char *label,
                                            double      level,
                                            double      max_level);
+void                 phosh_shell_show_notification_for_app (PhoshShell *self,
+                                                            GAppInfo   *info,
+                                                            const char *body);
 
 G_END_DECLS

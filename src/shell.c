@@ -2837,4 +2837,27 @@ phosh_shell_show_osd (PhoshShell *self,
   }
 }
 
+
+void
+phosh_shell_show_notification_for_app (PhoshShell *self, GAppInfo*info, const char *body)
+{
+  PhoshNotifyManager *nm = phosh_notify_manager_get_default ();
+  g_autoptr (PhoshNotification) noti = NULL;
+  const char *name;
+  GIcon *icon;
+
+  g_return_if_fail (PHOSH_IS_SHELL (self));
+  g_return_if_fail (G_IS_APP_INFO (info) && body);
+
+  name = g_app_info_get_name (G_APP_INFO (info));
+  /* If app doesn't have an icon the notification server adds one */
+  icon = g_app_info_get_icon (info);
+  noti = g_object_new (PHOSH_TYPE_NOTIFICATION,
+                       "summary", name,
+                       "body", body,
+                       "image", icon,
+                       NULL);
+  phosh_notify_manager_add_shell_notification (nm, noti, 0, 5000);
+}
+
 /* }}} */

@@ -385,6 +385,7 @@ uninstall_activated (GSimpleAction *action,
                      GVariant      *parameter,
                      gpointer       data)
 {
+  PhoshShell *shell = phosh_shell_get_default ();
   g_autofree char *appstream_id = NULL;
   PhoshAppGridButton *self = PHOSH_APP_GRID_BUTTON (data);
   PhoshAppGridButtonPrivate *priv = phosh_app_grid_button_get_instance_private (self);
@@ -392,7 +393,13 @@ uninstall_activated (GSimpleAction *action,
   g_return_if_fail (app_id);
 
   appstream_id = phosh_metainfo_get_data_id (phosh_metainfo_cache_get_default (), app_id);
-  g_return_if_fail (appstream_id);
+  if (!appstream_id) {
+    phosh_shell_show_notification_for_app (shell,
+                                           priv->info,
+                                           _("Can't uninstall application"));
+    g_warning ("Failed to get appstream-id for '%s'", app_id);
+    return;
+  }
 
   spawn_gnome_software ("--uninstall", appstream_id);
 }

@@ -167,3 +167,8 @@ phosh_shell_get_debug_flags (void)
 {
   return 0;
 }
+
+void
+phosh_shell_show_notification_for_app (PhoshShell *self, GAppInfo*info, const char *body)
+{
+}
