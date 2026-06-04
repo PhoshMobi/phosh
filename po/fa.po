@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-21 20:00+0000\n"
-"PO-Revision-Date: 2026-05-30 01:43+0330\n"
+"POT-Creation-Date: 2026-06-02 16:27+0000\n"
+"PO-Revision-Date: 2026-06-04 19:45+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
@@ -173,7 +173,11 @@ msgstr "افزودن به شاخه"
 msgid "Create new folder"
 msgstr "ایجاد شاخهٔ جدید"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "نمی‌توان برنامه را حذف کرد"
+
+#: src/app-grid-button.c:701 src/app-grid-button.c:755
 msgid "Application"
 msgstr "برنامه"
 
@@ -520,7 +524,7 @@ msgid_plural "Almost %dy"
 msgstr[0] "تقریباً %Idسا"
 msgstr[1] "تقریباً %Idسا"
 
-#: src/overview.c:221
+#: src/overview.c:228
 msgid "Application failed to start"
 msgstr "شکست در آغاز کاره"
 
