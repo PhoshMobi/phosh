@@ -1,0 +1,8 @@
+[Plugin]
+# Translators: This is an internal id, no need to translate it
+Id=@name@
+Name=Load Meter Status Icon
+Types=status-icon;
+Comment=A CPU load meter status icon.
+Plugin=@plugins_dir@/libphosh-plugin-@name@.so
+Icon=mobi.phosh.Shell.Plugins.Loadmeter
