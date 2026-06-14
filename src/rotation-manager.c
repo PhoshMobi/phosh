@@ -62,6 +62,20 @@ typedef struct _PhoshRotationManager {
 G_DEFINE_TYPE (PhoshRotationManager, phosh_rotation_manager, G_TYPE_OBJECT);
 
 
+static gboolean
+is_phone (PhoshRotationManager *self)
+{
+  PhoshShell *shell = phosh_shell_get_default ();
+  PhoshModeManager *mode_manager = phosh_shell_get_mode_manager (shell);
+
+  if (phosh_mode_manager_get_device_type (mode_manager) == PHOSH_MODE_DEVICE_TYPE_PHONE ||
+      phosh_mode_manager_get_device_type (mode_manager) == PHOSH_MODE_DEVICE_TYPE_UNKNOWN)
+    return TRUE;
+
+  return FALSE;
+}
+
+
 static void
 apply_transform (PhoshRotationManager *self, PhoshMonitorTransform transform)
 {
@@ -100,9 +114,10 @@ match_orientation (PhoshRotationManager *self)
   const char *orient;
   PhoshMonitorTransform transform;
 
-  if (self->orientation_locked || !self->claimed ||
-      phosh_lockscreen_manager_get_locked (self->lockscreen_manager) ||
-      self->mode == PHOSH_ROTATION_MANAGER_MODE_OFF)
+  if (self->orientation_locked || !self->claimed || self->mode == PHOSH_ROTATION_MANAGER_MODE_OFF)
+    return FALSE;
+
+  if (phosh_lockscreen_manager_get_locked (self->lockscreen_manager) && is_phone (self))
     return FALSE;
 
   orient = phosh_dbus_sensor_proxy_get_accelerometer_orientation (
@@ -238,18 +253,13 @@ on_has_accelerometer_changed (PhoshRotationManager    *self,
 static void
 fixup_lockscreen_orientation (PhoshRotationManager *self, gboolean lock)
 {
-  PhoshShell *shell = phosh_shell_get_default ();
-  PhoshModeManager *mode_manager = phosh_shell_get_mode_manager(shell);
   PhoshMonitorTransform transform;
-
-  g_return_if_fail (PHOSH_IS_MODE_MANAGER (mode_manager));
 
   if (!self->monitor)
     return;
 
   /* Only bother on phones */
-  if (phosh_mode_manager_get_device_type(mode_manager) != PHOSH_MODE_DEVICE_TYPE_PHONE &&
-      phosh_mode_manager_get_device_type(mode_manager) != PHOSH_MODE_DEVICE_TYPE_UNKNOWN)
+  if (!is_phone (self))
     return;
 
   /* Don't mess with transforms on external screens either */
