@@ -27,7 +27,7 @@
  * the phone shell itself.
  *
  * It allows ot use an action group to handle the notification's
- * actions.  This is an alternative to listening to the `actioned`
+ * actions. This is an alternative to listening to the `actioned`
  * signal and parsing the action-id manually.
  *
  * Since: 0.56.0

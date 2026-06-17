@@ -406,6 +406,25 @@ uninstall_activated (GSimpleAction *action,
 
 
 static void
+undo_hide_activated (GSimpleAction *action, GVariant *parameter, gpointer data)
+{
+  PhoshShellNotification *noti = PHOSH_SHELL_NOTIFICATION (data);
+  char *filename = g_object_get_data (G_OBJECT (noti), "filename");
+
+  g_return_if_fail (filename);
+  g_debug ("Undoing hide operation for %s", filename);
+
+  phosh_util_unhide_app (filename);
+}
+
+
+static GActionEntry hide_noti_entries[] =
+{
+  { .name = "noti.undo", .activate = undo_hide_activated },
+};
+
+
+static void
 hide_activated (GSimpleAction *action, GVariant *parameter, gpointer data)
 {
   PhoshAppGridButton *self = PHOSH_APP_GRID_BUTTON (data);
@@ -415,10 +434,23 @@ hide_activated (GSimpleAction *action, GVariant *parameter, gpointer data)
 
   filename = phosh_util_hide_app (priv->info);
   if (filename) {
-    phosh_shell_show_notification_for_app (shell,
-                                           priv->info,
-                                           _("Application is now permanently hidden and disabled"));
-    /* TODO: add undo button to unhide */
+    g_autoptr (PhoshShellNotification) noti = NULL;
+    g_autoptr (GSimpleActionGroup) action_group = g_simple_action_group_new ();
+    char *actions[] = { "noti.undo", _("Undo"), NULL };
+    const char *msg = _("Application is now permanently hidden and disabled");
+
+    noti = phosh_shell_create_notification_for_app (shell, priv->info, msg);
+    g_action_map_add_action_entries (G_ACTION_MAP (action_group),
+                                     hide_noti_entries,
+                                     G_N_ELEMENTS (hide_noti_entries),
+                                     noti);
+    phosh_shell_notification_set_actions (noti, actions, G_ACTION_GROUP (action_group));
+    g_object_set_data_full (G_OBJECT (noti),
+                            "filename",
+                            g_steal_pointer (&filename),
+                            (GDestroyNotify)g_free);
+    phosh_shell_show_notification (shell, noti, -1);
+
   } else {
     phosh_shell_show_notification_for_app (shell,
                                            priv->info,
