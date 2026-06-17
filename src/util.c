@@ -1203,3 +1203,62 @@ phosh_util_hide_app (GAppInfo *info)
 
   return g_steal_pointer (&outfilename);
 }
+
+/**
+ * phosh_util_unhide_app:
+ * @filename: The desktop file name of the app to show again.
+ *
+ * Shows a currently hidden app on the app-grid again.
+ *
+ * Since: 0.56.0
+ */
+gboolean
+phosh_util_unhide_app (const char *filename)
+{
+  g_autoptr (GKeyFile) keyfile = g_key_file_new ();
+  g_autoptr (GError) err = NULL;
+  g_autofree char *appsdir = NULL, *basename = NULL, *outfilename = NULL;
+  gboolean success, inplace = FALSE;
+
+  /*
+   * Make sure to keep this implementation in sync with hide above and the
+   * implementation in Phosh Mobile Settings.
+   */
+
+  if (!g_key_file_load_from_file (keyfile, filename, G_KEY_FILE_NONE, &err)) {
+    g_warning ("Failed to load keyfile %s: %s", filename, err->message);
+    return FALSE;
+  }
+
+  if (!g_key_file_has_key (keyfile, "Desktop Entry", "X-Phosh-Hidden", &err)) {
+    g_warning ("Not a override file: %s: %s", filename, err->message);
+    return FALSE;
+  }
+
+  inplace = g_key_file_get_integer (keyfile, "Desktop Entry", "X-Phosh-Hidden", &err);
+  if (err) {
+    g_warning ("Not a override file: %s: %s", filename, err->message);
+    return FALSE;
+  }
+
+  /* Simple case: just remove the desktop file */
+  if (!inplace) {
+    if (g_unlink (filename) < 0) {
+      g_warning ("Failed to unlink %s: %s", filename, g_strerror (errno));
+      return FALSE;
+    }
+    return TRUE;
+  }
+
+  /* Best effort, we can't do much if the keys won't remove */
+  g_key_file_remove_key (keyfile, "Desktop Entry", "X-Phosh-Hidden", NULL);
+  g_key_file_remove_key (keyfile, "Desktop Entry", "Hidden", NULL);
+
+  success = g_key_file_save_to_file (keyfile, filename, &err);
+  if (!success) {
+    g_warning ("Failed to hide %s: %s", outfilename, err->message);
+    return FALSE;
+  }
+
+  return TRUE;
+}
