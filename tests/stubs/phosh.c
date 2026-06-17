@@ -172,3 +172,14 @@ void
 phosh_shell_show_notification_for_app (PhoshShell *self, GAppInfo*info, const char *body)
 {
 }
+
+PhoshShellNotification *
+phosh_shell_create_notification_for_app (PhoshShell *self, GAppInfo *info, const char *body)
+{
+  return NULL;
+}
+
+void
+phosh_shell_show_notification (PhoshShell *self, PhoshShellNotification *noti, int timeout)
+{
+}

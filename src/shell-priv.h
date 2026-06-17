@@ -31,6 +31,7 @@
 #include "toplevel-manager.h"
 #include "torch-manager.h"
 #include "vpn-manager.h"
+#include "notifications/shell-notification.h"
 
 #include <gtk/gtk.h>
 
@@ -141,5 +142,11 @@ void                 phosh_shell_show_osd (PhoshShell *self,
 void                 phosh_shell_show_notification_for_app (PhoshShell *self,
                                                             GAppInfo   *info,
                                                             const char *body);
+PhoshShellNotification *phosh_shell_create_notification_for_app (PhoshShell *self,
+                                                                 GAppInfo   *info,
+                                                                 const char *body);
+void                  phosh_shell_show_notification (PhoshShell             *self,
+                                                     PhoshShellNotification *noti,
+                                                     int                     timeout);
 
 G_END_DECLS
