@@ -1144,3 +1144,62 @@ phosh_util_get_platform_data (GAppInfo *info)
 
   return g_variant_builder_end (&builder);
 }
+
+/**
+ * phosh_util_hide_app:
+ * @info: The app-info of the app to hide
+ *
+ * Hide an application from Phosh's app-grid and unregister it from
+ * mime types, etc.
+ *
+ * Since: 0.56.0
+ */
+char *
+phosh_util_hide_app (GAppInfo *info)
+{
+  g_autoptr (GKeyFile) keyfile = g_key_file_new ();
+  g_autoptr (GDesktopAppInfo) hidden = NULL;
+  g_autoptr (GError) err = NULL;
+  g_autofree char *appsdir = NULL, *basename = NULL, *outfilename = NULL;
+  const char *infilename, *datadir;
+  gboolean success, inplace = FALSE;
+
+  g_return_val_if_fail (G_IS_DESKTOP_APP_INFO (info), NULL);
+
+  /*
+   * Make sure to keep this implementation in sync with
+   * phosh_util_unhide_app. Use `X-Phosh-Hidden` when adding /
+   * removing new hiding features.
+   */
+
+  infilename = g_desktop_app_info_get_filename (G_DESKTOP_APP_INFO (info));
+  g_return_val_if_fail (infilename, NULL);
+
+  if (!g_key_file_load_from_file (keyfile, infilename, G_KEY_FILE_NONE, &err)) {
+    g_warning ("Failed to load keyfile %s: %s", infilename, err->message);
+    return NULL;
+  }
+
+  datadir = g_get_user_data_dir ();
+  g_assert (datadir);
+
+  basename = g_path_get_basename (infilename);
+  outfilename = g_build_filename (datadir, "applications", basename, NULL);
+
+  if (g_strcmp0 (outfilename, infilename) == 0) {
+    g_debug ("Modifying desktop file in place: %s", outfilename);
+    inplace = TRUE;
+  }
+
+  g_key_file_set_boolean (keyfile, "Desktop Entry", "Hidden", TRUE);
+  /* So we can find entries we modified */
+  g_key_file_set_integer (keyfile, "Desktop Entry", "X-Phosh-Hidden", inplace ? 1 : 0);
+
+  success = g_key_file_save_to_file (keyfile, outfilename, &err);
+  if (!success) {
+    g_warning ("Failed to hide %s: %s", outfilename, err->message);
+    return NULL;
+  }
+
+  return g_steal_pointer (&outfilename);
+}

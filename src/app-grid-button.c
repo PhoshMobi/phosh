@@ -404,6 +404,29 @@ uninstall_activated (GSimpleAction *action,
   spawn_gnome_software ("--uninstall", appstream_id);
 }
 
+
+static void
+hide_activated (GSimpleAction *action, GVariant *parameter, gpointer data)
+{
+  PhoshAppGridButton *self = PHOSH_APP_GRID_BUTTON (data);
+  PhoshShell *shell = phosh_shell_get_default ();
+  PhoshAppGridButtonPrivate *priv = phosh_app_grid_button_get_instance_private (self);
+  g_autofree char *filename = NULL;
+
+  filename = phosh_util_hide_app (priv->info);
+  if (filename) {
+    phosh_shell_show_notification_for_app (shell,
+                                           priv->info,
+                                           _("Application is now permanently hidden and disabled"));
+    /* TODO: add undo button to unhide */
+  } else {
+    phosh_shell_show_notification_for_app (shell,
+                                           priv->info,
+                                           _("Failed to hide application"));
+  }
+}
+
+
 static void
 add_to_folder_children (char *folder_path)
 {
@@ -504,6 +527,7 @@ static GActionEntry entries[] =
   { .name = "favorite-add", .activate = favorite_add_activated },
   { .name = "view-details", .activate = view_details_activated },
   { .name = "uninstall", .activate = uninstall_activated },
+  { .name = "hide", .activate = hide_activated },
   { .name = "folder-add", .activate = folder_add_activated, .parameter_type = "s" },
   { .name = "folder-new", .activate = folder_new_activated },
   { .name = "folder-remove", .activate = folder_remove_activated },
@@ -546,9 +570,15 @@ phosh_app_grid_button_init (PhoshAppGridButton *self)
   act = g_action_map_lookup_action (priv->action_map, "uninstall");
   g_simple_action_set_enabled (G_SIMPLE_ACTION (act), FALSE);
 
+  act = g_action_map_lookup_action (priv->action_map, "hide");
+  g_simple_action_set_enabled (G_SIMPLE_ACTION (act), FALSE);
+
   if (have_gnome_software) {
     act = g_action_map_lookup_action (priv->action_map, "uninstall");
     g_object_bind_property (metainfo_cache, "ready", act, "enabled", G_BINDING_SYNC_CREATE);
+  } else {
+    act = g_action_map_lookup_action (priv->action_map, "hide");
+    g_simple_action_set_enabled (G_SIMPLE_ACTION (act), TRUE);
   }
 
   g_type_ensure (PHOSH_TYPE_CLAMP);

@@ -47,6 +47,11 @@
         <attribute name="action">app-btn.uninstall</attribute>
         <attribute name="hidden-when">action-disabled</attribute>
       </item>
+      <item>
+        <attribute name="label" translatable="yes">Hide Application</attribute>
+        <attribute name="action">app-btn.hide</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
     </section>
     <section id="folders"/>
     <item>
