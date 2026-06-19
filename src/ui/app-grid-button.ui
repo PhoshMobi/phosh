@@ -53,11 +53,12 @@
         <attribute name="hidden-when">action-disabled</attribute>
       </item>
     </section>
-    <section id="folders"/>
-    <item>
-      <attribute name="label" translatable="yes">_Remove from Folder</attribute>
-      <attribute name="action">app-btn.folder-remove</attribute>
-      <attribute name="hidden-when">action-disabled</attribute>
-    </item>
+    <section id="folders">
+      <item>
+        <attribute name="label" translatable="yes">_Remove from Folder</attribute>
+        <attribute name="action">app-btn.folder-remove</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+    </section>
   </menu>
 </interface>
