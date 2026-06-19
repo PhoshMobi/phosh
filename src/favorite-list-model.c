@@ -106,7 +106,7 @@ list_iface_init (GListModelInterface *iface)
 
 
 static void
-favorites_changed (GSettings *settings, const char *key, PhoshFavoriteListModel *self)
+on_favorites_changed (GSettings *settings, const char *key, PhoshFavoriteListModel *self)
 {
   PhoshFavoriteListModelPrivate *priv = phosh_favorite_list_model_get_instance_private (self);
   g_autoptr (GStrvBuilder) builder = g_strv_builder_new ();
@@ -149,8 +149,8 @@ phosh_favorite_list_model_init (PhoshFavoriteListModel *self)
 
   priv->settings = g_settings_new ("sm.puri.phosh");
   g_signal_connect (priv->settings, "changed::" FAVORITES_KEY,
-                    G_CALLBACK (favorites_changed), self);
-  favorites_changed (priv->settings, FAVORITES_KEY, self);
+                    G_CALLBACK (on_favorites_changed), self);
+  on_favorites_changed (priv->settings, FAVORITES_KEY, self);
 }
 
 
@@ -233,7 +233,7 @@ phosh_favorite_list_model_add_app (PhoshFavoriteListModel *self, GAppInfo *app)
   g_strv_builder_add (builder, id);
   new_favorites = g_strv_builder_end (builder);
 
-  /* Indirectly calls favorites_changed which updates the model */
+  /* Indirectly calls on_favorites_changed which updates the model */
   g_settings_set_strv (priv->settings, FAVORITES_KEY, (const char *const *) new_favorites);
 }
 
@@ -271,6 +271,6 @@ phosh_favorite_list_model_remove_app (PhoshFavoriteListModel *self, GAppInfo *ap
     return;
   }
 
-  /* Indirectly calls favorites_changed which updates the model */
+  /* Indirectly calls on_favorites_changed which updates the model */
   g_settings_set_strv (priv->settings, FAVORITES_KEY, (const char *const *) new_favorites);
 }
