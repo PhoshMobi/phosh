@@ -451,6 +451,12 @@ phosh-app-grid-folder-button button:focus {
   margin: 6px 16px;
 }
 
+/* app-grid button popover */
+phosh-home popover modelbutton {
+  padding: 3px;
+  font-size: 110%;
+}
+
 /*
  * Lock screen
  */
