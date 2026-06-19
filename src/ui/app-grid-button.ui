@@ -60,5 +60,12 @@
         <attribute name="hidden-when">action-disabled</attribute>
       </item>
     </section>
+    <section id="manage">
+      <item>
+        <attribute name="label" translatable="yes">Manage Hidden Apps</attribute>
+        <attribute name="action">app-btn.manage-hidden-apps</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+    </section>
   </menu>
 </interface>
