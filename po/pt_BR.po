@@ -6,15 +6,16 @@
 # Rafael Fontenelle <rafaelff@gnome.org>, 2020-2025.
 # Álvaro Burns <>, 2025-2026.
 # Juliano de Souza Camargo <julianosc@pm.me>, 2024-2026.
+# Luiggi R. Cardoso <luiggicardoso@outlook.com>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-23 13:53+0000\n"
-"PO-Revision-Date: 2026-03-29 18:51-0300\n"
-"Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
-"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao/>\n"
+"POT-Creation-Date: 2026-06-02 16:27+0000\n"
+"PO-Revision-Date: 2026-06-06 23:17-0300\n"
+"Last-Translator: Luiggi R. Cardoso <luiggicardoso@outlook.com>\n"
+"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,6 +125,22 @@ msgstr "Configurações rápidas do Pomodoro"
 msgid "Simple Pomodoro Timer"
 msgstr "Temporizador simples Pomodoro"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "Definições rápidas de escala"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "Configuração rápida para ajustar a escala da tela."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Definições rápidas do Syncthing"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Configuração rápida para o Syncthing."
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -141,6 +158,14 @@ msgstr "Próximos eventos"
 msgid "Show upcoming calendar events"
 msgstr "Mostra próximos eventos do calendário"
 
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Definição rápida do ponto de acesso de Wifi"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Ativar/Desativar o ponto de acesso Wi-Fi"
+
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
 msgstr "Adicionar à pasta"
@@ -149,15 +174,24 @@ msgstr "Adicionar à pasta"
 msgid "Create new folder"
 msgstr "Criar uma nova pasta"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "Não é possível desinstalar o aplicativo"
+
+#: src/app-grid-button.c:701 src/app-grid-button.c:755
 msgid "Application"
 msgstr "Aplicativo"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "Pasta %s está vazia"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "Mostrar todos os aplicativos"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Mostrar apenas os aplicativos para dispositivos móveis"
 
@@ -491,7 +525,7 @@ msgid_plural "Almost %dy"
 msgstr[0] "Quase %dy"
 msgstr[1] "Quase %dy"
 
-#: src/overview.c:221
+#: src/overview.c:228
 msgid "Application failed to start"
 msgstr "A aplicação falhou ao iniciar"
 
@@ -674,7 +708,7 @@ msgstr "Voltar"
 msgid "Slide up to unlock"
 msgstr "Deslize para desbloquear"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:334
 msgid "Unlock"
 msgstr "Desbloquear"
 
@@ -1089,32 +1123,36 @@ msgstr "Luz noturna ligada"
 msgid "Night Light Off"
 msgstr "Luz noturna desligada"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "Início do Pomodoro"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "Concentre-se em sua tarefa por %d minutos"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Concentre-se em sua tarefa por %d minuto"
+msgstr[1] "Concentre-se em sua tarefa por %d minutos"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "Faça um intervalo"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "Você tem %d minutos até próximo Pomodoro"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "Você tem %d minuto até próximo Pomodoro"
+msgstr[1] "Você tem %d minutos até próximo Pomodoro"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "Temporizador Pomodoro"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
 msgstr "Pomodoro desligado"
@@ -1232,8 +1270,10 @@ msgstr "Evento sem título"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "Nenhum evento para os próximos %d dias"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "Nenhum evento para o próximo %d dia"
+msgstr[1] "Nenhum evento para os próximos %d dias"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
 msgid "No upcoming events"
@@ -1266,6 +1306,32 @@ msgstr "Escalas do monitor"
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr "Sem pastas"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+msgid "Syncthing is disabled"
+msgstr "Syncthing está desativado"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr "Ativar"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Abrir interface do Syncthing"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Não foi possível conectar ao Syncbus"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
 msgid "Wi-Fi Hotspot"
@@ -1300,9 +1366,6 @@ msgstr "Ponto de acesso desligado"
 
 #~ msgid "Scan"
 #~ msgstr "Varrer"
-
-#~ msgid "Unknown application"
-#~ msgstr "Aplicativo desconhecido"
 
 #~ msgctxt "timestamp-suffix-seconds"
 #~ msgid "s"
