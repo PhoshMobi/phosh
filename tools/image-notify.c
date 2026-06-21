@@ -61,7 +61,7 @@ main (int argc, char **argv)
 {
   GApplication *app;
 
-  app = g_application_new ("sm.puri.phosh.NotifyTest", G_APPLICATION_DEFAULT_FLAGS);
+  app = g_application_new ("mobi.phosh.Shell.NotifyTest", G_APPLICATION_DEFAULT_FLAGS);
   g_action_map_add_action_entries (G_ACTION_MAP (app), entries, 1, app);
 
   g_application_hold (app);
