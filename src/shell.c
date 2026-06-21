@@ -1477,7 +1477,7 @@ phosh_shell_init (PhoshShell *self)
   priv->style_manager = phosh_style_manager_new ();
   priv->shell_state = PHOSH_STATE_SETTINGS;
   priv->action_map = g_simple_action_group_new ();
-  priv->settings = g_settings_new ("sm.puri.phosh");
+  priv->settings = g_settings_new ("mobi.phosh.shell");
 
   /* We bind this early since a wl_display_roundtrip () would make us miss
      existing toplevels */

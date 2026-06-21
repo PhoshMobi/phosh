@@ -13,7 +13,7 @@
 #include <evince-document.h>
 #include <evince-view.h>
 
-#define TICKET_BOX_SCHEMA_ID "sm.puri.phosh.plugins.ticket-box"
+#define TICKET_BOX_SCHEMA_ID "mobi.phosh.plugins.ticket-box"
 #define TICKET_BOX_FOLDER_KEY "folder"
 
 /**

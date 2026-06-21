@@ -20,7 +20,7 @@ test_phosh_notify_feedback_screen_wakeup (void)
   g_autoptr (GDateTime) now = g_date_time_new_now_local ();
   g_autoptr (PhoshNotificationList) list = phosh_notification_list_new ();
   g_autoptr (PhoshNotifyFeedback) notify_feedback = phosh_notify_feedback_new (list);
-  g_autoptr (GSettings) settings = g_settings_new ("sm.puri.phosh.notifications");
+  g_autoptr (GSettings) settings = g_settings_new ("mobi.phosh.shell.notifications");
 
   info = G_APP_INFO (g_desktop_app_info_new ("demo.app.Second.desktop"));
 

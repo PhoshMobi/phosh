@@ -138,7 +138,7 @@ test_phosh_folder_info_refilter (void)
   g_settings_set_strv (settings, "apps", app_ids);
   g_object_unref (settings);
 
-  settings = g_settings_new ("sm.puri.phosh");
+  settings = g_settings_new ("mobi.phosh.shell");
   folder_info = phosh_folder_info_new_from_folder_path ("foo");
   apps = phosh_folder_info_get_app_infos (folder_info);
 
@@ -178,7 +178,7 @@ test_phosh_folder_info_add_app_info (void)
   g_autoptr (GAppInfo) first, second, second_got;
 
   /* Clear all favorites */
-  settings = g_settings_new ("sm.puri.phosh");
+  settings = g_settings_new ("mobi.phosh.shell");
   g_settings_set_strv (settings, "favorites", NULL);
   g_assert_finalize_object (settings);
 

@@ -15,7 +15,7 @@
 
 #include <gio/gdesktopappinfo.h>
 
-#define LAUNCHER_BOX_SCHEMA_ID "sm.puri.phosh.plugins.launcher-box"
+#define LAUNCHER_BOX_SCHEMA_ID "mobi.phosh.plugins.launcher-box"
 #define LAUNCHER_BOX_FOLDER_KEY "folder"
 
 #define STR_IS_NULL_OR_EMPTY(x) ((x) == NULL || (x)[0] == '\0')

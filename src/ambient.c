@@ -22,7 +22,7 @@
 #define KEY_GTK_THEME           "gtk-theme"
 #define KEY_ICON_THEME          "icon-theme"
 
-#define PHOSH_SCHEMA            "sm.puri.phosh"
+#define PHOSH_SCHEMA            "mobi.phosh.shell"
 #define KEY_AUTOMATIC_HC        "automatic-high-contrast"
 #define KEY_AUTOMATIC_HC_THRESHOLD  "automatic-high-contrast-threshold"
 

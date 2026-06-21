@@ -1,40 +1,6 @@
 <schemalist>
 
-  <schema id="mobi.phosh.shell.cell-broadcast" path="/mobi/phosh/shell/cell-broadcast/">
-    <key name="enabled" type="b">
-      <default>true</default>
-      <summary>Whether cell broadcast messages should be displayed</summary>
-      <description>
-        When this is disabled the shell will not show any cell
-        broadcast messages, including important security warnings.
-      </description>
-    </key>
-  </schema>
-
-  <schema id="mobi.phosh.shell.brightness" path="/mobi/phosh/shell/brightness/">
-    <key name="auto-brightness-offset" type="d">
-      <default>0.0</default>
-      <range min="-0.5" max="0.5"/>
-      <summary>Auto brightness offset</summary>
-      <description>
-        Fixed offset added to the calculated auto brightnes value.
-      </description>
-    </key>
-  </schema>
-
-  <schema id="mobi.phosh.shell.plugins" path="/mobi/phosh/shell/plugins/">
-    <key name="status-icons" type="as">
-      <default>[]</default>
-      <summary>List of enabled status-icon plugins</summary>
-      <description>
-        The list of currently enabled status-icon plugins.
-      </description>
-    </key>
-  </schema>
-
-  <!-- Legacy schema -->
-
-  <schema id="sm.puri.phosh" path="/sm/puri/phosh/">
+  <schema id="mobi.phosh.shell" path="/mobi/phosh/shell/">
     <key name="favorites" type="as">
       <default>[ 'org.gnome.Calls.desktop',
                  'sm.puri.Chatty.desktop',
@@ -139,7 +105,29 @@
     </key>
   </schema>
 
-  <schema id="sm.puri.phosh.emergency-calls" path="/sm/puri/phosh/emergency-calls/">
+  <schema id="mobi.phosh.shell.brightness" path="/mobi/phosh/shell/brightness/">
+    <key name="auto-brightness-offset" type="d">
+      <default>0.0</default>
+      <range min="-0.5" max="0.5"/>
+      <summary>Auto brightness offset</summary>
+      <description>
+        Fixed offset added to the calculated auto brightnes value.
+      </description>
+    </key>
+  </schema>
+
+  <schema id="mobi.phosh.shell.cell-broadcast" path="/mobi/phosh/shell/cell-broadcast/">
+    <key name="enabled" type="b">
+      <default>true</default>
+      <summary>Whether cell broadcast messages should be displayed</summary>
+      <description>
+        When this is disabled the shell will not show any cell
+        broadcast messages, including important security warnings.
+      </description>
+    </key>
+  </schema>
+
+  <schema id="mobi.phosh.shell.emergency-calls" path="/mobi/phosh/shell/emergency-calls/">
     <key name="enabled" type="b">
       <default>false</default>
       <summary>Whether emergency calls are enabled</summary>
@@ -150,7 +138,7 @@
     </key>
   </schema>
 
-  <schema id="sm.puri.phosh.lockscreen" path="/sm/puri/phosh/lockscreen/">
+  <schema id="mobi.phosh.shell.lockscreen" path="/mobi/phosh/shell/lockscreen/">
     <key name="shuffle-keypad" type="b">
       <default>false</default>
       <summary>Whether to scramble the keypad</summary>
@@ -176,7 +164,7 @@
     <value nick='critical' value='2'/>
   </enum>
 
-  <schema id="sm.puri.phosh.notifications" path="/sm/puri/phosh/notifications/">
+  <schema id="mobi.phosh.shell.notifications" path="/mobi/phosh/shell/notifications/">
     <key name="wakeup-screen-triggers" flags="mobi.phosh.shell.PhoshNotifyScreenWakeupFlags">
       <default>['urgency']</default>
       <summary>What notification properties wake up the screen</summary>
@@ -203,7 +191,7 @@
     </key>
   </schema>
 
-  <schema id="sm.puri.phosh.plugins" path="/sm/puri/phosh/plugins/">
+  <schema id="mobi.phosh.shell.plugins" path="/mobi/phosh/shell/plugins/">
     <key name="lock-screen" type="as">
       <default>[]</default>
       <summary>List of enabled lockscreen plugins</summary>
@@ -216,6 +204,13 @@
       <summary>List of enabled quick setting plugins</summary>
       <description>
         The list of currently enabled plugins on the quick settings box.
+      </description>
+    </key>
+    <key name="status-icons" type="as">
+      <default>[]</default>
+      <summary>List of enabled status-icon plugins</summary>
+      <description>
+        The list of currently enabled status-icon plugins.
       </description>
     </key>
   </schema>

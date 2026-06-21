@@ -10,7 +10,7 @@
 
 #include "upcoming-events-prefs.h"
 
-#define UPCOMING_EVENTS_SCHEMA_ID "sm.puri.phosh.plugins.upcoming-events"
+#define UPCOMING_EVENTS_SCHEMA_ID "mobi.phosh.plugins.upcoming-events"
 #define UPCOMING_EVENTS_DAYS_KEY "days"
 
 /**

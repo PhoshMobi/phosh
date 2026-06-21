@@ -200,7 +200,7 @@ test_phosh_app_grid_button_is_favorite (void)
   info = G_APP_INFO (g_desktop_app_info_new ("demo.app.Second.desktop"));
 
   /* Clear all favorites */
-  settings = g_settings_new ("sm.puri.phosh");
+  settings = g_settings_new ("mobi.phosh.shell");
   g_settings_set_strv (settings, "favorites", NULL);
 
   btn = phosh_app_grid_button_new (info);

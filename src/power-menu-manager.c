@@ -205,7 +205,7 @@ static void
 phosh_power_menu_manager_init (PhoshPowerMenuManager *self)
 {
   GAction *src_action, *dst_action;
-  g_autoptr (GSettings) phosh_settings = g_settings_new ("sm.puri.phosh");
+  g_autoptr (GSettings) phosh_settings = g_settings_new ("mobi.phosh.shell");
 
   g_action_map_add_action_entries (G_ACTION_MAP (phosh_shell_get_default ()),
                                    entries,

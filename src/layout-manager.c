@@ -424,7 +424,7 @@ phosh_layout_manager_init (PhoshLayoutManager *self)
   self->indicators_box_shift = PHOSH_TOP_BAR_MIN_PADDING;
   self->corner_shift = PHOSH_TOP_BAR_MIN_PADDING;
 
-  self->settings = g_settings_new ("sm.puri.phosh");
+  self->settings = g_settings_new ("mobi.phosh.shell");
   g_signal_connect_object (self->settings, "changed::" SHELL_LAYOUT_KEY,
                            G_CALLBACK (on_shell_layout_changed),
                            self,

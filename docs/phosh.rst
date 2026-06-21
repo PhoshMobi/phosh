@@ -41,13 +41,13 @@ CONFIGURATION
 Plugins
 ^^^^^^^
 
-Plugins are configured via the ``mobi.phosh.plugins`` and ``sm.puri.phosh.plugins`` gsettings
+Plugins are configured via the ``mobi.phosh.plugins`` and ``mobi.phosh.shell.plugins`` gsettings
 schema. The ``lock-screen`` key enables the plugins on the lock screen
 e.g.
 
 ::
 
-    gsettings set  sm.puri.phosh.plugins lock-screen "['ticket-box', 'upcoming-events']"
+    gsettings set  mobi.phosh.shell.plugins lock-screen "['ticket-box', 'upcoming-events']"
 
 DBUS INTERFACE
 --------------

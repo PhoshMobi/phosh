@@ -49,7 +49,7 @@ test_phosh_favorite_list_model_get_length (void)
   g_assert_true (PHOSH_IS_FAVORITE_LIST_MODEL (model));
   g_assert_true (G_IS_LIST_MODEL (model));
 
-  settings = g_settings_new ("sm.puri.phosh");
+  settings = g_settings_new ("mobi.phosh.shell");
   g_settings_set_strv (settings, "favorites", NULL);
 
   g_assert_cmpint (g_list_model_get_n_items (G_LIST_MODEL (model)), ==, 0);
@@ -77,7 +77,7 @@ test_phosh_favorite_list_model_get_item (void)
   g_assert_true (PHOSH_IS_FAVORITE_LIST_MODEL (model));
   g_assert_true (G_IS_LIST_MODEL (model));
 
-  settings = g_settings_new ("sm.puri.phosh");
+  settings = g_settings_new ("mobi.phosh.shell");
   g_settings_set_strv (settings, "favorites", NULL);
 
   g_assert_cmpint (g_list_model_get_n_items (G_LIST_MODEL (model)), ==, 0);
@@ -107,7 +107,7 @@ test_phosh_favorite_list_model_add (void)
                                              G_APP_INFO_CREATE_NONE,
                                              NULL);
 
-  settings = g_settings_new ("sm.puri.phosh");
+  settings = g_settings_new ("mobi.phosh.shell");
   g_settings_set_strv (settings, "favorites", NULL);
 
   info_desktop = G_APP_INFO (g_desktop_app_info_new ("demo.app.First.desktop"));
@@ -125,7 +125,7 @@ test_phosh_favorite_list_model_add_dup_invalid (void)
     g_autoptr (GSettings) settings = NULL;
     g_autoptr (GAppInfo) info_desktop = NULL;
 
-    settings = g_settings_new ("sm.puri.phosh");
+    settings = g_settings_new ("mobi.phosh.shell");
     g_settings_set_strv (settings, "favorites", NULL);
 
     info_desktop = G_APP_INFO (g_desktop_app_info_new ("demo.app.First.desktop"));
@@ -172,7 +172,7 @@ test_phosh_favorite_list_model_remove (void)
                                              G_APP_INFO_CREATE_NONE,
                                              NULL);
 
-  settings = g_settings_new ("sm.puri.phosh");
+  settings = g_settings_new ("mobi.phosh.shell");
   g_settings_set_strv (settings, "favorites", NULL);
 
   info_desktop = G_APP_INFO (g_desktop_app_info_new ("demo.app.First.desktop"));
@@ -196,7 +196,7 @@ test_phosh_favorite_list_model_remove_favorite_invalid (void)
     g_autoptr (GSettings) settings = NULL;
     g_autoptr (GAppInfo) info_desktop = NULL;
 
-    settings = g_settings_new ("sm.puri.phosh");
+    settings = g_settings_new ("mobi.phosh.shell");
     g_settings_set_strv (settings, "favorites", NULL);
     info_desktop = G_APP_INFO (g_desktop_app_info_new ("demo.app.First.desktop"));
     /* Boom */
@@ -244,7 +244,7 @@ test_phosh_favorite_list_model_is_favorite (void)
                                              G_APP_INFO_CREATE_NONE,
                                              NULL);
 
-  settings = g_settings_new ("sm.puri.phosh");
+  settings = g_settings_new ("mobi.phosh.shell");
   g_settings_set_strv (settings, "favorites", NULL);
 
   info_desktop = G_APP_INFO (g_desktop_app_info_new ("demo.app.First.desktop"));

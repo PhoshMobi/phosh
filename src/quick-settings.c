@@ -20,7 +20,7 @@
 #include "shell-priv.h"
 #include "wifi-status-page.h"
 
-#define CUSTOM_QUICK_SETTINGS_SCHEMA "sm.puri.phosh.plugins"
+#define CUSTOM_QUICK_SETTINGS_SCHEMA "mobi.phosh.shell.plugins"
 #define CUSTOM_QUICK_SETTINGS_KEY "quick-settings"
 
 /**

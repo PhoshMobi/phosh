@@ -59,7 +59,7 @@ i18n.merge_file(
   type: 'desktop',
 )
 
-upcoming_events_schema = 'sm.puri.phosh.plugins.upcoming-events.gschema.xml'
+upcoming_events_schema = 'mobi.phosh.plugins.upcoming-events.gschema.xml'
 compiled = gnome.compile_schemas(depend_files: upcoming_events_schema)
 compile_schemas = find_program('glib-compile-schemas', required: false)
 if compile_schemas.found()

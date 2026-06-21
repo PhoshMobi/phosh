@@ -458,7 +458,7 @@ phosh_app_grid_init (PhoshAppGrid *self)
                            self,
                            NULL);
 
-  priv->settings = g_settings_new ("sm.puri.phosh");
+  priv->settings = g_settings_new ("mobi.phosh.shell");
   g_object_connect (priv->settings,
                     "swapped-signal::changed::force-adaptive", on_filter_setting_changed, self,
                     "swapped-signal::changed::app-filter-mode", on_filter_setting_changed, self,

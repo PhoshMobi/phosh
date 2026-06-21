@@ -184,12 +184,12 @@ do_settings (void)
 
   /* Enable emergency-calls until it's on by default */
   g_clear_object (&settings);
-  settings = g_settings_new ("sm.puri.phosh.emergency-calls");
+  settings = g_settings_new ("mobi.phosh.shell.emergency-calls");
   g_settings_set_boolean (settings, "enabled", TRUE);
 
   /* Enable emergency-calls until it's on by default */
   g_clear_object (&settings);
-  settings = g_settings_new ("sm.puri.phosh.plugins");
+  settings = g_settings_new ("mobi.phosh.shell.plugins");
   g_settings_set_strv (settings, "lock-screen",
                        (const char *const[]) { "emergency-info", "launcher-box", NULL });
 
