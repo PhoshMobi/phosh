@@ -10,6 +10,7 @@ Build-Depends:
  libadwaita-1-dev,
  libappstream-dev,
  libcallaudio-dev,
+ libdconf-dev,
  libevince-gtk3-dev,
  libgirepository1.0-dev,
  libgmobile-dev,

@@ -103,6 +103,15 @@
         sooner, greater than 1.0 make the unfold trigger later.
       </description>
     </key>
+
+    <key name="schema-migration" type="u">
+      <default>0</default>
+      <summary>The schema migration state</summary>
+      <description>
+        This is an internal value, don't modify it.
+      </description>
+    </key>
+
   </schema>
 
   <schema id="mobi.phosh.shell.brightness" path="/mobi/phosh/shell/brightness/">

@@ -230,6 +230,7 @@ phosh_tool_sources = files(
   'connectivity-manager.c',
   'debug-control.c',
   'default-media-player.c',
+  'dh-dconf-migration.c',
   'docked-info.c',
   'docked-manager.c',
   'drag-surface.c',
@@ -467,6 +468,7 @@ gnome_bluetooth_custom_dep = gnome_bluetooth_dep.partial_dependency(
 
 phosh_deps = [
   appstream_dep,
+  dconf_dep,
   libsoup_dep,
   fribidi_dep,
   json_glib_dep,
