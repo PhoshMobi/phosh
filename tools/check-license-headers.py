@@ -82,8 +82,11 @@ def handle_file(path: str, filename: str):
     print(f"{filename:>30}: {spdx:<20} {copyright_holder}")
 
 
-skip_dirs = ["_build", ".git", "subprojects", "contrib", "gtk-list-models"]
+skip_dirs = [".git", "subprojects", "contrib", "gtk-list-models"]
 for root, dirs, files in walk("."):
+    drop = [d for d in dirs if d.startswith("_build")]
+    for d in drop:
+        dirs.remove(d)
     for skip in skip_dirs:
         if skip in dirs:
             dirs.remove(skip)
