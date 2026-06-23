@@ -5,22 +5,23 @@
 # Aviary.pl <community-poland@mozilla.org>, 2022-2023.
 # Mira Luna <mlu98@proton.me>, 2023
 # nicole mikołajczyk <git@mkljczk.pl>, 2026
+# Victoria Niedzielska <victorian@gnome.org>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-13 09:15+0000\n"
-"PO-Revision-Date: 2026-05-12 11:32+0200\n"
-"Last-Translator: nicole mikołajczyk <git@mkljczk.pl>\n"
-"Language-Team: Polish <https://l10n.gnome.org/teams/pl>\n"
+"POT-Creation-Date: 2026-06-02 16:27+0000\n"
+"PO-Revision-Date: 2026-06-23 22:39+0200\n"
+"Last-Translator: Victoria Niedzielska <victorian@gnome.org>\n"
+"Language-Team: Polish <https://l10n.gnome.org/teams/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -125,6 +126,22 @@ msgstr "Szybkie ustawienie Pomodoro"
 msgid "Simple Pomodoro Timer"
 msgstr "Prosty minutnik Pomodoro"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "Szybkie ustawienie skalowania"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "Szybkie ustawienie do dostosowania skalowania ekranu"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Szybkie ustawienie Syncthing"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Szybkie ustawienie dla Syncthing"
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -144,6 +161,14 @@ msgstr "Nadchodzące wydarzenia"
 msgid "Show upcoming calendar events"
 msgstr "Wyświetlanie nadchodzących wydarzeń z kalendarza"
 
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Szybkie ustawienie hotspotu Wi-Fi"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Przełącz hotspot Wi-Fi"
+
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
 msgstr "Dodaj do katalogu"
@@ -152,15 +177,24 @@ msgstr "Dodaj do katalogu"
 msgid "Create new folder"
 msgstr "Utwórz nowy katalog"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "Nie można odinstalować programu"
+
+#: src/app-grid-button.c:701 src/app-grid-button.c:755
 msgid "Application"
 msgstr "Program"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "Katalog %s jest pusty"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "Wyświetl wszystkie programy"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Wyświetl tylko programy przystosowane do telefonów"
 
@@ -504,7 +538,7 @@ msgstr[0] "Prawie %d rok"
 msgstr[1] "Prawie %d lata"
 msgstr[2] "Prawie %d lat"
 
-#: src/overview.c:221
+#: src/overview.c:228
 msgid "Application failed to start"
 msgstr "Nie udało się uruchomić programu"
 
@@ -975,7 +1009,7 @@ msgstr "Gotowe"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:67
 msgid "_Owner Name"
-msgstr "_Imię osoby posiadającej"
+msgstr "_Imię właściciela"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:73
 msgid "_Date of Birth"
