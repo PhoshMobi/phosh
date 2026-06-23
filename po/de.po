@@ -23,16 +23,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-23 13:53+0000\n"
-"PO-Revision-Date: 2026-03-29 23:18+0200\n"
-"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
+"POT-Creation-Date: 2026-05-20 20:05+0000\n"
+"PO-Revision-Date: 2026-05-21 20:42+0200\n"
+"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -53,7 +53,7 @@ msgstr "Diese Sitzung meldet Sie in Phosh an"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:4
 msgid "Caffeine Quick Setting"
-msgstr "Koffein-Schnelleinstellungen"
+msgstr "Koffein-Schnelleinstellung"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:6
 msgid "Prevent the session from going idle"
@@ -69,7 +69,7 @@ msgstr "Ein einfaches Kalender-Widget"
 
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:4
 msgid "Dark Mode / Color Scheme Quick Setting"
-msgstr "Dunkler Modus/Farbschema-Schnelleinstellungen"
+msgstr "Dunkler Modus/Farbschema-Schnelleinstellung"
 
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:6
 msgid "Toggle dark mode"
@@ -96,7 +96,7 @@ msgstr ""
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
 msgid "Location Quick Setting"
-msgstr "Standort-Schnelleinstellungen"
+msgstr "Standort-Schnelleinstellung"
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:6
 msgid "Toggle location services on/off"
@@ -114,7 +114,7 @@ msgstr "Aktuell laufende Medienspieler verfolgen"
 
 #: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:4
 msgid "Mobile Data Quick Setting"
-msgstr "Mobile Daten-Schnelleinstellungen"
+msgstr "Mobile Daten-Schnelleinstellung"
 
 #: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:6
 msgid "Toggle mobile data on/off"
@@ -122,7 +122,7 @@ msgstr "Mobile Daten ein-/ausschalten"
 
 #: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:4
 msgid "Night Light Quick Setting"
-msgstr "Nachtmodus-Schnelleinstellungen"
+msgstr "Nachtmodus-Schnelleinstellung"
 
 #: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:6
 msgid "Toggle night light on/off"
@@ -131,11 +131,27 @@ msgstr "Nachtmodus ein-/ausschalten"
 #. Translators: "Pomodoro" is a technique, no need to translate it
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:5
 msgid "Pomodoro Quick Setting"
-msgstr "Pomodoro-Schnelleinstellungen"
+msgstr "Pomodoro-Schnelleinstellung"
 
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:7
 msgid "Simple Pomodoro Timer"
 msgstr "Einfacher Pomodoro-Zeitmesser"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "Skalierung-Schnelleinstellung"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "Eine Schnelleinstellung zum Anpassen der Bildschirmskalierung."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Syncthing-Schnelleinstellung"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Eine Schnelleinstellung für Syncthing."
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
@@ -155,6 +171,14 @@ msgstr "Anstehende Termine"
 #: plugins/upcoming-events/upcoming-events.desktop.in.in:5
 msgid "Show upcoming calendar events"
 msgstr "Anstehende Kalendertermine anzeigen"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "WLAN-Hotspot-Schnelleinstellung"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "WLAN-Hotspot ein-/ausschalten"
 
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
@@ -691,7 +715,7 @@ msgstr "Zurück"
 msgid "Slide up to unlock"
 msgstr "Nach oben wischen zum Entsperren"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:334
 msgid "Unlock"
 msgstr "Entsperren"
 
@@ -1106,32 +1130,36 @@ msgstr "Nachtmodus an"
 msgid "Night Light Off"
 msgstr "Nachtmodus aus"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "Pomodoro Start"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "Konzentrieren Sie sich für %d Minuten auf Ihre Aufgabe"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Konzentrieren Sie sich für %d Minute auf Ihre Aufgabe"
+msgstr[1] "Konzentrieren Sie sich für %d Minuten auf Ihre Aufgabe"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "Legen Sie eine Pause ein"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "Sie haben %d Minuten bis zum nächsten Pomodoro"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "Sie haben %d Minute bis zum nächsten Pomodoro"
+msgstr[1] "Sie haben %d Minuten bis zum nächsten Pomodoro"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "Pomodoro-Zeitmesser"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
 msgstr "Pomodoro Aus"
@@ -1249,8 +1277,10 @@ msgstr "Unbenannter Termin"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "Kein Termin für die nächsten %d Tage"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "Keine Termine für den nächsten %d Tag"
+msgstr[1] "Keine Termine für die nächsten %d Tage"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
 msgid "No upcoming events"
@@ -1283,6 +1313,33 @@ msgstr "Bildschirmskalierung"
 #, c-format
 msgid "%d%%"
 msgstr "%d %%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr "Keine Ordner"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+msgid "Syncthing is disabled"
+msgstr "Syncthing ist deaktiviert"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr "Aktivieren"
+
+# Da es sich hier um ein OS für Mobilgeräte handelt (mit kleinen Bildschirmen), würde ich GUI nicht übersetzen. - jb
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Syncthing-GUI öffnen"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Verbindung zu Syncbus konnte nicht hergestellt werden"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
 msgid "Wi-Fi Hotspot"
