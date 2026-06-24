@@ -225,7 +225,7 @@ on_app_failed (PhoshOverview   *self,
     return;
 
   g_debug ("Activity '%s' failed to start, closing", g_app_info_get_id (info));
-  phosh_shell_show_notification_for_app (shell, info, _("Application failed to start"));
+  phosh_shell_show_notification_for_app (shell, info, _("Application is slow or failed to start"));
 
   gtk_widget_destroy (GTK_WIDGET (activity));
 }
