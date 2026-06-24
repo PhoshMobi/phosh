@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2023-2025 The Phosh Developers
+ *               2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -41,6 +42,8 @@ struct _PhoshLayoutManager {
 
   GmDisplayPanel             *panel;
   GSettings                  *settings;
+
+  PhoshShellLayout            layout;
   PhoshLayoutClockPosition    clock_pos;
   guint                       clock_box_shift;
   guint                       corner_shift;
@@ -99,15 +102,13 @@ static PhoshLayoutClockPosition
 get_clock_pos (PhoshLayoutManager *self, guint *clock_box_shift)
 {
   PhoshLayoutClockPosition clock_pos = PHOSH_LAYOUT_CLOCK_POS_CENTER;
-  PhoshShellLayout layout;
   GListModel *cutouts;
   GdkRectangle clock_rect;
   GdkRectangle clock_box_rect;
   float scale;
   guint shift = 0;
 
-  layout = g_settings_get_enum (self->settings, SHELL_LAYOUT_KEY);
-  if (layout != PHOSH_SHELL_LAYOUT_DEVICE)
+  if (self->layout != PHOSH_SHELL_LAYOUT_DEVICE)
     return clock_pos;
 
   if (self->builtin == NULL)
@@ -188,15 +189,13 @@ get_clock_pos (PhoshLayoutManager *self, guint *clock_box_shift)
 static void
 get_cutout_shifts (PhoshLayoutManager *self, guint *network, guint *indicators)
 {
-  PhoshShellLayout layout;
   GListModel *cutouts;
   float scale;
   GdkRectangle indicators_box = indicators_box_rect;
   GdkRectangle network_box = network_box_rect;
   guint width;
 
-  layout = g_settings_get_enum (self->settings, SHELL_LAYOUT_KEY);
-  if (layout != PHOSH_SHELL_LAYOUT_DEVICE)
+  if (self->layout != PHOSH_SHELL_LAYOUT_DEVICE)
     goto out;
 
   if (self->builtin == NULL)
@@ -257,11 +256,9 @@ static guint
 get_corner_shift (PhoshLayoutManager *self)
 {
   float r, a, b, c, scale;
-  PhoshShellLayout layout;
   guint shift = PHOSH_TOP_BAR_MIN_PADDING;
 
-  layout = g_settings_get_enum (self->settings, SHELL_LAYOUT_KEY);
-  if (layout != PHOSH_SHELL_LAYOUT_DEVICE)
+  if (self->layout != PHOSH_SHELL_LAYOUT_DEVICE)
     goto out;
 
   scale = phosh_monitor_get_fractional_scale (self->builtin);
@@ -369,6 +366,25 @@ on_builtin_monitor_changed (PhoshLayoutManager *self,
 
 
 static void
+on_shell_layout_changed (PhoshLayoutManager *self)
+{
+  PhoshShellLayout layout;
+
+  g_return_if_fail (PHOSH_IS_LAYOUT_MANAGER (self));
+
+  layout = g_settings_get_enum (self->settings, SHELL_LAYOUT_KEY);
+  if (self->layout == layout)
+    return;
+
+  self->layout = layout;
+  g_debug ("New layout is %d", layout);
+
+  if (self->builtin && phosh_monitor_is_configured (self->builtin))
+    update_layout (self);
+}
+
+
+static void
 phosh_layout_manager_finalize (GObject *object)
 {
   PhoshLayoutManager *self = PHOSH_LAYOUT_MANAGER(object);
@@ -409,6 +425,11 @@ phosh_layout_manager_init (PhoshLayoutManager *self)
   self->corner_shift = PHOSH_TOP_BAR_MIN_PADDING;
 
   self->settings = g_settings_new ("sm.puri.phosh");
+  g_signal_connect_object (self->settings, "changed::" SHELL_LAYOUT_KEY,
+                           G_CALLBACK (on_shell_layout_changed),
+                           self,
+                           G_CONNECT_SWAPPED);
+  on_shell_layout_changed (self);
 
   compatibles = gm_device_tree_get_compatibles (NULL, &err);
   if (compatibles != NULL) {
