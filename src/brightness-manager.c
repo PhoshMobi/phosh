@@ -298,7 +298,7 @@ on_ambient_auto_brightness_changed (PhoshBrightnessManager *self,
                                     PhoshAmbient           *ambient)
 {
   gboolean enabled = phosh_ambient_get_auto_brightness (ambient);
-  double value;
+  double value = 1.0;
 
   g_debug ("Ambient auto-brightness enabled: %d", enabled);
 
@@ -319,7 +319,8 @@ on_ambient_auto_brightness_changed (PhoshBrightnessManager *self,
     set_auto_brightness_tracker (self);
     on_auto_brightness_changed (self);
   } else {
-    value = phosh_backlight_get_relative (self->backlight);
+    if (self->backlight)
+      value = phosh_backlight_get_relative (self->backlight);
   }
 
   gtk_adjustment_set_value (self->adjustment, value);
