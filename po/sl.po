@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-02 06:50+0000\n"
-"PO-Revision-Date: 2026-06-02 11:34+0200\n"
+"POT-Creation-Date: 2026-06-24 09:36+0000\n"
+"PO-Revision-Date: 2026-06-25 06:25+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -543,8 +543,8 @@ msgstr[2] "Skoraj %d leta"
 msgstr[3] "Skoraj %d let"
 
 #: src/overview.c:228
-msgid "Application failed to start"
-msgstr "Aplikacija se ni zagnala"
+msgid "Application is slow or failed to start"
+msgstr "Aplikacija je počasna ali se ni zagnala"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
