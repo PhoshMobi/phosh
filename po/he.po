@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-16 09:49+0000\n"
-"PO-Revision-Date: 2026-03-19 14:26+0200\n"
+"POT-Creation-Date: 2026-06-24 09:36+0000\n"
+"PO-Revision-Date: 2026-06-25 17:14+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <heb-bugzap@hamakor.org.il>\n"
 "Language: he\n"
@@ -127,6 +127,22 @@ msgstr "הגדרות פומודורו מהירות"
 msgid "Simple Pomodoro Timer"
 msgstr "מתזמן פומודורו פשוט"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "הגדרות קנה מידה מהירות"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "הגדרה מהירה לכוונון קנה המידה של התצוגה."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "הגדרות Syncthing מהירות"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "הגדרות מהירות ל־Syncthing."
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -144,6 +160,14 @@ msgstr "אירועים קרובים"
 msgid "Show upcoming calendar events"
 msgstr "הצגת אירועים קרובים בלוח השנה"
 
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "הגדרות נקודת גישה אלחוטית"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "כיבוי/הפעלת נקודת גישה אלחוטית"
+
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
 msgstr "הוספה לתיקייה"
@@ -152,15 +176,24 @@ msgstr "הוספה לתיקייה"
 msgid "Create new folder"
 msgstr "יצירת תיקייה חדשה"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "לא ניתן להסיר יישומון"
+
+#: src/app-grid-button.c:701 src/app-grid-button.c:755
 msgid "Application"
 msgstr "יישום"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "התיקייה %s ריקה"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "הצגת כל היישומים"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "הצגת יישומים מותאמים לנייד בלבד"
 
@@ -201,12 +234,12 @@ msgid "Wi-Fi network '%s' uses a captive portal"
 msgstr "הרשת האלחוטית ‚%s’ משתמשת במסך חסימה"
 
 #: src/connectivity-manager.c:116
-msgid "The Wi-Fi network uses a captive portal"
-msgstr "הרשת האלחוטית משתמשת במסך חסימה"
+msgid "The network uses a captive portal"
+msgstr "הרשת משתמשת במסך חסימה"
 
 #: src/connectivity-manager.c:123
-msgid "Sign into Wi-Fi network"
-msgstr "כניסה לרשת אלחוטית"
+msgid "Sign into network"
+msgstr "כניסה לרשת"
 
 #: src/docked-info.c:81
 msgid "Docked"
@@ -514,9 +547,9 @@ msgstr[1] "כמעט שנתיים"
 msgstr[2] "כמעט %d שנה"
 msgstr[3] "כמעט %d שנים"
 
-#: src/overview.c:221
-msgid "Application failed to start"
-msgstr "הפעלת היישומון נכשלה"
+#: src/overview.c:228
+msgid "Application is slow or failed to start"
+msgstr "היישומון איטי או שטעינתו נכשלה"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
@@ -697,7 +730,7 @@ msgstr "חזרה"
 msgid "Slide up to unlock"
 msgstr "החלקה כלפי מעלה לביטול הנעילה"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:334
 msgid "Unlock"
 msgstr "שחרור"
 
@@ -1112,32 +1145,40 @@ msgstr "תאורת לילה פעילה"
 msgid "Night Light Off"
 msgstr "תאורת לילה כבויה"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "התחלת פומודורו"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "נא להתמקד על המשימה שלך למשך %d דקות"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "נא להתמקד על המשימה שלך למשך דקה"
+msgstr[1] "נא להתמקד על המשימה שלך למשך שתי דקות"
+msgstr[2] "נא להתמקד על המשימה שלך למשך %d דקות"
+msgstr[3] "נא להתמקד על המשימה שלך למשך %d דקות"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "נא לקחת הפסקה"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "נותרו לך %d דקות עד הפומודורו הבא"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "נותרה לך דקה עד הפומודורו הבא"
+msgstr[1] "נותרו לך שתי דקות עד הפומודורו הבא"
+msgstr[2] "נותרו לך %d דקות עד הפומודורו הבא"
+msgstr[3] "נותרו לך %d דקות עד הפומודורו הבא"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "מתזמן פומודורו"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
 msgstr "פומודורו כבוי"
@@ -1255,8 +1296,12 @@ msgstr "אירוע ללא כותרת"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "אין אירועים למשך %d הימים הקרובים"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "אין אירועים מחר"
+msgstr[1] "אין אירועים ביומיים הקרובים"
+msgstr[2] "אין אירועים למשך %d הימים הקרובים"
+msgstr[3] "אין אירועים למשך %d הימים הקרובים"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
 msgid "No upcoming events"
@@ -1289,6 +1334,32 @@ msgstr "קני מידה של צגים"
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr "אין תיקיות"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+msgid "Syncthing is disabled"
+msgstr "‫Syncthing מושבת"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr "הפעלה"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "פתיחת מנשק המשתמש של Syncthing"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "לא ניתן להתחבר ל־Syncbus"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
 msgid "Wi-Fi Hotspot"
@@ -1385,9 +1456,6 @@ msgstr "נק׳ חמה כבויה"
 
 #~ msgid "_Emergency"
 #~ msgstr "מצב _חירום"
-
-#~ msgid "Unknown application"
-#~ msgstr "יישום לא ידוע"
 
 #~ msgid "Lock Screen"
 #~ msgstr "מסך נעילה"
