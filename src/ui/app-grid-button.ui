@@ -47,12 +47,25 @@
         <attribute name="action">app-btn.uninstall</attribute>
         <attribute name="hidden-when">action-disabled</attribute>
       </item>
+      <item>
+        <attribute name="label" translatable="yes">Hide Application</attribute>
+        <attribute name="action">app-btn.hide</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
     </section>
-    <section id="folders"/>
-    <item>
-      <attribute name="label" translatable="yes">_Remove from Folder</attribute>
-      <attribute name="action">app-btn.folder-remove</attribute>
-      <attribute name="hidden-when">action-disabled</attribute>
-    </item>
+    <section id="folders">
+      <item>
+        <attribute name="label" translatable="yes">_Remove from Folder</attribute>
+        <attribute name="action">app-btn.folder-remove</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+    </section>
+    <section id="manage">
+      <item>
+        <attribute name="label" translatable="yes">Manage Hidden Apps</attribute>
+        <attribute name="action">app-btn.manage-hidden-apps</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+    </section>
   </menu>
 </interface>

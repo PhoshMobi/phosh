@@ -109,6 +109,7 @@
 
 #define WWAN_BACKEND_KEY "wwan-backend"
 #define OSD_HIDE_TIMEOUT 1 /* seconds */
+#define NOTI_TIMEOUT 5000  /* milliseconds */
 
 /**
  * PhoshShell:
@@ -2837,27 +2838,74 @@ phosh_shell_show_osd (PhoshShell *self,
   }
 }
 
-
+/**
+ * phosh_shell_show_notification_for_app:
+ * @self: The shell
+ * @info: The app info of the app the notification is about
+ * @body: The notification's body text
+ *
+ * Show a notification with the given information. This is a shortcut for calling
+ * `phosh_shell_create_notification_for_app` and `phosh_shell_show_notification`.
+ */
 void
-phosh_shell_show_notification_for_app (PhoshShell *self, GAppInfo*info, const char *body)
+phosh_shell_show_notification_for_app (PhoshShell *self, GAppInfo *info, const char *body)
 {
-  PhoshNotifyManager *nm = phosh_notify_manager_get_default ();
-  g_autoptr (PhoshNotification) noti = NULL;
+  g_autoptr (PhoshShellNotification) noti = NULL;
+
+  noti = phosh_shell_create_notification_for_app (self, info, body);
+  phosh_shell_show_notification (self, noti, -1);
+}
+
+/**
+ * phosh_shell_create_notification_for_app:
+ * @self: The shell
+ * @info: The app info of the app the notification is about
+ * @body: The notification's body text
+ *
+ * Create a notification for the given app
+ *
+ * Returns:(transfer full): The notification
+ */
+PhoshShellNotification *
+phosh_shell_create_notification_for_app (PhoshShell *self,
+                                         GAppInfo   *info,
+                                         const char *body)
+{
   const char *name;
   GIcon *icon;
 
-  g_return_if_fail (PHOSH_IS_SHELL (self));
-  g_return_if_fail (G_IS_APP_INFO (info) && body);
+  g_return_val_if_fail (PHOSH_IS_SHELL (self), NULL);
+  g_return_val_if_fail (G_IS_APP_INFO (info) && body, NULL);
 
   name = g_app_info_get_name (G_APP_INFO (info));
   /* If app doesn't have an icon the notification server adds one */
   icon = g_app_info_get_icon (info);
-  noti = g_object_new (PHOSH_TYPE_NOTIFICATION,
+
+  return g_object_new (PHOSH_TYPE_SHELL_NOTIFICATION,
                        "summary", name,
                        "body", body,
                        "image", icon,
                        NULL);
-  phosh_notify_manager_add_shell_notification (nm, noti, 0, 5000);
+}
+
+/**
+ * phosh_shell_show_notification:
+ * @self: The shell
+ * @noti: The notification
+ * @timeout: How long to show the notification
+ *
+ * Show a shell notification. If timeout is less than 0 a default timeout is used.
+ */
+void
+phosh_shell_show_notification (PhoshShell *self, PhoshShellNotification *noti, int timeout)
+{
+  PhoshNotifyManager *nm = phosh_notify_manager_get_default ();
+  guint t = timeout < 0 ? NOTI_TIMEOUT : timeout;
+
+  g_return_if_fail (PHOSH_IS_SHELL (self));
+  g_return_if_fail (PHOSH_IS_SHELL_NOTIFICATION (noti));
+
+  phosh_notify_manager_add_shell_notification (nm, PHOSH_NOTIFICATION (noti), 0, t);
 }
 
 /* }}} */

@@ -75,6 +75,8 @@ gboolean         phosh_util_file_equal (GFile *file1, GFile *file2);
 GdkPixbuf       *phosh_util_data_uri_to_pixbuf (const char *uri, GError **error);
 GdkPixbuf *      phosh_utils_pixbuf_scale_to_min (GdkPixbuf *src, int min_width, int min_height);
 gboolean         phosh_util_matches_app_info (GAppInfo *info, const char *search);
+char *           phosh_util_hide_app (GAppInfo *app);
+gboolean         phosh_util_unhide_app (const char *filename);
 GStrv            phosh_util_append_to_strv (GStrv array, const char *element);
 GStrv            phosh_util_remove_from_strv (GStrv array, const char *element);
 void             phosh_util_open_settings_panel (const char         *panel,

@@ -404,6 +404,97 @@ uninstall_activated (GSimpleAction *action,
   spawn_gnome_software ("--uninstall", appstream_id);
 }
 
+
+static void
+undo_hide_activated (GSimpleAction *action, GVariant *parameter, gpointer data)
+{
+  PhoshShellNotification *noti = PHOSH_SHELL_NOTIFICATION (data);
+  char *filename = g_object_get_data (G_OBJECT (noti), "filename");
+
+  g_return_if_fail (filename);
+  g_debug ("Undoing hide operation for %s", filename);
+
+  phosh_util_unhide_app (filename);
+}
+
+
+static void
+on_open_panel_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
+{
+  PhoshAppGridButton *self = PHOSH_APP_GRID_BUTTON (user_data);
+  g_autoptr (GError) err = NULL;
+  g_autoptr (GDesktopAppInfo) info = NULL;
+  gboolean success;
+
+  success = phosh_util_open_settings_panel_finish (res, &err);
+  if (!success) {
+    if (g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+      return;
+
+    /* TODO: show notification */
+    g_warning ("Failed to open panel: %s", err->message);
+    return;
+  }
+
+  /* Let the rest of the shell know that we spawned settings from the app-grid */
+  info = g_desktop_app_info_new ("mobi.phosh.MobileSettings.desktop");
+  g_signal_emit (self, signals[APP_LAUNCHED], 0, info);
+}
+
+
+static void
+manage_hidden_apps_activated (GSimpleAction *action, GVariant *parameter, gpointer data)
+{
+  phosh_util_open_settings_panel ("overview",
+                                  g_variant_new_parsed ("[<'hidden-apps'>]"),
+                                  TRUE,
+                                  NULL,
+                                  on_open_panel_ready,
+                                  PHOSH_APP_GRID_BUTTON (data));
+}
+
+
+static GActionEntry hide_noti_entries[] =
+{
+  { .name = "noti.undo", .activate = undo_hide_activated },
+};
+
+
+static void
+hide_activated (GSimpleAction *action, GVariant *parameter, gpointer data)
+{
+  PhoshAppGridButton *self = PHOSH_APP_GRID_BUTTON (data);
+  PhoshShell *shell = phosh_shell_get_default ();
+  PhoshAppGridButtonPrivate *priv = phosh_app_grid_button_get_instance_private (self);
+  g_autofree char *filename = NULL;
+
+  filename = phosh_util_hide_app (priv->info);
+  if (filename) {
+    g_autoptr (PhoshShellNotification) noti = NULL;
+    g_autoptr (GSimpleActionGroup) action_group = g_simple_action_group_new ();
+    char *actions[] = { "noti.undo", _("Undo"), NULL };
+    const char *msg = _("Application is now permanently hidden and disabled");
+
+    noti = phosh_shell_create_notification_for_app (shell, priv->info, msg);
+    g_action_map_add_action_entries (G_ACTION_MAP (action_group),
+                                     hide_noti_entries,
+                                     G_N_ELEMENTS (hide_noti_entries),
+                                     noti);
+    phosh_shell_notification_set_actions (noti, actions, G_ACTION_GROUP (action_group));
+    g_object_set_data_full (G_OBJECT (noti),
+                            "filename",
+                            g_steal_pointer (&filename),
+                            (GDestroyNotify)g_free);
+    phosh_shell_show_notification (shell, noti, -1);
+
+  } else {
+    phosh_shell_show_notification_for_app (shell,
+                                           priv->info,
+                                           _("Failed to hide application"));
+  }
+}
+
+
 static void
 add_to_folder_children (char *folder_path)
 {
@@ -504,6 +595,8 @@ static GActionEntry entries[] =
   { .name = "favorite-add", .activate = favorite_add_activated },
   { .name = "view-details", .activate = view_details_activated },
   { .name = "uninstall", .activate = uninstall_activated },
+  { .name = "hide", .activate = hide_activated },
+  { .name = "manage-hidden-apps", .activate = manage_hidden_apps_activated },
   { .name = "folder-add", .activate = folder_add_activated, .parameter_type = "s" },
   { .name = "folder-new", .activate = folder_new_activated },
   { .name = "folder-remove", .activate = folder_remove_activated },
@@ -546,9 +639,21 @@ phosh_app_grid_button_init (PhoshAppGridButton *self)
   act = g_action_map_lookup_action (priv->action_map, "uninstall");
   g_simple_action_set_enabled (G_SIMPLE_ACTION (act), FALSE);
 
+  act = g_action_map_lookup_action (priv->action_map, "hide");
+  g_simple_action_set_enabled (G_SIMPLE_ACTION (act), FALSE);
+
+  act = g_action_map_lookup_action (priv->action_map, "manage-hidden-apps");
+  g_simple_action_set_enabled (G_SIMPLE_ACTION (act), FALSE);
+
   if (have_gnome_software) {
     act = g_action_map_lookup_action (priv->action_map, "uninstall");
     g_object_bind_property (metainfo_cache, "ready", act, "enabled", G_BINDING_SYNC_CREATE);
+  } else {
+    act = g_action_map_lookup_action (priv->action_map, "hide");
+    g_simple_action_set_enabled (G_SIMPLE_ACTION (act), TRUE);
+
+    act = g_action_map_lookup_action (priv->action_map, "manage-hidden-apps");
+    g_simple_action_set_enabled (G_SIMPLE_ACTION (act), TRUE);
   }
 
   g_type_ensure (PHOSH_TYPE_CLAMP);

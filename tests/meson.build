@@ -134,6 +134,7 @@ tests_unit = [
   'plugin-loader',
   'quick-setting',
   'quick-settings-box',
+  'shell-notification',
   'status-icon',
   'status-icons-box',
   'timestamp-label',
