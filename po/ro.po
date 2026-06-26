@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-24 09:36+0000\n"
-"PO-Revision-Date: 2026-06-25 10:48+0200\n"
+"POT-Creation-Date: 2026-06-26 08:47+0000\n"
+"PO-Revision-Date: 2026-06-26 11:28+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -177,7 +177,19 @@ msgstr "Creează un dosar nou"
 msgid "Can't uninstall application"
 msgstr "Nu se poate dezinstala aplicația"
 
-#: src/app-grid-button.c:701 src/app-grid-button.c:755
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "Anulează"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Aplicația este acum ascunsă definitiv și dezactivată"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Nu s-a putut ascunde aplicația"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Aplicație"
 
@@ -616,9 +628,17 @@ msgstr "Arată _detalii"
 msgid "Uninstall"
 msgstr "Dezinstalează"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "Ascunde aplicația"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "_Elimină din dosar"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "Gestionează aplicațiile ascunse"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
