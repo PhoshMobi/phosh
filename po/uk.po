@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-24 09:36+0000\n"
-"PO-Revision-Date: 2026-06-25 21:40+0300\n"
+"POT-Creation-Date: 2026-06-26 08:47+0000\n"
+"PO-Revision-Date: 2026-06-26 16:52+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 23.04.3\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -175,7 +175,21 @@ msgstr "Створити теку"
 msgid "Can't uninstall application"
 msgstr "Не вдалося вилучити програму"
 
-#: src/app-grid-button.c:701 src/app-grid-button.c:755
+#: src/app-grid-button.c:475
+#| msgid "Undocked"
+msgid "Undo"
+msgstr "Скасувати"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Тепер програму остаточно приховано і вимкнено"
+
+#: src/app-grid-button.c:493
+#| msgid "Can't uninstall application"
+msgid "Failed to hide application"
+msgstr "Не вдалося приховати програму"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Програма"
 
@@ -533,7 +547,6 @@ msgstr[1] "Майже %dр."
 msgstr[2] "Майже %dр."
 
 #: src/overview.c:228
-#| msgid "Application failed to start"
 msgid "Application is slow or failed to start"
 msgstr "Програма працює надто повільно або не вдалося запустити програму"
 
@@ -615,9 +628,18 @@ msgstr "Пере_глянути подробиці"
 msgid "Uninstall"
 msgstr "Вилучити"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+#| msgid "Application"
+msgid "Hide Application"
+msgstr "Приховати програму"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "Вилучити з _теки"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "Керування прихованими програмами"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
