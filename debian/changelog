@@ -1,3 +1,165 @@
+phosh (0.56~rc1) experimental; urgency=medium
+
+  [ Flynn Peck ]
+  * Update Cornish translation
+
+  [ nicole mikołajczyk ]
+  * po: Update POTFILES.in
+  * app-grid: Make empty folder message translatable
+
+  [ Daniel Rusek ]
+  * Update Czech translation.
+    Co-authored-by: Daniel Rusek <mail@asciiwolf.com>
+    Reviewed-by: Daniel Rusek <mail@asciiwolf.com>
+
+  [ Ekaterine Papava ]
+  * Update Georgian translation.
+    Co-authored-by: Ekaterine Papava <papava.e@gtu.ge>
+
+  [ Yuri Chornoivan ]
+  * Update Ukrainian translation.
+    Co-authored-by: Yuri Chornoivan <yurchor@ukr.net>
+
+  [ Antonio Marin ]
+  * Update Romanian translation.
+    Co-authored-by: Antonio Marin <gnmer.6qxyg@slmail.me>
+
+  [ Martin ]
+  * Update Slovenian translation.
+    Co-authored-by: Martin <miles@filmsi.net>
+
+  [ Danial Behzadi ]
+  * Update Persian translation
+
+  [ Hugo Carvalho ]
+  * Update Portuguese translation
+
+  [ Guido Günther ]
+  * plugins/syncthing: Allow to enable it via mobile settings.
+    Fixes: 35ee545af ("plugins: Add Syncthing quick-setting")
+  * plugins: Avoid join_paths.
+    We prefer '/'
+  * data/icons: Avoid join_path
+  * data/systemd: Avoid join_path.
+    We prefer '/'
+  * build: Drop join_path.
+    We prefer '/'
+  * data: Avoid join_path.
+    We prefer '/'
+  * shell: Simplify sending a notification for an app.
+    We need it in various places and since we have the shell singleton
+    everywhere it makes sense to add it there rather than to the
+    notification server.
+  * overview: Simplify sending the notification
+  * app-grid-button: Show error message when app can't be uninstalled.
+    Helps: https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1337
+  * app-tracker: Better preserve pid.
+    Fixes: f58db9a60 ("Add app-tracker")
+  * toplevel-manager: Move timeout to app-tracker.
+    This is where other parts of the shell get the app tracking
+    data from
+  * app-tracker: Give apps we have a PID for more time to start.
+    As long as we have a PID we give it more time up to a maximum, if the
+    PID goes away we still wait a bit in case it forked.
+    This is a simple improvement to help e.g. slow Firefox startup.
+  * layersurface: Shorten property names.
+    This is according to our coding style
+  * layer-surface: Modernize property definitions
+  * layer-surface: Fix indent
+  * lockscreen: Fix typo
+  * bt-info: Modernize property definitions
+  * bt-info: Sync present too.
+    When moving the primary output to another screen of when switching
+    between VTs the top-panel gets recreated. We need to make sure we
+    sync all properties. Otherwise the bt quick setting stays disabled.
+    Fixes: Fixes: 2dc677afb ("Add PhoshBtInfo")
+  * rotation-manager: Split out phone check.
+    Improves readability and we can reuse it
+  * rotation-manager: Allow to rotate lockscreen on non-phones.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/999
+  * overview: Hint that the application might be slow to start.
+    If we just say that it failed it is confusing. Hint that it might
+    be the application starting up slowly.
+  * brightness-manager: Don't assume we have a backlight.
+    Don't try go get a backlight when there is none to avoid a crash.
+    Fixes: 1ed374986 ("brightness-manager: Add auto-brightness-present property")
+  * backlight: Guard public method.
+    Follow our usual pattern.
+    Fixes: 049fe7cf6 ("backlight: Add and use methods to get and set relative brightness")
+  * app-grid-button: Allow to hide applications.
+    This is only offered if gnome-software is not available
+    Helps: https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1318
+  * util: Allow to unhide an application.
+    For that one needs to know the deskto file name.
+  * shell-notifications: New class to handle in shell notifications.
+    So far we used the generic implementation but if we want to
+    add actions it is cleaner to use a derived class.
+  * shell: Make the notifications helpers more flexible.
+    Allow to get the notification before presenting it so
+    we can e.g. add actions or manipulate other properties.
+  * app-grid-button: Allow to undo the hide operation
+  * app-grid-button: Move folder menu into section.
+    Ensures separators are shown correctly
+  * app-grid-button: Allow to open hidden app dialog.
+    This makes hidden app management easier for the user
+  * app-grid-button: Improve popover styling.
+    Makes it a bit more touch friendly by enlarging the font
+    and adding a bit of padding.
+
+  [ Emin Tufan Çetin ]
+  * Update Turkish translation
+
+  [ Domenico Iezzi ]
+  * app-tracker: Fix use-after-free in on_startup_timeout.
+    When app startup times out and the on_startup_timeout callback is
+    invoked, it emits the APP_FAILED signal and removes the current
+    PhoshAppState from the hash table in line 128. In line 131 we try to
+    access this state variable to set timeout_id to 0, but the value was
+    freed a few lines above by g_hash_table_remove, resulting in a
+    use-after-free.
+    This fix move the `state->timeout_id = 0` call before early returns,
+    when we are sure the state object is still valid.
+
+  [ Asier Saratsua Garmendia ]
+  * Update Basque translation
+
+  [ Марко Костић ]
+  * Update Serbian translation
+
+  [ johnwa ]
+  * load-meter: Implement CPU load meter status icon plugin.
+    Enable via
+    ```sh
+    gsettings set mobi.phosh.shell.plugins status-icons "['load-meter-status-icon']"
+    ```
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1238
+
+  [ Luiggi R. Cardoso ]
+  * Update Brazilian Portuguese translation
+
+  [ Jürgen Benvenuti ]
+  * Update German translation
+
+  [ Victoria Niedzielska ]
+  * Update Polish translation.
+    Co-authored-by: Victoria Niedzielska <victorian@gnome.org>
+
+  [ Yaron Shahrabani ]
+  * Update Hebrew translation.
+    Co-authored-by: Yaron Shahrabani <sh.yaron@gmail.com>
+
+  [ Gotam Gorabh ]
+  * favorites: Refresh visible favorites on app list changes.
+    The favorites model only rebuilt its visible list when the favorites
+    GSettings key changed. After uninstalling a favorite app, this could
+    leave a stale launcher in the favorites flowbox.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1339
+
+  [ Rafael Fontenelle ]
+  * Update Brazilian Portuguese translation.
+
+ -- Guido Günther <agx@sigxcpu.org>  Fri, 26 Jun 2026 10:48:35 +0200
+
 phosh (0.55.0) experimental; urgency=medium
 
   [ Guido Günther ]

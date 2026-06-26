@@ -1,3 +1,47 @@
+phosh 0.56~rc1
+--------------
+Released June 2026
+* New load meter plugin for the top bar
+* Allow to hide applications from the app-grid when GNOME Software is
+  not in use. This helps on immutable distro variants like
+  postmarketOS Duranium and Phosh's BengalOS to hide applications that
+  are shipped in the base image.
+* Improvements and bug fixes:
+    * Allow to enable syncthing plugin via mobile settings
+    * Show notification when app can't be uninstalled
+    * Avoid slow startup notification with e.g. Firefox by tracking
+      apps we forked so they get more time during startup
+    * Avoid Bluetooth quick setting getting disabled on output changes
+    * Allow to rotate lock screen on tablets
+    * Crash and leak fixes
+* Issues fixed:
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/999
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1238
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1339
+* Contributors:
+    * Domenico Iezzi
+    * Gotam Gorabh
+    * Guido Günther
+    * johnwa
+    * nicole mikołajczyk
+* UI translations:
+    * Antonio Marin (ro)
+    * Asier Saratsua Garmendia (eu)
+    * Danial Behzadi (fa)
+    * Daniel Rusek (cs)
+    * Ekaterine Papava (ka)
+    * Emin Tufan Çetin (tr)
+    * Flynn Peck (kw)
+    * Hugo Carvalho (pt)
+    * Jürgen Benvenuti (de)
+    * Luiggi R. Cardoso (pt_BR)
+    * Martin (sl)
+    * Rafael Fontenelle
+    * Victoria Niedzielska (pl)
+    * Yaron Shahrabani (he)
+    * Yuri Chornoivan (uk)
+    * Марко Костић (sr)
+
 phosh 0.55.0
 ------------
 Released May 2026
