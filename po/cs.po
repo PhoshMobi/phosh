@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-24 09:36+0000\n"
-"PO-Revision-Date: 2026-06-25 20:58+0200\n"
+"POT-Creation-Date: 2026-06-26 08:47+0000\n"
+"PO-Revision-Date: 2026-06-26 13:06+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -175,7 +175,19 @@ msgstr "Vytvořit novou složku"
 msgid "Can't uninstall application"
 msgstr "Nelze odinstalovat aplikaci"
 
-#: src/app-grid-button.c:701 src/app-grid-button.c:755
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "Zpět"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Aplikace je nyní trvale skrytá a zakázaná"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Nezdařilo se skrýt aplikaci"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Aplikace"
 
@@ -614,9 +626,17 @@ msgstr "Zobrazit po_drobnosti"
 msgid "Uninstall"
 msgstr "Odinstalovat"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "Skrýt aplikaci"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "Odeb_rat ze složky"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "Spravovat skryté aplikace"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
