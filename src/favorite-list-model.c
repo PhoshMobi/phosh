@@ -10,6 +10,7 @@
 
 #include "favorite-list-model.h"
 
+#include "app-list-model.h"
 #include "folder-info.h"
 
 #include <gio/gio.h>
@@ -106,20 +107,16 @@ list_iface_init (GListModelInterface *iface)
 
 
 static void
-favorites_changed (GSettings *settings, const char *key, PhoshFavoriteListModel *self)
+refresh_favorites_items (PhoshFavoriteListModel *self)
 {
   PhoshFavoriteListModelPrivate *priv = phosh_favorite_list_model_get_instance_private (self);
   g_autoptr (GStrvBuilder) builder = g_strv_builder_new ();
+  g_auto (GStrv) new_items = NULL;
+  guint new_len;
   int removed;
 
   /* Clear the old items */
   removed = priv->len;
-
-  g_clear_pointer (&priv->items_inc_missing, g_strfreev);
-  g_clear_pointer (&priv->items, g_strfreev);
-
-  /* Get the new list */
-  priv->items_inc_missing = g_settings_get_strv (settings, key);
 
   for (int i = 0; priv->items_inc_missing[i]; i++) {
     g_autoptr (GDesktopAppInfo) info = NULL;
@@ -135,10 +132,39 @@ favorites_changed (GSettings *settings, const char *key, PhoshFavoriteListModel 
     g_strv_builder_add (builder, priv->items_inc_missing[i]);
   }
 
-  priv->items = g_strv_builder_end (builder);
-  priv->len  = g_strv_length (priv->items);
+  new_items = g_strv_builder_end (builder);
+  new_len = g_strv_length (new_items);
+
+  if (priv->items && removed == new_len &&
+      g_strv_equal ((const char *const *) priv->items,
+                    (const char *const *) new_items))
+    return;
+
+  g_clear_pointer (&priv->items, g_strfreev);
+  priv->items = g_steal_pointer (&new_items);
+  priv->len = g_strv_length (priv->items);
 
   g_list_model_items_changed (G_LIST_MODEL (self), 0, removed, priv->len);
+}
+
+
+static void
+on_favorites_changed (GSettings *settings, const char *key, PhoshFavoriteListModel *self)
+{
+  PhoshFavoriteListModelPrivate *priv = phosh_favorite_list_model_get_instance_private (self);
+
+  g_clear_pointer (&priv->items_inc_missing, g_strfreev);
+  /* Get the new list */
+  priv->items_inc_missing = g_settings_get_strv (settings, key);
+
+  refresh_favorites_items (self);
+}
+
+
+static void
+on_app_list_changed (PhoshFavoriteListModel *self)
+{
+  refresh_favorites_items (self);
 }
 
 
@@ -149,8 +175,15 @@ phosh_favorite_list_model_init (PhoshFavoriteListModel *self)
 
   priv->settings = g_settings_new ("sm.puri.phosh");
   g_signal_connect (priv->settings, "changed::" FAVORITES_KEY,
-                    G_CALLBACK (favorites_changed), self);
-  favorites_changed (priv->settings, FAVORITES_KEY, self);
+                    G_CALLBACK (on_favorites_changed), self);
+
+  g_signal_connect_object (phosh_app_list_model_get_default (),
+                           "items-changed",
+                           G_CALLBACK (on_app_list_changed),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  on_favorites_changed (priv->settings, FAVORITES_KEY, self);
 }
 
 
@@ -233,7 +266,7 @@ phosh_favorite_list_model_add_app (PhoshFavoriteListModel *self, GAppInfo *app)
   g_strv_builder_add (builder, id);
   new_favorites = g_strv_builder_end (builder);
 
-  /* Indirectly calls favorites_changed which updates the model */
+  /* Indirectly calls on_favorites_changed which updates the model */
   g_settings_set_strv (priv->settings, FAVORITES_KEY, (const char *const *) new_favorites);
 }
 
@@ -271,6 +304,6 @@ phosh_favorite_list_model_remove_app (PhoshFavoriteListModel *self, GAppInfo *ap
     return;
   }
 
-  /* Indirectly calls favorites_changed which updates the model */
+  /* Indirectly calls on_favorites_changed which updates the model */
   g_settings_set_strv (priv->settings, FAVORITES_KEY, (const char *const *) new_favorites);
 }
