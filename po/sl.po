@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-24 09:36+0000\n"
-"PO-Revision-Date: 2026-06-25 06:25+0200\n"
+"POT-Creation-Date: 2026-06-26 08:47+0000\n"
+"PO-Revision-Date: 2026-06-26 18:19+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -175,7 +175,19 @@ msgstr "Ustvari novo mapo"
 msgid "Can't uninstall application"
 msgstr "Aplikacije ni možno odstraniti"
 
-#: src/app-grid-button.c:701 src/app-grid-button.c:755
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "Razveljavi"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Aplikacija je zdaj trajno skrita in onemogočena"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Aplikacije ni možno skriti"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Program"
 
@@ -624,9 +636,17 @@ msgstr "Pokaži po_drobnosti"
 msgid "Uninstall"
 msgstr "Odstrani namestitev"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "Skrij aplikacijo"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "Odstrani iz _mape"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "Upravljaj skrite aplikacije"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
