@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-02 16:27+0000\n"
-"PO-Revision-Date: 2026-06-13 04:08+0200\n"
+"POT-Creation-Date: 2026-06-24 09:36+0000\n"
+"PO-Revision-Date: 2026-06-26 06:44+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -523,8 +523,8 @@ msgstr[0] "თითქმის %dწ"
 msgstr[1] "თითქმის %dწ"
 
 #: src/overview.c:228
-msgid "Application failed to start"
-msgstr "აპლიკაციის გაშვება ჩავარდა"
+msgid "Application is slow or failed to start"
+msgstr "აპლიკაცია ნელია, ან მისი გაშვება ჩავარდა"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
