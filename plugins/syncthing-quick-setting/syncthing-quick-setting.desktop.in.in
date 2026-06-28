@@ -5,4 +5,4 @@ Name=Syncthing Quick Setting
 Types=quick-setting;
 Comment=A quick setting for Syncthing.
 Plugin=@plugins_dir@/libphosh-plugin-@name@.so
-Icon=mobi.phosh.Shell.Plugins.Syncthing
+Icon=syncthing-quick-setting

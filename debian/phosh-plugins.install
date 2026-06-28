@@ -3,6 +3,4 @@ usr/share/glib-2.0/schemas/mobi.phosh.plugins.*.gschema.xml
 usr/lib/*/phosh/plugins/libphosh-plugin-*.so
 usr/lib/*/phosh/plugins/prefs/libphosh-plugin-prefs-*.so
 usr/lib/*/phosh/plugins/*.plugin
-usr/share/icons/hicolor/symbolic/apps/mobi.phosh.Shell.Plugins.Loadmeter-symbolic.svg
-usr/share/icons/hicolor/symbolic/apps/mobi.phosh.Shell.Plugins.Syncthing-symbolic.svg
 usr/share/phosh/plugins/icons/*.svg
