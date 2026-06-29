@@ -123,10 +123,11 @@ phosh_brightness_settings_init (PhoshBrightnessSettings *self)
   adjustment = phosh_brightness_manager_get_adjustment (brightness_manager);
   gtk_range_set_adjustment (GTK_RANGE (self->scale), adjustment);
 
-  g_signal_connect_swapped (brightness_manager,
-                            "notify::auto-brightness-present",
-                            G_CALLBACK (on_auto_brightness_present_changed),
-                            self);
+  g_signal_connect_object (brightness_manager,
+                           "notify::auto-brightness-present",
+                           G_CALLBACK (on_auto_brightness_present_changed),
+                           self,
+                           G_CONNECT_SWAPPED);
   on_auto_brightness_present_changed (self, NULL, brightness_manager);
 
   g_settings_bind (self->settings, KEY_AMBIENT_ENABLED, self->auto_switch, "active",
