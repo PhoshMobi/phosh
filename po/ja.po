@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-08 07:09+0000\n"
-"PO-Revision-Date: 2026-05-09 16:41+0900\n"
+"POT-Creation-Date: 2026-06-28 10:37+0000\n"
+"PO-Revision-Date: 2026-06-30 07:40+0900\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -125,6 +125,22 @@ msgstr "ポモドーロのクイック設定"
 msgid "Simple Pomodoro Timer"
 msgstr "シンプルなポモドーロタイマー"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "拡大率のクイック設定"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "ディスプレイの拡大率を調整するクイック設定です。"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Syncthing のクイック設定"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Syncthing のクイック設定です。"
+
 # 直訳の「チケットボックス」は旅行の思い出を飾るケースのことですが、
 # ここでは現在有効な搭乗券やイベントチケット、証明書などをロック画面から瞬時に
 # 表示する機能を指しています。そのため、その機能を持つモノを指す単語に訳しました。
@@ -145,6 +161,14 @@ msgstr "今後のイベント"
 msgid "Show upcoming calendar events"
 msgstr "今後のカレンダーイベントを表示します"
 
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Wi-Fi ホットスポットのクイック設定"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Wi-Fi ホットスポットのオン/オフを切り替えます"
+
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
 msgstr "フォルダーに追加"
@@ -153,15 +177,36 @@ msgstr "フォルダーに追加"
 msgid "Create new folder"
 msgstr "新しいフォルダーを作成"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "アプリケーションをアンインストールできません"
+
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "元に戻す"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "アプリケーションを完全に非表示にし無効化しました"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "アプリケーションを非表示にできません"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "アプリケーション"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "%s フォルダーは空です"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "すべてのアプリを表示"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "モバイル対応アプリのみを表示"
 
@@ -487,9 +532,9 @@ msgid "Almost %dy"
 msgid_plural "Almost %dy"
 msgstr[0] "約 %d 年前"
 
-#: src/overview.c:221
-msgid "Application failed to start"
-msgstr "アプリケーションの起動に失敗しました"
+#: src/overview.c:228
+msgid "Application is slow or failed to start"
+msgstr "アプリケーションが重いまたは起動に失敗しました"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
@@ -569,9 +614,17 @@ msgstr "詳細を表示(_D)"
 msgid "Uninstall"
 msgstr "アンインストール"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "アプリケーションを非表示にする"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "フォルダーから外す(_R)"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "非表示のアプリを管理"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
@@ -670,7 +723,7 @@ msgstr "戻る"
 msgid "Slide up to unlock"
 msgstr "上にスワイプしてロック解除"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:334
 msgid "Unlock"
 msgstr "ロック解除"
 
