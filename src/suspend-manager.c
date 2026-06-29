@@ -58,7 +58,7 @@ uninhibit_suspend (PhoshSuspendManager *self, const char *what)
   if (value)
     phosh_session_manager_uninhibit (sm, GPOINTER_TO_UINT (value));
 
-  g_hash_table_remove (self->inhibitors, "wifi-hotspot");
+  g_hash_table_remove (self->inhibitors, what);
 }
 
 
