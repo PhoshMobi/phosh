@@ -259,9 +259,7 @@ phosh_caffeine_quick_setting_finalize (GObject *gobject)
 {
   PhoshCaffeineQuickSetting *self = PHOSH_CAFFEINE_QUICK_SETTING (gobject);
 
-  if (self->cookie)
-    phosh_caffeine_quick_setting_inhibit (self, FALSE);
-
+  phosh_caffeine_quick_setting_clear_timer (self);
   g_clear_object (&self->settings);
 
   G_OBJECT_CLASS (phosh_caffeine_quick_setting_parent_class)->finalize (gobject);
