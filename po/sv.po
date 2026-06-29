@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-08 07:09+0000\n"
-"PO-Revision-Date: 2026-05-09 14:23+0200\n"
+"POT-Creation-Date: 2026-06-26 08:47+0000\n"
+"PO-Revision-Date: 2026-06-30 00:55+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -121,6 +121,22 @@ msgstr "Snabbinställning för Pomodoro"
 msgid "Simple Pomodoro Timer"
 msgstr "Enkel Pomodoroklocka"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "Snabbinställning för skalning"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "En snabbinställning för att justera skärmens skala."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Snabbinställning för Syncthing"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "En snabbinställning för Syncthing."
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -139,6 +155,14 @@ msgstr "Kommande händelser"
 msgid "Show upcoming calendar events"
 msgstr "Visa kommande kalenderhändelser"
 
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Snabbinställning för Wi-Fi-surfzon"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Aktivera/inaktivera Wi-Fi-surfzon"
+
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
 msgstr "Lägg till i mapp"
@@ -147,15 +171,36 @@ msgstr "Lägg till i mapp"
 msgid "Create new folder"
 msgstr "Skapa ny mapp"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "Kan inte avinstallera program"
+
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "Ångra"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Programmet är nu permanent dolt och inaktiverat"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Misslyckades med att dölja program"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Program"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "Mappen %s är tom"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "Visa alla appar"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Visa endast mobilanpassade appar"
 
@@ -490,9 +535,9 @@ msgid_plural "Almost %dy"
 msgstr[0] "Nästan %dår"
 msgstr[1] "Nästan %dår"
 
-#: src/overview.c:221
-msgid "Application failed to start"
-msgstr "Programmet kunde inte starta"
+#: src/overview.c:228
+msgid "Application is slow or failed to start"
+msgstr "Programmet är långsamt eller kunde inte starta"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
@@ -572,9 +617,17 @@ msgstr "Visa _detaljer"
 msgid "Uninstall"
 msgstr "Avinstallera"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "Dölj program"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "_Ta bort från mapp"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "Hantera dolda appar"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
@@ -673,7 +726,7 @@ msgstr "Bakåt"
 msgid "Slide up to unlock"
 msgstr "Svep uppåt för att låsa upp"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:334
 msgid "Unlock"
 msgstr "Lås upp"
 
@@ -1325,9 +1378,6 @@ msgstr "Surfzon av"
 
 #~ msgid "_Screenshot"
 #~ msgstr "_Skärmbild"
-
-#~ msgid "Unknown application"
-#~ msgstr "Okänt program"
 
 #~ msgid "Lock Screen"
 #~ msgstr "Lås skärm"
