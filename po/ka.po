@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-24 09:36+0000\n"
-"PO-Revision-Date: 2026-06-26 06:44+0200\n"
+"POT-Creation-Date: 2026-06-28 10:37+0000\n"
+"PO-Revision-Date: 2026-06-29 07:00+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -175,7 +175,19 @@ msgstr "ახალი საქაღალდის შექმნა"
 msgid "Can't uninstall application"
 msgstr "აპლიკაციის წაშლა შეუძლებელია"
 
-#: src/app-grid-button.c:701 src/app-grid-button.c:755
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "დაბრუნება"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "აპლიკაცია ახლა სამუდამოდ დამალული და გათიშულია"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "აპლიკაციის დამალვის შეცდომა"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "აპლიკაცია"
 
@@ -604,9 +616,17 @@ msgstr "დეტალების _ნახვა"
 msgid "Uninstall"
 msgstr "წაშლა"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "აპლიკაციის დამალვა"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "_საქაღალდიდან წაშლა"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "დამალული აპების მართვა"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
