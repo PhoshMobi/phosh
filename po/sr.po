@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-02 16:27+0000\n"
-"PO-Revision-Date: 2026-03-20 09:47+0100\n"
-"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
+"POT-Creation-Date: 2026-06-28 10:37+0000\n"
+"PO-Revision-Date: 2026-06-30 21:20+0200\n"
+"Last-Translator: Марко Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: Serbian <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "Phosh"
 
 #: data/wayland-sessions/phosh.desktop:4
 msgid "This session logs you into Phosh"
-msgstr "Ова сесија вас пријављује у Phosh"
+msgstr "Ова сесија вас пријављује у Фош"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:4
 msgid "Caffeine Quick Setting"
@@ -125,7 +125,6 @@ msgid "Simple Pomodoro Timer"
 msgstr "Једноставан Помодоро одбројавач"
 
 #: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
-#| msgid "Location Quick Setting"
 msgid "Scaling Quick Setting"
 msgstr "Брзо подешавање размере"
 
@@ -134,7 +133,6 @@ msgid "A quick setting for adjusting the display scaling."
 msgstr "Брзо подешавање за прилагођавање размере екрана."
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
-#| msgid "Location Quick Setting"
 msgid "Syncthing Quick Setting"
 msgstr "Брзо подешавање Синктинга"
 
@@ -161,12 +159,10 @@ msgid "Show upcoming calendar events"
 msgstr "Прикажи будуће догађаје у календару"
 
 #: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
-#| msgid "Wi-Fi Hotspot Active"
 msgid "Wi-Fi Hotspot Quick Setting"
 msgstr "Брзо подешавање бежичне вруће тачке"
 
 #: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
-#| msgid "Toggle night light on/off"
 msgid "Toggle Wi-Fi hotspot on/off"
 msgstr "Окини бежичну врућу тачку"
 
@@ -182,7 +178,19 @@ msgstr "Направи нову фасциклу"
 msgid "Can't uninstall application"
 msgstr "Немогуће је деинсталирати програм."
 
-#: src/app-grid-button.c:701 src/app-grid-button.c:755
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "Опозови"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Програм је сада трајно сакривен и онемогућен"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Неуспех при скривању програма"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Апликација"
 
@@ -550,8 +558,8 @@ msgstr[2] "Скоро %dг."
 msgstr[3] "Скоро %dг."
 
 #: src/overview.c:228
-msgid "Application failed to start"
-msgstr "Програм није успео да се покрене"
+msgid "Application is slow or failed to start"
+msgstr "Програм је спор или није успео да се покрене"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
@@ -631,9 +639,17 @@ msgstr "Прикажи _појединости"
 msgid "Uninstall"
 msgstr "Уклони"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "Сакриј програм"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "_Уклони из фасцикле"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "Управљај скривеним програмима"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
@@ -1247,7 +1263,7 @@ msgstr "Поставке фасцикле"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.ui:15
 msgid "Where Phosh looks for your tickets"
-msgstr "Где ће Phosh тражити ваше картице"
+msgstr "Где ће Фош тражити ваше картице"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.ui:18
 msgid "Ticket Folder"
