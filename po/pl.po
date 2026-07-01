@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-02 16:27+0000\n"
-"PO-Revision-Date: 2026-06-23 22:39+0200\n"
+"POT-Creation-Date: 2026-06-28 10:37+0000\n"
+"PO-Revision-Date: 2026-07-01 18:21+0200\n"
 "Last-Translator: Victoria Niedzielska <victorian@gnome.org>\n"
 "Language-Team: Polish <https://l10n.gnome.org/teams/pl/>\n"
 "Language: pl\n"
@@ -38,7 +38,7 @@ msgstr "Phosh"
 
 #: data/wayland-sessions/phosh.desktop:4
 msgid "This session logs you into Phosh"
-msgstr "Ta sesja loguje Cię do Phosh"
+msgstr "Ta sesja loguje Cię do powłoki Phosh"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:4
 msgid "Caffeine Quick Setting"
@@ -136,11 +136,11 @@ msgstr "Szybkie ustawienie do dostosowania skalowania ekranu"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
 msgid "Syncthing Quick Setting"
-msgstr "Szybkie ustawienie Syncthing"
+msgstr "Szybkie ustawienie programu Syncthing"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
 msgid "A quick setting for Syncthing."
-msgstr "Szybkie ustawienie dla Syncthing"
+msgstr "Szybkie ustawienie dla programu Syncthing"
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
@@ -181,7 +181,19 @@ msgstr "Utwórz nowy katalog"
 msgid "Can't uninstall application"
 msgstr "Nie można odinstalować programu"
 
-#: src/app-grid-button.c:701 src/app-grid-button.c:755
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "Cofnij"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Program jest już trwale ukryty i wyłączony"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Ukrycie programu się nie powiodło"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Program"
 
@@ -539,8 +551,8 @@ msgstr[1] "Prawie %d lata"
 msgstr[2] "Prawie %d lat"
 
 #: src/overview.c:228
-msgid "Application failed to start"
-msgstr "Nie udało się uruchomić programu"
+msgid "Application is slow or failed to start"
+msgstr "Program jest powolny bądź nie uruchomił się"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
@@ -620,9 +632,17 @@ msgstr "Wyświetl _szczegóły"
 msgid "Uninstall"
 msgstr "Odinstaluj"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "Ukryj program"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "Usuń z _katalogu"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "Zarządzaj ukrytymi programami"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
