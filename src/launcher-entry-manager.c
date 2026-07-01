@@ -61,11 +61,17 @@ on_update (GDBusConnection *connection,
   const char *app_uri, *desktop_file;
   g_autoptr (GVariant) properties = NULL;
 
-  g_return_if_fail (g_strcmp0 (g_variant_get_type_string (parameters), "(sa{sv})") == 0);
+  if (g_strcmp0 (g_variant_get_type_string (parameters), "(sa{sv})")) {
+    g_warning ("Invalid parameters for launcher entry from %s", sender_name);
+    return;
+  }
 
   g_variant_get (parameters, "(&s@a{sv})", &app_uri, &properties);
 
-  g_return_if_fail (g_str_has_prefix (app_uri, APP_URI_SCHEME));
+  if (!g_str_has_prefix (app_uri, APP_URI_SCHEME)) {
+    g_warning ("Invalid prefix in %s from %s", app_uri, sender_name);
+    return;
+  }
 
   desktop_file = &app_uri[strlen (APP_URI_SCHEME)];
 
