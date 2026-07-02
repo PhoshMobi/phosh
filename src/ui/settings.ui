@@ -17,78 +17,73 @@
             <property name="maximum-size">720</property>
             <property name="vexpand">1</property>
             <child>
-
               <object class="GtkBox" id="box">
                 <property name="visible">1</property>
                 <property name="orientation">vertical</property>
                 <child>
-
-              <object class="GtkBox" id="box_settings">
-                <property name="visible">1</property>
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="HdyClamp">
+                  <object class="GtkBox" id="box_settings">
                     <property name="visible">1</property>
-                    <property name="maximum-size">360</property>
+                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkBox" id="box_sliders">
+                      <object class="HdyClamp">
                         <property name="visible">1</property>
-                        <property name="orientation">vertical</property>
-                        <property name="margin-top">6</property>
-                        <property name="margin-bottom">6</property>
+                        <property name="maximum-size">360</property>
                         <child>
-                          <object class="PhoshBrightnessSettings" id="brightness_settings"/>
-                        </child>
-                        <child>
-                          <object class="PhoshAudioSettings" id="audio_settings">
+                          <object class="GtkBox" id="box_sliders">
                             <property name="visible">1</property>
-                            <signal name="notify::is-headphone" handler="on_is_headphone_changed" object="PhoshSettings" swapped="yes"/>
+                            <property name="orientation">vertical</property>
+                            <property name="margin-top">6</property>
+                            <property name="margin-bottom">6</property>
+                            <child>
+                              <object class="PhoshBrightnessSettings" id="brightness_settings"/>
+                            </child>
+                            <child>
+                              <object class="PhoshAudioSettings" id="audio_settings">
+                                <property name="visible">1</property>
+                                <signal name="notify::is-headphone" handler="on_is_headphone_changed" object="PhoshSettings" swapped="yes"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="PhoshQuickSettings" id="quick_settings">
+                        <property name="visible">1</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkRevealer" id="revealer">
+                        <property name="visible">1</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">1</property>
+                            <property name="margin-bottom">5</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">1</property>
+                                <property name="margin-end">6</property>
+                                <property name="icon-name">torch-enabled-symbolic</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkScale" id="scale_torch">
+                                <property name="visible">1</property>
+                                <property name="hexpand">1</property>
+                                <property name="adjustment">adj_torch</property>
+                                <property name="round-digits">0</property>
+                                <property name="draw-value">0</property>
+                                <signal name="value-changed" handler="on_torch_scale_value_changed" object="PhoshSettings" swapped="yes"/>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
                   </object>
-                </child>
-
-                <child>
-                  <object class="PhoshQuickSettings" id="quick_settings">
-                    <property name="visible">1</property>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="GtkRevealer" id="revealer">
-                    <property name="visible">1</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">1</property>
-                        <property name="margin-bottom">5</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="visible">1</property>
-                            <property name="margin-end">6</property>
-                            <property name="icon-name">torch-enabled-symbolic</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkScale" id="scale_torch">
-                            <property name="visible">1</property>
-                            <property name="hexpand">1</property>
-                            <property name="adjustment">adj_torch</property>
-                            <property name="round-digits">0</property>
-                            <property name="draw-value">0</property>
-                            <signal name="value-changed" handler="on_torch_scale_value_changed" object="PhoshSettings" swapped="yes"/>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object> <!-- box_settings -->
-
+                  <!-- box_settings -->
                 </child>
                 <child>
-
                   <object class="HdyClamp">
                     <property name="visible">1</property>
                     <property name="maximum-size">360</property>
@@ -204,7 +199,6 @@
                       </object>
                     </child>
                   </object>
-
                 </child>
               </object>
             </child>
