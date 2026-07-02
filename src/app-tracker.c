@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2021 Purism SPC
+ *               2022-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -255,20 +256,54 @@ startup_tracker_handle_launched (void                                 *data,
 }
 
 
+static char *
+lookup_startup_id (PhoshAppTracker *self, const char *startup_id, unsigned int protocol)
+{
+  g_autofree char *unquoted = NULL;
+
+  if (g_hash_table_lookup (self->apps, startup_id))
+    return g_strdup (startup_id);
+
+  if (protocol != PHOSH_PRIVATE_STARTUP_TRACKER_PROTOCOL_X11)
+    return NULL;
+
+  /* Need something between the quotes */
+  if (strlen (startup_id) < 3)
+    return NULL;
+
+  if (!g_str_has_prefix (startup_id, "\"") || !g_str_has_suffix (startup_id, "\""))
+    return NULL;
+
+  unquoted = g_strndup (&startup_id[1], strlen (startup_id) - 2);
+  g_debug ("Client sent quoted startup id '%s', trying unqouted '%s'", startup_id, unquoted);
+  if (g_hash_table_lookup (self->apps, unquoted))
+    return g_steal_pointer (&unquoted);
+
+  return NULL;
+}
+
+
 static void
 startup_tracker_handle_startup_id (void                                 *data,
                                    struct phosh_private_startup_tracker *startup_tracker,
-                                   const char                           *startup_id,
+                                   const char                           *orig_startup_id,
                                    unsigned int                          protocol,
                                    unsigned int                          flags)
 
 {
   PhoshAppState *state;
   PhoshAppTracker *self = PHOSH_APP_TRACKER (data);
+  g_autofree char *startup_id = NULL;
 
   g_debug ("%s %s %d", __func__, startup_id, protocol);
   g_return_if_fail (PHOSH_IS_APP_TRACKER (self));
-  g_return_if_fail (startup_id != NULL);
+  g_return_if_fail (orig_startup_id != NULL);
+
+  startup_id = lookup_startup_id (self, orig_startup_id, protocol);
+  if (startup_id == NULL) {
+    g_debug ("No info for startup_id '%s' found", orig_startup_id);
+    return;
+  }
 
   state = g_hash_table_lookup (self->apps, startup_id);
   /* Apps often reuse the the startup_id for multiple windows */
