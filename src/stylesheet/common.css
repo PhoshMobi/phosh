@@ -484,7 +484,7 @@ phosh-lockscreen-bg {
   margin: 12px 0;
   transition: 200ms ease;
   padding-top: 40px;
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 #phosh-lockscreen-date {
@@ -492,7 +492,7 @@ phosh-lockscreen-bg {
   font-size: 18px;
   margin: 6px 0;
   transition: 200ms ease;
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 .p-small #phosh-lockscreen-clock {
@@ -510,11 +510,12 @@ phosh-lockscreen-bg {
 .phosh-lockscreen-arrow {
   transition: 400ms linear;
   animation: pulsate 1.8s ease-out;
-  animation-iteration-count: 15;
+  animation-iteration-count: 8;
 }
 
 .phosh-lockscreen-arrow + label {
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  opacity: 0.55;
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 .phosh-lockscreen-status-icons {
@@ -532,11 +533,11 @@ phosh-lockscreen-bg {
   box-shadow:none;
   outline: none;
   caret-color: transparent;
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 .phosh-lockscreen-unlocker > label {
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes pulsate {
@@ -549,7 +550,7 @@ phosh-lockscreen-bg {
 phosh-keypad label.digit {
   font-size: 200%;
   font-weight: bold;
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 phosh-keypad button {
@@ -561,7 +562,7 @@ phosh-keypad button {
 }
 
 phosh-keypad image {
-  -gtk-icon-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  -gtk-icon-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 phosh-keypad button:active label,
@@ -577,10 +578,20 @@ phosh-keypad button:focus {
   background: alpha(@phosh_fg_color, 0.3);
 }
 
-phosh-lockscreen .text-only-button {
+phosh-lockscreen button.pin-submit,
+phosh-lockscreen button.pin-submit:active,
+phosh-lockscreen button.pin-submit:hover,
+phosh-lockscreen button.pin-submit:active,
+phosh-lockscreen button.pin-submit:focus {
   font-size: 16px;
   font-weight: bold;
   padding: 16px 36px;
+  background-color: alpha(@phosh_fg_color,.3);
+}
+
+phosh-lockscreen button.pin-submit > label {
+  /* We have contrast due to the fb-color mixin above so 0.3 is enough */
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
 }
 
 phosh-lockscreen cui-call-display actionbar {
@@ -588,7 +599,7 @@ phosh-lockscreen cui-call-display actionbar {
 }
 
 phosh-lockscreen cui-call-display label {
-  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 1.1px rgba(0, 0, 0, 0.6);
 }
 
 phosh-lockscreen .phosh-notification-tray {

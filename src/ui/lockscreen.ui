@@ -93,9 +93,6 @@
                         <property name="margin-top">6</property>
                         <property name="margin-bottom">32</property>
                         <property name="label" translatable="yes">Slide up to unlock</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
                       </object>
                     </child>
                   </object>
@@ -334,7 +331,7 @@
                     <property name="label" translatable="yes">Unlock</property>
                     <signal name="clicked" handler="submit_cb" swapped="yes"/>
                     <style>
-                      <class name="text-only-button"/>
+                      <class name="pin-submit"/>
                       <class name="circular"/>
                     </style>
                   </object>
