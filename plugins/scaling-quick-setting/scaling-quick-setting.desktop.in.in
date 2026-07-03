@@ -3,6 +3,6 @@
 Id=@name@
 Name=Scaling Quick Setting
 Types=quick-setting;
-Comment=A quick setting for adjusting the display scaling.
+Comment=Adjust display scaling
 Plugin=@plugins_dir@/libphosh-plugin-@name@.so
 Icon=scaling-quick-setting
