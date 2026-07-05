@@ -1,3 +1,58 @@
+phosh (0.56.0) experimental; urgency=medium
+
+  [ Guido Günther ]
+  * syncthing-quick-setting: Use correct icon dir.
+    We put those into the plugins dir
+    Fixes: 2465a0ae0 ("plugins/syncthing: Allow to enable it via mobile settings")
+  * load-meter-status-icon: Install icon into plugin dir.
+    Use our canonical naming while at that
+    Fixes: Fixes: fa3f4140 ("load-meter: Implement CPU load meter status icon plugin")
+  * brightness-settings: Disconnect `auto-brightness-present` signal.
+    Use g_signal_connect_object to disconnect the signal on dispose.
+    Otherwise we might get called when the object is no longer present.
+    Fixes: 122172583 ("brightness-settings: Hide auto-brightness setting when there's no sensor")
+  * layout-manager: Track layout setting changes.
+    This ensures we update the layout on changes right away
+    instead of waiting for a mode or orientation change.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1343
+  * app-tracker: Unquote startup id.
+    Some X11 apps like Emacs send the startup id quoted in `"` to the
+    compositor. Remove those as we otherwise fail to match.
+  * lockscreen: Use a bit darker text shadows.
+    This improves readability with more vivid backgrounds
+    without looking too dark.
+  * lockscreen: Let submit button style match the keypad
+  * lockscreen: Darken slide up label.
+    While at that move the dimming out of the UI so we
+    can tweak both easily of needed.
+  * lockscreen: Reduce arrow timeout.
+    15s is very long due to
+    https://gitlab.gnome.org/World/Phosh/phosh/-/issues/239
+    we waste a lot of 🪫during that time.
+
+  [ Danial Behzadi ]
+  * Update Persian translation
+
+  [ Ekaterine Papava ]
+  * Update Georgian translation
+
+  [ Ryo Nakano ]
+  * Update Japanese translation
+
+  [ Anders Jonsson ]
+  * Update Swedish translation
+
+  [ Hugo Carvalho ]
+  * Update Portuguese translation
+
+  [ Марко Костић ]
+  * Update Serbian translation
+
+  [ Victoria Niedzielska ]
+  * Update Polish translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Sun, 05 Jul 2026 09:43:04 +0200
+
 phosh (0.56~rc1) experimental; urgency=medium
 
   [ Flynn Peck ]
