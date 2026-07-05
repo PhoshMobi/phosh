@@ -1,6 +1,6 @@
-phosh 0.56~rc1
---------------
-Released June 2026
+phosh 0.56.0
+------------
+Released July 2026
 * New load meter plugin for the top bar
 * Allow to hide applications from the app-grid when GNOME Software is
   not in use. This helps on immutable distro variants like
@@ -9,15 +9,20 @@ Released June 2026
 * Improvements and bug fixes:
     * Allow to enable syncthing plugin via mobile settings
     * Show notification when app can't be uninstalled
-    * Avoid slow startup notification with e.g. Firefox by tracking
+    * Avoid slow startup notification (with e.g. Firefox) by tracking
       apps we forked so they get more time during startup
+    * Unquote app-id's if the app accidentally quotes them fixing
+      another case of seemingly slow startup
     * Avoid Bluetooth quick setting getting disabled on output changes
     * Allow to rotate lock screen on tablets
-    * Crash and leak fixes
+    * Apply cutout config changes immediately
+    * Lockscreen style improvements
+    * Some crash and leak fixes
 * Issues fixed:
     * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/999
     * https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1238
     * https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1339
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1343
 * Contributors:
     * Domenico Iezzi
     * Gotam Gorabh
@@ -25,6 +30,7 @@ Released June 2026
     * johnwa
     * nicole mikołajczyk
 * UI translations:
+    * Anders Jonsson (sv)
     * Antonio Marin (ro)
     * Asier Saratsua Garmendia (eu)
     * Danial Behzadi (fa)
@@ -37,6 +43,7 @@ Released June 2026
     * Luiggi R. Cardoso (pt_BR)
     * Martin (sl)
     * Rafael Fontenelle
+    * Ryo Nakano (ja)
     * Victoria Niedzielska (pl)
     * Yaron Shahrabani (he)
     * Yuri Chornoivan (uk)
