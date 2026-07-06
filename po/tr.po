@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-05-21 20:00+0000\n"
-"PO-Revision-Date: 2026-05-26 08:00+0300\n"
+"POT-Creation-Date: 2026-07-03 13:57+0000\n"
+"PO-Revision-Date: 2026-07-06 08:00+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -170,7 +170,23 @@ msgstr "Klasöre Ekle"
 msgid "Create new folder"
 msgstr "Yeni klasör oluştur"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "Uygulama kaldırılamıyor"
+
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "Geri Al"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Uygulama kalıcı olarak gizlendi ve devre dışı bırakıldı"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Uygulama gizlenemedi"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Uygulama"
 
@@ -320,7 +336,7 @@ msgid "No"
 msgstr "Hayır"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Parolayı Gir"
 
@@ -507,9 +523,9 @@ msgid "Almost %dy"
 msgid_plural "Almost %dy"
 msgstr[0] "Neredeyse %d yıl"
 
-#: src/overview.c:221
-msgid "Application failed to start"
-msgstr "Uygulama başlatılamadı"
+#: src/overview.c:228
+msgid "Application is slow or failed to start"
+msgstr "Uygulama yavaş ya da başlatılamadı"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
@@ -589,9 +605,17 @@ msgstr "_Ayrıntıları Göster"
 msgid "Uninstall"
 msgstr "Kaldır"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "Uygulamayı Gizle"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "Klasörden _Kaldır"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "Gizli Uygulamaları Yönet"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
@@ -682,7 +706,7 @@ msgstr "Etki Alanı:"
 msgid "Co_nnect"
 msgstr "_Bağlan"
 
-#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr "Geri"
 
@@ -690,7 +714,7 @@ msgstr "Geri"
 msgid "Slide up to unlock"
 msgstr "Açmak için kaldır"
 
-#: src/ui/lockscreen.ui:334
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "Kilidi Aç"
 
