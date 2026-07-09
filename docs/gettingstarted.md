@@ -73,7 +73,7 @@ protocols like `xdg_output`, `wl_output` or `wl_seat` (see
 Since Phosh is in many aspects a regular GTK application it's started
 as part GNOME session so the start sequence looks like
 
-```
+```sh
 phoc (compositor) -> gnome-session -> phosh (and other session components)
 ```
 
@@ -86,10 +86,42 @@ test the changes:
 
 For development purposes you can run phosh nested on your desktop. See
 [this blog post](https://phosh.mobi/posts/phosh-dev-part-0/) for
-details. You can use several helper scripts to test the running
+details. You can also run it in a container via toolbox:
+
+Create and enter a container
+
+```sh
+distrobox create --image docker.io/library/fedora:latest
+distrobox enter fedora-latest
+sudo dnf install phosh gtk4-demo
+# Runs phoc window to attach Phosh to in the next step:
+WLR_BACKENDS=wayland GSETTINGS_BACKEND=memory \
+                     phoc -C /usr/share/phosh/phoc.ini -E gtk4-demo
+```
+
+#### Option 1: Run nested Phosh session with local Phosh git checkout
+
+```sh
+sudo dnf install dnf-plugins-core git
+sudo dnf builddep phosh
+git clone https://gitlab.gnome.org/World/Phosh/phosh && cd phosh
+meson setup _build
+# re-build after every code change, then re-run the build to see your changes.
+meson compile -C _build
+WAYLAND_DISPLAY=wayland-1 GSETTINGS_BACKEND=memory ./_build/run
+```
+
+#### Option 2: Run nested Phosh session with packaged phosh
+
+```sh
+sudo dnf install phosh
+WAYLAND_DISPLAY=wayland-1 GSETTINGS_BACKEND=memory /usr/libexec/phosh
+```
+
+You can use several helper scripts to test the running
 instance:
 
-### Checking DBus Interfaces
+#### Checking DBus Interfaces
 
 The `tools/` directory contains short snippets to test various DBus interfaces
 e.g. `check-osd` to test the OSD overlay (`PhoshOsdWindow`) or `check-screenshot`
@@ -103,7 +135,7 @@ or `net.hadess.SensorProxy` you can use [python-dbusmock][].
 `tests/mock-mm-nm.py` uses this to mock `ModemManager` and
 `NetworkManager` to simulate a mobile data connection:
 
-```
+```sh
 sudo tests/mock-mm-nm.py
 ```
 
@@ -113,13 +145,13 @@ the above.
 You can also use the mocks from `python-dbusmock` directly, e.g. to mock
 settings daemon's rfkill state:
 
-```
+```sh
 python3 -m dbusmock --template gsd_rfkill
 ```
 
 to e.g. mock `gsd-rfkill`. To simulate airplane mode you could use:
 
-```
+```sh
 gdbus call --session -d org.gnome.SettingsDaemon.Rfkill \
                      -o /org/gnome/SettingsDaemon/Rfkill \
                      -m org.freedesktop.DBus.Mock.SetAirplaneMode true
