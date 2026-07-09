@@ -65,8 +65,8 @@ done
 rmdir "$tmpdir"
 
 if [ $status -ne 0 ]; then
-   echo "Simplify the GTK 3 files using: gtk-builder-tool --simplify --replace file.ui"
-   echo "Simplify the GTK 4 files using: gtk4-builder-tool --simplify --replace file.ui"
+   echo "Simplify the GTK 3 files using: gtk-builder-tool simplify --replace file.ui"
+   echo "Simplify the GTK 4 files using: gtk4-builder-tool simplify --replace file.ui"
 fi
 
 exit $status
