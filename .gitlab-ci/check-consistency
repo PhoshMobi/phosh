@@ -50,7 +50,7 @@ if [ -f debian/changelog ]; then
     VERSION=$(dpkg-parsechangelog -SVersion)
 elif [ -f meson.build ]; then
     log info "Fetching version from meson build file"
-    VERSION=$(sed -n "s/.*version\s*:\s*'\([0-9].*\)'.*/\1/p" meson.build)
+    VERSION=$(sed -n "s/.*\sversion\s*:\s*'\([0-9][^']*\)'.*/\1/p" meson.build)
 else
     log error "E: Don't know how to get version information"
     exit 1
