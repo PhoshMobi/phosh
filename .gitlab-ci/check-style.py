@@ -132,14 +132,12 @@ def main(argv):
     parser.add_argument(
         "--dry-run",
         "-d",
-        type=bool,
         action=argparse.BooleanOptionalAction,
         help="Only print changes to stdout, do not change code",
     )
     parser.add_argument(
         "--rewrite",
         "-r",
-        type=bool,
         action=argparse.BooleanOptionalAction,
         help="Whether to amend the result to the last commit (e.g. 'git rebase --exec \"%(prog)s -r\"')",
     )
