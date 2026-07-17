@@ -35,7 +35,7 @@ typedef void (*PhoshAnimationValueCallback) (double   value,
                                              gpointer user_data);
 typedef void (*PhoshAnimationDoneCallback)  (gpointer user_data);
 
-GType           phosh_animation_get_type  (void) G_GNUC_CONST;
+GType           phosh_animation_get_type  (void);
 
 PhoshAnimation *phosh_animation_new       (GtkWidget                   *widget,
                                            double                       from,
