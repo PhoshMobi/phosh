@@ -227,7 +227,11 @@ phosh_background_draw (GtkWidget *widget, cairo_t *cr)
   }
 
   if (self->pixbuf) {
-    gdk_cairo_set_source_pixbuf (cr, self->pixbuf, x, y);
+    double scale = gtk_widget_get_scale_factor (GTK_WIDGET (self));
+
+    cairo_scale (cr, 1.0 / scale, 1.0 / scale);
+    gdk_cairo_set_source_pixbuf (cr, self->pixbuf, x / scale, y / scale);
+
     cairo_paint (cr);
   }
 
@@ -240,7 +244,7 @@ phosh_background_draw (GtkWidget *widget, cairo_t *cr)
 static void
 update_image (PhoshBackground *self)
 {
-  int width, height;
+  int width, height, scale;
 
   if (!self->configured)
     return;
@@ -254,10 +258,13 @@ update_image (PhoshBackground *self)
 
   g_return_if_fail (width > 0 && height > 0);
 
-  g_debug ("Scaling background %p to %dx%d", self, width, height);
+  scale = gtk_widget_get_scale_factor (GTK_WIDGET (self));
+  scale = MAX (1, scale);
+
+  g_debug ("Scaling background %p to %dx%d, scale %d", self, width, height, scale);
 
   g_clear_object (&self->pixbuf);
-  self->pixbuf = image_background (self->cached_bg_image, width, height,
+  self->pixbuf = image_background (self->cached_bg_image, width * scale, height * scale,
                                    self->style, &self->color);
 
   self->needs_update = FALSE;
