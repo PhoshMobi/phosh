@@ -7,138 +7,294 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2023-07-31 20:22+0000\n"
-"PO-Revision-Date: 2023-08-09 15:24-0400\n"
+"POT-Creation-Date: 2026-07-03 13:57+0000\n"
+"PO-Revision-Date: 2026-07-19 10:35+0800\n"
 "Last-Translator: \n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.6\n"
 
-#. Translators: this is the session name, no need to translate it
-#: data/phosh.session.desktop.in.in:4 data/wayland-sessions/phosh.desktop:3
-msgid "Phosh"
-msgstr "Phosh"
-
-#: data/mobi.phosh.Shell.desktop.in.in:4 data/wayland-sessions/phosh.desktop:4
+#: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
 msgstr "手机 Shell"
 
-#: data/mobi.phosh.Shell.desktop.in.in:5
+#: data/mobi.phosh.Shell.desktop.in.in:4
 msgid "Window management and application launching for mobile"
 msgstr "用于移动设备的窗口管理和应用程序启动"
 
-#: data/wayland-sessions/phosh.desktop:5
-msgid "This session logs you into Phosh"
-msgstr ""
+#. Translators: this is the session name, no need to translate it
+#: data/phosh.session.desktop.in.in:3 data/wayland-sessions/phosh.desktop:2
+msgid "Phosh"
+msgstr "Phosh"
 
-#: plugins/calendar/calendar.desktop.in.in:5
+#: data/wayland-sessions/phosh.desktop:4
+msgid "This session logs you into Phosh"
+msgstr "此会话将让您登录到 Phosh"
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:4
+msgid "Caffeine Quick Setting"
+msgstr "Caffeine 快速设置"
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:6
+msgid "Prevent the session from going idle"
+msgstr "防止会话进入空闲状态"
+
+#: plugins/calendar/calendar.desktop.in.in:4
 msgid "Calendar"
 msgstr "日历"
 
 #: plugins/calendar/calendar.desktop.in.in:6
 msgid "A simple calendar widget"
+msgstr "一个简单的日历小部件"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:4
+msgid "Dark Mode / Color Scheme Quick Setting"
+msgstr "暗色模式/颜色方案快速设置"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:6
+msgid "Toggle dark mode"
+msgstr "切换暗色模式"
+
+#: plugins/emergency-info/emergency-info.desktop.in.in:4
+msgid "Emergency Info"
+msgstr "紧急信息"
+
+#: plugins/emergency-info/emergency-info.desktop.in.in:6
+msgid "Show emergency information and contacts"
+msgstr "显示紧急信息和联系人"
+
+#: plugins/launcher-box/launcher-box.desktop.in.in:3
+#: plugins/launcher-box/launcher-box.ui:17
+msgid "Launcher Box"
 msgstr ""
 
-#: plugins/ticket-box/ticket-box.desktop.in.in:4
-#: plugins/ticket-box/ticket-box.ui:14
+#: plugins/launcher-box/launcher-box.desktop.in.in:5
+msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
+msgstr "将启动器加入到锁屏界面。<b>此插件为实验性功能。</b>"
+
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
+msgid "Location Quick Setting"
+msgstr "位置快速设置"
+
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:6
+msgid "Toggle location services on/off"
+msgstr "切换位置服务"
+
+#: plugins/media-players/media-players.desktop.in.in:3
+#: plugins/media-players/media-players.ui:19
+#: plugins/media-players/media-players.ui:35
+msgid "Media Players"
+msgstr "媒体播放器"
+
+#: plugins/media-players/media-players.desktop.in.in:5
+msgid "Track currently running media players"
+msgstr "追踪正在运行的媒体播放器"
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:4
+msgid "Mobile Data Quick Setting"
+msgstr "移动数据快速设置"
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:6
+msgid "Toggle mobile data on/off"
+msgstr "切换移动数据"
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:4
+msgid "Night Light Quick Setting"
+msgstr "夜灯快速设置"
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:6
+msgid "Toggle night light on/off"
+msgstr "切换夜灯"
+
+#. Translators: "Pomodoro" is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:5
+msgid "Pomodoro Quick Setting"
+msgstr "番茄钟快速设置"
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:7
+msgid "Simple Pomodoro Timer"
+msgstr "简单的番茄钟计时器"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "缩放快速设置"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "一个用于调整显示缩放的快速设置。"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Syncthing 快速设置"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "一个用于 Syncthing 的快速设置。"
+
+#: plugins/ticket-box/ticket-box.desktop.in.in:3
+#: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
 msgstr ""
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:5
 msgid "Show PDFs on the lock screen. <b>This plugin is experimental.</b>"
-msgstr ""
+msgstr "在锁屏界面上显示 PDF。<b><此插件为实验性功能。</b>"
 
-#: plugins/upcoming-events/upcoming-events.desktop.in.in:4
+#: plugins/upcoming-events/upcoming-events.desktop.in.in:3
 msgid "Upcoming Events"
-msgstr ""
+msgstr "即将到来的事件"
 
 #: plugins/upcoming-events/upcoming-events.desktop.in.in:5
 msgid "Show upcoming calendar events"
-msgstr ""
+msgstr "显示即将到来的日历事件"
 
-#: src/app-grid-button.c:529
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Wi-Fi 热点快速设置"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "切换 Wi-Fi 热点"
+
+#: src/app-grid-button.c:144
+msgid "Add to Folder"
+msgstr "添加到文件夹"
+
+#: src/app-grid-button.c:168
+msgid "Create new folder"
+msgstr "创建新文件夹"
+
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "无法卸载应用程序"
+
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "撤销"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "应用程序现在已永久隐藏并禁用"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "未能隐藏应用程序"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "应用程序"
 
-#: src/app-grid.c:137
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "%s 文件夹是空的"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "显示全部应用"
 
-#: src/app-grid.c:140
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
-msgstr ""
+msgstr "仅显示适合移动设备的应用"
 
-#: src/bt-info.c:92
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "Phone Shell 音量控制"
+
+#. Translators: a battery level in percent
+#: src/bt-device-row.c:81
+#, c-format
+msgid "Battery %.0f%%"
+msgstr "电池 %.0f%%"
+
+#: src/bt-info.c:95 src/ui/bt-status-page.ui:6
+msgid "Bluetooth"
+msgstr "蓝牙"
+
+#: src/bt-info.c:123
 msgctxt "bluetooth:enabled"
 msgid "On"
 msgstr "开启"
 
-#: src/bt-info.c:94
-msgid "Bluetooth"
-msgstr "蓝牙"
+#: src/bt-status-page.c:123
+msgid "No connectable Bluetooth Devices found"
+msgstr "没有发现可连接的蓝牙设备"
 
-#: src/call-notification.c:61
+#: src/bt-status-page.c:127
+msgid "Bluetooth disabled"
+msgstr "蓝牙已禁用"
+
+#: src/call-notification.c:63
 msgid "Unknown caller"
-msgstr "未知来电者"
+msgstr "未知来电"
+
+#: src/connectivity-manager.c:114
+#, c-format
+msgid "Wi-Fi network '%s' uses a captive portal"
+msgstr "Wi-Fi 网络“%s”使用一个受限门户"
+
+#: src/connectivity-manager.c:116
+msgid "The network uses a captive portal"
+msgstr "这个网络使用一个受限门户"
+
+#: src/connectivity-manager.c:123
+msgid "Sign into network"
+msgstr "登入到网络"
 
 #: src/docked-info.c:81
 msgid "Docked"
-msgstr ""
+msgstr "已对接"
 
 #: src/docked-info.c:81 src/docked-info.c:199
 msgid "Undocked"
-msgstr ""
+msgstr "未对接"
 
-#: src/emergency-menu.c:97 src/ui/app-auth-prompt.ui:71
-#: src/ui/end-session-dialog.ui:71
+#: src/emergency-menu.c:97 src/ui/app-auth-prompt.ui:64
+#: src/ui/cell-broadcast-prompt.ui:18 src/ui/end-session-dialog.ui:62
 msgid "Ok"
-msgstr ""
+msgstr "确定"
 
 #: src/emergency-menu.c:100
 msgid "Unable to place emergency call"
-msgstr ""
+msgstr "无法拨打紧急呼叫"
 
 #: src/emergency-menu.c:105
 msgid "Internal error"
-msgstr ""
+msgstr "内部错误"
 
-#: src/end-session-dialog.c:163
+#: src/end-session-dialog.c:173
 msgid "Log Out"
-msgstr ""
+msgstr "登出"
 
-#: src/end-session-dialog.c:166
+#: src/end-session-dialog.c:176
 #, c-format
 msgid "%s will be logged out automatically in %d second."
 msgid_plural "%s will be logged out automatically in %d seconds."
-msgstr[0] ""
+msgstr[0] "%s 将在 %d 秒后被自动登出。"
 
-#: src/end-session-dialog.c:172
+#: src/end-session-dialog.c:182 src/ui/power-menu.ui:72
 msgid "Power Off"
 msgstr "关机"
 
-#: src/end-session-dialog.c:173
+#: src/end-session-dialog.c:183
 #, c-format
 msgid "The system will power off automatically in %d second."
 msgid_plural "The system will power off automatically in %d seconds."
-msgstr[0] ""
+msgstr[0] "系统将在 %d 秒后自动关机。"
 
-#: src/end-session-dialog.c:179
+#: src/end-session-dialog.c:189
 msgid "Restart"
 msgstr "重启"
 
-#: src/end-session-dialog.c:180
+#: src/end-session-dialog.c:190
 #, c-format
 msgid "The system will restart automatically in %d second."
 msgid_plural "The system will restart automatically in %d seconds."
-msgstr[0] ""
-
-#: src/end-session-dialog.c:270
-msgid "Unknown application"
-msgstr "未知应用程序"
+msgstr[0] "系统将在 %d 秒后自动重启。"
 
 #. Translators: quiet and silent are fbd profiles names:
 #. see https://source.puri.sm/Librem5/feedbackd#profiles
@@ -160,61 +316,81 @@ msgctxt "feedback:enabled"
 msgid "On"
 msgstr "开启"
 
-#: src/location-manager.c:268
+#: src/location-manager.c:266
 #, c-format
 msgid "Allow '%s' to access your location information?"
-msgstr ""
+msgstr "允许“%s”访问您的位置信息？"
 
-#: src/location-manager.c:273
+#: src/location-manager.c:271
 msgid "Geolocation"
 msgstr "地理位置"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:272
 msgid "Yes"
 msgstr "是"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:272
 msgid "No"
 msgstr "否"
 
-#: src/lockscreen.c:174 src/ui/lockscreen.ui:245
+#. give visual feedback on error
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "输入密码"
 
-#: src/lockscreen.c:397
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "正在检查…"
 
-#: src/screenshot-manager.c:213
-msgid "Screenshot"
-msgstr ""
+#. Translators: '%s' is the filename of a screenshot
+#: src/screenshot-manager.c:238
+#, c-format
+msgid "Screenshot saved to '%s'"
+msgstr "截图已保存到“%s”"
 
-#: src/screenshot-manager.c:214
-msgid "Screenshot copied to clipboard"
-msgstr ""
+#: src/screenshot-manager.c:240
+msgid "Failed to save screenshot"
+msgstr "未能保存截图"
+
+#: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
+msgid "Screenshot"
+msgstr "截图"
+
+#. Translators: name of the folder beneath ~/Pictures used to store screenshots
+#: src/screenshot-manager.c:554
+msgid "Screenshots"
+msgstr "截图"
+
+#. Translators: Name of a screenshot file. The first '%s' is a timestamp
+#. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
+#. * the file already exists like '-3'
+#: src/screenshot-manager.c:574
+#, c-format
+msgid "Screenshot from %s%s.png"
+msgstr "截图 %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:321 src/ui/media-player.ui:161
+#: src/media-player.c:691 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "未知标题"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:329 src/ui/media-player.ui:148
+#: src/media-player.c:699 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "未知艺术家"
 
-#: src/monitor-manager.c:119
+#: src/monitor-manager.c:129
 msgid "Built-in display"
 msgstr "内置显示器"
 
-#: src/monitor-manager.c:137
+#: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr ""
 
-#: src/monitor-manager.c:144
+#: src/monitor-manager.c:154
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -223,131 +399,143 @@ msgid "%s %s"
 msgstr ""
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:153
+#: src/monitor-manager.c:163
 msgid "Unknown"
 msgstr "未知"
 
-#: src/network-auth-prompt.c:201
+#: src/network-auth-prompt.c:202
 #, c-format
-msgid "Authentication type of wifi network “%s” not supported"
-msgstr "Wifi 网络“%s” 的认证类型不受支持"
+msgid "Authentication type of Wi-Fi network “%s” not supported"
+msgstr "Wi-fi 网络“%s”的认证类型不受支持"
 
-#: src/network-auth-prompt.c:206
+#: src/network-auth-prompt.c:207
 #, c-format
-msgid "Enter password for the wifi network “%s”"
-msgstr "输入 wifi 网络“%s”的密码"
+msgid "Enter password for the Wi-Fi network “%s”"
+msgstr "输入 Wi-Fi 网络“%s”的密码"
 
 #: src/notifications/mount-notification.c:121
 msgid "Open"
-msgstr ""
+msgstr "打开"
 
-#: src/notifications/notification.c:383 src/notifications/notification.c:654
+#. We don't just set the app_info but name and icon separately to
+#. * not overwrite values set by the caller
+#: src/notifications/notification.c:422 src/notifications/notification.c:695
+#: src/notifications/notify-manager.c:1009
 msgid "Notification"
 msgstr "通知"
 
-#. Translators: Timestamp seconds suffix
-#: src/notifications/timestamp-label.c:84
-msgctxt "timestamp-suffix-seconds"
-msgid "s"
-msgstr "秒"
-
-#. Translators: Timestamp minute suffix
-#: src/notifications/timestamp-label.c:86
-msgctxt "timestamp-suffix-minute"
-msgid "m"
-msgstr "分"
-
-#. Translators: Timestamp minutes suffix
+#. Translators: Point in time, use a short word or abbreviation
+#. Please stick to a maximum of 12 chars
 #: src/notifications/timestamp-label.c:88
-msgctxt "timestamp-suffix-minutes"
-msgid "m"
-msgstr "分"
-
-#. Translators: Timestamp hour suffix
-#: src/notifications/timestamp-label.c:90
-msgctxt "timestamp-suffix-hour"
-msgid "h"
-msgstr "时"
-
-#. Translators: Timestamp hours suffix
-#: src/notifications/timestamp-label.c:92
-msgctxt "timestamp-suffix-hours"
-msgid "h"
-msgstr "时"
-
-#. Translators: Timestamp day suffix
-#: src/notifications/timestamp-label.c:94
-msgctxt "timestamp-suffix-day"
-msgid "d"
-msgstr "日"
-
-#. Translators: Timestamp days suffix
-#: src/notifications/timestamp-label.c:96
-msgctxt "timestamp-suffix-days"
-msgid "d"
-msgstr "日"
-
-#. Translators: Timestamp month suffix
-#: src/notifications/timestamp-label.c:98
-msgctxt "timestamp-suffix-month"
-msgid "mo"
-msgstr "月"
-
-#. Translators: Timestamp months suffix
-#: src/notifications/timestamp-label.c:100
-msgctxt "timestamp-suffix-months"
-msgid "mos"
-msgstr "月"
-
-#. Translators: Timestamp year suffix
-#: src/notifications/timestamp-label.c:102
-msgctxt "timestamp-suffix-year"
-msgid "y"
-msgstr "年"
-
-#. Translators: Timestamp years suffix
-#: src/notifications/timestamp-label.c:104
-msgctxt "timestamp-suffix-years"
-msgid "y"
-msgstr "年"
-
-#: src/notifications/timestamp-label.c:121
-#, fuzzy
-#| msgid "Unknown"
 msgid "now"
-msgstr "未知"
+msgstr "现在"
 
-#. Translators: time difference "Over 5 years"
-#: src/notifications/timestamp-label.c:189
-#, fuzzy, c-format
-#| msgid "Over"
-msgid "Over %dy"
-msgstr "超过"
-
-#. Translators: time difference "almost 5 years"
-#: src/notifications/timestamp-label.c:193
-#, fuzzy, c-format
-#| msgid "Almost"
-msgid "Almost %dy"
-msgstr "将近"
-
-#. Translators: a time difference like '<5m', if in doubt leave untranslated
-#: src/notifications/timestamp-label.c:200
+#. Translators: abbreviated time difference "Less than 30 seconds"
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:93
 #, c-format
-msgid "%s%d%s"
-msgstr ""
+msgid "<30s"
+msgstr "<30 秒"
 
-#: src/polkit-auth-agent.c:227
+#. Translators: abbreviated time difference "Less than one minute"
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:98
+#, c-format
+msgid "<1m"
+msgstr "<1 分"
+
+#. Translators: abbreviated time difference "About one minute"
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:103
+#, c-format
+msgid "~1m"
+msgstr "~1 分"
+
+#. Translators: abbreviated, exact time difference "1 minute ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:111
+#, c-format
+msgid "%dm"
+msgid_plural "%dm"
+msgstr[0] "%d 分"
+
+#. Translators: abbreviated time difference "About 3 hours ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:119
+#, c-format
+msgid "~%dh"
+msgid_plural "~%dh"
+msgstr[0] "~%d 时"
+
+#. Translators: abbreviated time difference "About 1 day ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:124
+#, c-format
+msgid "~1d"
+msgstr "~1 天"
+
+#. Translators: abbreviated, exact time difference "3 days ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:129
+#, c-format
+msgid "%dd"
+msgid_plural "%dd"
+msgstr[0] "%d 天"
+
+#. Translators: abbreviated time difference "About 1 month ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:134
+#, c-format
+msgid "~1mo"
+msgstr "~1 月"
+
+#. Translators: abbreviated, exact time difference "3 months ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:139
+#, c-format
+msgid "%dmo"
+msgid_plural "%dmos"
+msgstr[0] "%d 月"
+
+#. Translators: abbreviated time difference "About 5 years ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:149
+#, c-format
+msgid "~%dy"
+msgid_plural "~%dy"
+msgstr[0] "~%d 年"
+
+#. Translators: abbreviated time difference "Over 5 years ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:153
+#, c-format
+msgid "Over %dy"
+msgid_plural "Over %dy"
+msgstr[0] "超过 %d 年"
+
+#. Translators: abbreviated time difference "almost 5 years ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:158
+#, c-format
+msgid "Almost %dy"
+msgid_plural "Almost %dy"
+msgstr[0] "将近 %d 年"
+
+#: src/overview.c:228
+msgid "Application is slow or failed to start"
+msgstr "应用程序是缓慢或启动失败的"
+
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "认证对话框已被用户关闭"
 
-#: src/polkit-auth-prompt.c:278 src/ui/gtk-mount-prompt.ui:20
-#: src/ui/network-auth-prompt.ui:82 src/ui/polkit-auth-prompt.ui:56
-#: src/ui/system-prompt.ui:32
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
+#: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "密码："
 
-#: src/polkit-auth-prompt.c:325
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "抱歉，密码无效。请重试。"
 
@@ -362,83 +550,102 @@ msgstr "横向"
 #: src/rotateinfo.c:125 src/rotateinfo.c:230
 msgctxt "automatic-screen-rotation-disabled"
 msgid "Off"
-msgstr ""
+msgstr "关闭"
 
 #: src/rotateinfo.c:126
-#, fuzzy
-#| msgid "On"
 msgctxt "automatic-screen-rotation-enabled"
 msgid "On"
 msgstr "开启"
 
 #: src/run-command-dialog.c:129
 msgid "Press ESC to close"
-msgstr ""
+msgstr "按下 ESC 来关闭"
 
 #: src/run-command-manager.c:89
 #, c-format
 msgid "Running '%s' failed"
-msgstr ""
+msgstr "运行“%s”失败"
 
-#: src/settings/audio-settings.c:373
-msgid "Phone Shell Volume Control"
-msgstr ""
-
-#: src/system-prompt.c:365
+#: src/system-prompt.c:376
 msgid "Passwords do not match."
 msgstr "密码不匹配。"
 
-#: src/system-prompt.c:372
+#: src/system-prompt.c:383
 msgid "Password cannot be blank"
 msgstr "密码不能为空"
 
-#: src/torch-info.c:80
+#: src/torch-info.c:84
 msgid "Torch"
-msgstr ""
+msgstr "手电筒"
 
-#: src/ui/app-auth-prompt.ui:49
+#: src/ui/app-auth-prompt.ui:43
 msgid "Remember decision"
-msgstr ""
+msgstr "记住决定"
 
-#: src/ui/app-auth-prompt.ui:62 src/ui/end-session-dialog.ui:62
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:29
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:289
-#, fuzzy
-#| msgid "_Cancel"
+#: src/ui/app-auth-prompt.ui:55 src/ui/end-session-dialog.ui:53
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:25
 msgid "Cancel"
-msgstr "取消(_C)"
+msgstr "取消"
 
-#: src/ui/app-grid-button.ui:55
-msgid "App"
-msgstr "应用程序"
-
-#: src/ui/app-grid-button.ui:79
+#: src/ui/app-grid-button.ui:31
 msgid "Remove from _Favorites"
 msgstr "从收藏夹中移除(_F)"
 
-#: src/ui/app-grid-button.ui:84
+#: src/ui/app-grid-button.ui:36
 msgid "Add to _Favorites"
 msgstr "添加到收藏夹(_F)"
 
-#: src/ui/app-grid-button.ui:89
+#: src/ui/app-grid-button.ui:41
 msgid "View _Details"
-msgstr ""
+msgstr "查看详情(_D)"
 
-#: src/ui/app-grid.ui:21
+#: src/ui/app-grid-button.ui:46
+msgid "Uninstall"
+msgstr "卸载"
+
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "隐藏应用程序"
+
+#: src/ui/app-grid-button.ui:58
+msgid "_Remove from Folder"
+msgstr "从文件夹中移除(_R)"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "管理隐藏的应用"
+
+#: src/ui/app-grid.ui:26
 msgid "Search apps…"
 msgstr "搜索应用程序…"
 
 #: src/ui/audio-settings.ui:84
 msgid "Output Devices"
-msgstr ""
+msgstr "输出设备"
 
-#: src/ui/audio-settings.ui:107
+#: src/ui/audio-settings.ui:108
 msgid "Input Devices"
-msgstr ""
+msgstr "输入设备"
 
-#: src/ui/audio-settings.ui:134
+#: src/ui/audio-settings.ui:136
 msgid "Sound Settings"
 msgstr ""
+
+#: src/ui/brightness-settings.ui:87
+msgid "Automatic Brightness"
+msgstr ""
+
+#: src/ui/brightness-settings.ui:120
+msgid "Brightness Settings"
+msgstr ""
+
+#: src/ui/bt-status-page.ui:39
+msgid "Enable Bluetooth"
+msgstr "启用蓝牙"
+
+#: src/ui/bt-status-page.ui:54
+msgid "Bluetooth Settings"
+msgstr "蓝牙设置"
 
 #: src/ui/emergency-menu.ui:26
 msgid "Close the emergency call dialog"
@@ -452,143 +659,147 @@ msgstr "紧急联系人(_C)"
 msgid "Go to the emergency contacts page"
 msgstr ""
 
-#: src/ui/emergency-menu.ui:83
+#: src/ui/emergency-menu.ui:82
 msgid "Go back to the emergency dialpad page"
 msgstr ""
 
-#: src/ui/emergency-menu.ui:106
-#, fuzzy
-#| msgid "Unknown"
+#: src/ui/emergency-menu.ui:105
 msgid "Owner unknown"
-msgstr "未知"
+msgstr "所有者未知"
 
-#: src/ui/emergency-menu.ui:124 plugins/emergency-info/emergency-info.ui:195
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:230
-#, fuzzy
-#| msgid "Emergency"
+#: src/ui/emergency-menu.ui:123 plugins/emergency-info/emergency-info.ui:211
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:170
 msgid "Emergency Contacts"
-msgstr "紧急呼叫"
+msgstr "紧急联系人"
 
 #: src/ui/emergency-menu.ui:142
 msgid "No emergency contacts available."
 msgstr ""
 
-#: src/ui/end-session-dialog.ui:31
+#: src/ui/end-session-dialog.ui:27
 msgid "Some applications are busy or have unsaved work"
 msgstr ""
 
-#: src/ui/gtk-mount-prompt.ui:94
+#: src/ui/feedback-status-page.ui:6
+msgid "Feedback"
+msgstr ""
+
+#: src/ui/feedback-status-page.ui:19
+msgid "Do not disturb"
+msgstr ""
+
+#: src/ui/feedback-status-page.ui:53
+msgid "Feedback Settings"
+msgstr ""
+
+#: src/ui/gtk-mount-prompt.ui:74
 msgid "User:"
 msgstr "用户："
 
-#: src/ui/gtk-mount-prompt.ui:117
+#: src/ui/gtk-mount-prompt.ui:96
 msgid "Domain:"
 msgstr ""
 
-#: src/ui/gtk-mount-prompt.ui:150
+#: src/ui/gtk-mount-prompt.ui:128
 msgid "Co_nnect"
 msgstr "连接(_N)"
 
-#: src/ui/lockscreen.ui:36 src/ui/lockscreen.ui:334
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr ""
 
-#: src/ui/lockscreen.ui:97
+#: src/ui/lockscreen.ui:95
 msgid "Slide up to unlock"
 msgstr "向上滑动以解锁"
 
-#: src/ui/lockscreen.ui:297
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "解锁"
 
-#: src/ui/network-auth-prompt.ui:5 src/ui/polkit-auth-prompt.ui:6
-#, fuzzy
-#| msgid "Authenticate"
+#: src/ui/network-auth-prompt.ui:6 src/ui/polkit-auth-prompt.ui:5
 msgid "Authentication required"
-msgstr "认证"
+msgstr "需要认证"
 
-#: src/ui/network-auth-prompt.ui:40
-#: plugins/ticket-box/prefs/ticket-box-prefs.c:90
+#: src/ui/network-auth-prompt.ui:37
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: src/ui/network-auth-prompt.ui:58
+#: src/ui/network-auth-prompt.ui:50
 msgid "C_onnect"
 msgstr "连接(_O)"
 
-#: src/ui/polkit-auth-prompt.ui:122
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "认证"
 
-#: src/ui/power-menu.ui:69
-#, fuzzy
-#| msgid "Power Off"
-msgid "_Power Off"
-msgstr "关机"
-
-#: src/ui/power-menu.ui:110
-msgid "_Lock"
+#: src/ui/power-menu.ui:112
+msgid "Suspend"
 msgstr ""
 
-#: src/ui/power-menu.ui:151
-msgid "_Screenshot"
+#: src/ui/power-menu.ui:158
+msgid "Lock"
 msgstr ""
 
-#: src/ui/power-menu.ui:192
-#, fuzzy
-#| msgid "Emergency"
-msgid "_Emergency"
-msgstr "紧急呼叫"
+#: src/ui/power-menu.ui:240
+msgid "Emergency"
+msgstr "紧急"
 
-#: src/ui/run-command-dialog.ui:6
+#: src/ui/run-command-dialog.ui:5
 msgid "Run Command"
 msgstr ""
 
-#: src/ui/settings.ui:296
-#, fuzzy
-#| msgid "Notification"
+#: src/ui/settings.ui:121
 msgid "No notifications"
+msgstr "没有通知"
+
+#: src/ui/settings.ui:150
+msgid "Notifications"
 msgstr "通知"
 
-#: src/ui/settings.ui:336
+#: src/ui/settings.ui:159
 msgid "Clear all"
 msgstr ""
 
-#: src/ui/system-prompt.ui:62
+#: src/ui/system-prompt.ui:52
 msgid "Confirm:"
 msgstr "确认："
 
-#: src/ui/top-panel.ui:32
-#, fuzzy
-#| msgid "Power Off"
+#: src/ui/top-panel.ui:34
 msgid "_Power Off…"
-msgstr "关机"
+msgstr "关机(_P)…"
 
-#: src/ui/top-panel.ui:60
-#, fuzzy
-#| msgid "Restart"
+#: src/ui/top-panel.ui:61
 msgid "_Restart…"
-msgstr "重启"
+msgstr "重启(_R)…"
 
 #: src/ui/top-panel.ui:88
 msgid "_Suspend…"
-msgstr ""
+msgstr "挂起(_S)…"
 
-#: src/ui/top-panel.ui:116
+#: src/ui/top-panel.ui:115
 msgid "_Log Out…"
-msgstr ""
+msgstr "登出(_L)…"
 
-#. Translators: This is a time format for a date in
-#. long format
-#: src/util.c:339
-#, fuzzy
-#| msgid "%A, %B %d"
-msgid "%A, %B %-e"
-msgstr "%m 月 %d 日，%A"
+#: src/ui/wifi-status-page.ui:6 src/wifi-info.c:90
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+#: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
+msgid "Wi-Fi Settings"
+msgstr ""
 
 #: src/vpn-info.c:89
 msgid "VPN"
 msgstr ""
+
+#. Translators: This is a time format for a date in
+#. long format
+#: src/wall-clock.c:248
+msgid "%A, %B %-e"
+msgstr "%m月%d日 %A"
 
 #: src/widget-box.c:54
 msgid "Plugin not found"
@@ -599,148 +810,423 @@ msgstr ""
 msgid "The plugin '%s' could not be loaded."
 msgstr ""
 
-#: src/wifiinfo.c:90
-msgid "Wi-Fi"
-msgstr "Wi-Fi"
+#: src/wifi-status-page.c:53
+msgid "No Wi-Fi Device Found"
+msgstr ""
+
+#: src/wifi-status-page.c:57
+msgid "Wi-Fi Disabled"
+msgstr ""
+
+#: src/wifi-status-page.c:58
+msgid "Enable Wi-Fi"
+msgstr ""
+
+#: src/wifi-status-page.c:61
+msgid "Wi-Fi Hotspot Active"
+msgstr ""
+
+#: src/wifi-status-page.c:62
+msgid "Turn Off"
+msgstr ""
+
+#: src/wifi-status-page.c:65
+msgid "No Wi-Fi Hotspots"
+msgstr ""
 
 #. Translators: Refers to the cellular wireless network
 #: src/wwan-info.c:210
 msgid "Cellular"
 msgstr "蜂窝网络"
 
-#: plugins/emergency-info/emergency-info.ui:39
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:70
+#. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
+msgid "Phosh on caffeine"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
+msgctxt "caffeine-disabled"
+msgid "Off"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+#, fuzzy
+#| msgctxt "bluetooth:enabled"
+#| msgid "On"
+msgctxt "caffeine-enabled"
+msgid "On"
+msgstr "开启"
+
+#: plugins/caffeine-quick-setting/qs.ui:15
+msgid "Caffeine timers"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/qs.ui:38
+msgid "No caffeine intervals"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+msgid "Caffeine Settings"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+msgid "No timeout (∞)"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:7
+msgid "Caffeine Quick Setting Preferences"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:11
+msgid "Caffeine Duration"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:15
+msgid "Manage Caffeine Duration"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:16
+msgid "Add or remove custom caffeine intervals"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:22
+msgid "Add interval"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+msgid "Add New Interval"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
+msgid "_Add"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+msgid "Quickstart Intervals"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+msgid "5 m"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+msgid "15 m"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+msgid "30 m"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+msgid "1 h"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+msgid "Choose Interval"
+msgstr ""
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
+msgid "Default style"
+msgstr ""
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:35
+msgid "Dark mode"
+msgstr ""
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:36
+msgid "Light mode"
+msgstr ""
+
+#: plugins/emergency-info/emergency-info.ui:43
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:62
 msgid "Personal Information"
 msgstr ""
 
-#: plugins/emergency-info/emergency-info.ui:47
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:88
+#: plugins/emergency-info/emergency-info.ui:51
 msgid "Date of Birth"
 msgstr ""
 
-#: plugins/emergency-info/emergency-info.ui:65
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:100
+#: plugins/emergency-info/emergency-info.ui:71
 msgid "Preferred Language"
 msgstr ""
 
-#: plugins/emergency-info/emergency-info.ui:83
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:112
+#: plugins/emergency-info/emergency-info.ui:91
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:85
 msgid "Home Address"
 msgstr ""
 
-#: plugins/emergency-info/emergency-info.ui:91
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:129
+#: plugins/emergency-info/emergency-info.ui:99
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:100
 msgid "Medical Information"
 msgstr ""
 
-#: plugins/emergency-info/emergency-info.ui:99
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:135
+#: plugins/emergency-info/emergency-info.ui:107
 msgid "Age"
 msgstr ""
 
-#: plugins/emergency-info/emergency-info.ui:117
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:147
+#: plugins/emergency-info/emergency-info.ui:127
 msgid "Blood Type"
 msgstr ""
 
-#: plugins/emergency-info/emergency-info.ui:135
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:159
+#: plugins/emergency-info/emergency-info.ui:147
 msgid "Height"
 msgstr ""
 
-#: plugins/emergency-info/emergency-info.ui:153
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:171
+#: plugins/emergency-info/emergency-info.ui:167
 msgid "Weight"
 msgstr ""
 
-#: plugins/emergency-info/emergency-info.ui:171
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:183
+#: plugins/emergency-info/emergency-info.ui:187
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:129
 msgid "Allergies"
 msgstr ""
 
-#: plugins/emergency-info/emergency-info.ui:179
+#: plugins/emergency-info/emergency-info.ui:195
 msgid "Medications & Conditions"
 msgstr ""
 
-#: plugins/emergency-info/emergency-info.ui:187
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:213
+#: plugins/emergency-info/emergency-info.ui:203
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:155
 msgid "Other Information"
 msgstr ""
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:6
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:19
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:16
 msgid "Emergency Info Preferences"
 msgstr ""
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:40
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:36
 msgid "Done"
 msgstr ""
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:76
-msgid "Owner Name"
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:67
+msgid "_Owner Name"
 msgstr ""
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:198
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:73
+msgid "_Date of Birth"
+msgstr ""
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:79
+msgid "_Preferred Language"
+msgstr ""
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:105
+msgid "_Age"
+msgstr ""
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:111
+msgid "_Blood Type"
+msgstr ""
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:117
+msgid "_Height"
+msgstr ""
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:123
+msgid "_Weight"
+msgstr ""
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:142
 msgid "Medications and Conditions"
 msgstr ""
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:239
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:179
 msgid "Add Contact"
 msgstr ""
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:284
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:203
 msgid "Add New Contact"
 msgstr ""
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:294
-msgid "Add"
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:240
+msgid "_Contact Name"
 msgstr ""
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:315
-msgid "New Contact Name"
-msgstr ""
-
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:329
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:246
 msgid "Relationship"
 msgstr ""
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:342
-msgid "Number"
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:252
+msgid "_Contact Number"
 msgstr ""
 
-#: plugins/ticket-box/ticket-box.ui:15
+#: plugins/launcher-box/launcher-box.ui:18
+msgid "No launchers configured"
+msgstr ""
+
+#: plugins/launcher-box/launcher-box.ui:33
+msgid "Launchers"
+msgstr ""
+
+#. Translators: Location precision level - country-wide
+#: plugins/location-quick-setting/accuracy-row.c:44
+msgid "Country"
+msgstr ""
+
+#. Translators: Location precision level - city-wide
+#: plugins/location-quick-setting/accuracy-row.c:47
+msgid "City"
+msgstr ""
+
+#. Translators: Location precision level - neighborhood
+#: plugins/location-quick-setting/accuracy-row.c:50
+msgid "Neighborhood"
+msgstr ""
+
+#. Translators: Location precision level - street
+#: plugins/location-quick-setting/accuracy-row.c:53
+msgid "Street"
+msgstr ""
+
+#. Translators: Location precision level - exact position
+#: plugins/location-quick-setting/accuracy-row.c:56
+msgid "Exact"
+msgstr ""
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
+msgid "Location On"
+msgstr "位置开"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
+msgid "Location Off"
+msgstr "位置关"
+
+#: plugins/location-quick-setting/qs.ui:15
+msgid "Location Accuracy"
+msgstr ""
+
+#: plugins/location-quick-setting/qs.ui:62
+msgid "Location Disabled"
+msgstr ""
+
+#: plugins/location-quick-setting/qs.ui:72
+msgid "Enable Location"
+msgstr "启用位置"
+
+#: plugins/location-quick-setting/qs.ui:87
+msgid "Location Settings"
+msgstr ""
+
+#: plugins/media-players/media-players.ui:20
+msgid "No running media players"
+msgstr ""
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
+msgid "Mobile Data On"
+msgstr ""
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
+msgid "Mobile Data Off"
+msgstr ""
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
+msgid "Night Light On"
+msgstr ""
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
+msgid "Night Light Off"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+msgid "Pomodoro start"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
+#, c-format
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] ""
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
+msgid "Take a break"
+msgstr ""
+
+#. Translators: Pomodoro is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
+#, c-format
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] ""
+
+#. Translators: Pomodoro is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
+msgid "Pomodoro Timer"
+msgstr ""
+
+#. Translators: Pomodoro is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
+#, c-format
+msgid "Pomodoro Off"
+msgstr "番茄钟关"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:6
+msgid "Pomodoro Quick Setting Preferences"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:11
+msgid "Pomodoro Technique"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:14
+msgid "_Active Duration"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:15
+msgid "Duration of the focus session"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:29
+msgid "_Break Duration"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:30
+msgid "Duration of the break between sessions"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:44
+msgid "_Start on unlock"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:45
+msgid "Whether to start the timer on screen unlock"
+msgstr ""
+
+#: plugins/ticket-box/ticket-box.ui:18
 msgid "No documents to display"
 msgstr ""
 
-#: plugins/ticket-box/ticket-box.ui:83
+#: plugins/ticket-box/ticket-box.ui:82
 msgid "Tickets"
 msgstr ""
 
-#: plugins/ticket-box/prefs/ticket-box-prefs.c:86
-msgid "Choose Folder"
+#: plugins/ticket-box/prefs/ticket-box-prefs.c:94
+msgid "_Open"
 msgstr ""
 
-#: plugins/ticket-box/prefs/ticket-box-prefs.c:89
-msgid "_Open"
+#: plugins/ticket-box/prefs/ticket-box-prefs.c:95
+msgid "Choose Folder"
 msgstr ""
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.ui:6
 msgid "Ticket Box Preferences"
 msgstr ""
 
-#: plugins/ticket-box/prefs/ticket-box-prefs.ui:13
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:10
 msgid "Paths"
 msgstr ""
 
-#: plugins/ticket-box/prefs/ticket-box-prefs.ui:18
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:14
 msgid "Folder Settings"
 msgstr ""
 
-#: plugins/ticket-box/prefs/ticket-box-prefs.ui:19
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:15
 msgid "Where Phosh looks for your tickets"
 msgstr ""
 
-#: plugins/ticket-box/prefs/ticket-box-prefs.ui:22
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:18
 msgid "Ticket Folder"
 msgstr ""
 
@@ -752,11 +1238,11 @@ msgstr ""
 msgid "Tomorrow"
 msgstr ""
 
-#: plugins/upcoming-events/event-list.c:150
+#. Translators: The current date and weekday for display in a calendar entry
+#: plugins/upcoming-events/event-list.c:151
 #, c-format
-msgid "In %d day"
-msgid_plural "In %d days"
-msgstr[0] ""
+msgid "%x %a"
+msgstr ""
 
 #: plugins/upcoming-events/event-list.ui:26
 msgid "No events"
@@ -783,9 +1269,141 @@ msgstr ""
 msgid "Ends"
 msgstr ""
 
-#: plugins/upcoming-events/upcoming-event.c:398
+#: plugins/upcoming-events/upcoming-event.c:400
 msgid "Untitled event"
 msgstr ""
+
+#: plugins/upcoming-events/upcoming-events.c:408
+#, c-format
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] ""
+
+#: plugins/upcoming-events/upcoming-events.ui:28
+msgid "No upcoming events"
+msgstr ""
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:6
+msgid "Upcoming Events Preferences"
+msgstr ""
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:10
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:17
+msgid "Days"
+msgstr ""
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:13
+msgid "Date Range"
+msgstr ""
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:14
+msgid "Number of days to show events for"
+msgstr ""
+
+#: plugins/scaling-quick-setting/qs.ui:14
+msgid "Monitor scales"
+msgstr ""
+
+#. Translators: This is scale factor of a monitor in percent
+#: plugins/scaling-quick-setting/scale-row.c:48
+#: plugins/scaling-quick-setting/scaling-quick-setting.c:91
+#, c-format
+msgid "%d%%"
+msgstr ""
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr ""
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr ""
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+msgid "Syncthing is disabled"
+msgstr ""
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr ""
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr ""
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr ""
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+msgid "Wi-Fi Hotspot"
+msgstr ""
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
+msgid "Turn On"
+msgstr ""
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
+msgid "Hotspot On"
+msgstr ""
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
+msgid "Hotspot Off"
+msgstr ""
+
+#~ msgctxt "timestamp-suffix-seconds"
+#~ msgid "s"
+#~ msgstr "秒"
+
+#~ msgctxt "timestamp-suffix-minute"
+#~ msgid "m"
+#~ msgstr "分"
+
+#~ msgctxt "timestamp-suffix-minutes"
+#~ msgid "m"
+#~ msgstr "分"
+
+#~ msgctxt "timestamp-suffix-hour"
+#~ msgid "h"
+#~ msgstr "时"
+
+#~ msgctxt "timestamp-suffix-hours"
+#~ msgid "h"
+#~ msgstr "时"
+
+#~ msgctxt "timestamp-suffix-day"
+#~ msgid "d"
+#~ msgstr "日"
+
+#~ msgctxt "timestamp-suffix-days"
+#~ msgid "d"
+#~ msgstr "日"
+
+#~ msgctxt "timestamp-suffix-month"
+#~ msgid "mo"
+#~ msgstr "月"
+
+#~ msgctxt "timestamp-suffix-months"
+#~ msgid "mos"
+#~ msgstr "月"
+
+#~ msgctxt "timestamp-suffix-year"
+#~ msgid "y"
+#~ msgstr "年"
+
+#~ msgctxt "timestamp-suffix-years"
+#~ msgid "y"
+#~ msgstr "年"
+
+#~ msgid "App"
+#~ msgstr "应用程序"
+
+#, fuzzy
+#~| msgid "Power Off"
+#~ msgid "_Power Off"
+#~ msgstr "关机"
 
 #~ msgid "%d.%m.%y"
 #~ msgstr "%y.%m.%d"
