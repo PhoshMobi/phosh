@@ -239,8 +239,8 @@ phosh_udev_manager_find_torches (PhoshUdevManager *self, GError **err)
 
   udev_enumerator = g_udev_enumerator_new (self->udev_client);
   g_udev_enumerator_add_match_subsystem (udev_enumerator, LEDS_SUBSYSTEM);
-  g_udev_enumerator_add_match_name (udev_enumerator, "*:torch");
-  g_udev_enumerator_add_match_name (udev_enumerator, "*:flash");
+  g_udev_enumerator_add_match_name (udev_enumerator, "*:torch*");
+  g_udev_enumerator_add_match_name (udev_enumerator, "*:flash*");
 
   device_list = g_udev_enumerator_execute (udev_enumerator);
   if (!device_list) {
