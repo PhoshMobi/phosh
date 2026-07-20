@@ -59,7 +59,7 @@ typedef struct _PhoshSettings {
   GtkWidget *box_settings;
   GtkWidget *quick_settings;
   GtkWidget *media_player;
-  PhoshAudioSettings *audio_settings;
+  PhoshAudioSettings      *audio_settings;
   PhoshBrightnessSettings *brightness_settings;
 
   /* The area with media widget, notifications */
