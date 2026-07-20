@@ -145,7 +145,7 @@ calc_drag_handle_offset (PhoshSettings *self)
   if (self->on_lockscreen)
     goto out;
 
-  box_height = gtk_widget_get_allocated_height (self->box_settings);
+  box_height = gtk_widget_get_allocated_height (GTK_WIDGET (self->box));
   sw_height = gtk_widget_get_allocated_height (self->scrolled_window);
   if (box_height > sw_height) {
     h = 0; /* Don't enlarge drag handle if box needs scrolling */
