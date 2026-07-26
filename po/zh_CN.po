@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
 "POT-Creation-Date: 2026-07-03 13:57+0000\n"
-"PO-Revision-Date: 2026-07-19 10:35+0800\n"
+"PO-Revision-Date: 2026-07-26 14:00+0800\n"
 "Last-Translator: \n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -37,7 +37,7 @@ msgstr "此会话将让您登录到 Phosh"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:4
 msgid "Caffeine Quick Setting"
-msgstr "Caffeine 快速设置"
+msgstr "保持唤醒快速设置"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:6
 msgid "Prevent the session from going idle"
@@ -388,7 +388,7 @@ msgstr "内置显示器"
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
-msgstr ""
+msgstr "%s %s"
 
 #: src/monitor-manager.c:154
 #, c-format
@@ -396,7 +396,7 @@ msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
 "inches could not be calculated, e.g. Dell U2414H"
 msgid "%s %s"
-msgstr ""
+msgstr "%s %s"
 
 #. Translators: An unknown monitor type
 #: src/monitor-manager.c:163
@@ -629,15 +629,15 @@ msgstr "输入设备"
 
 #: src/ui/audio-settings.ui:136
 msgid "Sound Settings"
-msgstr ""
+msgstr "声音设置"
 
 #: src/ui/brightness-settings.ui:87
 msgid "Automatic Brightness"
-msgstr ""
+msgstr "自动亮度"
 
 #: src/ui/brightness-settings.ui:120
 msgid "Brightness Settings"
-msgstr ""
+msgstr "亮度设置"
 
 #: src/ui/bt-status-page.ui:39
 msgid "Enable Bluetooth"
@@ -649,7 +649,7 @@ msgstr "蓝牙设置"
 
 #: src/ui/emergency-menu.ui:26
 msgid "Close the emergency call dialog"
-msgstr ""
+msgstr "关闭紧急呼叫对话框"
 
 #: src/ui/emergency-menu.ui:52
 msgid "Emergency _Contacts"
@@ -657,11 +657,11 @@ msgstr "紧急联系人(_C)"
 
 #: src/ui/emergency-menu.ui:59
 msgid "Go to the emergency contacts page"
-msgstr ""
+msgstr "前往紧急联系人页面"
 
 #: src/ui/emergency-menu.ui:82
 msgid "Go back to the emergency dialpad page"
-msgstr ""
+msgstr "返回紧急拨号盘页面"
 
 #: src/ui/emergency-menu.ui:105
 msgid "Owner unknown"
@@ -674,23 +674,23 @@ msgstr "紧急联系人"
 
 #: src/ui/emergency-menu.ui:142
 msgid "No emergency contacts available."
-msgstr ""
+msgstr "没有可用的紧急联系人"
 
 #: src/ui/end-session-dialog.ui:27
 msgid "Some applications are busy or have unsaved work"
-msgstr ""
+msgstr "某些应用程序正忙或有未保存的工作"
 
 #: src/ui/feedback-status-page.ui:6
 msgid "Feedback"
-msgstr ""
+msgstr "反馈"
 
 #: src/ui/feedback-status-page.ui:19
 msgid "Do not disturb"
-msgstr ""
+msgstr "勿扰"
 
 #: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
-msgstr ""
+msgstr "反馈设置"
 
 #: src/ui/gtk-mount-prompt.ui:74
 msgid "User:"
@@ -698,7 +698,7 @@ msgstr "用户："
 
 #: src/ui/gtk-mount-prompt.ui:96
 msgid "Domain:"
-msgstr ""
+msgstr "域："
 
 #: src/ui/gtk-mount-prompt.ui:128
 msgid "Co_nnect"
@@ -706,7 +706,7 @@ msgstr "连接(_N)"
 
 #: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
-msgstr ""
+msgstr "返回"
 
 #: src/ui/lockscreen.ui:95
 msgid "Slide up to unlock"
@@ -736,11 +736,11 @@ msgstr "认证"
 
 #: src/ui/power-menu.ui:112
 msgid "Suspend"
-msgstr ""
+msgstr "挂起"
 
 #: src/ui/power-menu.ui:158
 msgid "Lock"
-msgstr ""
+msgstr "锁屏"
 
 #: src/ui/power-menu.ui:240
 msgid "Emergency"
@@ -748,7 +748,7 @@ msgstr "紧急"
 
 #: src/ui/run-command-dialog.ui:5
 msgid "Run Command"
-msgstr ""
+msgstr "运行命令"
 
 #: src/ui/settings.ui:121
 msgid "No notifications"
@@ -760,7 +760,7 @@ msgstr "通知"
 
 #: src/ui/settings.ui:159
 msgid "Clear all"
-msgstr ""
+msgstr "清除全部"
 
 #: src/ui/system-prompt.ui:52
 msgid "Confirm:"
@@ -789,11 +789,11 @@ msgstr "Wi-Fi"
 #: src/ui/wifi-status-page.ui:89
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
-msgstr ""
+msgstr "Wi-Fi 设置"
 
 #: src/vpn-info.c:89
 msgid "VPN"
-msgstr ""
+msgstr "VPN"
 
 #. Translators: This is a time format for a date in
 #. long format
@@ -803,36 +803,36 @@ msgstr "%m月%d日 %A"
 
 #: src/widget-box.c:54
 msgid "Plugin not found"
-msgstr ""
+msgstr "未找到插件"
 
 #: src/widget-box.c:57
 #, c-format
 msgid "The plugin '%s' could not be loaded."
-msgstr ""
+msgstr "无法加载插件“%s”。"
 
 #: src/wifi-status-page.c:53
 msgid "No Wi-Fi Device Found"
-msgstr ""
+msgstr "未找到 Wi-Fi 设备"
 
 #: src/wifi-status-page.c:57
 msgid "Wi-Fi Disabled"
-msgstr ""
+msgstr "Wi-Fi 已禁用"
 
 #: src/wifi-status-page.c:58
 msgid "Enable Wi-Fi"
-msgstr ""
+msgstr "启用 Wi-Fi"
 
 #: src/wifi-status-page.c:61
 msgid "Wi-Fi Hotspot Active"
-msgstr ""
+msgstr "Wi-Fi 热点激活"
 
 #: src/wifi-status-page.c:62
 msgid "Turn Off"
-msgstr ""
+msgstr "关闭"
 
 #: src/wifi-status-page.c:65
 msgid "No Wi-Fi Hotspots"
-msgstr ""
+msgstr "无 Wi-Fi 热点"
 
 #. Translators: Refers to the cellular wireless network
 #: src/wwan-info.c:210
@@ -842,37 +842,34 @@ msgstr "蜂窝网络"
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
 msgid "Phosh on caffeine"
-msgstr ""
+msgstr "Phosh 保持唤醒"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
 msgctxt "caffeine-disabled"
 msgid "Off"
-msgstr ""
+msgstr "关闭"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
-#, fuzzy
-#| msgctxt "bluetooth:enabled"
-#| msgid "On"
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "开启"
 
 #: plugins/caffeine-quick-setting/qs.ui:15
 msgid "Caffeine timers"
-msgstr ""
+msgstr "保持唤醒定时器"
 
 #: plugins/caffeine-quick-setting/qs.ui:38
 msgid "No caffeine intervals"
-msgstr ""
+msgstr "无保持唤醒时段"
 
 #: plugins/caffeine-quick-setting/qs.ui:55
 msgid "Caffeine Settings"
-msgstr ""
+msgstr "保持唤醒设置"
 
 #: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:171
 msgid "No timeout (∞)"
-msgstr ""
+msgstr "不限时间（∞）"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:7
 msgid "Caffeine Quick Setting Preferences"
@@ -888,20 +885,20 @@ msgstr ""
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:16
 msgid "Add or remove custom caffeine intervals"
-msgstr ""
+msgstr "添加或移除自定义的保持唤醒时段"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:22
 msgid "Add interval"
-msgstr ""
+msgstr "添加时段"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:66
 msgid "Add New Interval"
-msgstr ""
+msgstr "添加新的时段"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:83
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
-msgstr ""
+msgstr "添加(_A)"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:115
 msgid "Quickstart Intervals"
