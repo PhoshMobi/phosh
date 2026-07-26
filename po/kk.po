@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-23 13:53+0000\n"
-"PO-Revision-Date: 2026-03-31 21:02+0500\n"
+"POT-Creation-Date: 2026-07-03 13:57+0000\n"
+"PO-Revision-Date: 2026-07-26 14:53+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <Kazakh>\n"
 "Language: kk\n"
@@ -123,6 +123,22 @@ msgstr "Помодоро жылдам баптауы"
 msgid "Simple Pomodoro Timer"
 msgstr "Қарапайым помодоро таймері"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "Масштабтаудың жедел баптауы"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "Экран масштабын реттеуге арналған жедел баптау."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Syncthing жедел баптауы"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Syncthing бағдарламасына арналған жедел баптау."
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -141,6 +157,14 @@ msgstr "Келесі оқиғалар"
 msgid "Show upcoming calendar events"
 msgstr "Күнтізбедегі келесі оқиғаларды көрсету"
 
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Wi-Fi кіру нүктесінің жедел баптауы"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Wi-Fi кіру нүктесін қосу/сөндіру"
+
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
 msgstr "Бумаға қосу"
@@ -149,15 +173,36 @@ msgstr "Бумаға қосу"
 msgid "Create new folder"
 msgstr "Жаңа бума жасау"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "Қолданбаны өшіру мүмкін емес"
+
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "Болдырмау"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Қолданба енді толығымен жасырылған және сөндірілген"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Қолданбаны жасыру сәтсіз аяқталды"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Қолданба"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "%s бумасы бос"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "Барлық қолданбаларды көрсету"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Тек мобильді құрылғыларға ыңғайлы қолданбаларды көрсету"
 
@@ -295,7 +340,7 @@ msgid "No"
 msgstr "Жоқ"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Пароль кодын енгізіңіз"
 
@@ -484,9 +529,9 @@ msgid "Almost %dy"
 msgid_plural "Almost %dy"
 msgstr[0] "Дерлік %dж"
 
-#: src/overview.c:221
-msgid "Application failed to start"
-msgstr "Қолданбаны іске қосу сәтсіз аяқталды"
+#: src/overview.c:228
+msgid "Application is slow or failed to start"
+msgstr "Қолданба баяу жұмыс істеуде немесе іске қосылуы сәтсіз аяқталды"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
@@ -566,9 +611,17 @@ msgstr "Толық мәліметтер_ді қарау"
 msgid "Uninstall"
 msgstr "Өшіру"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "Қолданбаны жасыру"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "Бумадан өші_ру"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "Жасырын қолданбаларды басқару"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
@@ -659,7 +712,7 @@ msgstr "Домен:"
 msgid "Co_nnect"
 msgstr "Қо_сылу"
 
-#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr "Артқа"
 
@@ -667,7 +720,7 @@ msgstr "Артқа"
 msgid "Slide up to unlock"
 msgstr "Құлпын ашу үшін жоғары сырғытыңыз"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "Құлпын ашу"
 
@@ -1083,32 +1136,34 @@ msgstr "Түнгі жарық қосулы"
 msgid "Night Light Off"
 msgstr "Түнгі жарық сөндірулі"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "Помодоро басталуы"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "Тапсырмаңызға %d минут бойы зейін қойыңыз"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Фокусыңызды %d минут бойы тапсырмаңызға аударыңыз"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "Үзіліс жасаңыз"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "Келесі помодороға дейін %d минут бар"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "Келесі Pomodoro-ға дейін %d минут бар"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "Помодоро таймері"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
 msgstr "Помодоро сөндірулі"
@@ -1226,8 +1281,9 @@ msgstr "Атаусыз оқиға"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "Келесі %d күнге оқиғалар жоқ"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "Келесі %d күнге оқиғалар жоқ"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
 msgid "No upcoming events"
@@ -1260,6 +1316,32 @@ msgstr "Монитор масштабтары"
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr "Бумалар жоқ"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+msgid "Syncthing is disabled"
+msgstr "Syncthing сөндірілген"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr "Іске қосу"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Syncthing графикалық интерфейсін ашу"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Syncbus қызметіне қосылу мүмкін емес"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
 msgid "Wi-Fi Hotspot"
