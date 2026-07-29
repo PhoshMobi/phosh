@@ -694,7 +694,7 @@ submit_screenshot (PhoshScreenshotManager *self)
   }
 
   if (self->frames->flash) {
-    phosh_trigger_feedback ("screen-capture");
+    phosh_trigger_feedback ("screen-capture", FALSE);
     show_fader (self);
   }
 }

@@ -347,7 +347,7 @@ on_activity_closed (PhoshOverview *self, PhoshActivity *activity)
            phosh_toplevel_get_title (toplevel));
 
   phosh_toplevel_close (toplevel);
-  phosh_trigger_feedback ("window-close");
+  phosh_trigger_feedback ("window-close", FALSE);
   g_signal_emit (self, signals[ACTIVITY_CLOSED], 0);
 }
 

@@ -136,7 +136,7 @@ on_signal_hook (GSignalInvocationHint *ihint,
 
   g_return_val_if_fail (event_name, TRUE);
 
-  phosh_trigger_feedback (event_name);
+  phosh_trigger_feedback (event_name, FALSE);
   return TRUE;
 }
 
@@ -326,7 +326,7 @@ phosh_feedback_manager_toggle (PhoshFeedbackManager *self)
  * Trigger feedback for the given event asynchronously
  */
 void
-phosh_trigger_feedback (const char *name)
+phosh_trigger_feedback (const char *name, gboolean important)
 {
   g_autoptr (LfbEvent) event = NULL;
 
@@ -334,6 +334,9 @@ phosh_trigger_feedback (const char *name)
   g_return_if_fail (name);
 
   event = lfb_event_new (name);
+  if (important)
+    lfb_event_set_important (event, TRUE);
+
   lfb_event_trigger_feedback_async (event,
                                     NULL,
                                     (GAsyncReadyCallback)on_event_triggered,
