@@ -54,12 +54,13 @@ typedef struct _PhoshSettings {
   gint       drag_handle_offset;
   guint      debounce_handle;
 
+  GtkBox    *box;
   GtkWidget *scrolled_window;
   GtkWidget *box_sliders;
   GtkWidget *box_settings;
   GtkWidget *quick_settings;
   GtkWidget *media_player;
-  PhoshAudioSettings *audio_settings;
+  PhoshAudioSettings      *audio_settings;
   PhoshBrightnessSettings *brightness_settings;
 
   /* The area with media widget, notifications */
@@ -144,7 +145,7 @@ calc_drag_handle_offset (PhoshSettings *self)
   if (self->on_lockscreen)
     goto out;
 
-  box_height = gtk_widget_get_allocated_height (self->box_settings);
+  box_height = gtk_widget_get_allocated_height (GTK_WIDGET (self->box));
   sw_height = gtk_widget_get_allocated_height (self->scrolled_window);
   if (box_height > sw_height) {
     h = 0; /* Don't enlarge drag handle if box needs scrolling */
@@ -454,6 +455,7 @@ phosh_settings_class_init (PhoshSettingsClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/mobi/phosh/ui/settings.ui");
 
+  gtk_widget_class_bind_template_child (widget_class, PhoshSettings, box);
   gtk_widget_class_bind_template_child (widget_class, PhoshSettings, audio_settings);
   gtk_widget_class_bind_template_child (widget_class, PhoshSettings, brightness_settings);
   gtk_widget_class_bind_template_child (widget_class, PhoshSettings, box_bottom_half);
@@ -517,4 +519,23 @@ phosh_settings_hide_details (PhoshSettings *self)
   phosh_audio_settings_hide_details (self->audio_settings);
   phosh_brightness_settings_hide_details (self->brightness_settings);
   phosh_quick_settings_hide_status (PHOSH_QUICK_SETTINGS (self->quick_settings));
+}
+
+
+void
+phosh_settings_set_two_column (PhoshSettings *self, gboolean enabled)
+{
+  GtkOrientation orientation = GTK_ORIENTATION_VERTICAL;
+  gboolean homogenuous = FALSE;
+  guint spacing = 0;
+
+  if (enabled) {
+    orientation = GTK_ORIENTATION_HORIZONTAL;
+    homogenuous = TRUE;
+    spacing = 6;
+  }
+
+  gtk_orientable_set_orientation (GTK_ORIENTABLE (self->box), orientation);
+  gtk_box_set_homogeneous (self->box, homogenuous);
+  gtk_box_set_spacing (self->box, spacing);
 }

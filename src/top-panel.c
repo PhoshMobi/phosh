@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2018-2022 Purism SPC
  *               2023-2024 The Phosh Developers
- *                    2025 Phosh.mobi e.V.
+ *               2025-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -43,6 +43,8 @@
 #define CUSTOM_STATUS_ICONS_KEY "status-icons"
 
 #define PHOSH_TOP_PANEL_DRAG_THRESHOLD 0.3
+
+#define MAX_TWO_COLUMN_HEIGHT 800
 
 /**
  * PhoshTopPanel:
@@ -120,6 +122,35 @@ typedef struct _PhoshTopPanel {
 
 G_DEFINE_TYPE (PhoshTopPanel, phosh_top_panel, PHOSH_TYPE_DRAG_SURFACE)
 
+
+static void
+maybe_enable_two_column_mode (PhoshTopPanel *self)
+{
+  guint width, height;
+  gboolean two_column = FALSE;
+
+  width = phosh_layer_surface_get_configured_width  (PHOSH_LAYER_SURFACE (self));
+  height = phosh_layer_surface_get_configured_height (PHOSH_LAYER_SURFACE (self));
+
+  if (height < width && height < MAX_TWO_COLUMN_HEIGHT && !self->on_lockscreen)
+    two_column = TRUE;
+
+  phosh_settings_set_two_column (PHOSH_SETTINGS (self->settings), two_column);
+}
+
+
+static void
+set_on_lockscreen (PhoshTopPanel *self, gboolean on_lockscreen)
+{
+  if (self->on_lockscreen == on_lockscreen)
+    return;
+
+  self->on_lockscreen = on_lockscreen;
+
+  maybe_enable_two_column_mode (self);
+}
+
+
 static void
 phosh_top_panel_set_property (GObject      *object,
                               guint         property_id,
@@ -130,7 +161,7 @@ phosh_top_panel_set_property (GObject      *object,
 
   switch (property_id) {
   case PROP_ON_LOCKSCREEN:
-    self->on_lockscreen = g_value_get_boolean (value);
+    set_on_lockscreen (self, g_value_get_boolean (value));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -816,7 +847,7 @@ on_configure_event (PhoshTopPanel *self, GdkEventConfigure *event)
   if (gtk_widget_get_window (GTK_WIDGET (self)) != event->window)
     return FALSE;
 
-  g_debug ("%s: %dx%d margin: %d", __func__, event->height, event->width, margin);
+  g_debug ("top-panel: %dx%d margin: %d", event->width, event->height, margin);
 
   /* If the size changes we need to update the folded margin */
   phosh_drag_surface_set_margin (PHOSH_DRAG_SURFACE (self), margin, 0);
@@ -830,12 +861,15 @@ on_configure_event (PhoshTopPanel *self, GdkEventConfigure *event)
 static void
 phosh_top_panel_configured (PhoshLayerSurface *layer_surface)
 {
+  PhoshTopPanel *self = PHOSH_TOP_PANEL (layer_surface);
   guint width, height;
 
   width = phosh_layer_surface_get_configured_width  (layer_surface);
   height = phosh_layer_surface_get_configured_height (layer_surface);
 
-  g_debug ("%s: %dx%d", __func__, width, height);
+  g_debug ("top-panel configured: %dx%d", width, height);
+
+  maybe_enable_two_column_mode (self);
 
   PHOSH_LAYER_SURFACE_CLASS (phosh_top_panel_parent_class)->configured (layer_surface);
 }
