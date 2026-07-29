@@ -42,7 +42,7 @@ G_DEFINE_TYPE (PhoshLockscreenBg, phosh_lockscreen_bg, PHOSH_TYPE_LAYER_SURFACE)
 static void
 update_image (PhoshLockscreenBg *self)
 {
-  int width, height;
+  int width, height, scale;
 
   if (!self->configured)
     return;
@@ -52,12 +52,15 @@ update_image (PhoshLockscreenBg *self)
 
   g_return_if_fail (width > 0 && height > 0);
 
+  scale = gtk_widget_get_scale_factor (GTK_WIDGET (self));
+  scale = MAX (1, scale);
+
   g_debug ("Scaling lockscreen background %p to %dx%d", self, width, height);
 
   g_clear_object (&self->pixbuf);
   if (self->bg_image) {
     GdkPixbuf *pixbuf = phosh_background_image_get_pixbuf (self->bg_image);
-    self->pixbuf = phosh_utils_pixbuf_scale_to_min (pixbuf, width, height);
+    self->pixbuf = phosh_utils_pixbuf_scale_to_min (pixbuf, width * scale, height * scale);
   }
 
   gtk_widget_queue_draw (GTK_WIDGET (self));
@@ -96,7 +99,11 @@ phosh_lockscreen_bg_draw (GtkWidget *widget, cairo_t *cr)
   gtk_render_background (context, cr, 0, 0, width, height);
 
   if (self->pixbuf && self->use_background) {
-    gdk_cairo_set_source_pixbuf (cr, self->pixbuf, x, y);
+    double scale = gtk_widget_get_scale_factor (GTK_WIDGET (self));
+
+    cairo_scale (cr, 1.0 / scale, 1.0 / scale);
+
+    gdk_cairo_set_source_pixbuf (cr, self->pixbuf, x / scale, y / scale);
     cairo_paint (cr);
   }
 
