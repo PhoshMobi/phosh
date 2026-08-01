@@ -2,21 +2,22 @@
 # Copyright (C) 2020 phosh's COPYRIGHT HOLDER
 # This file is distributed under the same license as the phosh package.
 # Damned <damnedlies@163.com>, 2020.
+# lumingzh <lumingzh@qq.com>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-07-03 13:57+0000\n"
-"PO-Revision-Date: 2026-07-26 14:00+0800\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2026-07-29 11:06+0000\n"
+"PO-Revision-Date: 2026-08-01 13:20+0800\n"
+"Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -674,7 +675,7 @@ msgstr "紧急联系人"
 
 #: src/ui/emergency-menu.ui:142
 msgid "No emergency contacts available."
-msgstr "没有可用的紧急联系人"
+msgstr "没有可用的紧急联系人。"
 
 #: src/ui/end-session-dialog.ui:27
 msgid "Some applications are busy or have unsaved work"
@@ -750,15 +751,15 @@ msgstr "紧急"
 msgid "Run Command"
 msgstr "运行命令"
 
-#: src/ui/settings.ui:121
+#: src/ui/settings.ui:128
 msgid "No notifications"
 msgstr "没有通知"
 
-#: src/ui/settings.ui:150
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "通知"
 
-#: src/ui/settings.ui:159
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "清除全部"
 
@@ -873,15 +874,15 @@ msgstr "不限时间（∞）"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:7
 msgid "Caffeine Quick Setting Preferences"
-msgstr ""
+msgstr "保持唤醒快速设置首选项"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:11
 msgid "Caffeine Duration"
-msgstr ""
+msgstr "保持唤醒持续时间"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:15
 msgid "Manage Caffeine Duration"
-msgstr ""
+msgstr "管理保持唤醒时长"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:16
 msgid "Add or remove custom caffeine intervals"
@@ -906,19 +907,19 @@ msgstr ""
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:127
 msgid "5 m"
-msgstr ""
+msgstr "5 分钟"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:138
 msgid "15 m"
-msgstr ""
+msgstr "15 分钟"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:149
 msgid "30 m"
-msgstr ""
+msgstr "30 分钟"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:160
 msgid "1 h"
-msgstr ""
+msgstr "1 小时"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:188
 msgid "Choose Interval"
@@ -926,133 +927,133 @@ msgstr ""
 
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
 msgid "Default style"
-msgstr ""
+msgstr "默认样式"
 
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:35
 msgid "Dark mode"
-msgstr ""
+msgstr "暗色模式"
 
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:36
 msgid "Light mode"
-msgstr ""
+msgstr "亮色模式"
 
 #: plugins/emergency-info/emergency-info.ui:43
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:62
 msgid "Personal Information"
-msgstr ""
+msgstr "个人信息"
 
 #: plugins/emergency-info/emergency-info.ui:51
 msgid "Date of Birth"
-msgstr ""
+msgstr "出生日期"
 
 #: plugins/emergency-info/emergency-info.ui:71
 msgid "Preferred Language"
-msgstr ""
+msgstr "首选语言"
 
 #: plugins/emergency-info/emergency-info.ui:91
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:85
 msgid "Home Address"
-msgstr ""
+msgstr "家庭住址"
 
 #: plugins/emergency-info/emergency-info.ui:99
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:100
 msgid "Medical Information"
-msgstr ""
+msgstr "医疗信息"
 
 #: plugins/emergency-info/emergency-info.ui:107
 msgid "Age"
-msgstr ""
+msgstr "年龄"
 
 #: plugins/emergency-info/emergency-info.ui:127
 msgid "Blood Type"
-msgstr ""
+msgstr "血型"
 
 #: plugins/emergency-info/emergency-info.ui:147
 msgid "Height"
-msgstr ""
+msgstr "身高"
 
 #: plugins/emergency-info/emergency-info.ui:167
 msgid "Weight"
-msgstr ""
+msgstr "体重"
 
 #: plugins/emergency-info/emergency-info.ui:187
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:129
 msgid "Allergies"
-msgstr ""
+msgstr "过敏症"
 
 #: plugins/emergency-info/emergency-info.ui:195
 msgid "Medications & Conditions"
-msgstr ""
+msgstr "用药与健康状况"
 
 #: plugins/emergency-info/emergency-info.ui:203
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:155
 msgid "Other Information"
-msgstr ""
+msgstr "其它信息"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:6
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:16
 msgid "Emergency Info Preferences"
-msgstr ""
+msgstr "紧急信息首选项"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:36
 msgid "Done"
-msgstr ""
+msgstr "完成"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:67
 msgid "_Owner Name"
-msgstr ""
+msgstr "所有者姓名(_O)"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:73
 msgid "_Date of Birth"
-msgstr ""
+msgstr "出生日期(_D)"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:79
 msgid "_Preferred Language"
-msgstr ""
+msgstr "首选语言(_P)"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:105
 msgid "_Age"
-msgstr ""
+msgstr "年龄(_A)"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:111
 msgid "_Blood Type"
-msgstr ""
+msgstr "血型(_B)"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:117
 msgid "_Height"
-msgstr ""
+msgstr "身高(_H)"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:123
 msgid "_Weight"
-msgstr ""
+msgstr "体重(_W)"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:142
 msgid "Medications and Conditions"
-msgstr ""
+msgstr "用药与健康状况"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:179
 msgid "Add Contact"
-msgstr ""
+msgstr "添加联系人"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:203
 msgid "Add New Contact"
-msgstr ""
+msgstr "添加新的联系人"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:240
 msgid "_Contact Name"
-msgstr ""
+msgstr "联系人姓名(_C)"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:246
 msgid "Relationship"
-msgstr ""
+msgstr "关系"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:252
 msgid "_Contact Number"
-msgstr ""
+msgstr "联系人号码(_C)"
 
 #: plugins/launcher-box/launcher-box.ui:18
 msgid "No launchers configured"
-msgstr ""
+msgstr "未配置任何启动器"
 
 #: plugins/launcher-box/launcher-box.ui:33
 msgid "Launchers"
@@ -1066,17 +1067,17 @@ msgstr ""
 #. Translators: Location precision level - city-wide
 #: plugins/location-quick-setting/accuracy-row.c:47
 msgid "City"
-msgstr ""
+msgstr "城市"
 
 #. Translators: Location precision level - neighborhood
 #: plugins/location-quick-setting/accuracy-row.c:50
 msgid "Neighborhood"
-msgstr ""
+msgstr "街区"
 
 #. Translators: Location precision level - street
 #: plugins/location-quick-setting/accuracy-row.c:53
 msgid "Street"
-msgstr ""
+msgstr "街道"
 
 #. Translators: Location precision level - exact position
 #: plugins/location-quick-setting/accuracy-row.c:56
