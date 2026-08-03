@@ -29,9 +29,6 @@
 #define SEEK_BACK (-10 * SEEK_SECOND)
 #define SEEK_FORWARD (30 * SEEK_SECOND)
 
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (cairo_t, cairo_destroy)
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (cairo_surface_t, cairo_surface_destroy)
-
 /**
  * PhoshMediaPlayer:
  *
