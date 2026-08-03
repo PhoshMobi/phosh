@@ -327,7 +327,12 @@ on_activity_clicked (PhoshOverview *self, PhoshActivity *activity)
       g_warning ("No startup-id for %s, can't raise splash", phosh_activity_get_app_id (activity));
   }
 
-  g_signal_emit (self, signals[ACTIVITY_RAISED], 0);
+  if (!gtk_widget_has_focus (GTK_WIDGET (activity)))
+    gtk_widget_grab_focus (GTK_WIDGET (activity));
+
+  priv->activity = activity;
+
+  g_signal_emit (self, signals[ACTIVITY_RAISED], 0, activity);
 }
 
 
