@@ -253,9 +253,6 @@ phosh_toplevel_thumbnail_new_from_toplevel (PhoshToplevel *toplevel,
   struct phosh_private *phosh = phosh_wayland_get_phosh_private (phosh_wayland_get_default ());
   struct zwlr_screencopy_frame_v1 *frame;
 
-  if (!phosh || phosh_private_get_version (phosh) < PHOSH_PRIVATE_GET_THUMBNAIL_SINCE_VERSION)
-    return NULL;
-
   g_debug ("Requesting a %dx%d thumbnail for toplevel %p [%s]", max_width, max_height,
            toplevel, phosh_toplevel_get_title (toplevel));
 
