@@ -105,19 +105,25 @@ copy_schema = custom_target(
   output: 'mobi.phosh.shell.gschema.xml',
   command: ['cp', '@INPUT@', '@OUTPUT@'],
 )
-schemas = ['mobi.phosh.shell.gschema.xml']
+schema = 'mobi.phosh.shell.gschema.xml'
+compile_schemas = find_program('glib-compile-schemas', required: true)
 compiled_schemas = custom_target(
   'glib-compile-schemas',
   build_by_default: true,
   output: 'gschemas.compiled',
   install: false,
-  command: [find_program('glib-compile-schemas'), meson.current_build_dir()],
+  command: [compile_schemas, meson.current_build_dir()],
   depends: [generate_enums_schema, copy_schema],
 )
-
+test(
+  'Validate @0@ schema file'.format(schema),
+  compile_schemas,
+  args: ['--strict', '--dry-run', meson.current_build_dir()],
+  depends: [generate_enums_schema, copy_schema],
+)
 overrides = ['00_mobi.Phosh.gschema.override']
 
-install_data(schemas + overrides, install_dir: schemasdir)
+install_data([schema] + overrides, install_dir: schemasdir)
 
 subdir('systemd')
 subdir('icons')
