@@ -178,7 +178,7 @@ foreach test : tests_unit
     link_args: test_link_args,
     dependencies: [testlib_dep, test_stubs_dep],
   )
-  test(test, t, env: test_env_unit, depends: compiled_schemas, suite: ['unit'])
+  test(test, t, env: test_env_unit, depends: [compiled_schemas], suite: ['unit'])
 endforeach
 
 foreach test : tests_searchd
@@ -214,7 +214,14 @@ if run_phoc_tests
       link_args: test_link_args,
       dependencies: [testlib_dep, test_stubs_dep],
     )
-    test(test, t, suite: ['unit', 'phoc'], env: test_env_phoc, is_parallel: true)
+    test(
+      test,
+      t,
+      suite: ['unit', 'phoc'],
+      env: test_env_phoc,
+      depends: [compiled_schemas],
+      is_parallel: true,
+    )
   endforeach
 
   # Integration tests using the full libphosh
@@ -226,7 +233,14 @@ if run_phoc_tests
     link_args: test_link_args,
     dependencies: [phosh_static_lib_dep, testlib_dep],
   )
-  test('shell', t, env: test_env_phoc, suite: ['integration'], is_parallel: true)
+  test(
+    'shell',
+    t,
+    env: test_env_phoc,
+    depends: [compiled_schemas],
+    suite: ['integration'],
+    is_parallel: true,
+  )
   foreach item : tests_manager
     test = item.get(0)
     parallel = item.get(1)
@@ -244,6 +258,7 @@ if run_phoc_tests
       t,
       env: test_env_phoc,
       suite: ['integration'],
+      depends: [compiled_schemas],
       is_parallel: parallel,
     )
   endforeach
@@ -271,6 +286,7 @@ if run_phoc_tests
       t,
       env: lang_env,
       suite: ['screenshots'],
+      depends: [compiled_schemas],
       timeout: 60,
     )
   endforeach
@@ -292,7 +308,7 @@ if run_phoc_tests
     'screenshots-@0@'.format(what),
     t,
     env: hc_env,
-    depends: copy_keyfile_hc,
+    depends: [copy_keyfile_hc, compiled_schemas],
     suite: ['screenshots'],
     timeout: 120,
   )
@@ -314,6 +330,7 @@ if run_phoc_tests
     t,
     env: landscape_env,
     suite: ['screenshots'],
+    depends: [compiled_schemas],
     timeout: 60,
   )
 
@@ -337,6 +354,7 @@ if run_phoc_tests
     t,
     env: notch_env,
     suite: ['screenshots'],
+    depends: [compiled_schemas],
     timeout: 120,
   )
 endif
@@ -348,6 +366,7 @@ foreach opt : ['--help', '--version']
     args: opt,
     env: test_env_unit,
     suite: ['unit'],
+    depends: [compiled_schemas],
     timeout: 15,
     is_parallel: true,
   )
