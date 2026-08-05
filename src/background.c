@@ -230,7 +230,7 @@ phosh_background_draw (GtkWidget *widget, cairo_t *cr)
     double scale = gtk_widget_get_scale_factor (GTK_WIDGET (self));
 
     cairo_scale (cr, 1.0 / scale, 1.0 / scale);
-    gdk_cairo_set_source_pixbuf (cr, self->pixbuf, x / scale, y / scale);
+    gdk_cairo_set_source_pixbuf (cr, self->pixbuf, x * scale, y * scale);
 
     cairo_paint (cr);
   }
