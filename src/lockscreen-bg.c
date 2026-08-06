@@ -84,7 +84,7 @@ phosh_lockscreen_bg_draw (GtkWidget *widget, cairo_t *cr)
 {
   GtkStyleContext *context;
   PhoshLockscreenBg *self = PHOSH_LOCKSCREEN_BG (widget);
-  int x = 0, y = 0, width, height;
+  int width, height;
 
   g_return_val_if_fail (PHOSH_IS_LOCKSCREEN_BG (self), GDK_EVENT_PROPAGATE);
 
@@ -103,7 +103,7 @@ phosh_lockscreen_bg_draw (GtkWidget *widget, cairo_t *cr)
 
     cairo_scale (cr, 1.0 / scale, 1.0 / scale);
 
-    gdk_cairo_set_source_pixbuf (cr, self->pixbuf, x / scale, y / scale);
+    gdk_cairo_set_source_pixbuf (cr, self->pixbuf, 0, 0);
     cairo_paint (cr);
   }
 
