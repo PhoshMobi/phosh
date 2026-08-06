@@ -55,7 +55,7 @@ on_drive_connected (PhoshMountManager *self, GDrive *drive, GVolumeMonitor *moni
   if (!phosh_shell_is_session_active (phosh_shell_get_default ()))
     return;
 
-  phosh_trigger_feedback ("device-added-media");
+  phosh_trigger_feedback ("device-added-media", FALSE);
 }
 
 
@@ -72,7 +72,7 @@ on_drive_disconnected (PhoshMountManager *self, GDrive *drive, GVolumeMonitor *m
   if (!phosh_shell_is_session_active (phosh_shell_get_default ()))
     return;
 
-  phosh_trigger_feedback ("device-removed-media");
+  phosh_trigger_feedback ("device-removed-media", FALSE);
 }
 
 

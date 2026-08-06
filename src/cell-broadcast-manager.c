@@ -74,7 +74,7 @@ on_new_cbm (PhoshCellBroadcastManager *self, const char *message, guint id)
   prompt = phosh_cell_broadcast_prompt_new (message, id_to_title (id));
   g_signal_connect (prompt, "closed", G_CALLBACK (gtk_widget_destroy), NULL);
   gtk_widget_set_visible (prompt, TRUE);
-  phosh_trigger_feedback ("message-new-cellbroadcast");
+  phosh_trigger_feedback ("message-new-cellbroadcast", TRUE);
   phosh_shell_activate_action (phosh_shell_get_default (), "screensaver.wakeup-screen", NULL);
 
   /* We rely on the Chat application to remove the CBM later on */

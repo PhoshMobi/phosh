@@ -23,5 +23,5 @@ const char *          phosh_feedback_manager_get_icon_name (PhoshFeedbackManager
 const char *          phosh_feedback_manager_get_profile (PhoshFeedbackManager *self);
 void                  phosh_feedback_manager_set_profile (PhoshFeedbackManager *self, const char *profile);
 void                  phosh_feedback_manager_trigger_feedback (PhoshFeedbackManager *self, const char *event);
-void                  phosh_trigger_feedback (const char *name);
+void                  phosh_trigger_feedback (const char *name, gboolean important);
 void                  phosh_feedback_manager_setup_event_hooks (PhoshFeedbackManager *self);
