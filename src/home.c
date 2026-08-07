@@ -53,37 +53,36 @@ enum {
 static GParamSpec *props[PROP_LAST_PROP];
 
 
-struct _PhoshHome
-{
+struct _PhoshHome {
   PhoshDragSurface parent;
 
-  GtkWidget *overview;
-  GtkWidget *home_bar;
-  GtkWidget *rev_powerbar;
-  GtkWidget *powerbar;
-  GtkWidget *evbox_home_bar;
+  PhoshOverview   *overview;
+  GtkWidget       *home_bar;
+  GtkWidget       *rev_powerbar;
+  GtkWidget       *powerbar;
+  GtkWidget       *evbox_home_bar;
 
-  guint      debounce_handle;
-  gboolean   focus_app_search;
+  guint debounce_handle;
+  gboolean         focus_app_search;
 
-  PhoshHomeState state;
+  PhoshHomeState   state;
 
   /* Keybinding */
-  GStrv           action_names;
-  GSettings      *settings;
+  GStrv action_names;
+  GSettings       *settings;
 
   /* osk button */
-  gboolean        osk_enabled;
+  gboolean         osk_enabled;
 
-  GtkGesture     *click_gesture; /* needed so that the gesture isn't destroyed immediately */
-  GtkGesture     *osk_toggle_long_press; /* to toggle osk from the home bar itself */
-  GSettings      *phosh_settings;
+  GtkGesture      *click_gesture; /* needed so that the gesture isn't destroyed immediately */
+  GtkGesture      *osk_toggle_long_press; /* to toggle osk from the home bar itself */
+  GSettings       *phosh_settings;
 
   PhoshMonitor    *monitor;
   PhoshBackground *background;
   gboolean         use_background;
 };
-G_DEFINE_TYPE(PhoshHome, phosh_home, PHOSH_TYPE_DRAG_SURFACE);
+G_DEFINE_TYPE (PhoshHome, phosh_home, PHOSH_TYPE_DRAG_SURFACE);
 
 
 static void
@@ -160,14 +159,14 @@ update_drag_handle (PhoshHome *self, gboolean queue_draw)
   gtk_event_controller_reset (GTK_EVENT_CONTROLLER (self->osk_toggle_long_press));
 
   /* Update the handle's and dragability */
-  if (phosh_overview_has_running_activities (PHOSH_OVERVIEW (self->overview)) == FALSE &&
+  if (phosh_overview_has_running_activities (self->overview) == FALSE &&
     self->state == PHOSH_HOME_STATE_UNFOLDED && drag_state != PHOSH_DRAG_SURFACE_STATE_DRAGGED) {
     drag_mode = PHOSH_DRAG_SURFACE_DRAG_MODE_NONE;
   }
   phosh_drag_surface_set_drag_mode (PHOSH_DRAG_SURFACE (self), drag_mode);
 
   /* Update handle size */
-  app_grid = phosh_overview_get_app_grid (PHOSH_OVERVIEW (self->overview));
+  app_grid = phosh_overview_get_app_grid (self->overview);
   success = gtk_widget_translate_coordinates (GTK_WIDGET (app_grid),
                                               GTK_WIDGET (self),
                                               0, 0, NULL, &handle);
@@ -351,7 +350,7 @@ window_key_press_event_cb (PhoshHome *self, GdkEvent *event, gpointer data)
       break;
     default:
       /* Focus search when typing */
-      ret = phosh_overview_handle_search (PHOSH_OVERVIEW (self->overview), event);
+      ret = phosh_overview_handle_search (self->overview, event);
   }
 
   return ret;
@@ -483,7 +482,7 @@ on_drag_state_changed (PhoshHome *self)
     state = PHOSH_HOME_STATE_UNFOLDED;
     kbd_interactivity = TRUE;
     if (self->focus_app_search) {
-      phosh_overview_focus_app_search (PHOSH_OVERVIEW (self->overview));
+      phosh_overview_focus_app_search (self->overview);
       self->focus_app_search = FALSE;
     }
     phosh_home_set_background_alpha (self, 1.0);
@@ -491,12 +490,12 @@ on_drag_state_changed (PhoshHome *self)
   case PHOSH_DRAG_SURFACE_STATE_FOLDED:
     state = PHOSH_HOME_STATE_FOLDED;
     phosh_home_set_background_alpha (self, 0.0);
-    phosh_overview_reset (PHOSH_OVERVIEW (self->overview));
+    phosh_overview_reset (self->overview);
     break;
   case PHOSH_DRAG_SURFACE_STATE_DRAGGED:
     state = PHOSH_HOME_STATE_TRANSITION;
     if (self->state == PHOSH_HOME_STATE_FOLDED)
-      phosh_overview_refresh (PHOSH_OVERVIEW (self->overview));
+      phosh_overview_refresh (self->overview);
     break;
   default:
     g_return_if_reached ();
@@ -785,5 +784,5 @@ phosh_home_get_overview (PhoshHome *self)
 {
   g_return_val_if_fail (PHOSH_IS_HOME (self), NULL);
 
-  return PHOSH_OVERVIEW (self->overview);
+  return self->overview;
 }
