@@ -89,8 +89,6 @@ struct _PhoshHome {
   gboolean         use_background;
 
   PhoshThumbnailOverlay *thumbnail_overlay;
-
-  gboolean         unfolding;
 };
 G_DEFINE_TYPE (PhoshHome, phosh_home, PHOSH_TYPE_DRAG_SURFACE);
 
@@ -630,7 +628,6 @@ on_drag_state_changed (PhoshHome *self)
   switch (drag_state) {
   case PHOSH_DRAG_SURFACE_STATE_UNFOLDED:
     state = PHOSH_HOME_STATE_UNFOLDED;
-    self->unfolding = FALSE;
     kbd_interactivity = TRUE;
     if (self->focus_app_search) {
       phosh_overview_focus_app_search (self->overview);
@@ -642,7 +639,6 @@ on_drag_state_changed (PhoshHome *self)
     break;
   case PHOSH_DRAG_SURFACE_STATE_FOLDED:
     state = PHOSH_HOME_STATE_FOLDED;
-    self->unfolding = FALSE;
     phosh_home_set_background_alpha (self, 0.0);
     phosh_overview_set_active_activity_opacity (self->overview, 1.0);
     g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
@@ -651,12 +647,9 @@ on_drag_state_changed (PhoshHome *self)
   case PHOSH_DRAG_SURFACE_STATE_DRAGGED:
     state = PHOSH_HOME_STATE_TRANSITION;
     if (self->state == PHOSH_HOME_STATE_FOLDED) {
-      self->unfolding = FALSE;
       phosh_overview_refresh (self->overview);
       update_thumbnail_overlay_from_focused (self);
     } else if (self->state == PHOSH_HOME_STATE_UNFOLDED) {
-      self->unfolding = TRUE;
-
       /* activity-raised might have already created the overlay */
       if (!self->thumbnail_overlay)
         update_thumbnail_overlay_from_focused (self);
