@@ -86,7 +86,7 @@ registry_handle_global (void               *data,
     self->zphoc_layer_shell_effects_v1 = wl_registry_bind (registry,
                                                            name,
                                                            &zphoc_layer_shell_effects_v1_interface,
-                                                           MIN (3, version));
+                                                           CLAMP (version, 3, 4));
     self->layer_shell_effects_version = version;
   } else if (!strcmp (interface, zphoc_device_state_v1_interface.name)) {
     self->zphoc_device_state_v1 = wl_registry_bind (registry,
