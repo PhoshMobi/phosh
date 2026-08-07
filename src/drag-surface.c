@@ -560,3 +560,24 @@ phosh_drag_surface_get_drag_handle (PhoshDragSurface *self)
 
   return priv->drag_handle;
 }
+
+/**
+ * phosh_drag_surface_is_moving:
+ * @self: The drag surface
+ *
+ * Whether the surface is currently moving, either by the user or animated by the compositor.x
+ *
+ * Returns: `TRUE` if the suface is moving, otherwise `FALSE`.
+ */
+gboolean
+phosh_drag_surface_is_moving (PhoshDragSurface *self)
+{
+  PhoshDragSurfacePrivate *priv = phosh_drag_surface_get_instance_private (self);
+  gboolean moving;
+
+  g_return_val_if_fail (PHOSH_IS_DRAG_SURFACE (self), FALSE);
+
+  moving = priv->drag_state == PHOSH_DRAG_SURFACE_STATE_DRAGGED;
+
+  return moving;
+}

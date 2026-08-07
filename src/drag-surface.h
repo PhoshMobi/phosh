@@ -72,5 +72,6 @@ void                  phosh_drag_surface_set_drag_mode   (PhoshDragSurface      
 guint                 phosh_drag_surface_get_drag_handle (PhoshDragSurface        *self);
 void                  phosh_drag_surface_set_drag_handle (PhoshDragSurface        *self,
                                                           guint                    handle);
+gboolean              phosh_drag_surface_is_moving       (PhoshDragSurface        *self);
 
 G_END_DECLS

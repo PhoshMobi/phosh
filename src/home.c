@@ -100,13 +100,13 @@ static void
 phosh_home_update_home_bar (PhoshHome *self)
 {
   gboolean reveal, solid = TRUE;
-  PhoshDragSurfaceState drag_state = phosh_drag_surface_get_drag_state (PHOSH_DRAG_SURFACE (self));
 
   reveal = !(self->state == PHOSH_HOME_STATE_UNFOLDED);
   gtk_revealer_set_reveal_child (GTK_REVEALER (self->rev_powerbar), reveal);
 
   if (self->use_background)
-    solid = !!(self->state == PHOSH_HOME_STATE_FOLDED && drag_state != PHOSH_DRAG_SURFACE_STATE_DRAGGED);
+    solid = !!(self->state == PHOSH_HOME_STATE_FOLDED &&
+               !phosh_drag_surface_is_moving (PHOSH_DRAG_SURFACE (self)));
 
   phosh_util_toggle_style_class (self->evbox_home_bar, "p-solid", solid);
 }
@@ -164,14 +164,14 @@ update_drag_handle (PhoshHome *self, gboolean queue_draw)
   gint handle = 0;
   PhoshAppGrid *app_grid;
   PhoshDragSurfaceDragMode drag_mode = PHOSH_DRAG_SURFACE_DRAG_MODE_HANDLE;
-  PhoshDragSurfaceState drag_state = phosh_drag_surface_get_drag_state (PHOSH_DRAG_SURFACE (self));
 
   /* reset osk_toggle_long_press to prevent OSK from unfolding accidentally */
   gtk_event_controller_reset (GTK_EVENT_CONTROLLER (self->osk_toggle_long_press));
 
   /* Update the handle's and dragability */
   if (phosh_overview_has_running_activities (self->overview) == FALSE &&
-    self->state == PHOSH_HOME_STATE_UNFOLDED && drag_state != PHOSH_DRAG_SURFACE_STATE_DRAGGED) {
+      self->state == PHOSH_HOME_STATE_UNFOLDED &&
+      !phosh_drag_surface_is_moving (PHOSH_DRAG_SURFACE (self))) {
     drag_mode = PHOSH_DRAG_SURFACE_DRAG_MODE_NONE;
   }
   phosh_drag_surface_set_drag_mode (PHOSH_DRAG_SURFACE (self), drag_mode);
@@ -904,7 +904,6 @@ void
 phosh_home_set_state (PhoshHome *self, PhoshHomeState state)
 {
   g_autofree char *state_name = NULL;
-  PhoshDragSurfaceState drag_state = phosh_drag_surface_get_drag_state (PHOSH_DRAG_SURFACE (self));
   PhoshDragSurfaceState target_state = PHOSH_DRAG_SURFACE_STATE_FOLDED;
 
   g_return_if_fail (PHOSH_IS_HOME (self));
@@ -912,7 +911,7 @@ phosh_home_set_state (PhoshHome *self, PhoshHomeState state)
   if (self->state == state)
     return;
 
-  if (drag_state == PHOSH_DRAG_SURFACE_STATE_DRAGGED)
+  if (phosh_drag_surface_is_moving (PHOSH_DRAG_SURFACE (self)))
     return;
 
   state_name = g_enum_to_string (PHOSH_TYPE_HOME_STATE, state);
