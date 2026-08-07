@@ -25,7 +25,7 @@
     THIS SOFTWARE.
   </copyright>
 
-  <interface name="zphoc_layer_shell_effects_v1" version="3">
+  <interface name="zphoc_layer_shell_effects_v1" version="4">
     <description summary="Adjust properties of layer surfaces">
       Assigns additional features to layer surfaces such as opacity or gestures interaction.
 
@@ -50,7 +50,8 @@
 
     <enum name="stack_error" since="3">
       <entry name="invalid_layer" value="0" summary="layer surfaces not in same layer"/>
-      <entry name="invalid_surface" value="1" summary="layer surfaces invalid"/>
+      <entry name="invalid_output" value="1" summary="layer surfaces not on same output"/>
+      <entry name="invalid_surface" value="2" summary="layer surface invalid"/>
     </enum>
 
     <request name="get_draggable_layer_surface">
@@ -110,7 +111,7 @@
 
   </interface>
 
-  <interface name="zphoc_draggable_layer_surface_v1" version="2">
+  <interface name="zphoc_draggable_layer_surface_v1" version="4">
     <description summary="Draggable layer surface interface">
       An interface that may be implemented by a layer_surface, for surfaces that
       are designed to become draggable when anchored at three edges.
@@ -209,20 +210,25 @@
     </request>
 
     <event name="dragged">
-      <description summary="A drag is ongoing">
-        The is draging the surface.
-
-        TODO: indicate drag (by user) vs slide (by compositor)
+      <description summary="A user drag is ongoing">
+        Whether the surface is being dragged by the user.
       </description>
       <arg name="margin" type="int" summary="The current margin"/>
     </event>
 
     <event name="drag_end">
       <description summary="A drag ended">
-        The user ended dragging the surface and it entered either folded
+        A surface move ended and the the surface is in either folded
         or unfolded state.
       </description>
       <arg name="state" type="uint" enum="drag_end_state" summary="The state"/>
+    </event>
+
+    <event name="animated" since="4">
+      <description summary="A compositor animation is ongoing ">
+        The compositor is animating the surface towards its end state.
+      </description>
+      <arg name="margin" type="int" summary="The current margin"/>
     </event>
 
     <enum name="drag_end_state">
@@ -264,7 +270,8 @@
     <request name="stack_below">
       <description summary="Stack surface below the given layer surface">
         Attaches the stacked layer surface below the layer surface given
-        in this request.
+        in this request. Both surfaces must be in the same layer and on
+        the same output. Otherwise a protocol error will be raised.
       </description>
       <arg name="surface" type="object" interface="zwlr_layer_surface_v1"/>
     </request>
@@ -272,14 +279,15 @@
     <request name="stack_above">
       <description summary="Stack surface below the given layer surface">
         Attaches the stacked layer surface above the layer surface given
-        in this request.
+        in this request. Both surfaces must be in the same layer and on
+        the same output. Otherwise a protocol error will be raised.
       </description>
       <arg name="surface" type="object" interface="zwlr_layer_surface_v1"/>
     </request>
 
     <request name="destroy" type="destructor">
-      <description summary="destroy the layer_surface_binder">
-        This request destroys the layer surface binder.
+      <description summary="destroy the stacked layer_surface">
+        This request destroys the stacked layer surface
       </description>
     </request>
 

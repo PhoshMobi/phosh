@@ -56,6 +56,7 @@ struct _PhoshWayland {
   struct zxdg_output_manager_v1           *zxdg_output_manager_v1;
   struct zwlr_screencopy_manager_v1       *zwlr_screencopy_manager_v1;
   struct zphoc_layer_shell_effects_v1     *zphoc_layer_shell_effects_v1;
+  uint32_t                                 layer_shell_effects_version;
   struct zphoc_device_state_v1            *zphoc_device_state_v1;
   struct wl_shm                           *wl_shm;
   GHashTable                              *wl_outputs;
@@ -86,6 +87,7 @@ registry_handle_global (void               *data,
                                                            name,
                                                            &zphoc_layer_shell_effects_v1_interface,
                                                            MIN (3, version));
+    self->layer_shell_effects_version = version;
   } else if (!strcmp (interface, zphoc_device_state_v1_interface.name)) {
     self->zphoc_device_state_v1 = wl_registry_bind (registry,
                                                     name,
@@ -578,6 +580,15 @@ phosh_wayland_get_zphoc_layer_shell_effects_v1 (PhoshWayland *self)
   g_return_val_if_fail (PHOSH_IS_WAYLAND (self), NULL);
 
   return self->zphoc_layer_shell_effects_v1;
+}
+
+
+uint32_t
+phosh_wayland_get_layer_shell_effects_version (PhoshWayland *self)
+{
+  g_return_val_if_fail (PHOSH_IS_WAYLAND (self), 0);
+
+  return self->layer_shell_effects_version;
 }
 
 
