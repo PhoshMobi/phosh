@@ -290,88 +290,71 @@ phosh_drag_surface_class_init (PhoshDragSurfaceClass *klass)
 
   layer_surface_class->configured = phosh_drag_surface_configured;
 
-  props[PROP_LAYER_SHELL_EFFECTS] = g_param_spec_pointer ("layer-shell-effects",
-                                                          "",
-                                                          "",
+  props[PROP_LAYER_SHELL_EFFECTS] = g_param_spec_pointer ("layer-shell-effects", "", "",
                                                           G_PARAM_READWRITE |
                                                           G_PARAM_CONSTRUCT_ONLY |
                                                           G_PARAM_STATIC_STRINGS);
 
-  props[PROP_MARGIN_FOLDED] = g_param_spec_int ("margin-folded",
-                                                "",
-                                                "",
-                                                G_MININT,
-                                                G_MAXINT,
-                                                0,
+  props[PROP_MARGIN_FOLDED] = g_param_spec_int ("margin-folded", "", "",
+                                                G_MININT, G_MAXINT, 0,
                                                 G_PARAM_READWRITE |
                                                 G_PARAM_STATIC_STRINGS |
                                                 G_PARAM_EXPLICIT_NOTIFY);
 
-  props[PROP_MARGIN_UNFOLDED] = g_param_spec_int ("margin-unfolded",
-                                                  "",
-                                                  "",
-                                                  G_MININT,
-                                                  G_MAXINT,
-                                                  0,
+  props[PROP_MARGIN_UNFOLDED] = g_param_spec_int ("margin-unfolded", "", "",
+                                                  G_MININT, G_MAXINT, 0,
                                                   G_PARAM_READWRITE |
                                                   G_PARAM_STATIC_STRINGS |
                                                   G_PARAM_EXPLICIT_NOTIFY);
 
-  props[PROP_THRESHOLD] = g_param_spec_double ("threshold",
-                                               "",
-                                               "",
-                                               G_MINDOUBLE,
-                                               G_MAXDOUBLE,
-                                               1.0,
+  props[PROP_THRESHOLD] = g_param_spec_double ("threshold", "", "",
+                                               G_MINDOUBLE, G_MAXDOUBLE, 1.0,
                                                G_PARAM_READWRITE |
                                                G_PARAM_STATIC_STRINGS |
                                                G_PARAM_EXPLICIT_NOTIFY);
 
-  props[PROP_DRAG_MODE] = g_param_spec_enum ("drag-mode",
-                                             "",
-                                             "",
+  props[PROP_DRAG_MODE] = g_param_spec_enum ("drag-mode", "", "",
                                              PHOSH_TYPE_DRAG_SURFACE_DRAG_MODE,
                                              0,
                                              G_PARAM_READWRITE |
                                              G_PARAM_STATIC_STRINGS |
                                              G_PARAM_EXPLICIT_NOTIFY);
 
-  props[PROP_DRAG_HANDLE] = g_param_spec_uint ("drag-handle",
-                                               "",
-                                               "",
-                                               0,
-                                               G_MAXUINT,
-                                               0,
+  props[PROP_DRAG_HANDLE] = g_param_spec_uint ("drag-handle", "", "",
+                                               0, G_MAXUINT, 0,
                                                G_PARAM_READWRITE |
                                                G_PARAM_STATIC_STRINGS |
                                                G_PARAM_EXPLICIT_NOTIFY);
 
-  props[PROP_DRAG_STATE] = g_param_spec_enum ("drag-state",
-                                              "",
-                                              "",
+  props[PROP_DRAG_STATE] = g_param_spec_enum ("drag-state", "", "",
                                               PHOSH_TYPE_DRAG_SURFACE_STATE,
                                               PHOSH_DRAG_SURFACE_STATE_FOLDED,
                                               G_PARAM_READABLE |
                                               G_PARAM_STATIC_STRINGS |
                                               G_PARAM_EXPLICIT_NOTIFY);
 
-  props[PROP_EXCLUSIVE] = g_param_spec_uint ("exclusive",
-                                             "",
-                                             "",
-                                             0,
-                                             G_MAXUINT,
-                                             0,
+  props[PROP_EXCLUSIVE] = g_param_spec_uint ("exclusive", "", "",
+                                             0, G_MAXUINT, 0,
                                              G_PARAM_READWRITE |
                                              G_PARAM_STATIC_STRINGS |
                                              G_PARAM_EXPLICIT_NOTIFY);
 
   g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 
+  /**
+   * PhoshDragSurface::dragged
+   * @self: The drag surface
+   * @margin: How far the surface is dragged
+   *
+   * Invoked when the surface is being dragged
+   */
   signals[SIGNAL_DRAGGED] = g_signal_new ("dragged",
                                           G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST,
                                           G_STRUCT_OFFSET (PhoshDragSurfaceClass, dragged),
                                           NULL, NULL,  NULL,
-                                          G_TYPE_NONE, 1, G_TYPE_INT);
+                                          G_TYPE_NONE,
+                                          1,
+                                          G_TYPE_INT);
 }
 
 
