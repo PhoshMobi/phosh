@@ -627,7 +627,7 @@ on_drag_state_changed (PhoshHome *self)
     state = PHOSH_HOME_STATE_FOLDED;
     self->unfolding = FALSE;
     phosh_home_set_background_alpha (self, 0.0);
-    gtk_widget_set_visible (GTK_WIDGET (self->overview), TRUE);
+    phosh_overview_set_active_activity_opacity (self->overview, 1.0);
     g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
     break;
   case PHOSH_DRAG_SURFACE_STATE_DRAGGED:
