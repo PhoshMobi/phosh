@@ -852,6 +852,10 @@ phosh_home_init (PhoshHome *self)
   g_settings_bind (settings, "osk-unfold-delay",
                    self->osk_toggle_long_press, "delay-factor",
                    G_SETTINGS_BIND_GET);
+
+  if (phosh_wayland_get_layer_shell_effects_version (phosh_wayland_get_default ()) <
+      ZPHOC_DRAGGABLE_LAYER_SURFACE_V1_ANIMATED_SINCE_VERSION)
+    g_critical ("Your compositor is too old, please update");
 }
 
 
