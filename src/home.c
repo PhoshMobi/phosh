@@ -282,12 +282,14 @@ update_thumbnail_overlay (PhoshHome *self, PhoshToplevel *toplevel)
   PhoshShell *shell = phosh_shell_get_default ();
   PhoshMonitorManager *monitor_manager = phosh_shell_get_monitor_manager (shell);
   g_autoptr (PhoshToplevelThumbnail) thumbnail = NULL;
+  gboolean disabled;
   int width, height, n_monitors;
 
   n_monitors = phosh_monitor_manager_get_num_monitors (monitor_manager);
+  disabled = phosh_shell_get_debug_flags () & PHOSH_SHELL_DEBUG_NO_THUMBNAIL_OVERLAY;
   /* TODO: In our current setup we can only handle maximized windows and single monitor setups
    * this will change once we move more bits to the compositor */
-  if (!phosh_toplevel_is_maximized (toplevel) || n_monitors != 1) {
+  if (!phosh_toplevel_is_maximized (toplevel) || n_monitors != 1 || disabled) {
     g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
     return FALSE;
   }
