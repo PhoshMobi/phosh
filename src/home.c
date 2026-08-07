@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2018-2022 Purism SPC
- *               2023-2024 Guido Günther
+ *               2023-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -631,6 +631,7 @@ on_drag_state_changed (PhoshHome *self)
     phosh_overview_set_active_activity_opacity (self->overview, 1.0);
     g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
     break;
+  case PHOSH_DRAG_SURFACE_STATE_ANIMATED:
   case PHOSH_DRAG_SURFACE_STATE_DRAGGED:
     state = PHOSH_HOME_STATE_TRANSITION;
     if (self->state == PHOSH_HOME_STATE_FOLDED) {

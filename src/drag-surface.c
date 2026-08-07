@@ -13,6 +13,7 @@
 #include "phosh-enums.h"
 #include "drag-surface.h"
 #include "layersurface-priv.h"
+#include "phosh-marshalers.h"
 
 /**
  * PhoshDragSurface:
@@ -173,7 +174,7 @@ drag_surface_handle_dragged (void                                    *data,
 
   priv = phosh_drag_surface_get_instance_private (self);
 
-  g_signal_emit (self, signals[SIGNAL_DRAGGED], 0, margin);
+  g_signal_emit (self, signals[SIGNAL_DRAGGED], 0, margin, TRUE);
 
   if (priv->drag_state == PHOSH_DRAG_SURFACE_STATE_DRAGGED)
     return;
@@ -184,9 +185,33 @@ drag_surface_handle_dragged (void                                    *data,
 }
 
 
+static void
+drag_surface_handle_animated (void                                   *data,
+                             struct zphoc_draggable_layer_surface_v1 *drag_surface_,
+                             int                                      margin)
+{
+  PhoshDragSurface *self = PHOSH_DRAG_SURFACE (data);
+  PhoshDragSurfacePrivate *priv;
+
+  g_return_if_fail (PHOSH_IS_DRAG_SURFACE (self));
+
+  priv = phosh_drag_surface_get_instance_private (self);
+
+  g_signal_emit (self, signals[SIGNAL_DRAGGED], 0, margin, FALSE);
+
+  if (priv->drag_state == PHOSH_DRAG_SURFACE_STATE_ANIMATED)
+    return;
+
+  priv->drag_state = PHOSH_DRAG_SURFACE_STATE_ANIMATED;
+  g_debug ("DragSurface %p: state, %d", self, priv->drag_state);
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_DRAG_STATE]);
+}
+
+
 const struct zphoc_draggable_layer_surface_v1_listener drag_surface_listener = {
   .drag_end = drag_surface_handle_drag_end,
   .dragged = drag_surface_handle_dragged,
+  .animated = drag_surface_handle_animated,
 };
 
 
@@ -345,16 +370,23 @@ phosh_drag_surface_class_init (PhoshDragSurfaceClass *klass)
    * PhoshDragSurface::dragged
    * @self: The drag surface
    * @margin: How far the surface is dragged
+   * @user: `TRUE` when the user drags the surface, `FALSE` if the compositor animates it.
    *
    * Invoked when the surface is being dragged
    */
   signals[SIGNAL_DRAGGED] = g_signal_new ("dragged",
                                           G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST,
                                           G_STRUCT_OFFSET (PhoshDragSurfaceClass, dragged),
-                                          NULL, NULL,  NULL,
+                                          NULL, NULL,
+                                          _phosh_marshal_VOID__INT_BOOLEAN,
                                           G_TYPE_NONE,
-                                          1,
-                                          G_TYPE_INT);
+                                          2,
+                                          G_TYPE_INT,
+                                          G_TYPE_BOOLEAN);
+  g_signal_set_va_marshaller (signals[SIGNAL_DRAGGED],
+                              G_TYPE_FROM_CLASS (klass),
+                              _phosh_marshal_VOID__INT_BOOLEANv);
+
 }
 
 
@@ -463,6 +495,7 @@ phosh_drag_surface_set_drag_state (PhoshDragSurface     *self,
   case PHOSH_DRAG_SURFACE_STATE_UNFOLDED:
     drag_state = ZPHOC_DRAGGABLE_LAYER_SURFACE_V1_DRAG_END_STATE_UNFOLDED;
     break;
+  case PHOSH_DRAG_SURFACE_STATE_ANIMATED:
   case PHOSH_DRAG_SURFACE_STATE_DRAGGED:
   default:
     g_return_if_reached ();
@@ -577,7 +610,8 @@ phosh_drag_surface_is_moving (PhoshDragSurface *self)
 
   g_return_val_if_fail (PHOSH_IS_DRAG_SURFACE (self), FALSE);
 
-  moving = priv->drag_state == PHOSH_DRAG_SURFACE_STATE_DRAGGED;
+  moving = (priv->drag_state == PHOSH_DRAG_SURFACE_STATE_DRAGGED ||
+            priv->drag_state == PHOSH_DRAG_SURFACE_STATE_ANIMATED);
 
   return moving;
 }
