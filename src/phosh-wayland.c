@@ -276,6 +276,7 @@ phosh_wayland_constructed (GObject *object)
       !self->xdg_wm_base ||
       !self->zxdg_output_manager_v1 ||
       !self->zwlr_output_power_manager_v1 ||
+      !self->phosh_private ||
       !self->zphoc_layer_shell_effects_v1 ||
       !self->zphoc_device_state_v1) {
     g_error ("Wayland compositor lacks needed globals\n"
@@ -284,7 +285,8 @@ phosh_wayland_constructed (GObject *object)
              "xdg_output: %p, wlr_output_manager: %p, "
              "wlr_foreign_toplevel_manager: %p, "
              "zwlr_output_power_manager_v1: %p, "
-             "zphoc_layer_shell_effects_v1: %p"
+             "phosh_private: %p,"
+             "zphoc_layer_shell_effects_v1: %p,"
              "zphoc_device_state_v1: %p"
              "\n",
              num_outputs, self->layer_shell, self->ext_idle_notifier_v1,
@@ -293,11 +295,10 @@ phosh_wayland_constructed (GObject *object)
              self->zwlr_output_manager_v1,
              self->zwlr_foreign_toplevel_manager_v1,
              self->zwlr_output_power_manager_v1,
+             self->phosh_private,
              self->zphoc_layer_shell_effects_v1,
              self->zphoc_device_state_v1);
   }
-  if (!self->phosh_private)
-    g_info ("Could not find phosh private interface, disabling some features");
 
   wl_seat_add_listener (self->wl_seat, &seat_listener, self);
   zphoc_device_state_v1_add_listener (self->zphoc_device_state_v1, &device_state_listener, self);
