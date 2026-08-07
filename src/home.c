@@ -424,12 +424,11 @@ on_activity_raised (PhoshHome *self, PhoshActivity *activity, PhoshOverview *ove
 
   toplevel = phosh_overview_get_toplevel_from_activity (overview, activity);
 
-  if (!toplevel || phosh_toplevel_is_maximized (toplevel))
-    fold_cb (self, overview);
-
   /* User raised an activity, make sure we zoom out the correct toplevel */
   if (toplevel)
     update_thumbnail_overlay (self, toplevel);
+
+  fold_cb (self, overview);
 }
 
 
