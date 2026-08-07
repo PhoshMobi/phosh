@@ -406,12 +406,29 @@ on_powerbar_pressed (PhoshHome *self)
 
 
 static void
-fold_cb (PhoshHome *self, PhoshOverview *overview)
+fold (PhoshHome *self)
 {
   g_return_if_fail (PHOSH_IS_HOME (self));
-  g_return_if_fail (PHOSH_IS_OVERVIEW (overview));
 
   phosh_home_set_state (self, PHOSH_HOME_STATE_FOLDED);
+}
+
+
+static void
+on_selection_aborted (PhoshHome *self)
+{
+  g_return_if_fail (PHOSH_IS_HOME (self));
+
+  fold (self);
+}
+
+
+static void
+on_activity_launched (PhoshHome *self)
+{
+  g_return_if_fail (PHOSH_IS_HOME (self));
+
+  fold (self);
 }
 
 
@@ -428,7 +445,7 @@ on_activity_raised (PhoshHome *self, PhoshActivity *activity, PhoshOverview *ove
   if (toplevel)
     update_thumbnail_overlay (self, toplevel);
 
-  fold_cb (self, overview);
+  fold (self);
 }
 
 
@@ -820,13 +837,14 @@ phosh_home_class_init (PhoshHomeClass *klass)
   gtk_widget_class_bind_template_child (widget_class, PhoshHome, overview);
   gtk_widget_class_bind_template_child (widget_class, PhoshHome, rev_powerbar);
   gtk_widget_class_bind_template_child (widget_class, PhoshHome, powerbar);
-  gtk_widget_class_bind_template_callback (widget_class, fold_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_activity_raised);
+  gtk_widget_class_bind_template_callback (widget_class, on_activity_launched);
   gtk_widget_class_bind_template_callback (widget_class, on_home_released);
   gtk_widget_class_bind_template_callback (widget_class, on_has_activities_changed);
   gtk_widget_class_bind_template_callback (widget_class, on_powerbar_pressed);
   gtk_widget_class_bind_template_callback (widget_class, on_powerbar_action_started);
   gtk_widget_class_bind_template_callback (widget_class, on_powerbar_action_ended);
+  gtk_widget_class_bind_template_callback (widget_class, on_selection_aborted);
   gtk_widget_class_bind_template_callback (widget_class, window_key_press_event_cb);
 
   gtk_widget_class_set_css_name (widget_class, "phosh-home");

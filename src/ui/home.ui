@@ -54,10 +54,10 @@
           <object class="PhoshOverview" id="overview">
             <property name="visible">1</property>
             <property name="vexpand">1</property>
-            <signal name="activity-launched" handler="fold_cb" swapped="true"/>
+            <signal name="activity-launched" handler="on_activity_launched" swapped="true"/>
             <signal name="activity-raised" handler="on_activity_raised" swapped="true"/>
             <signal name="notify::has-activities" handler="on_has_activities_changed" swapped="true"/>
-            <signal name="selection-aborted" handler="fold_cb" swapped="true"/>
+            <signal name="selection-aborted" handler="on_selection_aborted" swapped="true"/>
           </object>
         </child>
       </object>
