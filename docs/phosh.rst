@@ -84,6 +84,9 @@ ENVIRONMENT VARIABLES
       Set if kernel should report the backlight as `non-linear` but doesn't.
     - ``fake-builtin``: Fake a builtin screen when using a virtual output like
       in a nested Wayland session.
+    - ``no-thumbnail-overlay``: Disable transition between overlay and running
+      app. This can be useful if one needs to see what's happening on the home
+      surface or on particular slow devices.
 - ``PHOSH_FAKE_CLOCK``: Allowed values are ISO8601 formatted strings
   or ``now``. Setting this variable sets the shell's clocs to the
   given fixed value. For the clock format see ``g_date_time_new_from_iso8601()``.

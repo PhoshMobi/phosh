@@ -21,6 +21,9 @@ G_BEGIN_DECLS
                       G_IO_ERROR_NOT_FOUND, G_IO_ERROR_CANCELLED, \
                       __VA_ARGS__)
 
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (cairo_t, cairo_destroy)
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (cairo_surface_t, cairo_surface_destroy)
+
 /**
  * PHOSH_UTIL_BUILD_KEYBINDING:
  * @actions: (array)(element-type GActionEntry)(inout): The action array to build

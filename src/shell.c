@@ -806,9 +806,7 @@ notify_compositor_up_state (PhoshShell *self, enum phosh_private_shell_state sta
   g_debug ("Notify compositor state: %d", state);
 
   phosh_private = phosh_wayland_get_phosh_private (phosh_wayland_get_default ());
-  if (phosh_private &&
-      phosh_private_get_version (phosh_private) >= PHOSH_PRIVATE_SET_SHELL_STATE_SINCE_VERSION)
-    phosh_private_set_shell_state (phosh_private, state);
+  phosh_private_set_shell_state (phosh_private, state);
 }
 
 
@@ -1441,6 +1439,10 @@ static GDebugKey debug_keys[] = {
   {
     .key = "fake-builtin",
     .value = PHOSH_SHELL_DEBUG_FLAG_FAKE_BUILTIN,
+  },
+  {
+    .key = "no-thumbnail-overlay",
+    .value = PHOSH_SHELL_DEBUG_NO_THUMBNAIL_OVERLAY,
   },
 };
 

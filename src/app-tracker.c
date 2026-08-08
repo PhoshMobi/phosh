@@ -720,7 +720,6 @@ phosh_app_tracker_init (PhoshAppTracker *self)
 {
   PhoshWayland *wl = phosh_wayland_get_default ();
   struct phosh_private *phosh_private = phosh_wayland_get_phosh_private (wl);
-  uint32_t version;
 
   self->cancel = g_cancellable_new ();
   self->apps = g_hash_table_new_full (g_str_hash,
@@ -729,12 +728,6 @@ phosh_app_tracker_init (PhoshAppTracker *self)
                                       (GDestroyNotify) phosh_app_state_free);
   self->idle_id = g_idle_add ((GSourceFunc)on_idle, self);
   g_source_set_name_by_id (self->idle_id, "[PhoshAppTracker] idle");
-
-  version = phosh_wayland_get_phosh_private_version (wl);
-  if (!phosh_private || version < PHOSH_PRIVATE_GET_STARTUP_TRACKER_SINCE_VERSION) {
-    g_warning ("Compositor lacks app startup tracker support");
-    return;
-  }
 
   if ((self->wl_tracker = phosh_private_get_startup_tracker (phosh_private)) == NULL) {
     g_critical ("Failed to retrieve startup tracker from wayland interface");

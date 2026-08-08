@@ -10,13 +10,20 @@
 #define G_LOG_DOMAIN "phosh-home"
 
 #include "phosh-config.h"
+
+#include "activity.h"
 #include "layersurface-priv.h"
 #include "overview.h"
 #include "home.h"
 #include "shell-priv.h"
+#include "shell.h"
 #include "phosh-enums.h"
 #include "osk-manager.h"
 #include "style-manager.h"
+#include "toplevel-manager.h"
+#include "toplevel-thumbnail.h"
+#include "toplevel.h"
+#include "thumbnail-overlay.h"
 #include "feedback-manager.h"
 #include "util.h"
 
@@ -53,37 +60,40 @@ enum {
 static GParamSpec *props[PROP_LAST_PROP];
 
 
-struct _PhoshHome
-{
+struct _PhoshHome {
   PhoshDragSurface parent;
 
-  GtkWidget *overview;
-  GtkWidget *home_bar;
-  GtkWidget *rev_powerbar;
-  GtkWidget *powerbar;
-  GtkWidget *evbox_home_bar;
+  PhoshOverview   *overview;
+  GtkWidget       *home_bar;
+  GtkWidget       *rev_powerbar;
+  GtkWidget       *powerbar;
+  GtkWidget       *evbox_home_bar;
 
-  guint      debounce_handle;
-  gboolean   focus_app_search;
+  guint debounce_handle;
+  gboolean         focus_app_search;
 
-  PhoshHomeState state;
+  PhoshHomeState   state;
 
   /* Keybinding */
-  GStrv           action_names;
-  GSettings      *settings;
+  GStrv action_names;
+  GSettings       *settings;
 
   /* osk button */
-  gboolean        osk_enabled;
+  gboolean         osk_enabled;
 
-  GtkGesture     *click_gesture; /* needed so that the gesture isn't destroyed immediately */
-  GtkGesture     *osk_toggle_long_press; /* to toggle osk from the home bar itself */
-  GSettings      *phosh_settings;
+  GtkGesture      *click_gesture; /* needed so that the gesture isn't destroyed immediately */
+  GtkGesture      *osk_toggle_long_press; /* to toggle osk from the home bar itself */
+  GSettings       *phosh_settings;
 
   PhoshMonitor    *monitor;
   PhoshBackground *background;
   gboolean         use_background;
+
+  PhoshThumbnailOverlay *thumbnail_overlay;
+
+  gboolean         unfolding;
 };
-G_DEFINE_TYPE(PhoshHome, phosh_home, PHOSH_TYPE_DRAG_SURFACE);
+G_DEFINE_TYPE (PhoshHome, phosh_home, PHOSH_TYPE_DRAG_SURFACE);
 
 
 static void
@@ -160,14 +170,14 @@ update_drag_handle (PhoshHome *self, gboolean queue_draw)
   gtk_event_controller_reset (GTK_EVENT_CONTROLLER (self->osk_toggle_long_press));
 
   /* Update the handle's and dragability */
-  if (phosh_overview_has_running_activities (PHOSH_OVERVIEW (self->overview)) == FALSE &&
+  if (phosh_overview_has_running_activities (self->overview) == FALSE &&
     self->state == PHOSH_HOME_STATE_UNFOLDED && drag_state != PHOSH_DRAG_SURFACE_STATE_DRAGGED) {
     drag_mode = PHOSH_DRAG_SURFACE_DRAG_MODE_NONE;
   }
   phosh_drag_surface_set_drag_mode (PHOSH_DRAG_SURFACE (self), drag_mode);
 
   /* Update handle size */
-  app_grid = phosh_overview_get_app_grid (PHOSH_OVERVIEW (self->overview));
+  app_grid = phosh_overview_get_app_grid (self->overview);
   success = gtk_widget_translate_coordinates (GTK_WIDGET (app_grid),
                                               GTK_WIDGET (self),
                                               0, 0, NULL, &handle);
@@ -234,6 +244,106 @@ on_home_released (GtkButton *button, int n_press, double x, double y, GtkGesture
 
   if (phosh_util_gesture_is_touch (GTK_GESTURE_SINGLE (gesture)) == FALSE)
     phosh_home_set_state (self, !self->state);
+}
+
+/* TODO: Taken from inspector, we should get that from the widgets too */
+#define THUMB_MARGIN 4 /* px */
+
+static void
+set_thumb_y_offset (PhoshHome *self)
+{
+  int y_thumb_off = THUMB_MARGIN, y_off = 0;
+
+  if (!phosh_overview_get_focused_activity_rect (self->overview, NULL, &y_off))
+    return;
+
+  y_thumb_off += y_off;
+  gtk_widget_translate_coordinates (GTK_WIDGET (self->overview), GTK_WIDGET (self),
+                                    0, 0, NULL, &y_off);
+  y_thumb_off += y_off;
+
+  phosh_thumbnail_overlay_set_thumbnail_y (self->thumbnail_overlay, y_thumb_off);
+}
+#undef THUMB_MARGIN
+
+/**
+ * update_thumbnail_overlay:
+ * @self: The `PhoshHome`
+ * @toplevel: The toplevel to use fo the thumbnail overlay
+ *
+ * Use the given thumbnail for the overlay and create the surface if needed. The function
+ * might reject the request and return `FALSE`.
+ *
+ * Returns: `TRUE` if the thumbnail was created successfully, otherwise `FALSE`.
+ */
+static gboolean
+update_thumbnail_overlay (PhoshHome *self, PhoshToplevel *toplevel)
+{
+  PhoshShell *shell = phosh_shell_get_default ();
+  PhoshMonitorManager *monitor_manager = phosh_shell_get_monitor_manager (shell);
+  g_autoptr (PhoshToplevelThumbnail) thumbnail = NULL;
+  gboolean disabled;
+  int width, height, n_monitors;
+
+  n_monitors = phosh_monitor_manager_get_num_monitors (monitor_manager);
+  disabled = phosh_shell_get_debug_flags () & PHOSH_SHELL_DEBUG_NO_THUMBNAIL_OVERLAY;
+  /* TODO: In our current setup we can only handle maximized windows and single monitor setups
+   * this will change once we move more bits to the compositor */
+  if (!phosh_toplevel_is_maximized (toplevel) || n_monitors != 1 || disabled) {
+    g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
+    return FALSE;
+  }
+
+  phosh_shell_get_usable_area (shell, NULL, NULL, &width, &height);
+  if (!self->thumbnail_overlay) {
+    GtkAllocation alloc;
+    double scale = 1.0;
+
+    if (phosh_overview_get_focused_activity_rect (self->overview, &alloc, NULL))
+      scale = (double)alloc.width / width;
+
+    self->thumbnail_overlay = phosh_thumbnail_overlay_new ();
+    gtk_widget_set_visible (GTK_WIDGET (self->thumbnail_overlay), TRUE);
+    phosh_layer_surface_set_stacked_above (PHOSH_LAYER_SURFACE (self->thumbnail_overlay),
+                                           PHOSH_LAYER_SURFACE (self));
+    phosh_thumbnail_overlay_set_progress (self->thumbnail_overlay, 0.01);
+    phosh_thumbnail_overlay_set_thumbnail_scale (self->thumbnail_overlay, scale);
+    set_thumb_y_offset (self);
+  }
+
+  g_debug ("Capturing screenshot of active toplevel");
+  thumbnail = phosh_toplevel_thumbnail_new_from_toplevel (toplevel, width, height);
+  if (G_UNLIKELY (thumbnail == NULL)) {
+    g_warning ("Thumbnail could not be created");
+    return FALSE;
+  }
+
+  phosh_thumbnail_overlay_set_thumbnail (self->thumbnail_overlay, PHOSH_THUMBNAIL (thumbnail));
+  return TRUE;
+}
+
+
+static void
+update_thumbnail_overlay_from_focused (PhoshHome *self)
+{
+  PhoshToplevelManager *mgr = phosh_shell_get_toplevel_manager (phosh_shell_get_default ());
+  PhoshToplevel *toplevel = NULL;
+
+  for (guint i = 0; i < phosh_toplevel_manager_get_num_toplevels (mgr); i++) {
+    PhoshToplevel *tl = phosh_toplevel_manager_get_toplevel (mgr, i);
+    if (phosh_toplevel_is_activated (tl)) {
+      toplevel = tl;
+      break;
+    }
+  }
+
+  if (!toplevel)
+    toplevel = phosh_overview_get_focused_toplevel (self->overview);
+
+  if (!toplevel)
+    return;
+
+  update_thumbnail_overlay (self, toplevel);
 }
 
 
@@ -306,6 +416,23 @@ fold_cb (PhoshHome *self, PhoshOverview *overview)
 
 
 static void
+on_activity_raised (PhoshHome *self, PhoshActivity *activity, PhoshOverview *overview)
+{
+  PhoshToplevel *toplevel;
+
+  g_return_if_fail (PHOSH_IS_ACTIVITY (activity));
+
+  toplevel = phosh_overview_get_toplevel_from_activity (overview, activity);
+
+  /* User raised an activity, make sure we zoom out the correct toplevel */
+  if (toplevel)
+    update_thumbnail_overlay (self, toplevel);
+
+  fold_cb (self, overview);
+}
+
+
+static void
 delayed_handle_resize (gpointer data)
 {
   PhoshHome *self = PHOSH_HOME (data);
@@ -351,7 +478,7 @@ window_key_press_event_cb (PhoshHome *self, GdkEvent *event, gpointer data)
       break;
     default:
       /* Focus search when typing */
-      ret = phosh_overview_handle_search (PHOSH_OVERVIEW (self->overview), event);
+      ret = phosh_overview_handle_search (self->overview, event);
   }
 
   return ret;
@@ -464,6 +591,11 @@ phosh_home_dragged (PhoshDragSurface *drag_surface, int margin)
   /* Avoid negative values when resizing the surface */
   progress = MAX (0, progress);
 
+  if (self->thumbnail_overlay) {
+    phosh_thumbnail_overlay_set_progress (self->thumbnail_overlay, progress);
+    phosh_overview_set_active_activity_opacity (self->overview, progress);
+  }
+
   alpha = hdy_ease_out_cubic (progress);
   phosh_home_set_background_alpha (self, alpha);
 }
@@ -481,22 +613,39 @@ on_drag_state_changed (PhoshHome *self)
   switch (drag_state) {
   case PHOSH_DRAG_SURFACE_STATE_UNFOLDED:
     state = PHOSH_HOME_STATE_UNFOLDED;
+    self->unfolding = FALSE;
     kbd_interactivity = TRUE;
     if (self->focus_app_search) {
-      phosh_overview_focus_app_search (PHOSH_OVERVIEW (self->overview));
+      phosh_overview_focus_app_search (self->overview);
       self->focus_app_search = FALSE;
     }
     phosh_home_set_background_alpha (self, 1.0);
+    phosh_overview_reset (self->overview);
+    g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
     break;
   case PHOSH_DRAG_SURFACE_STATE_FOLDED:
     state = PHOSH_HOME_STATE_FOLDED;
+    self->unfolding = FALSE;
     phosh_home_set_background_alpha (self, 0.0);
-    phosh_overview_reset (PHOSH_OVERVIEW (self->overview));
+    phosh_overview_set_active_activity_opacity (self->overview, 1.0);
+    g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
     break;
   case PHOSH_DRAG_SURFACE_STATE_DRAGGED:
     state = PHOSH_HOME_STATE_TRANSITION;
-    if (self->state == PHOSH_HOME_STATE_FOLDED)
-      phosh_overview_refresh (PHOSH_OVERVIEW (self->overview));
+    if (self->state == PHOSH_HOME_STATE_FOLDED) {
+      self->unfolding = FALSE;
+      phosh_overview_refresh (self->overview);
+      update_thumbnail_overlay_from_focused (self);
+    } else if (self->state == PHOSH_HOME_STATE_UNFOLDED) {
+      self->unfolding = TRUE;
+
+      /* activity-raised might have already created the overlay */
+      if (!self->thumbnail_overlay)
+        update_thumbnail_overlay_from_focused (self);
+
+      if (self->thumbnail_overlay)
+        phosh_thumbnail_overlay_set_progress (self->thumbnail_overlay, 1.0);
+    }
     break;
   default:
     g_return_if_reached ();
@@ -611,6 +760,7 @@ phosh_home_dispose (GObject *object)
   }
   g_clear_handle_id (&self->debounce_handle, g_source_remove);
 
+  g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
   g_clear_pointer (&self->background, phosh_cp_widget_destroy);
 
   G_OBJECT_CLASS (phosh_home_parent_class)->dispose (object);
@@ -670,6 +820,7 @@ phosh_home_class_init (PhoshHomeClass *klass)
   gtk_widget_class_bind_template_child (widget_class, PhoshHome, rev_powerbar);
   gtk_widget_class_bind_template_child (widget_class, PhoshHome, powerbar);
   gtk_widget_class_bind_template_callback (widget_class, fold_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_activity_raised);
   gtk_widget_class_bind_template_callback (widget_class, on_home_released);
   gtk_widget_class_bind_template_callback (widget_class, on_has_activities_changed);
   gtk_widget_class_bind_template_callback (widget_class, on_powerbar_pressed);
@@ -785,5 +936,5 @@ phosh_home_get_overview (PhoshHome *self)
 {
   g_return_val_if_fail (PHOSH_IS_HOME (self), NULL);
 
-  return PHOSH_OVERVIEW (self->overview);
+  return self->overview;
 }
