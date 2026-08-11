@@ -2,13 +2,13 @@
 # Joachim Moernaut <joachim@mailfence.com>, 2019. #zanata
 # Willem Sonke <willem@wimiso.nl>, 2019. #zanata
 # Jan Jasper de Kroon <jajadekroon@gmail.com>, 2021-2022.
-# Nathan Follens <nfollens@gnome.org>, 2021-2025.
+# Nathan Follens <nfollens@gnome.org>, 2021-2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2025-10-12 14:32+0000\n"
-"PO-Revision-Date: 2025-10-12 17:08+0200\n"
+"POT-Creation-Date: 2026-08-07 09:52+0000\n"
+"PO-Revision-Date: 2026-08-11 09:39+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -37,7 +37,7 @@ msgstr "Deze sessie meldt u aan bij Phosh"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:4
 msgid "Caffeine Quick Setting"
-msgstr "Caffeïne – snelle instelling"
+msgstr "Cafeïne – snelle instelling"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:6
 msgid "Prevent the session from going idle"
@@ -78,6 +78,14 @@ msgstr ""
 "Voeg starters toe aan het vergrendelscherm. <b>Dit is een experimentele plug-"
 "in.</b>"
 
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
+msgid "Location Quick Setting"
+msgstr "Locatie – snelle instelling"
+
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:6
+msgid "Toggle location services on/off"
+msgstr "Locatiediensten aan/uit"
+
 #: plugins/media-players/media-players.desktop.in.in:3
 #: plugins/media-players/media-players.ui:19
 #: plugins/media-players/media-players.ui:35
@@ -113,6 +121,22 @@ msgstr "Pomodoro – snelle instelling"
 msgid "Simple Pomodoro Timer"
 msgstr "Eenvoudige pomodorotimer"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "Schalen – snelle instelling"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "Een snelle instelling voor de schaalfactor van het scherm."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Syncthing – snelle instelling"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Een snelle instelling voor Syncthing."
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -131,6 +155,14 @@ msgstr "Aankomende afspraken"
 msgid "Show upcoming calendar events"
 msgstr "Aankomende agenda-afspraken weergeven"
 
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Wifi-hotspot – snelle instelling"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Wifi-hotspot in-/uitschakelen"
+
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
 msgstr "Toevoegen aan map"
@@ -139,17 +171,43 @@ msgstr "Toevoegen aan map"
 msgid "Create new folder"
 msgstr "Nieuwe map aanmaken"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "Kan toepassing niet verwijderen"
+
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "Ongedaan maken"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "De toepassing is nu definitief verborgen en uitgeschakeld"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Kon toepassing niet verbergen"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Toepassing"
 
-#: src/app-grid.c:261
-msgid "Show All Apps"
-msgstr "Alle apps weergeven"
+# Of 'Map %s is leeg', context ontbreekt - Nathan
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "%s map is leeg"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:265
+msgid "Show All Apps"
+msgstr "Alle toepassingen tonen"
+
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
-msgstr "Alleen mobielvriendelijke apps weergeven"
+msgstr "Alleen mobielvriendelijke toepassingen tonen"
+
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "Volumeregeling van Telefoonshell"
 
 #. Translators: a battery level in percent
 #: src/bt-device-row.c:81
@@ -185,12 +243,12 @@ msgid "Wi-Fi network '%s' uses a captive portal"
 msgstr "Wifinetwerk ‘%s’ gebruikt een aanmeldportaal"
 
 #: src/connectivity-manager.c:116
-msgid "The Wi-Fi network uses a captive portal"
-msgstr "Het wifinetwerk gebruikt een aanmeldportaal"
+msgid "The network uses a captive portal"
+msgstr "Het netwerk gebruikt een aanmeldportaal"
 
 #: src/connectivity-manager.c:123
-msgid "Sign into Wi-Fi network"
-msgstr "Aanmelden bij wifinetwerk"
+msgid "Sign into network"
+msgstr "Aanmelden bij netwerk"
 
 #: src/docked-info.c:81
 msgid "Docked"
@@ -266,29 +324,29 @@ msgctxt "feedback:enabled"
 msgid "On"
 msgstr "Aan"
 
-#: src/location-manager.c:269
+#: src/location-manager.c:266
 #, c-format
 msgid "Allow '%s' to access your location information?"
 msgstr "‘%s’ toegang geven tot uw locatiegegevens?"
 
-#: src/location-manager.c:274
+#: src/location-manager.c:271
 msgid "Geolocation"
 msgstr "Geolocatie"
 
-#: src/location-manager.c:275
+#: src/location-manager.c:272
 msgid "Yes"
 msgstr "Ja"
 
-#: src/location-manager.c:275
+#: src/location-manager.c:272
 msgid "No"
 msgstr "Nee"
 
 #. give visual feedback on error
-#: src/lockscreen.c:313 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Voer de pincode in"
 
-#: src/lockscreen.c:956
+#: src/lockscreen.c:1036
 msgid "Checking…"
 msgstr "Bezig met controleren…"
 
@@ -320,27 +378,27 @@ msgid "Screenshot from %s%s.png"
 msgstr "Schermafdruk opgeslagen als %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:646 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Onbekende titel"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:654 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Onbekende artiest"
 
-#: src/monitor-manager.c:128
+#: src/monitor-manager.c:129
 msgid "Built-in display"
 msgstr "Ingebouwd beeldscherm"
 
-#: src/monitor-manager.c:146
+#: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
 "This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
-#: src/monitor-manager.c:153
+#: src/monitor-manager.c:154
 #, c-format
 msgctxt ""
 "This is a monitor vendor name followed by product/model name where size in "
@@ -349,7 +407,7 @@ msgid "%s %s"
 msgstr "%s %s"
 
 #. Translators: An unknown monitor type
-#: src/monitor-manager.c:162
+#: src/monitor-manager.c:163
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -370,7 +428,7 @@ msgstr "Openen"
 #. We don't just set the app_info but name and icon separately to
 #. * not overwrite values set by the caller
 #: src/notifications/notification.c:422 src/notifications/notification.c:695
-#: src/notifications/notify-manager.c:1012
+#: src/notifications/notify-manager.c:1009
 msgid "Notification"
 msgstr "Notificatie"
 
@@ -478,17 +536,21 @@ msgid_plural "Almost %dy"
 msgstr[0] "Bijna %dj"
 msgstr[1] "Bijna %dj"
 
-#: src/polkit-auth-agent.c:271
+#: src/overview.c:228
+msgid "Application is slow or failed to start"
+msgstr "De toepassing is traag of kon niet starten"
+
+#: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "Authenticatievenster is door de gebruiker afgesloten"
 
-#: src/polkit-auth-prompt.c:275 src/ui/gtk-mount-prompt.ui:17
-#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:45
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
 #: src/ui/system-prompt.ui:28
 msgid "Password:"
 msgstr "Wachtwoord:"
 
-#: src/polkit-auth-prompt.c:322
+#: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
 msgstr "Helaas, dat werkte niet. Probeer het opnieuw."
 
@@ -519,10 +581,6 @@ msgstr "Druk op ESC om te sluiten"
 msgid "Running '%s' failed"
 msgstr "Uitvoeren van ‘%s’ mislukt"
 
-#: src/settings/audio-settings.c:376
-msgid "Phone Shell Volume Control"
-msgstr "Volumeregeling van Telefoonshell"
-
 #: src/system-prompt.c:376
 msgid "Passwords do not match."
 msgstr "Wachtwoorden komen niet overeen."
@@ -531,7 +589,7 @@ msgstr "Wachtwoorden komen niet overeen."
 msgid "Password cannot be blank"
 msgstr "Wachtwoord mag niet leeg zijn"
 
-#: src/torch-info.c:80
+#: src/torch-info.c:84
 msgid "Torch"
 msgstr "Zaklamp"
 
@@ -560,13 +618,21 @@ msgstr "_Details bekijken"
 msgid "Uninstall"
 msgstr "Verwijderen"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "Toepassing verbergen"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "Verwijde_ren uit map"
 
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "Verborgen toepassingen beheren"
+
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
-msgstr "Apps zoeken…"
+msgstr "Toepassingen zoeken…"
 
 #: src/ui/audio-settings.ui:84
 msgid "Output Devices"
@@ -579,6 +645,14 @@ msgstr "Invoerapparaten"
 #: src/ui/audio-settings.ui:136
 msgid "Sound Settings"
 msgstr "Geluidsinstellingen"
+
+#: src/ui/brightness-settings.ui:87
+msgid "Automatic Brightness"
+msgstr "Automatische helderheid"
+
+#: src/ui/brightness-settings.ui:120
+msgid "Brightness Settings"
+msgstr "Helderheidsinstellingen"
 
 #: src/ui/bt-status-page.ui:39
 msgid "Enable Bluetooth"
@@ -619,7 +693,7 @@ msgstr "Geen noodcontacten beschikbaar."
 
 #: src/ui/end-session-dialog.ui:27
 msgid "Some applications are busy or have unsaved work"
-msgstr "Sommige applicaties zijn bezig of hebben niet-opgeslagen werk"
+msgstr "Sommige toepassingen zijn bezig of hebben niet-opgeslagen werk"
 
 #: src/ui/feedback-status-page.ui:6
 msgid "Feedback"
@@ -629,7 +703,7 @@ msgstr "Feedback"
 msgid "Do not disturb"
 msgstr "Niet storen"
 
-#: src/ui/feedback-status-page.ui:52
+#: src/ui/feedback-status-page.ui:53
 msgid "Feedback Settings"
 msgstr "Feedbackinstellingen"
 
@@ -645,7 +719,7 @@ msgstr "Domein:"
 msgid "Co_nnect"
 msgstr "Verbi_nden"
 
-#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr "Terug"
 
@@ -653,7 +727,7 @@ msgstr "Terug"
 msgid "Slide up to unlock"
 msgstr "Veeg omhoog om te ontgrendelen"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "Ontgrendelen"
 
@@ -662,6 +736,7 @@ msgid "Authentication required"
 msgstr "Verificatie vereist"
 
 #: src/ui/network-auth-prompt.ui:37
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Annuleren"
@@ -670,7 +745,7 @@ msgstr "_Annuleren"
 msgid "C_onnect"
 msgstr "_Verbinden"
 
-#: src/ui/polkit-auth-prompt.ui:97
+#: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
 msgstr "Aanmelden"
 
@@ -690,15 +765,15 @@ msgstr "Noodgeval"
 msgid "Run Command"
 msgstr "Opdracht uitvoeren"
 
-#: src/ui/settings.ui:138
+#: src/ui/settings.ui:128
 msgid "No notifications"
 msgstr "Geen meldingen"
 
-#: src/ui/settings.ui:167
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "Notificaties"
 
-#: src/ui/settings.ui:176
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "Alles wissen"
 
@@ -727,6 +802,7 @@ msgid "Wi-Fi"
 msgstr "Wifi"
 
 #: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
 msgid "Wi-Fi Settings"
 msgstr "Wifi-instellingen"
 
@@ -779,29 +855,99 @@ msgid "Cellular"
 msgstr "Mobiel"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:53
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
 msgid "Phosh on caffeine"
-msgstr "Phosh met caffeïne"
+msgstr "Phosh met cafeïne"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:132
-msgctxt "caffeine-enabled"
-msgid "On"
-msgstr "Aan"
-
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:132
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "Uit"
 
-#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:36
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+msgctxt "caffeine-enabled"
+msgid "On"
+msgstr "Aan"
+
+#: plugins/caffeine-quick-setting/qs.ui:15
+msgid "Caffeine timers"
+msgstr "Cafeïne – timers"
+
+#: plugins/caffeine-quick-setting/qs.ui:38
+msgid "No caffeine intervals"
+msgstr "Geen cafeïne-intervallen"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+msgid "Caffeine Settings"
+msgstr "Cafeïne – instellingen"
+
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+msgid "No timeout (∞)"
+msgstr "Geen time-out (∞)"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:7
+msgid "Caffeine Quick Setting Preferences"
+msgstr "Cafeïne – voorkeuren voor snelle instellingen"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:11
+msgid "Caffeine Duration"
+msgstr "Cafeïne – duur"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:15
+msgid "Manage Caffeine Duration"
+msgstr "Cafeïne-duur beheren"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:16
+msgid "Add or remove custom caffeine intervals"
+msgstr "Voeg aangepaste cafeïne-intervallen toe of verwijder ze"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:22
+msgid "Add interval"
+msgstr "Interval toevoegen"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+msgid "Add New Interval"
+msgstr "Nieuw interval toevoegen"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
+msgid "_Add"
+msgstr "_Toevoegen"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+msgid "Quickstart Intervals"
+msgstr "Snelstartintervallen"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+msgid "5 m"
+msgstr "5 m"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+msgid "15 m"
+msgstr "15m"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+msgid "30 m"
+msgstr "30 m"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+msgid "1 h"
+msgstr "1 u"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+msgid "Choose Interval"
+msgstr "Selecteer een interval"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
 msgid "Default style"
 msgstr "Standaardstijl"
 
-#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:37
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:35
 msgid "Dark mode"
 msgstr "Donkere modus"
 
-#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:38
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:36
 msgid "Light mode"
 msgstr "Lichte modus"
 
@@ -907,10 +1053,6 @@ msgstr "Contact toevoegen"
 msgid "Add New Contact"
 msgstr "Nieuw contact toevoegen"
 
-#: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
-msgid "_Add"
-msgstr "_Toevoegen"
-
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:240
 msgid "_Contact Name"
 msgstr "_Contactnaam"
@@ -931,52 +1073,105 @@ msgstr "Geen toepassingsstarter geconfigureerd"
 msgid "Launchers"
 msgstr "Starters"
 
+#. Translators: Location precision level - country-wide
+#: plugins/location-quick-setting/accuracy-row.c:44
+msgid "Country"
+msgstr "Land"
+
+#. Translators: Location precision level - city-wide
+#: plugins/location-quick-setting/accuracy-row.c:47
+msgid "City"
+msgstr "Stad"
+
+#. Translators: Location precision level - neighborhood
+#: plugins/location-quick-setting/accuracy-row.c:50
+msgid "Neighborhood"
+msgstr "Buurt"
+
+#. Translators: Location precision level - street
+#: plugins/location-quick-setting/accuracy-row.c:53
+msgid "Street"
+msgstr "Straat"
+
+#. Translators: Location precision level - exact position
+#: plugins/location-quick-setting/accuracy-row.c:56
+msgid "Exact"
+msgstr "Exact"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
+msgid "Location On"
+msgstr "Locatie aan"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
+msgid "Location Off"
+msgstr "Locatie uit"
+
+#: plugins/location-quick-setting/qs.ui:15
+msgid "Location Accuracy"
+msgstr "Locatienauwkeurigheid"
+
+#: plugins/location-quick-setting/qs.ui:62
+msgid "Location Disabled"
+msgstr "Locatie uitgeschakeld"
+
+#: plugins/location-quick-setting/qs.ui:72
+msgid "Enable Location"
+msgstr "Locatie inschakelen"
+
+#: plugins/location-quick-setting/qs.ui:87
+msgid "Location Settings"
+msgstr "Locatie-instellingen"
+
 #: plugins/media-players/media-players.ui:20
 msgid "No running media players"
 msgstr "Geen mediaspelers actief"
 
-#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:82
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
 msgid "Mobile Data On"
 msgstr "Mobiele gegevens aan"
 
-#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:82
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
 msgid "Mobile Data Off"
 msgstr "Mobiele gegevens uit"
 
-#: plugins/night-light-quick-setting/night-light-quick-setting.c:65
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
 msgid "Night Light On"
 msgstr "Nachtlicht aan"
 
-#: plugins/night-light-quick-setting/night-light-quick-setting.c:65
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
 msgid "Night Light Off"
 msgstr "Nachtlicht uit"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "Pomodoro starten"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:76
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "Focus %d minuten op uw taak"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Focus %d minuut op uw taak"
+msgstr[1] "Focus %d minuten op uw taak"
 
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "Neem even pauze"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:83
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "U hebt %d minuten tot de volgende pomodoro"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "U hebt %d minuut tot de volgende pomodoro"
+msgstr[1] "U hebt %d minuten tot de volgende pomodoro"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:98
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "Pomodorotimer"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:121
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
 msgstr "Pomodoro uit"
@@ -1092,10 +1287,12 @@ msgstr "Loopt af"
 msgid "Untitled event"
 msgstr "Naamloze afspraak"
 
-#: plugins/upcoming-events/upcoming-events.c:372
+#: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "Geen afspraken voor de volgende %d dagen"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "Geen afspraken voor de volgende dag"
+msgstr[1] "Geen afspraken voor de volgende %d dagen"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
 msgid "No upcoming events"
@@ -1124,16 +1321,50 @@ msgstr "Beeldscherm schalen"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
-#: plugins/scaling-quick-setting/scaling-quick-setting.c:93
+#: plugins/scaling-quick-setting/scaling-quick-setting.c:91
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:79
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr "Geen mappen"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+msgid "Syncthing is disabled"
+msgstr "Syncthing is uitgeschakeld"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr "Inschakelen"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Syncthing-GUI openen"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Kon niet verbinden met Syncbus"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+msgid "Wi-Fi Hotspot"
+msgstr "Wifi-hotspot"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
+msgid "Turn On"
+msgstr "Aanzetten"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
 msgid "Hotspot On"
 msgstr "Hotspot aan"
 
-#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:81
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Hotspot uit"
 
@@ -1151,9 +1382,6 @@ msgstr "Hotspot uit"
 #~ msgid_plural "In %u days"
 #~ msgstr[0] "Over %u dag"
 #~ msgstr[1] "Over %u dagen"
-
-#~ msgid "Unknown application"
-#~ msgstr "Onbekende applicatie"
 
 #~ msgctxt "timestamp-suffix-seconds"
 #~ msgid "s"
