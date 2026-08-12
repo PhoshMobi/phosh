@@ -12,7 +12,7 @@
             <property name="visible">1</property>
             <property name="sensitive" bind-source="wwaninfo" bind-property="present" bind-flags="sync-create"/>
             <property name="status-icon">wwaninfo</property>
-            <property name="long-press-action-name">panel.launch-panel</property>
+            <property name="long-press-action-name">panel.launch-mobile-panel</property>
             <property name="long-press-action-target">(&quot;wwan&quot;, [&lt;&quot;&quot;&gt;])</property>
             <signal name="clicked" handler="on_wwan_clicked" object="PhoshQuickSettings" swapped="yes"/>
           </object>
@@ -23,7 +23,7 @@
             <property name="sensitive" bind-source="wifiinfo" bind-property="present" bind-flags="sync-create"/>
             <property name="status-icon">wifiinfo</property>
             <property name="status-page">wifi_status_page</property>
-            <property name="long-press-action-name">panel.launch-panel</property>
+            <property name="long-press-action-name">panel.launch-mobile-panel</property>
             <property name="long-press-action-target">(&quot;wifi&quot;, [&lt;&quot;&quot;&gt;])</property>
             <signal name="clicked" handler="on_wifi_clicked" object="PhoshQuickSettings" swapped="yes"/>
           </object>
@@ -34,7 +34,7 @@
             <property name="sensitive" bind-source="btinfo" bind-property="present" bind-flags="sync-create"/>
             <property name="status-icon">btinfo</property>
             <property name="status-page">bt_status_page</property>
-            <property name="long-press-action-name">panel.launch-panel</property>
+            <property name="long-press-action-name">panel.launch-mobile-panel</property>
             <property name="long-press-action-target">(&quot;bluetooth&quot;, [&lt;&quot;&quot;&gt;])</property>
             <signal name="clicked" handler="on_bt_clicked" object="PhoshQuickSettings" swapped="yes"/>
           </object>
@@ -90,7 +90,7 @@
           <object class="PhoshQuickSetting">
             <property name="visible" bind-source="vpninfo" bind-property="present" bind-flags="sync-create"/>
             <property name="status-icon">vpninfo</property>
-            <property name="long-press-action-name">panel.launch-panel</property>
+            <property name="long-press-action-name">panel.launch-mobile-panel</property>
             <property name="long-press-action-target">(&quot;network&quot;, [&lt;&quot;&quot;&gt;])</property>
             <signal name="clicked" handler="on_vpn_clicked" object="PhoshQuickSettings" swapped="yes"/>
           </object>
