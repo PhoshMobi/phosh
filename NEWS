@@ -1,3 +1,25 @@
+phosh 0.57~rc1
+--------------
+Released August 2026
+* Use two column top panel in landscape in the unlocked shell
+* Add transition from running app to overview. This is disabled by
+  default as it will be improved in the 0.58 cycle.
+* Multiple bug fixes
+* Issues fixed:
+    * https://gitlab.gnome.org/World/Phosh/phosh-mobile-settings/-/work_items/130
+* Contributors:
+    * David Heidelberg
+    * Guido Günther
+    * niko
+    * nikodunk
+* UI translations:
+    * Asier Saratsua Garmendia (eu)
+    * Baurzhan Muftakhidinov (kk)
+    * Nathan Follens (nl)
+    * Prasanta Hembram (sat)
+    * Sabri Ünal (tr)
+    * Zeqian Sun (zh_CN)
+
 phosh 0.56.0
 ------------
 Released July 2026
