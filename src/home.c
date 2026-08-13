@@ -286,7 +286,8 @@ update_thumbnail_overlay (PhoshHome *self, PhoshToplevel *toplevel)
   int width, height, n_monitors;
 
   n_monitors = phosh_monitor_manager_get_num_monitors (monitor_manager);
-  disabled = phosh_shell_get_debug_flags () & PHOSH_SHELL_DEBUG_NO_THUMBNAIL_OVERLAY;
+  /* See https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1349 */
+  disabled = !(phosh_shell_get_debug_flags () & PHOSH_SHELL_DEBUG_THUMBNAIL_OVERLAY);
   /* TODO: In our current setup we can only handle maximized windows and single monitor setups
    * this will change once we move more bits to the compositor */
   if (!phosh_toplevel_is_maximized (toplevel) || n_monitors != 1 || disabled) {
