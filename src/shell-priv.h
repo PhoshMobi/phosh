@@ -66,7 +66,7 @@ typedef enum {
  * @PHOSH_SHELL_DEBUG_FLAG_FAKE_BUILTIN: When calculatiog layout treat the first
  *     virtual output like a built-in output.
  * @PHOSH_SHELL_DEBUG_BACKLIGHT_NON_LINEAR: Assume backlight uses non-linear scale
- * @PHOSH_SHELL_DEBUG_NO_THUMBNAIL_OVERLAY: Disable overlay thumbnail
+ * @PHOSH_SHELL_DEBUG_THUMBNAIL_OVERLAY: Enable overlay thumbnail
  *
  * These flags are to enable/disable debugging features.
  */
@@ -76,7 +76,7 @@ typedef enum {
   PHOSH_SHELL_DEBUG_FLAG_FAKE_BUILTIN  = 1 << 1,
   PHOSH_SHELL_DEBUG_BACKLIGHT_NON_LINEAR = 1 << 2,
   PHOSH_SHELL_DEBUG_APP_ACTIVATION = 1 << 3,
-  PHOSH_SHELL_DEBUG_NO_THUMBNAIL_OVERLAY = 1 << 4,
+  PHOSH_SHELL_DEBUG_THUMBNAIL_OVERLAY = 1 << 4,
 } PhoshShellDebugFlags;
 
 

@@ -1441,8 +1441,8 @@ static GDebugKey debug_keys[] = {
     .value = PHOSH_SHELL_DEBUG_FLAG_FAKE_BUILTIN,
   },
   {
-    .key = "no-thumbnail-overlay",
-    .value = PHOSH_SHELL_DEBUG_NO_THUMBNAIL_OVERLAY,
+    .key = "thumbnail-overlay",
+    .value = PHOSH_SHELL_DEBUG_THUMBNAIL_OVERLAY,
   },
 };
 
