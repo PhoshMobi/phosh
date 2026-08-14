@@ -1,3 +1,124 @@
+phosh (0.57~rc1) experimental; urgency=medium
+
+  [ Sabri Ünal ]
+  * Update Turkish translation
+
+  [ Guido Günther ]
+  * check-ui: Fix syntax.
+    When suggesting how to fix UI files the syntax should be correct.
+  * launcher-entry: Don't use `g_return_if_fail` as conditional.
+    It can be compiled out and the data is controlled by the client.
+    This will also help indentifying rogue clients.
+  * ci: Update shared scripts to bb29803.
+    Needed to fix the style-check with recent Python
+  * animation: Drop G_GNUC_CONST from get_type()
+    First call has side effects, see
+    https://gitlab.gnome.org/GNOME/glib/-/merge_requests/5223
+    for details.
+  * settings: Make quick settings and bottom-half box children
+  * settings: Allow to set the orientation of the content box.
+    Using a horizontal orientation results in a two column layout.
+  * top-panel: Set settings mode.
+    We only use a horizontal layout up to a max panel height as vertical
+    navigation is simpler on tall screens (independent from whether they're
+    landscape or not).
+  * top-panel: Add on-lockscreen setter.
+    Helps to keep things in sync when we can't easily use a property binding.
+  * top-panel: Keep single column layout on lockscreen.
+    Notifications and media player are on the lockscreen itself so there's
+    no point in having it in the top panel too.
+  * settings: Use new box for drag handle calculations.
+    This ensures we disable scrolling when the scrolled window needs
+    to pick up the scroll events.
+  * background: Make sure to use device pixels.
+    We need to load the pixmaps at the full screen resolution, not
+    the logical size, otherwise they become blurry.
+  * lockscreen-bg: Make sure to use device pixels.
+    We need to load the pixmaps at the full screen resolution, not
+    the logical size, otherwise they become blurry.
+    Tested-by: Sorin Iclanzan
+  * suspend-manager: Don't hardcode inhibitor name.
+    It was only ever called with "wifi-hotspot" but that way we
+    can call it with other args too.
+    Fixes: b7dc85654 ("suspend-manager: Inhibit via gnome-session rather than systemd")
+  * caffeine-quick-settings: Make sure we clear the timer on finalize.
+    Otherwise we might end up getting invoked when the widget is already
+    gone. clear_timer also also drops the inhibitor.
+    Fixes: 74e88ef6c ("caffeine: Allow to select caffeine duration")
+  * background: Fix pixbuf source.
+    The offset calculation was reversed. This fixes the top bar background
+    not becoming black when pulling up the top panel (when at least one
+    app is running).
+    Fixes: 8843216f9 ("background: Make sure to use device pixels")
+  * lockscreen-bg: Drop pixbuf x,y coords.
+    They're always 0 and the scale calculation was
+    inversed too.
+    Fixes: 0df159a2c ("lockscreen-bg: Make sure to use device pixels")
+  * feedback-manager: Allow to set important hint
+  * cell-broadcast-manager: Set important hint on events.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh-mobile-settings/-/work_items/130
+  * home: Use most concrete type for overview.
+    Avoids a lot of casts and it's what we recommend style wise
+    anyway.
+    Indent PhoshHome accordingly.
+  * home: Only use thumbnail overlay in single monitor setups.
+    We don't know the surface positions in floating setups and can't
+    zoom a surface from the non-primary output so disable it here for
+    now.
+  * home: Add debug flag to disable overview thumbnail transition.
+    This is useful for debugging `home` itself. It can also be used
+    to disable the transition on slow devices until we moved things
+    to the compositor.
+  * home: Unconditionally fold on activation.
+    Otherwise we end up with a stuck overlay
+  * home: Ensure active activity is always visible.
+    Otherwise we can end up with an overview that lacks the central
+    thumbnail when there are non-maximized windows.
+    We can drop making the overview visible as that is always the case.
+  * home: Let thumbnail-overlay animation default to off.
+    The transition improves the spatial model a lot but in the current
+    implementation we add some additional flickering that can be confusing
+    to the user. So let's keep this feature a tech preview for 0.57 and
+    have it default to on for 0.58.
+
+  [ niko ]
+  * docs: Add container flow to getting started
+
+  [ Prasanta Hembram ]
+  * Update Santali translation
+
+  [ Zeqian Sun ]
+  * Update Chinese (China) translation
+
+
+  [ Baurzhan Muftakhidinov ]
+  * Update Kazakh translation
+
+  [ David Heidelberg ]
+  * udev-manager: Account for enumerated LEDs.
+
+  [ nikodunk ]
+  * wayland-protocols: Drop since version checks.
+    We require a recent phoc anyway
+  * util: Move cairo auto-pointers here.
+    They will be useful in multiple places
+  * overview: Focus clicked activity right away.
+    The compositor will inform us later on when focus changed but
+    this allows us to grab the right widget for thumbnailing.
+  * overview: Add and animate screenshot overlay.
+    When transitioning from the running, maximized app we scale down
+    the app to currently focused app to its position in the overview.
+    When activating an app we zoom out the thumbnail to the maximized
+    views position.
+
+  [ Nathan Follens ]
+  * Update Dutch translation
+
+  [ Asier Saratsua Garmendia ]
+  * Update Basque translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Thu, 13 Aug 2026 21:58:44 +0200
+
 phosh (0.56.0) experimental; urgency=medium
 
   [ Guido Günther ]
