@@ -96,9 +96,11 @@ typedef struct  {
   gboolean has_name_owner;
 
   struct {
-    guint    dbus_id;
-    gboolean started;
-    GRegex  *scope_regex;
+    guint         dbus_id;
+    gboolean      started;
+    GRegex       *scope_regex;
+    GDBusProxy   *unit_proxy;
+    GCancellable *cancel;
   } flatpak;
 
   struct {
@@ -119,6 +121,31 @@ struct _PhoshAppTracker {
   GCancellable    *cancel;
 };
 G_DEFINE_TYPE (PhoshAppTracker, phosh_app_tracker, G_TYPE_OBJECT)
+
+
+static void
+check_flatpak_state (PhoshAppState *state)
+{
+  g_autoptr (GVariant) value = NULL;
+  const char *active, *app_id;
+
+  g_return_if_fail (G_IS_DBUS_PROXY (state->flatpak.unit_proxy));
+
+  value = g_dbus_proxy_get_cached_property (state->flatpak.unit_proxy, "ActiveState");
+  if (value == NULL) {
+    g_warning ("ActiveState not cached");
+    return;
+  }
+
+  app_id = g_app_info_get_id (G_APP_INFO (state->info));
+  active = g_variant_get_string (value, NULL);
+  g_debug ("Flatpak %s is %s", app_id, active);
+
+  if (g_strcmp0 (active, "active") && g_strcmp0 (active, "activating")) {
+    g_warning ("Flatpak unit for %s no longer active", app_id);
+    state->flatpak.started = FALSE;
+  }
+}
 
 
 static gboolean
@@ -167,7 +194,8 @@ on_startup_timeout (gpointer data)
       g_debug ("Startup id: '%s' is flatpak, waited %us, giving it more "
                "time to start",
                state->startup_id, state->timeout.waited);
-      /* TODO: Should we wait the full STARTUP_TRACKED_TIMEOUT? */
+      /* Recheck state */
+      check_flatpak_state (state);
       return G_SOURCE_CONTINUE;
     }
   }
@@ -211,6 +239,56 @@ on_name_appeared (GDBusConnection *connection,
 
 
 static void
+on_get_unit_proxy_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
+{
+  PhoshAppState *state;
+  GDBusProxy *proxy;
+  g_autoptr (GVariant) value = NULL;
+  g_autoptr (GError) err = NULL;
+
+  proxy = g_dbus_proxy_new_finish (res, &err);
+  if (proxy == NULL) {
+    phosh_async_error_warn (err, "Failed to get flatpak scope proxy");
+    return;
+  }
+
+  state = user_data;
+  state->flatpak.unit_proxy = proxy;
+  check_flatpak_state (state);
+}
+
+
+static void
+on_get_unit_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
+{
+  g_autoptr (GVariant) value = NULL;
+  g_autoptr (GError) err = NULL;
+  g_autofree char *unit_path = NULL;
+  PhoshAppState *state;
+
+  value = g_dbus_connection_call_finish (G_DBUS_CONNECTION (source_object), res, &err);
+  if (value == NULL) {
+    phosh_async_error_warn (err, "Failed to get unit path");
+    return;
+  }
+
+  g_variant_get (value,"(o)", &unit_path);
+  g_return_if_fail (unit_path != NULL);
+
+  state = user_data;
+  g_dbus_proxy_new (state->tracker->session_bus,
+                    G_DBUS_PROXY_FLAGS_NONE,
+                    NULL,
+                    "org.freedesktop.systemd1",
+                    unit_path,
+                    "org.freedesktop.systemd1.Unit",
+                    state->flatpak.cancel,
+                    on_get_unit_proxy_ready,
+                    state);
+}
+
+
+static void
 on_systemd_job_removed (GDBusConnection *connection,
                         const char      *sender_name,
                         const char      *object_path,
@@ -233,6 +311,23 @@ on_systemd_job_removed (GDBusConnection *connection,
   app_id = g_app_info_get_id (G_APP_INFO (state->info));
   g_debug ("Found flatpak scope '%s' for %s\n", unit, app_id);
   state->flatpak.started = TRUE;
+
+  g_return_if_fail (state->flatpak.dbus_id);
+  g_clear_dbus_signal_subscription (&state->flatpak.dbus_id, state->tracker->session_bus);
+
+  state->flatpak.cancel = g_cancellable_new ();
+  g_dbus_connection_call (state->tracker->session_bus,
+                          "org.freedesktop.systemd1",
+                          "/org/freedesktop/systemd1",
+                          "org.freedesktop.systemd1.Manager",
+                          "GetUnit",
+                          g_variant_new ("(s)", unit),
+                          G_VARIANT_TYPE ("(o)"),
+                          G_DBUS_CALL_FLAGS_NONE,
+                          -1,
+                          state->flatpak.cancel,
+                          on_get_unit_ready,
+                          state);
 }
 
 
@@ -311,6 +406,9 @@ phosh_app_state_free (PhoshAppState *state)
   g_clear_dbus_signal_subscription (&state->flatpak.dbus_id, state->tracker->session_bus);
 
   g_clear_pointer (&state->flatpak.scope_regex, g_regex_unref);
+  g_cancellable_cancel (state->flatpak.cancel);
+  g_clear_object (&state->flatpak.cancel);
+  g_clear_object (&state->flatpak.unit_proxy);
 
   g_clear_handle_id (&state->timeout.id, g_source_remove);
   g_object_unref (state->info);
