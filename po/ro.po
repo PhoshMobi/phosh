@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-26 08:47+0000\n"
-"PO-Revision-Date: 2026-06-26 11:28+0200\n"
+"POT-Creation-Date: 2026-08-13 19:46+0000\n"
+"PO-Revision-Date: 2026-08-17 16:40+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -20,6 +20,12 @@ msgstr ""
 "X-Generator: Gtranslator 50.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Flags-xgettext: --add-comments\n"
+"X-DL-VCS-Web: https://gitlab.gnome.org/World/Phosh/phosh\n"
+"X-DL-Lang: ro\n"
+"X-DL-Module: phosh\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -345,7 +351,7 @@ msgid "No"
 msgstr "Nu"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Introdu codul de acces"
 
@@ -381,12 +387,12 @@ msgid "Screenshot from %s%s.png"
 msgstr "Imagine %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:691 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Titlu necunoscut"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:699 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Artist necunoscut"
 
@@ -729,7 +735,7 @@ msgstr "Domeniu:"
 msgid "Co_nnect"
 msgstr "Co_nectează"
 
-#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr "Înapoi"
 
@@ -737,7 +743,7 @@ msgstr "Înapoi"
 msgid "Slide up to unlock"
 msgstr "Trage în sus pentru a debloca"
 
-#: src/ui/lockscreen.ui:334
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "Deblochează"
 
@@ -775,15 +781,15 @@ msgstr "Urgență"
 msgid "Run Command"
 msgstr "Execută comanda"
 
-#: src/ui/settings.ui:121
+#: src/ui/settings.ui:128
 msgid "No notifications"
 msgstr "Nicio notificare"
 
-#: src/ui/settings.ui:150
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "Notificări"
 
-#: src/ui/settings.ui:159
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "Șterge tot"
 
@@ -1218,7 +1224,7 @@ msgstr "Pornește la _deblocare"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:45
 msgid "Whether to start the timer on screen unlock"
-msgstr "Dacă să pornească cronometrul la deblocarea ecranului"
+msgstr "Pornește automat cronometrul la deblocarea ecranului"
 
 #: plugins/ticket-box/ticket-box.ui:18
 msgid "No documents to display"
