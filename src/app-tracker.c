@@ -132,19 +132,20 @@ on_startup_timeout (gpointer data)
 
   state->timeout.waited += state->timeout.interval;
   /* If we have a PID we can be more thorough */
-  if (state->pid && state->timeout.waited < STARTUP_TRACKED_TIMEOUT) {
-    /* TODO: track pidfd on Linux*/
-    if (!kill (state->pid, 0)) {
-      g_debug ("Startup id: '%s' has PID, waited %us, giving it more time to start",
-               state->startup_id,
-               state->timeout.waited);
-
-      return G_SOURCE_CONTINUE;
-    } else {
-      /* PID is gone. As this might be a fork give it one more
-       * iteration to bring up a toplevel */
-      state->timeout.waited = STARTUP_TRACKED_TIMEOUT;
-      return G_SOURCE_CONTINUE;
+  if (state->timeout.waited < STARTUP_TRACKED_TIMEOUT) {
+    if (state->pid) {
+      /* TODO: track pidfd on Linux*/
+      if (!kill (state->pid, 0)) {
+        g_debug ("Startup id: '%s' has PID, waited %us, giving it more "
+                 "time to start",
+                 state->startup_id, state->timeout.waited);
+        return G_SOURCE_CONTINUE;
+      } else {
+        /* PID is gone. As this might be a fork give it one more
+         * iteration to bring up a toplevel */
+        state->timeout.waited = STARTUP_TRACKED_TIMEOUT;
+        return G_SOURCE_CONTINUE;
+      }
     }
   }
 
