@@ -143,7 +143,8 @@ on_startup_timeout (gpointer data)
     } else {
       /* PID is gone. As this might be a fork give it one more
        * iteration to bring up a toplevel */
-      state->timeout.waited  = STARTUP_TRACKED_TIMEOUT;
+      state->timeout.waited = STARTUP_TRACKED_TIMEOUT;
+      return G_SOURCE_CONTINUE;
     }
   }
 
