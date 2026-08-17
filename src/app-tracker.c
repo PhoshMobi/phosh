@@ -83,16 +83,16 @@ typedef enum {
 } PhoshAppStateFlags;
 
 typedef struct  {
-  gint64             pid;
+  gint64 pid;
   PhoshAppStateFlags state;
 
-  char              *startup_id;  /* (owned) */
-  GDesktopAppInfo   *info;        /* (owned) */
-  PhoshAppTracker   *tracker;     /* (unowned) */
+  char  *startup_id;              /* (owned) */
+  GDesktopAppInfo *info;          /* (owned) */
+  PhoshAppTracker *tracker;       /* (unowned) */
   struct {
-    guint              id;
-    guint              waited;
-    guint              interval;
+    guint id;
+    guint waited;
+    guint interval;
   } timeout;
 } PhoshAppState;
 
@@ -160,11 +160,11 @@ on_startup_timeout (gpointer data)
 
 
 static PhoshAppState *
-phosh_app_state_new (GDesktopAppInfo    *info,
-                     const char         *startup_id,
-                     gint64              pid,
-                     PhoshAppStateFlags  flags,
-                     PhoshAppTracker    *tracker)
+phosh_app_state_new (GDesktopAppInfo   *info,
+                     const char        *startup_id,
+                     gint64             pid,
+                     PhoshAppStateFlags flags,
+                     PhoshAppTracker   *tracker)
 {
   PhoshAppState *state = g_new0 (PhoshAppState, 1);
   guint timeout = STARTUP_TIMEOUT;
