@@ -83,12 +83,16 @@ typedef enum {
 } PhoshAppStateFlags;
 
 typedef struct  {
-  gint64 pid;
+  gint64   pid;
   PhoshAppStateFlags state;
 
-  char  *startup_id;              /* (owned) */
+  char    *startup_id;            /* (owned) */
   GDesktopAppInfo *info;          /* (owned) */
   PhoshAppTracker *tracker;       /* (unowned) */
+
+  guint    name_owner_id;
+  gboolean has_name_owner;
+
   struct {
     guint id;
     guint waited;
@@ -146,6 +150,11 @@ on_startup_timeout (gpointer data)
         state->timeout.waited = STARTUP_TRACKED_TIMEOUT;
         return G_SOURCE_CONTINUE;
       }
+    } else if (state->has_name_owner) {
+      g_debug ("Startup id: '%s' owns dbus name, waited %us, giving it more "
+               "time to start",
+               state->startup_id, state->timeout.waited);
+      return G_SOURCE_CONTINUE;
     }
   }
 
@@ -161,6 +170,32 @@ on_startup_timeout (gpointer data)
 }
 
 
+static void
+on_name_appeared (GDBusConnection *connection,
+                  const char      *sender_name,
+                  const char      *object_path,
+                  const char      *interface_name,
+                  const char      *signal_name,
+                  GVariant        *parameters,
+                  gpointer         user_data)
+{
+  PhoshAppState *state = user_data;
+  const char *name, *old_owner, *new_owner, *app_id;
+
+  g_variant_get (parameters, "(&s&s&s)", &name, &old_owner, &new_owner);
+
+  app_id = g_app_info_get_id (G_APP_INFO (state->info));
+
+  if (old_owner[0] == '\0' && new_owner[0] != '\0') {
+    g_debug ("%s: Got new owner '%s' for '%s'", app_id, new_owner, name);
+    state->has_name_owner = TRUE;
+  } else if (old_owner[0] != '\0' && new_owner[0] == '\0') {
+    g_debug ("%s: Lost name owner '%s' for '%s'", app_id, old_owner, name);
+    state->has_name_owner = FALSE;
+  }
+}
+
+
 static PhoshAppState *
 phosh_app_state_new (GDesktopAppInfo   *info,
                      const char        *startup_id,
@@ -170,6 +205,7 @@ phosh_app_state_new (GDesktopAppInfo   *info,
 {
   PhoshAppState *state = g_new0 (PhoshAppState, 1);
   guint timeout = STARTUP_TIMEOUT;
+  const char *desktop_id;
 
   if (G_UNLIKELY (phosh_shell_get_debug_flags () & PHOSH_SHELL_DEBUG_APP_ACTIVATION))
     timeout = DEBUG_STARTUP_TIMEOUT;
@@ -189,6 +225,23 @@ phosh_app_state_new (GDesktopAppInfo   *info,
            state->startup_id,
            state->state);
 
+  desktop_id = g_app_info_get_id (G_APP_INFO (info));
+  /* For DBus activatable apps we track the bus name too */
+  if (desktop_id && g_desktop_app_info_get_boolean (info, "DBusActivatable")) {
+    g_autofree char *app_id = phosh_strip_suffix_from_app_id (desktop_id);
+
+    state->name_owner_id = g_dbus_connection_signal_subscribe (tracker->session_bus,
+                                                               "org.freedesktop.DBus",
+                                                               "org.freedesktop.DBus",
+                                                               "NameOwnerChanged",
+                                                               "/org/freedesktop/DBus",
+                                                               app_id,
+                                                               G_DBUS_SIGNAL_FLAGS_NONE,
+                                                               on_name_appeared,
+                                                               state,
+                                                               NULL);
+  }
+
   return state;
 }
 
@@ -196,6 +249,9 @@ phosh_app_state_new (GDesktopAppInfo   *info,
 static void
 phosh_app_state_free (PhoshAppState *state)
 {
+  g_clear_dbus_signal_subscription (&state->name_owner_id, state->tracker->session_bus);
+  g_clear_dbus_signal_subscription (&state->flatpak.dbus_id, state->tracker->session_bus);
+
   g_clear_handle_id (&state->timeout.id, g_source_remove);
   g_object_unref (state->info);
   g_free (state->startup_id);
