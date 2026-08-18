@@ -7,7 +7,7 @@
 #pragma once
 
 #include "layersurface.h"
-#include "thumbnail.h"
+#include "toplevel.h"
 
 #include <gtk/gtk.h>
 
@@ -19,13 +19,13 @@ G_DECLARE_FINAL_TYPE (PhoshThumbnailOverlay, phosh_thumbnail_overlay, PHOSH, THU
                       PhoshLayerSurface)
 
 PhoshThumbnailOverlay *phosh_thumbnail_overlay_new (void);
-void                   phosh_thumbnail_overlay_set_thumbnail (PhoshThumbnailOverlay *self,
-                                                              PhoshThumbnail        *thumbnail);
+void                   phosh_thumbnail_overlay_set_toplevel (PhoshThumbnailOverlay *self,
+                                                             PhoshToplevel         *toplevel);
 void                   phosh_thumbnail_overlay_set_progress (PhoshThumbnailOverlay *self,
-                                                              double                 progress);
+                                                             double                 progress);
 void                   phosh_thumbnail_overlay_set_thumbnail_y (PhoshThumbnailOverlay *self,
-                                                                 double                 y);
+                                                                double                 y);
 void                   phosh_thumbnail_overlay_set_thumbnail_scale (PhoshThumbnailOverlay *self,
-                                                                     double                 scale);
+                                                                    double                 scale);
 
 G_END_DECLS

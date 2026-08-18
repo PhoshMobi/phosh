@@ -1,7 +1,34 @@
 <protocol name="phosh">
-  <interface name="phosh_private" version="7">
+  <copyright>
+    Copyright © 2019 Purism SPC
+
+    Permission to use, copy, modify, distribute, and sell this
+    software and its documentation for any purpose is hereby granted
+    without fee, provided that the above copyright notice appear in
+    all copies and that both that copyright notice and this permission
+    notice appear in supporting documentation, and that the name of
+    the copyright holders not be used in advertising or publicity
+    pertaining to distribution of the software without specific,
+    written prior permission.  The copyright holders make no
+    representations about the suitability of this software for any
+    purpose.  It is provided "as is" without express or implied
+    warranty.
+
+    THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS
+    SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+    FITNESS, IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+    AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+    ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+    THIS SOFTWARE.
+  </copyright>
+  <interface name="phosh_private" version="8">
     <description summary="Phone shell extensions">
       Private protocol between phosh and the compositor.
+
+      Instead of adding more interfaces here consider adding a separate
+      zphoc-unstable protocol instead.
     </description>
 
     <enum name="error">
@@ -70,6 +97,45 @@
       <arg name="state" type="uint" enum="shell_state" summary="Status"/>
     </request>
 
+    <request name="add_thumbnail_view" since="8">
+      <description summary="attach a view thumbnail to a layer surface">
+        Creates a thumbnail object that renders the content of `toplevel`
+        onto the given `layer_surface`.
+
+        The layer surface acts as an anchor providing depth and position
+        information (layer, output and geometry). The compositor renders
+        the thumbnail and the fade instead of the client content, so the
+        client should keep the surface's buffer fully transparent.
+      </description>
+      <arg name="id" type="new_id" interface="phosh_private_thumbnail"/>
+      <arg name="toplevel" type="object" interface="zwlr_foreign_toplevel_handle_v1"/>
+      <arg name="layer_surface" type="object" interface="zwlr_layer_surface_v1"/>
+    </request>
+
+  </interface>
+
+  <interface name="phosh_private_thumbnail" version="8">
+    <description summary="compositor-rendered view thumbnail">
+      A thumbnail of a toplevel view rendered by the compositor onto a layer
+      surface. The client drives the animation by pushing per-frame
+      transform properties.
+    </description>
+
+    <request name="set_properties" since="8">
+      <description summary="set the thumbnail transform property">
+        x and y give the top-left position of the thumbnail in surface local
+        coordinates, scale is applied to the view's size and alpha is the
+        fade opacity applied to the whole layer surface.
+      </description>
+      <arg name="x" type="int"/>
+      <arg name="y" type="int"/>
+      <arg name="scale" type="fixed"/>
+      <arg name="alpha" type="fixed"/>
+    </request>
+
+    <request name="destroy" type="destructor" since="8">
+      <description summary="destroy the thumbnail"/>
+    </request>
   </interface>
 
   <interface name="phosh_private_keyboard_event" version="7">
@@ -84,7 +150,7 @@
       <entry name="already_subscribed" value="2"
              summary="accelerator has already been subscribed to"/>
       <entry name="misc_error" value="3"
-             summary="an miscellaneous error has occured"/>
+             summary="an miscellaneous error has occurred"/>
     </enum>
     <event name="accelerator_activated_event" since="5">
       <description summary="Report an accelerator press">
@@ -127,7 +193,7 @@
 
     <event name="ungrab_success_event" since="5">
       <description summary="Report unsubscription success">
-        A previous accelerator ungrab request has suceeded.
+        A previous accelerator ungrab request has succeeded.
       </description>
       <arg name="action" type="uint" summary="The unsubscribed action"/>
     </event>
