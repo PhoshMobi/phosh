@@ -394,15 +394,13 @@ abi-compliance-checker:
           - src/libphosh.syms.in
     - when: manual
 
-package:deb-debian-forky:arm64:
+package:deb-debian-forky:
   stage: package
   variables:
     PHOSH_DOCKER_IMAGE: debian:forky
     DEB_BUILD_PROFILES: "nodoc nocheck"
     DEB_BUILD_OPTIONS: nocheck
   extends: .phosh-build-debian-package
-  tags:
-    - aarch64
 
 pages:
   stage: deploy

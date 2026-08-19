@@ -1,5 +1,5 @@
-phosh 0.57~rc1
---------------
+phosh 0.57.0
+------------
 Released August 2026
 * Use two column top panel in landscape in the unlocked shell
 * Add transition from running app to overview. This is disabled by
@@ -13,6 +13,7 @@ Released August 2026
     * niko
     * nikodunk
 * UI translations:
+    * Antonio Marin (ro)
     * Asier Saratsua Garmendia (eu)
     * Baurzhan Muftakhidinov (kk)
     * Nathan Follens (nl)
