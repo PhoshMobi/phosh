@@ -19,6 +19,8 @@
 #include "phosh-marshalers.h"
 #include "util.h"
 
+#include "gmobile.h"
+
 #define GNOME_DESKTOP_USE_UNSTABLE_API
 #include <libgnome-desktop/gnome-systemd.h>
 
@@ -83,16 +85,28 @@ typedef enum {
 } PhoshAppStateFlags;
 
 typedef struct  {
-  gint64             pid;
+  gint64   pid;
   PhoshAppStateFlags state;
 
-  char              *startup_id;  /* (owned) */
-  GDesktopAppInfo   *info;        /* (owned) */
-  PhoshAppTracker   *tracker;     /* (unowned) */
+  char    *startup_id;            /* (owned) */
+  GDesktopAppInfo *info;          /* (owned) */
+  PhoshAppTracker *tracker;       /* (unowned) */
+
+  guint    name_owner_id;
+  gboolean has_name_owner;
+
   struct {
-    guint              id;
-    guint              waited;
-    guint              interval;
+    guint         dbus_id;
+    gboolean      started;
+    GRegex       *scope_regex;
+    GDBusProxy   *unit_proxy;
+    GCancellable *cancel;
+  } flatpak;
+
+  struct {
+    guint id;
+    guint waited;
+    guint interval;
   } timeout;
 } PhoshAppState;
 
@@ -103,10 +117,35 @@ struct _PhoshAppTracker {
   guint            dbus_id;
   guint            idle_id;
   struct phosh_private_startup_tracker *wl_tracker; /* PhoshPrivate wayland interface */
-  GHashTable      *apps;
+  GHashTable      *apps; /* key: startup-id, value: app-state */
   GCancellable    *cancel;
 };
 G_DEFINE_TYPE (PhoshAppTracker, phosh_app_tracker, G_TYPE_OBJECT)
+
+
+static void
+check_flatpak_state (PhoshAppState *state)
+{
+  g_autoptr (GVariant) value = NULL;
+  const char *active, *app_id;
+
+  g_return_if_fail (G_IS_DBUS_PROXY (state->flatpak.unit_proxy));
+
+  value = g_dbus_proxy_get_cached_property (state->flatpak.unit_proxy, "ActiveState");
+  if (value == NULL) {
+    g_warning ("ActiveState not cached");
+    return;
+  }
+
+  app_id = g_app_info_get_id (G_APP_INFO (state->info));
+  active = g_variant_get_string (value, NULL);
+  g_debug ("Flatpak %s is %s", app_id, active);
+
+  if (g_strcmp0 (active, "active") && g_strcmp0 (active, "activating")) {
+    g_warning ("Flatpak unit for %s no longer active", app_id);
+    state->flatpak.started = FALSE;
+  }
+}
 
 
 static gboolean
@@ -132,18 +171,32 @@ on_startup_timeout (gpointer data)
 
   state->timeout.waited += state->timeout.interval;
   /* If we have a PID we can be more thorough */
-  if (state->pid && state->timeout.waited < STARTUP_TRACKED_TIMEOUT) {
-    /* TODO: track pidfd on Linux*/
-    if (!kill (state->pid, 0)) {
-      g_debug ("Startup id: '%s' has PID, waited %us, giving it more time to start",
-               state->startup_id,
-               state->timeout.waited);
-
+  if (state->timeout.waited < STARTUP_TRACKED_TIMEOUT) {
+    if (state->pid) {
+      /* TODO: track pidfd on Linux*/
+      if (!kill (state->pid, 0)) {
+        g_debug ("Startup id: '%s' has PID, waited %us, giving it more "
+                 "time to start",
+                 state->startup_id, state->timeout.waited);
+        return G_SOURCE_CONTINUE;
+      } else {
+        /* PID is gone. As this might be a fork give it one more
+         * iteration to bring up a toplevel */
+        state->timeout.waited = STARTUP_TRACKED_TIMEOUT;
+        return G_SOURCE_CONTINUE;
+      }
+    } else if (state->has_name_owner) {
+      g_debug ("Startup id: '%s' owns dbus name, waited %us, giving it more "
+               "time to start",
+               state->startup_id, state->timeout.waited);
       return G_SOURCE_CONTINUE;
-    } else {
-      /* PID is gone. As this might be a fork give it one more
-       * iteration to bring up a toplevel */
-      state->timeout.waited  = STARTUP_TRACKED_TIMEOUT;
+    } else if (state->flatpak.started) {
+      g_debug ("Startup id: '%s' is flatpak, waited %us, giving it more "
+               "time to start",
+               state->startup_id, state->timeout.waited);
+      /* Recheck state */
+      check_flatpak_state (state);
+      return G_SOURCE_CONTINUE;
     }
   }
 
@@ -159,15 +212,136 @@ on_startup_timeout (gpointer data)
 }
 
 
+static void
+on_name_appeared (GDBusConnection *connection,
+                  const char      *sender_name,
+                  const char      *object_path,
+                  const char      *interface_name,
+                  const char      *signal_name,
+                  GVariant        *parameters,
+                  gpointer         user_data)
+{
+  PhoshAppState *state = user_data;
+  const char *name, *old_owner, *new_owner, *app_id;
+
+  g_variant_get (parameters, "(&s&s&s)", &name, &old_owner, &new_owner);
+
+  app_id = g_app_info_get_id (G_APP_INFO (state->info));
+
+  if (old_owner[0] == '\0' && new_owner[0] != '\0') {
+    g_debug ("%s: Got new owner '%s' for '%s'", app_id, new_owner, name);
+    state->has_name_owner = TRUE;
+  } else if (old_owner[0] != '\0' && new_owner[0] == '\0') {
+    g_debug ("%s: Lost name owner '%s' for '%s'", app_id, old_owner, name);
+    state->has_name_owner = FALSE;
+  }
+}
+
+
+static void
+on_get_unit_proxy_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
+{
+  PhoshAppState *state;
+  GDBusProxy *proxy;
+  g_autoptr (GVariant) value = NULL;
+  g_autoptr (GError) err = NULL;
+
+  proxy = g_dbus_proxy_new_finish (res, &err);
+  if (proxy == NULL) {
+    phosh_async_error_warn (err, "Failed to get flatpak scope proxy");
+    return;
+  }
+
+  state = user_data;
+  state->flatpak.unit_proxy = proxy;
+  check_flatpak_state (state);
+}
+
+
+static void
+on_get_unit_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
+{
+  g_autoptr (GVariant) value = NULL;
+  g_autoptr (GError) err = NULL;
+  g_autofree char *unit_path = NULL;
+  PhoshAppState *state;
+
+  value = g_dbus_connection_call_finish (G_DBUS_CONNECTION (source_object), res, &err);
+  if (value == NULL) {
+    phosh_async_error_warn (err, "Failed to get unit path");
+    return;
+  }
+
+  g_variant_get (value,"(o)", &unit_path);
+  g_return_if_fail (unit_path != NULL);
+
+  state = user_data;
+  g_dbus_proxy_new (state->tracker->session_bus,
+                    G_DBUS_PROXY_FLAGS_NONE,
+                    NULL,
+                    "org.freedesktop.systemd1",
+                    unit_path,
+                    "org.freedesktop.systemd1.Unit",
+                    state->flatpak.cancel,
+                    on_get_unit_proxy_ready,
+                    state);
+}
+
+
+static void
+on_systemd_job_removed (GDBusConnection *connection,
+                        const char      *sender_name,
+                        const char      *object_path,
+                        const char      *interface_name,
+                        const char      *signal_name,
+                        GVariant        *parameters,
+                        gpointer         user_data)
+{
+  PhoshAppState *state = user_data;
+  const char *unit, *result, *app_id;
+
+  g_variant_get (parameters, "(uo&s&s)", NULL, NULL, &unit, &result);
+
+  if (!g_regex_match (state->flatpak.scope_regex, unit, 0, NULL))
+    return;
+
+  if (g_strcmp0 (result, "done"))
+    return;
+
+  app_id = g_app_info_get_id (G_APP_INFO (state->info));
+  g_debug ("Found flatpak scope '%s' for %s\n", unit, app_id);
+  state->flatpak.started = TRUE;
+
+  g_return_if_fail (state->flatpak.dbus_id);
+  g_clear_dbus_signal_subscription (&state->flatpak.dbus_id, state->tracker->session_bus);
+
+  state->flatpak.cancel = g_cancellable_new ();
+  g_dbus_connection_call (state->tracker->session_bus,
+                          "org.freedesktop.systemd1",
+                          "/org/freedesktop/systemd1",
+                          "org.freedesktop.systemd1.Manager",
+                          "GetUnit",
+                          g_variant_new ("(s)", unit),
+                          G_VARIANT_TYPE ("(o)"),
+                          G_DBUS_CALL_FLAGS_NONE,
+                          -1,
+                          state->flatpak.cancel,
+                          on_get_unit_ready,
+                          state);
+}
+
+
 static PhoshAppState *
-phosh_app_state_new (GDesktopAppInfo    *info,
-                     const char         *startup_id,
-                     gint64              pid,
-                     PhoshAppStateFlags  flags,
-                     PhoshAppTracker    *tracker)
+phosh_app_state_new (GDesktopAppInfo   *info,
+                     const char        *startup_id,
+                     gint64             pid,
+                     PhoshAppStateFlags flags,
+                     PhoshAppTracker   *tracker)
 {
   PhoshAppState *state = g_new0 (PhoshAppState, 1);
   guint timeout = STARTUP_TIMEOUT;
+  g_autofree char *flatpak_id = NULL;
+  const char *desktop_id;
 
   if (G_UNLIKELY (phosh_shell_get_debug_flags () & PHOSH_SHELL_DEBUG_APP_ACTIVATION))
     timeout = DEBUG_STARTUP_TIMEOUT;
@@ -187,6 +361,40 @@ phosh_app_state_new (GDesktopAppInfo    *info,
            state->startup_id,
            state->state);
 
+  desktop_id = g_app_info_get_id (G_APP_INFO (info));
+  flatpak_id = g_desktop_app_info_get_string (info, "X-Flatpak");
+
+  if (desktop_id && !gm_str_is_null_or_empty (flatpak_id)) {
+    g_autofree char *app_id = phosh_strip_suffix_from_app_id (desktop_id);
+    g_autofree char *match = g_strdup_printf ("app-flatpak-%s-[0-9]+\\.scope", app_id);
+
+    state->flatpak.scope_regex = g_regex_new (match, G_REGEX_DEFAULT, G_REGEX_MATCH_DEFAULT, NULL);
+    state->flatpak.dbus_id = g_dbus_connection_signal_subscribe (tracker->session_bus,
+                                                                 NULL,
+                                                                 "org.freedesktop.systemd1.Manager",
+                                                                 "JobRemoved",
+                                                                 "/org/freedesktop/systemd1",
+                                                                 NULL,
+                                                                 G_DBUS_SIGNAL_FLAGS_NONE,
+                                                                 on_systemd_job_removed,
+                                                                 state,
+                                                                 NULL);
+  } else if (desktop_id && g_desktop_app_info_get_boolean (info, "DBusActivatable")) {
+    /* For DBus activatable apps we track the bus name too */
+    g_autofree char *app_id = phosh_strip_suffix_from_app_id (desktop_id);
+
+    state->name_owner_id = g_dbus_connection_signal_subscribe (tracker->session_bus,
+                                                               "org.freedesktop.DBus",
+                                                               "org.freedesktop.DBus",
+                                                               "NameOwnerChanged",
+                                                               "/org/freedesktop/DBus",
+                                                               app_id,
+                                                               G_DBUS_SIGNAL_FLAGS_NONE,
+                                                               on_name_appeared,
+                                                               state,
+                                                               NULL);
+  }
+
   return state;
 }
 
@@ -194,6 +402,14 @@ phosh_app_state_new (GDesktopAppInfo    *info,
 static void
 phosh_app_state_free (PhoshAppState *state)
 {
+  g_clear_dbus_signal_subscription (&state->name_owner_id, state->tracker->session_bus);
+  g_clear_dbus_signal_subscription (&state->flatpak.dbus_id, state->tracker->session_bus);
+
+  g_clear_pointer (&state->flatpak.scope_regex, g_regex_unref);
+  g_cancellable_cancel (state->flatpak.cancel);
+  g_clear_object (&state->flatpak.cancel);
+  g_clear_object (&state->flatpak.unit_proxy);
+
   g_clear_handle_id (&state->timeout.id, g_source_remove);
   g_object_unref (state->info);
   g_free (state->startup_id);
@@ -596,10 +812,7 @@ phosh_app_tracker_finalize (GObject *object)
   g_clear_pointer (&self->wl_tracker, phosh_private_startup_tracker_destroy);
 
   g_clear_handle_id (&self->idle_id, g_source_remove);
-  if (self->dbus_id) {
-    g_dbus_connection_signal_unsubscribe (self->session_bus, self->dbus_id);
-    self->dbus_id = 0;
-  }
+  g_clear_dbus_signal_subscription (&self->dbus_id, self->session_bus);
   g_clear_object (&self->session_bus);
 
   G_OBJECT_CLASS (phosh_app_tracker_parent_class)->finalize (object);
