@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-08-13 19:46+0000\n"
-"PO-Revision-Date: 2026-08-17 16:40+0200\n"
+"POT-Creation-Date: 2026-08-21 07:56+0000\n"
+"PO-Revision-Date: 2026-08-21 11:46+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -1337,6 +1337,10 @@ msgstr "Numărul de zile pentru care se afișează evenimentele"
 #: plugins/scaling-quick-setting/qs.ui:14
 msgid "Monitor scales"
 msgstr "Scara monitorului"
+
+#: plugins/scaling-quick-setting/qs.ui:35
+msgid "Display Settings"
+msgstr "Opțiuni de afișare"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
