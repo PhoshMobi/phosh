@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-26 08:47+0000\n"
-"PO-Revision-Date: 2026-06-26 18:19+0200\n"
+"POT-Creation-Date: 2026-08-21 07:56+0000\n"
+"PO-Revision-Date: 2026-08-21 12:07+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -346,7 +346,7 @@ msgid "No"
 msgstr "Ne"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Vnesite geslo"
 
@@ -382,12 +382,12 @@ msgid "Screenshot from %s%s.png"
 msgstr "Zaslonska slika iz %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:691 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Neznan naslov"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:699 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Neznan izvajalec"
 
@@ -737,7 +737,7 @@ msgstr "Domena:"
 msgid "Co_nnect"
 msgstr "_Poveži"
 
-#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr "Nazaj"
 
@@ -745,7 +745,7 @@ msgstr "Nazaj"
 msgid "Slide up to unlock"
 msgstr "Oddrsnite navzgor, da odklenete"
 
-#: src/ui/lockscreen.ui:334
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "Odkleni"
 
@@ -783,15 +783,15 @@ msgstr "Klic v sili"
 msgid "Run Command"
 msgstr "Zaženi ukaz"
 
-#: src/ui/settings.ui:121
+#: src/ui/settings.ui:128
 msgid "No notifications"
 msgstr "Ni obvestil"
 
-#: src/ui/settings.ui:150
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "Obvestila"
 
-#: src/ui/settings.ui:159
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "Počisti vse"
 
@@ -1342,6 +1342,10 @@ msgstr "Število dni za prikazovanja dogodkov"
 #: plugins/scaling-quick-setting/qs.ui:14
 msgid "Monitor scales"
 msgstr "Faktor velikosti zaslona"
+
+#: plugins/scaling-quick-setting/qs.ui:35
+msgid "Display Settings"
+msgstr "Nastavitve zaslona"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
