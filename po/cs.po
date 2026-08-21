@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-26 08:47+0000\n"
-"PO-Revision-Date: 2026-06-26 13:06+0200\n"
+"POT-Creation-Date: 2026-08-21 07:56+0000\n"
+"PO-Revision-Date: 2026-08-21 15:56+0200\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -343,7 +343,7 @@ msgid "No"
 msgstr "Ne"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Zadejte heslo"
 
@@ -379,12 +379,12 @@ msgid "Screenshot from %s%s.png"
 msgstr "Snímek obrazovky z %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:691 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Neznámý název"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:699 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Neznámý umělec"
 
@@ -727,7 +727,7 @@ msgstr "Doména:"
 msgid "Co_nnect"
 msgstr "_Připojit"
 
-#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr "Zpět"
 
@@ -735,7 +735,7 @@ msgstr "Zpět"
 msgid "Slide up to unlock"
 msgstr "Táhnutím nahoru odemknete"
 
-#: src/ui/lockscreen.ui:334
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "Odemknout"
 
@@ -773,15 +773,15 @@ msgstr "Stav nouze"
 msgid "Run Command"
 msgstr "Spustit příkaz"
 
-#: src/ui/settings.ui:121
+#: src/ui/settings.ui:128
 msgid "No notifications"
 msgstr "Žádná upozornění"
 
-#: src/ui/settings.ui:150
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "Upozornění"
 
-#: src/ui/settings.ui:159
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "Vymazat vše"
 
@@ -1329,6 +1329,10 @@ msgstr "Počet dní pro zobrazení událostí"
 #: plugins/scaling-quick-setting/qs.ui:14
 msgid "Monitor scales"
 msgstr "Škálování monitoru"
+
+#: plugins/scaling-quick-setting/qs.ui:35
+msgid "Display Settings"
+msgstr "Nastavení obrazovky"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
