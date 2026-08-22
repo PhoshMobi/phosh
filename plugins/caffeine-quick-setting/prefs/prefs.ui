@@ -20,6 +20,7 @@
                   <object class="AdwButtonContent">
                     <property name="icon-name">list-add-symbolic</property>
                     <property name="label" translatable="1">Add interval</property>
+                    <property name="valign">center</property>
                   </object>
                 </property>
                 <signal name="clicked" handler="on_add_interval_clicked" swapped="yes"/>
