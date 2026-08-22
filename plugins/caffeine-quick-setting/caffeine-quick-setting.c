@@ -54,24 +54,42 @@ struct _PhoshCaffeineQuickSetting {
 
 G_DEFINE_TYPE (PhoshCaffeineQuickSetting, phosh_caffeine_quick_setting, PHOSH_TYPE_QUICK_SETTING);
 
-static void
-phosh_caffeine_quick_setting_inhibit (PhoshCaffeineQuickSetting *self, gboolean inhibit)
+
+G_GNUC_WARN_UNUSED_RESULT static guint
+inhibit (void)
+{
+  PhoshSessionManager *manager = phosh_shell_get_session_manager (phosh_shell_get_default ());
+  guint cookie;
+
+  cookie = phosh_session_manager_inhibit (manager,
+                                          PHOSH_SESSION_INHIBIT_IDLE |
+                                          PHOSH_SESSION_INHIBIT_SUSPEND,
+                                          /* Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled */
+                                          _("Phosh on caffeine"));
+  return cookie;
+}
+
+
+G_GNUC_WARN_UNUSED_RESULT static guint
+uninhibit (guint cookie)
 {
   PhoshSessionManager *manager = phosh_shell_get_session_manager (phosh_shell_get_default ());
 
-  if (inhibit  == !!self->cookie)
+  phosh_session_manager_uninhibit (manager, cookie);
+  return 0;
+}
+
+
+static void
+phosh_caffeine_quick_setting_inhibit (PhoshCaffeineQuickSetting *self, gboolean inhibit_)
+{
+  if (inhibit_ == !!self->cookie)
     return;
 
-  if (inhibit) {
-    self->cookie = phosh_session_manager_inhibit (manager,
-                                                  PHOSH_SESSION_INHIBIT_IDLE |
-                                                  PHOSH_SESSION_INHIBIT_SUSPEND,
-                                                  /* Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled */
-                                                  _("Phosh on caffeine"));
-  } else {
-    phosh_session_manager_uninhibit (manager, self->cookie);
-    self->cookie = 0;
-  }
+  if (inhibit_)
+    self->cookie = inhibit ();
+  else
+    self->cookie = uninhibit (self->cookie);
 
   g_object_notify_by_pspec (G_OBJECT (self), props[PROP_INHIBITED]);
 }
