@@ -24,14 +24,17 @@
     </style>
   </object>
   <object class="GtkButton" id="footer">
+    <property name="visible">1</property>
     <property name="hexpand">1</property>
     <property name="action-name">panel.launch-panel</property>
     <property name="action-target">(&quot;displays&quot;, [&lt;&quot;&quot;&gt;])</property>
     <property name="focus-on-click">0</property>
-    <property name="button-label">button_label</property>
-  </object>
-  <object class="GtkLabel" id="button_label">
-    <property name="ellipsize">end</property>
-    <property name="label" translatable="1">Display Settings</property>
+    <child>
+      <object class="GtkLabel" id="button_label">
+        <property name="visible">1</property>
+        <property name="ellipsize">end</property>
+        <property name="label" translatable="1">Display Settings</property>
+      </object>
+    </child>
   </object>
 </interface>
