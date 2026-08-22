@@ -67,7 +67,7 @@ phosh_get_desktop_app_info_for_app_id (const char *app_id)
   g_autofree char *desktop_id = NULL;
   g_autofree char *lowercase = NULL;
   GDesktopAppInfo *app_info = NULL;
-  char *last_component;
+  const char *last_component;
   PhoshAppListModel *model = phosh_app_list_model_get_default ();
 
   g_assert (app_id);
