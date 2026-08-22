@@ -7,7 +7,7 @@
     <property name="title" translatable="1">Caffeine Quick Setting Preferences</property>
     <child>
       <object class="AdwPreferencesPage">
-        <property name="icon-name">preferences-window-layout-symbolic</property>
+        <property name="icon-name">clock-alt-symbolic</property>
         <property name="title" translatable="1">Caffeine Duration</property>
         <property name="use-underline">1</property>
         <child>
@@ -56,6 +56,31 @@
                     </property>
                   </object>
                 </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="icon-name">cafe-hot-symbolic</property>
+        <property name="title" translatable="1">Caffeine Mode</property>
+        <property name="use-underline">1</property>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="AdwSwitchRow" id="suspend_switch">
+                <property name="title" translatable="1">Inhibit Suspend</property>
+                <property name="subtitle" translatable="1">Don&apos;t suspend when caffeine is active</property>
+                <signal name="notify::active" handler="on_suspend_row_activated" swapped="yes"/>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSwitchRow" id="idle_switch">
+                <property name="title" translatable="1">Inhibit Idle</property>
+                <property name="subtitle" translatable="1">Don&apos;t let system become idle when caffeine is active</property>
+                <signal name="notify::active" handler="on_idle_row_activated" swapped="yes"/>
               </object>
             </child>
           </object>

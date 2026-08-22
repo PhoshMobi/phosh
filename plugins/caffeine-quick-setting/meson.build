@@ -1,5 +1,7 @@
 name = 'caffeine-quick-setting'
 
+phosh_plugin_caffeine_inc = include_directories('.')
+
 caffeine_enum_sources = gnome.mkenums_simple(
   'caffeine-quick-setting-enum-types',
   sources: 'caffeine-quick-setting-enums.h',
