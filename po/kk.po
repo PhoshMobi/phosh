@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-07-03 13:57+0000\n"
-"PO-Revision-Date: 2026-07-26 14:53+0500\n"
+"POT-Creation-Date: 2026-08-21 07:56+0000\n"
+"PO-Revision-Date: 2026-08-22 08:59+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <Kazakh>\n"
 "Language: kk\n"
@@ -324,8 +324,7 @@ msgstr "Қосулы"
 #: src/location-manager.c:266
 #, c-format
 msgid "Allow '%s' to access your location information?"
-msgstr ""
-"'%s' қолданбасына орналасу ақпаратына қол жеткізуге рұқсат бересіз бе?"
+msgstr "'%s' қолданбасына орналасу ақпаратына қол жеткізуге рұқсат бересіз бе?"
 
 #: src/location-manager.c:271
 msgid "Geolocation"
@@ -362,8 +361,7 @@ msgstr "Скриншотты сақтау сәтсіз аяқталды"
 msgid "Screenshot"
 msgstr "Скриншот"
 
-#. Translators: name of the folder beneath ~/Pictures used to store
-#. screenshots
+#. Translators: name of the folder beneath ~/Pictures used to store screenshots
 #: src/screenshot-manager.c:554
 msgid "Screenshots"
 msgstr "Скриншоттар"
@@ -377,12 +375,12 @@ msgid "Screenshot from %s%s.png"
 msgstr "%s%s.png скриншоты"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:691 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Белгісіз атауы"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:699 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Белгісіз орындаушы"
 
@@ -393,8 +391,7 @@ msgstr "Кірістірілген дисплей"
 #: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
-"This is a monitor vendor name, followed by a size in inches, like 'Dell "
-"15\"'"
+"This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
@@ -758,15 +755,15 @@ msgstr "Төтенше жағдай"
 msgid "Run Command"
 msgstr "Команданы орындау"
 
-#: src/ui/settings.ui:121
+#: src/ui/settings.ui:128
 msgid "No notifications"
 msgstr "Хабарландырулар жоқ"
 
-#: src/ui/settings.ui:150
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "Хабарландырулар"
 
-#: src/ui/settings.ui:159
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "Барлығын тазарту"
 
@@ -847,8 +844,7 @@ msgstr "Wi-Fi қатынау нүктелері жоқ"
 msgid "Cellular"
 msgstr "Ұялы байланыс"
 
-#. Translators: Phosh prevents the session from going idle because the
-#. caffeine quick setting is toggled
+#. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
 msgid "Phosh on caffeine"
 msgstr "Phosh кофеин режимінде"
@@ -1309,6 +1305,10 @@ msgstr "Оқиғаларды көрсетуге арналған күндер с
 #: plugins/scaling-quick-setting/qs.ui:14
 msgid "Monitor scales"
 msgstr "Монитор масштабтары"
+
+#: plugins/scaling-quick-setting/qs.ui:35
+msgid "Display Settings"
+msgstr "Дисплей баптаулары"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
