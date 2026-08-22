@@ -7,6 +7,8 @@
  */
 
 #include "caffeine-quick-setting.h"
+#include "caffeine-quick-setting-enums.h"
+#include "caffeine-quick-setting-enum-types.h"
 #include "interval-row.h"
 #include "plugin-shell.h"
 #include "status-page.h"
@@ -18,6 +20,7 @@
 #define CAFFEINE_QUICK_SETTING_SCHEMA "mobi.phosh.plugins.caffeine-quick-setting"
 #define CAFFEINE_INTERVALS_KEY        "intervals"
 #define CAFFEINE_SELECTED_KEY         "selected-index"
+#define CAFFEINE_MODE_KEY             "mode"
 
 #define UPDATE_INTERVAL    1 /* seconds */
 #define CAFFEINE_ON_ICON   "cafe-hot-symbolic"
@@ -32,6 +35,7 @@
 enum {
   PROP_0,
   PROP_INHIBITED,
+  PROP_MODE,
   LAST_PROP,
 };
 static GParamSpec *props[LAST_PROP];
@@ -42,6 +46,7 @@ struct _PhoshCaffeineQuickSetting {
   PhoshStatusPage  *status_page;
   PhoshStatusIcon  *info;
   guint cookie;
+  PhoshCaffeineInhibitModeFlags mode;
 
   GtkStack         *stack;
   GtkListBox       *listbox;
@@ -56,14 +61,20 @@ G_DEFINE_TYPE (PhoshCaffeineQuickSetting, phosh_caffeine_quick_setting, PHOSH_TY
 
 
 G_GNUC_WARN_UNUSED_RESULT static guint
-inhibit (void)
+inhibit (PhoshCaffeineInhibitModeFlags mode)
 {
   PhoshSessionManager *manager = phosh_shell_get_session_manager (phosh_shell_get_default ());
+  PhoshSessionManagerFlags what = 0;
   guint cookie;
 
+  if (mode & PHOSH_CAFFEINE_QUICK_SETTING_INHIBIT_MODE_IDLE)
+    what |= PHOSH_SESSION_INHIBIT_IDLE;
+
+  if (mode & PHOSH_CAFFEINE_QUICK_SETTING_INHIBIT_MODE_SUSPEND)
+    what |= PHOSH_SESSION_INHIBIT_SUSPEND;
+
   cookie = phosh_session_manager_inhibit (manager,
-                                          PHOSH_SESSION_INHIBIT_IDLE |
-                                          PHOSH_SESSION_INHIBIT_SUSPEND,
+                                          what,
                                           /* Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled */
                                           _("Phosh on caffeine"));
   return cookie;
@@ -81,13 +92,38 @@ uninhibit (guint cookie)
 
 
 static void
+phosh_caffeine_quick_setting_set_mode (PhoshCaffeineQuickSetting    *self,
+                                       PhoshCaffeineInhibitModeFlags mode)
+{
+  if (self->mode == mode)
+    return;
+
+  self->mode = mode;
+
+  /* Mode changed, inhibit with new mode */
+  if (self->cookie) {
+    guint cookie;
+
+    g_debug ("Updating caffeine mode to 0x%x", self->mode);
+    cookie = inhibit (self->mode);
+    self->cookie = uninhibit (self->cookie);
+    self->cookie = cookie;
+  } else {
+    g_debug ("Setting caffeine mode to 0x%x", self->mode);
+  }
+
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_MODE]);
+}
+
+
+static void
 phosh_caffeine_quick_setting_inhibit (PhoshCaffeineQuickSetting *self, gboolean inhibit_)
 {
   if (inhibit_ == !!self->cookie)
     return;
 
   if (inhibit_)
-    self->cookie = inhibit ();
+    self->cookie = inhibit (self->mode);
   else
     self->cookie = uninhibit (self->cookie);
 
@@ -107,6 +143,9 @@ phosh_caffeine_quick_setting_set_property (GObject      *object,
   case PROP_INHIBITED:
     phosh_caffeine_quick_setting_inhibit (self, g_value_get_boolean (value));
     break;
+  case PROP_MODE:
+    phosh_caffeine_quick_setting_set_mode (self, g_value_get_flags (value));
+    break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     break;
@@ -125,6 +164,9 @@ phosh_caffeine_quick_setting_get_property (GObject    *object,
   switch (property_id) {
   case PROP_INHIBITED:
     g_value_set_boolean (value, !!self->cookie);
+    break;
+  case PROP_MODE:
+    g_value_set_flags (value, self->mode);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -299,6 +341,13 @@ phosh_caffeine_quick_setting_class_init (PhoshCaffeineQuickSettingClass *klass)
                           FALSE,
                           G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
 
+  props[PROP_MODE] =
+    g_param_spec_flags ("mode", "", "",
+                        PHOSH_TYPE_CAFFEINE_INHIBIT_MODE_FLAGS,
+                        PHOSH_CAFFEINE_QUICK_SETTING_INHIBIT_MODE_SUSPEND |
+                        PHOSH_CAFFEINE_QUICK_SETTING_INHIBIT_MODE_IDLE,
+                        G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
+
   g_object_class_install_properties (object_class, LAST_PROP, props);
 
   gtk_widget_class_set_template_from_resource (widget_class,
@@ -388,12 +437,18 @@ on_intervals_changed (PhoshCaffeineQuickSetting *self)
 static void
 phosh_caffeine_quick_setting_init (PhoshCaffeineQuickSetting *self)
 {
+  self->mode = (PHOSH_CAFFEINE_QUICK_SETTING_INHIBIT_MODE_SUSPEND |
+                PHOSH_CAFFEINE_QUICK_SETTING_INHIBIT_MODE_IDLE);
+
   gtk_widget_init_template (GTK_WIDGET (self));
 
   gtk_icon_theme_add_resource_path (gtk_icon_theme_get_default (),
                                     "/mobi/phosh/plugins/caffeine-quick-setting/icons");
 
   self->settings = g_settings_new (CAFFEINE_QUICK_SETTING_SCHEMA);
+  g_settings_bind (self->settings, CAFFEINE_MODE_KEY,
+                   self, "mode",
+                   G_SETTINGS_BIND_GET);
 
   gtk_list_box_set_sort_func (self->listbox, sort_rows_func, NULL, NULL);
 
