@@ -111,6 +111,36 @@ G_DEFINE_TYPE_WITH_CODE (PhoshScreenshotManager,
                            PHOSH_DBUS_TYPE_SCREENSHOT,
                            phosh_screenshot_manager_screenshot_iface_init));
 
+static void
+on_viewer_opened (GObject *source, GAsyncResult *result, gpointer data)
+{
+  g_autoptr (GError) err = NULL;
+  if (!g_app_info_launch_default_for_uri_finish (result, &err))
+    g_critical ("Unable to open image: %s", err->message);
+}
+
+static void
+on_notification_actioned (PhoshScreenshotManager *self,
+                          GSimpleAction          *action,
+                          PhoshShellNotification *noti)
+{
+  GdkDisplay *display = gdk_display_get_default ();
+  char *filepath = g_object_get_data (G_OBJECT (noti), "filepath");
+  g_autofree char *uri = NULL;
+  g_autoptr (GFile) file = NULL;
+  g_autoptr (GdkAppLaunchContext) context = NULL;
+
+  g_return_if_fail (filepath);
+
+  file = g_file_new_for_path (filepath);
+  uri = g_file_get_uri (file);
+  context = gdk_display_get_app_launch_context (display);
+  g_app_info_launch_default_for_uri_async (uri,
+                                           G_APP_LAUNCH_CONTEXT (context),
+                                           self->cancel,
+                                           on_viewer_opened,
+                                           NULL);
+}
 
 static void
 slurp_area_dispose (SlurpArea *slurp)
@@ -245,6 +275,18 @@ screenshot_done (PhoshScreenshotManager *self, gboolean success)
                          "body", msg,
                          "image", icon,
                          NULL);
+    if (self->frames->filename){
+      g_object_set_data_full (G_OBJECT (noti),
+                              "filepath",
+                              g_strdup (self->frames->filename),
+                              (GDestroyNotify) g_free);
+    }
+
+    g_signal_connect_object (noti,
+                             "actioned",
+                             G_CALLBACK (on_notification_actioned),
+                             self,
+                             G_CONNECT_SWAPPED);
 
     phosh_notify_manager_add_shell_notification (nm, noti, 0, 5000);
     g_clear_pointer (&self->frames->filename, g_free);
