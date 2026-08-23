@@ -19,16 +19,16 @@
 #define CAFFEINE_INTERVALS_KEY        "intervals"
 
 struct _PhoshCaffeineQuickSettingPrefs {
-  AdwPreferencesDialog  parent;
+  AdwPreferencesDialog parent;
 
-  GtkStack             *stack;
-  GtkListBox           *listbox;
-  GtkSpinButton        *hours_btn;
-  GtkSpinButton        *minutes_btn;
-  GtkSpinButton        *seconds_btn;
-  AdwDialog            *add_interval_dialog;
-  GSimpleActionGroup   *action_group;
-  GSettings            *settings;
+  GtkStack *stack;
+  GtkListBox          *listbox;
+  GtkSpinButton       *hours_btn;
+  GtkSpinButton       *minutes_btn;
+  GtkSpinButton       *seconds_btn;
+  AdwDialog *add_interval_dialog;
+  GSimpleActionGroup  *action_group;
+  GSettings *settings;
 };
 
 G_DEFINE_TYPE (PhoshCaffeineQuickSettingPrefs,
@@ -149,16 +149,17 @@ phosh_caffeine_quick_setting_prefs_class_init (PhoshCaffeineQuickSettingPrefsCla
                                                "/mobi/phosh/plugins/"
                                                "caffeine-quick-setting-prefs/prefs.ui");
 
-  gtk_widget_class_bind_template_child (widget_class, PhoshCaffeineQuickSettingPrefs, stack);
-  gtk_widget_class_bind_template_child (widget_class, PhoshCaffeineQuickSettingPrefs, listbox);
-  gtk_widget_class_bind_template_child (widget_class, PhoshCaffeineQuickSettingPrefs, add_interval_dialog);
+  gtk_widget_class_bind_template_child (widget_class, PhoshCaffeineQuickSettingPrefs,
+                                        add_interval_dialog);
   gtk_widget_class_bind_template_child (widget_class, PhoshCaffeineQuickSettingPrefs, hours_btn);
+  gtk_widget_class_bind_template_child (widget_class, PhoshCaffeineQuickSettingPrefs, listbox);
   gtk_widget_class_bind_template_child (widget_class, PhoshCaffeineQuickSettingPrefs, minutes_btn);
   gtk_widget_class_bind_template_child (widget_class, PhoshCaffeineQuickSettingPrefs, seconds_btn);
+  gtk_widget_class_bind_template_child (widget_class, PhoshCaffeineQuickSettingPrefs, stack);
 
-  gtk_widget_class_bind_template_callback (widget_class, on_add_interval_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_add_interval_cancelled);
   gtk_widget_class_bind_template_callback (widget_class, on_add_interval_added);
+  gtk_widget_class_bind_template_callback (widget_class, on_add_interval_cancelled);
+  gtk_widget_class_bind_template_callback (widget_class, on_add_interval_clicked);
 }
 
 
