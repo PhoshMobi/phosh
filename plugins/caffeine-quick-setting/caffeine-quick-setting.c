@@ -37,19 +37,19 @@ enum {
 static GParamSpec *props[LAST_PROP];
 
 struct _PhoshCaffeineQuickSetting {
-  PhoshQuickSetting        parent;
+  PhoshQuickSetting parent;
 
-  PhoshStatusPage         *status_page;
-  PhoshStatusIcon         *info;
-  guint                    cookie;
+  PhoshStatusPage  *status_page;
+  PhoshStatusIcon  *info;
+  guint cookie;
 
-  GtkStack                *stack;
-  GtkListBox              *listbox;
-  GtkListBoxRow           *cur_row;
-  GSettings               *settings;
+  GtkStack         *stack;
+  GtkListBox       *listbox;
+  GtkListBoxRow    *cur_row;
+  GSettings        *settings;
 
-  uint                     remaining;
-  uint                     update_id;
+  uint remaining;
+  uint update_id;
 };
 
 G_DEFINE_TYPE (PhoshCaffeineQuickSetting, phosh_caffeine_quick_setting, PHOSH_TYPE_QUICK_SETTING);
@@ -66,7 +66,7 @@ phosh_caffeine_quick_setting_inhibit (PhoshCaffeineQuickSetting *self, gboolean 
     self->cookie = phosh_session_manager_inhibit (manager,
                                                   PHOSH_SESSION_INHIBIT_IDLE |
                                                   PHOSH_SESSION_INHIBIT_SUSPEND,
-    /* Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled */
+                                                  /* Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled */
                                                   _("Phosh on caffeine"));
   } else {
     phosh_session_manager_uninhibit (manager, self->cookie);
@@ -86,31 +86,31 @@ phosh_caffeine_quick_setting_set_property (GObject      *object,
   PhoshCaffeineQuickSetting *self = PHOSH_CAFFEINE_QUICK_SETTING (object);
 
   switch (property_id) {
-    case PROP_INHIBITED:
-      phosh_caffeine_quick_setting_inhibit (self, g_value_get_boolean (value));
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-      break;
+  case PROP_INHIBITED:
+    phosh_caffeine_quick_setting_inhibit (self, g_value_get_boolean (value));
+    break;
+  default:
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+    break;
   }
 }
 
 
 static void
-phosh_caffeine_quick_setting_get_property (GObject *object,
-                                           guint property_id,
-                                           GValue *value,
+phosh_caffeine_quick_setting_get_property (GObject    *object,
+                                           guint       property_id,
+                                           GValue     *value,
                                            GParamSpec *pspec)
 {
   PhoshCaffeineQuickSetting *self = PHOSH_CAFFEINE_QUICK_SETTING (object);
 
   switch (property_id) {
-    case PROP_INHIBITED:
-      g_value_set_boolean (value, !!self->cookie);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-      break;
+  case PROP_INHIBITED:
+    g_value_set_boolean (value, !!self->cookie);
+    break;
+  default:
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+    break;
   }
 }
 
@@ -279,7 +279,7 @@ phosh_caffeine_quick_setting_class_init (PhoshCaffeineQuickSettingClass *klass)
   props[PROP_INHIBITED] =
     g_param_spec_boolean ("inhibited", "", "",
                           FALSE,
-                          G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY |G_PARAM_STATIC_STRINGS);
+                          G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, LAST_PROP, props);
 
