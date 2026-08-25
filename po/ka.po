@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-28 10:37+0000\n"
-"PO-Revision-Date: 2026-06-29 07:00+0200\n"
+"POT-Creation-Date: 2026-08-22 20:11+0000\n"
+"PO-Revision-Date: 2026-08-25 06:49+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -340,7 +340,7 @@ msgid "No"
 msgstr "არა"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "შეიყვანეთ კოდი"
 
@@ -376,12 +376,12 @@ msgid "Screenshot from %s%s.png"
 msgstr "ეკრანის ანაბეჭდი %s%s.png-დან"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:691 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "უცნობი სათაური"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:699 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "უცნობი შემსრულებელი"
 
@@ -717,7 +717,7 @@ msgstr "დომენი:"
 msgid "Co_nnect"
 msgstr "და_კავშირება"
 
-#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr "უკან"
 
@@ -725,7 +725,7 @@ msgstr "უკან"
 msgid "Slide up to unlock"
 msgstr "აქაჩეთ გასახსნელად"
 
-#: src/ui/lockscreen.ui:334
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "გახსნა"
 
@@ -763,15 +763,15 @@ msgstr "სასწრაფო"
 msgid "Run Command"
 msgstr "ბრძანების გაშვება"
 
-#: src/ui/settings.ui:121
+#: src/ui/settings.ui:128
 msgid "No notifications"
 msgstr "გაფრთხილების გარეშე"
 
-#: src/ui/settings.ui:150
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "გაფრთხილებები"
 
-#: src/ui/settings.ui:159
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "ყველას გასუფთავება"
 
@@ -1316,6 +1316,10 @@ msgstr "დღეების რაოდენობა მოვლენე�
 #: plugins/scaling-quick-setting/qs.ui:14
 msgid "Monitor scales"
 msgstr "ეკრანის მასშტაბები"
+
+#: plugins/scaling-quick-setting/qs.ui:36
+msgid "Display Settings"
+msgstr "ეკრანის მორგება"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
