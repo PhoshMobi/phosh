@@ -3,21 +3,27 @@
 # This file is distributed under the same license as the phosh package.
 # Damned <damnedlies@163.com>, 2020.
 # lumingzh <lumingzh@qq.com>, 2026.
+# Zeqian Sun <jianshusdd@outlook.com>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-07-29 11:06+0000\n"
-"PO-Revision-Date: 2026-08-01 13:20+0800\n"
-"Last-Translator: lumingzh <lumingzh@qq.com>\n"
+"POT-Creation-Date: 2026-08-22 20:11+0000\n"
+"PO-Revision-Date: 2026-08-24 21:41+0800\n"
+"Last-Translator: Zeqian Sun <jianshusdd@outlook.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 50.0\n"
+"X-Generator: Gtranslator 48.0\n"
+"X-DL-Lang: zh_CN\n"
+"X-DL-Module: phosh\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -371,12 +377,12 @@ msgid "Screenshot from %s%s.png"
 msgstr "截图 %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:691 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "未知标题"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:699 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "未知艺术家"
 
@@ -923,7 +929,7 @@ msgstr "1 小时"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:188
 msgid "Choose Interval"
-msgstr ""
+msgstr "选择间隔"
 
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
 msgid "Default style"
@@ -1057,12 +1063,12 @@ msgstr "未配置任何启动器"
 
 #: plugins/launcher-box/launcher-box.ui:33
 msgid "Launchers"
-msgstr ""
+msgstr "启动器"
 
 #. Translators: Location precision level - country-wide
 #: plugins/location-quick-setting/accuracy-row.c:44
 msgid "Country"
-msgstr ""
+msgstr "地区"
 
 #. Translators: Location precision level - city-wide
 #: plugins/location-quick-setting/accuracy-row.c:47
@@ -1082,119 +1088,119 @@ msgstr "街道"
 #. Translators: Location precision level - exact position
 #: plugins/location-quick-setting/accuracy-row.c:56
 msgid "Exact"
-msgstr ""
+msgstr "准确"
 
 #: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location On"
-msgstr "位置开"
+msgstr "定位开"
 
 #: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location Off"
-msgstr "位置关"
+msgstr "定位关"
 
 #: plugins/location-quick-setting/qs.ui:15
 msgid "Location Accuracy"
-msgstr ""
+msgstr "定位精度"
 
 #: plugins/location-quick-setting/qs.ui:62
 msgid "Location Disabled"
-msgstr ""
+msgstr "定位已禁用"
 
 #: plugins/location-quick-setting/qs.ui:72
 msgid "Enable Location"
-msgstr "启用位置"
+msgstr "启用定位"
 
 #: plugins/location-quick-setting/qs.ui:87
 msgid "Location Settings"
-msgstr ""
+msgstr "定位设置"
 
 #: plugins/media-players/media-players.ui:20
 msgid "No running media players"
-msgstr ""
+msgstr "没有正在运行的媒体播放器"
 
 #: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
 msgid "Mobile Data On"
-msgstr ""
+msgstr "移动数据开启"
 
 #: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
 msgid "Mobile Data Off"
-msgstr ""
+msgstr "移动数据关闭"
 
 #: plugins/night-light-quick-setting/night-light-quick-setting.c:63
 msgid "Night Light On"
-msgstr ""
+msgstr "夜灯开启"
 
 #: plugins/night-light-quick-setting/night-light-quick-setting.c:63
 msgid "Night Light Off"
-msgstr ""
+msgstr "夜灯关闭"
 
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
-msgstr ""
+msgstr "开始番茄钟"
 
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
 msgid "Focus on your task for %d minute"
 msgid_plural "Focus on your task for %d minutes"
-msgstr[0] ""
+msgstr[0] "专注您的任务 %d 分钟"
 
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
-msgstr ""
+msgstr "休息一下"
 
 #. Translators: Pomodoro is a technique, no need to translate it
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
 msgid "You have %d minute until next Pomodoro"
 msgid_plural "You have %d minutes until next Pomodoro"
-msgstr[0] ""
+msgstr[0] "距离下一个番茄钟还有 %d 分钟"
 
 #. Translators: Pomodoro is a technique, no need to translate it
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
-msgstr ""
+msgstr "番茄钟计时器"
 
 #. Translators: Pomodoro is a technique, no need to translate it
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
-msgstr "番茄钟关"
+msgstr "番茄钟关闭"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:6
 msgid "Pomodoro Quick Setting Preferences"
-msgstr ""
+msgstr "番茄钟快速设置首选项"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:11
 msgid "Pomodoro Technique"
-msgstr ""
+msgstr "番茄工作法"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:14
 msgid "_Active Duration"
-msgstr ""
+msgstr "专注时长(_A)"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:15
 msgid "Duration of the focus session"
-msgstr ""
+msgstr "专注时段的长度"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:29
 msgid "_Break Duration"
-msgstr ""
+msgstr "休息时长(_B)"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:30
 msgid "Duration of the break between sessions"
-msgstr ""
+msgstr "两次专注时段之间的休息时段"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:44
 msgid "_Start on unlock"
-msgstr ""
+msgstr "解锁时启动(_S)"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:45
 msgid "Whether to start the timer on screen unlock"
-msgstr ""
+msgstr "是否在屏幕解锁时启动定时器"
 
 #: plugins/ticket-box/ticket-box.ui:18
 msgid "No documents to display"
-msgstr ""
+msgstr "没有可显示的文档"
 
 #: plugins/ticket-box/ticket-box.ui:82
 msgid "Tickets"
@@ -1202,11 +1208,11 @@ msgstr ""
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.c:94
 msgid "_Open"
-msgstr ""
+msgstr "打开(_O)"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.c:95
 msgid "Choose Folder"
-msgstr ""
+msgstr "选择文件夹"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.ui:6
 msgid "Ticket Box Preferences"
@@ -1230,11 +1236,11 @@ msgstr ""
 
 #: plugins/upcoming-events/event-list.c:142
 msgid "Today"
-msgstr ""
+msgstr "今天"
 
 #: plugins/upcoming-events/event-list.c:144
 msgid "Tomorrow"
-msgstr ""
+msgstr "明天"
 
 #. Translators: The current date and weekday for display in a calendar entry
 #: plugins/upcoming-events/event-list.c:151
@@ -1244,23 +1250,23 @@ msgstr ""
 
 #: plugins/upcoming-events/event-list.ui:26
 msgid "No events"
-msgstr ""
+msgstr "无事件"
 
 #. Translators: This is the time format used in 24-hour mode.
 #: plugins/upcoming-events/upcoming-event.c:56
 msgid "%R"
-msgstr ""
+msgstr "%R"
 
 #. Translators: This is the time format used in 12-hour mode.
 #: plugins/upcoming-events/upcoming-event.c:59
 msgid "%l:%M %p"
-msgstr ""
+msgstr "%p %I∶%M"
 
 #. Translators: An all day event
 #: plugins/upcoming-events/upcoming-event.c:122
 #: plugins/upcoming-events/upcoming-event.c:159
 msgid "All day"
-msgstr ""
+msgstr "全天"
 
 #. Translators: When the event ends: Ends\r16:00
 #: plugins/upcoming-events/upcoming-event.c:148
@@ -1301,6 +1307,10 @@ msgstr ""
 #: plugins/scaling-quick-setting/qs.ui:14
 msgid "Monitor scales"
 msgstr ""
+
+#: plugins/scaling-quick-setting/qs.ui:36
+msgid "Display Settings"
+msgstr "显示设置"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
