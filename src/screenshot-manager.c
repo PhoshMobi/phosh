@@ -12,7 +12,6 @@
 #include "phosh-config.h"
 #include "fader.h"
 #include "phosh-wayland.h"
-#include "notifications/notify-manager.h"
 #include "screenshot-manager.h"
 #include "shell-priv.h"
 #include "util.h"
@@ -112,7 +111,7 @@ G_DEFINE_TYPE_WITH_CODE (PhoshScreenshotManager,
                            phosh_screenshot_manager_screenshot_iface_init));
 
 static void
-on_viewer_opened (GObject *source, GAsyncResult *result, gpointer data)
+on_image_opened (GObject *source, GAsyncResult *result, gpointer data)
 {
   g_autoptr (GError) err = NULL;
   if (!g_app_info_launch_default_for_uri_finish (result, &err))
@@ -120,12 +119,21 @@ on_viewer_opened (GObject *source, GAsyncResult *result, gpointer data)
 }
 
 static void
-on_notification_actioned (PhoshScreenshotManager *self,
-                          GSimpleAction          *action,
-                          PhoshShellNotification *noti)
+on_folder_opened (GObject *source, GAsyncResult *result, gpointer data)
 {
+  g_autoptr (GError) err = NULL;
+  if (!g_app_info_launch_uris_finish (G_APP_INFO (source), result, &err))
+    g_critical ("Unable to show image: %s", err->message);
+}
+
+static void
+open_image (GSimpleAction *action,
+            GVariant      *parameter,
+            gpointer       data)
+{
+  PhoshScreenshotManager *self = PHOSH_SCREENSHOT_MANAGER (data);
   GdkDisplay *display = gdk_display_get_default ();
-  char *filepath = g_object_get_data (G_OBJECT (noti), "filepath");
+  char *filepath = g_object_get_data (G_OBJECT (action), "filepath");
   g_autofree char *uri = NULL;
   g_autoptr (GFile) file = NULL;
   g_autoptr (GdkAppLaunchContext) context = NULL;
@@ -138,8 +146,42 @@ on_notification_actioned (PhoshScreenshotManager *self,
   g_app_info_launch_default_for_uri_async (uri,
                                            G_APP_LAUNCH_CONTEXT (context),
                                            self->cancel,
-                                           on_viewer_opened,
+                                           on_image_opened,
                                            NULL);
+}
+
+static void
+open_folder (GSimpleAction *action,
+             GVariant      *parameter,
+             gpointer       data)
+{
+  PhoshScreenshotManager *self = PHOSH_SCREENSHOT_MANAGER (data);
+  GdkDisplay *display = gdk_display_get_default ();
+  char *filepath = g_object_get_data (G_OBJECT (action), "filepath");
+  g_autofree char *uri = NULL;
+  g_autoptr (GList) uris = NULL;
+  g_autoptr (GFile) file = NULL;
+  g_autoptr (GAppInfo) app = NULL;
+  g_autoptr (GdkAppLaunchContext) context = NULL;
+
+  g_return_if_fail (filepath);
+
+  file = g_file_new_for_path (filepath);
+  uri = g_file_get_uri (file);
+  uris = g_list_append (uris, uri);
+  app = g_app_info_get_default_for_type ("inode/directory", FALSE);
+  context = gdk_display_get_app_launch_context (display);
+
+  if (app != NULL){
+    g_app_info_launch_uris_async (
+      app,
+      uris,
+      G_APP_LAUNCH_CONTEXT (context),
+      self->cancel,
+      on_folder_opened,
+      NULL
+      );
+  }
 }
 
 static void
@@ -239,6 +281,11 @@ show_fader (PhoshScreenshotManager *self)
   gtk_widget_set_visible (GTK_WIDGET (self->fader), TRUE);
 }
 
+static GActionEntry screenshot_noti_entries[] =
+{
+  { .name = "default", .activate = open_image },
+  { .name = "noti.open-folder", .activate = open_folder },
+};
 
 static void
 screenshot_done (PhoshScreenshotManager *self, gboolean success)
@@ -255,9 +302,13 @@ screenshot_done (PhoshScreenshotManager *self, gboolean success)
 
   /* Internal screenshot */
   if (self->frames->filename) {
-    PhoshNotifyManager *nm = phosh_notify_manager_get_default ();
+    PhoshShell *shell = phosh_shell_get_default ();
     g_autoptr (GIcon) icon = g_themed_icon_new ("screenshot-portrait-symbolic");
-    g_autoptr (PhoshNotification) noti = NULL;
+    g_autoptr (PhoshShellNotification) noti = NULL;
+    g_autoptr (GSimpleActionGroup) action_group = g_simple_action_group_new ();
+    GAction *open_folder_action = NULL;
+    GAction *view_image_action = NULL;
+    char *actions[] = { "default", _("View"), "noti.open-folder", _("Open containing folder"), NULL };
     g_autofree char *msg = NULL;
 
     if (success) {
@@ -266,29 +317,36 @@ screenshot_done (PhoshScreenshotManager *self, gboolean success)
       filename = g_path_get_basename (self->frames->filename);
       /* Translators: '%s' is the filename of a screenshot */
       msg = g_strdup_printf (_("Screenshot saved to '%s'"), filename);
+
+      g_action_map_add_action_entries (G_ACTION_MAP (action_group),
+                                       screenshot_noti_entries,
+                                       G_N_ELEMENTS (screenshot_noti_entries),
+                                       self);
+      open_folder_action = g_action_map_lookup_action (G_ACTION_MAP (action_group),
+                                                       "noti.open-folder");
+      view_image_action =  g_action_map_lookup_action (G_ACTION_MAP (action_group),
+                                                       "default");
+      g_object_set_data_full (G_OBJECT (open_folder_action),
+                              "filepath",
+                              g_strdup (self->frames->filename),
+                              (GDestroyNotify) g_free);
+      g_object_set_data_full (G_OBJECT (view_image_action),
+                              "filepath",
+                              g_strdup (self->frames->filename),
+                              (GDestroyNotify) g_free);
     } else {
       msg = g_strdup (_("Failed to save screenshot"));
     }
 
-    noti = g_object_new (PHOSH_TYPE_NOTIFICATION,
+    noti = g_object_new (PHOSH_TYPE_SHELL_NOTIFICATION,
                          "summary", _("Screenshot"),
                          "body", msg,
                          "image", icon,
                          NULL);
-    if (self->frames->filename){
-      g_object_set_data_full (G_OBJECT (noti),
-                              "filepath",
-                              g_strdup (self->frames->filename),
-                              (GDestroyNotify) g_free);
-    }
+    if (success)
+      phosh_shell_notification_set_actions (noti, actions, G_ACTION_GROUP (action_group));
 
-    g_signal_connect_object (noti,
-                             "actioned",
-                             G_CALLBACK (on_notification_actioned),
-                             self,
-                             G_CONNECT_SWAPPED);
-
-    phosh_notify_manager_add_shell_notification (nm, noti, 0, 5000);
+    phosh_shell_show_notification (shell, noti, -1);
     g_clear_pointer (&self->frames->filename, g_free);
   }
 
