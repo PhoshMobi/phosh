@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-07-03 13:57+0000\n"
-"PO-Revision-Date: 2026-07-06 08:00+0300\n"
+"POT-Creation-Date: 2026-08-28 12:15+0000\n"
+"PO-Revision-Date: 2026-08-28 08:00+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -345,39 +345,39 @@ msgid "Checking…"
 msgstr "Denetleniyor…"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:238
+#: src/screenshot-manager.c:268
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Ekran görüntüsü '%s' olarak kaydedildi"
 
-#: src/screenshot-manager.c:240
+#: src/screenshot-manager.c:270
 msgid "Failed to save screenshot"
 msgstr "Ekran görüntüsü kaydedilemedi"
 
-#: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Ekran Görüntüsü"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:554
+#: src/screenshot-manager.c:596
 msgid "Screenshots"
 msgstr "Ekran Görüntüleri"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:574
+#: src/screenshot-manager.c:616
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Ekran görüntüsü %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:691 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Bilinmeyen Başlık"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:699 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Bilinmeyen Sanatçı"
 
@@ -752,15 +752,15 @@ msgstr "Acil"
 msgid "Run Command"
 msgstr "Komut Çalıştır"
 
-#: src/ui/settings.ui:121
+#: src/ui/settings.ui:128
 msgid "No notifications"
 msgstr "Bildirim yok"
 
-#: src/ui/settings.ui:150
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "Bildirimler"
 
-#: src/ui/settings.ui:159
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "Tümünü temizle"
 
@@ -1302,6 +1302,10 @@ msgstr "Olayların gösterileceği gün sayısı"
 #: plugins/scaling-quick-setting/qs.ui:14
 msgid "Monitor scales"
 msgstr "Monitör ölçeği"
+
+#: plugins/scaling-quick-setting/qs.ui:36
+msgid "Display Settings"
+msgstr "Ekran Ayarları"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
