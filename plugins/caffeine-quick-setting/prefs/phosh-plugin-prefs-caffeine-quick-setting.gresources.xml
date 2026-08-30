@@ -3,5 +3,7 @@
   <gresource prefix="/mobi/phosh/plugins/caffeine-quick-setting-prefs/">
     <file preprocess="xml-stripblanks">prefs.ui</file>
     <file compressed="true">stylesheet/common.css</file>
+    <file>icons/cafe-hot-symbolic.svg</file>
+    <file>icons/clock-alt-symbolic.svg</file>
   </gresource>
 </gresources>

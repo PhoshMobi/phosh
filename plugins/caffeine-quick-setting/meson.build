@@ -1,5 +1,12 @@
 name = 'caffeine-quick-setting'
 
+phosh_plugin_caffeine_inc = include_directories('.')
+
+caffeine_enum_sources = gnome.mkenums_simple(
+  'caffeine-quick-setting-enum-types',
+  sources: 'caffeine-quick-setting-enums.h',
+)
+
 caffeine_quick_setting_resources = gnome.compile_resources(
   'phosh-plugin-caffeine-quick-setting-resources',
   'phosh-plugin-caffeine-quick-setting.gresources.xml',
@@ -20,6 +27,7 @@ phosh_caffeine_quick_setting_plugin = shared_module(
     '-DG_LOG_DOMAIN="phosh-plugin-@0@"'.format(name),
     '-DPLUGIN_NAME="@0@"'.format(name),
   ],
+  sources: caffeine_enum_sources,
   dependencies: [plugin_dep, libcall_ui_dep],
   include_directories: phosh_inc,
   install: true,

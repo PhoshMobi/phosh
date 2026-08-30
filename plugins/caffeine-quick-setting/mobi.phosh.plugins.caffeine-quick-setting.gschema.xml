@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
+
+  <flags id="mobi.phosh.plugins.caffeine-quick-setting.PhoshCaffeineInhibitModeFlags">
+    <value nick="idle" value="1"/>
+    <value nick="suspend" value="2"/>
+  </flags>
+
   <schema id="mobi.phosh.plugins.caffeine-quick-setting"
           path="/mobi/phosh/plugins/caffeine-quick-setting/">
     <key name="intervals" type="au">
@@ -16,6 +22,14 @@
       <description>
         Corresponding index of the selected interval. If out of bounds,
         default value of infinity is selected.
+      </description>
+    </key>
+
+    <key name="mode" flags="mobi.phosh.plugins.caffeine-quick-setting.PhoshCaffeineInhibitModeFlags">
+      <default>["idle","suspend"]</default>
+      <summary>What to inhibit</summary>
+      <description>
+        What caffeine should inhibit when enabled.
       </description>
     </key>
   </schema>

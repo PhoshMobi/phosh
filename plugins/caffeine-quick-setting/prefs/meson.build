@@ -19,6 +19,8 @@ phosh_caffeine_quick_setting_plugin_prefs = shared_module(
     '-DPLUGIN_PREFS_NAME="@0@-prefs"'.format(name),
     '-DADW_VERSION_MIN_REQUIRED=@0@'.format(adw_ver_str),
   ],
+  sources: caffeine_enum_sources,
+  include_directories: phosh_plugin_caffeine_inc,
   dependencies: [plugin_prefs_dep, libcall_ui_dep],
   install: true,
   install_dir: plugin_prefs_dir,

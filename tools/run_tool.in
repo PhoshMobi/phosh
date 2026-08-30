@@ -3,7 +3,7 @@ set -e
 
 ABS_BUILDDIR='@ABS_BUILDDIR@'
 
-GSETTINGS_SCHEMA_DIR="${ABS_BUILDDIR}/data:${ABS_BUILDDIR}/plugins/launcher-box:${ABS_BUILDDIR}/plugins/pomodoro-quick-setting:${ABS_BUILDDIR}/plugins/ticket-box:${GSETTINGS_SCHEMA_DIR}:${ABS_BUILDDIR}/plugins/upcoming-events"
+GSETTINGS_SCHEMA_DIR="${ABS_BUILDDIR}/data:${ABS_BUILDDIR}/plugins/launcher-box:${ABS_BUILDDIR}/plugins/pomodoro-quick-setting:${ABS_BUILDDIR}/plugins/ticket-box:${GSETTINGS_SCHEMA_DIR}:${ABS_BUILDDIR}/plugins/upcoming-events:${ABS_BUILDDIR}/data:${ABS_BUILDDIR}/plugins/caffeine-quick-setting"
 export GSETTINGS_SCHEMA_DIR
 
 [ -n "$G_MESSAGES_DEBUG" ] || export G_MESSAGES_DEBUG=all
