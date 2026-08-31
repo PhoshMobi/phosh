@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-08-21 07:56+0000\n"
-"PO-Revision-Date: 2026-08-21 12:07+0200\n"
+"POT-Creation-Date: 2026-08-30 18:27+0000\n"
+"PO-Revision-Date: 2026-08-31 15:16+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -355,28 +355,28 @@ msgid "Checking…"
 msgstr "Preverjanje …"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:238
+#: src/screenshot-manager.c:268
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Zaslonska slika shranjena v »%s«"
 
-#: src/screenshot-manager.c:240
+#: src/screenshot-manager.c:270
 msgid "Failed to save screenshot"
 msgstr "Posnetka zaslona ni bilo mogoče shraniti"
 
-#: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Posnetek zaslona"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:554
+#: src/screenshot-manager.c:596
 msgid "Screenshots"
 msgstr "Zaslonske slike"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:574
+#: src/screenshot-manager.c:616
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Zaslonska slika iz %s%s.png"
@@ -754,7 +754,7 @@ msgid "Authentication required"
 msgstr "Zahtevana je overitev"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:101
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "Pre_kliči"
@@ -873,34 +873,34 @@ msgid "Cellular"
 msgstr "Mobilno"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
 msgid "Phosh on caffeine"
 msgstr "Phosh na Caffeinu"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:305
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "Izključeno"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:310
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "Vključeno"
 
 #: plugins/caffeine-quick-setting/qs.ui:15
 msgid "Caffeine timers"
-msgstr "Kofeinski časovniki"
+msgstr "Časovniki Caffeine"
 
 #: plugins/caffeine-quick-setting/qs.ui:38
 msgid "No caffeine intervals"
-msgstr "Brez intervalov kofeina"
+msgstr "Brez kofeinskih intervalov"
 
 #: plugins/caffeine-quick-setting/qs.ui:55
 msgid "Caffeine Settings"
 msgstr "Nastavitve za Caffeine"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:388
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:197
 msgid "No timeout (∞)"
 msgstr "Brez časovne omejitve (∞)"
 
@@ -924,36 +924,56 @@ msgstr "Dodajte ali odstranite intervale Caffeine po meri"
 msgid "Add interval"
 msgstr "Dodaj interval"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:68
+msgid "Caffeine Mode"
+msgstr "Način Caffeine"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:74
+msgid "Inhibit Suspend"
+msgstr "Prepreči sistemski prehod v pripravljenost"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+msgid "Don't suspend when caffeine is active"
+msgstr "Ne preidi v stanje pripravljenosti, dokler je Caffeine aktiven"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:81
+msgid "Inhibit Idle"
+msgstr "Prepreči stanje nedejavnosti"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:82
+msgid "Don't let system become idle when caffeine is active"
+msgstr "Ne dopusti, da sistem preide v mirovanje, dokler je Caffeine aktiven"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:92
 msgid "Add New Interval"
 msgstr "Dodaj nov interval"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:109
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "_Dodaj"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:141
 msgid "Quickstart Intervals"
 msgstr "Intervali hitrih nastavitev"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:153
 msgid "5 m"
 msgstr "5 min"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
 msgid "15 m"
 msgstr "15 min"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:175
 msgid "30 m"
 msgstr "30 min"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:186
 msgid "1 h"
 msgstr "1 ura"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:214
 msgid "Choose Interval"
 msgstr "Izberite interval"
 
@@ -1343,7 +1363,7 @@ msgstr "Število dni za prikazovanja dogodkov"
 msgid "Monitor scales"
 msgstr "Faktor velikosti zaslona"
 
-#: plugins/scaling-quick-setting/qs.ui:35
+#: plugins/scaling-quick-setting/qs.ui:36
 msgid "Display Settings"
 msgstr "Nastavitve zaslona"
 
