@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-08-21 07:56+0000\n"
-"PO-Revision-Date: 2026-08-21 20:28+0300\n"
+"POT-Creation-Date: 2026-08-30 18:27+0000\n"
+"PO-Revision-Date: 2026-08-31 09:59+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -352,28 +352,28 @@ msgid "Checking…"
 msgstr "Звіряю…"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:238
+#: src/screenshot-manager.c:268
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Знімок збережено до «%s»"
 
-#: src/screenshot-manager.c:240
+#: src/screenshot-manager.c:270
 msgid "Failed to save screenshot"
 msgstr "Не вдалося зберегти знімок екрана"
 
-#: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Знімок вікна"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:554
+#: src/screenshot-manager.c:596
 msgid "Screenshots"
 msgstr "Знімки вікон"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:574
+#: src/screenshot-manager.c:616
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Знімок вікна %s%s.png"
@@ -744,7 +744,7 @@ msgid "Authentication required"
 msgstr "Слід пройти розпізнавання"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:101
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Скасувати"
@@ -863,16 +863,16 @@ msgid "Cellular"
 msgstr "Стільниковий"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
 msgid "Phosh on caffeine"
 msgstr "Phosh на caffeine"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:305
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "○"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:310
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "❙"
@@ -889,8 +889,8 @@ msgstr "Немає інтервалів caffeine"
 msgid "Caffeine Settings"
 msgstr "Параметри Caffeine"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:388
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:197
 msgid "No timeout (∞)"
 msgstr "Без часу очікування (∞)"
 
@@ -914,36 +914,58 @@ msgstr "Додати або вилучити нетипові інтервали
 msgid "Add interval"
 msgstr "Додати інтервал"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:68
+#| msgid "Caffeine timers"
+msgid "Caffeine Mode"
+msgstr "Режим caffeine"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:74
+#| msgid "Suspend"
+msgid "Inhibit Suspend"
+msgstr "Заборонити присипляння"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+msgid "Don't suspend when caffeine is active"
+msgstr "Не присипляти, доки активним є caffeine"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:81
+msgid "Inhibit Idle"
+msgstr "Перешкоджати бездіяльності"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:82
+msgid "Don't let system become idle when caffeine is active"
+msgstr "Не переводити систему у режим бездіяльності, доки активним є caffeine"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:92
 msgid "Add New Interval"
 msgstr "Додати новий інтервал"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:109
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "_Додати"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:141
 msgid "Quickstart Intervals"
 msgstr "Інтервали швидкого запуску"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:153
 msgid "5 m"
 msgstr "5 хв."
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
 msgid "15 m"
 msgstr "15 хв."
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:175
 msgid "30 m"
 msgstr "30 хв."
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:186
 msgid "1 h"
 msgstr "1 год."
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:214
 msgid "Choose Interval"
 msgstr "Вибрати інтервал"
 
@@ -1330,8 +1352,7 @@ msgstr "Кількість днів, для якої буде показано �
 msgid "Monitor scales"
 msgstr "Масштаби монітора"
 
-#: plugins/scaling-quick-setting/qs.ui:35
-#| msgid "Wi-Fi Settings"
+#: plugins/scaling-quick-setting/qs.ui:36
 msgid "Display Settings"
 msgstr "Параметри показу"
 
