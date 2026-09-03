@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-08-22 20:11+0000\n"
-"PO-Revision-Date: 2026-08-23 02:00+0330\n"
+"POT-Creation-Date: 2026-08-30 18:27+0000\n"
+"PO-Revision-Date: 2026-08-31 19:45+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
@@ -351,28 +351,28 @@ msgid "Checking…"
 msgstr "در حال بررسی…"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:238
+#: src/screenshot-manager.c:268
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "نماگرفت در %s ذخیره شد"
 
-#: src/screenshot-manager.c:240
+#: src/screenshot-manager.c:270
 msgid "Failed to save screenshot"
 msgstr "شکست در ذخیرهٔ نماگرفت"
 
-#: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "نماگرفت"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:554
+#: src/screenshot-manager.c:596
 msgid "Screenshots"
 msgstr "نماگرفت‌ها"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:574
+#: src/screenshot-manager.c:616
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "نماگرفت از ‪%s%s.png"
@@ -515,8 +515,8 @@ msgstr[1] "%Idم"
 #, c-format
 msgid "~%dy"
 msgid_plural "~%dy"
-msgstr[0] "~%Idسا"
-msgstr[1] "~%Idسا"
+msgstr[0] "~%Id سال"
+msgstr[1] "‏~%Id سال"
 
 #. Translators: abbreviated time difference "Over 5 years ago"
 #. Please stick to a maximum of 4 chars for the time unit
@@ -524,8 +524,8 @@ msgstr[1] "~%Idسا"
 #, c-format
 msgid "Over %dy"
 msgid_plural "Over %dy"
-msgstr[0] "بیش از %Idسا"
-msgstr[1] "بیش از %Idسا"
+msgstr[0] "بیش از %Id سال"
+msgstr[1] "بیش از %Id سال"
 
 #. Translators: abbreviated time difference "almost 5 years ago"
 #. Please stick to a maximum of 4 chars for the time unit
@@ -736,7 +736,7 @@ msgid "Authentication required"
 msgstr "نیاز به تأیید هویت است"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:101
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_لغو"
@@ -855,16 +855,16 @@ msgid "Cellular"
 msgstr "سلولی"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
 msgid "Phosh on caffeine"
 msgstr "فوش روی کافئین"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:305
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "خاموش"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:310
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "روشن"
@@ -881,8 +881,8 @@ msgstr "بدون دورهٔ کافئین"
 msgid "Caffeine Settings"
 msgstr "تنظیمات کافئین"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:388
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:197
 msgid "No timeout (∞)"
 msgstr "بدون مهلت زمانی (∞)"
 
@@ -906,36 +906,56 @@ msgstr "افزودن یا برداشتن دورهٔ سفارشی کافئین"
 msgid "Add interval"
 msgstr "افزودن دوره"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:68
+msgid "Caffeine Mode"
+msgstr "حالت کافئین"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:74
+msgid "Inhibit Suspend"
+msgstr "جلوگیری از تعلیق"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+msgid "Don't suspend when caffeine is active"
+msgstr "معلّق نشدن هنگام فعّال بودن کافئین"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:81
+msgid "Inhibit Idle"
+msgstr "جلوگیری از بی‌کاری"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:82
+msgid "Don't let system become idle when caffeine is active"
+msgstr "بی‌کار نشدن سامانه هنگام فعّال بودن کافئین"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:92
 msgid "Add New Interval"
 msgstr "افزودن دورهٔ جدید"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:109
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "_افزودن"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:141
 msgid "Quickstart Intervals"
 msgstr "دوره‌های آغاز سریع"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:153
 msgid "5 m"
 msgstr "۵ د"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
 msgid "15 m"
 msgstr "۱۵ د"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:175
 msgid "30 m"
 msgstr "۳۰ د"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:186
 msgid "1 h"
 msgstr "۱ س"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:214
 msgid "Choose Interval"
 msgstr "گزینش دوره"
 
