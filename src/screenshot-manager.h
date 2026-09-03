@@ -8,7 +8,7 @@
 
 #include "dbus/phosh-screenshot-dbus.h"
 
-#include <glib-object.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
@@ -23,5 +23,13 @@ gboolean                phosh_screenshot_manager_take_screenshot (PhoshScreensho
                                                                   const char             *filename,
                                                                   gboolean                copy_to_clipboard,
                                                                   gboolean                include_cursor);
+
+GdkRectangle *phosh_screenshot_manager_select_area_finish (PhoshScreenshotManager *self,
+                                                           GAsyncResult           *res,
+                                                           GError                **error);
+void          phosh_screenshot_manager_select_area_async (PhoshScreenshotManager *self,
+                                                          GCancellable           *cancel,
+                                                          GAsyncReadyCallback     callback,
+                                                          gpointer                user_data);
 
 G_END_DECLS
