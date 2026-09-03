@@ -108,16 +108,10 @@ libphosh-0.45.so.0 libphosh-0.45-0 #MINVER#
  phosh_status_page_set_title@LIBPHOSH_0_45_0 0.45~rc1
  phosh_util_append_to_strv@LIBPHOSH_0_45_0 0.45~rc1
  phosh_util_calculate_supported_mode_scales@LIBPHOSH_0_45_0 0.45~rc1
- phosh_util_data_uri_to_pixbuf@LIBPHOSH_0_45_0 0.45~rc1
  phosh_util_escape_markup@LIBPHOSH_0_45_0 0.45~rc1
- phosh_util_file_equal@LIBPHOSH_0_45_0 0.45~rc1
- phosh_util_gesture_is_touch@LIBPHOSH_0_45_0 0.45~rc1
- phosh_util_get_icon_by_wifi_strength@LIBPHOSH_0_45_0 0.45~rc1
- phosh_util_have_gnome_software@LIBPHOSH_0_45_0 0.45~rc1
- phosh_util_matches_app_info@LIBPHOSH_0_45_0 0.45~rc1
  phosh_util_open_settings_panel@LIBPHOSH_0_45_0 0.45~rc1
- phosh_util_remove_from_strv@LIBPHOSH_0_45_0 0.45~rc1
  phosh_util_toggle_style_class@LIBPHOSH_0_45_0 0.45~rc1
+ phosh_util_remove_from_strv@LIBPHOSH_0_45_0 0.45~rc1
  phosh_wall_clock_get_clock@LIBPHOSH_0_45_0 0.45~rc1
  phosh_wall_clock_get_default@LIBPHOSH_0_45_0 0.45~rc1
  phosh_wall_clock_get_type@LIBPHOSH_0_45_0 0.45~rc1

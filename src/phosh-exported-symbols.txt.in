@@ -3,8 +3,13 @@
    phosh_shell_get_primary_monitor;
    phosh_shell_get_type;
 
-   # Utils are useful in plugins too
-   phosh_util_*;
+   # Utils are useful in plugins too, we enable already used and generic ones:
+   phosh_util_append_to_strv;
+   phosh_util_calculate_supported_mode_scales;
+   phosh_util_escape_markup;
+   phosh_util_open_settings_panel;
+   phosh_util_toggle_style_class;
+   phosh_util_remove_from_strv;
 
    # Plugins can inhibit session idleness
    phosh_shell_get_session_manager;
