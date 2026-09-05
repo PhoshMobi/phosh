@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-08-21 07:56+0000\n"
-"PO-Revision-Date: 2026-08-22 08:59+0500\n"
+"POT-Creation-Date: 2026-08-30 18:27+0000\n"
+"PO-Revision-Date: 2026-09-05 22:30+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <Kazakh>\n"
 "Language: kk\n"
@@ -43,7 +43,7 @@ msgstr "Кофеин жылдам баптауы"
 
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:6
 msgid "Prevent the session from going idle"
-msgstr "Сессияның бос тұруына жол бермеу"
+msgstr "Сессияның іссіз күйге өтуге жол бермеу"
 
 #: plugins/calendar/calendar.desktop.in.in:4
 msgid "Calendar"
@@ -324,7 +324,8 @@ msgstr "Қосулы"
 #: src/location-manager.c:266
 #, c-format
 msgid "Allow '%s' to access your location information?"
-msgstr "'%s' қолданбасына орналасу ақпаратына қол жеткізуге рұқсат бересіз бе?"
+msgstr ""
+"'%s' қолданбасына орналасу ақпаратына қол жеткізуге рұқсат бересіз бе?"
 
 #: src/location-manager.c:271
 msgid "Geolocation"
@@ -348,28 +349,29 @@ msgid "Checking…"
 msgstr "Тексерілуде…"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:238
+#: src/screenshot-manager.c:268
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Скриншот '%s' ішіне сақталды"
 
-#: src/screenshot-manager.c:240
+#: src/screenshot-manager.c:270
 msgid "Failed to save screenshot"
 msgstr "Скриншотты сақтау сәтсіз аяқталды"
 
-#: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Скриншот"
 
-#. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:554
+#. Translators: name of the folder beneath ~/Pictures used to store
+#. screenshots
+#: src/screenshot-manager.c:596
 msgid "Screenshots"
 msgstr "Скриншоттар"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:574
+#: src/screenshot-manager.c:616
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "%s%s.png скриншоты"
@@ -391,7 +393,8 @@ msgstr "Кірістірілген дисплей"
 #: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
-"This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
+"This is a monitor vendor name, followed by a size in inches, like 'Dell "
+"15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
@@ -726,7 +729,7 @@ msgid "Authentication required"
 msgstr "Аутентификация қажет"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:101
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Бас тарту"
@@ -844,17 +847,18 @@ msgstr "Wi-Fi қатынау нүктелері жоқ"
 msgid "Cellular"
 msgstr "Ұялы байланыс"
 
-#. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
+#. Translators: Phosh prevents the session from going idle because the
+#. caffeine quick setting is toggled
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
 msgid "Phosh on caffeine"
 msgstr "Phosh кофеин режимінде"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:305
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "Сөндірулі"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:310
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "Қосулы"
@@ -871,8 +875,8 @@ msgstr "Кофеин аралықтары жоқ"
 msgid "Caffeine Settings"
 msgstr "Кофеин баптаулары"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:388
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:197
 msgid "No timeout (∞)"
 msgstr "Таймаутсыз (∞)"
 
@@ -896,36 +900,56 @@ msgstr "Таңдамалы кофеин аралықтарын қосу неме
 msgid "Add interval"
 msgstr "Аралықты қосу"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:68
+msgid "Caffeine Mode"
+msgstr "Кофеин режимі"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:74
+msgid "Inhibit Suspend"
+msgstr "Күту режимін болдырмау"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+msgid "Don't suspend when caffeine is active"
+msgstr "Кофеин белсенді болған кезде кідіртпеу"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:81
+msgid "Inhibit Idle"
+msgstr "Іссіз күйді болдырмау"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:82
+msgid "Don't let system become idle when caffeine is active"
+msgstr "Кофеин белсенді болған кезде жүйенің іссіз күйге өтуіне жол бермеу"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:92
 msgid "Add New Interval"
 msgstr "Жаңа аралықты қосу"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:109
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "Қо_су"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:141
 msgid "Quickstart Intervals"
 msgstr "Жылдам бастау аралықтары"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:153
 msgid "5 m"
 msgstr "5 м"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
 msgid "15 m"
 msgstr "15 м"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:175
 msgid "30 m"
 msgstr "30 м"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:186
 msgid "1 h"
 msgstr "1 сағ"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:214
 msgid "Choose Interval"
 msgstr "Аралықты таңдау"
 
@@ -1306,7 +1330,7 @@ msgstr "Оқиғаларды көрсетуге арналған күндер с
 msgid "Monitor scales"
 msgstr "Монитор масштабтары"
 
-#: plugins/scaling-quick-setting/qs.ui:35
+#: plugins/scaling-quick-setting/qs.ui:36
 msgid "Display Settings"
 msgstr "Дисплей баптаулары"
 
