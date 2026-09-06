@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-28 10:37+0000\n"
-"PO-Revision-Date: 2026-06-30 21:20+0200\n"
+"POT-Creation-Date: 2026-08-30 18:27+0000\n"
+"PO-Revision-Date: 2026-09-05 21:46+0200\n"
 "Last-Translator: Марко Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: Serbian <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
@@ -68,7 +68,7 @@ msgstr "Хитне информације"
 
 #: plugins/emergency-info/emergency-info.desktop.in.in:6
 msgid "Show emergency information and contacts"
-msgstr "Прикажи хитне информације и контакте"
+msgstr "Прикажи хитне податке и контакте"
 
 #: plugins/launcher-box/launcher-box.desktop.in.in:3
 #: plugins/launcher-box/launcher-box.ui:17
@@ -77,9 +77,7 @@ msgstr "Оквир покретача"
 
 #: plugins/launcher-box/launcher-box.desktop.in.in:5
 msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
-msgstr ""
-"Додајте покретаче на закључани екран. <b>Овај прикључак је експерименталан.</"
-"b>"
+msgstr "Додајте покретаче на закључани екран. <b>Овај прикључак је експерименталан.</b>"
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
 msgid "Location Quick Setting"
@@ -97,7 +95,7 @@ msgstr "Медијски програми"
 
 #: plugins/media-players/media-players.desktop.in.in:5
 msgid "Track currently running media players"
-msgstr "Пратите тренутно покренуте медијске програме"
+msgstr "Прати тренутно покренуте медијске програме"
 
 #: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:4
 msgid "Mobile Data Quick Setting"
@@ -156,7 +154,7 @@ msgstr "Будући догађаји"
 
 #: plugins/upcoming-events/upcoming-events.desktop.in.in:5
 msgid "Show upcoming calendar events"
-msgstr "Прикажи будуће догађаје у календару"
+msgstr "Прикажи предстојеће догађаје у календару"
 
 #: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
 msgid "Wi-Fi Hotspot Quick Setting"
@@ -176,7 +174,7 @@ msgstr "Направи нову фасциклу"
 
 #: src/app-grid-button.c:399
 msgid "Can't uninstall application"
-msgstr "Немогуће је деинсталирати програм."
+msgstr "Немогуће је деинсталирати програм"
 
 #: src/app-grid-button.c:475
 msgid "Undo"
@@ -188,16 +186,16 @@ msgstr "Програм је сада трајно сакривен и онемо
 
 #: src/app-grid-button.c:493
 msgid "Failed to hide application"
-msgstr "Неуспех при скривању програма"
+msgstr "Не могу да сакријем програм"
 
 #: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
-msgstr "Апликација"
+msgstr "Програм"
 
 #: src/app-grid.c:159
 #, c-format
 msgid "%s folder is empty"
-msgstr "Фасцикла %s је празна."
+msgstr "%s фасцикла је празна"
 
 #: src/app-grid.c:265
 msgid "Show All Apps"
@@ -224,7 +222,7 @@ msgstr "Блутут"
 #: src/bt-info.c:123
 msgctxt "bluetooth:enabled"
 msgid "On"
-msgstr "Укљ."
+msgstr "Укључено"
 
 #: src/bt-status-page.c:123
 msgid "No connectable Bluetooth Devices found"
@@ -274,29 +272,29 @@ msgstr "Унутрашња грешка"
 
 #: src/end-session-dialog.c:173
 msgid "Log Out"
-msgstr "Одјави ме"
+msgstr "Одјави се"
 
 #: src/end-session-dialog.c:176
 #, c-format
 msgid "%s will be logged out automatically in %d second."
 msgid_plural "%s will be logged out automatically in %d seconds."
-msgstr[0] "„%s“ ће бити одјављен за %d секунду."
-msgstr[1] "„%s“ ће бити одјављен за %d секунде."
-msgstr[2] "„%s“ ће бити одјављен за %d секунди."
-msgstr[3] "„%s“ ће бити одјављен за једну секунду."
+msgstr[0] "%s ће бити самостално одјављен за %d секунду."
+msgstr[1] "%s ће бити самостално одјављен за %d секунде."
+msgstr[2] "%s ће бити самостално одјављен за %d секунди."
+msgstr[3] "%s ће бити самостално одјављен за %d секунду."
 
 #: src/end-session-dialog.c:182 src/ui/power-menu.ui:72
 msgid "Power Off"
-msgstr "Искључивање"
+msgstr "Искључи"
 
 #: src/end-session-dialog.c:183
 #, c-format
 msgid "The system will power off automatically in %d second."
 msgid_plural "The system will power off automatically in %d seconds."
-msgstr[0] "Рачунар ће се искључити за %d секунду."
-msgstr[1] "Рачунар ће се искључити за %d секунде."
-msgstr[2] "Рачунар ће се искључити за %d секунди."
-msgstr[3] "Рачунар ће се искључити за једну секунду."
+msgstr[0] "Систем ће се самостално искључити за %d секунду."
+msgstr[1] "Систем ће се самостално искључити за %d секунде."
+msgstr[2] "Систем ће се самостално искључити за %d секунди."
+msgstr[3] "Систем ће се самостално искључити за %d секунду."
 
 #: src/end-session-dialog.c:189
 msgid "Restart"
@@ -306,10 +304,10 @@ msgstr "Поново покрени"
 #, c-format
 msgid "The system will restart automatically in %d second."
 msgid_plural "The system will restart automatically in %d seconds."
-msgstr[0] "Систем ће се поново покренути за %d секунду."
-msgstr[1] "Систем ће се поново покренути за %d секунде."
-msgstr[2] "Систем ће се поново покренути за %d секунди."
-msgstr[3] "Систем ће се поново покренути за једну секунду."
+msgstr[0] "Систем ће се самостално поново покренути за %d секунду."
+msgstr[1] "Систем ће се самостално поново покренути за %d секунде."
+msgstr[2] "Систем ће се самостално поново покренути за %d секунди."
+msgstr[3] "Систем ће се самостално поново покренути за %d секунду."
 
 #. Translators: quiet and silent are fbd profiles names:
 #. see https://source.puri.sm/Librem5/feedbackd#profiles
@@ -329,12 +327,12 @@ msgstr "Утишано"
 #: src/feedbackinfo.c:108
 msgctxt "feedback:enabled"
 msgid "On"
-msgstr "Укљ."
+msgstr "Укључено"
 
 #: src/location-manager.c:266
 #, c-format
 msgid "Allow '%s' to access your location information?"
-msgstr "Да дозволим да „%s“ приступи вашим подацима о месту?"
+msgstr "Дозволити мрежи „%s“ приступ вашим подацима о локацији?"
 
 #: src/location-manager.c:271
 msgid "Geolocation"
@@ -349,7 +347,7 @@ msgid "No"
 msgstr "Не"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Унеси код"
 
@@ -358,39 +356,39 @@ msgid "Checking…"
 msgstr "Проверавам…"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:238
+#: src/screenshot-manager.c:268
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Снимак екрана је сачуван у „%s“"
 
-#: src/screenshot-manager.c:240
+#: src/screenshot-manager.c:270
 msgid "Failed to save screenshot"
 msgstr "Нисам успео да сачувам снимак екрана"
 
-#: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Снимак екрана"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:554
+#: src/screenshot-manager.c:596
 msgid "Screenshots"
 msgstr "Снимци екрана"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:574
+#: src/screenshot-manager.c:616
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Снимак екрана од %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:691 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Непознат наслов"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:699 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Непознат извођач"
 
@@ -426,7 +424,7 @@ msgstr "Врста потврђивања идентитета за бежичн
 #: src/network-auth-prompt.c:207
 #, c-format
 msgid "Enter password for the Wi-Fi network “%s”"
-msgstr "Унесите лозинку за бежичну мрежу „%s“"
+msgstr "Унеси лозинку за бежичну мрежу „%s“"
 
 #: src/notifications/mount-notification.c:121
 msgid "Open"
@@ -530,10 +528,10 @@ msgstr[3] "%dмес"
 #, c-format
 msgid "~%dy"
 msgid_plural "~%dy"
-msgstr[0] "~%dг."
-msgstr[1] "~%dг."
-msgstr[2] "~%dг."
-msgstr[3] "~%dг."
+msgstr[0] "~%dгод"
+msgstr[1] "~%dгод"
+msgstr[2] "~%dгод"
+msgstr[3] "~%dгод"
 
 #. Translators: abbreviated time difference "Over 5 years ago"
 #. Please stick to a maximum of 4 chars for the time unit
@@ -541,10 +539,10 @@ msgstr[3] "~%dг."
 #, c-format
 msgid "Over %dy"
 msgid_plural "Over %dy"
-msgstr[0] "Преко %dг."
-msgstr[1] "Преко %dг."
-msgstr[2] "Преко %dг."
-msgstr[3] "Преко %dг."
+msgstr[0] "Преко %d год"
+msgstr[1] "Преко %d год"
+msgstr[2] "Преко %d год"
+msgstr[3] "Преко %d год"
 
 #. Translators: abbreviated time difference "almost 5 years ago"
 #. Please stick to a maximum of 4 chars for the time unit
@@ -552,10 +550,10 @@ msgstr[3] "Преко %dг."
 #, c-format
 msgid "Almost %dy"
 msgid_plural "Almost %dy"
-msgstr[0] "Скоро %dг."
-msgstr[1] "Скоро %dг."
-msgstr[2] "Скоро %dг."
-msgstr[3] "Скоро %dг."
+msgstr[0] "Скоро %d год"
+msgstr[1] "Скоро %d год"
+msgstr[2] "Скоро %d год"
+msgstr[3] "Скоро %d год"
 
 #: src/overview.c:228
 msgid "Application is slow or failed to start"
@@ -573,7 +571,7 @@ msgstr "Лозинка:"
 
 #: src/polkit-auth-prompt.c:429
 msgid "Sorry, that didn’t work. Please try again."
-msgstr "Нетачно. Покушајте поново."
+msgstr "Није успело. Покушајте поново."
 
 #: src/rotateinfo.c:102
 msgid "Portrait"
@@ -586,21 +584,21 @@ msgstr "Положено"
 #: src/rotateinfo.c:125 src/rotateinfo.c:230
 msgctxt "automatic-screen-rotation-disabled"
 msgid "Off"
-msgstr "Искљ."
+msgstr "Искључено"
 
 #: src/rotateinfo.c:126
 msgctxt "automatic-screen-rotation-enabled"
 msgid "On"
-msgstr "Укљ."
+msgstr "Укључено"
 
 #: src/run-command-dialog.c:129
 msgid "Press ESC to close"
-msgstr "Притисните „ESC“ да затворите"
+msgstr "Притисните ESC за затварање"
 
 #: src/run-command-manager.c:89
 #, c-format
 msgid "Running '%s' failed"
-msgstr "Покретање „%s“ није успело"
+msgstr "Покретање '%s' није успело"
 
 #: src/system-prompt.c:376
 msgid "Passwords do not match."
@@ -616,7 +614,7 @@ msgstr "Бакља"
 
 #: src/ui/app-auth-prompt.ui:43
 msgid "Remember decision"
-msgstr "Упамти одлуку"
+msgstr "Запамти одлуку"
 
 #: src/ui/app-auth-prompt.ui:55 src/ui/end-session-dialog.ui:53
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:25
@@ -629,7 +627,7 @@ msgstr "Уклони из о_миљених"
 
 #: src/ui/app-grid-button.ui:36
 msgid "Add to _Favorites"
-msgstr "Додај у о_миљено"
+msgstr "Додај у о_миљене"
 
 #: src/ui/app-grid-button.ui:41
 msgid "View _Details"
@@ -637,7 +635,7 @@ msgstr "Прикажи _појединости"
 
 #: src/ui/app-grid-button.ui:46
 msgid "Uninstall"
-msgstr "Уклони"
+msgstr "Деинсталирај"
 
 #: src/ui/app-grid-button.ui:51
 msgid "Hide Application"
@@ -653,7 +651,7 @@ msgstr "Управљај скривеним програмима"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
-msgstr "Претражи апликације…"
+msgstr "Претражи програме…"
 
 #: src/ui/audio-settings.ui:84
 msgid "Output Devices"
@@ -669,11 +667,11 @@ msgstr "Подешавања звука"
 
 #: src/ui/brightness-settings.ui:87
 msgid "Automatic Brightness"
-msgstr "Самостална осветљеност"
+msgstr "Самостално осветљење"
 
 #: src/ui/brightness-settings.ui:120
 msgid "Brightness Settings"
-msgstr "Подешавања осветљености"
+msgstr "Подешавања осветљења"
 
 #: src/ui/bt-status-page.ui:39
 msgid "Enable Bluetooth"
@@ -706,7 +704,7 @@ msgstr "Власник је непознат"
 #: src/ui/emergency-menu.ui:123 plugins/emergency-info/emergency-info.ui:211
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:170
 msgid "Emergency Contacts"
-msgstr "Хитни позиви"
+msgstr "Хитни контакти"
 
 #: src/ui/emergency-menu.ui:142
 msgid "No emergency contacts available."
@@ -714,7 +712,7 @@ msgstr "Нема доступних хитних контаката."
 
 #: src/ui/end-session-dialog.ui:27
 msgid "Some applications are busy or have unsaved work"
-msgstr "Неки програми су заузети или имају несачувани рад"
+msgstr "Неки програми су заузети или имају несачуваног рада"
 
 #: src/ui/feedback-status-page.ui:6
 msgid "Feedback"
@@ -740,7 +738,7 @@ msgstr "Домен:"
 msgid "Co_nnect"
 msgstr "П_овежи се"
 
-#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr "Назад"
 
@@ -748,7 +746,7 @@ msgstr "Назад"
 msgid "Slide up to unlock"
 msgstr "Превуци нагоре за откључавање"
 
-#: src/ui/lockscreen.ui:334
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "Откључај"
 
@@ -757,7 +755,7 @@ msgid "Authentication required"
 msgstr "Потребно је потврђивање идентитета"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:101
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Откажи"
@@ -768,7 +766,7 @@ msgstr "П_овежи се"
 
 #: src/ui/polkit-auth-prompt.ui:96
 msgid "Authenticate"
-msgstr "Потврди идентитет"
+msgstr "Идентификуј"
 
 #: src/ui/power-menu.ui:112
 msgid "Suspend"
@@ -786,15 +784,15 @@ msgstr "Хитни позив"
 msgid "Run Command"
 msgstr "Покрени наредбу"
 
-#: src/ui/settings.ui:121
+#: src/ui/settings.ui:128
 msgid "No notifications"
-msgstr "Нема обавештења"
+msgstr "Без обавештења"
 
-#: src/ui/settings.ui:150
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "Обавештења"
 
-#: src/ui/settings.ui:159
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "Очисти све"
 
@@ -816,7 +814,7 @@ msgstr "_Обустави…"
 
 #: src/ui/top-panel.ui:115
 msgid "_Log Out…"
-msgstr "_Одјави ме…"
+msgstr "_Одјави се…"
 
 #: src/ui/wifi-status-page.ui:6 src/wifi-info.c:90
 msgid "Wi-Fi"
@@ -856,11 +854,11 @@ msgstr "Бежична мрежа је онемогућена"
 
 #: src/wifi-status-page.c:58
 msgid "Enable Wi-Fi"
-msgstr "Укључи бежичну мрежу"
+msgstr "Омогући бежичну мрежу"
 
 #: src/wifi-status-page.c:61
 msgid "Wi-Fi Hotspot Active"
-msgstr "Бежична врућа тачка је активна"
+msgstr "Бежична врућа тачка покренута"
 
 #: src/wifi-status-page.c:62
 msgid "Turn Off"
@@ -876,19 +874,19 @@ msgid "Cellular"
 msgstr "Мобилна"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
 msgid "Phosh on caffeine"
 msgstr "Фош на кофеину"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:305
 msgctxt "caffeine-disabled"
 msgid "Off"
-msgstr "Искљ."
+msgstr "Искључено"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:310
 msgctxt "caffeine-enabled"
 msgid "On"
-msgstr "Укљ."
+msgstr "Укључено"
 
 #: plugins/caffeine-quick-setting/qs.ui:15
 msgid "Caffeine timers"
@@ -902,8 +900,8 @@ msgstr "Нема интервала кофеина"
 msgid "Caffeine Settings"
 msgstr "Подешавања кофеина"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:388
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:197
 msgid "No timeout (∞)"
 msgstr "Без временског рока (∞)"
 
@@ -921,42 +919,62 @@ msgstr "Управљај трајањем кофеина"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:16
 msgid "Add or remove custom caffeine intervals"
-msgstr "Додајте или уклоните произвољне интервале кофеина"
+msgstr "Додај или уклони прилагођене интервале кофеина"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:22
 msgid "Add interval"
 msgstr "Додај интервал"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:68
+msgid "Caffeine Mode"
+msgstr "Режим кофеина"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:74
+msgid "Inhibit Suspend"
+msgstr "Спречи обуставу"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+msgid "Don't suspend when caffeine is active"
+msgstr "Не обустављај рад када је Кофеин покренут"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:81
+msgid "Inhibit Idle"
+msgstr "Спречи мировање"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:82
+msgid "Don't let system become idle when caffeine is active"
+msgstr "Не дозволи систему да мирује када је Кофеин покренут"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:92
 msgid "Add New Interval"
 msgstr "Додај нови интервал"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:109
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "_Додај"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:141
 msgid "Quickstart Intervals"
 msgstr "Интервали брзог покретања"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:153
 msgid "5 m"
-msgstr "5м"
+msgstr "5 м"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
 msgid "15 m"
-msgstr "15м"
+msgstr "15 м"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:175
 msgid "30 m"
-msgstr "30м"
+msgstr "30 м"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:186
 msgid "1 h"
 msgstr "1ч"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:214
 msgid "Choose Interval"
 msgstr "Изаберите интервал"
 
@@ -997,7 +1015,7 @@ msgstr "Здравствени подаци"
 
 #: plugins/emergency-info/emergency-info.ui:107
 msgid "Age"
-msgstr "Године"
+msgstr "Старост"
 
 #: plugins/emergency-info/emergency-info.ui:127
 msgid "Blood Type"
@@ -1018,7 +1036,7 @@ msgstr "Алергије"
 
 #: plugins/emergency-info/emergency-info.ui:195
 msgid "Medications & Conditions"
-msgstr "Лекови & здравствено стање"
+msgstr "Лекови и здравствена стања"
 
 #: plugins/emergency-info/emergency-info.ui:203
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:155
@@ -1028,7 +1046,7 @@ msgstr "Остали подаци"
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:6
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:16
 msgid "Emergency Info Preferences"
-msgstr "Инфо поставке хитних"
+msgstr "Поставке хитних података"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:36
 msgid "Done"
@@ -1048,7 +1066,7 @@ msgstr "_Жељени језик"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:105
 msgid "_Age"
-msgstr "_Године"
+msgstr "Ст_арост"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:111
 msgid "_Blood Type"
@@ -1080,7 +1098,7 @@ msgstr "_Име контакта"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:246
 msgid "Relationship"
-msgstr "Сродство"
+msgstr "Однос"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:252
 msgid "_Contact Number"
@@ -1203,7 +1221,7 @@ msgstr "Помодоро искључен"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:6
 msgid "Pomodoro Quick Setting Preferences"
-msgstr "Поставке брзог подешавања за Помодоро"
+msgstr "Поставке брзог подешавања помодора"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:11
 msgid "Pomodoro Technique"
@@ -1239,7 +1257,7 @@ msgstr "Нема докумената за приказивање"
 
 #: plugins/ticket-box/ticket-box.ui:82
 msgid "Tickets"
-msgstr "Картице"
+msgstr "Карте"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.c:94
 msgid "_Open"
@@ -1259,15 +1277,15 @@ msgstr "Путање"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.ui:14
 msgid "Folder Settings"
-msgstr "Поставке фасцикле"
+msgstr "Подешавања фасцикле"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.ui:15
 msgid "Where Phosh looks for your tickets"
-msgstr "Где ће Фош тражити ваше картице"
+msgstr "Где Фош тражи ваше карте"
 
 #: plugins/ticket-box/prefs/ticket-box-prefs.ui:18
 msgid "Ticket Folder"
-msgstr "Фасцикла картица"
+msgstr "Фасцикла за карте"
 
 #: plugins/upcoming-events/event-list.c:142
 msgid "Today"
@@ -1285,7 +1303,7 @@ msgstr "%x %a"
 
 #: plugins/upcoming-events/event-list.ui:26
 msgid "No events"
-msgstr "Нема догађаја"
+msgstr "Без догађаја"
 
 #. Translators: This is the time format used in 24-hour mode.
 #: plugins/upcoming-events/upcoming-event.c:56
@@ -1345,6 +1363,10 @@ msgstr "Број дана за које се приказују догађаји
 #: plugins/scaling-quick-setting/qs.ui:14
 msgid "Monitor scales"
 msgstr "Размере екрана"
+
+#: plugins/scaling-quick-setting/qs.ui:36
+msgid "Display Settings"
+msgstr "Подешавања приказа"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
