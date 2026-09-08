@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-04-24 11:47+0000\n"
-"PO-Revision-Date: 2026-04-25 15:55+0300\n"
+"POT-Creation-Date: 2026-08-30 18:27+0000\n"
+"PO-Revision-Date: 2026-09-08 20:24+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish\n"
 "Language: fi\n"
@@ -119,6 +119,23 @@ msgstr "Pomodoron pika-asetus"
 msgid "Simple Pomodoro Timer"
 msgstr "Yksinkertainen Pomodoro-ajastin"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "Skaalauksen pika-asetus"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "Pika-asetus näytön skaalauksen säätämiselle."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+#| msgid "Location Quick Setting"
+msgid "Syncthing Quick Setting"
+msgstr "Syncthingin pika-asetus"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Pika-asetus Syncthingille."
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -138,6 +155,14 @@ msgstr "Tulevat tapahtumat"
 msgid "Show upcoming calendar events"
 msgstr "Näytä tulevat kalenteritapahtumat"
 
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Wi-Fi-yhteyspisteen pika-asetus"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Wi-Fi-yhteyspiste päällä/pois"
+
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
 msgstr "Lisää kansioon"
@@ -146,15 +171,36 @@ msgstr "Lisää kansioon"
 msgid "Create new folder"
 msgstr "Luo uusi kansio"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "Sovellusta ei voi poistaa"
+
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "Kumoa"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Sovellus on nyt pysyvästi piilotettu ja poistettu käytöstä"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Sovelluksen piilottaminen epäonnistui"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Sovellus"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr ""
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "Näytä kaikki sovellukset"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Näytä vain mobiilille suunnatut sovellukset"
 
@@ -296,7 +342,7 @@ msgid "No"
 msgstr "Ei"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Syötä salasana"
 
@@ -305,39 +351,39 @@ msgid "Checking…"
 msgstr "Tarkistetaan…"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:238
+#: src/screenshot-manager.c:268
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Kuvakaappaus tallennettu tiedostoon '%s'"
 
-#: src/screenshot-manager.c:240
+#: src/screenshot-manager.c:270
 msgid "Failed to save screenshot"
 msgstr "Kuvakaappauksen tallentaminen epäonnistui"
 
-#: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Kuvakaappaus"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:554
+#: src/screenshot-manager.c:596
 msgid "Screenshots"
 msgstr "Kuvakaappaukset"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:574
+#: src/screenshot-manager.c:616
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Kuvakaappaus %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:691 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Tuntematon kappale"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:699 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Tuntematon esittäjä"
 
@@ -490,9 +536,9 @@ msgid_plural "Almost %dy"
 msgstr[0] "Melkein %d v"
 msgstr[1] "Melkein %d v"
 
-#: src/overview.c:221
-msgid "Application failed to start"
-msgstr "Sovelluksen käynnistäminen epäonnistui"
+#: src/overview.c:228
+msgid "Application is slow or failed to start"
+msgstr "Sovelluksen on hidas tai sen käynnistys epäonnistui"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
@@ -572,9 +618,17 @@ msgstr "Näytä yk_sityiskohdat"
 msgid "Uninstall"
 msgstr "Poista asennus"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "Piilota sovellus"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "_Poista kansiosta"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "Hallitse piilotettuja sovelluksia"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
@@ -665,7 +719,7 @@ msgstr "Toimialue:"
 msgid "Co_nnect"
 msgstr "_Yhdistä"
 
-#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr "Takaisin"
 
@@ -673,7 +727,7 @@ msgstr "Takaisin"
 msgid "Slide up to unlock"
 msgstr "Liu'uta ylös avataksesi"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "Avaa lukitus"
 
@@ -682,7 +736,7 @@ msgid "Authentication required"
 msgstr "Tunnistautuminen vaaditaan"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:101
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Peru"
@@ -711,15 +765,15 @@ msgstr "Hätä"
 msgid "Run Command"
 msgstr "Suorita komento"
 
-#: src/ui/settings.ui:121
+#: src/ui/settings.ui:128
 msgid "No notifications"
 msgstr "Ei ilmoituksia"
 
-#: src/ui/settings.ui:150
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "Ilmoitukset"
 
-#: src/ui/settings.ui:159
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "Tyhjennä kaikki"
 
@@ -801,16 +855,16 @@ msgid "Cellular"
 msgstr "Puhelinverkko"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
 msgid "Phosh on caffeine"
 msgstr "Phosh ja caffeine"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:305
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "Pois"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:310
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "Päällä"
@@ -827,8 +881,8 @@ msgstr "Ei Caffeine-aikavälejä"
 msgid "Caffeine Settings"
 msgstr "Caffeine-asetukset"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:388
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:197
 msgid "No timeout (∞)"
 msgstr "Ei aikakatkaisua (∞)"
 
@@ -852,36 +906,56 @@ msgstr "Lisää tai poista mukautettuja Caffeine-aikavälejä"
 msgid "Add interval"
 msgstr "Lisää aikaväli"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:68
+msgid "Caffeine Mode"
+msgstr "Caffeine-tila"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:74
+msgid "Inhibit Suspend"
+msgstr "Estä valmiustila"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+msgid "Don't suspend when caffeine is active"
+msgstr "Älä siirry valmiustilaan caffeinen ollessa aktiivinen"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:81
+msgid "Inhibit Idle"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:82
+msgid "Don't let system become idle when caffeine is active"
+msgstr "Estä järjestelmää olemasta jouten kun caffeine on aktiivinen"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:92
 msgid "Add New Interval"
 msgstr "Lisää uusi aikaväli"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:109
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "_Lisää"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:141
 msgid "Quickstart Intervals"
 msgstr "Pika-asetuksen aikavälit"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:153
 msgid "5 m"
 msgstr "5 min"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
 msgid "15 m"
 msgstr "15 min"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:175
 msgid "30 m"
 msgstr "30 min"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:186
 msgid "1 h"
 msgstr "1 h"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:214
 msgid "Choose Interval"
 msgstr "Valitse aikaväli"
 
@@ -1088,32 +1162,36 @@ msgstr "Yövalo päällä"
 msgid "Night Light Off"
 msgstr "Yövalo ei päällä"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "Pomodoro-aloitus"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "Keskity tehtävääsi %d minuutin ajan"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Keskity tehtävääsi %d minuutin ajan"
+msgstr[1] "Keskity tehtävääsi %d minuutin ajan"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "Ota tauko"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "Seuraavaan Pomodoroon on %d minuuttia"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "Seuraavaan Pomodoroon on %d minuutti"
+msgstr[1] "Seuraavaan Pomodoroon on %d minuuttia"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "Pomodoro-ajastin"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
 msgstr "Pomodoro pois"
@@ -1231,8 +1309,10 @@ msgstr "Nimetön tapahtuma"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "Ei tapahtumia seuraavan %d päivän aikana"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "Ei tapahtumia seuraavan %d päivän aikana"
+msgstr[1] "Ei tapahtumia seuraavan %d päivän aikana"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
 msgid "No upcoming events"
@@ -1259,12 +1339,43 @@ msgstr "Kuinka monelta päivältä tapahtumat näytetään"
 msgid "Monitor scales"
 msgstr ""
 
+#: plugins/scaling-quick-setting/qs.ui:36
+msgid "Display Settings"
+msgstr "Näytön asetukset"
+
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
 #: plugins/scaling-quick-setting/scaling-quick-setting.c:91
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr "Ei kansioita"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+#| msgid "Location Disabled"
+msgid "Syncthing is disabled"
+msgstr "Syncthing on pois käytöstä"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr "Käytä"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Avaa Syncthing-käyttöliittymä"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Syncbusiin ei saatu yhteyttä"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
 msgid "Wi-Fi Hotspot"
@@ -1353,9 +1464,6 @@ msgstr "Yhteyspiste pois"
 
 #~ msgid "_Screenshot"
 #~ msgstr "K_uvakaappaus"
-
-#~ msgid "Unknown application"
-#~ msgstr "Tuntematon sovellus"
 
 #~ msgid "Lock Screen"
 #~ msgstr "Lukitse näyttö"
