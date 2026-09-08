@@ -1,0 +1,1388 @@
+# Karbi translation for phosh.
+# Copyright (C) 2026 phosh's COPYRIGHT HOLDER
+# This file is distributed under the same license as the phosh package.
+# Jor Teron <jor.teron@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: phosh main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
+"POT-Creation-Date: 2026-08-30 18:27+0000\n"
+"PO-Revision-Date: 2026-09-08 21:50+0530\n"
+"Last-Translator: Jor Teron <jor.teron@gmail.com>\n"
+"Language-Team: Karbi <mjw@li.org>\n"
+"Language: mjw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Geany 2.0\n"
+
+#: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
+msgid "Phone Shell"
+msgstr "Phone Shell"
+
+#: data/mobi.phosh.Shell.desktop.in.in:4
+msgid "Window management and application launching for mobile"
+msgstr ""
+
+#. Translators: this is the session name, no need to translate it
+#: data/phosh.session.desktop.in.in:3 data/wayland-sessions/phosh.desktop:2
+msgid "Phosh"
+msgstr "Phosh"
+
+#: data/wayland-sessions/phosh.desktop:4
+msgid "This session logs you into Phosh"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:4
+msgid "Caffeine Quick Setting"
+msgstr "Caffeine Quick Setting"
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:6
+msgid "Prevent the session from going idle"
+msgstr ""
+
+#: plugins/calendar/calendar.desktop.in.in:4
+msgid "Calendar"
+msgstr "Calendar"
+
+#: plugins/calendar/calendar.desktop.in.in:6
+msgid "A simple calendar widget"
+msgstr ""
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:4
+msgid "Dark Mode / Color Scheme Quick Setting"
+msgstr ""
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:6
+msgid "Toggle dark mode"
+msgstr "Dark mode kelar"
+
+#: plugins/emergency-info/emergency-info.desktop.in.in:4
+msgid "Emergency Info"
+msgstr ""
+
+#: plugins/emergency-info/emergency-info.desktop.in.in:6
+msgid "Show emergency information and contacts"
+msgstr ""
+
+#: plugins/launcher-box/launcher-box.desktop.in.in:3
+#: plugins/launcher-box/launcher-box.ui:17
+msgid "Launcher Box"
+msgstr "Launcher Box"
+
+#: plugins/launcher-box/launcher-box.desktop.in.in:5
+msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
+msgstr ""
+
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
+msgid "Location Quick Setting"
+msgstr ""
+
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:6
+msgid "Toggle location services on/off"
+msgstr ""
+
+#: plugins/media-players/media-players.desktop.in.in:3
+#: plugins/media-players/media-players.ui:19
+#: plugins/media-players/media-players.ui:35
+msgid "Media Players"
+msgstr "Media Players"
+
+#: plugins/media-players/media-players.desktop.in.in:5
+msgid "Track currently running media players"
+msgstr ""
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:4
+msgid "Mobile Data Quick Setting"
+msgstr ""
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:6
+msgid "Toggle mobile data on/off"
+msgstr ""
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:4
+msgid "Night Light Quick Setting"
+msgstr ""
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:6
+msgid "Toggle night light on/off"
+msgstr ""
+
+#. Translators: "Pomodoro" is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:5
+msgid "Pomodoro Quick Setting"
+msgstr "Pomodoro Quick Setting"
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:7
+msgid "Simple Pomodoro Timer"
+msgstr ""
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr ""
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr ""
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Syncthing Quick Setting"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr ""
+
+#: plugins/ticket-box/ticket-box.desktop.in.in:3
+#: plugins/ticket-box/ticket-box.ui:17
+msgid "Ticket Box"
+msgstr "Ticket Box"
+
+#: plugins/ticket-box/ticket-box.desktop.in.in:5
+msgid "Show PDFs on the lock screen. <b>This plugin is experimental.</b>"
+msgstr ""
+
+#: plugins/upcoming-events/upcoming-events.desktop.in.in:3
+msgid "Upcoming Events"
+msgstr ""
+
+#: plugins/upcoming-events/upcoming-events.desktop.in.in:5
+msgid "Show upcoming calendar events"
+msgstr ""
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Wi-Fi Hotspot Quick Setting"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Wi-Fi hotspot on/off kelar"
+
+#: src/app-grid-button.c:144
+msgid "Add to Folder"
+msgstr "Folder long bidam"
+
+#: src/app-grid-button.c:168
+msgid "Create new folder"
+msgstr "Folder kimi selam"
+
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr ""
+
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "Undo"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr ""
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr ""
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
+msgid "Application"
+msgstr "Application"
+
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "%s folder ke angse"
+
+#: src/app-grid.c:265
+msgid "Show All Apps"
+msgstr "Kadokawe Apps paklang"
+
+#: src/app-grid.c:268
+msgid "Show Only Mobile Friendly Apps"
+msgstr ""
+
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "Phone Shell Volume Control"
+
+#. Translators: a battery level in percent
+#: src/bt-device-row.c:81
+#, c-format
+msgid "Battery %.0f%%"
+msgstr "Battery %.0f%%"
+
+#: src/bt-info.c:95 src/ui/bt-status-page.ui:6
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: src/bt-info.c:123
+msgctxt "bluetooth:enabled"
+msgid "On"
+msgstr "On"
+
+#: src/bt-status-page.c:123
+msgid "No connectable Bluetooth Devices found"
+msgstr ""
+
+#: src/bt-status-page.c:127
+msgid "Bluetooth disabled"
+msgstr "Bluetooth bonchek"
+
+#: src/call-notification.c:63
+msgid "Unknown caller"
+msgstr "Caller chinine"
+
+#: src/connectivity-manager.c:114
+#, c-format
+msgid "Wi-Fi network '%s' uses a captive portal"
+msgstr "Wi-Fi network '%s' uses a captive portal"
+
+#: src/connectivity-manager.c:116
+msgid "The network uses a captive portal"
+msgstr ""
+
+#: src/connectivity-manager.c:123
+msgid "Sign into network"
+msgstr ""
+
+#: src/docked-info.c:81
+msgid "Docked"
+msgstr "Docked"
+
+#: src/docked-info.c:81 src/docked-info.c:199
+msgid "Undocked"
+msgstr "Undocked"
+
+#: src/emergency-menu.c:97 src/ui/app-auth-prompt.ui:64
+#: src/ui/cell-broadcast-prompt.ui:18 src/ui/end-session-dialog.ui:62
+msgid "Ok"
+msgstr "Ok"
+
+#: src/emergency-menu.c:100
+msgid "Unable to place emergency call"
+msgstr ""
+
+#: src/emergency-menu.c:105
+msgid "Internal error"
+msgstr "Arlo chokche do"
+
+#: src/end-session-dialog.c:173
+msgid "Log Out"
+msgstr "Log Out"
+
+#: src/end-session-dialog.c:176
+#, c-format
+msgid "%s will be logged out automatically in %d second."
+msgid_plural "%s will be logged out automatically in %d seconds."
+msgstr[0] "%s will be logged out automatically in %d second."
+msgstr[1] "%s will be logged out automatically in %d seconds."
+
+#: src/end-session-dialog.c:182 src/ui/power-menu.ui:72
+msgid "Power Off"
+msgstr "Power Off"
+
+#: src/end-session-dialog.c:183
+#, c-format
+msgid "The system will power off automatically in %d second."
+msgid_plural "The system will power off automatically in %d seconds."
+msgstr[0] "The system will power off automatically in %d second."
+msgstr[1] "The system will power off automatically in %d seconds."
+
+#: src/end-session-dialog.c:189
+msgid "Restart"
+msgstr "Restart"
+
+#: src/end-session-dialog.c:190
+#, c-format
+msgid "The system will restart automatically in %d second."
+msgid_plural "The system will restart automatically in %d seconds."
+msgstr[0] "The system will restart automatically in %d second."
+msgstr[1] "The system will restart automatically in %d seconds."
+
+#. Translators: quiet and silent are fbd profiles names:
+#. see https://source.puri.sm/Librem5/feedbackd#profiles
+#. for details
+#: src/feedbackinfo.c:97
+msgid "Quiet"
+msgstr "Quiet"
+
+#. Translators: quiet and silent are fbd profiles names:
+#. see https://source.puri.sm/Librem5/feedbackd#profiles
+#. for details
+#: src/feedbackinfo.c:104
+msgid "Silent"
+msgstr "Silent"
+
+#. Translators: Enable LED, haptic and audio feedback
+#: src/feedbackinfo.c:108
+msgctxt "feedback:enabled"
+msgid "On"
+msgstr "On"
+
+#: src/location-manager.c:266
+#, c-format
+msgid "Allow '%s' to access your location information?"
+msgstr "Allow '%s' to access your location information?"
+
+#: src/location-manager.c:271
+msgid "Geolocation"
+msgstr "Geolocation"
+
+#: src/location-manager.c:272
+msgid "Yes"
+msgstr "Ahok"
+
+#: src/location-manager.c:272
+msgid "No"
+msgstr "Kali"
+
+#. give visual feedback on error
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
+msgid "Enter Passcode"
+msgstr ""
+
+#: src/lockscreen.c:1036
+msgid "Checking…"
+msgstr ""
+
+#. Translators: '%s' is the filename of a screenshot
+#: src/screenshot-manager.c:268
+#, c-format
+msgid "Screenshot saved to '%s'"
+msgstr "Screenshot saved to '%s'"
+
+#: src/screenshot-manager.c:270
+msgid "Failed to save screenshot"
+msgstr ""
+
+#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
+msgid "Screenshot"
+msgstr "Screenshot"
+
+#. Translators: name of the folder beneath ~/Pictures used to store screenshots
+#: src/screenshot-manager.c:596
+msgid "Screenshots"
+msgstr "Screenshots"
+
+#. Translators: Name of a screenshot file. The first '%s' is a timestamp
+#. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
+#. * the file already exists like '-3'
+#: src/screenshot-manager.c:616
+#, c-format
+msgid "Screenshot from %s%s.png"
+msgstr "%s%s pen Screenshot.png"
+
+#. Translators: Used when the title of a song is unknown
+#: src/media-player.c:688 src/ui/media-player.ui:208
+msgid "Unknown Title"
+msgstr ""
+
+#. Translators: Used when the artist of a song is unknown
+#: src/media-player.c:696 src/ui/media-player.ui:196
+msgid "Unknown Artist"
+msgstr "Lun-bang amen chinine"
+
+#: src/monitor-manager.c:129
+msgid "Built-in display"
+msgstr ""
+
+#: src/monitor-manager.c:147
+#, c-format
+msgctxt ""
+"This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
+msgid "%s %s"
+msgstr "%s %s"
+
+#: src/monitor-manager.c:154
+#, c-format
+msgctxt ""
+"This is a monitor vendor name followed by product/model name where size in "
+"inches could not be calculated, e.g. Dell U2414H"
+msgid "%s %s"
+msgstr "%s %s"
+
+#. Translators: An unknown monitor type
+#: src/monitor-manager.c:163
+msgid "Unknown"
+msgstr "Chinine"
+
+#: src/network-auth-prompt.c:202
+#, c-format
+msgid "Authentication type of Wi-Fi network “%s” not supported"
+msgstr "Authentication type of Wi-Fi network “%s” not supported"
+
+#: src/network-auth-prompt.c:207
+#, c-format
+msgid "Enter password for the Wi-Fi network “%s”"
+msgstr "Enter password for the Wi-Fi network “%s”"
+
+#: src/notifications/mount-notification.c:121
+msgid "Open"
+msgstr "Kangpu"
+
+#. We don't just set the app_info but name and icon separately to
+#. * not overwrite values set by the caller
+#: src/notifications/notification.c:422 src/notifications/notification.c:695
+#: src/notifications/notify-manager.c:1009
+msgid "Notification"
+msgstr "Notification"
+
+#. Translators: Point in time, use a short word or abbreviation
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:88
+msgid "now"
+msgstr "non"
+
+#. Translators: abbreviated time difference "Less than 30 seconds"
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:93
+#, c-format
+msgid "<30s"
+msgstr "<30s"
+
+#. Translators: abbreviated time difference "Less than one minute"
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:98
+#, c-format
+msgid "<1m"
+msgstr "<1m"
+
+#. Translators: abbreviated time difference "About one minute"
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:103
+#, c-format
+msgid "~1m"
+msgstr "~1m"
+
+#. Translators: abbreviated, exact time difference "1 minute ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:111
+#, c-format
+msgid "%dm"
+msgid_plural "%dm"
+msgstr[0] "%dm"
+msgstr[1] "%dm"
+
+#. Translators: abbreviated time difference "About 3 hours ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:119
+#, c-format
+msgid "~%dh"
+msgid_plural "~%dh"
+msgstr[0] "~%dh"
+msgstr[1] "~%dh"
+
+#. Translators: abbreviated time difference "About 1 day ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:124
+#, c-format
+msgid "~1d"
+msgstr "~1d"
+
+#. Translators: abbreviated, exact time difference "3 days ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:129
+#, c-format
+msgid "%dd"
+msgid_plural "%dd"
+msgstr[0] "%dd"
+msgstr[1] "%dd"
+
+#. Translators: abbreviated time difference "About 1 month ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:134
+#, c-format
+msgid "~1mo"
+msgstr "~1mo"
+
+#. Translators: abbreviated, exact time difference "3 months ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:139
+#, c-format
+msgid "%dmo"
+msgid_plural "%dmos"
+msgstr[0] "%dmo"
+msgstr[1] "%dmos"
+
+#. Translators: abbreviated time difference "About 5 years ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:149
+#, c-format
+msgid "~%dy"
+msgid_plural "~%dy"
+msgstr[0] "~%dy"
+msgstr[1] "~%dy"
+
+#. Translators: abbreviated time difference "Over 5 years ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:153
+#, c-format
+msgid "Over %dy"
+msgid_plural "Over %dy"
+msgstr[0] "Over %dy"
+msgstr[1] "Over %dy"
+
+#. Translators: abbreviated time difference "almost 5 years ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:158
+#, c-format
+msgid "Almost %dy"
+msgid_plural "Almost %dy"
+msgstr[0] "Almost %dy"
+msgstr[1] "Almost %dy"
+
+#: src/overview.c:228
+msgid "Application is slow or failed to start"
+msgstr ""
+
+#: src/polkit-auth-agent.c:275
+msgid "Authentication dialog was dismissed by the user"
+msgstr ""
+
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
+#: src/ui/system-prompt.ui:28
+msgid "Password:"
+msgstr "Password:"
+
+#: src/polkit-auth-prompt.c:429
+msgid "Sorry, that didn’t work. Please try again."
+msgstr ""
+
+#: src/rotateinfo.c:102
+msgid "Portrait"
+msgstr "Portrait"
+
+#: src/rotateinfo.c:105
+msgid "Landscape"
+msgstr "Landscape"
+
+#: src/rotateinfo.c:125 src/rotateinfo.c:230
+msgctxt "automatic-screen-rotation-disabled"
+msgid "Off"
+msgstr "Off"
+
+#: src/rotateinfo.c:126
+msgctxt "automatic-screen-rotation-enabled"
+msgid "On"
+msgstr "On"
+
+#: src/run-command-dialog.c:129
+msgid "Press ESC to close"
+msgstr ""
+
+#: src/run-command-manager.c:89
+#, c-format
+msgid "Running '%s' failed"
+msgstr "Running '%s' failed"
+
+#: src/system-prompt.c:376
+msgid "Passwords do not match."
+msgstr "Password homan meh."
+
+#: src/system-prompt.c:383
+msgid "Password cannot be blank"
+msgstr "Password angse bi un-eh"
+
+#: src/torch-info.c:84
+msgid "Torch"
+msgstr "Torch"
+
+#: src/ui/app-auth-prompt.ui:43
+msgid "Remember decision"
+msgstr ""
+
+#: src/ui/app-auth-prompt.ui:55 src/ui/end-session-dialog.ui:53
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:25
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/ui/app-grid-button.ui:31
+msgid "Remove from _Favorites"
+msgstr ""
+
+#: src/ui/app-grid-button.ui:36
+msgid "Add to _Favorites"
+msgstr ""
+
+#: src/ui/app-grid-button.ui:41
+msgid "View _Details"
+msgstr ""
+
+#: src/ui/app-grid-button.ui:46
+msgid "Uninstall"
+msgstr "Uninstall"
+
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "Application Matu"
+
+#: src/ui/app-grid-button.ui:58
+msgid "_Remove from Folder"
+msgstr ""
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr ""
+
+#: src/ui/app-grid.ui:26
+msgid "Search apps…"
+msgstr ""
+
+#: src/ui/audio-settings.ui:84
+msgid "Output Devices"
+msgstr ""
+
+#: src/ui/audio-settings.ui:108
+msgid "Input Devices"
+msgstr ""
+
+#: src/ui/audio-settings.ui:136
+msgid "Sound Settings"
+msgstr ""
+
+#: src/ui/brightness-settings.ui:87
+msgid "Automatic Brightness"
+msgstr ""
+
+#: src/ui/brightness-settings.ui:120
+msgid "Brightness Settings"
+msgstr ""
+
+#: src/ui/bt-status-page.ui:39
+msgid "Enable Bluetooth"
+msgstr "Enable Bluetooth"
+
+#: src/ui/bt-status-page.ui:54
+msgid "Bluetooth Settings"
+msgstr "Bluetooth Settings"
+
+#: src/ui/emergency-menu.ui:26
+msgid "Close the emergency call dialog"
+msgstr ""
+
+#: src/ui/emergency-menu.ui:52
+msgid "Emergency _Contacts"
+msgstr "Emergency _Contacts"
+
+#: src/ui/emergency-menu.ui:59
+msgid "Go to the emergency contacts page"
+msgstr ""
+
+#: src/ui/emergency-menu.ui:82
+msgid "Go back to the emergency dialpad page"
+msgstr ""
+
+#: src/ui/emergency-menu.ui:105
+msgid "Owner unknown"
+msgstr "Ahemphu chinine"
+
+#: src/ui/emergency-menu.ui:123 plugins/emergency-info/emergency-info.ui:211
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:170
+msgid "Emergency Contacts"
+msgstr ""
+
+#: src/ui/emergency-menu.ui:142
+msgid "No emergency contacts available."
+msgstr ""
+
+#: src/ui/end-session-dialog.ui:27
+msgid "Some applications are busy or have unsaved work"
+msgstr ""
+
+#: src/ui/feedback-status-page.ui:6
+msgid "Feedback"
+msgstr "Feedback"
+
+#: src/ui/feedback-status-page.ui:19
+msgid "Do not disturb"
+msgstr ""
+
+#: src/ui/feedback-status-page.ui:53
+msgid "Feedback Settings"
+msgstr ""
+
+#: src/ui/gtk-mount-prompt.ui:74
+msgid "User:"
+msgstr "User:"
+
+#: src/ui/gtk-mount-prompt.ui:96
+msgid "Domain:"
+msgstr "Domain:"
+
+#: src/ui/gtk-mount-prompt.ui:128
+msgid "Co_nnect"
+msgstr "Co_nnect"
+
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
+msgid "Back"
+msgstr "Aphi"
+
+#: src/ui/lockscreen.ui:95
+msgid "Slide up to unlock"
+msgstr ""
+
+#: src/ui/lockscreen.ui:331
+msgid "Unlock"
+msgstr "Unlock"
+
+#: src/ui/network-auth-prompt.ui:6 src/ui/polkit-auth-prompt.ui:5
+msgid "Authentication required"
+msgstr ""
+
+#: src/ui/network-auth-prompt.ui:37
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:101
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
+msgid "_Cancel"
+msgstr "_Cancel"
+
+#: src/ui/network-auth-prompt.ui:50
+msgid "C_onnect"
+msgstr "C_onnect"
+
+#: src/ui/polkit-auth-prompt.ui:96
+msgid "Authenticate"
+msgstr "Authenticate"
+
+#: src/ui/power-menu.ui:112
+msgid "Suspend"
+msgstr "Suspend"
+
+#: src/ui/power-menu.ui:158
+msgid "Lock"
+msgstr "Lock"
+
+#: src/ui/power-menu.ui:240
+msgid "Emergency"
+msgstr "Emergency"
+
+#: src/ui/run-command-dialog.ui:5
+msgid "Run Command"
+msgstr ""
+
+#: src/ui/settings.ui:128
+msgid "No notifications"
+msgstr ""
+
+#: src/ui/settings.ui:157
+msgid "Notifications"
+msgstr ""
+
+#: src/ui/settings.ui:166
+msgid "Clear all"
+msgstr ""
+
+#: src/ui/system-prompt.ui:52
+msgid "Confirm:"
+msgstr "Confirm:"
+
+#: src/ui/top-panel.ui:34
+msgid "_Power Off…"
+msgstr "_Power Off…"
+
+#: src/ui/top-panel.ui:61
+msgid "_Restart…"
+msgstr "_Restart…"
+
+#: src/ui/top-panel.ui:88
+msgid "_Suspend…"
+msgstr "_Suspend…"
+
+#: src/ui/top-panel.ui:115
+msgid "_Log Out…"
+msgstr "_Log Out…"
+
+#: src/ui/wifi-status-page.ui:6 src/wifi-info.c:90
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+#: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
+msgid "Wi-Fi Settings"
+msgstr "Wi-Fi Settings"
+
+#: src/vpn-info.c:89
+msgid "VPN"
+msgstr "VPN"
+
+#. Translators: This is a time format for a date in
+#. long format
+#: src/wall-clock.c:248
+msgid "%A, %B %-e"
+msgstr "%A, %B %-e"
+
+#: src/widget-box.c:54
+msgid "Plugin not found"
+msgstr ""
+
+#: src/widget-box.c:57
+#, c-format
+msgid "The plugin '%s' could not be loaded."
+msgstr "The plugin '%s' could not be loaded."
+
+#: src/wifi-status-page.c:53
+msgid "No Wi-Fi Device Found"
+msgstr "No Wi-Fi Device Found"
+
+#: src/wifi-status-page.c:57
+msgid "Wi-Fi Disabled"
+msgstr "Wi-Fi Disabled"
+
+#: src/wifi-status-page.c:58
+msgid "Enable Wi-Fi"
+msgstr "Enable Wi-Fi"
+
+#: src/wifi-status-page.c:61
+msgid "Wi-Fi Hotspot Active"
+msgstr "Wi-Fi Hotspot Active"
+
+#: src/wifi-status-page.c:62
+msgid "Turn Off"
+msgstr "Turn Off"
+
+#: src/wifi-status-page.c:65
+msgid "No Wi-Fi Hotspots"
+msgstr "Wi-Fi Hotspots awe"
+
+#. Translators: Refers to the cellular wireless network
+#: src/wwan-info.c:210
+msgid "Cellular"
+msgstr "Cellular"
+
+#. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
+msgid "Phosh on caffeine"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:305
+msgctxt "caffeine-disabled"
+msgid "Off"
+msgstr "Off"
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:310
+msgctxt "caffeine-enabled"
+msgid "On"
+msgstr "On"
+
+#: plugins/caffeine-quick-setting/qs.ui:15
+msgid "Caffeine timers"
+msgstr "Caffeine timers"
+
+#: plugins/caffeine-quick-setting/qs.ui:38
+msgid "No caffeine intervals"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+msgid "Caffeine Settings"
+msgstr "Caffeine Settings"
+
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:388
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:197
+msgid "No timeout (∞)"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:7
+msgid "Caffeine Quick Setting Preferences"
+msgstr "Caffeine Quick Setting Preferences"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:11
+msgid "Caffeine Duration"
+msgstr "Caffeine Duration"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:15
+msgid "Manage Caffeine Duration"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:16
+msgid "Add or remove custom caffeine intervals"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:22
+msgid "Add interval"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:68
+msgid "Caffeine Mode"
+msgstr "Caffeine Mode"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:74
+msgid "Inhibit Suspend"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+msgid "Don't suspend when caffeine is active"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:81
+msgid "Inhibit Idle"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:82
+msgid "Don't let system become idle when caffeine is active"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:92
+msgid "Add New Interval"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:109
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
+msgid "_Add"
+msgstr "_Add"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:141
+msgid "Quickstart Intervals"
+msgstr ""
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:153
+msgid "5 m"
+msgstr "5 m"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
+msgid "15 m"
+msgstr "15 m"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:175
+msgid "30 m"
+msgstr "30 m"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:186
+msgid "1 h"
+msgstr "1 h"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:214
+msgid "Choose Interval"
+msgstr ""
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
+msgid "Default style"
+msgstr ""
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:35
+msgid "Dark mode"
+msgstr "Dark mode"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:36
+msgid "Light mode"
+msgstr "Light mode"
+
+#: plugins/emergency-info/emergency-info.ui:43
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:62
+msgid "Personal Information"
+msgstr ""
+
+#: plugins/emergency-info/emergency-info.ui:51
+msgid "Date of Birth"
+msgstr "Mahang kethek Arni"
+
+#: plugins/emergency-info/emergency-info.ui:71
+msgid "Preferred Language"
+msgstr ""
+
+#: plugins/emergency-info/emergency-info.ui:91
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:85
+msgid "Home Address"
+msgstr ""
+
+#: plugins/emergency-info/emergency-info.ui:99
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:100
+msgid "Medical Information"
+msgstr ""
+
+#: plugins/emergency-info/emergency-info.ui:107
+msgid "Age"
+msgstr "Arta"
+
+#: plugins/emergency-info/emergency-info.ui:127
+msgid "Blood Type"
+msgstr "Blood Type"
+
+#: plugins/emergency-info/emergency-info.ui:147
+msgid "Height"
+msgstr ""
+
+#: plugins/emergency-info/emergency-info.ui:167
+msgid "Weight"
+msgstr "Jon kiding"
+
+#: plugins/emergency-info/emergency-info.ui:187
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:129
+msgid "Allergies"
+msgstr ""
+
+#: plugins/emergency-info/emergency-info.ui:195
+msgid "Medications & Conditions"
+msgstr "Keso hai alam"
+
+#: plugins/emergency-info/emergency-info.ui:203
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:155
+msgid "Other Information"
+msgstr ""
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:6
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:16
+msgid "Emergency Info Preferences"
+msgstr ""
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:36
+msgid "Done"
+msgstr "Done"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:67
+msgid "_Owner Name"
+msgstr ""
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:73
+msgid "_Date of Birth"
+msgstr ""
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:79
+msgid "_Preferred Language"
+msgstr ""
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:105
+msgid "_Age"
+msgstr "_Arta"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:111
+msgid "_Blood Type"
+msgstr "_Blood Type"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:117
+msgid "_Height"
+msgstr "Jon-kiding"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:123
+msgid "_Weight"
+msgstr "Ardi"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:142
+msgid "Medications and Conditions"
+msgstr ""
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:179
+msgid "Add Contact"
+msgstr "Contact Kethap"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:203
+msgid "Add New Contact"
+msgstr "Contact Kimi Kethap"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:240
+msgid "_Contact Name"
+msgstr "_Contact Amen"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:246
+msgid "Relationship"
+msgstr "Koson lo chepho"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:252
+msgid "_Contact Number"
+msgstr "_Contact Number"
+
+#: plugins/launcher-box/launcher-box.ui:18
+msgid "No launchers configured"
+msgstr ""
+
+#: plugins/launcher-box/launcher-box.ui:33
+msgid "Launchers"
+msgstr "Launchers"
+
+#. Translators: Location precision level - country-wide
+#: plugins/location-quick-setting/accuracy-row.c:44
+msgid "Country"
+msgstr "Det"
+
+#. Translators: Location precision level - city-wide
+#: plugins/location-quick-setting/accuracy-row.c:47
+msgid "City"
+msgstr "Rongsopi"
+
+#. Translators: Location precision level - neighborhood
+#: plugins/location-quick-setting/accuracy-row.c:50
+msgid "Neighborhood"
+msgstr "Don-terei"
+
+#. Translators: Location precision level - street
+#: plugins/location-quick-setting/accuracy-row.c:53
+msgid "Street"
+msgstr "Ali"
+
+#. Translators: Location precision level - exact position
+#: plugins/location-quick-setting/accuracy-row.c:56
+msgid "Exact"
+msgstr "Exact"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
+msgid "Location On"
+msgstr ""
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
+msgid "Location Off"
+msgstr ""
+
+#: plugins/location-quick-setting/qs.ui:15
+msgid "Location Accuracy"
+msgstr ""
+
+#: plugins/location-quick-setting/qs.ui:62
+msgid "Location Disabled"
+msgstr ""
+
+#: plugins/location-quick-setting/qs.ui:72
+msgid "Enable Location"
+msgstr ""
+
+#: plugins/location-quick-setting/qs.ui:87
+msgid "Location Settings"
+msgstr ""
+
+#: plugins/media-players/media-players.ui:20
+msgid "No running media players"
+msgstr ""
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
+msgid "Mobile Data On"
+msgstr ""
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
+msgid "Mobile Data Off"
+msgstr ""
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
+msgid "Night Light On"
+msgstr ""
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
+msgid "Night Light Off"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+msgid "Pomodoro start"
+msgstr "Pomodoro pangcheng"
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
+#, c-format
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Focus on your task for %d minute"
+msgstr[1] "Focus on your task for %d minutes"
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
+msgid "Take a break"
+msgstr "Sang chet noi"
+
+#. Translators: Pomodoro is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
+#, c-format
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "You have %d minute until next Pomodoro"
+msgstr[1] "You have %d minutes until next Pomodoro"
+
+#. Translators: Pomodoro is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
+msgid "Pomodoro Timer"
+msgstr "Pomodoro Timer"
+
+#. Translators: Pomodoro is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
+#, c-format
+msgid "Pomodoro Off"
+msgstr "Pomodoro Off"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:6
+msgid "Pomodoro Quick Setting Preferences"
+msgstr "Pomodoro Quick Setting Preferences"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:11
+msgid "Pomodoro Technique"
+msgstr "Pomodoro Technique"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:14
+msgid "_Active Duration"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:15
+msgid "Duration of the focus session"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:29
+msgid "_Break Duration"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:30
+msgid "Duration of the break between sessions"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:44
+msgid "_Start on unlock"
+msgstr ""
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:45
+msgid "Whether to start the timer on screen unlock"
+msgstr ""
+
+#: plugins/ticket-box/ticket-box.ui:18
+msgid "No documents to display"
+msgstr ""
+
+#: plugins/ticket-box/ticket-box.ui:82
+msgid "Tickets"
+msgstr "Tickets"
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.c:94
+msgid "_Open"
+msgstr "Kangpu"
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.c:95
+msgid "Choose Folder"
+msgstr "Folder Kangvai"
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:6
+msgid "Ticket Box Preferences"
+msgstr ""
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:10
+msgid "Paths"
+msgstr "Paths"
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:14
+msgid "Folder Settings"
+msgstr ""
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:15
+msgid "Where Phosh looks for your tickets"
+msgstr ""
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:18
+msgid "Ticket Folder"
+msgstr ""
+
+#: plugins/upcoming-events/event-list.c:142
+msgid "Today"
+msgstr "Pini"
+
+#: plugins/upcoming-events/event-list.c:144
+msgid "Tomorrow"
+msgstr "Pinap"
+
+#. Translators: The current date and weekday for display in a calendar entry
+#: plugins/upcoming-events/event-list.c:151
+#, c-format
+msgid "%x %a"
+msgstr "%x %a"
+
+#: plugins/upcoming-events/event-list.ui:26
+msgid "No events"
+msgstr "Events ave"
+
+#. Translators: This is the time format used in 24-hour mode.
+#: plugins/upcoming-events/upcoming-event.c:56
+msgid "%R"
+msgstr "%R"
+
+#. Translators: This is the time format used in 12-hour mode.
+#: plugins/upcoming-events/upcoming-event.c:59
+msgid "%l:%M %p"
+msgstr "%l:%M %p"
+
+#. Translators: An all day event
+#: plugins/upcoming-events/upcoming-event.c:122
+#: plugins/upcoming-events/upcoming-event.c:159
+msgid "All day"
+msgstr "Losini"
+
+#. Translators: When the event ends: Ends\r16:00
+#: plugins/upcoming-events/upcoming-event.c:148
+msgid "Ends"
+msgstr "Kejud"
+
+#: plugins/upcoming-events/upcoming-event.c:400
+msgid "Untitled event"
+msgstr ""
+
+#: plugins/upcoming-events/upcoming-events.c:408
+#, c-format
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "No events for the next %d day"
+msgstr[1] "No events for the next %d days"
+
+#: plugins/upcoming-events/upcoming-events.ui:28
+msgid "No upcoming events"
+msgstr ""
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:6
+msgid "Upcoming Events Preferences"
+msgstr ""
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:10
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:17
+msgid "Days"
+msgstr "Ni"
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:13
+msgid "Date Range"
+msgstr "Tarik angbong"
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:14
+msgid "Number of days to show events for"
+msgstr ""
+
+#: plugins/scaling-quick-setting/qs.ui:14
+msgid "Monitor scales"
+msgstr ""
+
+#: plugins/scaling-quick-setting/qs.ui:36
+msgid "Display Settings"
+msgstr ""
+
+#. Translators: This is scale factor of a monitor in percent
+#: plugins/scaling-quick-setting/scale-row.c:48
+#: plugins/scaling-quick-setting/scaling-quick-setting.c:91
+#, c-format
+msgid "%d%%"
+msgstr "%d%%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr "Folders ave"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+msgid "Syncthing is disabled"
+msgstr ""
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr "Enable"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Open Syncthing GUI"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr ""
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+msgid "Wi-Fi Hotspot"
+msgstr "Wi-Fi Hotspot"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
+msgid "Turn On"
+msgstr ""
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
+msgid "Hotspot On"
+msgstr "Hotspot On"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
+msgid "Hotspot Off"
+msgstr "Hotspot Off"
