@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-03-04 10:45+0000\n"
-"PO-Revision-Date: 2026-03-10 09:57+0100\n"
+"POT-Creation-Date: 2026-08-30 18:27+0000\n"
+"PO-Revision-Date: 2026-09-09 23:12+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 25.12.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
@@ -79,12 +79,10 @@ msgstr ""
 "Indítók hozzáadása a zárolási képernyőhöz. <b>Ez a bővítmény kísérleti.</b>"
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
-#| msgid "Caffeine Quick Setting"
 msgid "Location Quick Setting"
 msgstr "Hely gyors beállítása"
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:6
-#| msgid "Toggle mobile data on/off"
 msgid "Toggle location services on/off"
 msgstr "Helymeghatározó szolgáltatások be- és kikapcsolása"
 
@@ -116,13 +114,30 @@ msgstr "Éjszakai fény be- és kikapcsolása"
 
 #. Translators: "Pomodoro" is a technique, no need to translate it
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:5
-#| msgid "Mobile Data Quick Setting"
 msgid "Pomodoro Quick Setting"
 msgstr "Pomodoro gyors beállítása"
 
 #: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:7
 msgid "Simple Pomodoro Timer"
 msgstr "Egyszerű Pomodoro-időzítő"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+#| msgid "Location Quick Setting"
+msgid "Scaling Quick Setting"
+msgstr "Méretezés gyors beállítása"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "Gyors beállítás a kijelző méretezésének módosításához."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+#| msgid "Location Quick Setting"
+msgid "Syncthing Quick Setting"
+msgstr "Syncthing gyors beállítása"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Gyors beállítás a Syncthing szoftverhez."
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
@@ -142,6 +157,16 @@ msgstr "Közelgő események"
 msgid "Show upcoming calendar events"
 msgstr "Közelgő naptáresemények megjelenítése"
 
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+#| msgid "Wi-Fi Hotspot Active"
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Wi-Fi hozzáférési pont gyors beállítása"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+#| msgid "Toggle night light on/off"
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Wi-Fi hozzáférési pont be- és kikapcsolása"
+
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
 msgstr "Hozzáadás mappához"
@@ -150,15 +175,37 @@ msgstr "Hozzáadás mappához"
 msgid "Create new folder"
 msgstr "Új mappa létrehozása"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "Nem lehet eltávolítani az alkalmazást"
+
+#: src/app-grid-button.c:475
+#| msgid "Undocked"
+msgid "Undo"
+msgstr "Visszavonás"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Az alkalmazás mostantól véglegesen el van rejtve és le van tiltva"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Nem sikerült elrejteni az alkalmazást"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Alkalmazás"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "A(z) %s mappa üres"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "Összes alkalmazás megjelenítése"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Csak mobilbarát alkalmazások megjelenítése"
 
@@ -199,12 +246,14 @@ msgid "Wi-Fi network '%s' uses a captive portal"
 msgstr "A(z) „%s” Wi-Fi-hálózat kötött portált használ"
 
 #: src/connectivity-manager.c:116
-msgid "The Wi-Fi network uses a captive portal"
-msgstr "A Wi-Fi-hálózat kötött portált használ"
+#| msgid "The Wi-Fi network uses a captive portal"
+msgid "The network uses a captive portal"
+msgstr "A hálózat kötött portált használ"
 
 #: src/connectivity-manager.c:123
-msgid "Sign into Wi-Fi network"
-msgstr "Bejelentkezés Wi-Fi-hálózatba"
+#| msgid "Sign into Wi-Fi network"
+msgid "Sign into network"
+msgstr "Bejelentkezés a hálózatba"
 
 #: src/docked-info.c:81
 msgid "Docked"
@@ -298,7 +347,7 @@ msgid "No"
 msgstr "Nem"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Adja meg a jelkódot"
 
@@ -307,41 +356,39 @@ msgid "Checking…"
 msgstr "Ellenőrzés…"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:238
+#: src/screenshot-manager.c:268
 #, c-format
-#| msgid "Screenshot copied to clipboard"
 msgid "Screenshot saved to '%s'"
 msgstr "Képernyőkép mentve ide: „%s”"
 
-#: src/screenshot-manager.c:240
+#: src/screenshot-manager.c:270
 msgid "Failed to save screenshot"
 msgstr "Nem sikerült menteni a képernyőképet"
 
-#: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Képernyőkép"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:554
-#| msgid "Screenshot"
+#: src/screenshot-manager.c:596
 msgid "Screenshots"
 msgstr "Képernyőképek"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:574
+#: src/screenshot-manager.c:616
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Képernyőkép %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:691 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Ismeretlen cím"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:699 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Ismeretlen előadó"
 
@@ -494,9 +541,10 @@ msgid_plural "Almost %dy"
 msgstr[0] "Majdnem %d év"
 msgstr[1] "Majdnem %d év"
 
-#: src/overview.c:221
-msgid "Application failed to start"
-msgstr "Az alkalmazást nem sikerült elindítani"
+#: src/overview.c:228
+#| msgid "Application failed to start"
+msgid "Application is slow or failed to start"
+msgstr "Az alkalmazás lassú vagy nem sikerült elindítani"
 
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
@@ -576,9 +624,18 @@ msgstr "_Részletek megtekintése"
 msgid "Uninstall"
 msgstr "Eltávolítás"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+#| msgid "Application"
+msgid "Hide Application"
+msgstr "Alkalmazás elrejtése"
+
+#: src/ui/app-grid-button.ui:58
 msgid "_Remove from Folder"
 msgstr "_Eltávolítás mappából"
+
+#: src/ui/app-grid-button.ui:65
+msgid "Manage Hidden Apps"
+msgstr "Rejtett alkalmazások kezelése"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
@@ -601,7 +658,6 @@ msgid "Automatic Brightness"
 msgstr "Automatikus fényerő"
 
 #: src/ui/brightness-settings.ui:120
-#| msgid "Sound Settings"
 msgid "Brightness Settings"
 msgstr "Fényerő-beállítások"
 
@@ -655,7 +711,6 @@ msgid "Do not disturb"
 msgstr "Ne zavarjanak"
 
 #: src/ui/feedback-status-page.ui:53
-#| msgid "Folder Settings"
 msgid "Feedback Settings"
 msgstr "Visszajelzési beállítások"
 
@@ -671,7 +726,7 @@ msgstr "Tartomány:"
 msgid "Co_nnect"
 msgstr "_Kapcsolódás"
 
-#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr "Vissza"
 
@@ -679,7 +734,7 @@ msgstr "Vissza"
 msgid "Slide up to unlock"
 msgstr "Csúsztassa fel a feloldáshoz"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "Feloldás"
 
@@ -688,7 +743,7 @@ msgid "Authentication required"
 msgstr "Hitelesítés szükséges"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:101
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Mégse"
@@ -717,15 +772,15 @@ msgstr "Vészhelyzet"
 msgid "Run Command"
 msgstr "Parancs futtatása"
 
-#: src/ui/settings.ui:121
+#: src/ui/settings.ui:128
 msgid "No notifications"
 msgstr "Nincsenek értesítések"
 
-#: src/ui/settings.ui:150
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "Értesítések"
 
-#: src/ui/settings.ui:159
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "Összes törlése"
 
@@ -807,18 +862,16 @@ msgid "Cellular"
 msgstr "Mobilhálózat"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
 msgid "Phosh on caffeine"
 msgstr "Phosh a koffeinen"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
-#| msgid "Off"
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:305
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "Ki"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
-#| msgid "On"
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:310
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "Be"
@@ -832,22 +885,19 @@ msgid "No caffeine intervals"
 msgstr "Nincsenek koffein időközök"
 
 #: plugins/caffeine-quick-setting/qs.ui:55
-#| msgid "Caffeine Quick Setting"
 msgid "Caffeine Settings"
 msgstr "Koffein beállítások"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:388
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:197
 msgid "No timeout (∞)"
 msgstr "Nincs időkorlát (∞)"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:7
-#| msgid "Caffeine Quick Setting"
 msgid "Caffeine Quick Setting Preferences"
 msgstr "Koffein gyors beállításának beállításai"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:11
-#| msgid "Caffeine Quick Setting"
 msgid "Caffeine Duration"
 msgstr "Koffein időtartama"
 
@@ -860,42 +910,61 @@ msgid "Add or remove custom caffeine intervals"
 msgstr "Egyéni koffein időközök hozzáadása vagy eltávolítása"
 
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:22
-#| msgid "Add Contact"
 msgid "Add interval"
 msgstr "Időköz hozzáadása"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
-#| msgid "Add New Contact"
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:68
+#| msgid "Caffeine timers"
+msgid "Caffeine Mode"
+msgstr "Koffein mód"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:74
+#| msgid "Suspend"
+msgid "Inhibit Suspend"
+msgstr "Felfüggesztés megakadályozása"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+msgid "Don't suspend when caffeine is active"
+msgstr "Ne függessze fel, ha a koffein aktív"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:81
+msgid "Inhibit Idle"
+msgstr "Tétlenség megakadályozása"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:82
+msgid "Don't let system become idle when caffeine is active"
+msgstr "Ne hagyja a rendszer tétlen állapotba kerülését, ha a koffein aktív"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:92
 msgid "Add New Interval"
 msgstr "Új időköz hozzáadása"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:109
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "Hozzá_adás"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:141
 msgid "Quickstart Intervals"
 msgstr "Gyors indítás időközei"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:153
 msgid "5 m"
 msgstr "5 p"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
 msgid "15 m"
 msgstr "15 p"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:175
 msgid "30 m"
 msgstr "30 p"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:186
 msgid "1 h"
 msgstr "1 ó"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
-#| msgid "Choose Folder"
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:214
 msgid "Choose Interval"
 msgstr "Időköz kiválasztása"
 
@@ -974,17 +1043,14 @@ msgid "Done"
 msgstr "Kész"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:67
-#| msgid "Owner Name"
 msgid "_Owner Name"
 msgstr "_Tulajdonos neve"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:73
-#| msgid "Date of Birth"
 msgid "_Date of Birth"
 msgstr "Születési _dátum"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:79
-#| msgid "Preferred Language"
 msgid "_Preferred Language"
 msgstr "_Előnyben részesített nyelv"
 
@@ -993,17 +1059,14 @@ msgid "_Age"
 msgstr "Élet_kor"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:111
-#| msgid "Blood Type"
 msgid "_Blood Type"
 msgstr "_Vércsoport"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:117
-#| msgid "Height"
 msgid "_Height"
 msgstr "_Magasság"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:123
-#| msgid "Weight"
 msgid "_Weight"
 msgstr "_Súly"
 
@@ -1020,7 +1083,6 @@ msgid "Add New Contact"
 msgstr "Új partner hozzáadása"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:240
-#| msgid "New Contact Name"
 msgid "_Contact Name"
 msgstr "_Partner neve"
 
@@ -1029,7 +1091,6 @@ msgid "Relationship"
 msgstr "Kapcsolat"
 
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:252
-#| msgid "New Contact Name"
 msgid "_Contact Number"
 msgstr "_Partner száma"
 
@@ -1041,15 +1102,58 @@ msgstr "Nincsenek indítók beállítva"
 msgid "Launchers"
 msgstr "Indítók"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
-#| msgid "Geolocation"
+#. Translators: Location precision level - country-wide
+#: plugins/location-quick-setting/accuracy-row.c:44
+msgid "Country"
+msgstr "Ország"
+
+#. Translators: Location precision level - city-wide
+#: plugins/location-quick-setting/accuracy-row.c:47
+msgid "City"
+msgstr "Város"
+
+#. Translators: Location precision level - neighborhood
+#: plugins/location-quick-setting/accuracy-row.c:50
+msgid "Neighborhood"
+msgstr "Környék"
+
+#. Translators: Location precision level - street
+#: plugins/location-quick-setting/accuracy-row.c:53
+msgid "Street"
+msgstr "Utca"
+
+#. Translators: Location precision level - exact position
+#: plugins/location-quick-setting/accuracy-row.c:56
+msgid "Exact"
+msgstr "Pontos"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location On"
 msgstr "Helymeghatározás bekapcsolva"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
-#| msgid "Geolocation"
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location Off"
 msgstr "Helymeghatározás kikapcsolva"
+
+#: plugins/location-quick-setting/qs.ui:15
+#| msgid "Location On"
+msgid "Location Accuracy"
+msgstr "Helymeghatározás pontossága"
+
+#: plugins/location-quick-setting/qs.ui:62
+#| msgid "Wi-Fi Disabled"
+msgid "Location Disabled"
+msgstr "Helymeghatározás letiltva"
+
+#: plugins/location-quick-setting/qs.ui:72
+#| msgid "Location On"
+msgid "Enable Location"
+msgstr "Helymeghatározás engedélyezése"
+
+#: plugins/location-quick-setting/qs.ui:87
+#| msgid "Location Quick Setting"
+msgid "Location Settings"
+msgstr "Helymeghatározás beállításai"
 
 #: plugins/media-players/media-players.ui:20
 msgid "No running media players"
@@ -1071,39 +1175,43 @@ msgstr "Éjszakai fény be"
 msgid "Night Light Off"
 msgstr "Éjszakai fény ki"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "Pomodoro indítása"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "Összpontosítson a feladatára %d percig"
+#| msgid "Focus on your task for %d minutes"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Összpontosítson a feladatára %d percig"
+msgstr[1] "Összpontosítson a feladatára %d percig"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "Tartson szünetet"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "%d perc van hátra a következő Pomodoroig"
+#| msgid "You have %d minutes until next Pomodoro"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "%d perc van hátra a következő Pomodoroig"
+msgstr[1] "%d perc van hátra a következő Pomodoroig"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "Pomodoro-időzítő"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
-#| msgid "Power Off"
 msgid "Pomodoro Off"
 msgstr "Pomodoro kikapcsolva"
 
 #: plugins/pomodoro-quick-setting/prefs/prefs.ui:6
-#| msgid "Ticket Box Preferences"
 msgid "Pomodoro Quick Setting Preferences"
 msgstr "Pomodoro gyors beállításának beállításai"
 
@@ -1216,11 +1324,13 @@ msgstr "Névtelen esemény"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "Nincsenek események a következő %d napra"
+#| msgid "No events for the next %d days"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "Nincsenek események a következő %d napra"
+msgstr[1] "Nincsenek események a következő %d napra"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
-#| msgid "Upcoming Events"
 msgid "No upcoming events"
 msgstr "Nincsenek közelgő események"
 
@@ -1245,6 +1355,11 @@ msgstr "A megjelenítendő események napjainak száma"
 msgid "Monitor scales"
 msgstr "Monitor méretezése"
 
+#: plugins/scaling-quick-setting/qs.ui:36
+#| msgid "Wi-Fi Settings"
+msgid "Display Settings"
+msgstr "Megjelenítési beállítások"
+
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
 #: plugins/scaling-quick-setting/scaling-quick-setting.c:91
@@ -1252,13 +1367,39 @@ msgstr "Monitor méretezése"
 msgid "%d%%"
 msgstr "%d%%"
 
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+#| msgid "Add to Folder"
+msgid "No folders"
+msgstr "Nincsenek mappák"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+msgid "Syncthing is disabled"
+msgstr "A Syncthing le van tiltva"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+#| msgid "Enable Wi-Fi"
+msgid "Enable"
+msgstr "Engedélyezés"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Syncthing felhasználói felületének megnyitása"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Nem lehet kapcsolódni a Syncbus szoftverhez"
+
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
-#| msgid "No Wi-Fi Hotspots"
 msgid "Wi-Fi Hotspot"
 msgstr "Wi-Fi hozzáférési pont"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:71
-#| msgid "Turn Off"
 msgid "Turn On"
 msgstr "Bekapcsolás"
 
