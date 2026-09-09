@@ -34,7 +34,7 @@
                     <property name="valign">start</property>
                     <property name="margin-end">16</property>
                     <property name="margin-top">16</property>
-                    <signal name="clicked" handler="on_view_close_clicked" swapped="yes"/>
+                    <signal name="button-press-event" handler="on_view_close_clicked" swapped="yes"/>
                     <style>
                       <class name="image-button"/>
                       <class name="circular"/>

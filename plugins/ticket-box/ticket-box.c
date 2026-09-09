@@ -73,10 +73,12 @@ on_row_selected (PhoshTicketBox *self,
 }
 
 
-static void
-on_view_close_clicked (PhoshTicketBox *self)
+static gboolean
+on_view_close_clicked (PhoshTicketBox *self, GdkEventButton *event)
 {
-  gtk_stack_set_visible_child_name (self->stack_tickets, "tickets");
+  if (event->button == GDK_BUTTON_PRIMARY)
+    gtk_stack_set_visible_child_name (self->stack_tickets, "tickets");
+  return TRUE;
 }
 
 
