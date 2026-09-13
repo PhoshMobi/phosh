@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-08-30 18:27+0000\n"
-"PO-Revision-Date: 2026-08-31 15:16+0200\n"
+"POT-Creation-Date: 2026-09-13 06:42+0000\n"
+"PO-Revision-Date: 2026-09-13 22:12+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -354,29 +354,37 @@ msgstr "Vnesite geslo"
 msgid "Checking…"
 msgstr "Preverjanje …"
 
+#: src/screenshot-manager.c:311
+msgid "View"
+msgstr "Pogled"
+
+#: src/screenshot-manager.c:311
+msgid "Open containing folder"
+msgstr "Odpri vsebujočo mapo"
+
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:268
+#: src/screenshot-manager.c:319
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Zaslonska slika shranjena v »%s«"
 
-#: src/screenshot-manager.c:270
+#: src/screenshot-manager.c:338
 msgid "Failed to save screenshot"
 msgstr "Posnetka zaslona ni bilo mogoče shraniti"
 
-#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:342 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Posnetek zaslona"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:596
+#: src/screenshot-manager.c:654
 msgid "Screenshots"
 msgstr "Zaslonske slike"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:616
+#: src/screenshot-manager.c:674
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Zaslonska slika iz %s%s.png"
