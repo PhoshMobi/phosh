@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-08-30 18:27+0000\n"
-"PO-Revision-Date: 2026-09-07 22:00+0200\n"
+"POT-Creation-Date: 2026-09-13 06:42+0000\n"
+"PO-Revision-Date: 2026-09-13 19:13+0200\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
 "Language: bg\n"
@@ -354,29 +354,37 @@ msgstr "Въведете код за достъп"
 msgid "Checking…"
 msgstr "Проверка…"
 
+#: src/screenshot-manager.c:311
+msgid "View"
+msgstr "Изглед"
+
+#: src/screenshot-manager.c:311
+msgid "Open containing folder"
+msgstr "Отваряне на съдържащата папка"
+
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:268
+#: src/screenshot-manager.c:319
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Снимката на екрана е запазена в „%s“"
 
-#: src/screenshot-manager.c:270
+#: src/screenshot-manager.c:338
 msgid "Failed to save screenshot"
 msgstr "Снимката на екрана не може да се запази"
 
-#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:342 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Снимка на екрана"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:596
+#: src/screenshot-manager.c:654
 msgid "Screenshots"
 msgstr "Снимки на екрана"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:616
+#: src/screenshot-manager.c:674
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Снимка на екрана на %s%s.png"
