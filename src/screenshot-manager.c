@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2021-2022 Purism SPC
- *               2023-2024 The Phosh Developers
+ *               2023-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -73,9 +73,7 @@ typedef struct {
 typedef struct {
   guint                   child_watch_id;
   GPid                    pid;
-  GDBusMethodInvocation  *invocation;
   GInputStream           *stdout_;
-  GCancellable           *cancel;
   char                    read_buf[64];
   GString                *response;
 } SlurpArea;
@@ -87,7 +85,6 @@ typedef struct _PhoshScreenshotManager {
   int                                dbus_name_id;
   struct zwlr_screencopy_manager_v1 *wl_scm;
   ScreencopyFrames                  *frames;
-  SlurpArea                         *slurp;
 
   PhoshFader                        *fader;
   guint                              fader_id;
@@ -191,8 +188,6 @@ slurp_area_dispose (SlurpArea *slurp)
     g_string_free (slurp->response, TRUE);
     slurp->response = NULL;
   }
-  g_cancellable_cancel (slurp->cancel);
-  g_clear_object (&slurp->cancel);
   g_clear_object (&slurp->stdout_);
 }
 
@@ -1170,27 +1165,28 @@ parse_slurp (const char *str, GdkRectangle *box)
 static void
 on_slurp_exited (GPid pid, int wait_status, gpointer user_data)
 {
-  PhoshScreenshotManager *self;
-  GdkRectangle box;
+  g_autoptr (GTask) task = G_TASK (user_data);
+  SlurpArea *slurp;
+  g_autofree GdkRectangle *box = NULL;
 
-  g_return_if_fail (PHOSH_IS_SCREENSHOT_MANAGER (user_data));
-  self = PHOSH_SCREENSHOT_MANAGER (user_data);
+  g_assert_true (G_IS_TASK (task));
+  g_assert_true (g_task_get_source_tag (G_TASK (task)) ==
+                 phosh_screenshot_manager_select_area_async);
 
-  g_return_if_fail (pid == self->slurp->pid);
+  slurp = g_task_get_task_data (task);
+  g_return_if_fail (pid == slurp->pid);
 
-  g_debug ("Selected area: %s", self->slurp->response->str);
+  g_debug ("Selected area: %s", slurp->response->str);
 
-  if (parse_slurp (self->slurp->response->str, &box)) {
-    phosh_dbus_screenshot_complete_select_area (PHOSH_DBUS_SCREENSHOT (self),
-                                                self->slurp->invocation,
-                                                box.x, box.y, box.width, box.height);
-  } else {
-    g_dbus_method_invocation_return_error (self->slurp->invocation, G_DBUS_ERROR,
-                                           G_DBUS_ERROR_FAILED,
-                                           "Area selection failed");
+  box = g_new0 (GdkRectangle, 1);
+  if (parse_slurp (slurp->response->str, box))
+    g_task_return_pointer (task, g_steal_pointer (&box), g_free);
+  else {
+    GError *err = g_error_new_literal (G_IO_ERROR,
+                                       G_IO_ERROR_FAILED,
+                                       "Area selection failed");
+    g_task_return_error (g_steal_pointer (&task), err);
   }
-
-  g_clear_pointer (&self->slurp, slurp_area_dispose);
 }
 
 
@@ -1198,39 +1194,65 @@ static void
 on_slurp_read_done (GObject *source_object, GAsyncResult *res, gpointer user_data)
 {
   GInputStream *slurp_out = G_INPUT_STREAM (source_object);
-  PhoshScreenshotManager *self = PHOSH_SCREENSHOT_MANAGER (user_data);
+  g_autoptr (GTask) task = G_TASK (user_data);
+  g_autoptr (GError) err = NULL;
+  SlurpArea *slurp;
   gssize read_size;
-  g_autoptr (GError) error = NULL;
 
-  read_size = g_input_stream_read_finish (slurp_out, res, &error);
+  g_assert_true (G_IS_TASK (task));
+  g_assert_true (g_task_get_source_tag (G_TASK (task)) ==
+                 phosh_screenshot_manager_select_area_async);
+
+  slurp = g_task_get_task_data (task);
+  read_size = g_input_stream_read_finish (slurp_out, res, &err);
   switch (read_size) {
   case -1:
-    if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED)) {
-      g_warning ("Slurp cancelled");
-      g_dbus_method_invocation_return_error (self->slurp->invocation, G_DBUS_ERROR,
-                                             G_DBUS_ERROR_FAILED,
-                                             "Area selection cancelled");
-      g_clear_pointer (&self->slurp, slurp_area_dispose);
-      return;
-    }
-    break;
+    g_task_return_error (task, g_steal_pointer (&err));
+    return;
   case 0:
     /* Done reading. */
-    self->slurp->child_watch_id = g_child_watch_add (self->slurp->pid, on_slurp_exited, self);
+    slurp->child_watch_id = g_child_watch_add (slurp->pid,
+                                               on_slurp_exited,
+                                               g_steal_pointer (&task));
     break;
   default:
-    g_string_append_len (self->slurp->response, self->slurp->read_buf, read_size);
+    g_string_append_len (slurp->response, slurp->read_buf, read_size);
     g_input_stream_read_async (slurp_out,
-                               self->slurp->read_buf,
-                               sizeof(self->slurp->read_buf),
+                               slurp->read_buf,
+                               sizeof (slurp->read_buf),
                                G_PRIORITY_DEFAULT,
                                NULL,
                                on_slurp_read_done,
-                               self);
+                               g_steal_pointer (&task));
     return;
   }
 
   g_input_stream_close (slurp_out, NULL, NULL);
+}
+
+
+static void
+on_area_slurped (GObject *source_object, GAsyncResult *res, gpointer user_data)
+{
+  PhoshScreenshotManager *self = PHOSH_SCREENSHOT_MANAGER (source_object);
+  GDBusMethodInvocation *invocation = G_DBUS_METHOD_INVOCATION (user_data);
+  g_autoptr (GError) err = NULL;
+  g_autofree GdkRectangle *box = NULL;
+
+  g_return_if_fail (PHOSH_IS_SCREENSHOT_MANAGER (self));
+
+  box = phosh_screenshot_manager_select_area_finish (self, res, &err);
+  if (box) {
+    phosh_dbus_screenshot_complete_select_area (PHOSH_DBUS_SCREENSHOT (self),
+                                                invocation,
+                                                box->x, box->y, box->width, box->height);
+  } else {
+    g_warning ("Area selection failed: %s", err->message);
+    g_dbus_method_invocation_return_error_literal (invocation,
+                                                   G_DBUS_ERROR,
+                                                   G_DBUS_ERROR_FAILED,
+                                                   err->message);
+  }
 }
 
 
@@ -1239,47 +1261,13 @@ handle_select_area (PhoshDBusScreenshot   *object,
                     GDBusMethodInvocation *invocation)
 {
   PhoshScreenshotManager *self = PHOSH_SCREENSHOT_MANAGER (object);
-  const char *cmd[] = { "slurp", NULL };
-  gboolean success;
-  int slurp_stdout_fd;
-  g_autofree SlurpArea *slurp = NULL;
   g_autoptr (GError) err = NULL;
-  GPid slurp_pid;
 
   g_debug ("DBus call %s", __func__);
-
-  g_return_val_if_fail (slurp == NULL, FALSE);
-
-  success = g_spawn_async_with_pipes (NULL,
-                                      (char **) cmd,
-                                      NULL, /* envp */
-                                      G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD,
-                                      NULL, /* setup-func */
-                                      NULL, /* user_data */
-                                      &slurp_pid,
-                                      NULL,
-                                      &slurp_stdout_fd,
-                                      NULL,
-                                      &err);
-  if (!success) {
-    g_warning ("Failed to spawn slurp: %s", err->message);
-    return FALSE;
-  }
-
-  slurp = g_new0 (SlurpArea, 1);
-  slurp->stdout_ = g_unix_input_stream_new (slurp_stdout_fd, TRUE);
-  slurp->invocation = invocation;
-  slurp->pid = slurp_pid;
-  slurp->response = g_string_new (NULL);
-  g_input_stream_read_async (slurp->stdout_,
-                             slurp->read_buf,
-                             sizeof(slurp->read_buf),
-                             G_PRIORITY_DEFAULT,
-                             slurp->cancel,
-                             on_slurp_read_done,
-                             self);
-
-  self->slurp = g_steal_pointer (&slurp);
+  phosh_screenshot_manager_select_area_async (self,
+                                              self->cancel,
+                                              on_area_slurped,
+                                              invocation);
   return TRUE;
 }
 
@@ -1412,7 +1400,6 @@ phosh_screenshot_manager_dispose (GObject *object)
 
   g_clear_pointer (&self->frames, screencopy_frames_dispose);
   g_clear_object (&self->for_clipboard);
-  g_clear_pointer (&self->slurp, slurp_area_dispose);
 
   g_clear_handle_id (&self->fader_id, g_source_remove);
   g_clear_handle_id (&self->opaque_id, g_source_remove);
@@ -1479,4 +1466,71 @@ phosh_screenshot_manager_take_screenshot (PhoshScreenshotManager *self,
   self->frames->copy_to_clipboard = copy_to_clipboard;
 
   return ret;
+}
+
+
+GdkRectangle *
+phosh_screenshot_manager_select_area_finish (PhoshScreenshotManager *self,
+                                             GAsyncResult           *res,
+                                             GError                **error)
+{
+  g_assert (PHOSH_IS_SCREENSHOT_MANAGER (self));
+  g_assert (G_IS_TASK (res));
+  g_assert (!error || !*error);
+
+  return g_task_propagate_pointer (G_TASK (res), error);
+}
+
+
+void
+phosh_screenshot_manager_select_area_async (PhoshScreenshotManager *self,
+                                            GCancellable           *cancel,
+                                            GAsyncReadyCallback     callback,
+                                            gpointer                user_data)
+{
+  const char *cmd[] = { "slurp", NULL };
+  gboolean success;
+  int slurp_stdout_fd;
+  SlurpArea *slurp;
+  g_autoptr (GError) err = NULL;
+  g_autoptr (GTask) task = NULL;
+  GPid slurp_pid;
+
+  g_return_if_fail (PHOSH_IS_SCREENSHOT_MANAGER (self));
+  g_return_if_fail (cancel == NULL || G_IS_CANCELLABLE (cancel));
+
+  task = g_task_new (self, cancel, callback, user_data);
+  g_task_set_source_tag (task, phosh_screenshot_manager_select_area_async);
+  g_task_set_name (task, "Screenshot slurp");
+
+  success = g_spawn_async_with_pipes (NULL,
+                                      (char **) cmd,
+                                      NULL, /* envp */
+                                      G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD,
+                                      NULL, /* setup-func */
+                                      NULL, /* user_data */
+                                      &slurp_pid,
+                                      NULL,
+                                      &slurp_stdout_fd,
+                                      NULL,
+                                      &err);
+  if (!success) {
+    g_warning ("Failed to spawn slurp: %s", err->message);
+    g_task_return_error (task, g_steal_pointer (&err));
+    return;
+  }
+
+  slurp = g_new0 (SlurpArea, 1);
+  slurp->stdout_ = g_unix_input_stream_new (slurp_stdout_fd, TRUE);
+  slurp->pid = slurp_pid;
+  slurp->response = g_string_new (NULL);
+  g_task_set_task_data (task, slurp, (GDestroyNotify) slurp_area_dispose);
+
+  g_input_stream_read_async (slurp->stdout_,
+                             slurp->read_buf,
+                             sizeof (slurp->read_buf),
+                             G_PRIORITY_DEFAULT,
+                             cancel,
+                             on_slurp_read_done,
+                             g_steal_pointer (&task));
 }
