@@ -169,15 +169,15 @@ open_folder (GSimpleAction *action,
   app = g_app_info_get_default_for_type ("inode/directory", FALSE);
   context = gdk_display_get_app_launch_context (display);
 
-  if (app != NULL){
-    g_app_info_launch_uris_async (
-      app,
-      uris,
-      G_APP_LAUNCH_CONTEXT (context),
-      self->cancel,
-      on_folder_opened,
-      NULL
-      );
+  if (app != NULL) {
+    g_app_info_launch_uris_async (app,
+                                  uris,
+                                  G_APP_LAUNCH_CONTEXT (context),
+                                  self->cancel,
+                                  on_folder_opened,
+                                  NULL);
+  } else {
+    g_warning ("No handler for inode/directory");
   }
 }
 
