@@ -32,6 +32,7 @@ struct _PhoshTicketBox {
   GListStore   *model;
   GtkListBox   *lb_tickets;
   GtkStack     *stack_tickets;
+  guint         resize_idle_id;
 
   EvView       *view;
 };
@@ -39,6 +40,13 @@ struct _PhoshTicketBox {
 G_DEFINE_TYPE (PhoshTicketBox, phosh_ticket_box, GTK_TYPE_BOX);
 
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EvDocument, g_object_unref)
+
+static void
+on_idle_resize (PhoshTicketBox *self)
+{
+  self->resize_idle_id = 0;
+  gtk_widget_queue_resize (GTK_WIDGET (self->view));
+}
 
 static void
 on_row_selected (PhoshTicketBox *self,
@@ -67,16 +75,22 @@ on_row_selected (PhoshTicketBox *self,
   model = ev_document_model_new_with_document (doc);
   ev_view_set_model (self->view, model);
 
+  /* Postpone resizing so that Evince has time load and calculate document dimensions. */
+  self->resize_idle_id = g_idle_add_once ((GSourceOnceFunc) on_idle_resize, self);
+  g_source_set_name_by_id (self->resize_idle_id, "[TicketBox] idle");
+
   gtk_stack_set_visible_child_name (self->stack_tickets, "ticket-view");
 
   gtk_list_box_select_row (box, NULL);
 }
 
 
-static void
-on_view_close_clicked (PhoshTicketBox *self)
+static gboolean
+on_view_close_clicked (PhoshTicketBox *self, GdkEventButton *event)
 {
-  gtk_stack_set_visible_child_name (self->stack_tickets, "tickets");
+  if (event->button == GDK_BUTTON_PRIMARY)
+    gtk_stack_set_visible_child_name (self->stack_tickets, "tickets");
+  return TRUE;
 }
 
 
@@ -91,6 +105,7 @@ phosh_ticket_box_finalize (GObject *object)
 
   g_clear_object (&self->dir);
   g_clear_pointer (&self->ticket_box_path, g_free);
+  g_clear_handle_id (&self->resize_idle_id, g_source_remove);
 
   G_OBJECT_CLASS (phosh_ticket_box_parent_class)->finalize (object);
 }
