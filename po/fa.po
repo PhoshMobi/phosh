@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-08-30 18:27+0000\n"
-"PO-Revision-Date: 2026-08-31 19:45+0330\n"
+"POT-Creation-Date: 2026-09-16 17:40+0000\n"
+"PO-Revision-Date: 2026-09-20 12:53+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.6\n"
 "X-DL-Lang: fa\n"
 "X-DL-Module: phosh\n"
 "X-DL-Branch: main\n"
@@ -350,29 +350,37 @@ msgstr "ورود رمز عبور"
 msgid "Checking…"
 msgstr "در حال بررسی…"
 
+#: src/screenshot-manager.c:306
+msgid "View"
+msgstr "نما"
+
+#: src/screenshot-manager.c:306
+msgid "Open containing folder"
+msgstr "گشودن شاخهٔ پرونده"
+
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:268
+#: src/screenshot-manager.c:314
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "نماگرفت در %s ذخیره شد"
 
-#: src/screenshot-manager.c:270
+#: src/screenshot-manager.c:333
 msgid "Failed to save screenshot"
 msgstr "شکست در ذخیرهٔ نماگرفت"
 
-#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:337 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "نماگرفت"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:596
+#: src/screenshot-manager.c:649
 msgid "Screenshots"
 msgstr "نماگرفت‌ها"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:616
+#: src/screenshot-manager.c:669
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "نماگرفت از ‪%s%s.png"
@@ -622,11 +630,11 @@ msgstr "حذف نصب"
 msgid "Hide Application"
 msgstr "نهفتن برنامه"
 
-#: src/ui/app-grid-button.ui:58
+#: src/ui/app-grid-button.ui:59
 msgid "_Remove from Folder"
 msgstr "_برداشتن از شاخه"
 
-#: src/ui/app-grid-button.ui:65
+#: src/ui/app-grid-button.ui:64
 msgid "Manage Hidden Apps"
 msgstr "مدیریت کاره‌های پنهان"
 
