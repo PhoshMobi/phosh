@@ -38,7 +38,7 @@
     <key name="favorites" type="as">
       <default>[ 'org.gnome.Calls.desktop',
                  'sm.puri.Chatty.desktop',
-                 'org.gnome.Epiphany.desktop',
+                 'firefox-esr.desktop',
                  'org.gnome.Contacts.desktop'
                ]</default>
       <summary>List of desktop file IDs for favorite applications</summary>
