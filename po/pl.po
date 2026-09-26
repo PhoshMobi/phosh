@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-06-28 10:37+0000\n"
-"PO-Revision-Date: 2026-07-01 18:21+0200\n"
-"Last-Translator: Victoria Niedzielska <victorian@gnome.org>\n"
+"POT-Creation-Date: 2026-09-20 15:52+0000\n"
+"PO-Revision-Date: 2026-09-26 11:36+0200\n"
+"Last-Translator: nicole mikołajczyk <git@mkljczk.pl>\n"
 "Language-Team: Polish <https://l10n.gnome.org/teams/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Gtranslator 50.0\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -132,7 +132,7 @@ msgstr "Szybkie ustawienie skalowania"
 
 #: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
 msgid "A quick setting for adjusting the display scaling."
-msgstr "Szybkie ustawienie do dostosowania skalowania ekranu"
+msgstr "Szybkie ustawienie do dostosowania skalowania ekranu."
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
 msgid "Syncthing Quick Setting"
@@ -140,7 +140,7 @@ msgstr "Szybkie ustawienie programu Syncthing"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
 msgid "A quick setting for Syncthing."
-msgstr "Szybkie ustawienie dla programu Syncthing"
+msgstr "Szybkie ustawienie dla programu Syncthing."
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
@@ -349,7 +349,7 @@ msgid "No"
 msgstr "Nie"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Proszę podać kod"
 
@@ -357,40 +357,48 @@ msgstr "Proszę podać kod"
 msgid "Checking…"
 msgstr "Sprawdzanie…"
 
+#: src/screenshot-manager.c:306
+msgid "View"
+msgstr "Pokaż"
+
+#: src/screenshot-manager.c:306
+msgid "Open containing folder"
+msgstr "Otwórz folder zawierający"
+
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:238
+#: src/screenshot-manager.c:314
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Zapisano zrzut ekranu do „%s”"
 
-#: src/screenshot-manager.c:240
+#: src/screenshot-manager.c:333
 msgid "Failed to save screenshot"
 msgstr "Nie udało się zapisać zrzutu ekranu"
 
-#: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:337 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Zrzut ekranu"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:554
+#: src/screenshot-manager.c:649
 msgid "Screenshots"
 msgstr "Zrzuty ekranu"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:574
+#: src/screenshot-manager.c:669
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Zrzut ekranu z %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:691 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Nieznany tytuł"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:699 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Nieznany wykonawca"
 
@@ -636,11 +644,11 @@ msgstr "Odinstaluj"
 msgid "Hide Application"
 msgstr "Ukryj program"
 
-#: src/ui/app-grid-button.ui:58
+#: src/ui/app-grid-button.ui:59
 msgid "_Remove from Folder"
 msgstr "Usuń z _katalogu"
 
-#: src/ui/app-grid-button.ui:65
+#: src/ui/app-grid-button.ui:64
 msgid "Manage Hidden Apps"
 msgstr "Zarządzaj ukrytymi programami"
 
@@ -733,7 +741,7 @@ msgstr "Domena:"
 msgid "Co_nnect"
 msgstr "_Połącz"
 
-#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr "Wstecz"
 
@@ -741,7 +749,7 @@ msgstr "Wstecz"
 msgid "Slide up to unlock"
 msgstr "Przesuń w górę, aby odblokować"
 
-#: src/ui/lockscreen.ui:334
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "Odblokuj"
 
@@ -750,7 +758,7 @@ msgid "Authentication required"
 msgstr "Wymagane jest uwierzytelnienie"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:101
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Anuluj"
@@ -779,15 +787,15 @@ msgstr "Połączenie alarmowe"
 msgid "Run Command"
 msgstr "Wykonanie polecenia"
 
-#: src/ui/settings.ui:121
+#: src/ui/settings.ui:128
 msgid "No notifications"
 msgstr "Brak powiadomień"
 
-#: src/ui/settings.ui:150
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "Powiadomienia"
 
-#: src/ui/settings.ui:159
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "Wyczyść wszystkie"
 
@@ -869,16 +877,16 @@ msgid "Cellular"
 msgstr "Komórkowa"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
 msgid "Phosh on caffeine"
 msgstr "Phosh na Kofeinie"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:305
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "Wyłączone"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:310
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "Włączone"
@@ -895,8 +903,8 @@ msgstr "Brak czasów trwania Kofeiny"
 msgid "Caffeine Settings"
 msgstr "Ustawienia Kofeiny"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:388
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:197
 msgid "No timeout (∞)"
 msgstr "Nie wygasaj (∞)"
 
@@ -920,36 +928,57 @@ msgstr "Dodaj lub usuń własne czasy trwania Kofeiny"
 msgid "Add interval"
 msgstr "Dodaj czas trwania"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:68
+msgid "Caffeine Mode"
+msgstr "Tryb Kofeiny"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:74
+msgid "Inhibit Suspend"
+msgstr "Zapobiegaj usypianiu"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+msgid "Don't suspend when caffeine is active"
+msgstr "Nie usypiaj, gdy Kofeina jest aktywna"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:81
+msgid "Inhibit Idle"
+msgstr "Zapobiegaj bezczynności"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:82
+msgid "Don't let system become idle when caffeine is active"
+msgstr ""
+"Nie pozwalaj na przejście w stan bezczynności, gdy Kofeina jest aktywna"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:92
 msgid "Add New Interval"
 msgstr "Dodaj nowy czas trwania"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:109
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "_Dodaj"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:141
 msgid "Quickstart Intervals"
 msgstr "Szybki start czasów trwania"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:153
 msgid "5 m"
 msgstr "5 min"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
 msgid "15 m"
 msgstr "15 min"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:175
 msgid "30 m"
 msgstr "30 min"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:186
 msgid "1 h"
 msgstr "1 godz."
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:214
 msgid "Choose Interval"
 msgstr "Wybierz czas trwania"
 
@@ -1335,6 +1364,10 @@ msgstr "Liczba dni, dla których wyświetlać wydarzenia"
 #: plugins/scaling-quick-setting/qs.ui:14
 msgid "Monitor scales"
 msgstr "Skalowanie ekranu"
+
+#: plugins/scaling-quick-setting/qs.ui:36
+msgid "Display Settings"
+msgstr "Ustawienia ekranu"
 
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
