@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-08-30 18:27+0000\n"
-"PO-Revision-Date: 2026-09-05 22:30+0500\n"
+"POT-Creation-Date: 2026-09-20 15:52+0000\n"
+"PO-Revision-Date: 2026-09-27 16:46+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <Kazakh>\n"
 "Language: kk\n"
@@ -324,8 +324,7 @@ msgstr "Қосулы"
 #: src/location-manager.c:266
 #, c-format
 msgid "Allow '%s' to access your location information?"
-msgstr ""
-"'%s' қолданбасына орналасу ақпаратына қол жеткізуге рұқсат бересіз бе?"
+msgstr "'%s' қолданбасына орналасу ақпаратына қол жеткізуге рұқсат бересіз бе?"
 
 #: src/location-manager.c:271
 msgid "Geolocation"
@@ -348,30 +347,37 @@ msgstr "Пароль кодын енгізіңіз"
 msgid "Checking…"
 msgstr "Тексерілуде…"
 
+#: src/screenshot-manager.c:306
+msgid "View"
+msgstr "Қарау"
+
+#: src/screenshot-manager.c:306
+msgid "Open containing folder"
+msgstr "Орналасқан бумасын ашу"
+
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:268
+#: src/screenshot-manager.c:314
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Скриншот '%s' ішіне сақталды"
 
-#: src/screenshot-manager.c:270
+#: src/screenshot-manager.c:333
 msgid "Failed to save screenshot"
 msgstr "Скриншотты сақтау сәтсіз аяқталды"
 
-#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:337 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Скриншот"
 
-#. Translators: name of the folder beneath ~/Pictures used to store
-#. screenshots
-#: src/screenshot-manager.c:596
+#. Translators: name of the folder beneath ~/Pictures used to store screenshots
+#: src/screenshot-manager.c:649
 msgid "Screenshots"
 msgstr "Скриншоттар"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:616
+#: src/screenshot-manager.c:669
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "%s%s.png скриншоты"
@@ -393,8 +399,7 @@ msgstr "Кірістірілген дисплей"
 #: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
-"This is a monitor vendor name, followed by a size in inches, like 'Dell "
-"15\"'"
+"This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
@@ -615,11 +620,11 @@ msgstr "Өшіру"
 msgid "Hide Application"
 msgstr "Қолданбаны жасыру"
 
-#: src/ui/app-grid-button.ui:58
+#: src/ui/app-grid-button.ui:59
 msgid "_Remove from Folder"
 msgstr "Бумадан өші_ру"
 
-#: src/ui/app-grid-button.ui:65
+#: src/ui/app-grid-button.ui:64
 msgid "Manage Hidden Apps"
 msgstr "Жасырын қолданбаларды басқару"
 
@@ -847,8 +852,7 @@ msgstr "Wi-Fi қатынау нүктелері жоқ"
 msgid "Cellular"
 msgstr "Ұялы байланыс"
 
-#. Translators: Phosh prevents the session from going idle because the
-#. caffeine quick setting is toggled
+#. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
 msgid "Phosh on caffeine"
 msgstr "Phosh кофеин режимінде"
