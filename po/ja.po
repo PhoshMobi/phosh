@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-08-30 18:27+0000\n"
-"PO-Revision-Date: 2026-09-09 22:08+0900\n"
+"POT-Creation-Date: 2026-09-20 15:52+0000\n"
+"PO-Revision-Date: 2026-10-01 21:58+0900\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -351,23 +351,31 @@ msgstr "パスコードを入力"
 msgid "Checking…"
 msgstr "確認中…"
 
+#: src/screenshot-manager.c:306
+msgid "View"
+msgstr "表示"
+
+#: src/screenshot-manager.c:306
+msgid "Open containing folder"
+msgstr "親フォルダーを開く"
+
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:268
+#: src/screenshot-manager.c:314
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "スクリーンショットを「%s」に保存しました"
 
-#: src/screenshot-manager.c:270
+#: src/screenshot-manager.c:333
 msgid "Failed to save screenshot"
 msgstr "スクリーンショットの保存に失敗しました"
 
-#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:337 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "スクリーンショット"
 
 # GNOME Shell 同様、原文ママとします
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:596
+#: src/screenshot-manager.c:649
 msgid "Screenshots"
 msgstr "Screenshots"
 
@@ -375,7 +383,7 @@ msgstr "Screenshots"
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:616
+#: src/screenshot-manager.c:669
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Screenshot from %s%s.png"
@@ -618,11 +626,11 @@ msgstr "アンインストール"
 msgid "Hide Application"
 msgstr "アプリケーションを非表示にする"
 
-#: src/ui/app-grid-button.ui:58
+#: src/ui/app-grid-button.ui:59
 msgid "_Remove from Folder"
 msgstr "フォルダーから外す(_R)"
 
-#: src/ui/app-grid-button.ui:65
+#: src/ui/app-grid-button.ui:64
 msgid "Manage Hidden Apps"
 msgstr "非表示のアプリを管理"
 
