@@ -1,10 +1,16 @@
 phosh 0.58.0
 ------------
 Released October 2026
+* caffeine quick setting: Allow to configure what should be inhibited
+* screenhots: Improve notification so one can open the screenshot
+  image or the containing folder
+* Improve startup tracking for flatpaks and apps that own a DBus name
+* ticket-box: Several bug fixes
 * Issues fixed:
     * https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1260
 * Contributors:
     * Guido Günther
+    * Hugo Posnic
     * Spark
     * sparkd
 * UI translations:
