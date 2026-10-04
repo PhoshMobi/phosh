@@ -1,3 +1,148 @@
+phosh (0.58.0) experimental; urgency=medium
+
+  [ Guido Günther ]
+  * app-tracker: Fix indent.
+    We need to do it at some point.
+  * app-tracker: Use g_clear_dbus_signal_subscription
+  * app-tracker: Really give forks one more iteration.
+    If we don't continue we'll fall through to the error right away.
+  * app-tracker: Check for timeout first.
+    This will make it easier to check for dbus ownership too.
+    No functional change.
+  * app-tracker: Give apps that own a DBus name more time to start.
+    If an app picks up their name as app-id, we give them more time to
+    start.
+    Helps: https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1338
+  * app-tracker: Give flatpaks more time to start.
+    If we see the systemd scope we know that at least something
+    started.
+  * app-tracker: Track the systemd unit's state.
+    That way we notice startup failures quicky.
+    Helps: https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1338
+  * feedback: Open feedback panel on long press.
+    We want this to be consistent with the status page
+  * quick-settings: Open mobile settings.
+    With the connection panels integrated into p-m-s we can open
+    these and thus not confuse the user with two settings apps.
+  * util: Use const with strrchr.
+    Fixes compile with -Werror
+  * scaling-quick-setting: Fix display of Display Settings button.
+    Make sure the elements are actually visible, use `child` while
+    at that.
+    Fixes: 2798c5484 ("scaling-quick-setting: Add button to display settings")
+  * tools: Load schema for caffeine-quick-setting too
+  * caffeine-quick-setting-prefs: Fix indent
+  * caffeine-quick-setting/prefs: Don't expand button vertically.
+    Makes it look less out of place
+  * caffeine-quick-setting: Split out inhibit.
+    Split inhibit and uninhibit into separate functions that
+    return a cookie. This will allow us to reuse them when
+    toggling the inhibit mode in the next commit.
+  * caffeine-quick-setting: Allow to configure what to inhibit.
+    This allows to e.g. only inhibit suspend but still blank the display.
+  * caffeine-quick-setting/prefs: Add prefs page to set inhibit mode.
+    Allow to configure what to inhibit
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1260
+  * util: Don't export all symbols.
+    Some things like hiding/unhiding apps might change api so
+    let's export them when used by plugins rather than putting
+    all of them out.
+  * screenshot-manager: Separate area selection from DBus method invocation.
+    This allows us to use it from other areas of the shell
+  * screenshot-manager: Warn about missing handler.
+    This helps to users and distro to figure out what's missing.
+    Fix indent while at that.
+  * app-grid-button: Move folder-remove action to manage section.
+    The `context_menu` method removes all items from the folder menu
+    including "Remove from folder" making this action inaccessible.
+    Fixes: 736c2fe7d ("app-grid-button: Move folder menu into section")
+  * favorites: Use Firefox by default.
+    We use Firefox's ESR version (hopefully with the  mobile-config) by
+    default. This is what most distros are configuring anyway.
+  * ci: Unbreak alpine build
+    appstream-dev is no longer a transitive dependency
+
+  [ sparkd ]
+  * scaling-quick-setting: Add button to display settings
+
+  [ Martin ]
+  * Update Slovenian translation
+
+  [ Antonio Marin ]
+  * Update Romanian translation
+
+  [ Daniel Rusek ]
+  * Update Czech translation
+
+  [ Yuri Chornoivan ]
+  * Update Ukrainian translation
+
+  [ Baurzhan Muftakhidinov ]
+  * Update Kazakh translation
+
+  [ Danial Behzadi ]
+  * Update Persian translation
+
+  [ Zeqian Sun ]
+  * Update Chinese (China) translation
+
+  [ Ekaterine Papava ]
+  * Update Georgian translation
+  * Update Georgian translation
+  * Update Georgian translation
+
+  [ Ryo Nakano ]
+  * Update Japanese translation
+
+  [ Yaron Shahrabani ]
+  * Update Hebrew translation
+
+  [ Spark ]
+  * screenshots: Add ability to open in image viewer through notifications
+  * screenshots: Use PhoshShellNotification and add action to show in folder
+  * plugins/ticket-box: Fix propagation of clicks on close button.
+  * plugins/ticket-box: Queue resize of view when opening documents.
+
+  [ Emin Tufan Çetin ]
+  * Update Turkish translation
+
+  [ Марко Костић ]
+  * Update Serbian translation
+
+  [ Juliano de Souza Camargo ]
+  * Update Brazilian Portuguese translation
+
+  [ Alexander Alexandrov Shopov ]
+  * Update Bulgarian translation
+
+  [ Jor Teron ]
+  * Add Karbi translation
+
+  [ Jiri Grönroos ]
+  * Update Finnish translation
+
+  [ Balázs Úr ]
+  * Update Hungarian translation
+
+  [ nicole mikołajczyk ]
+  * Update Polish translation
+
+  [ Hugo Carvalho ]
+  * Update Portuguese translation
+
+  [ Rafael Fontenelle ]
+  * Update Brazilian Portuguese translation
+
+  [ Anders Jonsson ]
+  * Update Swedish translation
+
+  [ Hugo Posnic ]
+  * build: Rename meson options file
+    meson.options is the new default since meson 1.1 and this project
+    require at least meson 1.7 so we can switch to it
+
+ -- Guido Günther <agx@sigxcpu.org>  Sun, 04 Oct 2026 11:22:45 +0200
+
 phosh (0.57.0) experimental; urgency=medium
 
   [ Antonio Marin ]
