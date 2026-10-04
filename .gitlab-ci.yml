@@ -49,7 +49,7 @@ variables:
   ASAN_IMAGE: $CI_REGISTRY/world/phosh/phosh/asan:$IMAGE_VERSION
   XVFB_RUN: xvfb-run -a -s -noreset
   COMMON_BUILD_OPTS: -Db_coverage=true --werror -Dtools=true
-  ALPINE_EDGE_DEPS: alpine-sdk callaudiod-dev elogind-dev evince-dev evolution-data-server-dev feedbackd-dev
+  ALPINE_EDGE_DEPS: alpine-sdk appstream-dev callaudiod-dev elogind-dev evince-dev evolution-data-server-dev feedbackd-dev
                     gcovr gcr-dev git glib-dev gmobile-dev gnome-bluetooth-dev gnome-desktop-dev
                     gsettings-desktop-schemas gtk+3.0-dev json-glib-dev libadwaita-dev libgudev-dev
                     libhandy1-dev libsecret-dev linux-pam-dev meson modemmanager-dev musl-dev networkmanager
