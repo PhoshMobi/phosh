@@ -1,3 +1,35 @@
+phosh 0.58.0
+------------
+Released October 2026
+* Issues fixed:
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1260
+* Contributors:
+    * Guido Günther
+    * Spark
+    * sparkd
+* UI translations:
+    * Alexander Alexandrov Shopov (bg)
+    * Anders Jonsson (sv)
+    * Antonio Marin (ro)
+    * Balázs Úr (hu)
+    * Baurzhan Muftakhidinov (kk)
+    * Danial Behzadi (fa)
+    * Daniel Rusek (cs)
+    * Ekaterine Papava (ka)
+    * Emin Tufan Çetin (tr)
+    * Hugo Carvalho (pt)
+    * Jiri Grönroos (fi)
+    * Jor Teron (mjw)
+    * Juliano de Souza Camargo (pt_BR)
+    * Martin (sl)
+    * nicole mikołajczyk (pl)
+    * Rafael Fontenelle (pt_BR)
+    * Ryo Nakano (ja)
+    * Yaron Shahrabani (he)
+    * Yuri Chornoivan (uk)
+    * Zeqian Sun (zh_CN)
+    * Марко Костић (sr)
+
 phosh 0.57.0
 ------------
 Released August 2026
