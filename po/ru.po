@@ -1,21 +1,22 @@
 # Jaroslav Svoboda <multi.flexi@seznam.cz>, 2018. #zanata
 # Lighting <glighting@gmail.com>, 2019. #zanata
 # Pavel <budanov.pavel@gmail.com>, 2019. #zanata
+# SPDX-FileCopyrightText: 2026 Olesya Gerasimenko <goa@altlinux.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-02-04 11:02+0000\n"
-"PO-Revision-Date: 2026-02-07 22:08+0300\n"
-"Last-Translator: Artur So <arturios2005@mail.ru>\n"
-"Language-Team: Russian\n"
+"POT-Creation-Date: 2026-09-20 15:52+0000\n"
+"PO-Revision-Date: 2026-09-30 11:11+0300\n"
+"Last-Translator: Olesya Gerasimenko <goa@altlinux.org>\n"
+"Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.8\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -120,6 +121,24 @@ msgstr "Быстрая настройка Pomodoro"
 msgid "Simple Pomodoro Timer"
 msgstr "Простой таймер Pomodoro"
 
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+#| msgid "Location Quick Setting"
+msgid "Scaling Quick Setting"
+msgstr "Быстрая настройка масштаба"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "Быстрая настройка масштаба отображения"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+#| msgid "Location Quick Setting"
+msgid "Syncthing Quick Setting"
+msgstr "Быстрая настройка Syncthing"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Быстрая настройка параметров Syncthing"
+
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
 msgid "Ticket Box"
@@ -139,6 +158,16 @@ msgstr "Предстоящие события"
 msgid "Show upcoming calendar events"
 msgstr "Показать предстоящие события календаря"
 
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+#| msgid "Wi-Fi Hotspot Active"
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Быстрая настройка точки доступа Wi-Fi"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+#| msgid "Toggle night light on/off"
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Включение/выключение точки доступа Wi-Fi"
+
 #: src/app-grid-button.c:144
 msgid "Add to Folder"
 msgstr "Добавить в папку"
@@ -147,15 +176,38 @@ msgstr "Добавить в папку"
 msgid "Create new folder"
 msgstr "Создать новую папку"
 
-#: src/app-grid-button.c:694 src/app-grid-button.c:748
+#: src/app-grid-button.c:399
+#| msgid "Unknown application"
+msgid "Can't uninstall application"
+msgstr "Не удалось удалить приложение"
+
+#: src/app-grid-button.c:475
+#| msgid "Undocked"
+msgid "Undo"
+msgstr "Отменить"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Теперь приложение всегда скрыто и отключено"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Не удалось скрыть приложение"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
 msgid "Application"
 msgstr "Приложение"
 
-#: src/app-grid.c:264
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "Папка %s пуста"
+
+#: src/app-grid.c:265
 msgid "Show All Apps"
 msgstr "Показать все приложения"
 
-#: src/app-grid.c:267
+#: src/app-grid.c:268
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Показать приложения только для мобильных устройств"
 
@@ -196,12 +248,14 @@ msgid "Wi-Fi network '%s' uses a captive portal"
 msgstr "Сеть Wi-Fi '%s' использует автономный портал"
 
 #: src/connectivity-manager.c:116
-msgid "The Wi-Fi network uses a captive portal"
-msgstr "Сеть Wi-Fi использует автономный портал"
+#| msgid "The Wi-Fi network uses a captive portal"
+msgid "The network uses a captive portal"
+msgstr "Сеть использует автономный портал"
 
 #: src/connectivity-manager.c:123
-msgid "Sign into Wi-Fi network"
-msgstr "Войдите в сеть Wi-Fi"
+#| msgid "Sign into Wi-Fi network"
+msgid "Sign into network"
+msgstr "Войдите в сеть"
 
 #: src/docked-info.c:81
 msgid "Docked"
@@ -298,7 +352,7 @@ msgid "No"
 msgstr "Нет"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:282
+#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Введите код доступа"
 
@@ -306,40 +360,48 @@ msgstr "Введите код доступа"
 msgid "Checking…"
 msgstr "Проверка…"
 
+#: src/screenshot-manager.c:306
+msgid "View"
+msgstr "Просмотр"
+
+#: src/screenshot-manager.c:306
+msgid "Open containing folder"
+msgstr "Открыть содержащую папку"
+
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:238
+#: src/screenshot-manager.c:314
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Снимок экрана сохранен в '%s'"
 
-#: src/screenshot-manager.c:240
+#: src/screenshot-manager.c:333
 msgid "Failed to save screenshot"
 msgstr "Не удалось сохранить снимок экрана"
 
-#: src/screenshot-manager.c:244 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:337 src/ui/power-menu.ui:199
 msgid "Screenshot"
 msgstr "Снимок экрана"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:554
+#: src/screenshot-manager.c:649
 msgid "Screenshots"
 msgstr "Снимки экрана"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:574
+#: src/screenshot-manager.c:669
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Снимок экрана от %s%s.png"
 
 #. Translators: Used when the title of a song is unknown
-#: src/media-player.c:691 src/ui/media-player.ui:208
+#: src/media-player.c:688 src/ui/media-player.ui:208
 msgid "Unknown Title"
 msgstr "Неизвестное название"
 
 #. Translators: Used when the artist of a song is unknown
-#: src/media-player.c:699 src/ui/media-player.ui:196
+#: src/media-player.c:696 src/ui/media-player.ui:196
 msgid "Unknown Artist"
 msgstr "Неизвестный исполнитель"
 
@@ -499,6 +561,10 @@ msgstr[0] "Почти %d г"
 msgstr[1] "Почти %d г"
 msgstr[2] "Почти %d л"
 
+#: src/overview.c:228
+msgid "Application is slow or failed to start"
+msgstr "Приложение работает медленно или не запустилось"
+
 #: src/polkit-auth-agent.c:275
 msgid "Authentication dialog was dismissed by the user"
 msgstr "Диалог аутентификации был отклонен пользователем"
@@ -533,7 +599,7 @@ msgstr "Вкл"
 
 #: src/run-command-dialog.c:129
 msgid "Press ESC to close"
-msgstr "Нажмите Esc чтобы закрыть"
+msgstr "Нажмите Esc для закрытия"
 
 #: src/run-command-manager.c:89
 #, c-format
@@ -577,9 +643,18 @@ msgstr "_Подробности"
 msgid "Uninstall"
 msgstr "Удалить"
 
-#: src/ui/app-grid-button.ui:53
+#: src/ui/app-grid-button.ui:51
+#| msgid "Application"
+msgid "Hide Application"
+msgstr "Скрыть приложение"
+
+#: src/ui/app-grid-button.ui:59
 msgid "_Remove from Folder"
 msgstr "_Удалить из папки"
+
+#: src/ui/app-grid-button.ui:64
+msgid "Manage Hidden Apps"
+msgstr "Управление скрытыми приложениями"
 
 #: src/ui/app-grid.ui:26
 msgid "Search apps…"
@@ -644,7 +719,7 @@ msgstr "Контакты для экстренной помощи отсутст
 
 #: src/ui/end-session-dialog.ui:27
 msgid "Some applications are busy or have unsaved work"
-msgstr "Некоторые приложения заняты или имеют несохраненную работу"
+msgstr "Некоторые приложения заняты или имеют несохраненные данные"
 
 #: src/ui/feedback-status-page.ui:6
 msgid "Feedback"
@@ -670,7 +745,7 @@ msgstr "Домен:"
 msgid "Co_nnect"
 msgstr "По_дключиться"
 
-#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:245
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
 msgid "Back"
 msgstr "Назад"
 
@@ -678,7 +753,7 @@ msgstr "Назад"
 msgid "Slide up to unlock"
 msgstr "Проведите вверх для разблокировки"
 
-#: src/ui/lockscreen.ui:332
+#: src/ui/lockscreen.ui:331
 msgid "Unlock"
 msgstr "Разблокировать"
 
@@ -687,7 +762,7 @@ msgid "Authentication required"
 msgstr "Требуется аутентификация"
 
 #: src/ui/network-auth-prompt.ui:37
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:101
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
 msgid "_Cancel"
 msgstr "_Отменить"
@@ -716,15 +791,15 @@ msgstr "Помощь"
 msgid "Run Command"
 msgstr "Выполнить команду"
 
-#: src/ui/settings.ui:121
+#: src/ui/settings.ui:128
 msgid "No notifications"
 msgstr "Нет уведомлений"
 
-#: src/ui/settings.ui:150
+#: src/ui/settings.ui:157
 msgid "Notifications"
 msgstr "Уведомления"
 
-#: src/ui/settings.ui:159
+#: src/ui/settings.ui:166
 msgid "Clear all"
 msgstr "Очистить все"
 
@@ -806,16 +881,16 @@ msgid "Cellular"
 msgstr "Мобильная сеть"
 
 #. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:70
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
 msgid "Phosh on caffeine"
 msgstr "Phosh на кофеине"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:245
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:305
 msgctxt "caffeine-disabled"
 msgid "Off"
 msgstr "Выкл"
 
-#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:250
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:310
 msgctxt "caffeine-enabled"
 msgid "On"
 msgstr "Вкл"
@@ -832,8 +907,8 @@ msgstr "Нет интервалов кофеина"
 msgid "Caffeine Settings"
 msgstr "Настройки кофеина"
 
-#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:253
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:171
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:388
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:197
 msgid "No timeout (∞)"
 msgstr "Нет перерыва (∞)"
 
@@ -857,36 +932,59 @@ msgstr "Добавить или удалить пользовательские 
 msgid "Add interval"
 msgstr "Добавить интервал"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:66
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:68
+#| msgid "Caffeine timers"
+msgid "Caffeine Mode"
+msgstr "Режим кофеина"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:74
+#| msgid "Suspend"
+msgid "Inhibit Suspend"
+msgstr "Предотвратить переход в режим сна"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+msgid "Don't suspend when caffeine is active"
+msgstr "Не переходить в режим сна, когда работает кофеин"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:81
+msgid "Inhibit Idle"
+msgstr "Предотвратить переход в режим ожидания"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:82
+msgid "Don't let system become idle when caffeine is active"
+msgstr ""
+"Не позволять системе переходить в режим ожидания, когда работает кофеин"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:92
 msgid "Add New Interval"
 msgstr "Добавить новый интервал"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:83
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:109
 #: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
 msgid "_Add"
 msgstr "_Добавить"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:115
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:141
 msgid "Quickstart Intervals"
 msgstr "Интервалы быстрого запуска"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:127
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:153
 msgid "5 m"
 msgstr "5 мин"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:138
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
 msgid "15 m"
 msgstr "15 мин"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:149
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:175
 msgid "30 m"
 msgstr "30 мин"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:160
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:186
 msgid "1 h"
 msgstr "1 час"
 
-#: plugins/caffeine-quick-setting/prefs/prefs.ui:188
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:214
 msgid "Choose Interval"
 msgstr "Выбрать интервал"
 
@@ -1024,13 +1122,58 @@ msgstr "Ярлыки не настроены"
 msgid "Launchers"
 msgstr "Ярлыки"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
-msgid "Location On"
-msgstr "Геолокация вкл"
+#. Translators: Location precision level - country-wide
+#: plugins/location-quick-setting/accuracy-row.c:44
+msgid "Country"
+msgstr "Страна"
 
-#: plugins/location-quick-setting/location-quick-setting.c:65
+#. Translators: Location precision level - city-wide
+#: plugins/location-quick-setting/accuracy-row.c:47
+msgid "City"
+msgstr "Город"
+
+#. Translators: Location precision level - neighborhood
+#: plugins/location-quick-setting/accuracy-row.c:50
+msgid "Neighborhood"
+msgstr "Район"
+
+#. Translators: Location precision level - street
+#: plugins/location-quick-setting/accuracy-row.c:53
+msgid "Street"
+msgstr "Улица"
+
+#. Translators: Location precision level - exact position
+#: plugins/location-quick-setting/accuracy-row.c:56
+msgid "Exact"
+msgstr "Точное местоположение"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
+msgid "Location On"
+msgstr "Геолокация включена"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
 msgid "Location Off"
-msgstr "Геолокация выкл"
+msgstr "Геолокация выключена"
+
+#: plugins/location-quick-setting/qs.ui:15
+#| msgid "Location On"
+msgid "Location Accuracy"
+msgstr "Точность геолокации"
+
+#: plugins/location-quick-setting/qs.ui:62
+#| msgid "Wi-Fi Disabled"
+msgid "Location Disabled"
+msgstr "Геолокация отключена"
+
+#: plugins/location-quick-setting/qs.ui:72
+#| msgid "Location On"
+msgid "Enable Location"
+msgstr "Включить геолокацию"
+
+#: plugins/location-quick-setting/qs.ui:87
+#| msgid "Location Quick Setting"
+msgid "Location Settings"
+msgstr "Настройки геолокации"
 
 #: plugins/media-players/media-players.ui:20
 msgid "No running media players"
@@ -1052,32 +1195,40 @@ msgstr "Ночной свет включен"
 msgid "Night Light Off"
 msgstr "Ночной свет выключен"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:72
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
 msgid "Pomodoro start"
 msgstr "Запустить Pomodoro"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
 #, c-format
-msgid "Focus on your task for %d minutes"
-msgstr "Сфокусироваться на задаче на %d мин"
+#| msgid "Focus on your task for %d minutes"
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Сфокусироваться на задаче на %d минуту"
+msgstr[1] "Сфокусироваться на задаче на %d минуты"
+msgstr[2] "Сфокусироваться на задаче на %d минут"
 
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:78
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
 msgid "Take a break"
 msgstr "Сделать перерыв"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:80
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
 #, c-format
-msgid "You have %d minutes until next Pomodoro"
-msgstr "У вас осталось %d мин. до следующего Pomodoro"
+#| msgid "You have %d minutes until next Pomodoro"
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "У вас осталась %d минута до следующего Pomodoro"
+msgstr[1] "У вас осталось %d минуты до следующего Pomodoro"
+msgstr[2] "У вас осталось %d минут до следующего Pomodoro"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:95
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
 msgid "Pomodoro Timer"
 msgstr "Таймер Pomodoro"
 
 #. Translators: Pomodoro is a technique, no need to translate it
-#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:118
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
 #, c-format
 msgid "Pomodoro Off"
 msgstr "Pomodoro выключен"
@@ -1195,8 +1346,12 @@ msgstr "Безымянное событие"
 
 #: plugins/upcoming-events/upcoming-events.c:408
 #, c-format
-msgid "No events for the next %d days"
-msgstr "Нет событий в течение следующих %d дней"
+#| msgid "No events for the next %d days"
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "Нет событий в течение следующего %d дня"
+msgstr[1] "Нет событий в течение следующих %d дней"
+msgstr[2] "Нет событий в течение следующих %d дней"
 
 #: plugins/upcoming-events/upcoming-events.ui:28
 msgid "No upcoming events"
@@ -1223,12 +1378,45 @@ msgstr "Количество дней для показа событий"
 msgid "Monitor scales"
 msgstr "Масштаб экрана"
 
+#: plugins/scaling-quick-setting/qs.ui:36
+#| msgid "Wi-Fi Settings"
+msgid "Display Settings"
+msgstr "Настройки отображения"
+
 #. Translators: This is scale factor of a monitor in percent
 #: plugins/scaling-quick-setting/scale-row.c:48
 #: plugins/scaling-quick-setting/scaling-quick-setting.c:91
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+#| msgid "Add to Folder"
+msgid "No folders"
+msgstr "Нет папок"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+msgid "Syncthing is disabled"
+msgstr "Syncthing отключено"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+#| msgid "Enable Wi-Fi"
+msgid "Enable"
+msgstr "Включить"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Открыть интерфейс пользователя Syncthing"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Невозможно подключиться к Syncbus"
 
 #: plugins/wifi-hotspot-quick-setting/status-page.ui:6
 msgid "Wi-Fi Hotspot"
@@ -1322,9 +1510,6 @@ msgstr "Точка доступа выключена"
 #~ msgid "App"
 #~ msgstr "Приложение"
 
-#~ msgid "Unknown application"
-#~ msgstr "Неизвестное приложение"
-
 #~ msgid "Lock Screen"
 #~ msgstr "Заблокировать экран"
 
@@ -1334,3 +1519,4 @@ msgstr "Точка доступа выключена"
 #, c-format
 #~ msgid "On %A"
 #~ msgstr "В(о) %A"
+
