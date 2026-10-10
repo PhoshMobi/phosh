@@ -15,6 +15,7 @@ vgdump
 /subprojects/libhandy
 .vscode/
 *.gcov
+debian/cargo_home/
 debian/phosh.service
 debian/files
 debian/*.substvars
@@ -36,3 +37,4 @@ po/messages.mo
 po/missing
 po/notexist
 po/*.pot
+target/

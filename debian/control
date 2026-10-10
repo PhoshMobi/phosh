@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Guido Günther <agx@sigxcpu.org>
 Build-Depends:
  debhelper-compat (= 13),
+ cargo,
  gi-docgen <!nodoc>,
  gsettings-desktop-schemas-dev (>= 47),
  libadwaita-1-dev,

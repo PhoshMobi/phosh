@@ -1,3 +1,4 @@
+debian/cargo_home/bin/phosh-pin-tool /usr/bin/
 usr/bin/phosh-session
 usr/lib/systemd/user/gnome-session@phosh.target.d/session.conf
 usr/lib/systemd/user/mobi.phosh.Shell.service
