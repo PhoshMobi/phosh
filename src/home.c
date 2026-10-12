@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2018-2022 Purism SPC
- *               2023-2024 Guido Günther
+ *               2023-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -100,13 +100,13 @@ static void
 phosh_home_update_home_bar (PhoshHome *self)
 {
   gboolean reveal, solid = TRUE;
-  PhoshDragSurfaceState drag_state = phosh_drag_surface_get_drag_state (PHOSH_DRAG_SURFACE (self));
 
   reveal = !(self->state == PHOSH_HOME_STATE_UNFOLDED);
   gtk_revealer_set_reveal_child (GTK_REVEALER (self->rev_powerbar), reveal);
 
   if (self->use_background)
-    solid = !!(self->state == PHOSH_HOME_STATE_FOLDED && drag_state != PHOSH_DRAG_SURFACE_STATE_DRAGGED);
+    solid = !!(self->state == PHOSH_HOME_STATE_FOLDED &&
+               !phosh_drag_surface_is_moving (PHOSH_DRAG_SURFACE (self)));
 
   phosh_util_toggle_style_class (self->evbox_home_bar, "p-solid", solid);
 }
@@ -164,14 +164,14 @@ update_drag_handle (PhoshHome *self, gboolean queue_draw)
   gint handle = 0;
   PhoshAppGrid *app_grid;
   PhoshDragSurfaceDragMode drag_mode = PHOSH_DRAG_SURFACE_DRAG_MODE_HANDLE;
-  PhoshDragSurfaceState drag_state = phosh_drag_surface_get_drag_state (PHOSH_DRAG_SURFACE (self));
 
   /* reset osk_toggle_long_press to prevent OSK from unfolding accidentally */
   gtk_event_controller_reset (GTK_EVENT_CONTROLLER (self->osk_toggle_long_press));
 
   /* Update the handle's and dragability */
   if (phosh_overview_has_running_activities (self->overview) == FALSE &&
-    self->state == PHOSH_HOME_STATE_UNFOLDED && drag_state != PHOSH_DRAG_SURFACE_STATE_DRAGGED) {
+      self->state == PHOSH_HOME_STATE_UNFOLDED &&
+      !phosh_drag_surface_is_moving (PHOSH_DRAG_SURFACE (self))) {
     drag_mode = PHOSH_DRAG_SURFACE_DRAG_MODE_NONE;
   }
   phosh_drag_surface_set_drag_mode (PHOSH_DRAG_SURFACE (self), drag_mode);
@@ -631,6 +631,7 @@ on_drag_state_changed (PhoshHome *self)
     phosh_overview_set_active_activity_opacity (self->overview, 1.0);
     g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
     break;
+  case PHOSH_DRAG_SURFACE_STATE_ANIMATED:
   case PHOSH_DRAG_SURFACE_STATE_DRAGGED:
     state = PHOSH_HOME_STATE_TRANSITION;
     if (self->state == PHOSH_HOME_STATE_FOLDED) {
@@ -851,6 +852,10 @@ phosh_home_init (PhoshHome *self)
   g_settings_bind (settings, "osk-unfold-delay",
                    self->osk_toggle_long_press, "delay-factor",
                    G_SETTINGS_BIND_GET);
+
+  if (phosh_wayland_get_layer_shell_effects_version (phosh_wayland_get_default ()) <
+      ZPHOC_DRAGGABLE_LAYER_SURFACE_V1_ANIMATED_SINCE_VERSION)
+    g_critical ("Your compositor is too old, please update");
 }
 
 
@@ -912,6 +917,7 @@ phosh_home_set_state (PhoshHome *self, PhoshHomeState state)
   if (self->state == state)
     return;
 
+  /* User drags prevent the state change, compositor driven animations don't */
   if (drag_state == PHOSH_DRAG_SURFACE_STATE_DRAGGED)
     return;
 

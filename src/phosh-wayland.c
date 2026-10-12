@@ -56,6 +56,7 @@ struct _PhoshWayland {
   struct zxdg_output_manager_v1           *zxdg_output_manager_v1;
   struct zwlr_screencopy_manager_v1       *zwlr_screencopy_manager_v1;
   struct zphoc_layer_shell_effects_v1     *zphoc_layer_shell_effects_v1;
+  uint32_t                                 layer_shell_effects_version;
   struct zphoc_device_state_v1            *zphoc_device_state_v1;
   struct wl_shm                           *wl_shm;
   GHashTable                              *wl_outputs;
@@ -85,7 +86,8 @@ registry_handle_global (void               *data,
     self->zphoc_layer_shell_effects_v1 = wl_registry_bind (registry,
                                                            name,
                                                            &zphoc_layer_shell_effects_v1_interface,
-                                                           MIN (3, version));
+                                                           CLAMP (version, 3, 4));
+    self->layer_shell_effects_version = version;
   } else if (!strcmp (interface, zphoc_device_state_v1_interface.name)) {
     self->zphoc_device_state_v1 = wl_registry_bind (registry,
                                                     name,
@@ -276,14 +278,18 @@ phosh_wayland_constructed (GObject *object)
       !self->xdg_wm_base ||
       !self->zxdg_output_manager_v1 ||
       !self->zwlr_output_power_manager_v1 ||
-      !self->zphoc_layer_shell_effects_v1) {
+      !self->phosh_private ||
+      !self->zphoc_layer_shell_effects_v1 ||
+      !self->zphoc_device_state_v1) {
     g_error ("Wayland compositor lacks needed globals\n"
              "outputs: %d, layer_shell: %p, idle_manager: %p, "
              "xdg_wm: %p, "
              "xdg_output: %p, wlr_output_manager: %p, "
              "wlr_foreign_toplevel_manager: %p, "
              "zwlr_output_power_manager_v1: %p, "
-             "zphoc_layer_shell_effects_v1: %p"
+             "phosh_private: %p,"
+             "zphoc_layer_shell_effects_v1: %p,"
+             "zphoc_device_state_v1: %p"
              "\n",
              num_outputs, self->layer_shell, self->ext_idle_notifier_v1,
              self->xdg_wm_base,
@@ -291,17 +297,13 @@ phosh_wayland_constructed (GObject *object)
              self->zwlr_output_manager_v1,
              self->zwlr_foreign_toplevel_manager_v1,
              self->zwlr_output_power_manager_v1,
-             self->zphoc_layer_shell_effects_v1);
+             self->phosh_private,
+             self->zphoc_layer_shell_effects_v1,
+             self->zphoc_device_state_v1);
   }
-  if (!self->phosh_private)
-    g_info ("Could not find phosh private interface, disabling some features");
 
   wl_seat_add_listener (self->wl_seat, &seat_listener, self);
-
-  if (self->zphoc_device_state_v1)
-    zphoc_device_state_v1_add_listener (self->zphoc_device_state_v1, &device_state_listener, self);
-  else
-    g_info ("Phoc doesn't support zphoc_device_state_v1 - please upgrade");
+  zphoc_device_state_v1_add_listener (self->zphoc_device_state_v1, &device_state_listener, self);
 }
 
 
@@ -578,6 +580,15 @@ phosh_wayland_get_zphoc_layer_shell_effects_v1 (PhoshWayland *self)
   g_return_val_if_fail (PHOSH_IS_WAYLAND (self), NULL);
 
   return self->zphoc_layer_shell_effects_v1;
+}
+
+
+uint32_t
+phosh_wayland_get_layer_shell_effects_version (PhoshWayland *self)
+{
+  g_return_val_if_fail (PHOSH_IS_WAYLAND (self), 0);
+
+  return self->layer_shell_effects_version;
 }
 
 

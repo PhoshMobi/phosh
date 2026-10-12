@@ -20,6 +20,7 @@ G_DECLARE_DERIVABLE_TYPE (PhoshDragSurface, phosh_drag_surface, PHOSH, DRAG_SURF
  * @PHOSH_DRAG_SURFACE_STATE_FOLDED: Surface is folded.
  * @PHOSH_DRAG_SURFACE_STATE_UNFOLDED: Surface is unfolded.
  * @PHOSH_DRAG_SURFACE_STATE_DRAGGED: Surface is being dragged.
+ * @PHOSH_DRAG_SURFACE_STATE_ANIMATED: Surface is being animated by the compositor.
  *
  * The state of the drag surface.
  */
@@ -27,6 +28,7 @@ typedef enum _PhoshDragSurfaceState {
   PHOSH_DRAG_SURFACE_STATE_FOLDED,
   PHOSH_DRAG_SURFACE_STATE_UNFOLDED,
   PHOSH_DRAG_SURFACE_STATE_DRAGGED,
+  PHOSH_DRAG_SURFACE_STATE_ANIMATED,
 } PhoshDragSurfaceState;
 
 /**
@@ -72,5 +74,6 @@ void                  phosh_drag_surface_set_drag_mode   (PhoshDragSurface      
 guint                 phosh_drag_surface_get_drag_handle (PhoshDragSurface        *self);
 void                  phosh_drag_surface_set_drag_handle (PhoshDragSurface        *self,
                                                           guint                    handle);
+gboolean              phosh_drag_surface_is_moving       (PhoshDragSurface        *self);
 
 G_END_DECLS

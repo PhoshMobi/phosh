@@ -58,7 +58,7 @@ variables:
   RUST_BINDINGS_BRANCH: main
   LIBPHOSH: libphosh-0.45
   BUILD_OPTS: -Dcallui-i18n=true -Dphoc_tests=enabled -Dsearchd=true ${COMMON_BUILD_OPTS}
-  SIG_PKGS: libevince-gtk3-dev
+  SID_PKGS: phoc
 
 .test_before_script: &test_before_script
   before_script:

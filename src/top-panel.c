@@ -600,6 +600,7 @@ on_drag_state_changed (PhoshTopPanel *self)
     progress = 1.0;
     phosh_top_panel_bg_set_transparency (self->background, 1.0);
     break;
+  case PHOSH_DRAG_SURFACE_STATE_ANIMATED:
   case PHOSH_DRAG_SURFACE_STATE_DRAGGED:
     visible = "arrow";
     progress = phosh_arrow_get_progress (PHOSH_ARROW (self->arrow));
