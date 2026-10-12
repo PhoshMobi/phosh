@@ -60,7 +60,7 @@ if that might not be immediately clear to the reader.
 
 ## Distribution
 
-Which Linux distribution are you using? If postmarketOS please also specify
+Which Linux distribution are you using? If Nura please also specify
 if you're using systemd or OpenRC:
 
 ## How is Phosh started on your system
