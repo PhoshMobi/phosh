@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2018 Purism SPC
  *               2023-2025 The Phosh Developers
+ *               2025-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -226,10 +227,11 @@ set_require_unlock (PhoshLockscreen *self, gboolean require_unlock)
 {
   PhoshLockscreenPrivate *priv = phosh_lockscreen_get_instance_private (self);
 
-  if (priv->require_unlock != require_unlock) {
-    priv->require_unlock = require_unlock;
-    g_object_notify_by_pspec (G_OBJECT (self), props[PROP_REQUIRE_UNLOCK]);
-  }
+  if (priv->require_unlock == require_unlock)
+    return;
+
+  priv->require_unlock = require_unlock;
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_REQUIRE_UNLOCK]);
 }
 
 static void
