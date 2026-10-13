@@ -548,10 +548,10 @@ phosh_lockscreen_manager_init (PhoshLockscreenManager *self)
 
   g_object_connect (self->bg_settings,
                     "swapped-object-signal::changed::" KEY_PICTURE_URI,
-                    G_CALLBACK (on_picture_params_changed),
+                    on_picture_params_changed,
                     self,
                     "swapped-object-signal::changed::" KEY_PICTURE_OPTIONS,
-                    G_CALLBACK (on_picture_params_changed),
+                    on_picture_params_changed,
                     self,
                     NULL);
   on_picture_params_changed (self);
