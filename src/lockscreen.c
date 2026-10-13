@@ -465,6 +465,16 @@ submit_cb (PhoshLockscreen *self)
 }
 
 
+static gboolean
+is_osk_visible (void)
+{
+  PhoshShell *shell = phosh_shell_get_default ();
+  PhoshOskManager *osk_manager = phosh_shell_get_osk_manager (shell);
+
+  return phosh_osk_manager_get_visible (osk_manager);
+}
+
+
 static void
 input_changed_cb (PhoshLockscreen *self)
 {
@@ -581,9 +591,7 @@ carousel_page_changed_cb (PhoshLockscreen *self,
                           HdyCarousel     *carousel)
 {
   PhoshLockscreenPrivate *priv = phosh_lockscreen_get_instance_private (self);
-  PhoshShell *shell = phosh_shell_get_default ();
-  PhoshOskManager *osk_manager = phosh_shell_get_osk_manager (shell);
-  gboolean osk_visible = phosh_osk_manager_get_visible (osk_manager);
+  gboolean osk_visible = is_osk_visible ();
   PhoshLockscreenPage page = phosh_lockscreen_get_page (self);
 
   if (page == PHOSH_LOCKSCREEN_PAGE_UNLOCK) {
