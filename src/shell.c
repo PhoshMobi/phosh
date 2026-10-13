@@ -1154,7 +1154,7 @@ phosh_shell_constructed (GObject *object)
   priv->launcher_entry_manager = phosh_launcher_entry_manager_new ();
 
   priv->user_manager = phosh_user_manager_new (g_get_user_name ());
-  priv->lockscreen_manager = phosh_lockscreen_manager_new (priv->calls_manager);
+  priv->lockscreen_manager = phosh_lockscreen_manager_new (priv->calls_manager, priv->user_manager);
   g_object_bind_property (priv->lockscreen_manager, "locked",
                           self, "locked",
                           G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
