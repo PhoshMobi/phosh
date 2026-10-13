@@ -534,10 +534,12 @@ phosh_lockscreen_manager_class_init (PhoshLockscreenManagerClass *klass)
    *
    * Emitted when the outputs should be woken up.
    */
-  signals[WAKEUP_OUTPUTS] = g_signal_new (
-    "wakeup-outputs",
-    G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST, 0, NULL, NULL,
-    NULL, G_TYPE_NONE, 0);
+  signals[WAKEUP_OUTPUTS] = g_signal_new ("wakeup-outputs",
+                                          G_TYPE_FROM_CLASS (klass),
+                                          G_SIGNAL_RUN_LAST,
+                                          0, NULL, NULL, NULL,
+                                          G_TYPE_NONE,
+                                          0);
 }
 
 
