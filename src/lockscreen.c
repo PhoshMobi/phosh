@@ -62,6 +62,7 @@ enum {
   PROP_CALLS_MANAGER,
   PROP_PAGE,
   PROP_REQUIRE_UNLOCK,
+  PROP_PIN_LENGTH,
   PROP_LAST_PROP
 };
 static GParamSpec *props[PROP_LAST_PROP];
@@ -78,6 +79,7 @@ typedef struct {
   GtkWidget          *carousel;
   PhoshLockscreenPage default_page;
   gboolean            require_unlock;
+  int                 pin_length;
 
   /* info page */
   GtkWidget          *box_info;
@@ -234,6 +236,23 @@ set_require_unlock (PhoshLockscreen *self, gboolean require_unlock)
   g_object_notify_by_pspec (G_OBJECT (self), props[PROP_REQUIRE_UNLOCK]);
 }
 
+
+static void
+set_pin_length (PhoshLockscreen *self, int pin_length)
+{
+  PhoshLockscreenPrivate *priv = phosh_lockscreen_get_instance_private (self);
+
+  if (priv->pin_length == pin_length)
+    return;
+
+  priv->pin_length = pin_length;
+  g_object_notify_by_pspec (G_OBJECT (self), props[PROP_PIN_LENGTH]);
+
+  /* If we know the pin length we hide the submit button */
+  gtk_widget_set_visible (priv->btn_submit, !priv->pin_length);
+}
+
+
 static void
 phosh_lockscreen_set_property (GObject      *object,
                                guint         property_id,
@@ -249,6 +268,9 @@ phosh_lockscreen_set_property (GObject      *object,
     break;
   case PROP_REQUIRE_UNLOCK:
     set_require_unlock (self, g_value_get_boolean (value));
+    break;
+  case PROP_PIN_LENGTH:
+    set_pin_length (self, g_value_get_int (value));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -275,6 +297,9 @@ phosh_lockscreen_get_property (GObject    *object,
     break;
   case PROP_REQUIRE_UNLOCK:
     g_value_set_boolean (value, priv->require_unlock);
+    break;
+  case PROP_PIN_LENGTH:
+    g_value_set_int (value, priv->pin_length);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -486,8 +511,16 @@ input_changed_cb (PhoshLockscreen *self)
   priv->last_input = g_get_monotonic_time ();
 
   length = gtk_entry_get_text_length (GTK_ENTRY (priv->entry_pin));
-
   gtk_widget_set_sensitive (priv->btn_submit, length != 0);
+
+  /* Submit PIN when length is known */
+  if (priv->pin_length && priv->pin_length == length) {
+    /* If OSK is visible, don't submit as the user might work pin-length mismatch */
+    if (is_osk_visible ())
+      return;
+
+    submit_cb (self);
+  }
 }
 
 
@@ -1104,6 +1137,15 @@ phosh_lockscreen_class_init (PhoshLockscreenClass *klass)
                        PHOSH_TYPE_LOCKSCREEN_PAGE,
                        PHOSH_LOCKSCREEN_PAGE_UNLOCK,
                        G_PARAM_READABLE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
+  /**
+   * PhoshLockscreen:pin-length:
+   *
+   * The pin length for the current user. `0` means unknown.
+   */
+  props[PROP_PIN_LENGTH] =
+    g_param_spec_int ("pin-length", "", "",
+                      0, G_MAXINT, 0,
+                      G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 
