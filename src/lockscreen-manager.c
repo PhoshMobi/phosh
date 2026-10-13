@@ -48,29 +48,30 @@ enum {
   PROP_0,
   PROP_LOCKED,
   PROP_CALLS_MANAGER,
+  PROP_USER_MANAGER,
   PROP_LAST_PROP
 };
 static GParamSpec *props[PROP_LAST_PROP];
 
 
 struct _PhoshLockscreenManager {
-  GObject                  parent;
+  GObject                 parent;
 
-  PhoshLockscreen         *lockscreen;     /* phone display lock screen */
-  GPtrArray               *shields;        /* other outputs */
+  PhoshLockscreen        *lockscreen;      /* phone display lock screen */
+  GPtrArray              *shields;         /* other outputs */
 
-  GSettings               *bg_settings;
-  GFile                   *bg_file;
-  GFileMonitor            *bg_file_monitor;
-  GDesktopBackgroundStyle  bg_style;
-  PhoshBackgroundImage    *cached_bg_image;
-  GCancellable            *bg_load_cancel;
+  GSettings              *bg_settings;
+  GFile *bg_file;
+  GFileMonitor           *bg_file_monitor;
+  GDesktopBackgroundStyle bg_style;
+  PhoshBackgroundImage   *cached_bg_image;
+  GCancellable           *bg_load_cancel;
 
-  gboolean                 locked;
-  gboolean                 locking;
-  gint64                   active_time;    /* when lock was activated (in us) */
+  gboolean                locked;
+  gboolean                locking;
+  gint64 active_time;                      /* when lock was activated (in us) */
 
-  PhoshCallsManager       *calls_manager;  /* Calls DBus Interface */
+  PhoshCallsManager      *calls_manager;   /* Calls DBus Interface */
 };
 
 G_DEFINE_TYPE (PhoshLockscreenManager, phosh_lockscreen_manager, G_TYPE_OBJECT)
