@@ -456,6 +456,16 @@ long_press_del_cb (PhoshLockscreen *self,
 
 
 static void
+submit_cb (PhoshLockscreen *self)
+{
+  PhoshLockscreenClass *klass = PHOSH_LOCKSCREEN_GET_CLASS (self);
+
+  g_return_if_fail (klass->unlock_submit);
+  klass->unlock_submit (self);
+}
+
+
+static void
 input_changed_cb (PhoshLockscreen *self)
 {
   PhoshLockscreenPrivate *priv;
@@ -468,16 +478,6 @@ input_changed_cb (PhoshLockscreen *self)
   length = gtk_entry_get_text_length (GTK_ENTRY (priv->entry_pin));
 
   gtk_widget_set_sensitive (priv->btn_submit, length != 0);
-}
-
-
-static void
-submit_cb (PhoshLockscreen *self)
-{
-  PhoshLockscreenClass *klass = PHOSH_LOCKSCREEN_GET_CLASS (self);
-
-  g_return_if_fail (klass->unlock_submit);
-  klass->unlock_submit (self);
 }
 
 
