@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (C) 2025 Phosh.mobi e.V.
+# Copyright (C) 2025-2026 Phosh.mobi e.V.
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
@@ -13,6 +13,7 @@
 import gi
 import os
 import subprocess
+import sys
 import dbus
 import dbusmock
 import shutil
@@ -30,6 +31,13 @@ gi.require_version("UMockdev", "1.0")
 gi.require_version("GUdev", "1.0")
 from gi.repository import Gio, UMockdev  # noqa: 402
 from . import Phosh, set_nonblock  # noqa: 402
+
+
+def get_out():
+    if os.getenv("PHOSH_DBUS_RUNNER_VERBOSE") in ["1", "true", "enabled"]:
+        return sys.stderr
+    else:
+        return subprocess.DEVNULL
 
 
 class PhoshDBusTestCase(DBusTestCase):
@@ -173,9 +181,10 @@ class PhoshDBusTestCase(DBusTestCase):
     @classmethod
     def start_from_template(klass, template, params={}):
         mock_server, mock_obj = klass.spawn_server_template(
-            template, params, stdout=subprocess.PIPE
+            template,
+            params,
+            stdout=get_out(),
         )
-        set_nonblock(mock_server.stdout)
         mocks = (mock_server, mock_obj)
         assert klass.mocks.setdefault(template, mocks) == mocks
         return mocks
