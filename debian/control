@@ -71,8 +71,6 @@ Rules-Requires-Root: no
 Package: phosh
 Architecture: any
 Depends:
- ${misc:Depends},
- ${shlibs:Depends},
  fonts-lato,
  gnome-shell-common (>= 49),
  gsettings-desktop-schemas (>= 49),
@@ -80,6 +78,8 @@ Depends:
  libqrcodegen1,
  phoc (>= 0.52.0),
  phosh-common (= ${source:Version}),
+ ${misc:Depends},
+ ${shlibs:Depends},
 Recommends:
  feedbackd (>= 0.5.0),
  fonts-adwaita,
@@ -87,13 +87,13 @@ Recommends:
  gnome-session-common,
  gnome-settings-daemon (>= 49),
  iio-sensor-proxy,
+ kbd,
  librsvg2-common,
  network-manager-config-connectivity-debian,
- kbd,
  phosh-mobile-tweaks,
+ phosh-osk-stevia,
  phosh-plugins,
  slurp,
- phosh-osk-stevia,
 Provides:
  notification-daemon,
  polkit-1-auth-agent,
@@ -129,7 +129,8 @@ Architecture: all
 Multi-Arch: foreign
 Depends:
  ${misc:Depends},
-Conflicts: phosh (<< 0.45~rc1-3~)
+Conflicts:
+ phosh (<< 0.45~rc1-3~),
 Description: Pure Wayland shell for mobile devices - Common files
  Phosh is a graphical shell for Wayland compositors speaking the layer-surface
  protocol and aimed at mobile devices like smart phones and tablets using touch
@@ -140,8 +141,8 @@ Description: Pure Wayland shell for mobile devices - Common files
 Package: phosh-mobile-tweaks
 Architecture: all
 Depends:
- ${misc:Depends},
  dconf-gsettings-backend | gsettings-backend,
+ ${misc:Depends},
 Description: Pure Wayland shell for mobile devices - GSettings tweaks
  Phosh is a graphical shell for Wayland compositors speaking the layer-surface
  protocol and aimed at mobile devices like smart phones and tablets using touch
@@ -152,11 +153,11 @@ Description: Pure Wayland shell for mobile devices - GSettings tweaks
 Package: phosh-plugins
 Architecture: any
 Depends:
- ${misc:Depends},
- ${shlibs:Depends},
  gsettings-desktop-schemas,
  phoc (>= 0.13.1),
  phosh (= ${binary:Version}),
+ ${misc:Depends},
+ ${shlibs:Depends},
 Breaks:
  phosh-mobile-settings (<< 0.44~),
 Description: Pure Wayland shell for mobile devices - Plugins
@@ -169,9 +170,9 @@ Description: Pure Wayland shell for mobile devices - Plugins
 Package: phosh-dev
 Architecture: any
 Depends:
+ gsettings-desktop-schemas-dev,
  ${misc:Depends},
  ${shlibs:Depends},
- gsettings-desktop-schemas-dev,
 Description: Pure Wayland shell for mobile devices - development files
  Phosh is a graphical shell for Wayland compositors speaking the layer-surface
  protocol and aimed at mobile devices like smart phones and tablets using touch
@@ -184,8 +185,6 @@ Architecture: any
 Section: libdevel
 Build-Profiles: <!pkg.phosh.nolib>
 Depends:
- ${misc:Depends},
- ${shlibs:Depends},
  libappstream-dev,
  libcallaudio-dev,
  libfeedback-dev,
@@ -204,6 +203,8 @@ Depends:
  libsoup-3.0-dev,
  libupower-glib-dev,
  phosh-dev (= ${binary:Version}),
+ ${misc:Depends},
+ ${shlibs:Depends},
 Breaks:
  libphosh0-42-dev,
 Replaces:
@@ -221,9 +222,9 @@ Section: libs
 Multi-Arch: same
 Build-Profiles: <!pkg.phosh.nolib>
 Depends:
+ phosh-common (>= 0.45.0),
  ${misc:Depends},
  ${shlibs:Depends},
- phosh-common (>= 0.45.0),
 Description: Pure Wayland shell for mobile devices - binding shared library
  Phosh is a graphical shell for Wayland compositors speaking the layer-surface
  protocol and aimed at mobile devices like smart phones and tablets using touch
@@ -236,9 +237,9 @@ Architecture: any
 Section: libdevel
 Build-Profiles: <!pkg.phosh.nolib>
 Depends:
+ libphosh-0.45-0 (= ${binary:Version}),
  ${misc:Depends},
  ${shlibs:Depends},
- libphosh-0.45-0 (= ${binary:Version}),
 Description: Pure Wayland shell for mobile devices - GObject introspection data
  Phosh is a graphical shell for Wayland compositors speaking the layer-surface
  protocol and aimed at mobile devices like smart phones and tablets using touch
