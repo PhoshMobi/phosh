@@ -152,7 +152,7 @@ transition_to_brightness (PhoshBrightnessManager *self, double target)
   g_clear_handle_id (&self->transition.id, g_source_remove);
 
   self->transition.target = target;
-  if (G_APPROX_VALUE (current, self->transition.target, FLT_EPSILON))
+  if (G_APPROX_VALUE (current, self->transition.target, DBL_EPSILON))
     return;
 
   self->transition.interval = target > current ? AUTO_UP_INTERVAL : AUTO_DOWN_INTERVAL;
@@ -492,7 +492,7 @@ on_value_changed (PhoshBrightnessManager *self, GtkAdjustment *adjustment)
     /* Auto-brightness offset is [-0.5, +0.5] */
     double offset = CLAMP (value - 0.5, -0.5, 0.5);
 
-    if (G_APPROX_VALUE (offset, self->auto_brightness.offset, FLT_EPSILON))
+    if (G_APPROX_VALUE (offset, self->auto_brightness.offset, DBL_EPSILON))
       return;
     self->auto_brightness.offset = offset;
 

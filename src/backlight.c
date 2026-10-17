@@ -312,7 +312,7 @@ phosh_backlight_set_brightness (PhoshBacklight *self, double brightness)
   g_return_if_fail (PHOSH_IS_BACKLIGHT (self));
 
   new_brightness = CLAMP (brightness, priv->brightness.min, priv->brightness.max);
-  if (!G_APPROX_VALUE (brightness, new_brightness, FLT_EPSILON))
+  if (!G_APPROX_VALUE (brightness, new_brightness, DBL_EPSILON))
     g_warning ("Trying to set out-of-range brightness %.2f on %s", brightness, priv->name);
 
   new_level = phosh_backlight_brightness_to_level (self, brightness);

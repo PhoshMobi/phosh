@@ -18,27 +18,27 @@ test_phosh_auto_brightness_bucket_brightness (void)
 
   phosh_auto_brightness_add_ambient_level (auto_brightness, 250.0);
   brightness = phosh_auto_brightness_get_brightness (auto_brightness);
-  g_assert_cmpfloat_with_epsilon (brightness, 0.55, FLT_EPSILON);
+  g_assert_cmpfloat_with_epsilon (brightness, 0.55, DBL_EPSILON);
 
   phosh_auto_brightness_add_ambient_level (auto_brightness, 8000.0);
   brightness = phosh_auto_brightness_get_brightness (auto_brightness);
-  g_assert_cmpfloat_with_epsilon (brightness, 1.3, FLT_EPSILON);
+  g_assert_cmpfloat_with_epsilon (brightness, 1.3, DBL_EPSILON);
   /* More than MAX */
   phosh_auto_brightness_add_ambient_level (auto_brightness, G_MAXINT);
   brightness = phosh_auto_brightness_get_brightness (auto_brightness);
-  g_assert_cmpfloat_with_epsilon (brightness, 1.3, FLT_EPSILON);
+  g_assert_cmpfloat_with_epsilon (brightness, 1.3, DBL_EPSILON);
 
   phosh_auto_brightness_add_ambient_level (auto_brightness, 0.0);
   brightness = phosh_auto_brightness_get_brightness (auto_brightness);
-  g_assert_cmpfloat_with_epsilon (brightness, 0.1, FLT_EPSILON);
+  g_assert_cmpfloat_with_epsilon (brightness, 0.1, DBL_EPSILON);
 
   phosh_auto_brightness_add_ambient_level (auto_brightness, 10.0);
   brightness = phosh_auto_brightness_get_brightness (auto_brightness);
-  g_assert_cmpfloat_with_epsilon (brightness, 0.1, FLT_EPSILON);
+  g_assert_cmpfloat_with_epsilon (brightness, 0.1, DBL_EPSILON);
 
   phosh_auto_brightness_add_ambient_level (auto_brightness, 11.0);
   brightness = phosh_auto_brightness_get_brightness (auto_brightness);
-  g_assert_cmpfloat_with_epsilon (brightness, 0.25, FLT_EPSILON);
+  g_assert_cmpfloat_with_epsilon (brightness, 0.25, DBL_EPSILON);
 
   g_assert_null (phosh_auto_brightness_get_backlight (auto_brightness));
 }

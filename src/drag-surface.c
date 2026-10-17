@@ -450,7 +450,7 @@ phosh_drag_surface_set_threshold (PhoshDragSurface *self, double threshold)
 
   priv = phosh_drag_surface_get_instance_private (self);
 
-  if (G_APPROX_VALUE (priv->threshold, threshold, FLT_EPSILON))
+  if (G_APPROX_VALUE (priv->threshold, threshold, DBL_EPSILON))
     return;
 
   priv->threshold = threshold;
