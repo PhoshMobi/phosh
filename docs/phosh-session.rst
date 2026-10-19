@@ -19,9 +19,11 @@ DESCRIPTION
 ``phosh-session`` is the script to startup phosh including required
 components like the Wayland compositor ``phoc`` and an on screen
 keyboard like ``stevia`` or ``squeekboard``. The script is rarely invoked by a
-user but rather activated by a display manager or systemd unit. However it's
-perfectly valid to e.g. log into a tty and run ``phosh-session`` to bring up
-phosh and needed components.
+user but rather activated by a display manager or systemd unit. However to
+diagnose session startup and debugging it is perfectly valid to e.g. log into
+a tty and invoke ``phosh-session`` to bring up phosh and needed components.
+Note that your session might then lack environment variables set by the
+display manager so behavior can differ.
 
 OPTIONS
 -------
