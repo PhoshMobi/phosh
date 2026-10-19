@@ -73,7 +73,7 @@ bat_level_cb (PhoshBtDeviceRow *self, GParamSpec *pspec, BluetoothDevice *device
   }
 
   current = round (current);
-  if (G_APPROX_VALUE (round (self->bat_percentage), current, FLT_EPSILON))
+  if (G_APPROX_VALUE (round (self->bat_percentage), current, DBL_EPSILON))
     return;
 
   self->bat_percentage = current;

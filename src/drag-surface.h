@@ -60,7 +60,7 @@ struct _PhoshDragSurfaceClass {
 void                  phosh_drag_surface_set_margin      (PhoshDragSurface        *self,
                                                           int                      margin_folded,
                                                           int                      margin_unfolded);
-float                 phosh_drag_surface_get_threshold   (PhoshDragSurface        *self);
+double                phosh_drag_surface_get_threshold   (PhoshDragSurface        *self);
 void                  phosh_drag_surface_set_threshold   (PhoshDragSurface        *self,
                                                           double                   threshold);
 PhoshDragSurfaceState phosh_drag_surface_get_drag_state  (PhoshDragSurface        *self);

@@ -214,7 +214,7 @@ phosh_launcher_item_set_progress (PhoshLauncherItem *self, double progress)
 {
   g_return_if_fail (PHOSH_IS_LAUNCHER_ITEM (self));
 
-  if (G_APPROX_VALUE (self->progress, progress, FLT_EPSILON))
+  if (G_APPROX_VALUE (self->progress, progress, DBL_EPSILON))
     return;
 
   self->progress = progress;

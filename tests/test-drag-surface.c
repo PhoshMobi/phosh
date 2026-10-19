@@ -48,7 +48,7 @@ test_drag_surface_g_object_new (PhoshTestCompositorFixture *fixture, gconstpoint
                    PHOSH_DRAG_SURFACE_DRAG_MODE_HANDLE);
   g_assert_cmpfloat_with_epsilon (phosh_drag_surface_get_threshold (PHOSH_DRAG_SURFACE (surface)),
                                   0.1,
-                                  FLT_EPSILON);
+                                  DBL_EPSILON);
 
   g_assert_true (gtk_widget_get_visible (surface));
   g_assert_true (gtk_widget_get_mapped (surface));
