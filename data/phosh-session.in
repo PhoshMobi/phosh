@@ -9,10 +9,9 @@ help()
   cat <<EOF
 phosh-session - Session start script for Phosh
 
-This is usually invoked by a display manager but you can
-also run it from a tty.
+This program is usually invoked by a display manager.
 
-Usage: phosh
+Usage: phosh-session
 EOF
   exit 0
 }
