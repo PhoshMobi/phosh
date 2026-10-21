@@ -90,7 +90,7 @@ typedef struct {
   GtkRevealer        *rev_media_player;
   GtkRevealer        *rev_notifications;
   GSettings          *notification_settings;
-  guint reveals;
+  guint               reveals;
 
   /* unlock page */
   GtkWidget          *box_unlock;
@@ -101,8 +101,8 @@ typedef struct {
   GtkWidget          *lbl_unlock_status;
   GtkWidget          *btn_submit;
   GtkWidget          *btn_keyboard;
-  guint idle_timer;
-  gint64 last_input;
+  guint               idle_timer;
+  gint64              last_input;
   PhoshAuth          *auth;
   GSettings          *lockscreen_settings;
 
