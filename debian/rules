@@ -1,6 +1,8 @@
 #!/usr/bin/make -f
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export CARGO_HOME=$(CURDIR)/debian/cargo_home
+export CARGO_REGISTRY=$(CURDIR)/debian/cargo_registry
 
 CONFIGURE_OPTS=--wrap-mode=default
 CONFIGURE_OPTS+=-Dsearchd=true
@@ -37,6 +39,7 @@ override_dh_auto_install:
                     > debian/phosh.$$script ; \
         done
 	dh_auto_install
+	cargo install --path tools/phosh-pin-tool/
 
 override_dh_installsystemd:
 	rm -f debian/phosh.service

@@ -156,6 +156,7 @@ gsettings_desktop_schemas_dep = dependency(
 gtk_dep = dependency('gtk+-3.0', version: '>=3.22')
 gtk_wayland_dep = dependency('gtk+-wayland-3.0', version: '>=3.22')
 gudev_dep = dependency('gudev-1.0')
+json_glib_dep = dependency('json-glib-1.0')
 libcall_ui = subproject(
   'libcall-ui',
   default_options: [

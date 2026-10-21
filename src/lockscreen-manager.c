@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2018 Purism SPC
- *               2024-2025 The Phosh Developers
+ *               2024-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -48,29 +48,31 @@ enum {
   PROP_0,
   PROP_LOCKED,
   PROP_CALLS_MANAGER,
+  PROP_USER_MANAGER,
   PROP_LAST_PROP
 };
 static GParamSpec *props[PROP_LAST_PROP];
 
 
 struct _PhoshLockscreenManager {
-  GObject                  parent;
+  GObject                 parent;
 
-  PhoshLockscreen         *lockscreen;     /* phone display lock screen */
-  GPtrArray               *shields;        /* other outputs */
+  PhoshLockscreen        *lockscreen;      /* phone display lock screen */
+  GPtrArray              *shields;         /* other outputs */
 
-  GSettings               *bg_settings;
-  GFile                   *bg_file;
-  GFileMonitor            *bg_file_monitor;
-  GDesktopBackgroundStyle  bg_style;
-  PhoshBackgroundImage    *cached_bg_image;
-  GCancellable            *bg_load_cancel;
+  GSettings              *bg_settings;
+  GFile *bg_file;
+  GFileMonitor           *bg_file_monitor;
+  GDesktopBackgroundStyle bg_style;
+  PhoshBackgroundImage   *cached_bg_image;
+  GCancellable           *bg_load_cancel;
 
-  gboolean                 locked;
-  gboolean                 locking;
-  gint64                   active_time;    /* when lock was activated (in us) */
+  gboolean                locked;
+  gboolean                locking;
+  gint64 active_time;                      /* when lock was activated (in us) */
 
-  PhoshCallsManager       *calls_manager;  /* Calls DBus Interface */
+  PhoshCallsManager      *calls_manager;   /* Calls DBus Interface */
+  PhoshUserManager       *user_manager;
 };
 
 G_DEFINE_TYPE (PhoshLockscreenManager, phosh_lockscreen_manager, G_TYPE_OBJECT)
@@ -328,6 +330,12 @@ lock_primary_monitor (PhoshLockscreenManager *self)
                     NULL);
   phosh_lockscreen_set_bg_image (self->lockscreen, self->cached_bg_image);
 
+  g_object_bind_property (self->user_manager,
+                          "pin-length",
+                          self->lockscreen,
+                          "pin-length",
+                          G_BINDING_SYNC_CREATE);
+
   gtk_widget_set_visible (GTK_WIDGET (self->lockscreen), TRUE);
   /* Old lockscreen gets remove due to `layer_surface_closed` */
 }
@@ -426,6 +434,9 @@ phosh_lockscreen_manager_set_property (GObject      *object,
   case PROP_CALLS_MANAGER:
     self->calls_manager = g_value_dup_object (value);
     break;
+  case PROP_USER_MANAGER:
+    self->user_manager = g_value_dup_object (value);
+    break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     break;
@@ -447,6 +458,9 @@ phosh_lockscreen_manager_get_property (GObject    *object,
     break;
   case PROP_CALLS_MANAGER:
     g_value_set_object (value, self->calls_manager);
+    break;
+  case PROP_USER_MANAGER:
+    g_value_set_object (value, self->user_manager);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -472,6 +486,7 @@ phosh_lockscreen_manager_dispose (GObject *object)
   g_clear_pointer (&self->shields, g_ptr_array_unref);
   g_clear_pointer (&self->lockscreen, phosh_cp_widget_destroy);
   g_clear_object (&self->calls_manager);
+  g_clear_object (&self->user_manager);
 
   g_cancellable_cancel (self->bg_load_cancel);
   g_clear_object (&self->bg_load_cancel);
@@ -524,7 +539,12 @@ phosh_lockscreen_manager_class_init (PhoshLockscreenManagerClass *klass)
   props[PROP_CALLS_MANAGER] =
     g_param_spec_object ("calls-manager", "", "",
                          PHOSH_TYPE_CALLS_MANAGER,
-                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_CONSTRUCT_ONLY);
+                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
+
+  props[PROP_USER_MANAGER] =
+    g_param_spec_object ("user-manager", "", "",
+                         PHOSH_TYPE_USER_MANAGER,
+                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 
@@ -534,10 +554,12 @@ phosh_lockscreen_manager_class_init (PhoshLockscreenManagerClass *klass)
    *
    * Emitted when the outputs should be woken up.
    */
-  signals[WAKEUP_OUTPUTS] = g_signal_new (
-    "wakeup-outputs",
-    G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST, 0, NULL, NULL,
-    NULL, G_TYPE_NONE, 0);
+  signals[WAKEUP_OUTPUTS] = g_signal_new ("wakeup-outputs",
+                                          G_TYPE_FROM_CLASS (klass),
+                                          G_SIGNAL_RUN_LAST,
+                                          0, NULL, NULL, NULL,
+                                          G_TYPE_NONE,
+                                          0);
 }
 
 
@@ -548,10 +570,10 @@ phosh_lockscreen_manager_init (PhoshLockscreenManager *self)
 
   g_object_connect (self->bg_settings,
                     "swapped-object-signal::changed::" KEY_PICTURE_URI,
-                    G_CALLBACK (on_picture_params_changed),
+                    on_picture_params_changed,
                     self,
                     "swapped-object-signal::changed::" KEY_PICTURE_OPTIONS,
-                    G_CALLBACK (on_picture_params_changed),
+                    on_picture_params_changed,
                     self,
                     NULL);
   on_picture_params_changed (self);
@@ -559,10 +581,11 @@ phosh_lockscreen_manager_init (PhoshLockscreenManager *self)
 
 
 PhoshLockscreenManager *
-phosh_lockscreen_manager_new (PhoshCallsManager *calls_manager)
+phosh_lockscreen_manager_new (PhoshCallsManager *calls_manager, PhoshUserManager *user_manager)
 {
   return g_object_new (PHOSH_TYPE_LOCKSCREEN_MANAGER,
                        "calls-manager", calls_manager,
+                       "user-manager", user_manager,
                        NULL);
 }
 

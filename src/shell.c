@@ -97,6 +97,7 @@
 #include "torch-manager.h"
 #include "torch-info.h"
 #include "udev-manager.h"
+#include "user-manager.h"
 #include "util.h"
 #include "vpn-info.h"
 #include "wifi-info.h"
@@ -202,6 +203,7 @@ typedef struct {
   PhoshMprisManager          *mpris_manager;
   PhoshBrightnessManager     *brightness_manager;
   PhoshDebugControl          *debug_control;
+  PhoshUserManager           *user_manager;
 
   /* sensors */
   PhoshSensorProxyManager    *sensor_proxy_manager;
@@ -595,6 +597,7 @@ phosh_shell_dispose (GObject *object)
   g_clear_pointer (&priv->notification_banner, phosh_cp_widget_destroy);
 
   /* dispose managers in opposite order of declaration */
+  g_clear_object (&priv->user_manager);
   g_clear_object (&priv->debug_control);
   g_clear_object (&priv->brightness_manager);
   g_clear_object (&priv->mpris_manager);
@@ -1150,7 +1153,8 @@ phosh_shell_constructed (GObject *object)
   priv->calls_manager = phosh_calls_manager_new ();
   priv->launcher_entry_manager = phosh_launcher_entry_manager_new ();
 
-  priv->lockscreen_manager = phosh_lockscreen_manager_new (priv->calls_manager);
+  priv->user_manager = phosh_user_manager_new (g_get_user_name ());
+  priv->lockscreen_manager = phosh_lockscreen_manager_new (priv->calls_manager, priv->user_manager);
   g_object_bind_property (priv->lockscreen_manager, "locked",
                           self, "locked",
                           G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
