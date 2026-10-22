@@ -24,7 +24,7 @@ const IFACE: &str = "org.freedesktop.home1.Manager";
 #[command(
     name = "phosh-pin-tool",
     about = "Manage unlock settings",
-    after_help = "You need to set the user password via the PASSWORD env var\nExamples:\n PASSWORD='1234' phosh-pin-tool set-pin-length --user foo 5"
+    after_help = "You need to set the user password via the PASSWORD env var\nExamples:\n phosh-pin-tool set-pin-length --user foo 5"
 )]
 struct Cli {
     #[command(subcommand)]
@@ -146,6 +146,7 @@ fn get_unlock_info(user: &str, key: &str) -> Result<Value, Box<dyn Error>> {
 fn read_password() -> Result<String, Box<dyn Error>> {
     match env::var("PASSWORD") {
         Ok(pw) => Ok(pw),
+        Err(env::VarError::NotPresent) => Ok(rpassword::prompt_password("Current PIN/Password: ")?),
         Err(e) => Err(e.into()),
     }
 }
