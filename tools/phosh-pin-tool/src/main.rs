@@ -39,7 +39,7 @@ enum Command {
         user: String,
 
         #[arg(long, help = "Length of the unlock PIN")]
-        pin_length: u32,
+        pin_length: Option<u32>,
     },
 
     #[command(about = "Get the unlock PIN length")]
@@ -166,6 +166,8 @@ fn main() {
     match cli.command {
         Command::SetPinLength { pin_length, user } => {
             let pw = get_password();
+            let pin_length = pin_length.unwrap_or(pw.len() as u32);
+
             if pw.len() != pin_length as usize {
                 println!(
                     "Warning: PASSWORD length {} doesn't match pin-length {}",
