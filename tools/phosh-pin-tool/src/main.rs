@@ -24,7 +24,7 @@ const IFACE: &str = "org.freedesktop.home1.Manager";
 #[command(
     name = "phosh-pin-tool",
     about = "Manage unlock settings",
-    after_help = "You need to set the user password via the PASSWORD env var\nExamples:\n PASSWORD='1234' phosh-pin-tool set-pin-length --user foo 5"
+    after_help = "You need to set the user password via the PASSWORD env var\nExamples:\n phosh-pin-tool set-pin-length --user foo 5"
 )]
 struct Cli {
     #[command(subcommand)]
@@ -39,7 +39,7 @@ enum Command {
         user: String,
 
         #[arg(long, help = "Length of the unlock PIN")]
-        pin_length: u32,
+        pin_length: Option<u32>,
     },
 
     #[command(about = "Get the unlock PIN length")]
@@ -88,21 +88,19 @@ fn fetch_record(conn: &Connection, user: &str) -> Result<Value, Box<dyn Error>> 
     for k in ["binding", "status", "signature"] {
         obj.remove(k);
     }
-
-    // Insert password field
-    if let Ok(pw) = env::var("PASSWORD") {
-        rec["secret"] = json!({ "password": [pw] });
-    } else {
-        return Err("Need a password".into());
-    }
-
     Ok(rec)
 }
 
-fn set_unlock_info(user: &str, key: &str, value: Value) -> Result<(), Box<dyn Error>> {
+fn set_unlock_info(
+    user: &str,
+    key: &str,
+    value: Value,
+    password: &str,
+) -> Result<(), Box<dyn Error>> {
     let conn = Connection::system()?;
 
     let mut rec: Value = fetch_record(&conn, user)?;
+    rec["secret"] = json!({ "password": [password] });
     let privileged = rec
         .as_object_mut()
         .ok_or("record is not a JSON object")?
@@ -145,21 +143,42 @@ fn get_unlock_info(user: &str, key: &str) -> Result<Value, Box<dyn Error>> {
         .ok_or_else(|| format!("{key} not present").into())
 }
 
+fn read_password() -> Result<String, Box<dyn Error>> {
+    match env::var("PASSWORD") {
+        Ok(pw) => Ok(pw),
+        Err(env::VarError::NotPresent) => Ok(rpassword::prompt_password("Current PIN/Password: ")?),
+        Err(e) => Err(e.into()),
+    }
+}
+
+fn get_password() -> String {
+    match read_password() {
+        Ok(pw) => return pw,
+        Err(e) => {
+            eprintln!("Can't read password: {e}");
+            exit(1);
+        }
+    };
+}
+
 fn main() {
     let cli = Cli::parse();
     match cli.command {
         Command::SetPinLength { pin_length, user } => {
-            if let Ok(pw) = env::var("PASSWORD") {
-                if pw.len() != pin_length as usize {
-                    println!(
-                        "Warning: PASSWORD length {} doesn't match pin-length {}",
-                        pw.len(),
-                        pin_length
-                    );
-                }
+            let pw = get_password();
+            let pin_length = pin_length.unwrap_or(pw.len() as u32);
+
+            if pw.len() != pin_length as usize {
+                println!(
+                    "Warning: PASSWORD length {} doesn't match pin-length {}",
+                    pw.len(),
+                    pin_length
+                );
             }
 
-            if let Err(e) = set_unlock_info(&user, "pinLength", Value::Number(pin_length.into())) {
+            if let Err(e) =
+                set_unlock_info(&user, "pinLength", Value::Number(pin_length.into()), &pw)
+            {
                 eprintln!("Can't set pin-length: {e}");
                 exit(1);
             }
