@@ -1,0 +1,1397 @@
+# Norwegian Nynorsk translation for phosh.
+# Copyright (C) 2026 phosh's COPYRIGHT HOLDER
+# This file is distributed under the same license as the phosh package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: phosh main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
+"POT-Creation-Date: 2026-10-21 15:09+0000\n"
+"PO-Revision-Date: 2026-10-23 12:07+0200\n"
+"Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
+"Language-Team: Norwegian Nynorsk <nn@li.org>\n"
+"Language: nn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
+msgid "Phone Shell"
+msgstr "Telefonskal"
+
+#: data/mobi.phosh.Shell.desktop.in.in:4
+msgid "Window management and application launching for mobile"
+msgstr "Vindaugehandtering og oppstart av appar for mobil"
+
+#. Translators: this is the session name, no need to translate it
+#: data/phosh.session.desktop.in.in:3 data/wayland-sessions/phosh.desktop:2
+msgid "Phosh"
+msgstr "Phosh"
+
+#: data/wayland-sessions/phosh.desktop:4
+msgid "This session logs you into Phosh"
+msgstr "Denne økta loggar deg inn i Phosh"
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:4
+msgid "Caffeine Quick Setting"
+msgstr "Hurtiginnstilling for koffein"
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.desktop.in.in:6
+msgid "Prevent the session from going idle"
+msgstr "Sørg for at økta ikkje vert inaktiv"
+
+#: plugins/calendar/calendar.desktop.in.in:4
+msgid "Calendar"
+msgstr "Kalender"
+
+#: plugins/calendar/calendar.desktop.in.in:6
+msgid "A simple calendar widget"
+msgstr "Ein enkel kalenderkomponent"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:4
+msgid "Dark Mode / Color Scheme Quick Setting"
+msgstr "Hurtiginnstilling for mørk modus / fargeskjema"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:6
+msgid "Toggle dark mode"
+msgstr "Slå mørk modus av og på"
+
+#: plugins/emergency-info/emergency-info.desktop.in.in:4
+msgid "Emergency Info"
+msgstr "Naudinformasjon"
+
+#: plugins/emergency-info/emergency-info.desktop.in.in:6
+msgid "Show emergency information and contacts"
+msgstr "Vis naudinformasjon og kontaktar"
+
+#: plugins/launcher-box/launcher-box.desktop.in.in:3
+#: plugins/launcher-box/launcher-box.ui:17
+msgid "Launcher Box"
+msgstr "Oppstartsboks"
+
+#: plugins/launcher-box/launcher-box.desktop.in.in:5
+msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
+msgstr ""
+"Legg til oppstartarar på låseskjermen. <b>Dette tillegget er "
+"eksperimentelt.</b>"
+
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
+msgid "Location Quick Setting"
+msgstr "Hurtiginnstilling for plassering"
+
+#: plugins/location-quick-setting/location-quick-setting.desktop.in.in:6
+msgid "Toggle location services on/off"
+msgstr "Slå plasseringstenester på/av"
+
+#: plugins/media-players/media-players.desktop.in.in:3
+#: plugins/media-players/media-players.ui:19
+#: plugins/media-players/media-players.ui:35
+msgid "Media Players"
+msgstr "Mediespelarar"
+
+#: plugins/media-players/media-players.desktop.in.in:5
+msgid "Track currently running media players"
+msgstr "Følg med på mediespelarar som køyrer"
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:4
+msgid "Mobile Data Quick Setting"
+msgstr "Hurtiginnstilling for mobildata"
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in:6
+msgid "Toggle mobile data on/off"
+msgstr "Slå mobildata på/av"
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:4
+msgid "Night Light Quick Setting"
+msgstr "Hurtiginnstilling for nattlys"
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in:6
+msgid "Toggle night light on/off"
+msgstr "Slå nattlys av/på"
+
+#. Translators: "Pomodoro" is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:5
+msgid "Pomodoro Quick Setting"
+msgstr "Hurtiginnstilling for Pomodoro"
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in:7
+msgid "Simple Pomodoro Timer"
+msgstr "Enkel Pomodoro-tidtakar"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:4
+msgid "Scaling Quick Setting"
+msgstr "Hurtiginnstilling for skalering"
+
+#: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
+msgid "A quick setting for adjusting the display scaling."
+msgstr "Ei hurtiginnstilling for å justere skaleringa av skjermen."
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
+msgid "Syncthing Quick Setting"
+msgstr "Hurtiginnstilling for Syncthing"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
+msgid "A quick setting for Syncthing."
+msgstr "Ei hurtiginnstilling for Syncthing."
+
+#: plugins/ticket-box/ticket-box.desktop.in.in:3
+#: plugins/ticket-box/ticket-box.ui:17
+msgid "Ticket Box"
+msgstr "Billettboks"
+
+#: plugins/ticket-box/ticket-box.desktop.in.in:5
+msgid "Show PDFs on the lock screen. <b>This plugin is experimental.</b>"
+msgstr "Vis PDF-ar på låseskjermen. <b>Dette tillegget er eksperimentelt.</b>"
+
+#: plugins/upcoming-events/upcoming-events.desktop.in.in:3
+msgid "Upcoming Events"
+msgstr "Kommande hendingar"
+
+#: plugins/upcoming-events/upcoming-events.desktop.in.in:5
+msgid "Show upcoming calendar events"
+msgstr "Vis kommande kalenderhendingar"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:4
+msgid "Wi-Fi Hotspot Quick Setting"
+msgstr "Hurtiginnstilling for Wi-Fi-hotspot"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.desktop.in.in:6
+msgid "Toggle Wi-Fi hotspot on/off"
+msgstr "Slå Wi-Fi-hotspot på/av"
+
+#: src/app-grid-button.c:144
+msgid "Add to Folder"
+msgstr "Legg til i mappe"
+
+#: src/app-grid-button.c:168
+msgid "Create new folder"
+msgstr "Opprett ny mappe"
+
+#: src/app-grid-button.c:399
+msgid "Can't uninstall application"
+msgstr "Kan ikkje avinstallere appen"
+
+#: src/app-grid-button.c:475
+msgid "Undo"
+msgstr "Angre"
+
+#: src/app-grid-button.c:476
+msgid "Application is now permanently hidden and disabled"
+msgstr "Appen er no permanent gøymd og slått av"
+
+#: src/app-grid-button.c:493
+msgid "Failed to hide application"
+msgstr "Klarte ikkje gøyme appen"
+
+#: src/app-grid-button.c:806 src/app-grid-button.c:860
+msgid "Application"
+msgstr "App"
+
+#: src/app-grid.c:159
+#, c-format
+msgid "%s folder is empty"
+msgstr "Mappa %s er tom"
+
+#: src/app-grid.c:265
+msgid "Show All Apps"
+msgstr "Vis alle appar"
+
+#: src/app-grid.c:268
+msgid "Show Only Mobile Friendly Apps"
+msgstr "Vis berre appar som er tilpassa mobil"
+
+#: src/audio-manager.c:74
+msgid "Phone Shell Volume Control"
+msgstr "Volumkontroll for telefonskalet"
+
+#. Translators: a battery level in percent
+#: src/bt-device-row.c:81
+#, c-format
+msgid "Battery %.0f%%"
+msgstr "Batteri %.0f %%"
+
+#: src/bt-info.c:95 src/ui/bt-status-page.ui:6
+msgid "Bluetooth"
+msgstr "Blåtann"
+
+#: src/bt-info.c:123
+msgctxt "bluetooth:enabled"
+msgid "On"
+msgstr "På"
+
+#: src/bt-status-page.c:123
+msgid "No connectable Bluetooth Devices found"
+msgstr "Fann ingen tilkoplingsklare blåtann-einingar"
+
+#: src/bt-status-page.c:127
+msgid "Bluetooth disabled"
+msgstr "Blåtann er slått av"
+
+#: src/call-notification.c:63
+msgid "Unknown caller"
+msgstr "Ukjend oppringjar"
+
+#: src/connectivity-manager.c:114
+#, c-format
+msgid "Wi-Fi network '%s' uses a captive portal"
+msgstr "Wi-Fi-nettverket «%s» brukar ei innloggingsside"
+
+#: src/connectivity-manager.c:116
+msgid "The network uses a captive portal"
+msgstr "Nettverket brukar ei innloggingsside"
+
+#: src/connectivity-manager.c:123
+msgid "Sign into network"
+msgstr "Logg inn på nettverket"
+
+#: src/docked-info.c:81
+msgid "Docked"
+msgstr "Festa"
+
+#: src/docked-info.c:81 src/docked-info.c:199
+msgid "Undocked"
+msgstr "Ikkje festa"
+
+#: src/emergency-menu.c:97 src/ui/app-auth-prompt.ui:64
+#: src/ui/cell-broadcast-prompt.ui:18 src/ui/end-session-dialog.ui:62
+msgid "Ok"
+msgstr "OK"
+
+#: src/emergency-menu.c:100
+msgid "Unable to place emergency call"
+msgstr "Klarte ikkje ringje naudnummer"
+
+#: src/emergency-menu.c:105
+msgid "Internal error"
+msgstr "Intern feil"
+
+#: src/end-session-dialog.c:173
+msgid "Log Out"
+msgstr "Logg ut"
+
+#: src/end-session-dialog.c:176
+#, c-format
+msgid "%s will be logged out automatically in %d second."
+msgid_plural "%s will be logged out automatically in %d seconds."
+msgstr[0] "%s vert logga ut automatisk om %d sekund."
+msgstr[1] "%s vert logga ut automatisk om %d sekund."
+
+#: src/end-session-dialog.c:182 src/ui/power-menu.ui:72
+msgid "Power Off"
+msgstr "Slå av"
+
+#: src/end-session-dialog.c:183
+#, c-format
+msgid "The system will power off automatically in %d second."
+msgid_plural "The system will power off automatically in %d seconds."
+msgstr[0] "Systemet slår seg av automatisk om %d sekund."
+msgstr[1] "Systemet slår seg av automatisk om %d sekund."
+
+#: src/end-session-dialog.c:189
+msgid "Restart"
+msgstr "Start på nytt"
+
+#: src/end-session-dialog.c:190
+#, c-format
+msgid "The system will restart automatically in %d second."
+msgid_plural "The system will restart automatically in %d seconds."
+msgstr[0] "Systemet startar på nytt automatisk om %d sekund."
+msgstr[1] "Systemet startar på nytt automatisk om %d sekund."
+
+#. Translators: quiet and silent are fbd profiles names:
+#. see https://source.puri.sm/Librem5/feedbackd#profiles
+#. for details
+#: src/feedbackinfo.c:97
+msgid "Quiet"
+msgstr "Stille"
+
+#. Translators: quiet and silent are fbd profiles names:
+#. see https://source.puri.sm/Librem5/feedbackd#profiles
+#. for details
+#: src/feedbackinfo.c:104
+msgid "Silent"
+msgstr "Lydlaus"
+
+#. Translators: Enable LED, haptic and audio feedback
+#: src/feedbackinfo.c:108
+msgctxt "feedback:enabled"
+msgid "On"
+msgstr "På"
+
+#: src/location-manager.c:266
+#, c-format
+msgid "Allow '%s' to access your location information?"
+msgstr "Vil du la «%s» få tilgang til plasseringa di?"
+
+#: src/location-manager.c:271
+msgid "Geolocation"
+msgstr "Geolokalisering"
+
+#: src/location-manager.c:272
+msgid "Yes"
+msgstr "Ja"
+
+#: src/location-manager.c:272
+msgid "No"
+msgstr "Nei"
+
+#. give visual feedback on error
+#: src/lockscreen.c:423 src/ui/lockscreen.ui:279
+msgid "Enter Passcode"
+msgstr "Skriv inn kode"
+
+#: src/lockscreen.c:1079
+msgid "Checking…"
+msgstr "Kontrollerer …"
+
+#: src/screenshot-manager.c:306
+msgid "View"
+msgstr "Vis"
+
+#: src/screenshot-manager.c:306
+msgid "Open containing folder"
+msgstr "Opne mappa med fila"
+
+#. Translators: '%s' is the filename of a screenshot
+#: src/screenshot-manager.c:314
+#, c-format
+msgid "Screenshot saved to '%s'"
+msgstr "Skjermbilete lagra i «%s»"
+
+#: src/screenshot-manager.c:333
+msgid "Failed to save screenshot"
+msgstr "Klarte ikkje lagre skjermbiletet"
+
+#: src/screenshot-manager.c:337 src/ui/power-menu.ui:199
+msgid "Screenshot"
+msgstr "Skjermbilete"
+
+#. Translators: name of the folder beneath ~/Pictures used to store screenshots
+#: src/screenshot-manager.c:649
+msgid "Screenshots"
+msgstr "Skjermbilete"
+
+#. Translators: Name of a screenshot file. The first '%s' is a timestamp
+#. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
+#. * the file already exists like '-3'
+#: src/screenshot-manager.c:669
+#, c-format
+msgid "Screenshot from %s%s.png"
+msgstr "Skjermbilete frå %s%s.png"
+
+#. Translators: Used when the title of a song is unknown
+#: src/media-player.c:688 src/ui/media-player.ui:208
+msgid "Unknown Title"
+msgstr "Ukjend tittel"
+
+#. Translators: Used when the artist of a song is unknown
+#: src/media-player.c:696 src/ui/media-player.ui:196
+msgid "Unknown Artist"
+msgstr "Ukjend artist"
+
+#: src/monitor-manager.c:129
+msgid "Built-in display"
+msgstr "Innebygd skjerm"
+
+#: src/monitor-manager.c:147
+#, c-format
+msgctxt ""
+"This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
+msgid "%s %s"
+msgstr "%s %s"
+
+#: src/monitor-manager.c:154
+#, c-format
+msgctxt ""
+"This is a monitor vendor name followed by product/model name where size in "
+"inches could not be calculated, e.g. Dell U2414H"
+msgid "%s %s"
+msgstr "%s %s"
+
+#. Translators: An unknown monitor type
+#: src/monitor-manager.c:163
+msgid "Unknown"
+msgstr "Ukjend"
+
+#: src/network-auth-prompt.c:202
+#, c-format
+msgid "Authentication type of Wi-Fi network “%s” not supported"
+msgstr "Autentiseringstypen for Wi-Fi-nettverket «%s» er ikkje støtta"
+
+#: src/network-auth-prompt.c:207
+#, c-format
+msgid "Enter password for the Wi-Fi network “%s”"
+msgstr "Skriv inn passord for Wi-Fi-nettverket «%s»"
+
+#: src/notifications/mount-notification.c:121
+msgid "Open"
+msgstr "Opne"
+
+#. We don't just set the app_info but name and icon separately to
+#. * not overwrite values set by the caller
+#: src/notifications/notification.c:422 src/notifications/notification.c:695
+#: src/notifications/notify-manager.c:1009
+msgid "Notification"
+msgstr "Varsel"
+
+#. Translators: Point in time, use a short word or abbreviation
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:88
+msgid "now"
+msgstr "no"
+
+#. Translators: abbreviated time difference "Less than 30 seconds"
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:93
+#, c-format
+msgid "<30s"
+msgstr "<30 s"
+
+#. Translators: abbreviated time difference "Less than one minute"
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:98
+#, c-format
+msgid "<1m"
+msgstr "<1min"
+
+#. Translators: abbreviated time difference "About one minute"
+#. Please stick to a maximum of 12 chars
+#: src/notifications/timestamp-label.c:103
+#, c-format
+msgid "~1m"
+msgstr "~1min"
+
+#. Translators: abbreviated, exact time difference "1 minute ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:111
+#, c-format
+msgid "%dm"
+msgid_plural "%dm"
+msgstr[0] "%dmin"
+msgstr[1] "%dmin"
+
+#. Translators: abbreviated time difference "About 3 hours ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:119
+#, c-format
+msgid "~%dh"
+msgid_plural "~%dh"
+msgstr[0] "~%dt"
+msgstr[1] "~%dt"
+
+#. Translators: abbreviated time difference "About 1 day ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:124
+#, c-format
+msgid "~1d"
+msgstr "~1d"
+
+#. Translators: abbreviated, exact time difference "3 days ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:129
+#, c-format
+msgid "%dd"
+msgid_plural "%dd"
+msgstr[0] "%dd"
+msgstr[1] "%dd"
+
+#. Translators: abbreviated time difference "About 1 month ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:134
+#, c-format
+msgid "~1mo"
+msgstr "~1mnd"
+
+#. Translators: abbreviated, exact time difference "3 months ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:139
+#, c-format
+msgid "%dmo"
+msgid_plural "%dmos"
+msgstr[0] "%dmnd"
+msgstr[1] "%dmnd"
+
+#. Translators: abbreviated time difference "About 5 years ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:149
+#, c-format
+msgid "~%dy"
+msgid_plural "~%dy"
+msgstr[0] "~%dår"
+msgstr[1] "~%dår"
+
+#. Translators: abbreviated time difference "Over 5 years ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:153
+#, c-format
+msgid "Over %dy"
+msgid_plural "Over %dy"
+msgstr[0] "Over %d år"
+msgstr[1] "Over %d år"
+
+#. Translators: abbreviated time difference "almost 5 years ago"
+#. Please stick to a maximum of 4 chars for the time unit
+#: src/notifications/timestamp-label.c:158
+#, c-format
+msgid "Almost %dy"
+msgid_plural "Almost %dy"
+msgstr[0] "Nesten %d år"
+msgstr[1] "Nesten %d år"
+
+#: src/overview.c:228
+msgid "Application is slow or failed to start"
+msgstr "Appen er treg eller klarte ikkje starte"
+
+#: src/polkit-auth-agent.c:275
+msgid "Authentication dialog was dismissed by the user"
+msgstr "Autentiseringsdialogen vart avvist av brukaren"
+
+#: src/polkit-auth-prompt.c:382 src/ui/gtk-mount-prompt.ui:17
+#: src/ui/network-auth-prompt.ui:69 src/ui/polkit-auth-prompt.ui:44
+#: src/ui/system-prompt.ui:28
+msgid "Password:"
+msgstr "Passord:"
+
+#: src/polkit-auth-prompt.c:429
+msgid "Sorry, that didn’t work. Please try again."
+msgstr "Beklagar, det fungerte ikkje. Prøv på nytt."
+
+#: src/rotateinfo.c:102
+msgid "Portrait"
+msgstr "Ståande"
+
+#: src/rotateinfo.c:105
+msgid "Landscape"
+msgstr "Liggjande"
+
+#: src/rotateinfo.c:125 src/rotateinfo.c:230
+msgctxt "automatic-screen-rotation-disabled"
+msgid "Off"
+msgstr "Av"
+
+#: src/rotateinfo.c:126
+msgctxt "automatic-screen-rotation-enabled"
+msgid "On"
+msgstr "På"
+
+#: src/run-command-dialog.c:129
+msgid "Press ESC to close"
+msgstr "Trykk ESC for å lukke"
+
+#: src/run-command-manager.c:89
+#, c-format
+msgid "Running '%s' failed"
+msgstr "Køyring av «%s» feila"
+
+#: src/system-prompt.c:376
+msgid "Passwords do not match."
+msgstr "Passorda samsvarar ikkje."
+
+#: src/system-prompt.c:383
+msgid "Password cannot be blank"
+msgstr "Passordet kan ikkje vere tomt"
+
+#: src/torch-info.c:84
+msgid "Torch"
+msgstr "Lommelykt"
+
+#: src/ui/app-auth-prompt.ui:43
+msgid "Remember decision"
+msgstr "Hugs valet"
+
+#: src/ui/app-auth-prompt.ui:55 src/ui/end-session-dialog.ui:53
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:25
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: src/ui/app-grid-button.ui:31
+msgid "Remove from _Favorites"
+msgstr "_Fjern frå favorittar"
+
+#: src/ui/app-grid-button.ui:36
+msgid "Add to _Favorites"
+msgstr "_Legg til i favorittar"
+
+#: src/ui/app-grid-button.ui:41
+msgid "View _Details"
+msgstr "_Vis detaljar"
+
+#: src/ui/app-grid-button.ui:46
+msgid "Uninstall"
+msgstr "Avinstaller"
+
+#: src/ui/app-grid-button.ui:51
+msgid "Hide Application"
+msgstr "Gøym app"
+
+#: src/ui/app-grid-button.ui:59
+msgid "_Remove from Folder"
+msgstr "_Fjern frå mappe"
+
+#: src/ui/app-grid-button.ui:64
+msgid "Manage Hidden Apps"
+msgstr "Handter gøymde appar"
+
+#: src/ui/app-grid.ui:26
+msgid "Search apps…"
+msgstr "Søk i appar …"
+
+#: src/ui/audio-settings.ui:84
+msgid "Output Devices"
+msgstr "Utdataeiningar"
+
+#: src/ui/audio-settings.ui:108
+msgid "Input Devices"
+msgstr "Inndataeiningar"
+
+#: src/ui/audio-settings.ui:136
+msgid "Sound Settings"
+msgstr "Lydinnstillingar"
+
+#: src/ui/brightness-settings.ui:87
+msgid "Automatic Brightness"
+msgstr "Automatisk lysstyrke"
+
+#: src/ui/brightness-settings.ui:120
+msgid "Brightness Settings"
+msgstr "Lysstyrkeinnstillingar"
+
+#: src/ui/bt-status-page.ui:39
+msgid "Enable Bluetooth"
+msgstr "Slå på blåtann"
+
+#: src/ui/bt-status-page.ui:54
+msgid "Bluetooth Settings"
+msgstr "Blåtanninnstillingar"
+
+#: src/ui/emergency-menu.ui:26
+msgid "Close the emergency call dialog"
+msgstr "Lukk dialogen for naudsamtale"
+
+#: src/ui/emergency-menu.ui:52
+msgid "Emergency _Contacts"
+msgstr "_Naudkontaktar"
+
+#: src/ui/emergency-menu.ui:59
+msgid "Go to the emergency contacts page"
+msgstr "Gå til sida for naudkontaktar"
+
+#: src/ui/emergency-menu.ui:82
+msgid "Go back to the emergency dialpad page"
+msgstr "Gå tilbake til tastaturet for naudnummer"
+
+#: src/ui/emergency-menu.ui:105
+msgid "Owner unknown"
+msgstr "Eigar ukjend"
+
+#: src/ui/emergency-menu.ui:123 plugins/emergency-info/emergency-info.ui:211
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:170
+msgid "Emergency Contacts"
+msgstr "Naudkontaktar"
+
+#: src/ui/emergency-menu.ui:142
+msgid "No emergency contacts available."
+msgstr "Ingen naudkontaktar tilgjengelege."
+
+#: src/ui/end-session-dialog.ui:27
+msgid "Some applications are busy or have unsaved work"
+msgstr "Nokre appar er opptekne eller har ulagra arbeid"
+
+#: src/ui/feedback-status-page.ui:6
+msgid "Feedback"
+msgstr "Tilbakemelding"
+
+#: src/ui/feedback-status-page.ui:19
+msgid "Do not disturb"
+msgstr "Ikkje forstyrr"
+
+#: src/ui/feedback-status-page.ui:53
+msgid "Feedback Settings"
+msgstr "Tilbakemeldingsinnstillingar"
+
+#: src/ui/gtk-mount-prompt.ui:74
+msgid "User:"
+msgstr "Brukar:"
+
+#: src/ui/gtk-mount-prompt.ui:96
+msgid "Domain:"
+msgstr "Domene:"
+
+#: src/ui/gtk-mount-prompt.ui:128
+msgid "Co_nnect"
+msgstr "Ko_ple til"
+
+#: src/ui/lockscreen.ui:43 src/ui/lockscreen.ui:242
+msgid "Back"
+msgstr "Tilbake"
+
+#: src/ui/lockscreen.ui:95
+msgid "Slide up to unlock"
+msgstr "Sveip opp for å låse opp"
+
+#: src/ui/lockscreen.ui:331
+msgid "Unlock"
+msgstr "Lås opp"
+
+#: src/ui/network-auth-prompt.ui:6 src/ui/polkit-auth-prompt.ui:5
+msgid "Authentication required"
+msgstr "Autentisering krevst"
+
+#: src/ui/network-auth-prompt.ui:37
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:101
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:212
+msgid "_Cancel"
+msgstr "_Avbryt"
+
+#: src/ui/network-auth-prompt.ui:50
+msgid "C_onnect"
+msgstr "_Kople til"
+
+#: src/ui/polkit-auth-prompt.ui:96
+msgid "Authenticate"
+msgstr "Autentiser"
+
+#: src/ui/power-menu.ui:112
+msgid "Suspend"
+msgstr "Dvale"
+
+#: src/ui/power-menu.ui:158
+msgid "Lock"
+msgstr "Lås"
+
+#: src/ui/power-menu.ui:240
+msgid "Emergency"
+msgstr "Naud"
+
+#: src/ui/run-command-dialog.ui:5
+msgid "Run Command"
+msgstr "Køyr kommando"
+
+#: src/ui/settings.ui:128
+msgid "No notifications"
+msgstr "Ingen varsel"
+
+#: src/ui/settings.ui:157
+msgid "Notifications"
+msgstr "Varsel"
+
+#: src/ui/settings.ui:166
+msgid "Clear all"
+msgstr "Tøm alt"
+
+#: src/ui/system-prompt.ui:52
+msgid "Confirm:"
+msgstr "Stadfest:"
+
+#: src/ui/top-panel.ui:34
+msgid "_Power Off…"
+msgstr "_Slå av …"
+
+#: src/ui/top-panel.ui:61
+msgid "_Restart…"
+msgstr "_Start på nytt …"
+
+#: src/ui/top-panel.ui:88
+msgid "_Suspend…"
+msgstr "_Dvale …"
+
+#: src/ui/top-panel.ui:115
+msgid "_Log Out…"
+msgstr "_Logg ut …"
+
+#: src/ui/wifi-status-page.ui:6 src/wifi-info.c:90
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+#: src/ui/wifi-status-page.ui:89
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:85
+msgid "Wi-Fi Settings"
+msgstr "Wi-Fi-innstillingar"
+
+#: src/vpn-info.c:89
+msgid "VPN"
+msgstr "VPN"
+
+#. Translators: This is a time format for a date in
+#. long format
+#: src/wall-clock.c:248
+msgid "%A, %B %-e"
+msgstr "%A, %B %-e"
+
+#: src/widget-box.c:54
+msgid "Plugin not found"
+msgstr "Tillegg ikkje funne"
+
+#: src/widget-box.c:57
+#, c-format
+msgid "The plugin '%s' could not be loaded."
+msgstr "Tillegget «%s» kunne ikkje lastast."
+
+#: src/wifi-status-page.c:53
+msgid "No Wi-Fi Device Found"
+msgstr "Fann inga Wi-Fi-eining"
+
+#: src/wifi-status-page.c:57
+msgid "Wi-Fi Disabled"
+msgstr "Wi-Fi slått av"
+
+#: src/wifi-status-page.c:58
+msgid "Enable Wi-Fi"
+msgstr "Slå på Wi-Fi"
+
+#: src/wifi-status-page.c:61
+msgid "Wi-Fi Hotspot Active"
+msgstr "Wi-Fi-hotspot er aktiv"
+
+#: src/wifi-status-page.c:62
+msgid "Turn Off"
+msgstr "Slå av"
+
+#: src/wifi-status-page.c:65
+msgid "No Wi-Fi Hotspots"
+msgstr "Ingen Wi-Fi-hotspotar"
+
+#. Translators: Refers to the cellular wireless network
+#: src/wwan-info.c:210
+msgid "Cellular"
+msgstr "Mobilnett"
+
+#. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
+msgid "Phosh on caffeine"
+msgstr "Phosh på koffein"
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:305
+msgctxt "caffeine-disabled"
+msgid "Off"
+msgstr "Av"
+
+#: plugins/caffeine-quick-setting/caffeine-quick-setting.c:310
+msgctxt "caffeine-enabled"
+msgid "On"
+msgstr "På"
+
+#: plugins/caffeine-quick-setting/qs.ui:15
+msgid "Caffeine timers"
+msgstr "Koffeinintervall"
+
+#: plugins/caffeine-quick-setting/qs.ui:38
+msgid "No caffeine intervals"
+msgstr "Ingen koffeinintervall"
+
+#: plugins/caffeine-quick-setting/qs.ui:55
+msgid "Caffeine Settings"
+msgstr "Koffeininnstillingar"
+
+#: plugins/caffeine-quick-setting/prefs/caffeine-quick-setting-prefs.c:388
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:197
+msgid "No timeout (∞)"
+msgstr "Ingen tidsavbrot (∞)"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:7
+msgid "Caffeine Quick Setting Preferences"
+msgstr "Innstillingar for hurtiginnstillinga for koffein"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:11
+msgid "Caffeine Duration"
+msgstr "Koffeinvarigheit"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:15
+msgid "Manage Caffeine Duration"
+msgstr "Handter koffeinvarigheit"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:16
+msgid "Add or remove custom caffeine intervals"
+msgstr "Legg til eller fjern tilpassa koffeinintervall"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:22
+msgid "Add interval"
+msgstr "Legg til intervall"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:68
+msgid "Caffeine Mode"
+msgstr "Koffeinmodus"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:74
+msgid "Inhibit Suspend"
+msgstr "Hindre dvale"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:75
+msgid "Don't suspend when caffeine is active"
+msgstr "Ikkje gå i dvale når koffein er aktivt"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:81
+msgid "Inhibit Idle"
+msgstr "Hindre inaktivitet"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:82
+msgid "Don't let system become idle when caffeine is active"
+msgstr "Ikkje la systemet verte inaktivt når koffein er aktivt"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:92
+msgid "Add New Interval"
+msgstr "Legg til nytt intervall"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:109
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:220
+msgid "_Add"
+msgstr "_Legg til"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:141
+msgid "Quickstart Intervals"
+msgstr "Intervall for hurtigstart"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:153
+msgid "5 m"
+msgstr "5 min"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:164
+msgid "15 m"
+msgstr "15 min"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:175
+msgid "30 m"
+msgstr "30 min"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:186
+msgid "1 h"
+msgstr "1 t"
+
+#: plugins/caffeine-quick-setting/prefs/prefs.ui:214
+msgid "Choose Interval"
+msgstr "Vel intervall"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
+msgid "Default style"
+msgstr "Standardstil"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:35
+msgid "Dark mode"
+msgstr "Mørk modus"
+
+#: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:36
+msgid "Light mode"
+msgstr "Lys modus"
+
+#: plugins/emergency-info/emergency-info.ui:43
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:62
+msgid "Personal Information"
+msgstr "Personleg informasjon"
+
+#: plugins/emergency-info/emergency-info.ui:51
+msgid "Date of Birth"
+msgstr "Fødselsdato"
+
+#: plugins/emergency-info/emergency-info.ui:71
+msgid "Preferred Language"
+msgstr "Føretrekt språk"
+
+#: plugins/emergency-info/emergency-info.ui:91
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:85
+msgid "Home Address"
+msgstr "Heimeadresse"
+
+#: plugins/emergency-info/emergency-info.ui:99
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:100
+msgid "Medical Information"
+msgstr "Medisinsk informasjon"
+
+#: plugins/emergency-info/emergency-info.ui:107
+msgid "Age"
+msgstr "Alder"
+
+#: plugins/emergency-info/emergency-info.ui:127
+msgid "Blood Type"
+msgstr "Blodtype"
+
+#: plugins/emergency-info/emergency-info.ui:147
+msgid "Height"
+msgstr "Høgde"
+
+#: plugins/emergency-info/emergency-info.ui:167
+msgid "Weight"
+msgstr "Vekt"
+
+#: plugins/emergency-info/emergency-info.ui:187
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:129
+msgid "Allergies"
+msgstr "Allergiar"
+
+#: plugins/emergency-info/emergency-info.ui:195
+msgid "Medications & Conditions"
+msgstr "Medisinar og tilstandar"
+
+#: plugins/emergency-info/emergency-info.ui:203
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:155
+msgid "Other Information"
+msgstr "Anna informasjon"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:6
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:16
+msgid "Emergency Info Preferences"
+msgstr "Innstillingar for naudinformasjon"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:36
+msgid "Done"
+msgstr "Ferdig"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:67
+msgid "_Owner Name"
+msgstr "_Namn på eigaren"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:73
+msgid "_Date of Birth"
+msgstr "_Fødselsdato"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:79
+msgid "_Preferred Language"
+msgstr "_Føretrukke språk"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:105
+msgid "_Age"
+msgstr "_Alder"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:111
+msgid "_Blood Type"
+msgstr "_Blodtype"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:117
+msgid "_Height"
+msgstr "_Høgde"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:123
+msgid "_Weight"
+msgstr "_Vekt"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:142
+msgid "Medications and Conditions"
+msgstr "Medisinar og tilstandar"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:179
+msgid "Add Contact"
+msgstr "Legg til kontakt"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:203
+msgid "Add New Contact"
+msgstr "Legg til ny kontakt"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:240
+msgid "_Contact Name"
+msgstr "_Kontaktnamn"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:246
+msgid "Relationship"
+msgstr "Relasjon"
+
+#: plugins/emergency-info/prefs/emergency-info-prefs.ui:252
+msgid "_Contact Number"
+msgstr "_Kontaktnummer"
+
+#: plugins/launcher-box/launcher-box.ui:18
+msgid "No launchers configured"
+msgstr "Ingen oppstartarar er sette opp"
+
+#: plugins/launcher-box/launcher-box.ui:33
+msgid "Launchers"
+msgstr "Oppstartarar"
+
+#. Translators: Location precision level - country-wide
+#: plugins/location-quick-setting/accuracy-row.c:44
+msgid "Country"
+msgstr "Land"
+
+#. Translators: Location precision level - city-wide
+#: plugins/location-quick-setting/accuracy-row.c:47
+msgid "City"
+msgstr "By"
+
+#. Translators: Location precision level - neighborhood
+#: plugins/location-quick-setting/accuracy-row.c:50
+msgid "Neighborhood"
+msgstr "Nabolag"
+
+#. Translators: Location precision level - street
+#: plugins/location-quick-setting/accuracy-row.c:53
+msgid "Street"
+msgstr "Gate"
+
+#. Translators: Location precision level - exact position
+#: plugins/location-quick-setting/accuracy-row.c:56
+msgid "Exact"
+msgstr "Nøyaktig"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
+msgid "Location On"
+msgstr "Plassering på"
+
+#: plugins/location-quick-setting/location-quick-setting.c:91
+msgid "Location Off"
+msgstr "Plassering av"
+
+#: plugins/location-quick-setting/qs.ui:15
+msgid "Location Accuracy"
+msgstr "Plasseringsnøyaktigheit"
+
+#: plugins/location-quick-setting/qs.ui:62
+msgid "Location Disabled"
+msgstr "Plassering er slått av"
+
+#: plugins/location-quick-setting/qs.ui:72
+msgid "Enable Location"
+msgstr "Slå på plassering"
+
+#: plugins/location-quick-setting/qs.ui:87
+msgid "Location Settings"
+msgstr "Plasseringsinnstillingar"
+
+#: plugins/media-players/media-players.ui:20
+msgid "No running media players"
+msgstr "Ingen mediespelarar køyrer"
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
+msgid "Mobile Data On"
+msgstr "Mobildata på"
+
+#: plugins/mobile-data-quick-setting/mobile-data-quick-setting.c:79
+msgid "Mobile Data Off"
+msgstr "Mobildata av"
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
+msgid "Night Light On"
+msgstr "Nattlys på"
+
+#: plugins/night-light-quick-setting/night-light-quick-setting.c:63
+msgid "Night Light Off"
+msgstr "Nattlys av"
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:73
+msgid "Pomodoro start"
+msgstr "Pomodoro-start"
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:75
+#, c-format
+msgid "Focus on your task for %d minute"
+msgid_plural "Focus on your task for %d minutes"
+msgstr[0] "Fokuser på oppgåva di i %d minutt"
+msgstr[1] "Fokuser på oppgåva di i %d minutt"
+
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:81
+msgid "Take a break"
+msgstr "Ta ein pause"
+
+#. Translators: Pomodoro is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:84
+#, c-format
+msgid "You have %d minute until next Pomodoro"
+msgid_plural "You have %d minutes until next Pomodoro"
+msgstr[0] "Du har %d minutt att til neste Pomodoro"
+msgstr[1] "Du har %d minutt att til neste Pomodoro"
+
+#. Translators: Pomodoro is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:100
+msgid "Pomodoro Timer"
+msgstr "Pomodoro-tidtakar"
+
+#. Translators: Pomodoro is a technique, no need to translate it
+#: plugins/pomodoro-quick-setting/pomodoro-quick-setting.c:123
+#, c-format
+msgid "Pomodoro Off"
+msgstr "Pomodoro av"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:6
+msgid "Pomodoro Quick Setting Preferences"
+msgstr "Pomodoro-innstillingar"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:11
+msgid "Pomodoro Technique"
+msgstr "Pomodoro-teknikken"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:14
+msgid "_Active Duration"
+msgstr "_Aktiv varigheit"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:15
+msgid "Duration of the focus session"
+msgstr "Varigheit for fokusøkten"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:29
+msgid "_Break Duration"
+msgstr "_Varigheit for pause"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:30
+msgid "Duration of the break between sessions"
+msgstr "Varigheit for pausen mellom øktene"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:44
+msgid "_Start on unlock"
+msgstr "_Start ved opplåsing"
+
+#: plugins/pomodoro-quick-setting/prefs/prefs.ui:45
+msgid "Whether to start the timer on screen unlock"
+msgstr "Om du vil starte tidtakaren når skjermen vert låst opp"
+
+#: plugins/ticket-box/ticket-box.ui:18
+msgid "No documents to display"
+msgstr "Ingen dokument å vise"
+
+#: plugins/ticket-box/ticket-box.ui:82
+msgid "Tickets"
+msgstr "Billettar"
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.c:94
+msgid "_Open"
+msgstr "_Opne"
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.c:95
+msgid "Choose Folder"
+msgstr "Vel mappe"
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:6
+msgid "Ticket Box Preferences"
+msgstr "Innstillingar for billettboks"
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:10
+msgid "Paths"
+msgstr "Stiar"
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:14
+msgid "Folder Settings"
+msgstr "Mappeinnstillingar"
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:15
+msgid "Where Phosh looks for your tickets"
+msgstr "Der Phosh leitar etter billettene dine"
+
+#: plugins/ticket-box/prefs/ticket-box-prefs.ui:18
+msgid "Ticket Folder"
+msgstr "Billettmappe"
+
+#: plugins/upcoming-events/event-list.c:142
+msgid "Today"
+msgstr "I dag"
+
+#: plugins/upcoming-events/event-list.c:144
+msgid "Tomorrow"
+msgstr "I morgon"
+
+#. Translators: The current date and weekday for display in a calendar entry
+#: plugins/upcoming-events/event-list.c:151
+#, c-format
+msgid "%x %a"
+msgstr "%x %a"
+
+#: plugins/upcoming-events/event-list.ui:26
+msgid "No events"
+msgstr "Ingen hendingar"
+
+#. Translators: This is the time format used in 24-hour mode.
+#: plugins/upcoming-events/upcoming-event.c:56
+msgid "%R"
+msgstr "%R"
+
+#. Translators: This is the time format used in 12-hour mode.
+#: plugins/upcoming-events/upcoming-event.c:59
+msgid "%l:%M %p"
+msgstr "%l:%M %p"
+
+#. Translators: An all day event
+#: plugins/upcoming-events/upcoming-event.c:122
+#: plugins/upcoming-events/upcoming-event.c:159
+msgid "All day"
+msgstr "Heile dagen"
+
+#. Translators: When the event ends: Ends\r16:00
+#: plugins/upcoming-events/upcoming-event.c:148
+msgid "Ends"
+msgstr "Sluttar"
+
+#: plugins/upcoming-events/upcoming-event.c:400
+msgid "Untitled event"
+msgstr "Hending utan tittel"
+
+#: plugins/upcoming-events/upcoming-events.c:408
+#, c-format
+msgid "No events for the next %d day"
+msgid_plural "No events for the next %d days"
+msgstr[0] "Inga hending dei neste %d dagane"
+msgstr[1] "Ingen hendingar dei neste %d dagane"
+
+#: plugins/upcoming-events/upcoming-events.ui:28
+msgid "No upcoming events"
+msgstr "Ingen kommande hendingar"
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:6
+msgid "Upcoming Events Preferences"
+msgstr "Innstillingar for kommande hendingar"
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:10
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:17
+msgid "Days"
+msgstr "Dagar"
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:13
+msgid "Date Range"
+msgstr "Datointervall"
+
+#: plugins/upcoming-events/prefs/upcoming-events-prefs.ui:14
+msgid "Number of days to show events for"
+msgstr "Tal på dagar for å vise hendingar"
+
+#: plugins/scaling-quick-setting/qs.ui:14
+msgid "Monitor scales"
+msgstr "Skjermskaleringar"
+
+#: plugins/scaling-quick-setting/qs.ui:36
+msgid "Display Settings"
+msgstr "Skjerminnstillingar"
+
+#. Translators: This is scale factor of a monitor in percent
+#: plugins/scaling-quick-setting/scale-row.c:48
+#: plugins/scaling-quick-setting/scaling-quick-setting.c:91
+#, c-format
+msgid "%d%%"
+msgstr "%d %%"
+
+#: plugins/syncthing-quick-setting/qs.ui:12
+#: plugins/syncthing-quick-setting/qs.ui:16
+msgid "Syncthing"
+msgstr "Syncthing"
+
+#: plugins/syncthing-quick-setting/qs.ui:31
+msgid "No folders"
+msgstr "Ingen mapper"
+
+#: plugins/syncthing-quick-setting/qs.ui:46
+msgid "Syncthing is disabled"
+msgstr "Syncthing er slått av"
+
+#: plugins/syncthing-quick-setting/qs.ui:57
+msgid "Enable"
+msgstr "Slå på"
+
+#: plugins/syncthing-quick-setting/qs.ui:69
+msgid "Open Syncthing GUI"
+msgstr "Opne Syncthing-grensesnittet"
+
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:162
+#: plugins/syncthing-quick-setting/syncthing-quick-setting.c:196
+msgid "Unable to connect to Syncbus"
+msgstr "Klarte ikkje kople til Syncbus"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:6
+msgid "Wi-Fi Hotspot"
+msgstr "Wi-Fi-hotspot"
+
+#: plugins/wifi-hotspot-quick-setting/status-page.ui:71
+msgid "Turn On"
+msgstr "Slå på"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:80
+msgid "Hotspot On"
+msgstr "Hotspot på"
+
+#: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
+msgid "Hotspot Off"
+msgstr "Hotspot av"
