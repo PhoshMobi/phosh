@@ -1185,7 +1185,7 @@ on_slurp_exited (GPid pid, int wait_status, gpointer user_data)
     GError *err = g_error_new_literal (G_IO_ERROR,
                                        G_IO_ERROR_FAILED,
                                        "Area selection failed");
-    g_task_return_error (g_steal_pointer (&task), err);
+    g_task_return_error (task, err);
   }
 }
 
