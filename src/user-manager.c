@@ -174,14 +174,16 @@ on_homed_proxy_ready (GObject *source_object, GAsyncResult *res, gpointer user_d
 {
   PhoshUserManager *self = PHOSH_USER_MANAGER (user_data);
   g_autoptr (GError) err = NULL;
+  GDBusProxy *proxy;
 
-  self->homed_proxy = g_dbus_proxy_new_for_bus_finish (res, &err);
-  if (self->homed_proxy == NULL) {
+  proxy = g_dbus_proxy_new_for_bus_finish (res, &err);
+  if (proxy == NULL) {
     phosh_dbus_service_error_warn (err, "Failed to connect to systemd-homed");
     return;
   }
 
   g_debug ("Got homed proxy for user '%s'", self->username);
+  self->homed_proxy = proxy;
   g_signal_connect_object (self->homed_proxy,
                            "g-properties-changed",
                            G_CALLBACK (on_user_record_changed),
