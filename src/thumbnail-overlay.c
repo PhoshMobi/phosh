@@ -160,7 +160,7 @@ phosh_thumbnail_overlay_init (PhoshThumbnailOverlay *self)
 PhoshThumbnailOverlay *
 phosh_thumbnail_overlay_new (void)
 {
-  return g_object_new (PHOSH_TYPE_thumbnail_overlay, NULL);
+  return g_object_new (PHOSH_TYPE_THUMBNAIL_OVERLAY, NULL);
 }
 
 
