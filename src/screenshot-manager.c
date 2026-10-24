@@ -189,6 +189,7 @@ slurp_area_dispose (SlurpArea *slurp)
     slurp->response = NULL;
   }
   g_clear_object (&slurp->stdout_);
+  g_free (slurp);
 }
 
 
