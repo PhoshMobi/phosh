@@ -20,7 +20,7 @@ use zbus::{Connection, OwnedObjectPath, proxy};
 #[command(
     name = "phosh-pin-tool",
     about = "Manage unlock settings",
-    after_help = "You need to set the user password via the PASSWORD env var\nExamples:\n phosh-pin-tool set-pin-length --user foo 5"
+    after_help = "You can pass the user password via the PASSWORD env var\nExamples:\n phosh-pin-tool set-pin-length --pin-length 5"
 )]
 struct Cli {
     #[command(subcommand)]
