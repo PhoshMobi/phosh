@@ -6,4 +6,4 @@ edition = "2021"
 clap = { version = "4.5.60", default-features = false, features = ["derive", "std", "help", "usage"] }
 rpassword = "7"
 serde_json = { version = "1", default-features = false, features = ["std"] }
-zbus = { version = "5", default-features = false, features = ["async-io", "blocking-api"] }
+zbus = { version = "6", default-features = false, features = ["default-rt", "proxy"] }
