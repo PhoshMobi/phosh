@@ -32,7 +32,7 @@ enum Command {
     #[command(about = "Set the unlock PIN length")]
     SetPinLength {
         #[arg(long, help = "homed user to modify")]
-        user: String,
+        user: Option<String>,
 
         #[arg(long, help = "Length of the unlock PIN")]
         pin_length: Option<u32>,
@@ -41,7 +41,7 @@ enum Command {
     #[command(about = "Get the unlock PIN length")]
     GetPinLength {
         #[arg(long, help = "homed user to get pin-length for")]
-        user: String,
+        user: Option<String>,
     },
 }
 
@@ -162,15 +162,23 @@ fn get_password() -> String {
     };
 }
 
+fn get_user(user: Option<String>) -> Option<String> {
+    user.or_else(|| env::var("USER").ok())
+}
+
 fn main() -> Result<(), Box<dyn Error>> {
     let cli = Cli::parse();
 
     zbus::block_on(async {
         match cli.command {
             Command::SetPinLength { pin_length, user } => {
+                let user = get_user(user).unwrap_or_else(|| {
+                    eprintln!("Failed to get username, try --user");
+                    std::process::exit(1);
+                });
+
                 let pw = get_password();
                 let pin_length = pin_length.unwrap_or(pw.len() as u32);
-
                 if pw.len() != pin_length as usize {
                     println!(
                         "Warning: PASSWORD length {} doesn't match pin-length {}",
@@ -178,6 +186,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                         pin_length
                     );
                 }
+
                 let len = Value::Number(pin_length.into());
                 if let Err(e) = set_unlock_info(&user, "pinLength", len, &pw).await {
                     eprintln!("Can't set pin-length: {e}");
@@ -185,6 +194,11 @@ fn main() -> Result<(), Box<dyn Error>> {
                 }
             }
             Command::GetPinLength { user } => {
+                let user = get_user(user).unwrap_or_else(|| {
+                    eprintln!("Failed to get username, try --user");
+                    std::process::exit(1);
+                });
+
                 let value = get_unlock_info(&user, "pinLength")
                     .await
                     .unwrap_or_else(|e| {
