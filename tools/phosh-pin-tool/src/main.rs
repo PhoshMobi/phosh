@@ -11,14 +11,10 @@
 // }
 
 use clap::{Parser, Subcommand};
-use serde_json::{json, Map, Value};
+use serde_json::{Map, Value, json};
 use std::time::{SystemTime, UNIX_EPOCH};
 use std::{env, error::Error, process::exit};
-use zbus::{blocking::Connection, zvariant::OwnedObjectPath};
-
-const DEST: &str = "org.freedesktop.home1";
-const PATH: &str = "/org/freedesktop/home1";
-const IFACE: &str = "org.freedesktop.home1.Manager";
+use zbus::{Connection, OwnedObjectPath, proxy};
 
 #[derive(Parser, Debug)]
 #[command(
@@ -36,7 +32,7 @@ enum Command {
     #[command(about = "Set the unlock PIN length")]
     SetPinLength {
         #[arg(long, help = "homed user to modify")]
-        user: String,
+        user: Option<String>,
 
         #[arg(long, help = "Length of the unlock PIN")]
         pin_length: Option<u32>,
@@ -45,11 +41,27 @@ enum Command {
     #[command(about = "Get the unlock PIN length")]
     GetPinLength {
         #[arg(long, help = "homed user to get pin-length for")]
-        user: String,
+        user: Option<String>,
     },
 }
 
-fn update_record(conn: Connection, mut rec: Value) -> Result<(), Box<dyn Error>> {
+#[proxy(
+    interface = "org.freedesktop.home1.Manager",
+    default_service = "org.freedesktop.home1",
+    default_path = "/org/freedesktop/home1"
+)]
+
+trait HomeManager {
+    #[zbus(allow_interactive_auth)]
+    async fn update_home(&self, user_record: &str) -> zbus::Result<()>;
+    #[zbus(allow_interactive_auth)]
+    async fn get_user_record_by_name(
+        &self,
+        name: &str,
+    ) -> zbus::Result<(String, bool, OwnedObjectPath)>;
+}
+
+async fn update_record(proxy: &HomeManagerProxy<'_>, mut rec: Value) -> Result<(), Box<dyn Error>> {
     let now = if let Ok(now) = SystemTime::now().duration_since(UNIX_EPOCH) {
         now.as_micros()
     } else {
@@ -57,27 +69,13 @@ fn update_record(conn: Connection, mut rec: Value) -> Result<(), Box<dyn Error>>
     };
     rec["lastChangeUSec"] = Value::Number((now as u64).into());
 
-    conn.call_method(
-        Some(DEST),
-        PATH,
-        Some(IFACE),
-        "UpdateHome",
-        &(rec.to_string()),
-    )?;
+    proxy.update_home(&(rec.to_string())).await?;
 
     Ok(())
 }
 
-fn fetch_record(conn: &Connection, user: &str) -> Result<Value, Box<dyn Error>> {
-    let reply = conn.call_method(
-        Some(DEST),
-        PATH,
-        Some(IFACE),
-        "GetUserRecordByName",
-        &(user,),
-    )?;
-    let (record, incomplete, _path): (String, bool, OwnedObjectPath) =
-        reply.body().deserialize()?;
+async fn fetch_record(proxy: &HomeManagerProxy<'_>, user: &str) -> Result<Value, Box<dyn Error>> {
+    let (record, incomplete, _path) = proxy.get_user_record_by_name(&user).await?;
     if incomplete {
         return Err("record is incomplete (no access to the privileged section);".into());
     }
@@ -91,15 +89,16 @@ fn fetch_record(conn: &Connection, user: &str) -> Result<Value, Box<dyn Error>> 
     Ok(rec)
 }
 
-fn set_unlock_info(
+async fn set_unlock_info(
     user: &str,
     key: &str,
     value: Value,
     password: &str,
 ) -> Result<(), Box<dyn Error>> {
-    let conn = Connection::system()?;
+    let conn = zbus::Connection::system().await?;
+    let proxy = HomeManagerProxy::new(&conn).await?;
 
-    let mut rec: Value = fetch_record(&conn, user)?;
+    let mut rec: Value = fetch_record(&proxy, user).await?;
     rec["secret"] = json!({ "password": [password] });
     let privileged = rec
         .as_object_mut()
@@ -116,13 +115,15 @@ fn set_unlock_info(
         .ok_or("'unlock_info' section is not an object")?;
 
     unlock_info.insert(key.into(), value);
-    update_record(conn, rec)
+    update_record(&proxy, rec).await?;
+    Ok(())
 }
 
-fn get_unlock_info(user: &str, key: &str) -> Result<Value, Box<dyn Error>> {
-    let conn = Connection::system()?;
+async fn get_unlock_info(user: &str, key: &str) -> Result<Value, Box<dyn Error>> {
+    let conn = Connection::system().await?;
+    let proxy = HomeManagerProxy::new(&conn).await?;
 
-    let mut rec: Value = fetch_record(&conn, user)?;
+    let mut rec: Value = fetch_record(&proxy, user).await?;
     let privileged = rec
         .as_object_mut()
         .ok_or("record is not a JSON object")?
@@ -161,35 +162,53 @@ fn get_password() -> String {
     };
 }
 
-fn main() {
+fn get_user(user: Option<String>) -> Option<String> {
+    user.or_else(|| env::var("USER").ok())
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
     let cli = Cli::parse();
-    match cli.command {
-        Command::SetPinLength { pin_length, user } => {
-            let pw = get_password();
-            let pin_length = pin_length.unwrap_or(pw.len() as u32);
 
-            if pw.len() != pin_length as usize {
-                println!(
-                    "Warning: PASSWORD length {} doesn't match pin-length {}",
-                    pw.len(),
-                    pin_length
-                );
+    zbus::block_on(async {
+        match cli.command {
+            Command::SetPinLength { pin_length, user } => {
+                let user = get_user(user).unwrap_or_else(|| {
+                    eprintln!("Failed to get username, try --user");
+                    std::process::exit(1);
+                });
+
+                let pw = get_password();
+                let pin_length = pin_length.unwrap_or(pw.len() as u32);
+                if pw.len() != pin_length as usize {
+                    println!(
+                        "Warning: PASSWORD length {} doesn't match pin-length {}",
+                        pw.len(),
+                        pin_length
+                    );
+                }
+
+                let len = Value::Number(pin_length.into());
+                if let Err(e) = set_unlock_info(&user, "pinLength", len, &pw).await {
+                    eprintln!("Can't set pin-length: {e}");
+                    exit(1);
+                }
             }
+            Command::GetPinLength { user } => {
+                let user = get_user(user).unwrap_or_else(|| {
+                    eprintln!("Failed to get username, try --user");
+                    std::process::exit(1);
+                });
 
-            if let Err(e) =
-                set_unlock_info(&user, "pinLength", Value::Number(pin_length.into()), &pw)
-            {
-                eprintln!("Can't set pin-length: {e}");
-                exit(1);
+                let value = get_unlock_info(&user, "pinLength")
+                    .await
+                    .unwrap_or_else(|e| {
+                        eprintln!("Can't get pin-length: {e}");
+                        exit(1);
+                    });
+                println!("pin-length: {}", value);
             }
         }
-        Command::GetPinLength { user } => {
-            let value = get_unlock_info(&user, "pinLength").unwrap_or_else(|e| {
-                eprintln!("Can't get pin-length: {e}");
-                exit(1);
-            });
+    });
 
-            println!("pin-length: {}", value);
-        }
-    }
+    Ok(())
 }
