@@ -21,7 +21,6 @@
 #include "osk-manager.h"
 #include "style-manager.h"
 #include "toplevel-manager.h"
-#include "toplevel-thumbnail.h"
 #include "toplevel.h"
 #include "thumbnail-overlay.h"
 #include "feedback-manager.h"
@@ -279,11 +278,17 @@ set_thumb_y_offset (PhoshHome *self)
 static gboolean
 update_thumbnail_overlay (PhoshHome *self, PhoshToplevel *toplevel)
 {
+  PhoshWayland *wl = phosh_wayland_get_default ();
   PhoshShell *shell = phosh_shell_get_default ();
   PhoshMonitorManager *monitor_manager = phosh_shell_get_monitor_manager (shell);
-  g_autoptr (PhoshToplevelThumbnail) thumbnail = NULL;
   gboolean disabled;
   int width, height, n_monitors;
+
+  if (phosh_wayland_get_phosh_private_version (wl) <
+      PHOSH_PRIVATE_ADD_THUMBNAIL_VIEW_SINCE_VERSION) {
+    g_warning_once ("phosh-private version too old to attach thumbnail view");
+    return FALSE;
+  }
 
   n_monitors = phosh_monitor_manager_get_num_monitors (monitor_manager);
   /* See https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1349 */
@@ -312,14 +317,8 @@ update_thumbnail_overlay (PhoshHome *self, PhoshToplevel *toplevel)
     set_thumb_y_offset (self);
   }
 
-  g_debug ("Capturing screenshot of active toplevel");
-  thumbnail = phosh_toplevel_thumbnail_new_from_toplevel (toplevel, width, height);
-  if (G_UNLIKELY (thumbnail == NULL)) {
-    g_warning ("Thumbnail could not be created");
-    return FALSE;
-  }
-
-  phosh_thumbnail_overlay_set_thumbnail (self->thumbnail_overlay, PHOSH_THUMBNAIL (thumbnail));
+  g_debug ("Attaching thumbnail of active toplevel to overlay");
+  phosh_thumbnail_overlay_set_toplevel (self->thumbnail_overlay, toplevel);
   return TRUE;
 }
 
