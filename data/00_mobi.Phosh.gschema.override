@@ -33,4 +33,4 @@ unlock-sim=true
 force-adaptive=['firefox-esr.desktop', 'io.github.kolunmi.Bazaar.desktop']
 
 [mobi.phosh.shell.plugins:Phosh]
-quick-settings=['wifi-hotspot-quick-setting', 'mobile-data-quick-setting']
+quick-settings=['wifi-hotspot-quick-setting', 'mobile-data-quick-setting', 'location-quick-setting']
