@@ -101,6 +101,20 @@ void             phosh_util_activate_action (GAppInfo           *info,
                                              gpointer            user_data);
 gboolean         phosh_util_activate_action_finish (GAsyncResult *res, GError **err);
 GVariant *       phosh_util_get_platform_data (GAppInfo *info);
+void             phosh_util_systemd_unit_new (const char          *name,
+                                              GCancellable        *cancellable,
+                                              GAsyncReadyCallback  callback,
+                                              gpointer             user_data);
+GDBusProxy *     phosh_util_systemd_unit_new_finish (GAsyncResult *res, GError **err);
+gboolean         phosh_util_systemd_unit_is_active (GDBusProxy *unit);
+void             phosh_util_systemd_unit_set_active (GDBusProxy          *unit,
+                                                     gboolean             active,
+                                                     GCancellable        *cancellable,
+                                                     GAsyncReadyCallback  callback,
+                                                     gpointer             user_data);
+gboolean         phosh_util_systemd_unit_set_active_finish (GDBusProxy   *unit,
+                                                            GAsyncResult *res,
+                                                            GError      **err);
 
 
 G_END_DECLS

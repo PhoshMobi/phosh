@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2018 Purism SPC
  *               2024-2025 The Phosh Developers
- *               2025 Phosh.mobi e.V.
+ *               2025-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -1261,4 +1261,254 @@ phosh_util_unhide_app (const char *filename)
   }
 
   return TRUE;
+}
+
+
+#define SYSTEMD_BUS_NAME "org.freedesktop.systemd1"
+#define SYSTEMD_OBJECT_PATH "/org/freedesktop/systemd1"
+#define SYSTEMD_MANAGER_INTERFACE "org.freedesktop.systemd1.Manager"
+#define SYSTEMD_UNIT_INTERFACE "org.freedesktop.systemd1.Unit"
+
+static void
+on_systemd_unit_proxy_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
+{
+  GError *err = NULL;
+  g_autoptr (GTask) task = G_TASK (user_data);
+  g_autoptr (GDBusProxy) proxy = NULL;
+  g_autoptr (GVariant) load_state = NULL;
+
+  proxy = g_dbus_proxy_new_finish (res, &err);
+  if (proxy == NULL) {
+    g_task_return_error (task, err);
+    return;
+  }
+
+  /* LoadUnit() hands out stub units for unknown names, masked units can't be started */
+  load_state = g_dbus_proxy_get_cached_property (proxy, "LoadState");
+  if (load_state == NULL || g_strcmp0 (g_variant_get_string (load_state, NULL), "loaded") != 0) {
+    g_task_return_new_error (task, G_IO_ERROR, G_IO_ERROR_NOT_FOUND,
+                             "Unit %s not loaded", (char *)g_task_get_task_data (task));
+    return;
+  }
+
+  g_task_return_pointer (task, g_steal_pointer (&proxy), g_object_unref);
+}
+
+
+static void
+on_systemd_load_unit_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
+{
+  GDBusConnection *connection = G_DBUS_CONNECTION (source_object);
+  g_autoptr (GTask) task = G_TASK (user_data);
+  g_autoptr (GError) err = NULL;
+  g_autoptr (GVariant) ret = NULL;
+  GCancellable *cancel = g_task_get_cancellable (task);
+  const char *unit_path;
+
+  ret = g_dbus_connection_call_finish (connection, res, &err);
+  if (ret == NULL) {
+    g_task_return_error (task, g_steal_pointer (&err));
+    return;
+  }
+
+  g_variant_get (ret, "(&o)", &unit_path);
+  g_warning ("Unit path: %s", unit_path);
+  g_dbus_proxy_new (connection,
+                    G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START,
+                    NULL,
+                    SYSTEMD_BUS_NAME,
+                    unit_path,
+                    SYSTEMD_UNIT_INTERFACE,
+                    cancel,
+                    on_systemd_unit_proxy_ready,
+                    g_steal_pointer (&task));
+}
+
+
+static void
+on_systemd_bus_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
+{
+  g_autoptr (GTask) task = G_TASK (user_data);
+  g_autoptr (GError) err = NULL;
+  g_autoptr (GDBusConnection) connection = NULL;
+  GCancellable *cancel = g_task_get_cancellable (task);
+  const char *name = g_task_get_task_data (task);
+
+  connection = g_bus_get_finish (res, &err);
+  if (connection == NULL) {
+    g_task_return_error (task, g_steal_pointer (&err));
+    return;
+  }
+
+  /* systemd only emits PropertiesChanged on units to subscribed clients. */
+  /* TODO: this is a lot of additional DBus traffic */
+  g_dbus_connection_call (connection,
+                          SYSTEMD_BUS_NAME,
+                          SYSTEMD_OBJECT_PATH,
+                          SYSTEMD_MANAGER_INTERFACE,
+                          "Subscribe",
+                          NULL,
+                          NULL,
+                          G_DBUS_CALL_FLAGS_NONE,
+                          -1,
+                          cancel,
+                          NULL,
+                          NULL);
+
+  g_dbus_connection_call (connection,
+                          SYSTEMD_BUS_NAME,
+                          SYSTEMD_OBJECT_PATH,
+                          SYSTEMD_MANAGER_INTERFACE,
+                          "LoadUnit",
+                          g_variant_new ("(s)", name),
+                          G_VARIANT_TYPE ("(o)"),
+                          G_DBUS_CALL_FLAGS_NONE,
+                          -1,
+                          cancel,
+                          on_systemd_load_unit_ready,
+                          g_steal_pointer (&task));
+}
+
+/**
+ * phosh_util_systemd_unit_new:
+ * @name: The name of the unit, e.g. `ssh.service`
+ * @cancellable:(nullable): A cancellable
+ * @callback:(scope async): The callback to invoke when the async operation finished
+ * @user_data:(nullable): user data
+ *
+ * Look up a unit on the systemd system instance and track its state. Complete the
+ * operation via `phosh_util_systemd_unit_new_finish()`.
+ */
+void
+phosh_util_systemd_unit_new (const char         *name,
+                             GCancellable       *cancel,
+                             GAsyncReadyCallback callback,
+                             gpointer            user_data)
+{
+  g_autoptr (GTask) task = NULL;
+
+  g_return_if_fail (name != NULL);
+
+  task = g_task_new (NULL, cancel, callback, user_data);
+  g_task_set_source_tag (task, phosh_util_systemd_unit_new);
+  g_task_set_task_data (task, g_strdup (name), g_free);
+
+  g_bus_get (G_BUS_TYPE_SYSTEM, cancel, on_systemd_bus_ready, g_steal_pointer (&task));
+}
+
+/**
+ * phosh_util_systemd_unit_new_finish:
+ * @res: The async result
+ * @err: The error location
+ *
+ * Completes the async operation started with `phosh_util_systemd_unit_new()` returning a
+ * `org.freedesktop.systemd1.Unit` interface of the unit. Returns `NULL` and sets the
+ * error to `G_IO_ERROR_NOT_FOUND` if the unit does not exist or is masked.
+ *
+ * Returns:(transfer full): A proxy for the unit interface or `NULL`.
+ */
+GDBusProxy *
+phosh_util_systemd_unit_new_finish (GAsyncResult *res, GError **err)
+{
+  g_return_val_if_fail (g_task_is_valid (res, NULL), NULL);
+  g_return_val_if_fail (err == NULL || *err == NULL, NULL);
+
+  return g_task_propagate_pointer (G_TASK (res), err);
+}
+
+/**
+ * phosh_util_systemd_unit_is_active:
+ * @unit: A unit proxy as returned by `phosh_util_systemd_unit_new_finish()`
+ *
+ * Whether the unit is currently running.
+ *
+ * Returns: `TRUE` if the unit is running, otherwise `FALSE`.
+ */
+gboolean
+phosh_util_systemd_unit_is_active (GDBusProxy *unit)
+{
+  g_autoptr (GVariant) state = NULL;
+  const char *active_state;
+
+  g_return_val_if_fail (G_IS_DBUS_PROXY (unit), FALSE);
+
+  state = g_dbus_proxy_get_cached_property (unit, "ActiveState");
+  if (state == NULL)
+    return FALSE;
+
+  active_state = g_variant_get_string (state, NULL);
+  return g_strcmp0 (active_state, "active") == 0 ||
+         g_strcmp0 (active_state, "activating") == 0 ||
+         g_strcmp0 (active_state, "reloading") == 0;
+}
+
+
+static void
+on_systemd_unit_call_ready (GObject *source_object, GAsyncResult *res, gpointer user_data)
+{
+  g_autoptr (GTask) task = G_TASK (user_data);
+  g_autoptr (GError) err = NULL;
+  g_autoptr (GVariant) ret = NULL;
+
+  ret = g_dbus_proxy_call_finish (G_DBUS_PROXY (source_object), res, &err);
+  if (ret == NULL) {
+    g_task_return_error (task, g_steal_pointer (&err));
+    return;
+  }
+
+  g_task_return_boolean (task, TRUE);
+}
+
+/**
+ * phosh_util_systemd_unit_set_active:
+ * @unit: A unit proxy as returned by `phosh_util_systemd_unit_new_finish()`
+ * @active: Whether to start or stop the unit
+ * @cancellable:(nullable): A cancellable
+ * @callback:(scope async): The callback to invoke when the async operation finished
+ * @user_data:(nullable): user data
+ *
+ * Starts or stops the unit. This triggers the action, state changes are reported via
+ * the `g-properties-changed` signal on @unit. See `phosh_util_systemd_unit_is_active()`.
+ */
+void
+phosh_util_systemd_unit_set_active (GDBusProxy         *unit,
+                                    gboolean            active,
+                                    GCancellable       *cancellable,
+                                    GAsyncReadyCallback callback,
+                                    gpointer            user_data)
+{
+  GTask *task;
+
+  g_return_if_fail (G_IS_DBUS_PROXY (unit));
+
+  task = g_task_new (unit, cancellable, callback, user_data);
+  g_task_set_source_tag (task, phosh_util_systemd_unit_set_active);
+
+  g_dbus_proxy_call (unit,
+                     active ? "Start" : "Stop",
+                     g_variant_new ("(s)", "replace"),
+                     G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+                     -1,
+                     cancellable,
+                     on_systemd_unit_call_ready,
+                     task);
+}
+
+/**
+ * phosh_util_systemd_unit_set_active_finish:
+ * @unit: The unit proxy
+ * @res: The async result
+ * @err: The error location
+ *
+ * Completes the async operation started with `phosh_util_systemd_unit_set_active()`.
+ *
+ * Returns: `TRUE` on success, otherwise `FALSE`.
+ */
+gboolean
+phosh_util_systemd_unit_set_active_finish (GDBusProxy *unit, GAsyncResult *res, GError **err)
+{
+  g_return_val_if_fail (g_task_is_valid (res, unit), FALSE);
+  g_return_val_if_fail (err == NULL || *err == NULL, FALSE);
+
+  return g_task_propagate_boolean (G_TASK (res), err);
 }
