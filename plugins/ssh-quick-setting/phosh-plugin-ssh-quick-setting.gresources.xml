@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gresources>
+  <gresource prefix="/mobi/phosh/plugins/ssh-quick-setting/">
+    <file preprocess="xml-stripblanks">qs.ui</file>
+    <file compressed="true">icons/ssh-on-symbolic.svg</file>
+    <file compressed="true">icons/ssh-off-symbolic.svg</file>
+  </gresource>
+</gresources>

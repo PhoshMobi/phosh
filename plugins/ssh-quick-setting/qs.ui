@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <template class="PhoshSshQuickSetting" parent="PhoshQuickSetting">
+    <property name="status-icon">info</property>
+    <signal name="clicked" handler="on_clicked" object="PhoshSshQuickSetting" swapped="yes"/>
+  </template>
+  <object class="PhoshStatusIcon" id="info">
+    <property name="visible">1</property>
+    <property name="pixel-size">16</property>
+  </object>
+</interface>

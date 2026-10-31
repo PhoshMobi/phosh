@@ -13,6 +13,7 @@ plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in
 plugins/night-light-quick-setting/night-light-quick-setting.desktop.in.in
 plugins/pomodoro-quick-setting/pomodoro-quick-setting.desktop.in.in
 plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in
+plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in
 plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in
 plugins/ticket-box/ticket-box.desktop.in.in
 plugins/upcoming-events/upcoming-events.desktop.in.in
@@ -150,6 +151,7 @@ plugins/scaling-quick-setting/scaling-quick-setting.c
 plugins/screenshot-quick-setting/qs.ui
 plugins/screenshot-quick-setting/screenshot-quick-setting.c
 plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in
+plugins/ssh-quick-setting/ssh-quick-setting.c
 plugins/syncthing-quick-setting/qs.ui
 plugins/syncthing-quick-setting/syncthing-quick-setting.c
 plugins/wifi-hotspot-quick-setting/status-page.ui
