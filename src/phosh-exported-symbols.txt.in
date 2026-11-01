@@ -77,6 +77,12 @@
    phosh_quick_setting_set_long_press_action_target;
    phosh_quick_setting_set_showing_status;
    phosh_quick_setting_set_status_page;
+   phosh_quick_setting_selection_row_get_icon_name;
+   phosh_quick_setting_selection_row_get_selected;
+   phosh_quick_setting_selection_row_get_type;
+   phosh_quick_setting_selection_row_new;
+   phosh_quick_setting_selection_row_set_icon_name;
+   phosh_quick_setting_selection_row_set_selected;
    phosh_status_icon_get_extra_widget;
    phosh_status_icon_get_icon_name;
    phosh_status_icon_get_icon_size;

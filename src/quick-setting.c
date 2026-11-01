@@ -13,6 +13,7 @@
 #include "phosh-config.h"
 
 #include "quick-setting.h"
+#include "quick-setting-selection-row.h"
 
 /**
  * PhoshQuickSetting:
@@ -289,6 +290,9 @@ phosh_quick_setting_class_init (PhoshQuickSettingClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+  /* Make sure the selection row's template is available to plugins */
+  g_type_ensure (PHOSH_TYPE_QUICK_SETTING_SELECTION_ROW);
 
   object_class->set_property = phosh_quick_setting_set_property;
   object_class->get_property = phosh_quick_setting_get_property;

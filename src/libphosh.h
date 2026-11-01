@@ -23,6 +23,7 @@ G_BEGIN_DECLS
 #include "lockscreen-manager.h"
 #include "lockscreen.h"
 #include "quick-setting.h"
+#include "quick-setting-selection-row.h"
 #include "screenshot-manager.h"
 #include "shell.h"
 #include "status-icon.h"
