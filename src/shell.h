@@ -35,6 +35,27 @@ struct _PhoshShellClass {
   void (*_phosh_reserved9) (void);
 };
 
+/**
+ * PhoshShellStateFlags:
+ * @PHOSH_STATE_NONE: No other state
+ * @PHOSH_STATE_MODAL_SYSTEM_PROMPT: any modal prompt shown
+ * @PHOSH_STATE_BLANKED: primary display off
+ * @PHOSH_STATE_LOCKED: displays locked
+ * @PHOSH_STATE_SETTINGS: settings menu unfolded from top bar
+ * @PHOSH_STATE_OVERVIEW: overview unfolded from bottom bar
+ *
+ * These flags are used to keep track of the state
+ * the #PhoshShell is in.
+ */
+typedef enum {
+  PHOSH_STATE_NONE                = 0,
+  PHOSH_STATE_MODAL_SYSTEM_PROMPT = 1 << 0,
+  PHOSH_STATE_BLANKED             = 1 << 1,
+  PHOSH_STATE_LOCKED              = 1 << 2,
+  PHOSH_STATE_SETTINGS            = 1 << 3,
+  PHOSH_STATE_OVERVIEW            = 1 << 4,
+} PhoshShellStateFlags;
+
 PhoshShell *phosh_shell_new                 (void);
 
 void        phosh_shell_set_default         (PhoshShell *self);
@@ -53,5 +74,7 @@ void        phosh_shell_fade_out            (PhoshShell *self, guint timeout);
 /* Created by the shell on startup */
 PhoshLockscreenManager *phosh_shell_get_lockscreen_manager (PhoshShell *self);
 PhoshScreenshotManager *phosh_shell_get_screenshot_manager (PhoshShell *self);
+PhoshShellStateFlags     phosh_shell_get_state              (PhoshShell *self);
+void                     phosh_shell_fold_top_panel         (PhoshShell *self);
 
 G_END_DECLS

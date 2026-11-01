@@ -2598,6 +2598,27 @@ phosh_shell_get_state (PhoshShell *self)
   return priv->shell_state;
 }
 
+
+/**
+ * phosh_shell_fold_top_panel:
+ * @self: The shell
+ *
+ * Fold the top panel if it is available.
+ */
+void
+phosh_shell_fold_top_panel (PhoshShell *self)
+{
+  PhoshShellPrivate *priv;
+
+  g_return_if_fail (PHOSH_IS_SHELL (self));
+
+  priv = phosh_shell_get_instance_private (self);
+  if (priv->top_panel == NULL)
+    return;
+
+  phosh_top_panel_fold (PHOSH_TOP_PANEL (priv->top_panel));
+}
+
 /**
  * phosh_shell_set_state:
  * @self: The shell

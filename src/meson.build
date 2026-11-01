@@ -68,6 +68,7 @@ phosh_enum_headers = files(
   'phosh-wayland.h',
   'rotation-manager.h',
   'shell-priv.h',
+  'shell.h',
   'top-panel.h',
 ) + [
   libphosh_enum_headers,
