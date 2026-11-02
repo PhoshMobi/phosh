@@ -5,4 +5,4 @@ Name=Load Meter Status Icon
 Types=status-icon;
 Comment=A CPU load meter status icon.
 Plugin=@plugins_dir@/libphosh-plugin-@name@.so
-Icon=mobi.phosh.Shell.Plugins.Loadmeter
+Icon=load-meter-status-icon
