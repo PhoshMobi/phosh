@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-09-13 06:42+0000\n"
-"PO-Revision-Date: 2026-09-13 22:12+0200\n"
+"POT-Creation-Date: 2026-11-02 13:03+0000\n"
+"PO-Revision-Date: 2026-11-02 18:44+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -127,16 +127,16 @@ msgid "Scaling Quick Setting"
 msgstr "Hitro nastavljanje merila"
 
 #: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
-msgid "A quick setting for adjusting the display scaling."
-msgstr "Hitra nastavitev za prilagajanje merila zaslona."
+msgid "Adjust display scaling"
+msgstr "Prilagodi merilo zaslona"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
 msgid "Syncthing Quick Setting"
 msgstr "Hitra nastavitev za Syncthing"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
-msgid "A quick setting for Syncthing."
-msgstr "Hitra nastavitev programa Syncthing."
+msgid "Toggle and monitor Syncthing"
+msgstr "Preklopi in spremljaj Syncthing"
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
@@ -346,45 +346,48 @@ msgid "No"
 msgstr "Ne"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
+#: src/lockscreen.c:423 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Vnesite geslo"
 
-#: src/lockscreen.c:1036
+#: src/lockscreen.c:1079
 msgid "Checking…"
 msgstr "Preverjanje …"
 
-#: src/screenshot-manager.c:311
+#: src/screenshot-manager.c:307
 msgid "View"
 msgstr "Pogled"
 
-#: src/screenshot-manager.c:311
+#: src/screenshot-manager.c:307
 msgid "Open containing folder"
 msgstr "Odpri vsebujočo mapo"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:319
+#: src/screenshot-manager.c:315
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Zaslonska slika shranjena v »%s«"
 
-#: src/screenshot-manager.c:338
+#: src/screenshot-manager.c:334
 msgid "Failed to save screenshot"
 msgstr "Posnetka zaslona ni bilo mogoče shraniti"
 
-#: src/screenshot-manager.c:342 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:338 src/ui/power-menu.ui:199
+#: plugins/screenshot-quick-setting/qs.ui:14
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:4
 msgid "Screenshot"
 msgstr "Posnetek zaslona"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:654
+#: src/screenshot-manager.c:650
 msgid "Screenshots"
 msgstr "Zaslonske slike"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:674
+#: src/screenshot-manager.c:670
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Zaslonska slika iz %s%s.png"
@@ -648,11 +651,11 @@ msgstr "Odstrani namestitev"
 msgid "Hide Application"
 msgstr "Skrij aplikacijo"
 
-#: src/ui/app-grid-button.ui:58
+#: src/ui/app-grid-button.ui:59
 msgid "_Remove from Folder"
 msgstr "Odstrani iz _mape"
 
-#: src/ui/app-grid-button.ui:65
+#: src/ui/app-grid-button.ui:64
 msgid "Manage Hidden Apps"
 msgstr "Upravljaj skrite aplikacije"
 
@@ -1381,6 +1384,83 @@ msgstr "Nastavitve zaslona"
 #, c-format
 msgid "%d%%"
 msgstr "%d %%"
+
+#: plugins/screenshot-quick-setting/qs.ui:18
+msgid "Screenshot Settings"
+msgstr "Nastavitve zaslonskih slik"
+
+#: plugins/screenshot-quick-setting/qs.ui:33
+msgid "Full screen"
+msgstr "Cel zaslon"
+
+#: plugins/screenshot-quick-setting/qs.ui:42
+msgid "Area selection"
+msgstr "Izbor površine"
+
+#: plugins/screenshot-quick-setting/qs.ui:55
+msgid "Immediate"
+msgstr "Takoj"
+
+#: plugins/screenshot-quick-setting/qs.ui:63
+msgid "1 second"
+msgstr "1 sekunda"
+
+#: plugins/screenshot-quick-setting/qs.ui:71
+msgid "3 seconds"
+msgstr "3 sekunde"
+
+#: plugins/screenshot-quick-setting/qs.ui:79
+msgid "10 seconds"
+msgstr "10 sekund"
+
+#: plugins/screenshot-quick-setting/qs.ui:105
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:6
+msgid "Take a screenshot"
+msgstr "Zajemi zaslonsko sliko"
+
+#. Translators: Label for taking a full-screen screenshot immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:204
+msgid "Screenshot now"
+msgstr "Zajemi posnetek zaslona zdaj"
+
+#. Translators: Label for taking a screenshot of a selected area immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:206
+msgid "Screenshot area now"
+msgstr "Zajemi površino zdaj"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:209
+msgid "Screenshot in 1s"
+msgstr "Zajemi zaslonsko sliko čez 1 s"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:211
+msgid "Screenshot area in 1s"
+msgstr "Zajemi površino čez 1 s"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:214
+msgid "Screenshot in 3s"
+msgstr "Zajemi zaslonsko sliko čez 3 s"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:216
+msgid "Screenshot area in 3s"
+msgstr "Zajemi površino čez 3 s"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:219
+msgid "Screenshot in 10s"
+msgstr "Zajemi zaslonsko sliko čez 10 s"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:221
+msgid "Screenshot area in 10s"
+msgstr "Zajemi površino čez 10 s"
+
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+msgid "Screenshot area"
+msgstr "Zajemi površino"
 
 #: plugins/syncthing-quick-setting/qs.ui:12
 #: plugins/syncthing-quick-setting/qs.ui:16
