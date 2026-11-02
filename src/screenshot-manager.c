@@ -189,6 +189,7 @@ slurp_area_dispose (SlurpArea *slurp)
     slurp->response = NULL;
   }
   g_clear_object (&slurp->stdout_);
+  g_free (slurp);
 }
 
 
@@ -1185,7 +1186,7 @@ on_slurp_exited (GPid pid, int wait_status, gpointer user_data)
     GError *err = g_error_new_literal (G_IO_ERROR,
                                        G_IO_ERROR_FAILED,
                                        "Area selection failed");
-    g_task_return_error (g_steal_pointer (&task), err);
+    g_task_return_error (task, err);
   }
 }
 
@@ -1196,6 +1197,7 @@ on_slurp_read_done (GObject *source_object, GAsyncResult *res, gpointer user_dat
   GInputStream *slurp_out = G_INPUT_STREAM (source_object);
   g_autoptr (GTask) task = G_TASK (user_data);
   g_autoptr (GError) err = NULL;
+  GCancellable *cancel;
   SlurpArea *slurp;
   gssize read_size;
 
@@ -1203,6 +1205,7 @@ on_slurp_read_done (GObject *source_object, GAsyncResult *res, gpointer user_dat
   g_assert_true (g_task_get_source_tag (G_TASK (task)) ==
                  phosh_screenshot_manager_select_area_async);
 
+  cancel = g_task_get_cancellable (task);
   slurp = g_task_get_task_data (task);
   read_size = g_input_stream_read_finish (slurp_out, res, &err);
   switch (read_size) {
@@ -1221,7 +1224,7 @@ on_slurp_read_done (GObject *source_object, GAsyncResult *res, gpointer user_dat
                                slurp->read_buf,
                                sizeof (slurp->read_buf),
                                G_PRIORITY_DEFAULT,
-                               NULL,
+                               cancel,
                                on_slurp_read_done,
                                g_steal_pointer (&task));
     return;

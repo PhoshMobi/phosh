@@ -121,7 +121,7 @@ remove_from_launching (PhoshToplevelManager *self, PhoshToplevel *toplevel)
   const char *app_id;
 
   app_id = phosh_toplevel_get_app_id (toplevel);
-  if (app_id)
+  if (app_id == NULL)
     return;
 
   needle = G_APP_INFO (phosh_get_desktop_app_info_for_app_id (app_id));

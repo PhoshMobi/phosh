@@ -13,7 +13,7 @@
 
 G_BEGIN_DECLS
 
-#define PHOSH_TYPE_thumbnail_overlay (phosh_thumbnail_overlay_get_type ())
+#define PHOSH_TYPE_THUMBNAIL_OVERLAY (phosh_thumbnail_overlay_get_type ())
 
 G_DECLARE_FINAL_TYPE (PhoshThumbnailOverlay, phosh_thumbnail_overlay, PHOSH, THUMBNAIL_OVERLAY,
                       PhoshLayerSurface)
