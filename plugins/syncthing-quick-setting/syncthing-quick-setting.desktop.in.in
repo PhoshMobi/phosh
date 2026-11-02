@@ -3,6 +3,6 @@
 Id=@name@
 Name=Syncthing Quick Setting
 Types=quick-setting;
-Comment=A quick setting for Syncthing.
+Comment=Toggle and monitor Syncthing
 Plugin=@plugins_dir@/libphosh-plugin-@name@.so
 Icon=syncthing-quick-setting
