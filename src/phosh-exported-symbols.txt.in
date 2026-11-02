@@ -62,6 +62,17 @@
    phosh_wwan_is_unlocked;
    phosh_wwan_set_data_enabled;
 
+   # Screenshot quick setting needs screenshot manager
+   phosh_shell_get_screenshot_manager;
+   phosh_shell_fold_top_panel;
+   phosh_screenshot_manager_get_type;
+   phosh_screenshot_manager_take_screenshot;
+   phosh_screenshot_manager_select_area_async;
+   phosh_screenshot_manager_select_area_finish;
+
+   # Screenshot quick setting needs to wait for the settings panel to fold
+   phosh_shell_get_state;
+
    # For custom quick setting plugins:
    phosh_quick_setting_get_active;
    phosh_quick_setting_get_can_show_status;
@@ -77,6 +88,12 @@
    phosh_quick_setting_set_long_press_action_target;
    phosh_quick_setting_set_showing_status;
    phosh_quick_setting_set_status_page;
+   phosh_quick_setting_selection_row_get_icon_name;
+   phosh_quick_setting_selection_row_get_selected;
+   phosh_quick_setting_selection_row_get_type;
+   phosh_quick_setting_selection_row_new;
+   phosh_quick_setting_selection_row_set_icon_name;
+   phosh_quick_setting_selection_row_set_selected;
    phosh_status_icon_get_extra_widget;
    phosh_status_icon_get_icon_name;
    phosh_status_icon_get_icon_size;

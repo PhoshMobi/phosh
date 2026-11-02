@@ -4,7 +4,7 @@
 
 BIN=${1:-"_build/src/phosh"}
 
-PHOSH_SYMBOL_PREFIXES='phosh_(shell|wifi|wwan|mpris_manager|media_player|monitor|notification|notify_manager|quick_setting|status_icon|status_page|status_page_placholder|session_manager|util)_'
+PHOSH_SYMBOL_PREFIXES='phosh_(shell|wifi|wwan|mpris_manager|media_player|monitor|notification|notify_manager|quick_setting|screenshot_manager|status_icon|status_page|status_page_placholder|session_manager|util)_'
 
 if objdump -T  $BIN | grep 'g    DF .text' \
 	| grep -v -E " (main$|${PHOSH_SYMBOL_PREFIXES}|gtk_(filter|sort)_list_model_)"; then

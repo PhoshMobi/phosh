@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="mobi.phosh.plugins.screenshot-quick-setting"
+          path="/mobi/phosh/plugins/screenshot-quick-setting/">
+    <key name="capture-delay" type="u">
+      <default>0</default>
+      <summary>Delay before a screenshot is taken</summary>
+      <description>
+        The delay in seconds before a screenshot is captured once the
+        quick settings panel has been folded.
+      </description>
+    </key>
+    <key name="capture-area-enabled" type="b">
+      <default>false</default>
+      <summary>Whether to select an area before capturing</summary>
+      <description>
+        When enabled, an area of the screen can be selected before the
+        screenshot is captured.
+      </description>
+    </key>
+  </schema>
+</schemalist>

@@ -22,6 +22,7 @@
 #include "layout-manager.h"
 #include "location-manager.h"
 #include "plugin-shell.h"
+#include "shell.h"
 #include "monitor/monitor.h"
 #include "osk-manager.h"
 #include "rotation-manager.h"
@@ -36,28 +37,6 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
-
-/**
- * PhoshShellStateFlags:
- * @PHOSH_STATE_NONE: No other state
- * @PHOSH_STATE_MODAL_SYSTEM_PROMPT: any modal prompt shown
- * @PHOSH_STATE_BLANKED: primary display off
- * @PHOSH_STATE_LOCKED: displays locked
- * @PHOSH_STATE_SETTINGS: settings menu unfolded from top bar
- * @PHOSH_STATE_OVERVIEW: overview unfolded from bottom bar
- *
- * These flags are used to keep track of the state
- * the #PhoshShell is in.
- */
-typedef enum {
-  PHOSH_STATE_NONE                = 0,
-  PHOSH_STATE_MODAL_SYSTEM_PROMPT = 1 << 0,
-  PHOSH_STATE_BLANKED             = 1 << 1,
-  PHOSH_STATE_LOCKED              = 1 << 2,
-  PHOSH_STATE_SETTINGS            = 1 << 3,
-  PHOSH_STATE_OVERVIEW            = 1 << 4,
-} PhoshShellStateFlags;
-
 
 /**
  * PhoshShellDebugFlags
@@ -125,7 +104,6 @@ void                 phosh_shell_remove_global_keyboard_action_entries (PhoshShe
                                                                         GStrv action_names);
 gboolean             phosh_shell_is_session_active (PhoshShell *self);
 GdkAppLaunchContext *phosh_shell_get_app_launch_context (PhoshShell *self);
-PhoshShellStateFlags phosh_shell_get_state (PhoshShell *self);
 void                 phosh_shell_set_state (PhoshShell *self, PhoshShellStateFlags state, gboolean enabled);
 gboolean             phosh_shell_get_show_splash (PhoshShell *self);
 gboolean             phosh_shell_get_docked      (PhoshShell *self);

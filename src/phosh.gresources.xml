@@ -33,6 +33,7 @@
     <file preprocess="xml-stripblanks">ui/polkit-auth-prompt.ui</file>
     <file preprocess="xml-stripblanks">ui/power-menu.ui</file>
     <file preprocess="xml-stripblanks">ui/quick-setting.ui</file>
+    <file preprocess="xml-stripblanks">ui/quick-setting-selection-row.ui</file>
     <file preprocess="xml-stripblanks">ui/quick-settings-box.ui</file>
     <file preprocess="xml-stripblanks">ui/quick-settings.ui</file>
     <file preprocess="xml-stripblanks">ui/revealer.ui</file>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <requires lib="libhandy" version="1.8"/>
+  <template class="PhoshScreenshotQuickSetting" parent="PhoshQuickSetting">
+    <property name="status-icon">info</property>
+    <property name="status-page">status_page</property>
+    <signal name="clicked" handler="on_capture_clicked" object="PhoshScreenshotQuickSetting" swapped="yes"/>
+  </template>
+  <object class="PhoshStatusIcon" id="info">
+    <property name="visible">1</property>
+    <property name="pixel-size">16</property>
+    <property name="icon-name">screenshot-portrait-symbolic</property>
+    <property name="info" translatable="yes">Screenshot</property>
+  </object>
+  <object class="PhoshStatusPage" id="status_page">
+    <property name="visible">1</property>
+    <property name="title" translatable="yes">Screenshot Settings</property>
+    <property name="content">list_box</property>
+    <property name="footer">btn_capture</property>
+  </object>
+  <object class="GtkListBox" id="list_box">
+    <property name="visible">1</property>
+    <property name="selection-mode">none</property>
+    <property name="hexpand">1</property>
+    <style>
+      <class name="content"/>
+    </style>
+    <child>
+      <object class="PhoshQuickSettingSelectionRow" id="row_full">
+        <property name="visible">1</property>
+        <property name="icon-name">screenshot-full-symbolic</property>
+        <property name="title" translatable="yes">Full screen</property>
+        <property name="action-name">screenshot.set-mode</property>
+        <property name="action-target">false</property>
+      </object>
+    </child>
+    <child>
+      <object class="PhoshQuickSettingSelectionRow" id="row_area">
+        <property name="visible">1</property>
+        <property name="icon-name">screenshot-area-symbolic</property>
+        <property name="title" translatable="yes">Area selection</property>
+        <property name="action-name">screenshot.set-mode</property>
+        <property name="action-target">true</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparator">
+        <property name="visible">1</property>
+      </object>
+    </child>
+    <child>
+      <object class="PhoshQuickSettingSelectionRow" id="row_delay_0">
+        <property name="visible">1</property>
+        <property name="title" translatable="yes">Immediate</property>
+        <property name="action-name">screenshot.set-delay</property>
+        <property name="action-target">uint32 0</property>
+      </object>
+    </child>
+    <child>
+      <object class="PhoshQuickSettingSelectionRow" id="row_delay_1">
+        <property name="visible">1</property>
+        <property name="title" translatable="yes">1 second</property>
+        <property name="action-name">screenshot.set-delay</property>
+        <property name="action-target">uint32 1</property>
+      </object>
+    </child>
+    <child>
+      <object class="PhoshQuickSettingSelectionRow" id="row_delay_3">
+        <property name="visible">1</property>
+        <property name="title" translatable="yes">3 seconds</property>
+        <property name="action-name">screenshot.set-delay</property>
+        <property name="action-target">uint32 3</property>
+      </object>
+    </child>
+    <child>
+      <object class="PhoshQuickSettingSelectionRow" id="row_delay_10">
+        <property name="visible">1</property>
+        <property name="title" translatable="yes">10 seconds</property>
+        <property name="action-name">screenshot.set-delay</property>
+        <property name="action-target">uint32 10</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkButton" id="btn_capture">
+    <property name="visible">1</property>
+    <property name="hexpand">1</property>
+    <property name="focus-on-click">0</property>
+    <signal name="clicked" handler="on_capture_clicked" object="PhoshScreenshotQuickSetting" swapped="yes"/>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">1</property>
+        <property name="spacing">6</property>
+        <property name="halign">center</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">1</property>
+            <property name="icon-name">screenshot-portrait-symbolic</property>
+            <property name="pixel-size">16</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="btn_label">
+            <property name="visible">1</property>
+            <property name="label" translatable="yes">Take a screenshot</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
