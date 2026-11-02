@@ -1,5 +1,3 @@
-subdir('icons')
-
 name = 'syncthing-quick-setting'
 
 syncbus_interface_files = files(
@@ -52,4 +50,10 @@ i18n.merge_file(
   install: true,
   install_dir: plugins_dir,
   type: 'desktop',
+)
+
+install_data(
+  'icons/cloud-filled-symbolic.svg',
+  rename: 'syncthing-quick-setting-symbolic.svg',
+  install_dir: phosh_plugin_icon_dir,
 )
