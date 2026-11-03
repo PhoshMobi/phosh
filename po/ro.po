@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-09-20 15:52+0000\n"
-"PO-Revision-Date: 2026-09-22 22:35+0300\n"
+"POT-Creation-Date: 2026-11-02 13:03+0000\n"
+"PO-Revision-Date: 2026-11-03 22:07+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Gtranslator 50.0\n"
+"X-Generator: Gtranslator 51.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Flags-xgettext: --add-comments\n"
 "X-DL-VCS-Web: https://gitlab.gnome.org/World/Phosh/phosh\n"
@@ -134,16 +134,16 @@ msgid "Scaling Quick Setting"
 msgstr "Opțiuni pentru Scară"
 
 #: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
-msgid "A quick setting for adjusting the display scaling."
-msgstr "O reglare rapidă pentru scara afișajului."
+msgid "Adjust display scaling"
+msgstr "Reglează scara afișajului"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
 msgid "Syncthing Quick Setting"
 msgstr "Opțiuni pentru Sincronizare"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
-msgid "A quick setting for Syncthing."
-msgstr "O reglare rapidă pentru Sincronizare."
+msgid "Toggle and monitor Syncthing"
+msgstr "Activare/Dezactivare și monitorizare pentru Sincronizare (Syncthing)"
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
@@ -351,45 +351,48 @@ msgid "No"
 msgstr "Nu"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
+#: src/lockscreen.c:423 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Introdu codul de acces"
 
-#: src/lockscreen.c:1036
+#: src/lockscreen.c:1079
 msgid "Checking…"
 msgstr "Se verifică…"
 
-#: src/screenshot-manager.c:306
+#: src/screenshot-manager.c:307
 msgid "View"
 msgstr "Arată"
 
-#: src/screenshot-manager.c:306
+#: src/screenshot-manager.c:307
 msgid "Open containing folder"
 msgstr "Deschide dosarul"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:314
+#: src/screenshot-manager.c:315
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Instantaneu de ecran salvat ca „%s”"
 
-#: src/screenshot-manager.c:333
+#: src/screenshot-manager.c:334
 msgid "Failed to save screenshot"
 msgstr "Nu s-a putut salva instantaneul de ecran"
 
-#: src/screenshot-manager.c:337 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:338 src/ui/power-menu.ui:199
+#: plugins/screenshot-quick-setting/qs.ui:14
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:4
 msgid "Screenshot"
 msgstr "Instantaneu de ecran"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:649
+#: src/screenshot-manager.c:650
 msgid "Screenshots"
 msgstr "Instantanee de ecran"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:669
+#: src/screenshot-manager.c:670
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Imagine %s%s.png"
@@ -1376,6 +1379,83 @@ msgstr "Opțiuni de afișare"
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
+
+#: plugins/screenshot-quick-setting/qs.ui:18
+msgid "Screenshot Settings"
+msgstr "Opțiuni Instantaneu de ecran"
+
+#: plugins/screenshot-quick-setting/qs.ui:33
+msgid "Full screen"
+msgstr "Tot ecranul"
+
+#: plugins/screenshot-quick-setting/qs.ui:42
+msgid "Area selection"
+msgstr "Alege zona"
+
+#: plugins/screenshot-quick-setting/qs.ui:55
+msgid "Immediate"
+msgstr "Imediat"
+
+#: plugins/screenshot-quick-setting/qs.ui:63
+msgid "1 second"
+msgstr "1 secundă"
+
+#: plugins/screenshot-quick-setting/qs.ui:71
+msgid "3 seconds"
+msgstr "3 secunde"
+
+#: plugins/screenshot-quick-setting/qs.ui:79
+msgid "10 seconds"
+msgstr "10 secunde"
+
+#: plugins/screenshot-quick-setting/qs.ui:105
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:6
+msgid "Take a screenshot"
+msgstr "Instantaneu de ecran"
+
+#. Translators: Label for taking a full-screen screenshot immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:204
+msgid "Screenshot now"
+msgstr "Instantaneu de ecran acum"
+
+#. Translators: Label for taking a screenshot of a selected area immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:206
+msgid "Screenshot area now"
+msgstr "Instantaneu al zonei acum"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:209
+msgid "Screenshot in 1s"
+msgstr "Instantaneu în 1s"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:211
+msgid "Screenshot area in 1s"
+msgstr "Instantaneu al zonei în 1s"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:214
+msgid "Screenshot in 3s"
+msgstr "Instantaneu în 3s"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:216
+msgid "Screenshot area in 3s"
+msgstr "Instantaneu al zonei în 3s"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:219
+msgid "Screenshot in 10s"
+msgstr "Instantaneu în 10s"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:221
+msgid "Screenshot area in 10s"
+msgstr "Instantaneu al zonei în 10s"
+
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+msgid "Screenshot area"
+msgstr "Instantaneu al zonei"
 
 #: plugins/syncthing-quick-setting/qs.ui:12
 #: plugins/syncthing-quick-setting/qs.ui:16
