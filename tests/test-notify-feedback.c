@@ -42,18 +42,21 @@ test_phosh_notify_feedback_screen_wakeup (void)
   g_assert_false (phosh_notify_feedback_check_screen_wakeup (notify_feedback, noti));
 
   /* urgency */
-  g_settings_set_flags (settings, "wakeup-screen-triggers", PHOSH_NOTIFY_SCREEN_WAKEUP_FLAG_URGENCY);
+  g_settings_set_flags (settings, "wakeup-screen-triggers",
+                        PHOSH_NOTIFY_SCREEN_WAKEUP_FLAG_URGENCY);
   g_settings_set_enum (settings, "wakeup-screen-urgency", PHOSH_NOTIFICATION_URGENCY_NORMAL);
 
   g_assert_true (phosh_notify_feedback_check_screen_wakeup (notify_feedback, noti));
 
-  g_settings_set_flags (settings, "wakeup-screen-triggers", PHOSH_NOTIFY_SCREEN_WAKEUP_FLAG_URGENCY);
+  g_settings_set_flags (settings, "wakeup-screen-triggers",
+                        PHOSH_NOTIFY_SCREEN_WAKEUP_FLAG_URGENCY);
   g_settings_set_enum (settings, "wakeup-screen-urgency", PHOSH_NOTIFICATION_URGENCY_NORMAL);
 
   /* category */
-  g_settings_set_flags (settings, "wakeup-screen-triggers", PHOSH_NOTIFY_SCREEN_WAKEUP_FLAG_CATEGORY);
+  g_settings_set_flags (settings, "wakeup-screen-triggers",
+                        PHOSH_NOTIFY_SCREEN_WAKEUP_FLAG_CATEGORY);
   g_settings_set_strv (settings, "wakeup-screen-categories",
-                       (const char *const[]) { "im", "foo.bar", "baz" , NULL });
+                       (const char *const[]) { "im", "foo.bar", "baz", NULL });
 
   g_assert_false (phosh_notify_feedback_check_screen_wakeup (notify_feedback, noti));
 
