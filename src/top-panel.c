@@ -699,7 +699,7 @@ phosh_top_panel_constructed (GObject *object)
   PhoshShell *shell = phosh_shell_get_default ();
   GAction *action;
 
-  g_autoptr (GSettings) phosh_settings = g_settings_new ("sm.puri.phosh");
+  g_autoptr (GSettings) phosh_settings = g_settings_new ("mobi.phosh.shell");
 
   G_OBJECT_CLASS (phosh_top_panel_parent_class)->constructed (object);
 

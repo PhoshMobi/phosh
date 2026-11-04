@@ -183,7 +183,7 @@ main (int argc, char *argv[])
   plugin_info = &plugin_infos[quick_settings ? 1 : 0];
 
   app = g_object_new (ADW_TYPE_APPLICATION,
-                      "application-id", "sm.puri.phosh.PluginPrefsStandalone",
+                      "application-id", "mobi.phosh.Shell.PluginPrefsStandalone",
                       NULL);
   g_signal_connect (app, "activate", G_CALLBACK (on_app_activated), NULL);
   g_action_map_add_action_entries (G_ACTION_MAP (app),

@@ -20,7 +20,7 @@
 #define CALLS_BUS_NAME "org.gnome.Calls"
 #define CALLS_OBJECT_PATH "/org/gnome/Calls"
 
-#define EMERGENCY_CALLS_SETTINGS "sm.puri.phosh.emergency-calls"
+#define EMERGENCY_CALLS_SETTINGS "mobi.phosh.shell.emergency-calls"
 
 /**
  * PhoshEmergencyCallsManager:

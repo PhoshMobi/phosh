@@ -30,6 +30,7 @@
 #include "brightness-manager.h"
 #include "drag-surface.h"
 #include "debug-control.h"
+#include "dh-dconf-migration.h"
 #include "shell-priv.h"
 #include "app-tracker.h"
 #include "battery-info.h"
@@ -1477,7 +1478,7 @@ phosh_shell_init (PhoshShell *self)
   priv->style_manager = phosh_style_manager_new ();
   priv->shell_state = PHOSH_STATE_SETTINGS;
   priv->action_map = g_simple_action_group_new ();
-  priv->settings = g_settings_new ("sm.puri.phosh");
+  priv->settings = g_settings_new ("mobi.phosh.shell");
 
   /* We bind this early since a wl_display_roundtrip () would make us miss
      existing toplevels */
@@ -1487,9 +1488,69 @@ phosh_shell_init (PhoshShell *self)
 
 /* }}} */
 
+static void
+migrate_gsettings (void)
+{
+  g_autoptr (GSettings) settings = g_settings_new ("mobi.phosh.shell");
+  DhDconfMigration *migration;
+  const char *backend = g_getenv ("GSETTINGS_BACKEND");
+  const char *keys_v1_shell[] = {
+    "favorites",
+    "app-filter-mode",
+    "force-adaptive",
+    "wwan-backend",
+    "automatic-high-contrast",
+    "automatic-high-contrast-threshold",
+    "enable-suspend",
+    "quick-silent",
+    "shell-layout",
+    "osk-unfold-delay",
+    "emergency-calls/enabled",
+    "lockscreen/shuffle-keypad",
+    "lockscreen/require-unlock",
+    "notifications/wakeup-screen-triggers",
+    "notifications/wakeup-screen-categories",
+    "notifications/wakeup-screen-urgency",
+    "plugins/lock-screen",
+    "plugins/quick-settings",
+    NULL,
+  };
+
+  /* Don't migrate when running tests */
+  if (g_strcmp0 (backend, "memory") == 0 || g_strcmp0 (backend, "keyfile") == 0)
+    return;
+
+  if (g_settings_get_uint (settings, "schema-migration") > 0) {
+    g_debug ("Schema already migrated, doing nothing.");
+    return;
+  }
+
+  migration = _dh_dconf_migration_new ();
+  g_message ("Migrating shell schema to /mobi/phosh/");
+  for (int i = 0; keys_v1_shell[i] != NULL; i++) {
+    const char *cur_key = keys_v1_shell[i];
+    g_autofree char *mobi_key = NULL, *puri_key = NULL;
+
+    mobi_key = g_strconcat ("/mobi/phosh/shell/", cur_key, NULL);
+    puri_key = g_strconcat ("/sm/puri/phosh/", cur_key, NULL);
+
+    _dh_dconf_migration_migrate_key (migration,
+                                     mobi_key,
+                                     puri_key,
+                                     NULL);
+  }
+
+  _dh_dconf_migration_sync_and_free (migration);
+
+  g_settings_set_uint (settings, "schema-migration", 1);
+}
+
 PhoshShell *
 phosh_shell_new (void)
 {
+  /* This is run in both libphosh and phosh itself */
+  migrate_gsettings ();
+
   return g_object_new (PHOSH_TYPE_SHELL, NULL);
 }
 

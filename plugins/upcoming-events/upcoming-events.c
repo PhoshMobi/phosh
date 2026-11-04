@@ -19,7 +19,7 @@
 #include <gmobile.h>
 #include <glib/gi18n.h>
 
-#define UPCOMING_EVENTS_SCHEMA_ID    "sm.puri.phosh.plugins.upcoming-events"
+#define UPCOMING_EVENTS_SCHEMA_ID    "mobi.phosh.plugins.upcoming-events"
 #define UPCOMING_EVENT_DAYS_KEY      "days"
 #define UPCOMING_EVENT_SKIP_DAYS_KEY "skip-empty"
 

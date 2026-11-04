@@ -1,5 +1,5 @@
 <schemalist>
-  <schema id="sm.puri.phosh.plugins.launcher-box"
+  <schema id="mobi.phosh.plugins.launcher-box"
           path="/mobi/phosh/plugins/launcher-box/">
     <key name="folder" type="s">
       <default>''</default>

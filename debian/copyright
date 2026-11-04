@@ -32,6 +32,10 @@ Copyright: 2011 Red Hat, Inc.
  2017 Lubomir Rintel <lkundrak@v3.sk>
 License: GPL-2+
 
+Files: src/dh-dconf-migration.*
+Copyright: 2018-2019 Sébastien Wilmet
+License: GPL-3+
+
 Files: src/gtk-list-models/gtkfilterlistmodel.*
  src/gtk-list-models/gtksortlistmodel.*
 Copyright: 2018 Benjamin Otte

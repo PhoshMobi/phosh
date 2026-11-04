@@ -32,7 +32,7 @@
 #define KEYBINDING_KEY_TOGGLE_OVERVIEW "toggle-overview"
 #define KEYBINDING_KEY_TOGGLE_APPLICATION_VIEW "toggle-application-view"
 
-#define PHOSH_SETTINGS "sm.puri.phosh"
+#define PHOSH_SETTINGS "mobi.phosh.shell"
 
 #define PHOSH_HOME_DRAG_THRESHOLD 0.3
 

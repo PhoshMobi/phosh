@@ -34,13 +34,13 @@ These gsettings are used by ``phosh``:
 
     - `enabled`: Whether receiving cell broadcasts is enabled
 
-- `sm.puri.phosh`
+- `mobi.phosh.shell`
 
    - `app-filter-mode`: Application filtering in overview. This shows all applications:
 
      ::
 
-          gsettings set sm.puri.phosh app-filter-mode '[]'
+          gsettings set mobi.phosh.shell app-filter-mode '[]'
 
    - `automatic-high-contrast-threshold`: The brightness threshold to trigger automatic high contrast
    - `automatic-high-contrast`: Whether automatic high contrast is enabled
@@ -50,7 +50,7 @@ These gsettings are used by ``phosh``:
 
      ::
 
-          gsettings set sm.puri.phosh force-adaptive "['chromium.desktop', 'firefox-esr.desktop']"
+          gsettings set mobi.phosh.shell force-adaptive "['chromium.desktop', 'firefox-esr.desktop']"
 
    - `osk-unfold-delay`: How long to press bottom bar pill for OSK to unfold
    - `quick-silent`: Silence device by pression Vol- on incoming calls
@@ -58,39 +58,45 @@ These gsettings are used by ``phosh``:
      `device`: Automatic based on device settings, `none`: No automatic layout.
    - `wwan-backend`: WWan backend to use
 
-- `sm.puri.phosh.emergency-calls`
+- `mobi.phosh.shell.emergency-calls`
 
    - `enabled`: Whether emergency calls are enabled. This is
      experimental, please check if it works for your povider / in your
      country / for your sim card before relying on it.
 
-- `sm.puri.phosh.lockscreen`
+- `mobi.phosh.shell.lockscreen`
 
    - `require-unlock`: Whether unlock via password/pin is required
    - `shuffle-keypad`: Shuffle keys on keypad
 
-- `sm.puri.phosh.plugins`
+- `mobi.phosh.shell.plugins`
 
    - `lockscreen`: The enabled lock screen plugins
    - `quick-settings`: The enabled custom quick settings
 
-- `sm.puri.phosh.notifications`
+- `mobi.phosh.shell.notifications`
 
    - `wakeup-screen-categories`: Notification categories that trigger screen wakeup
    - `wakeup-screen-triggers`: What properties of a notification trigger screen wake-up
    - `wakeup-screen-urgency`: The lowest urgency that triggers screen wake-up (if via `wakeup-screen-triggers`)
 
-- `sm.puri.phosh.plugins.launcher-box`
+- `mobi.phosh.plugins.launcher-box`
 
    - `folder`: The folder containing the desktop files to show in the launcher box
 
-- `sm.puri.phosh.plugins.ticket-box`
+- `mobi.phosh.plugins.pomodoro`
+
+   - `active-duration`: Active interval duration
+   - `break-duration`: Break duration
+
+- `mobi.phosh.plugins.ticket-box`
 
    - `folder`: The folder containing the tickets to be presented on the lock screen.
 
-- `sm.puri.phosh.plugins.upcoming-events`
+- `mobi.phosh.plugins.upcoming-events`
 
    - `days`: Number of days to show in the upcoming events list
+   - `skip-empty`: Skip day without events
 
 - `org.gnome.desktop.app-folders.folder`: Folder support
 

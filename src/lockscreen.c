@@ -975,7 +975,7 @@ phosh_lockscreen_constructed (GObject *object)
                           priv->btn_keyboard, "sensitive",
                           G_BINDING_SYNC_CREATE);
 
-  priv->lockscreen_settings = g_settings_new ("sm.puri.phosh.lockscreen");
+  priv->lockscreen_settings = g_settings_new ("mobi.phosh.shell.lockscreen");
   g_settings_bind (priv->lockscreen_settings, "shuffle-keypad",
                    priv->keypad, "shuffle",
                    G_SETTINGS_BIND_GET);
@@ -987,7 +987,7 @@ phosh_lockscreen_constructed (GObject *object)
                           priv->box_unlock, "visible",
                           G_BINDING_SYNC_CREATE);
 
-  plugin_settings = g_settings_new ("sm.puri.phosh.plugins");
+  plugin_settings = g_settings_new ("mobi.phosh.shell.plugins");
   plugins = g_settings_get_strv (plugin_settings, "lock-screen");
   if (plugins)
     phosh_widget_box_set_plugins (PHOSH_WIDGET_BOX (priv->widget_box), plugins);

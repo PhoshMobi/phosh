@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="sm.puri.phosh.plugins.upcoming-events"
+  <schema id="mobi.phosh.plugins.upcoming-events"
           path="/mobi/phosh/plugins/upcoming-events/">
     <key name="days" type="u">
       <default>7</default>

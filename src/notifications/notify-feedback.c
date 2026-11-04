@@ -448,7 +448,7 @@ phosh_notify_feedback_class_init (PhoshNotifyFeedbackClass *klass)
 static void
 phosh_notify_feedback_init (PhoshNotifyFeedback *self)
 {
-  self->settings = g_settings_new ("sm.puri.phosh.notifications");
+  self->settings = g_settings_new ("mobi.phosh.shell.notifications");
 
   g_signal_connect_swapped (self->settings, "changed", G_CALLBACK (on_settings_changed), self);
   on_settings_changed (self, NULL, self->settings);

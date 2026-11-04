@@ -1,5 +1,5 @@
 <schemalist>
-  <schema id="sm.puri.phosh.plugins.ticket-box"
+  <schema id="mobi.phosh.plugins.ticket-box"
           path="/mobi/phosh/plugins/ticket-box/">
     <key name="folder" type="s">
       <default>'phosh-ticket-box'</default>
