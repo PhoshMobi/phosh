@@ -1,3 +1,195 @@
+phosh (0.59~alpha1) experimental; urgency=medium
+
+  [ Guido Günther ]
+  * doc: Update NEWS
+  * ci: Get from from sid.
+    Needed to make CI pass. Drop libevince since that's in forky.
+  * wayland: Require device state.
+    It's around since ages
+  * wayland: Require phosh-private as well.
+    It's somewhat in use ;)
+  * protocol: Update to latest layer-shell-effects-protocol
+  * drag-surface: Ease check if surface is moving.
+    This will handle the case of compositor moved surfaces automatically
+  * drag-surface: Handle animated event.
+    We introduce a new drag state for the compositor driven animation and
+    indicate in the drag signal too.
+  * home: Ignore state change when user drags.
+    The user's actions should have priority when settings state so we reject
+    the state change in this case but apply it if the animation is
+    compositor driven.
+  * layer-shell-effects: Limit versions.
+    We don't want to hit an incompatible one.
+  * home: Notify user about outdated compositor.
+    Closes: https://gitlab.gnome.org/World/Phosh/phoc/-/work_items/295
+  * test-dbus: Drain output pipe.
+    This hopefully avoids some hanging tests.
+  * packaging: Run wrap-and-sort on most files.
+    We skip parts of debian/control as that has some other sorting
+  * lockscreen-manager: Update copyright header.
+    The changes in the timeframe where made by ppl with FLA.
+  * lockscreen: Use early return.
+    Update copyright while at that.
+  * user-manager: Add object that tracks the homed user.
+    Currently only for pin-length but might be useful for other propers
+    later on.
+  * lockscreen: Move functions.
+  * lockscreen: Fix indent
+  * lockscreen: Simplify checking keyboard visibility
+  * lockscreen: Submit pin when pin length is known
+  * lockscreen-manager: Sync lockscreen's pin-length from user-manager.
+    This allows thte lockscreen to figure out if it should show the
+    submit button.
+  * tools: Add pin helper.
+    Small helper to set the pin length in the privileged section of the
+    user's record. We can expand this to handle e.g. unlock type, etc later
+    too.
+    Usage:
+    ```sh
+    PASSWORD=1234 sudo phosh-pin-tool set-pin-length --user=<username> --pin-length=<pin-length>
+    ```
+    Note that setting the pin-length reduces overall security as an attacker
+    can get the pin length from a phone on the table easily.
+  * pin-tool: Ask for password upfront.
+    We pass that down to set_unlock_info() rather than reading it from an
+    env var in fetch_record(). This also makes it possible to fetch the
+    length without supplying a password.
+  * pin-tool: Ask for password if missing.
+    Let the user enter the password not set via env var.
+  * pin-tool: Make pin-length optional.
+    If not given, read it from the password
+  * pin-tool: Add rustfmt config
+  * phosh-pin-tool: Reduce features.
+    Should speed up builds. Together with the next commit
+    we go from ~130 to ~60 packages.
+  * phosh-pin-tool: Switch to zbus 6.
+    Drops a lot of deps
+  * pin-tool: Allow for interactive auth.
+    This allows to run things as the user setting the PIN
+  * pin-tool: Make user optional.
+    Take if from the environment when not given.
+  * screenshot-manager: Don't leak task in error path.
+    We should handle it the same as the success path.
+    Fixes: 6904af005 ("sceenshot-manager: Handle grabbing a screen area")
+  * screenshot-manager: Don't leak area.
+    Fixes: 6904af005 ("sceenshot-manager: Handle grabbing a screen area")
+  * wayland: Store the version we actually bind.
+    This ensures we use the right version in comparisons when the
+    compositor e.g. announces a version 5.
+    Fixes: d8e6608c1 ("layer-shell-effects: Limit versions")
+  * user-manager: Don't access self before checking the result.
+    If the task got cancelled `self` is no longer valid.
+    Fixes: bf51a48cb ("user-manager: Add object that tracks the homed user")
+  * screenshot-manager: Pass on cancellable.
+    Otherwise we only cancel the first read.
+    Fixes: 6904af005 ("sceenshot-manager: Handle grabbing a screen area")
+  * thumbnail-overlay: Fix type macro name.
+    Fixes: 3519b036e ("overview: Add and animate screenshot overlay")
+  * toplevel-manager: Fix inverted condition.
+    The removeal code never ran.
+    Fixes: 8a4726959 ("toplevel-manager: Track launched apps")
+  * pin-tool: Simplify example.
+    Document the case a user using the tool on the phone
+    will most likely want to use.
+  * quick-settings: Make descriptions consistent.
+    Some mention quick setting while most didn't. As it's clear from
+    the context, drop that.
+  * packaging: Allow for rustup.
+    Otherwise the libphosh-rs build with rustup will fail as installing the
+    phosh-deps fails.
+  * tests/notify-feedback: Fix indent
+    gbp-dch: Ignore
+  * tests: Depend on schemas.
+    Most of the tests need it and this ensures we find it without performing
+    a full build upfront.
+  * check-license-headers: Skip all build dirs.
+    Helps to skip build dirs like `_build-asan`.
+  * tools: Move app-ids to mobi.phosh.
+    We also upercase `Shell` as that's what we use for the app-id
+    elsewhere.
+  * dconf-migration: Add migration helpers from enter-tex.
+    The files are GPL-3.0-or-later by Sébastien Wilmet
+  * treewide: Move schema to mobi.phosh.
+    Replace sm.puri.phosh by mobi.phosh.shell following what
+    we did in stevia for 0.54.
+  * phosh: Migrate dconf entries to mobi.phosh.
+    This makes things consistent with e.g. stevia or mobile settings.
+    We invoke the migration when creating the shell singleton so
+    libphosh users like phrog don't need to do anything on their own.
+    Plugin dconf paths already moved in
+    2e3b0b795 ("shell: Use consistent resource prefix")
+  * data: Validate main schema file.
+    It was the only one without a test. This makes is easier to spot
+    errors.
+
+  [ Олеся Герасименко ]
+  * Update Russian translation
+
+  [ Cheng-Chia Tseng ]
+  * Update Chinese (Taiwan) translation
+
+  [ Yaron Shahrabani ]
+  * Update Hebrew translation
+
+  [ Hugo Posnic ]
+  * doc: Upgrade postmarketOS brand name to Nura
+
+  [ giorez ]
+  * session: Don't suggest running phosh-session from a tty in --help.
+    Starting from a tty is only meant for debugging: the session then lacks
+    the environment a display manager sets up. Also fix the program name in
+    the usage line.
+    Helps: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1359
+  * docs: Mention the missing environment when starting phosh-session from a tty.
+    Helps: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/1359
+
+  [ Sebastian Krzyszkowiak ]
+  * drag-surface: Return double in phosh_drag_surface_get_threshold
+  * treewide: Use DBL_EPSILON when comparing doubles.
+    Using FLT_EPSILON may lead to bugs - for example,
+    phosh_layer_surface_set_alpha could ignore 1.0 being set despite of
+    the current value being not quite 1.0 yet, preventing the surface
+    from becoming opaque.
+
+  [ Roy-Magne Mo ]
+  * Add Norwegian Nynorsk translation
+
+  [ nikodunk ]
+  * thumbnail-overlay: Move composition to Phoc.
+    Let the compositor handle the thumbnail rendering speeding
+    things up considerably and lowering CPU use.
+    We keep this off by default as there's some lose ends we want
+    to address:
+    https://gitlab.gnome.org/World/Phosh/phosh/-/merge_requests/1951
+
+  [ Cynosure ]
+  * quick-settings: Add reusable selection row.
+    Add a PhoshQuickSettingSelectionRow class for mutually exclusive
+    choices in quick setting status pages. The selected state is
+    exposed to accessibility via ATK_STATE_CHECKED.
+  * shell: Make shell state and top panel folding public.
+    Quick setting plugins need to know when the settings panel is
+    unfolded and need to fold the top panel so it doesn't end up in
+    a screenshot.
+  * plugins: Add screenshot quick setting.
+    Take a screenshot of the full screen or a selected area, either
+    immediately or after a delay, via PhoshScreenshotManager. The mode
+    and delay are kept in a GSettings schema.
+
+  [ Martin ]
+  * Update Slovenian translation
+
+  [ Yuri Chornoivan ]
+  * Update Ukrainian translation
+
+  [ Ekaterine Papava ]
+  * Update Georgian translation
+
+  [ Antonio Marin ]
+  * Update Romanian translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Wed, 04 Nov 2026 09:05:45 +0100
+
 phosh (0.58.0) experimental; urgency=medium
 
   [ Guido Günther ]

@@ -1,3 +1,31 @@
+phosh 0.59~alpha1
+-----------------
+Released November 2026
+* New screenshot quick setting
+* Ease unlocking by getting PIN length from systemd-homed
+* Allow to set pin length via *phosh-pin-tool*
+* Move thumbnail overlay composition to phoc
+* Migrate gsettings schema to `mobi.phosh`
+* Lots of internal cleanups and fixes
+* Issues fixed:
+    * https://gitlab.gnome.org/World/Phosh/phoc/-/work_items/295
+* Contributors:
+    * Cynosure
+    * giorez
+    * Guido Günther
+    * Hugo Posnic
+    * nikodunk
+    * Sebastian Krzyszkowiak
+* UI translations:
+    * Antonio Marin (ro)
+    * Cheng-Chia Tseng (zh_TW)
+    * Ekaterine Papava (ka)
+    * Martin (sl)
+    * Roy-Magne Mo (nn)
+    * Yaron Shahrabani (he)
+    * Yuri Chornoivan (uk)
+    * Олеся Герасименко (ru)
+
 phosh 0.58.0
 ------------
 Released October 2026
