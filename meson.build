@@ -1,7 +1,7 @@
 project(
   'phosh',
   'c',
-  version: '0.58.0',
+  version: '0.59.alpha1',
   license: 'GPL-3.0-or-later',
   meson_version: '>= 1.7.0',
   default_options: [
