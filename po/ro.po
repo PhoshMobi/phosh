@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-11-02 13:03+0000\n"
-"PO-Revision-Date: 2026-11-03 22:07+0200\n"
+"POT-Creation-Date: 2026-11-05 08:32+0000\n"
+"PO-Revision-Date: 2026-11-05 22:37+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -136,6 +136,14 @@ msgstr "Opțiuni pentru Scară"
 #: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
 msgid "Adjust display scaling"
 msgstr "Reglează scara afișajului"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:4
+msgid "SSH Quick Setting"
+msgstr "Opțiuni pentru SSH"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:6
+msgid "Start and stop the SSH server"
+msgstr "Pornește și oprește serverul SSH"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
 msgid "Syncthing Quick Setting"
@@ -1456,6 +1464,18 @@ msgstr "Instantaneu al zonei în 10s"
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
 msgid "Screenshot area"
 msgstr "Instantaneu al zonei"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:45
+msgid "SSH Unavailable"
+msgstr "SSH indisponibil"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH On"
+msgstr "SSH Activ"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH Off"
+msgstr "SSH Oprit"
 
 #: plugins/syncthing-quick-setting/qs.ui:12
 #: plugins/syncthing-quick-setting/qs.ui:16
