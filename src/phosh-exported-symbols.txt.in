@@ -10,6 +10,11 @@
    phosh_util_open_settings_panel;
    phosh_util_toggle_style_class;
    phosh_util_remove_from_strv;
+   phosh_util_systemd_unit_is_active;
+   phosh_util_systemd_unit_new;
+   phosh_util_systemd_unit_new_finish;
+   phosh_util_systemd_unit_set_active;
+   phosh_util_systemd_unit_set_active_finish;
 
    # Plugins can inhibit session idleness
    phosh_shell_get_session_manager;

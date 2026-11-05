@@ -1,0 +1,8 @@
+[Plugin]
+# Translators: This is an internal id, no need to translate it
+Id=@name@
+Name=SSH Quick Setting
+Types=quick-setting;
+Comment=Start and stop the SSH server
+Plugin=@plugins_dir@/libphosh-plugin-@name@.so
+Icon=ssh-quick-setting

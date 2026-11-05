@@ -77,6 +77,7 @@ quick_setting_plugins = [
   'scaling-quick-setting',
   'screenshot-quick-setting',
   'simple-custom-quick-setting',
+  'ssh-quick-setting',
   'syncthing-quick-setting',
   'wifi-hotspot-quick-setting',
 ]
