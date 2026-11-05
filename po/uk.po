@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-11-02 13:03+0000\n"
-"PO-Revision-Date: 2026-11-02 20:39+0200\n"
+"POT-Creation-Date: 2026-11-05 08:32+0000\n"
+"PO-Revision-Date: 2026-11-05 18:41+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -127,9 +127,17 @@ msgid "Scaling Quick Setting"
 msgstr "Параметр масштабування"
 
 #: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
-#| msgid "A quick setting for adjusting the display scaling."
 msgid "Adjust display scaling"
 msgstr "Скоригувати масштабування дисплея"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:4
+#| msgid "Scaling Quick Setting"
+msgid "SSH Quick Setting"
+msgstr "Швидке налаштовування SSH"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:6
+msgid "Start and stop the SSH server"
+msgstr "Запуск і припинення роботи сервера SSH"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
 msgid "Syncthing Quick Setting"
@@ -1374,7 +1382,6 @@ msgid "%d%%"
 msgstr "%d%%"
 
 #: plugins/screenshot-quick-setting/qs.ui:18
-#| msgid "Screenshots"
 msgid "Screenshot Settings"
 msgstr "Параметри знімків вікон"
 
@@ -1404,62 +1411,64 @@ msgstr "10 секунд"
 
 #: plugins/screenshot-quick-setting/qs.ui:105
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:6
-#| msgid "Failed to save screenshot"
 msgid "Take a screenshot"
 msgstr "Створення знімка екрана"
 
 #. Translators: Label for taking a full-screen screenshot immediately.
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.c:204
-#| msgid "Screenshot"
 msgid "Screenshot now"
 msgstr "Знімок вікна зараз"
 
 #. Translators: Label for taking a screenshot of a selected area immediately.
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.c:206
-#| msgid "Screenshot saved to '%s'"
 msgid "Screenshot area now"
 msgstr "Знімок ділянки екрана зараз"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.c:209
-#| msgid "Screenshots"
 msgid "Screenshot in 1s"
 msgstr "Знімок за 1 с"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.c:211
-#| msgid "Screenshot saved to '%s'"
 msgid "Screenshot area in 1s"
 msgstr "Знімок ділянки екрана за 1 с"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.c:214
-#| msgid "Screenshots"
 msgid "Screenshot in 3s"
 msgstr "Знімок за 3 с"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.c:216
-#| msgid "Screenshot saved to '%s'"
 msgid "Screenshot area in 3s"
 msgstr "Знімок ділянки екрана за 3 с"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.c:219
-#| msgid "Screenshots"
 msgid "Screenshot in 10s"
 msgstr "Знімок за 10 с"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.c:221
-#| msgid "Screenshot saved to '%s'"
 msgid "Screenshot area in 10s"
 msgstr "Знімок ділянки екрана за 10 с"
 
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
-#| msgid "Screenshot"
 msgid "Screenshot area"
 msgstr "Знімок ділянки"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:45
+msgid "SSH Unavailable"
+msgstr "SSH недоступна"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH On"
+msgstr "SSH увімкнено"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH Off"
+msgstr "SSH вимкнено"
 
 #: plugins/syncthing-quick-setting/qs.ui:12
 #: plugins/syncthing-quick-setting/qs.ui:16
