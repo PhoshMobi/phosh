@@ -1,5 +1,3 @@
-subdir('icons')
-
 name = 'load-meter-status-icon'
 
 load_meter_status_icon_resources = gnome.compile_resources(
@@ -41,4 +39,9 @@ i18n.merge_file(
   install: true,
   install_dir: plugins_dir,
   type: 'desktop',
+)
+
+install_data(
+  'icons/load-meter-status-icon-symbolic.svg',
+  install_dir: phosh_plugin_icon_dir,
 )
