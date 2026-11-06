@@ -13,6 +13,7 @@
 #include "fading-label.h"
 #include "metainfo-cache.h"
 #include "phosh-enums.h"
+#include "phosh-marshalers.h"
 #include "favorite-list-model.h"
 #include "util.h"
 
@@ -207,11 +208,12 @@ activate_cb (PhoshAppGridButton *self)
 {
   PhoshAppTracker *app_tracker = phosh_shell_get_app_tracker (phosh_shell_get_default ());
   PhoshAppGridButtonPrivate *priv = phosh_app_grid_button_get_instance_private (self);
+  gboolean launched;
 
   g_return_if_fail (PHOSH_IS_APP_TRACKER (app_tracker));
 
-  phosh_app_tracker_launch_app_info (app_tracker, priv->info);
-  g_signal_emit (self, signals[APP_LAUNCHED], 0, priv->info);
+  launched = phosh_app_tracker_launch_app_info (app_tracker, priv->info);
+  g_signal_emit (self, signals[APP_LAUNCHED], 0, priv->info, launched);
 }
 
 
@@ -294,11 +296,24 @@ phosh_app_grid_button_class_init (PhoshAppGridButtonClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_right_pressed);
   gtk_widget_class_bind_template_callback (widget_class, activate_cb);
 
+  /**
+   * PhoshAppGridButton::app-launched:
+   * @app_info: The app-info of the launched application
+   * @launched: `TRUE` when the app was actually launched, `FALSE` when the app
+   *            was already running and just activated.
+   */
   signals[APP_LAUNCHED] = g_signal_new ("app-launched",
                                         G_TYPE_FROM_CLASS (klass),
                                         G_SIGNAL_RUN_LAST,
-                                        0, NULL, NULL, NULL,
-                                        G_TYPE_NONE, 1, G_TYPE_APP_INFO);
+                                        0, NULL, NULL,
+                                        _phosh_marshal_VOID__OBJECT_BOOLEAN,
+                                        G_TYPE_NONE,
+                                        2,
+                                        G_TYPE_APP_INFO,
+                                        G_TYPE_BOOLEAN);
+  g_signal_set_va_marshaller (signals[APP_LAUNCHED],
+                              G_TYPE_FROM_CLASS (klass),
+                              _phosh_marshal_VOID__OBJECT_BOOLEANv);
 
   gtk_widget_class_set_css_name (widget_class, "phosh-app-grid-button");
 }
@@ -326,8 +341,8 @@ action_activated (GSimpleAction *action,
   g_desktop_app_info_launch_action (G_DESKTOP_APP_INFO (priv->info),
                                     action_name,
                                     G_APP_LAUNCH_CONTEXT (context));
-
-  g_signal_emit (self, signals[APP_LAUNCHED], 0, priv->info);
+  /* TODO: Fix `launched` parameter by checking if app is already running */
+  g_signal_emit (self, signals[APP_LAUNCHED], 0, priv->info, TRUE);
 }
 
 
@@ -438,7 +453,8 @@ on_open_panel_ready (GObject *source_object, GAsyncResult *res, gpointer user_da
 
   /* Let the rest of the shell know that we spawned settings from the app-grid */
   info = g_desktop_app_info_new ("mobi.phosh.MobileSettings.desktop");
-  g_signal_emit (self, signals[APP_LAUNCHED], 0, info);
+  /* TODO: Fix `launched` parameter by checking if settings app is already running */
+  g_signal_emit (self, signals[APP_LAUNCHED], 0, info, TRUE);
 }
 
 

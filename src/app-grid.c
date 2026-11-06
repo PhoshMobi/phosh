@@ -169,7 +169,7 @@ show_folder_page (PhoshAppGrid *self)
 
 
 static void
-app_launched_cb (GtkWidget *widget, GAppInfo *info, PhoshAppGrid *self)
+app_launched_cb (GtkWidget *widget, GAppInfo *info, gboolean launched, PhoshAppGrid *self)
 {
   g_signal_emit (self, signals[APP_LAUNCHED], 0, info);
 }
