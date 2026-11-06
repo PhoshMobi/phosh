@@ -19,7 +19,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (PhoshAppTracker, phosh_app_tracker, PHOSH, APP_TRACKER, GObject)
 
 PhoshAppTracker *phosh_app_tracker_new (void);
-void phosh_app_tracker_launch_app_info (PhoshAppTracker *self,
-                                        GAppInfo        *info);
+gboolean         phosh_app_tracker_launch_app_info (PhoshAppTracker *self,
+                                                    GAppInfo        *info);
 
 G_END_DECLS

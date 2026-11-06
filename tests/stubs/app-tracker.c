@@ -25,8 +25,9 @@ phosh_app_tracker_init (PhoshAppTracker *self)
 {
 }
 
-void
+gboolean
 phosh_app_tracker_launch_app_info (PhoshAppTracker *self,
                                    GAppInfo        *info)
 {
+  return TRUE;
 }

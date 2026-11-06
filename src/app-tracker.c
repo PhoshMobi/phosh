@@ -957,7 +957,17 @@ phosh_app_tracker_new (void)
   return PHOSH_APP_TRACKER (g_object_new (PHOSH_TYPE_APP_TRACKER, NULL));
 }
 
-void
+/**
+ * phosh_app_tracker_launch_app_info:
+ * @self: The app tracker
+ * @info: The info of the app to launch
+ *
+ * Launch the application with the given info. If the app is already its toplevel will
+ * only be moved to the top of the stack.
+ *
+ * Returns: `TRUE` if app was launched, `FALSE` if it was already running
+ */
+gboolean
 phosh_app_tracker_launch_app_info (PhoshAppTracker *self, GAppInfo *info)
 {
   g_autoptr (GdkAppLaunchContext) context = NULL;
@@ -978,7 +988,7 @@ phosh_app_tracker_launch_app_info (PhoshAppTracker *self, GAppInfo *info)
       /* activate the first matching window for now, since we don't have toplevels sorted by last-focus yet */
       phosh_toplevel_activate (toplevel, phosh_wayland_get_wl_seat (phosh_wayland_get_default ()));
       g_signal_emit (self, signals[APP_ACTIVATED], 0, info);
-      return;
+      return FALSE;
     }
   }
 
@@ -1013,5 +1023,7 @@ phosh_app_tracker_launch_app_info (PhoshAppTracker *self, GAppInfo *info)
     g_critical ("Failed to launch app %s: %s",
                 g_app_info_get_id (info),
                 error->message);
+    return FALSE;
   }
+  return TRUE;
 }
