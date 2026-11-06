@@ -189,6 +189,7 @@ Build-Profiles: <!pkg.phosh.nolib>
 Depends:
  libappstream-dev,
  libcallaudio-dev,
+ libdconf-dev,
  libfeedback-dev,
  libgcr-3-dev,
  libgmobile-dev,
