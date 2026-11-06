@@ -667,11 +667,11 @@ phosh_overview_size_allocate (GtkWidget     *widget,
 
 
 static void
-on_app_launched (PhoshOverview *self, GAppInfo *info, GtkWidget *widget)
+on_app_launched (PhoshOverview *self, GAppInfo *info, gboolean launched)
 {
   g_return_if_fail (PHOSH_IS_OVERVIEW (self));
 
-  g_signal_emit (self, signals[ACTIVITY_LAUNCHED], 0);
+  g_signal_emit (self, signals[ACTIVITY_LAUNCHED], 0, launched);
 }
 
 
@@ -756,12 +756,19 @@ phosh_overview_class_init (PhoshOverviewClass *klass)
 
   g_object_class_install_properties (object_class, LAST_PROP, props);
 
+  /**
+   * PhoshOverview::activity-launched:
+   * @launched: `TRUE` when the activity was actually launched, `FALSE` when the app
+   *            was already running and just activated.
+   */
   signals[ACTIVITY_LAUNCHED] =
     g_signal_new ("activity-launched",
                   G_TYPE_FROM_CLASS (klass),
                   G_SIGNAL_RUN_LAST, 0,
                   NULL, NULL, NULL,
-                  G_TYPE_NONE, 0);
+                  G_TYPE_NONE,
+                  1,
+                  G_TYPE_BOOLEAN);
 
   signals[ACTIVITY_RAISED] =
     g_signal_new ("activity-raised",
