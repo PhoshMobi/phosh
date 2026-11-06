@@ -1,21 +1,22 @@
 # Daniel Rusek <mail@asciiwolf.com>, 2019. #zanata
 # Jaroslav Svoboda <multi.flexi@seznam.cz>, 2019-2021.
 # Vojtěch Vengrin <vojtechvengrin@email.cz>, 2022.
+# Patrik Sivek <patriksivek@gnome.org>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-09-13 06:42+0000\n"
-"PO-Revision-Date: 2026-09-14 13:32+0200\n"
-"Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
-"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"POT-Creation-Date: 2026-11-05 08:32+0000\n"
+"PO-Revision-Date: 2026-11-06 20:30+0100\n"
+"Last-Translator: Patrik Sivek <patriksivek@gnome.org>\n"
+"Language-Team: Czech\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Gtranslator 51.0\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -125,16 +126,24 @@ msgid "Scaling Quick Setting"
 msgstr "Rychlé nastavení škálování"
 
 #: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
-msgid "A quick setting for adjusting the display scaling."
-msgstr "Rychlé nastavení pro úpravu škálování obrazovky."
+msgid "Adjust display scaling"
+msgstr "Upravit škálování displeje"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:4
+msgid "SSH Quick Setting"
+msgstr "Rychlé nastavení SSH"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:6
+msgid "Start and stop the SSH server"
+msgstr "Spuštění/zastavení serveru SSH"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
 msgid "Syncthing Quick Setting"
 msgstr "Rychlé nastavení Syncthing"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
-msgid "A quick setting for Syncthing."
-msgstr "Rychlé nastavení Syncthing."
+msgid "Toggle and monitor Syncthing"
+msgstr "Zapnutí/vypnutí a sledování Syncthing"
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
@@ -343,45 +352,48 @@ msgid "No"
 msgstr "Ne"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
+#: src/lockscreen.c:423 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Zadejte heslo"
 
-#: src/lockscreen.c:1036
+#: src/lockscreen.c:1079
 msgid "Checking…"
 msgstr "Kontroluje se…"
 
-#: src/screenshot-manager.c:311
+#: src/screenshot-manager.c:307
 msgid "View"
 msgstr "Zobrazit"
 
-#: src/screenshot-manager.c:311
+#: src/screenshot-manager.c:307
 msgid "Open containing folder"
 msgstr "Otevřít umístění souboru"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:319
+#: src/screenshot-manager.c:315
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Snímek obrazovky byl uložen do „%s“"
 
-#: src/screenshot-manager.c:338
+#: src/screenshot-manager.c:334
 msgid "Failed to save screenshot"
 msgstr "Nezdařilo se uložit snímek obrazovky"
 
-#: src/screenshot-manager.c:342 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:338 src/ui/power-menu.ui:199
+#: plugins/screenshot-quick-setting/qs.ui:14
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:4
 msgid "Screenshot"
 msgstr "Snímek obrazovky"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:654
+#: src/screenshot-manager.c:650
 msgid "Screenshots"
 msgstr "Snímky obrazovky"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:674
+#: src/screenshot-manager.c:670
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Snímek obrazovky z %s%s.png"
@@ -638,11 +650,11 @@ msgstr "Odinstalovat"
 msgid "Hide Application"
 msgstr "Skrýt aplikaci"
 
-#: src/ui/app-grid-button.ui:58
+#: src/ui/app-grid-button.ui:59
 msgid "_Remove from Folder"
 msgstr "Odeb_rat ze složky"
 
-#: src/ui/app-grid-button.ui:65
+#: src/ui/app-grid-button.ui:64
 msgid "Manage Hidden Apps"
 msgstr "Spravovat skryté aplikace"
 
@@ -1369,6 +1381,95 @@ msgstr "Nastavení obrazovky"
 msgid "%d%%"
 msgstr "%d %%"
 
+#: plugins/screenshot-quick-setting/qs.ui:18
+msgid "Screenshot Settings"
+msgstr "Nastavení snímků obrazovky"
+
+#: plugins/screenshot-quick-setting/qs.ui:33
+msgid "Full screen"
+msgstr "Celá obrazovka"
+
+#: plugins/screenshot-quick-setting/qs.ui:42
+msgid "Area selection"
+msgstr "Výběr oblasti"
+
+#: plugins/screenshot-quick-setting/qs.ui:55
+msgid "Immediate"
+msgstr "Ihned"
+
+#: plugins/screenshot-quick-setting/qs.ui:63
+msgid "1 second"
+msgstr "1 sekunda"
+
+#: plugins/screenshot-quick-setting/qs.ui:71
+msgid "3 seconds"
+msgstr "3 sekundy"
+
+#: plugins/screenshot-quick-setting/qs.ui:79
+msgid "10 seconds"
+msgstr "10 sekund"
+
+#: plugins/screenshot-quick-setting/qs.ui:105
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:6
+msgid "Take a screenshot"
+msgstr "Pořídit snímek obrazovky"
+
+#. Translators: Label for taking a full-screen screenshot immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:204
+msgid "Screenshot now"
+msgstr "Ihned zachytit obrazovku"
+
+#. Translators: Label for taking a screenshot of a selected area immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:206
+msgid "Screenshot area now"
+msgstr "Ihned zachytit oblast"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:209
+msgid "Screenshot in 1s"
+msgstr "Zachytit obrazovku za 1 s"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:211
+msgid "Screenshot area in 1s"
+msgstr "Zachytit oblast za 1 s"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:214
+msgid "Screenshot in 3s"
+msgstr "Zachytit obrazovku za 3 s"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:216
+msgid "Screenshot area in 3s"
+msgstr "Zachytit oblast za 3 s"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:219
+msgid "Screenshot in 10s"
+msgstr "Zachytit obrazovku za 10 s"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:221
+msgid "Screenshot area in 10s"
+msgstr "Zachytit oblast za 10 s"
+
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+msgid "Screenshot area"
+msgstr "Snímek oblasti obrazovky"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:45
+msgid "SSH Unavailable"
+msgstr "SSH nedostupné"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH On"
+msgstr "Zapnuté SSH"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH Off"
+msgstr "Vypnuté SSH"
+
 #: plugins/syncthing-quick-setting/qs.ui:12
 #: plugins/syncthing-quick-setting/qs.ui:16
 msgid "Syncthing"
@@ -1410,6 +1511,9 @@ msgstr "Přístupový bod zapnut"
 #: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Přístupový bod vypnut"
+
+#~ msgid "A quick setting for Syncthing."
+#~ msgstr "Rychlé nastavení Syncthing."
 
 #, c-format
 #~ msgid "In %u day"
