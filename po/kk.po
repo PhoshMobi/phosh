@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-09-20 15:52+0000\n"
-"PO-Revision-Date: 2026-09-27 16:46+0500\n"
+"POT-Creation-Date: 2026-11-05 08:32+0000\n"
+"PO-Revision-Date: 2026-11-06 22:38+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <Kazakh>\n"
 "Language: kk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.10\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -128,16 +128,24 @@ msgid "Scaling Quick Setting"
 msgstr "Масштабтаудың жедел баптауы"
 
 #: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
-msgid "A quick setting for adjusting the display scaling."
-msgstr "Экран масштабын реттеуге арналған жедел баптау."
+msgid "Adjust display scaling"
+msgstr "Экранды масштабтауды реттеу"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:4
+msgid "SSH Quick Setting"
+msgstr "SSH жылдам баптауы"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:6
+msgid "Start and stop the SSH server"
+msgstr "SSH серверін бастау және тоқтату"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
 msgid "Syncthing Quick Setting"
 msgstr "Syncthing жедел баптауы"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
-msgid "A quick setting for Syncthing."
-msgstr "Syncthing бағдарламасына арналған жедел баптау."
+msgid "Toggle and monitor Syncthing"
+msgstr "Syncthing ауыстырып қосу және бақылау"
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
@@ -324,7 +332,8 @@ msgstr "Қосулы"
 #: src/location-manager.c:266
 #, c-format
 msgid "Allow '%s' to access your location information?"
-msgstr "'%s' қолданбасына орналасу ақпаратына қол жеткізуге рұқсат бересіз бе?"
+msgstr ""
+"'%s' қолданбасына орналасу ақпаратына қол жеткізуге рұқсат бересіз бе?"
 
 #: src/location-manager.c:271
 msgid "Geolocation"
@@ -339,45 +348,49 @@ msgid "No"
 msgstr "Жоқ"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
+#: src/lockscreen.c:423 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Пароль кодын енгізіңіз"
 
-#: src/lockscreen.c:1036
+#: src/lockscreen.c:1079
 msgid "Checking…"
 msgstr "Тексерілуде…"
 
-#: src/screenshot-manager.c:306
+#: src/screenshot-manager.c:307
 msgid "View"
 msgstr "Қарау"
 
-#: src/screenshot-manager.c:306
+#: src/screenshot-manager.c:307
 msgid "Open containing folder"
 msgstr "Орналасқан бумасын ашу"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:314
+#: src/screenshot-manager.c:315
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Скриншот '%s' ішіне сақталды"
 
-#: src/screenshot-manager.c:333
+#: src/screenshot-manager.c:334
 msgid "Failed to save screenshot"
 msgstr "Скриншотты сақтау сәтсіз аяқталды"
 
-#: src/screenshot-manager.c:337 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:338 src/ui/power-menu.ui:199
+#: plugins/screenshot-quick-setting/qs.ui:14
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:4
 msgid "Screenshot"
 msgstr "Скриншот"
 
-#. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:649
+#. Translators: name of the folder beneath ~/Pictures used to store
+#. screenshots
+#: src/screenshot-manager.c:650
 msgid "Screenshots"
 msgstr "Скриншоттар"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:669
+#: src/screenshot-manager.c:670
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "%s%s.png скриншоты"
@@ -399,7 +412,8 @@ msgstr "Кірістірілген дисплей"
 #: src/monitor-manager.c:147
 #, c-format
 msgctxt ""
-"This is a monitor vendor name, followed by a size in inches, like 'Dell 15\"'"
+"This is a monitor vendor name, followed by a size in inches, like 'Dell "
+"15\"'"
 msgid "%s %s"
 msgstr "%s %s"
 
@@ -852,7 +866,8 @@ msgstr "Wi-Fi қатынау нүктелері жоқ"
 msgid "Cellular"
 msgstr "Ұялы байланыс"
 
-#. Translators: Phosh prevents the session from going idle because the caffeine quick setting is toggled
+#. Translators: Phosh prevents the session from going idle because the
+#. caffeine quick setting is toggled
 #: plugins/caffeine-quick-setting/caffeine-quick-setting.c:79
 msgid "Phosh on caffeine"
 msgstr "Phosh кофеин режимінде"
@@ -1345,6 +1360,98 @@ msgstr "Дисплей баптаулары"
 msgid "%d%%"
 msgstr "%d%%"
 
+#: plugins/screenshot-quick-setting/qs.ui:18
+msgid "Screenshot Settings"
+msgstr "Скриншот баптаулары"
+
+#: plugins/screenshot-quick-setting/qs.ui:33
+msgid "Full screen"
+msgstr "Толық экран"
+
+#: plugins/screenshot-quick-setting/qs.ui:42
+msgid "Area selection"
+msgstr "Аймақты таңдау"
+
+#: plugins/screenshot-quick-setting/qs.ui:55
+msgid "Immediate"
+msgstr "Кідіріссіз"
+
+#: plugins/screenshot-quick-setting/qs.ui:63
+msgid "1 second"
+msgstr "1 секунд"
+
+#: plugins/screenshot-quick-setting/qs.ui:71
+msgid "3 seconds"
+msgstr "3 секунд"
+
+#: plugins/screenshot-quick-setting/qs.ui:79
+msgid "10 seconds"
+msgstr "10 секунд"
+
+#: plugins/screenshot-quick-setting/qs.ui:105
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:6
+msgid "Take a screenshot"
+msgstr "Скриншот түсіру"
+
+#. Translators: Label for taking a full-screen screenshot immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:204
+msgid "Screenshot now"
+msgstr "Қазір скриншот түсіру"
+
+#. Translators: Label for taking a screenshot of a selected area immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:206
+msgid "Screenshot area now"
+msgstr "Қазір аймақ скриншотын түсіру"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:209
+msgid "Screenshot in 1s"
+msgstr "1 сек кейін скриншот түсіру"
+
+#. Translators: Label for taking a screenshot of a selected area after a
+#. delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:211
+msgid "Screenshot area in 1s"
+msgstr "1 сек кейін аймақ скриншотын түсіру"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:214
+msgid "Screenshot in 3s"
+msgstr "3 сек кейін скриншот түсіру"
+
+#. Translators: Label for taking a screenshot of a selected area after a
+#. delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:216
+msgid "Screenshot area in 3s"
+msgstr "3 сек кейін аймақ скриншотын түсіру"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:219
+msgid "Screenshot in 10s"
+msgstr "10 сек кейін скриншот түсіру"
+
+#. Translators: Label for taking a screenshot of a selected area after a
+#. delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:221
+msgid "Screenshot area in 10s"
+msgstr "10 сек кейін аймақ скриншотын түсіру"
+
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+msgid "Screenshot area"
+msgstr "Аймақ скриншотын түсіру"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:45
+msgid "SSH Unavailable"
+msgstr "SSH қолжетімсіз"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH On"
+msgstr "SSH қосулы"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH Off"
+msgstr "SSH сөндірулі"
+
 #: plugins/syncthing-quick-setting/qs.ui:12
 #: plugins/syncthing-quick-setting/qs.ui:16
 msgid "Syncthing"
@@ -1386,3 +1493,6 @@ msgstr "Қатынау нүктесі қосулы"
 #: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Қатынау нүктесі сөндірулі"
+
+#~ msgid "A quick setting for Syncthing."
+#~ msgstr "Syncthing бағдарламасына арналған жедел баптау."
