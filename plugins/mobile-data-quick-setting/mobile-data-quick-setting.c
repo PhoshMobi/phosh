@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 The Phosh Developers
+ * Copyright (C) 2024-2026 Phosh.mobi e.V.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -132,4 +132,6 @@ phosh_mobile_data_quick_setting_init (PhoshMobileDataQuickSetting *self)
                     toggle_sensitive_cb,
                     self,
                     NULL);
+  /* Initial sync */
+  toggle_sensitive_cb (self);
 }
