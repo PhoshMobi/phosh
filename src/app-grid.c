@@ -14,6 +14,7 @@
 #include "app-grid-folder-button.h"
 #include "app-list-model.h"
 #include "favorite-list-model.h"
+#include "phosh-marshalers.h"
 #include "shell-priv.h"
 #include "util.h"
 
@@ -169,9 +170,9 @@ show_folder_page (PhoshAppGrid *self)
 
 
 static void
-app_launched_cb (GtkWidget *widget, GAppInfo *info, PhoshAppGrid *self)
+app_launched_cb (GtkWidget *widget, GAppInfo *info, gboolean launched, PhoshAppGrid *self)
 {
-  g_signal_emit (self, signals[APP_LAUNCHED], 0, info);
+  g_signal_emit (self, signals[APP_LAUNCHED], 0, info, launched);
 }
 
 
@@ -698,13 +699,24 @@ phosh_app_grid_class_init (PhoshAppGridClass *klass)
 
   g_object_class_install_properties (object_class, PROP_LAST_PROP, props);
 
+  /**
+   * PhoshAppGrid::app-launched:
+   * @app_info: The app-info of the launched application
+   * @launched: `TRUE` when the app was actually launched, `FALSE` when the app
+   *            was already running and just activated.
+   */
   signals[APP_LAUNCHED] =
     g_signal_new ("app-launched",
                   G_TYPE_FROM_CLASS (klass),
-                  G_SIGNAL_RUN_LAST, 0, NULL, NULL, NULL,
+                  G_SIGNAL_RUN_LAST, 0, NULL, NULL,
+                  _phosh_marshal_VOID__OBJECT_BOOLEAN,
                   G_TYPE_NONE,
-                  1,
-                  G_TYPE_APP_INFO);
+                  2,
+                  G_TYPE_APP_INFO,
+                  G_TYPE_BOOLEAN);
+  g_signal_set_va_marshaller (signals[APP_LAUNCHED],
+                              G_TYPE_FROM_CLASS (klass),
+                              _phosh_marshal_VOID__OBJECT_BOOLEANv);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/mobi/phosh/ui/app-grid.ui");
 

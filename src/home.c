@@ -60,37 +60,36 @@ static GParamSpec *props[PROP_LAST_PROP];
 
 
 struct _PhoshHome {
-  PhoshDragSurface parent;
+  PhoshDragSurface       parent;
 
-  PhoshOverview   *overview;
-  GtkWidget       *home_bar;
-  GtkWidget       *rev_powerbar;
-  GtkWidget       *powerbar;
-  GtkWidget       *evbox_home_bar;
+  PhoshOverview         *overview;
+  GtkWidget             *home_bar;
+  GtkWidget             *rev_powerbar;
+  GtkWidget             *powerbar;
+  GtkWidget             *evbox_home_bar;
 
   guint debounce_handle;
-  gboolean         focus_app_search;
+  gboolean               focus_app_search;
 
-  PhoshHomeState   state;
+  PhoshHomeState         state;
 
   /* Keybinding */
   GStrv action_names;
-  GSettings       *settings;
+  GSettings             *settings;
 
   /* osk button */
-  gboolean         osk_enabled;
+  gboolean               osk_enabled;
 
-  GtkGesture      *click_gesture; /* needed so that the gesture isn't destroyed immediately */
-  GtkGesture      *osk_toggle_long_press; /* to toggle osk from the home bar itself */
-  GSettings       *phosh_settings;
+  GtkGesture            *click_gesture; /* needed so that the gesture isn't destroyed immediately */
+  GtkGesture            *osk_toggle_long_press; /* to toggle osk from the home bar itself */
+  GSettings             *phosh_settings;
 
-  PhoshMonitor    *monitor;
-  PhoshBackground *background;
-  gboolean         use_background;
+  PhoshMonitor          *monitor;
+  PhoshBackground       *background;
+  gboolean               use_background;
 
   PhoshThumbnailOverlay *thumbnail_overlay;
-
-  gboolean         unfolding;
+  gboolean               launching;
 };
 G_DEFINE_TYPE (PhoshHome, phosh_home, PHOSH_TYPE_DRAG_SURFACE);
 
@@ -406,12 +405,30 @@ on_powerbar_pressed (PhoshHome *self)
 
 
 static void
-fold_cb (PhoshHome *self, PhoshOverview *overview)
+fold (PhoshHome *self)
 {
   g_return_if_fail (PHOSH_IS_HOME (self));
-  g_return_if_fail (PHOSH_IS_OVERVIEW (overview));
 
   phosh_home_set_state (self, PHOSH_HOME_STATE_FOLDED);
+}
+
+
+static void
+on_selection_aborted (PhoshHome *self)
+{
+  g_return_if_fail (PHOSH_IS_HOME (self));
+
+  fold (self);
+}
+
+
+static void
+on_activity_launched (PhoshHome *self, gboolean launched)
+{
+  g_return_if_fail (PHOSH_IS_HOME (self));
+
+  self->launching = launched;
+  fold (self);
 }
 
 
@@ -428,7 +445,7 @@ on_activity_raised (PhoshHome *self, PhoshActivity *activity, PhoshOverview *ove
   if (toplevel)
     update_thumbnail_overlay (self, toplevel);
 
-  fold_cb (self, overview);
+  fold (self);
 }
 
 
@@ -613,7 +630,6 @@ on_drag_state_changed (PhoshHome *self)
   switch (drag_state) {
   case PHOSH_DRAG_SURFACE_STATE_UNFOLDED:
     state = PHOSH_HOME_STATE_UNFOLDED;
-    self->unfolding = FALSE;
     kbd_interactivity = TRUE;
     if (self->focus_app_search) {
       phosh_overview_focus_app_search (self->overview);
@@ -625,27 +641,31 @@ on_drag_state_changed (PhoshHome *self)
     break;
   case PHOSH_DRAG_SURFACE_STATE_FOLDED:
     state = PHOSH_HOME_STATE_FOLDED;
-    self->unfolding = FALSE;
     phosh_home_set_background_alpha (self, 0.0);
     phosh_overview_set_active_activity_opacity (self->overview, 1.0);
     g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
+    self->launching = FALSE;
     break;
   case PHOSH_DRAG_SURFACE_STATE_ANIMATED:
   case PHOSH_DRAG_SURFACE_STATE_DRAGGED:
     state = PHOSH_HOME_STATE_TRANSITION;
     if (self->state == PHOSH_HOME_STATE_FOLDED) {
-      self->unfolding = FALSE;
       phosh_overview_refresh (self->overview);
       update_thumbnail_overlay_from_focused (self);
     } else if (self->state == PHOSH_HOME_STATE_UNFOLDED) {
-      self->unfolding = TRUE;
+      /* If it's an app launch rather than a focus change we skip the
+       * overlay to not fight with the launch splash */
+      if (drag_state == PHOSH_DRAG_SURFACE_STATE_ANIMATED && self->launching) {
+        g_debug ("App launching, skipping thumbnail overlay");
+      } else {
+        /* activity-raised might have already created the overlay */
+        if (!self->thumbnail_overlay)
+          update_thumbnail_overlay_from_focused (self);
 
-      /* activity-raised might have already created the overlay */
-      if (!self->thumbnail_overlay)
-        update_thumbnail_overlay_from_focused (self);
-
-      if (self->thumbnail_overlay)
-        phosh_thumbnail_overlay_set_progress (self->thumbnail_overlay, 1.0);
+        if (self->thumbnail_overlay)
+          phosh_thumbnail_overlay_set_progress (self->thumbnail_overlay, 1.0);
+      }
+      self->launching = FALSE;
     }
     break;
   default:
@@ -820,13 +840,14 @@ phosh_home_class_init (PhoshHomeClass *klass)
   gtk_widget_class_bind_template_child (widget_class, PhoshHome, overview);
   gtk_widget_class_bind_template_child (widget_class, PhoshHome, rev_powerbar);
   gtk_widget_class_bind_template_child (widget_class, PhoshHome, powerbar);
-  gtk_widget_class_bind_template_callback (widget_class, fold_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_activity_raised);
+  gtk_widget_class_bind_template_callback (widget_class, on_activity_launched);
   gtk_widget_class_bind_template_callback (widget_class, on_home_released);
   gtk_widget_class_bind_template_callback (widget_class, on_has_activities_changed);
   gtk_widget_class_bind_template_callback (widget_class, on_powerbar_pressed);
   gtk_widget_class_bind_template_callback (widget_class, on_powerbar_action_started);
   gtk_widget_class_bind_template_callback (widget_class, on_powerbar_action_ended);
+  gtk_widget_class_bind_template_callback (widget_class, on_selection_aborted);
   gtk_widget_class_bind_template_callback (widget_class, window_key_press_event_cb);
 
   gtk_widget_class_set_css_name (widget_class, "phosh-home");
