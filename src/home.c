@@ -60,36 +60,36 @@ static GParamSpec *props[PROP_LAST_PROP];
 
 
 struct _PhoshHome {
-  PhoshDragSurface parent;
+  PhoshDragSurface       parent;
 
-  PhoshOverview   *overview;
-  GtkWidget       *home_bar;
-  GtkWidget       *rev_powerbar;
-  GtkWidget       *powerbar;
-  GtkWidget       *evbox_home_bar;
+  PhoshOverview         *overview;
+  GtkWidget             *home_bar;
+  GtkWidget             *rev_powerbar;
+  GtkWidget             *powerbar;
+  GtkWidget             *evbox_home_bar;
 
   guint debounce_handle;
-  gboolean         focus_app_search;
+  gboolean               focus_app_search;
 
-  PhoshHomeState   state;
+  PhoshHomeState         state;
 
   /* Keybinding */
   GStrv action_names;
-  GSettings       *settings;
+  GSettings             *settings;
 
   /* osk button */
-  gboolean         osk_enabled;
+  gboolean               osk_enabled;
 
-  GtkGesture      *click_gesture; /* needed so that the gesture isn't destroyed immediately */
-  GtkGesture      *osk_toggle_long_press; /* to toggle osk from the home bar itself */
-  GSettings       *phosh_settings;
+  GtkGesture            *click_gesture; /* needed so that the gesture isn't destroyed immediately */
+  GtkGesture            *osk_toggle_long_press; /* to toggle osk from the home bar itself */
+  GSettings             *phosh_settings;
 
-  PhoshMonitor    *monitor;
-  PhoshBackground *background;
-  gboolean         use_background;
+  PhoshMonitor          *monitor;
+  PhoshBackground       *background;
+  gboolean               use_background;
 
   PhoshThumbnailOverlay *thumbnail_overlay;
-  gboolean         launching;
+  gboolean               launching;
 };
 G_DEFINE_TYPE (PhoshHome, phosh_home, PHOSH_TYPE_DRAG_SURFACE);
 
