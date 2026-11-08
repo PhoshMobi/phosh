@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-09-13 06:42+0000\n"
-"PO-Revision-Date: 2026-09-13 22:02+0200\n"
+"POT-Creation-Date: 2026-11-07 17:54+0000\n"
+"PO-Revision-Date: 2026-11-08 14:41+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.10\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -126,16 +126,24 @@ msgid "Scaling Quick Setting"
 msgstr "Snabbinställning för skalning"
 
 #: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
-msgid "A quick setting for adjusting the display scaling."
-msgstr "En snabbinställning för att justera skärmens skala."
+msgid "Adjust display scaling"
+msgstr "Justera skärmens skala"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:4
+msgid "SSH Quick Setting"
+msgstr "Snabbinställning för SSH"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:6
+msgid "Start and stop the SSH server"
+msgstr "Starta och stoppa SSH-servern"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
 msgid "Syncthing Quick Setting"
 msgstr "Snabbinställning för Syncthing"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
-msgid "A quick setting for Syncthing."
-msgstr "En snabbinställning för Syncthing."
+msgid "Toggle and monitor Syncthing"
+msgstr "Slå på/av och övervaka Syncthing"
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
@@ -163,44 +171,44 @@ msgstr "Snabbinställning för Wi-Fi-surfzon"
 msgid "Toggle Wi-Fi hotspot on/off"
 msgstr "Aktivera/inaktivera Wi-Fi-surfzon"
 
-#: src/app-grid-button.c:144
+#: src/app-grid-button.c:145
 msgid "Add to Folder"
 msgstr "Lägg till i mapp"
 
-#: src/app-grid-button.c:168
+#: src/app-grid-button.c:169
 msgid "Create new folder"
 msgstr "Skapa ny mapp"
 
-#: src/app-grid-button.c:399
+#: src/app-grid-button.c:414
 msgid "Can't uninstall application"
 msgstr "Kan inte avinstallera program"
 
-#: src/app-grid-button.c:475
+#: src/app-grid-button.c:491
 msgid "Undo"
 msgstr "Ångra"
 
-#: src/app-grid-button.c:476
+#: src/app-grid-button.c:492
 msgid "Application is now permanently hidden and disabled"
 msgstr "Programmet är nu permanent dolt och inaktiverat"
 
-#: src/app-grid-button.c:493
+#: src/app-grid-button.c:509
 msgid "Failed to hide application"
 msgstr "Misslyckades med att dölja program"
 
-#: src/app-grid-button.c:806 src/app-grid-button.c:860
+#: src/app-grid-button.c:822 src/app-grid-button.c:876
 msgid "Application"
 msgstr "Program"
 
-#: src/app-grid.c:159
+#: src/app-grid.c:160
 #, c-format
 msgid "%s folder is empty"
 msgstr "Mappen %s är tom"
 
-#: src/app-grid.c:265
+#: src/app-grid.c:266
 msgid "Show All Apps"
 msgstr "Visa alla appar"
 
-#: src/app-grid.c:268
+#: src/app-grid.c:269
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Visa endast mobilanpassade appar"
 
@@ -341,45 +349,48 @@ msgid "No"
 msgstr "Nej"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
+#: src/lockscreen.c:423 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Ange lösenord"
 
-#: src/lockscreen.c:1036
+#: src/lockscreen.c:1079
 msgid "Checking…"
 msgstr "Kontrollerar…"
 
-#: src/screenshot-manager.c:311
+#: src/screenshot-manager.c:307
 msgid "View"
 msgstr "Visa"
 
-#: src/screenshot-manager.c:311
+#: src/screenshot-manager.c:307
 msgid "Open containing folder"
 msgstr "Öppna innehållande mapp"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:319
+#: src/screenshot-manager.c:315
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Skärmbild sparad till ”%s”"
 
-#: src/screenshot-manager.c:338
+#: src/screenshot-manager.c:334
 msgid "Failed to save screenshot"
 msgstr "Misslyckades med att spara skärmbild"
 
-#: src/screenshot-manager.c:342 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:338 src/ui/power-menu.ui:199
+#: plugins/screenshot-quick-setting/qs.ui:14
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:4
 msgid "Screenshot"
 msgstr "Skärmbild"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:654
+#: src/screenshot-manager.c:650
 msgid "Screenshots"
 msgstr "Skärmbilder"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:674
+#: src/screenshot-manager.c:670
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Skärmbild från %s%s.png"
@@ -629,11 +640,11 @@ msgstr "Avinstallera"
 msgid "Hide Application"
 msgstr "Dölj program"
 
-#: src/ui/app-grid-button.ui:58
+#: src/ui/app-grid-button.ui:59
 msgid "_Remove from Folder"
 msgstr "_Ta bort från mapp"
 
-#: src/ui/app-grid-button.ui:65
+#: src/ui/app-grid-button.ui:64
 msgid "Manage Hidden Apps"
 msgstr "Hantera dolda appar"
 
@@ -1357,6 +1368,95 @@ msgstr "Visningsinställningar"
 msgid "%d%%"
 msgstr "%d%%"
 
+#: plugins/screenshot-quick-setting/qs.ui:18
+msgid "Screenshot Settings"
+msgstr "Skärmbildsinställningar"
+
+#: plugins/screenshot-quick-setting/qs.ui:33
+msgid "Full screen"
+msgstr "Helskärm"
+
+#: plugins/screenshot-quick-setting/qs.ui:42
+msgid "Area selection"
+msgstr "Områdesmarkering"
+
+#: plugins/screenshot-quick-setting/qs.ui:55
+msgid "Immediate"
+msgstr "Omedelbar"
+
+#: plugins/screenshot-quick-setting/qs.ui:63
+msgid "1 second"
+msgstr "1 sekund"
+
+#: plugins/screenshot-quick-setting/qs.ui:71
+msgid "3 seconds"
+msgstr "3 sekunder"
+
+#: plugins/screenshot-quick-setting/qs.ui:79
+msgid "10 seconds"
+msgstr "10 sekunder"
+
+#: plugins/screenshot-quick-setting/qs.ui:105
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:6
+msgid "Take a screenshot"
+msgstr "Ta en skärmbild"
+
+#. Translators: Label for taking a full-screen screenshot immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:204
+msgid "Screenshot now"
+msgstr "Ta en skärmbild nu"
+
+#. Translators: Label for taking a screenshot of a selected area immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:206
+msgid "Screenshot area now"
+msgstr "Ta en skärmbild på område nu"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:209
+msgid "Screenshot in 1s"
+msgstr "Ta en skärmbild om 1 sekund"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:211
+msgid "Screenshot area in 1s"
+msgstr "Ta en skärmbild på område om 1 sekund"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:214
+msgid "Screenshot in 3s"
+msgstr "Ta en skärmbild om 3 sekunder"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:216
+msgid "Screenshot area in 3s"
+msgstr "Ta en skärmbild på område om 3 sekunder"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:219
+msgid "Screenshot in 10s"
+msgstr "Ta en skärmbild om 10 sekunder"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:221
+msgid "Screenshot area in 10s"
+msgstr "Ta en skärmbild på område om 10 sekunder"
+
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+msgid "Screenshot area"
+msgstr "Ta en skärmbild på område"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:45
+msgid "SSH Unavailable"
+msgstr "SSH otillgängligt"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH On"
+msgstr "SSH på"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH Off"
+msgstr "SSH av"
+
 #: plugins/syncthing-quick-setting/qs.ui:12
 #: plugins/syncthing-quick-setting/qs.ui:16
 msgid "Syncthing"
@@ -1398,6 +1498,9 @@ msgstr "Surfzon på"
 #: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Surfzon av"
+
+#~ msgid "A quick setting for Syncthing."
+#~ msgstr "En snabbinställning för Syncthing."
 
 #~ msgid "Screenshot copied to clipboard"
 #~ msgstr "Skärmbild kopierad till urklipp"
