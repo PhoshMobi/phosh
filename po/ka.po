@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-11-02 13:03+0000\n"
-"PO-Revision-Date: 2026-11-03 03:47+0100\n"
+"POT-Creation-Date: 2026-11-07 17:54+0000\n"
+"PO-Revision-Date: 2026-11-08 03:20+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -128,6 +128,14 @@ msgstr "მასშტაბის სწრაფი დაყენება"
 msgid "Adjust display scaling"
 msgstr "ეკრანის მასშტაბის მორგება"
 
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:4
+msgid "SSH Quick Setting"
+msgstr "SSH-ის სწრაფი მორგება"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:6
+msgid "Start and stop the SSH server"
+msgstr "SSH სერვერის გაშვება და გაჩერება"
+
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
 msgid "Syncthing Quick Setting"
 msgstr "Syncthing-ის სწრაფი მორგება"
@@ -163,44 +171,44 @@ msgstr "Wi-Fi ჰოტსპოტის სწრაფი მორგებ�
 msgid "Toggle Wi-Fi hotspot on/off"
 msgstr "Wi-Fi ჰოტსპოტის ჩართვა/გამორთვა"
 
-#: src/app-grid-button.c:144
+#: src/app-grid-button.c:145
 msgid "Add to Folder"
 msgstr "დამატება საქაღალდეში"
 
-#: src/app-grid-button.c:168
+#: src/app-grid-button.c:169
 msgid "Create new folder"
 msgstr "ახალი საქაღალდის შექმნა"
 
-#: src/app-grid-button.c:399
+#: src/app-grid-button.c:414
 msgid "Can't uninstall application"
 msgstr "აპლიკაციის წაშლა შეუძლებელია"
 
-#: src/app-grid-button.c:475
+#: src/app-grid-button.c:491
 msgid "Undo"
 msgstr "დაბრუნება"
 
-#: src/app-grid-button.c:476
+#: src/app-grid-button.c:492
 msgid "Application is now permanently hidden and disabled"
 msgstr "აპლიკაცია ახლა სამუდამოდ დამალული და გათიშულია"
 
-#: src/app-grid-button.c:493
+#: src/app-grid-button.c:509
 msgid "Failed to hide application"
 msgstr "აპლიკაციის დამალვის შეცდომა"
 
-#: src/app-grid-button.c:806 src/app-grid-button.c:860
+#: src/app-grid-button.c:822 src/app-grid-button.c:876
 msgid "Application"
 msgstr "აპლიკაცია"
 
-#: src/app-grid.c:159
+#: src/app-grid.c:160
 #, c-format
 msgid "%s folder is empty"
 msgstr "%s საქაღალდე ცარიელია"
 
-#: src/app-grid.c:265
+#: src/app-grid.c:266
 msgid "Show All Apps"
 msgstr "ყველა აპლიკაციის ჩვენება"
 
-#: src/app-grid.c:268
+#: src/app-grid.c:269
 msgid "Show Only Mobile Friendly Apps"
 msgstr "მხოლოდ მობილურზე მორგებული აპლიკაციების ჩვენება"
 
@@ -1435,6 +1443,18 @@ msgstr "ეკრანის ანაბეჭდის არე 10 წამ
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
 msgid "Screenshot area"
 msgstr "ეკრანის ანაბეჭდის არე"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:45
+msgid "SSH Unavailable"
+msgstr "SSH ხელმისაწვდომი არაა"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH On"
+msgstr "SSH ჩართულია"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH Off"
+msgstr "SSH გამორთულია"
 
 #: plugins/syncthing-quick-setting/qs.ui:12
 #: plugins/syncthing-quick-setting/qs.ui:16
