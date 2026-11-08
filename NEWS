@@ -1,7 +1,6 @@
 phosh 0.59~rc1
 -----------------
 Released November 2026
-* New screenshot quick setting
 * Ease unlocking by getting PIN length from systemd-homed
 * Allow to set pin length via *phosh-pin-tool*
 * New quick settings:
