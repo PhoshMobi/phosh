@@ -15,6 +15,10 @@
 #define KEY_CAPTURE_DELAY               "capture-delay"
 #define KEY_CAPTURE_AREA_ENABLED        "capture-area-enabled"
 
+/* Wait for top-bar reveal animation to finish */
+/* TODO: get the animation duration from the shell object */
+#define TOP_BAR_REVEAL_DURATION_MS 400
+
 /**
  * PhoshScreenshotQuickSetting:
  *
@@ -140,6 +144,7 @@ on_shell_state_changed (PhoshScreenshotQuickSetting *self,
 {
   PhoshShellStateFlags state;
   gboolean settings_unfolded, was_unfolded;
+  guint delay;
 
   g_return_if_fail (PHOSH_IS_SCREENSHOT_QUICK_SETTING (self));
   g_return_if_fail (PHOSH_IS_SHELL (shell));
@@ -162,17 +167,13 @@ on_shell_state_changed (PhoshScreenshotQuickSetting *self,
     return;
   }
 
-  /* The settings panel finished folding, the screen is ready to capture */
+  /* Don't capture before the top bar reveal finishes */
   self->capture_pending = FALSE;
 
-  if (self->selected_delay > 0) {
-    self->capture_timeout_id = g_timeout_add_seconds_once (self->selected_delay,
-                                                           on_capture_timeout, self);
-    g_source_set_name_by_id (self->capture_timeout_id, "[phosh] screenshot capture delay");
-    update_capture_button (self);
-  } else {
-    start_capture (self);
-  }
+  delay = MAX (TOP_BAR_REVEAL_DURATION_MS, self->selected_delay * 1000U);
+  self->capture_timeout_id = g_timeout_add_once (delay, on_capture_timeout, self);
+  g_source_set_name_by_id (self->capture_timeout_id, "[phosh] screenshot capture delay");
+  update_capture_button (self);
 }
 
 
