@@ -1,28 +1,38 @@
-phosh 0.59~alpha1
+phosh 0.59~rc1
 -----------------
 Released November 2026
 * New screenshot quick setting
 * Ease unlocking by getting PIN length from systemd-homed
 * Allow to set pin length via *phosh-pin-tool*
+* New quick settings:
+  - Screenshot quick setting: Take screenshots without external tools
+  - SSH quick setting: Start & stop sshd
 * Move thumbnail overlay composition to phoc
 * Migrate gsettings schema to `mobi.phosh`
+* Enable location quick setting by default
 * Lots of internal cleanups and fixes
 * Issues fixed:
     * https://gitlab.gnome.org/World/Phosh/phoc/-/work_items/295
+    * https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1367
 * Contributors:
     * Cynosure
     * giorez
     * Guido Günther
     * Hugo Posnic
+    * Michel Lind
     * nikodunk
     * Sebastian Krzyszkowiak
 * UI translations:
+    * Anders Jonsson (sv)
     * Antonio Marin (ro)
+    * Baurzhan Muftakhidinov (kk)
     * Cheng-Chia Tseng (zh_TW)
     * Ekaterine Papava (ka)
     * Martin (sl)
+    * Patrik Sivek (cs)
     * Roy-Magne Mo (nn)
     * Yaron Shahrabani (he)
+    * Yuri Chornoivan (uk)
     * Yuri Chornoivan (uk)
     * Олеся Герасименко (ru)
 

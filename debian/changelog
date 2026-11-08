@@ -1,3 +1,73 @@
+phosh (0.59~rc1) experimental; urgency=medium
+
+  [ Michel Lind ]
+  * calendar-server: Fix build with libical 4.
+    Newer libical uses a `const` argument for the property getters, so they
+    no longer match get_time_from_property()'s callback type:
+        error: passing argument 4 of 'get_time_from_property' from incompatible pointer type [-Wincompatible-pointer-types]
+    Same fix as gnome-shell's calendar server, see b34766f39
+    ("calendar-server: Fix build failure with libical 4") by Xi Ruoyao.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1367
+
+  [ Guido Günther ]
+  * defaults: Enable location quick setting.
+    This makes it easier for people to figure out that this is available.
+  * utils: Add helpers to start & stop a systemd service
+  * ssh-quick-setting: Allow one to start/stop ssh.
+    Let's have a quick setting. We can later add some auto-stop logic too.
+    The icon is remote-terminal-symbolic.svg from
+    org.gnome.design.IconLibrary
+  * plugins/syncthing: Drop icon meson file.
+    Use a single one like for the other plugins
+  * plugins/load-meter: Drop icon meson file.
+    Use a single one like for the other plugins
+  * plugins/load-meter: Fix icon name.
+    This unbreaks showing the proper icon in mobile-settings
+  * packaging: Libphosh-dev needs libdconf-dev too
+    libdconf ends up in the `.pc` file so we need to pull it in when
+    building against the library.
+  * app-tracker: Indicate whether app was actually launched.
+    Allow callers to differentiate between an actual launch or the toplevel
+    only being raised to the top of the window stack.
+  * app-grid-button: Add info if it was an actual launch.
+    For the case where we activate an action on the application or where we
+    launch a settings app we pass `TRUE` as we have no info about the apps
+    state. We can fix that once we track app lifecycle more.
+  * app-grid: Bubble up `launched`
+    Pass in the new information from the app-grid-button
+  * overview: Bubble up `launched`
+  * home: Remove generic fold_cb()
+    We need specific activity handlers nowadays
+  * home: Drop folding detection.
+    It's unused.
+  * home: Avoid thumbnail-overlay when transition is compositor animated.
+    If the compositor animates the surfaces due to app launch we don't
+    want the thumbnail overlay for the active activity as that would
+    introduce flicker.
+
+  [ Martin ]
+  * Update Slovenian translation
+
+  [ Yuri Chornoivan ]
+  * Update Ukrainian translation
+
+  [ Antonio Marin ]
+  * Update Romanian translation
+
+  [ Baurzhan Muftakhidinov ]
+  * Update Kazakh translation
+
+  [ Patrik Sivek ]
+  * Update Czech translation
+
+  [ Ekaterine Papava ]
+  * Update Georgian translation
+
+  [ Anders Jonsson ]
+  * Update Swedish translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Sun, 08 Nov 2026 15:28:01 +0100
+
 phosh (0.59~alpha1) experimental; urgency=medium
 
   [ Guido Günther ]
