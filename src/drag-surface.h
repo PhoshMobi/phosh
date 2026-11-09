@@ -54,7 +54,7 @@ typedef enum _PhoshDragSurfaceDragMode {
 struct _PhoshDragSurfaceClass {
   PhoshLayerSurfaceClass parent_class;
 
-  void                   (*dragged) (PhoshDragSurface *self, int margin);
+  void                   (*dragged) (PhoshDragSurface *self, int margin, gboolean dragged);
 };
 
 void                  phosh_drag_surface_set_margin      (PhoshDragSurface        *self,

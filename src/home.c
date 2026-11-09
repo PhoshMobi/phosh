@@ -597,7 +597,7 @@ phosh_home_set_background_alpha (PhoshHome *self, double alpha)
 
 
 static void
-phosh_home_dragged (PhoshDragSurface *drag_surface, int margin)
+phosh_home_dragged (PhoshDragSurface *drag_surface, int margin, gboolean dragged)
 {
   PhoshHome *self = PHOSH_HOME (drag_surface);
   int width, height;
