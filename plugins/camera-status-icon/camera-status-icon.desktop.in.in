@@ -1,0 +1,8 @@
+[Plugin]
+# Translators: This is an internal id, no need to translate it
+Id=@name@
+Name=Camera Status Icon
+Types=status-icon;
+Comment=A status icon that is shown while a camera is in use.
+Plugin=@plugins_dir@/libphosh-plugin-@name@.so
+Icon=camera-web-symbolic

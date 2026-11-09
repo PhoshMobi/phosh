@@ -67,6 +67,10 @@ phosh-top-panel .phosh-topbar-date {
   border-radius: 99px;
 }
 
+.p-privacy-indicator {
+  color: #ff7800;
+}
+
 /*
  * Settings menu
  */

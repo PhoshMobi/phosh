@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <template class="PhoshCameraStatusIcon" parent="PhoshStatusIcon">
+    <property name="icon-name">camera-web-symbolic</property>
+    <property name="pixel-size">16</property>
+    <child internal-child="accessible">
+      <object class="AtkObject">
+        <!-- The a11y accessible name of a camera indicator icon -->
+        <property name="AtkObject::accessible-name" translatable="yes">Camera Indicator</property>
+      </object>
+    </child>
+    <style>
+      <class name="p-privacy-indicator"/>
+    </style>
+  </template>
+</interface>
