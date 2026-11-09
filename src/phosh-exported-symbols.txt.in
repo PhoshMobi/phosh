@@ -49,6 +49,11 @@
    phosh_mpris_manager_get_type;
    phosh_mpris_manager_get_known_players;
 
+   # Camera status icon plugin
+   phosh_shell_get_camera_manager;
+   phosh_camera_manager_get_type;
+   phosh_camera_manager_get_in_use;
+
    # Wi-Fi Hotspot plugin wants Wi-Fi Manager
    phosh_shell_get_wifi_manager;
    phosh_wifi_manager_get_type;

@@ -53,7 +53,7 @@ variables:
                     gcovr gcr-dev git glib-dev gmobile-dev gnome-bluetooth-dev gnome-desktop-dev
                     gsettings-desktop-schemas gtk+3.0-dev json-glib-dev libadwaita-dev libgudev-dev
                     libhandy1-dev libsecret-dev linux-pam-dev meson modemmanager-dev musl-dev networkmanager
-                    networkmanager-dev ninja polkit-elogind-dev pulseaudio-dev qrcodegen-dev ttf-dejavu
+                    networkmanager-dev ninja pipewire-dev polkit-elogind-dev pulseaudio-dev qrcodegen-dev ttf-dejavu
                     upower-dev vala wayland-dev wayland-protocols
   RUST_BINDINGS_BRANCH: main
   LIBPHOSH: libphosh-0.45
