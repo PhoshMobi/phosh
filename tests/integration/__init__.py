@@ -173,6 +173,12 @@ class Phosh:
     def check_for_stdout(self, stdout_msg):
         return stdout_msg in self.stdout
 
+    def wait_for_stdout(self, stdout_msg):
+        """Check if a message is already in the stdout buffer or wait for it"""
+        if stdout_msg in self.stdout:
+            return True
+        return self.wait_for_output(stdout_msg)
+
     def get_criticals(self):
         return [line for line in self.stderr.split("\n") if "-CRITICAL **" in line]
 

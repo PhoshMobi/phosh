@@ -197,10 +197,10 @@ class PhoshDBusTestCase(DBusTestCase):
         mm.AddSimpleModem()
 
         assert self.phosh.wait_for_output(" Modem is present\n")
-        assert self.phosh.check_for_stdout(" Enabling cell broadcast interface")
+        assert self.phosh.wait_for_stdout(" Enabling cell broadcast interface")
 
         # No data connection yet:
-        assert self.phosh.check_for_stdout(" WWAN data connection present: 0")
+        assert self.phosh.wait_for_stdout(" WWAN data connection present: 0")
         subprocess.check_output(["nmcli", "c", "add", "connection.type", "gsm"])
         # Data connection available:
         assert self.phosh.wait_for_output(" WWAN data connection present: 1")

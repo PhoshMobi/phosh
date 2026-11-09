@@ -34,6 +34,8 @@ test_env_common.set('NO_AT_BRIDGE', '1')
 test_env_common.set('GTK_A11Y', 'none')
 # Make sure gvfs doesn't linger around
 test_env_common.set('GIO_USE_VFS', 'local')
+# Make sure our dbus mocks are verbose
+test_env_common.set('PHOSH_DBUS_RUNNER_VERBOSE', '1')
 
 # For -Db_sanitize=address
 test_env_common.set(
