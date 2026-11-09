@@ -632,6 +632,7 @@ on_drag_state_changed (PhoshHome *self)
   PhoshHomeState state = self->state;
   PhoshDragSurfaceState drag_state;
   gboolean kbd_interactivity = FALSE;
+  gboolean skip_overlay = FALSE;
 
   drag_state = phosh_drag_surface_get_drag_state (PHOSH_DRAG_SURFACE (self));
 
@@ -655,26 +656,31 @@ on_drag_state_changed (PhoshHome *self)
     self->launching = FALSE;
     break;
   case PHOSH_DRAG_SURFACE_STATE_ANIMATED:
+    if (self->state == PHOSH_HOME_STATE_UNFOLDED) {
+      /* If it's an app launch rather than a focus change we skip the
+       * overlay to not fight with the launch splash */
+      if (self->launching) {
+        g_debug ("App launching, skipping thumbnail overlay");
+        skip_overlay = TRUE;
+      }
+    }
+    G_GNUC_FALLTHROUGH;
   case PHOSH_DRAG_SURFACE_STATE_DRAGGED:
     state = PHOSH_HOME_STATE_TRANSITION;
+    /* Refresh the overview once folded */
     if (self->state == PHOSH_HOME_STATE_FOLDED) {
       phosh_overview_refresh (self->overview);
       update_thumbnail_overlay_from_focused (self);
-    } else if (self->state == PHOSH_HOME_STATE_UNFOLDED) {
-      /* If it's an app launch rather than a focus change we skip the
-       * overlay to not fight with the launch splash */
-      if (drag_state == PHOSH_DRAG_SURFACE_STATE_ANIMATED && self->launching) {
-        g_debug ("App launching, skipping thumbnail overlay");
-      } else {
-        /* activity-raised might have already created the overlay */
-        if (!self->thumbnail_overlay)
-          update_thumbnail_overlay_from_focused (self);
-
-        if (self->thumbnail_overlay)
-          phosh_thumbnail_overlay_set_progress (self->thumbnail_overlay, 1.0);
-      }
-      self->launching = FALSE;
     }
+
+    if (self->state == PHOSH_HOME_STATE_UNFOLDED && !skip_overlay) {
+      /* activity-raised might have already created the overlay */
+      if (!self->thumbnail_overlay)
+        update_thumbnail_overlay_from_focused (self);
+
+      phosh_home_set_thumbnail_overlay_progress (self, 1.0);
+    }
+    self->launching = FALSE;
     break;
   default:
     g_return_if_reached ();
