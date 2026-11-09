@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-09-16 17:40+0000\n"
-"PO-Revision-Date: 2026-09-20 12:53+0330\n"
+"POT-Creation-Date: 2026-11-09 07:08+0000\n"
+"PO-Revision-Date: 2026-11-09 17:10+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
@@ -129,16 +129,24 @@ msgid "Scaling Quick Setting"
 msgstr "تنظیمات سریع مقیاس"
 
 #: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
-msgid "A quick setting for adjusting the display scaling."
-msgstr "تنظمیات سریع برای تنظیم مقیاس نمایشگر."
+msgid "Adjust display scaling"
+msgstr "تنظیم مقیاس نمایشگر"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:4
+msgid "SSH Quick Setting"
+msgstr "تنظیمات سریع SSH"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:6
+msgid "Start and stop the SSH server"
+msgstr "آغاز و پایان کارساز SSH"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
 msgid "Syncthing Quick Setting"
 msgstr "تنظیمات سریع سینک‌تینگ"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
-msgid "A quick setting for Syncthing."
-msgstr "تنظیمات سریع سینک‌تینگ."
+msgid "Toggle and monitor Syncthing"
+msgstr "تغییر وضعیت و پایش Syncthing"
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
@@ -165,44 +173,44 @@ msgstr "تنظیمات سریع نقطهٔ داغ وای‌فای"
 msgid "Toggle Wi-Fi hotspot on/off"
 msgstr "تغییر وضعیت نور نقطهٔ داغ وای‌فای"
 
-#: src/app-grid-button.c:144
+#: src/app-grid-button.c:145
 msgid "Add to Folder"
 msgstr "افزودن به شاخه"
 
-#: src/app-grid-button.c:168
+#: src/app-grid-button.c:169
 msgid "Create new folder"
 msgstr "ایجاد شاخهٔ جدید"
 
-#: src/app-grid-button.c:399
+#: src/app-grid-button.c:414
 msgid "Can't uninstall application"
 msgstr "نمی‌توان برنامه را حذف کرد"
 
-#: src/app-grid-button.c:475
+#: src/app-grid-button.c:491
 msgid "Undo"
 msgstr "برگردان"
 
-#: src/app-grid-button.c:476
+#: src/app-grid-button.c:492
 msgid "Application is now permanently hidden and disabled"
 msgstr "برنامه برای همیشه از کار افتاده و پنهان شد"
 
-#: src/app-grid-button.c:493
+#: src/app-grid-button.c:509
 msgid "Failed to hide application"
 msgstr "شکست در نهفتن برنامه"
 
-#: src/app-grid-button.c:806 src/app-grid-button.c:860
+#: src/app-grid-button.c:822 src/app-grid-button.c:876
 msgid "Application"
 msgstr "برنامه"
 
-#: src/app-grid.c:159
+#: src/app-grid.c:160
 #, c-format
 msgid "%s folder is empty"
 msgstr "شاخهٔ %s خالی است"
 
-#: src/app-grid.c:265
+#: src/app-grid.c:266
 msgid "Show All Apps"
 msgstr "نمایش تمامی کاره‌ها"
 
-#: src/app-grid.c:268
+#: src/app-grid.c:269
 msgid "Show Only Mobile Friendly Apps"
 msgstr "فقط نمایش کاره‌های سازگار با تلفن همراه"
 
@@ -342,45 +350,48 @@ msgid "No"
 msgstr "نه"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
+#: src/lockscreen.c:423 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "ورود رمز عبور"
 
-#: src/lockscreen.c:1036
+#: src/lockscreen.c:1079
 msgid "Checking…"
 msgstr "در حال بررسی…"
 
-#: src/screenshot-manager.c:306
+#: src/screenshot-manager.c:307
 msgid "View"
 msgstr "نما"
 
-#: src/screenshot-manager.c:306
+#: src/screenshot-manager.c:307
 msgid "Open containing folder"
 msgstr "گشودن شاخهٔ پرونده"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:314
+#: src/screenshot-manager.c:315
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "نماگرفت در %s ذخیره شد"
 
-#: src/screenshot-manager.c:333
+#: src/screenshot-manager.c:334
 msgid "Failed to save screenshot"
 msgstr "شکست در ذخیرهٔ نماگرفت"
 
-#: src/screenshot-manager.c:337 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:338 src/ui/power-menu.ui:199
+#: plugins/screenshot-quick-setting/qs.ui:14
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:4
 msgid "Screenshot"
 msgstr "نماگرفت"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:649
+#: src/screenshot-manager.c:650
 msgid "Screenshots"
 msgstr "نماگرفت‌ها"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:669
+#: src/screenshot-manager.c:670
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "نماگرفت از ‪%s%s.png"
@@ -1358,6 +1369,95 @@ msgstr "تنظیمات نمایشگر"
 msgid "%d%%"
 msgstr "%Id٪"
 
+#: plugins/screenshot-quick-setting/qs.ui:18
+msgid "Screenshot Settings"
+msgstr "تنظیمات نماگرفت"
+
+#: plugins/screenshot-quick-setting/qs.ui:33
+msgid "Full screen"
+msgstr "تمام صفحه"
+
+#: plugins/screenshot-quick-setting/qs.ui:42
+msgid "Area selection"
+msgstr "گزینش ناحیه"
+
+#: plugins/screenshot-quick-setting/qs.ui:55
+msgid "Immediate"
+msgstr "آنی"
+
+#: plugins/screenshot-quick-setting/qs.ui:63
+msgid "1 second"
+msgstr "۱ ثانیه"
+
+#: plugins/screenshot-quick-setting/qs.ui:71
+msgid "3 seconds"
+msgstr "۳ ثانیه"
+
+#: plugins/screenshot-quick-setting/qs.ui:79
+msgid "10 seconds"
+msgstr "۱۰ ثانیه"
+
+#: plugins/screenshot-quick-setting/qs.ui:105
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:6
+msgid "Take a screenshot"
+msgstr "گرفتن نمای صفحه"
+
+#. Translators: Label for taking a full-screen screenshot immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:205
+msgid "Screenshot now"
+msgstr "نماگرفت اکنون"
+
+#. Translators: Label for taking a screenshot of a selected area immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:207
+msgid "Screenshot area now"
+msgstr "نماگرفت ناحیه"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:210
+msgid "Screenshot in 1s"
+msgstr "نماگرفت در ۱ ثانیه"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:212
+msgid "Screenshot area in 1s"
+msgstr "نماگرفت ناحیه در ۱ ثانیه"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:215
+msgid "Screenshot in 3s"
+msgstr "نماگرفت در ۳ ثانیه"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:217
+msgid "Screenshot area in 3s"
+msgstr "نماگرفت ناحیه در ۳ ثانیه"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:220
+msgid "Screenshot in 10s"
+msgstr "نماگرفت در ۱۰ ثانیه"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:222
+msgid "Screenshot area in 10s"
+msgstr "نماگرفت ناحیه در ۱۰ ثانیه"
+
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
+msgid "Screenshot area"
+msgstr "نماگرفت ناحیه"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:45
+msgid "SSH Unavailable"
+msgstr "پوستهٔ امن در دسترس نیست"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH On"
+msgstr "پوستهٔ امن روشن"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH Off"
+msgstr "پوستهٔ امن خاموش"
+
 #: plugins/syncthing-quick-setting/qs.ui:12
 #: plugins/syncthing-quick-setting/qs.ui:16
 msgid "Syncthing"
@@ -1399,3 +1499,6 @@ msgstr "نقطهٔ داغ روشن"
 #: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "نقطهٔ داغ خاموش"
+
+#~ msgid "A quick setting for Syncthing."
+#~ msgstr "تنظیمات سریع سینک‌تینگ."
