@@ -18,9 +18,9 @@
 /**
  * PhoshDragSurface:
  *
- * A drgable layer surface
+ * A draggable layer surface
  *
- * A layer surface that can be dragged in ne direction via gestures.
+ * A layer surface that can be dragged in one direction via gestures.
  *
  * See #PhoshTopPanel for a usage example. Note that you need to
  * update folded/unfolded margins on the #PhoshLayerSurface's
