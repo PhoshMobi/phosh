@@ -3,6 +3,9 @@
 # Ignore fontconfig reported leaks. It's caches cause false positives.
 leak:libfontconfig.so.1
 
+# Pipewire modules leak and we don't have proper symbols on Debian atm
+leak:pw_context_load_module
+
 #
 # Glib
 #
