@@ -7,6 +7,7 @@ plugins/calendar/calendar.desktop.in.in
 plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in
 plugins/emergency-info/emergency-info.desktop.in.in
 plugins/launcher-box/launcher-box.desktop.in.in
+plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in
 plugins/location-quick-setting/location-quick-setting.desktop.in.in
 plugins/media-players/media-players.desktop.in.in
 plugins/mobile-data-quick-setting/mobile-data-quick-setting.desktop.in.in
