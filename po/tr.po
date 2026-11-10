@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-09-20 15:52+0000\n"
-"PO-Revision-Date: 2026-09-29 10:37+0300\n"
+"POT-Creation-Date: 2026-11-09 07:08+0000\n"
+"PO-Revision-Date: 2026-11-10 08:00+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -126,16 +126,24 @@ msgid "Scaling Quick Setting"
 msgstr "Ölçek Hızlı Ayarı"
 
 #: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
-msgid "A quick setting for adjusting the display scaling."
-msgstr "Ekran ölçeğini belirlemek için hızlı ayar."
+msgid "Adjust display scaling"
+msgstr "Ekran ölçeğini belirle"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:4
+msgid "SSH Quick Setting"
+msgstr "SSH Hızlı Ayarı"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:6
+msgid "Start and stop the SSH server"
+msgstr "SSH sunucusunu başlat ve durdur"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
 msgid "Syncthing Quick Setting"
 msgstr "Syncthing Hızlı Ayarı"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
-msgid "A quick setting for Syncthing."
-msgstr "Syncthing için hızlı ayar."
+msgid "Toggle and monitor Syncthing"
+msgstr "Syncthing’i aç/kapat ve gözle"
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
@@ -162,44 +170,44 @@ msgstr "Kablosuz Erişim Noktası Hızlı Ayarı"
 msgid "Toggle Wi-Fi hotspot on/off"
 msgstr "Kablosuz erişim noktasını aç/kapat"
 
-#: src/app-grid-button.c:144
+#: src/app-grid-button.c:145
 msgid "Add to Folder"
 msgstr "Klasöre Ekle"
 
-#: src/app-grid-button.c:168
+#: src/app-grid-button.c:169
 msgid "Create new folder"
 msgstr "Yeni klasör oluştur"
 
-#: src/app-grid-button.c:399
+#: src/app-grid-button.c:414
 msgid "Can't uninstall application"
 msgstr "Uygulama kaldırılamıyor"
 
-#: src/app-grid-button.c:475
+#: src/app-grid-button.c:491
 msgid "Undo"
 msgstr "Geri Al"
 
-#: src/app-grid-button.c:476
+#: src/app-grid-button.c:492
 msgid "Application is now permanently hidden and disabled"
 msgstr "Uygulama kalıcı olarak gizlendi ve devre dışı bırakıldı"
 
-#: src/app-grid-button.c:493
+#: src/app-grid-button.c:509
 msgid "Failed to hide application"
 msgstr "Uygulama gizlenemedi"
 
-#: src/app-grid-button.c:806 src/app-grid-button.c:860
+#: src/app-grid-button.c:822 src/app-grid-button.c:876
 msgid "Application"
 msgstr "Uygulama"
 
-#: src/app-grid.c:159
+#: src/app-grid.c:160
 #, c-format
 msgid "%s folder is empty"
 msgstr "%s klasörü boş"
 
-#: src/app-grid.c:265
+#: src/app-grid.c:266
 msgid "Show All Apps"
 msgstr "Tüm Uygulamaları Göster"
 
-#: src/app-grid.c:268
+#: src/app-grid.c:269
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Yalnızca Mobil Uyumluları Göster"
 
@@ -336,45 +344,48 @@ msgid "No"
 msgstr "Hayır"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
+#: src/lockscreen.c:423 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Parolayı Gir"
 
-#: src/lockscreen.c:1036
+#: src/lockscreen.c:1079
 msgid "Checking…"
 msgstr "Denetleniyor…"
 
-#: src/screenshot-manager.c:306
+#: src/screenshot-manager.c:307
 msgid "View"
 msgstr "Gör"
 
-#: src/screenshot-manager.c:306
+#: src/screenshot-manager.c:307
 msgid "Open containing folder"
 msgstr "İçeren klasörü aç"
 
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:314
+#: src/screenshot-manager.c:315
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Ekran görüntüsü '%s' olarak kaydedildi"
 
-#: src/screenshot-manager.c:333
+#: src/screenshot-manager.c:334
 msgid "Failed to save screenshot"
 msgstr "Ekran görüntüsü kaydedilemedi"
 
-#: src/screenshot-manager.c:337 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:338 src/ui/power-menu.ui:199
+#: plugins/screenshot-quick-setting/qs.ui:14
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:4
 msgid "Screenshot"
 msgstr "Ekran Görüntüsü"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:649
+#: src/screenshot-manager.c:650
 msgid "Screenshots"
 msgstr "Ekran Görüntüleri"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:669
+#: src/screenshot-manager.c:670
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Ekran görüntüsü %s%s.png"
@@ -1341,6 +1352,95 @@ msgstr "Ekran Ayarları"
 #, c-format
 msgid "%d%%"
 msgstr "%%%d"
+
+#: plugins/screenshot-quick-setting/qs.ui:18
+msgid "Screenshot Settings"
+msgstr "Ekran Görüntüsü Ayarları"
+
+#: plugins/screenshot-quick-setting/qs.ui:33
+msgid "Full screen"
+msgstr "Tüm ekran"
+
+#: plugins/screenshot-quick-setting/qs.ui:42
+msgid "Area selection"
+msgstr "Alan seçimi"
+
+#: plugins/screenshot-quick-setting/qs.ui:55
+msgid "Immediate"
+msgstr "Anlık"
+
+#: plugins/screenshot-quick-setting/qs.ui:63
+msgid "1 second"
+msgstr "1 saniye"
+
+#: plugins/screenshot-quick-setting/qs.ui:71
+msgid "3 seconds"
+msgstr "3 saniye"
+
+#: plugins/screenshot-quick-setting/qs.ui:79
+msgid "10 seconds"
+msgstr "10 saniye"
+
+#: plugins/screenshot-quick-setting/qs.ui:105
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:6
+msgid "Take a screenshot"
+msgstr "Ekran görüntüsü al"
+
+#. Translators: Label for taking a full-screen screenshot immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:205
+msgid "Screenshot now"
+msgstr "Şimdi ekran görüntüsü al"
+
+#. Translators: Label for taking a screenshot of a selected area immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:207
+msgid "Screenshot area now"
+msgstr "Şimdi alan ekran görüntüsü al"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:210
+msgid "Screenshot in 1s"
+msgstr "1 saniyede ekran görüntüsü al"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:212
+msgid "Screenshot area in 1s"
+msgstr "1 saniyede alan ekran görüntüsü al"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:215
+msgid "Screenshot in 3s"
+msgstr "3 saniyede ekran görüntüsü al"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:217
+msgid "Screenshot area in 3s"
+msgstr "3 saniyede alan ekran görüntüsü al"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:220
+msgid "Screenshot in 10s"
+msgstr "10 saniyede ekran görüntüsü al"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:222
+msgid "Screenshot area in 10s"
+msgstr "10 saniyede alan ekran görüntüsü al"
+
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
+msgid "Screenshot area"
+msgstr "Ekran görüntüsü alanı"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:45
+msgid "SSH Unavailable"
+msgstr "SSH Kullanılamaz"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH On"
+msgstr "SSH Açık"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH Off"
+msgstr "SSH Kapalı"
 
 #: plugins/syncthing-quick-setting/qs.ui:12
 #: plugins/syncthing-quick-setting/qs.ui:16
