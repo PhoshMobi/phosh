@@ -9,9 +9,6 @@
 #define G_LOG_DOMAIN "phosh-toplevel"
 
 #include "toplevel.h"
-#include "phosh-wayland.h"
-#include "shell-priv.h"
-#include "util.h"
 
 #include <gdk/gdkwayland.h>
 
