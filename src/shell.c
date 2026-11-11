@@ -40,6 +40,7 @@
 #include "connectivity-info.h"
 #include "connectivity-manager.h"
 #include "calls-manager.h"
+#include "camera-manager.h"
 #include "cell-broadcast-manager.h"
 #include "docked-info.h"
 #include "docked-manager.h"
@@ -205,6 +206,7 @@ typedef struct {
   PhoshBrightnessManager     *brightness_manager;
   PhoshDebugControl          *debug_control;
   PhoshUserManager           *user_manager;
+  PhoshCameraManager         *camera_manager;
 
   /* sensors */
   PhoshSensorProxyManager    *sensor_proxy_manager;
@@ -598,6 +600,7 @@ phosh_shell_dispose (GObject *object)
   g_clear_pointer (&priv->notification_banner, phosh_cp_widget_destroy);
 
   /* dispose managers in opposite order of declaration */
+  g_clear_object (&priv->camera_manager);
   g_clear_object (&priv->user_manager);
   g_clear_object (&priv->debug_control);
   g_clear_object (&priv->brightness_manager);
@@ -2236,6 +2239,29 @@ phosh_shell_get_mpris_manager (PhoshShell *self)
 
   g_return_val_if_fail (PHOSH_IS_MPRIS_MANAGER (priv->mpris_manager), NULL);
   return priv->mpris_manager;
+}
+
+/**
+ * phosh_shell_get_camera_manager:
+ * @self: The shell singleton
+ *
+ * Get the camera manager
+ *
+ * Returns: (transfer none): The camera manager
+ */
+PhoshCameraManager *
+phosh_shell_get_camera_manager (PhoshShell *self)
+{
+  PhoshShellPrivate *priv;
+
+  g_return_val_if_fail (PHOSH_IS_SHELL (self), NULL);
+  priv = phosh_shell_get_instance_private (self);
+
+  if (!priv->camera_manager)
+    priv->camera_manager = phosh_camera_manager_new ();
+
+  g_return_val_if_fail (PHOSH_IS_CAMERA_MANAGER (priv->camera_manager), NULL);
+  return priv->camera_manager;
 }
 
 /**

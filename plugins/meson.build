@@ -82,7 +82,11 @@ quick_setting_plugins = [
   'wifi-hotspot-quick-setting',
 ]
 
-status_icon_plugins = ['load-meter-status-icon', 'simple-custom-status-icon']
+status_icon_plugins = [
+  'camera-status-icon',
+  'load-meter-status-icon',
+  'simple-custom-status-icon',
+]
 
 plugin_schema_dirs = []
 foreach plugin : lockscreen_plugins + quick_setting_plugins

@@ -116,6 +116,7 @@ tests_unit = [
   'app-grid-folder-button',
   'app-list-model',
   'auto-brightness-bucket',
+  'camera-manager',
   'connectivity-info',
   'css',
   'fading-label',

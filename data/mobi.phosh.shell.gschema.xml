@@ -216,7 +216,7 @@
       </description>
     </key>
     <key name="status-icons" type="as">
-      <default>[]</default>
+      <default>['camera-status-icon']</default>
       <summary>List of enabled status-icon plugins</summary>
       <description>
         The list of currently enabled status-icon plugins.
