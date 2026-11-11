@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-11-09 07:08+0000\n"
-"PO-Revision-Date: 2026-11-09 17:10+0330\n"
+"POT-Creation-Date: 2026-11-11 14:18+0000\n"
+"PO-Revision-Date: 2026-11-12 02:39+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.10\n"
 "X-DL-Lang: fa\n"
 "X-DL-Module: phosh\n"
 "X-DL-Branch: main\n"
@@ -56,6 +56,14 @@ msgstr "تقویم"
 msgid "A simple calendar widget"
 msgstr "ابزارک تقویمی ساده"
 
+#: plugins/camera-status-icon/camera-status-icon.desktop.in.in:4
+msgid "Camera Status Icon"
+msgstr "نقشک وضعیت دوربین"
+
+#: plugins/camera-status-icon/camera-status-icon.desktop.in.in:6
+msgid "A status icon that is shown while a camera is in use."
+msgstr "نقشک وضعیتی که هنگام استفاده از دوربین نشان داده می‌شود."
+
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:4
 msgid "Dark Mode / Color Scheme Quick Setting"
 msgstr "تنظیمات سریع حالت تیره و طرحوارهٔ رنگی"
@@ -80,6 +88,14 @@ msgstr "جعبهٔ اجراگر"
 #: plugins/launcher-box/launcher-box.desktop.in.in:5
 msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
 msgstr "افزودن اجراگرها به صفحهٔ قفل. <b>این افزایه آزمایشی است.</b>"
+
+#: plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in:4
+msgid "Load Meter Status Icon"
+msgstr "نقشک وضعیت بارسنج"
+
+#: plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in:6
+msgid "A CPU load meter status icon."
+msgstr "نقشک وضعیت سنجندهٔ بار پردازنده."
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
 msgid "Location Quick Setting"
@@ -977,6 +993,11 @@ msgstr "۱ س"
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:214
 msgid "Choose Interval"
 msgstr "گزینش دوره"
+
+#. The a11y accessible name of a camera indicator icon
+#: plugins/camera-status-icon/si.ui:10
+msgid "Camera Indicator"
+msgstr "نشانگر دوربین"
 
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
 msgid "Default style"
