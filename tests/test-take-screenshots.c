@@ -328,16 +328,18 @@ screenshot_plugin_pref (PhoshScreenShotContext *ctx,
 {
   g_test_message ("Screenshotting '%s'", what);
   g_debug ("Waiting for prefs app…");
-  g_assert (wait_for_num_toplevels (ctx->loop, 1, 5000, NULL, NULL));
+  g_assert_true (wait_for_num_toplevels (ctx->loop, 1, 5000, NULL, NULL));
 
   g_debug ("Opening prefs…");
-  g_assert (wait_for_num_toplevels (ctx->loop, 2, 5000, send_kbd_shortcut_cb,
-                                    &(PhoshTestKbdShortcut){ ctx->keyboard, KEY_LEFTCTRL, key }));
+  g_assert_true (wait_for_num_toplevels (ctx->loop, 2, 5000, send_kbd_shortcut_cb,
+                                         &(PhoshTestKbdShortcut){ ctx->keyboard,
+                                           KEY_LEFTCTRL, key }));
   g_debug ("Closing prefs…");
   take_screenshot (what, num++, where);
 
-  g_assert (wait_for_num_toplevels (ctx->loop, 1, 5000, send_kbd_shortcut_cb,
-                                    &(PhoshTestKbdShortcut){ ctx->keyboard, 0, KEY_ESC }));
+  g_assert_true (wait_for_num_toplevels (ctx->loop, 1, 5000, send_kbd_shortcut_cb,
+                                         &(PhoshTestKbdShortcut){ ctx->keyboard,
+                                           0, KEY_ESC }));
 }
 
 
@@ -400,7 +402,7 @@ on_end_session_dialog_open_finish (GObject      *source_object,
   gboolean success;
   g_autoptr (GError) err = NULL;
 
-  g_assert (PHOSH_DBUS_IS_END_SESSION_DIALOG (source_object));
+  g_assert_true (PHOSH_DBUS_IS_END_SESSION_DIALOG (source_object));
 
   success = phosh_dbus_end_session_dialog_call_open_finish (
     PHOSH_DBUS_END_SESSION_DIALOG (source_object),
@@ -570,7 +572,7 @@ on_ask_question_finish (GObject      *source_object,
   g_autoptr (GVariant) details = NULL;
   guint response;
 
-  g_assert (PHOSH_DBUS_IS_MOUNT_OPERATION_HANDLER (source_object));
+  g_assert_true (PHOSH_DBUS_IS_MOUNT_OPERATION_HANDLER (source_object));
 
   success = phosh_dbus_mount_operation_handler_call_ask_question_finish (
     PHOSH_DBUS_MOUNT_OPERATION_HANDLER (source_object),

@@ -127,7 +127,7 @@ test_phosh_lockscreen_extra_page (Fixture *fixture, gconstpointer unused)
   /* wait for lockscreen carousel animation */
   wait_a_bit (loop, 2000);
 
-  g_assert (phosh_lockscreen_get_page (lockscreen) == PHOSH_LOCKSCREEN_PAGE_EXTRA);
+  g_assert_true (phosh_lockscreen_get_page (lockscreen) == PHOSH_LOCKSCREEN_PAGE_EXTRA);
 }
 
 

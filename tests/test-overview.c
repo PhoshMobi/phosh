@@ -14,7 +14,7 @@ static void
 test_phosh_overview_new(void)
 {
   GtkWidget *window = phosh_overview_new ();
-  g_assert (window);
+  g_assert_nonnull (window);
   gtk_widget_destroy (window);
 }
 

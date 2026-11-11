@@ -64,12 +64,12 @@ phoc_stdout_watch (GIOChannel      *source,
 
       socket_re = g_regex_new ("on wayland display '(wayland-[0-9]+)'",
                                0, 0, &err);
-      g_assert (socket_re);
+      g_assert_nonnull (socket_re);
       g_assert_no_error (err);
 
       if (g_regex_match (socket_re, line, 0, &socket_mi)) {
         watch->socket = g_match_info_fetch (socket_mi, 1);
-        g_assert (watch->socket);
+        g_assert_nonnull (watch->socket);
         g_test_message ("Found wayland socket %s", watch->socket);
         finished = TRUE;
         /* we're done */
@@ -149,14 +149,14 @@ phosh_test_get_monitor (PhoshTestCompositorState *state)
   gpointer wl_output;
 
   if (state->monitor == NULL) {
-    g_assert (PHOSH_IS_WAYLAND (wl));
+    g_assert_true (PHOSH_IS_WAYLAND (wl));
     outputs = phosh_wayland_get_wl_outputs (wl);
 
     g_hash_table_iter_init (&iter, outputs);
     g_hash_table_iter_next (&iter, NULL, &wl_output);
 
     state->monitor = phosh_monitor_new_from_wl_output (wl_output);
-    g_assert (PHOSH_IS_MONITOR (state->monitor));
+    g_assert_true (PHOSH_IS_MONITOR (state->monitor));
   }
 
   return state->monitor;
@@ -253,17 +253,17 @@ phosh_test_compositor_new (gboolean heads_stub)
 
   timeout_id = g_timeout_add_seconds_once (STARTUP_TIMEOUT, on_phoc_startup_timeout, NULL);
   g_main_loop_run (mainloop);
-  g_assert (g_source_remove (timeout_id));
+  g_assert_true (g_source_remove (timeout_id));
 
   /* I/O watch in main should have gotten the socket name */
-  g_assert (watch.socket);
+  g_assert_nonnull (watch.socket);
   wl_display_path = g_strdup_printf ("%s/%s", g_getenv ("XDG_RUNTIME_DIR"), watch.socket);
   g_test_message ("Using Wayland socket at: '%s'", wl_display_path);
   g_setenv ("WAYLAND_DISPLAY", wl_display_path, TRUE);
 
   /* Check if we can connect to the display */
   wl_display = wl_display_connect (wl_display_path);
-  g_assert (wl_display);
+  g_assert_nonnull (wl_display);
   wl_display_disconnect (wl_display);
 
   /* Set up wayland protocol */
@@ -274,7 +274,7 @@ phosh_test_compositor_new (gboolean heads_stub)
    */
   g_test_message ("Opening GDK wayland display at %s", wl_display_path);
   state->gdk_display = gdk_display_open (wl_display_path);
-  g_assert (state->gdk_display);
+  g_assert_nonnull (state->gdk_display);
 
   state->wl = phosh_wayland_get_default ();
   g_test_message ("Connected phosh-wayland to Wayland socket %s", wl_display_path);
@@ -295,7 +295,7 @@ phosh_test_compositor_new (gboolean heads_stub)
     struct sigaction old_act;
 
     sigaction (signal, NULL, &old_act);
-    g_assert (old_act.sa_handler == SIG_DFL);
+    g_assert_true (old_act.sa_handler == SIG_DFL);
 
     sigaction (signal, &act, NULL);
   }
