@@ -597,6 +597,17 @@ phosh_home_set_background_alpha (PhoshHome *self, double alpha)
 
 
 static void
+phosh_home_set_thumbnail_overlay_progress (PhoshHome *self, double progress)
+{
+  if (self->thumbnail_overlay == NULL)
+    return;
+
+  phosh_thumbnail_overlay_set_progress (self->thumbnail_overlay, progress);
+  phosh_overview_set_active_activity_opacity (self->overview, progress);
+}
+
+
+static void
 phosh_home_dragged (PhoshDragSurface *drag_surface, int margin, gboolean dragged)
 {
   PhoshHome *self = PHOSH_HOME (drag_surface);
@@ -608,10 +619,7 @@ phosh_home_dragged (PhoshDragSurface *drag_surface, int margin, gboolean dragged
   /* Avoid negative values when resizing the surface */
   progress = MAX (0, progress);
 
-  if (self->thumbnail_overlay) {
-    phosh_thumbnail_overlay_set_progress (self->thumbnail_overlay, progress);
-    phosh_overview_set_active_activity_opacity (self->overview, progress);
-  }
+  phosh_home_set_thumbnail_overlay_progress (self, progress);
 
   alpha = hdy_ease_out_cubic (progress);
   phosh_home_set_background_alpha (self, alpha);
