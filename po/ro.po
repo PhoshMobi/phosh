@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-11-05 08:32+0000\n"
-"PO-Revision-Date: 2026-11-05 22:37+0200\n"
+"POT-Creation-Date: 2026-11-11 14:18+0000\n"
+"PO-Revision-Date: 2026-11-12 23:16+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -60,6 +60,14 @@ msgstr "Calendar"
 msgid "A simple calendar widget"
 msgstr "Un calendar în miniatură"
 
+#: plugins/camera-status-icon/camera-status-icon.desktop.in.in:4
+msgid "Camera Status Icon"
+msgstr "Simbol pentru starea camerei"
+
+#: plugins/camera-status-icon/camera-status-icon.desktop.in.in:6
+msgid "A status icon that is shown while a camera is in use."
+msgstr "Un simbol de stare care se afișează când este folosită o cameră."
+
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:4
 msgid "Dark Mode / Color Scheme Quick Setting"
 msgstr "Opțiuni Aspect întunecos / Combinație de culori"
@@ -85,6 +93,14 @@ msgstr "Cutie lansator"
 msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
 msgstr ""
 "Adaugă lansatoare pe ecranul blocat. <b>Acest modul este experimental.</b>"
+
+#: plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in:4
+msgid "Load Meter Status Icon"
+msgstr "Simbol pentru utilizarea procesorului"
+
+#: plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in:6
+msgid "A CPU load meter status icon."
+msgstr "Un simbol de stare care indică utilizarea procesorului (CPU)."
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
 msgid "Location Quick Setting"
@@ -179,44 +195,44 @@ msgstr "Opțiuni Punct de acces Wi-Fi"
 msgid "Toggle Wi-Fi hotspot on/off"
 msgstr "Punct de acces Wi-Fi Pornit/Oprit"
 
-#: src/app-grid-button.c:144
+#: src/app-grid-button.c:145
 msgid "Add to Folder"
 msgstr "Adaugă în dosar"
 
-#: src/app-grid-button.c:168
+#: src/app-grid-button.c:169
 msgid "Create new folder"
 msgstr "Creează un dosar nou"
 
-#: src/app-grid-button.c:399
+#: src/app-grid-button.c:414
 msgid "Can't uninstall application"
 msgstr "Nu se poate dezinstala aplicația"
 
-#: src/app-grid-button.c:475
+#: src/app-grid-button.c:491
 msgid "Undo"
 msgstr "Anulează"
 
-#: src/app-grid-button.c:476
+#: src/app-grid-button.c:492
 msgid "Application is now permanently hidden and disabled"
 msgstr "Aplicația este acum ascunsă definitiv și dezactivată"
 
-#: src/app-grid-button.c:493
+#: src/app-grid-button.c:509
 msgid "Failed to hide application"
 msgstr "Nu s-a putut ascunde aplicația"
 
-#: src/app-grid-button.c:806 src/app-grid-button.c:860
+#: src/app-grid-button.c:822 src/app-grid-button.c:876
 msgid "Application"
 msgstr "Aplicație"
 
-#: src/app-grid.c:159
+#: src/app-grid.c:160
 #, c-format
 msgid "%s folder is empty"
 msgstr "Dosarul %s este gol"
 
-#: src/app-grid.c:265
+#: src/app-grid.c:266
 msgid "Show All Apps"
 msgstr "Arată toate aplicațiile"
 
-#: src/app-grid.c:268
+#: src/app-grid.c:269
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Arată numai aplicații pentru mobil"
 
@@ -387,7 +403,7 @@ msgstr "Nu s-a putut salva instantaneul de ecran"
 
 #: src/screenshot-manager.c:338 src/ui/power-menu.ui:199
 #: plugins/screenshot-quick-setting/qs.ui:14
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:4
 msgid "Screenshot"
 msgstr "Instantaneu de ecran"
@@ -994,6 +1010,11 @@ msgstr "1 h"
 msgid "Choose Interval"
 msgstr "Alege intervalul"
 
+#. The a11y accessible name of a camera indicator icon
+#: plugins/camera-status-icon/si.ui:10
+msgid "Camera Indicator"
+msgstr "Indicatorul camerei"
+
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
 msgid "Default style"
 msgstr "Aspect prestabilit"
@@ -1422,46 +1443,46 @@ msgid "Take a screenshot"
 msgstr "Instantaneu de ecran"
 
 #. Translators: Label for taking a full-screen screenshot immediately.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:204
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:205
 msgid "Screenshot now"
 msgstr "Instantaneu de ecran acum"
 
 #. Translators: Label for taking a screenshot of a selected area immediately.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:206
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:207
 msgid "Screenshot area now"
 msgstr "Instantaneu al zonei acum"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:209
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:210
 msgid "Screenshot in 1s"
 msgstr "Instantaneu în 1s"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:211
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:212
 msgid "Screenshot area in 1s"
 msgstr "Instantaneu al zonei în 1s"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:214
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:215
 msgid "Screenshot in 3s"
 msgstr "Instantaneu în 3s"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:216
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:217
 msgid "Screenshot area in 3s"
 msgstr "Instantaneu al zonei în 3s"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:219
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:220
 msgid "Screenshot in 10s"
 msgstr "Instantaneu în 10s"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:221
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:222
 msgid "Screenshot area in 10s"
 msgstr "Instantaneu al zonei în 10s"
 
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
 msgid "Screenshot area"
 msgstr "Instantaneu al zonei"
 
