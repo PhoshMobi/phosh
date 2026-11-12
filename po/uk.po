@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-11-05 08:32+0000\n"
-"PO-Revision-Date: 2026-11-05 18:41+0200\n"
+"POT-Creation-Date: 2026-11-11 14:18+0000\n"
+"PO-Revision-Date: 2026-11-12 20:56+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -53,6 +53,14 @@ msgstr "Календар"
 msgid "A simple calendar widget"
 msgstr "Простий віджет календаря"
 
+#: plugins/camera-status-icon/camera-status-icon.desktop.in.in:4
+msgid "Camera Status Icon"
+msgstr "Піктограма стану камери"
+
+#: plugins/camera-status-icon/camera-status-icon.desktop.in.in:6
+msgid "A status icon that is shown while a camera is in use."
+msgstr "Піктограма стану, яку буде показано, доки камеру використовують."
+
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:4
 msgid "Dark Mode / Color Scheme Quick Setting"
 msgstr "Швидке налаштовування темного режиму або схеми кольорів"
@@ -78,6 +86,14 @@ msgstr "Панель засобів запуску"
 msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
 msgstr ""
 "Додає кнопки запуску на екран блокування. <b>Цей додаток є тестовим.</b>"
+
+#: plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in:4
+msgid "Load Meter Status Icon"
+msgstr "Завантажити піктограму стану вимірювання"
+
+#: plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in:6
+msgid "A CPU load meter status icon."
+msgstr "Піктограма стану вимірювання навантаження на процесор."
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
 msgid "Location Quick Setting"
@@ -131,7 +147,6 @@ msgid "Adjust display scaling"
 msgstr "Скоригувати масштабування дисплея"
 
 #: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:4
-#| msgid "Scaling Quick Setting"
 msgid "SSH Quick Setting"
 msgstr "Швидке налаштовування SSH"
 
@@ -172,44 +187,44 @@ msgstr "Параметри точки доступу Wi-Fi"
 msgid "Toggle Wi-Fi hotspot on/off"
 msgstr "Увімкнути або вимкнути точку доступу Wi-Fi"
 
-#: src/app-grid-button.c:144
+#: src/app-grid-button.c:145
 msgid "Add to Folder"
 msgstr "Додати до теки"
 
-#: src/app-grid-button.c:168
+#: src/app-grid-button.c:169
 msgid "Create new folder"
 msgstr "Створити теку"
 
-#: src/app-grid-button.c:399
+#: src/app-grid-button.c:414
 msgid "Can't uninstall application"
 msgstr "Не вдалося вилучити програму"
 
-#: src/app-grid-button.c:475
+#: src/app-grid-button.c:491
 msgid "Undo"
 msgstr "Скасувати"
 
-#: src/app-grid-button.c:476
+#: src/app-grid-button.c:492
 msgid "Application is now permanently hidden and disabled"
 msgstr "Тепер програму остаточно приховано і вимкнено"
 
-#: src/app-grid-button.c:493
+#: src/app-grid-button.c:509
 msgid "Failed to hide application"
 msgstr "Не вдалося приховати програму"
 
-#: src/app-grid-button.c:806 src/app-grid-button.c:860
+#: src/app-grid-button.c:822 src/app-grid-button.c:876
 msgid "Application"
 msgstr "Програма"
 
-#: src/app-grid.c:159
+#: src/app-grid.c:160
 #, c-format
 msgid "%s folder is empty"
 msgstr "Тека %s порожня"
 
-#: src/app-grid.c:265
+#: src/app-grid.c:266
 msgid "Show All Apps"
 msgstr "Показати усі програми"
 
-#: src/app-grid.c:268
+#: src/app-grid.c:269
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Показати лише програми для мобільних"
 
@@ -380,7 +395,7 @@ msgstr "Не вдалося зберегти знімок екрана"
 
 #: src/screenshot-manager.c:338 src/ui/power-menu.ui:199
 #: plugins/screenshot-quick-setting/qs.ui:14
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:4
 msgid "Screenshot"
 msgstr "Знімок вікна"
@@ -987,6 +1002,11 @@ msgstr "1 год."
 msgid "Choose Interval"
 msgstr "Вибрати інтервал"
 
+#. The a11y accessible name of a camera indicator icon
+#: plugins/camera-status-icon/si.ui:10
+msgid "Camera Indicator"
+msgstr "Індикатор камери"
+
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
 msgid "Default style"
 msgstr "Типовий стиль"
@@ -1415,46 +1435,46 @@ msgid "Take a screenshot"
 msgstr "Створення знімка екрана"
 
 #. Translators: Label for taking a full-screen screenshot immediately.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:204
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:205
 msgid "Screenshot now"
 msgstr "Знімок вікна зараз"
 
 #. Translators: Label for taking a screenshot of a selected area immediately.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:206
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:207
 msgid "Screenshot area now"
 msgstr "Знімок ділянки екрана зараз"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:209
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:210
 msgid "Screenshot in 1s"
 msgstr "Знімок за 1 с"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:211
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:212
 msgid "Screenshot area in 1s"
 msgstr "Знімок ділянки екрана за 1 с"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:214
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:215
 msgid "Screenshot in 3s"
 msgstr "Знімок за 3 с"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:216
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:217
 msgid "Screenshot area in 3s"
 msgstr "Знімок ділянки екрана за 3 с"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:219
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:220
 msgid "Screenshot in 10s"
 msgstr "Знімок за 10 с"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:221
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:222
 msgid "Screenshot area in 10s"
 msgstr "Знімок ділянки екрана за 10 с"
 
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
 msgid "Screenshot area"
 msgstr "Знімок ділянки"
 
