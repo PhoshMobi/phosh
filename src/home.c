@@ -597,13 +597,21 @@ phosh_home_set_background_alpha (PhoshHome *self, double alpha)
 
 
 static void
-phosh_home_set_thumbnail_overlay_progress (PhoshHome *self, double progress)
+phosh_home_set_thumbnail_overlay_progress (PhoshHome *self, double progress, gboolean hide_focused)
 {
   if (self->thumbnail_overlay == NULL)
     return;
 
   phosh_thumbnail_overlay_set_progress (self->thumbnail_overlay, progress);
-  phosh_overview_set_active_activity_opacity (self->overview, progress);
+  phosh_overview_set_active_activity_opacity (self->overview, progress, hide_focused);
+}
+
+
+static void
+phosh_home_destroy_thumbnail_overlay (PhoshHome *self)
+{
+  phosh_overview_set_active_activity_opacity (self->overview, 1.0, FALSE);
+  g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
 }
 
 
@@ -619,7 +627,7 @@ phosh_home_dragged (PhoshDragSurface *drag_surface, int margin, gboolean dragged
   /* Avoid negative values when resizing the surface */
   progress = MAX (0, progress);
 
-  phosh_home_set_thumbnail_overlay_progress (self, progress);
+  phosh_home_set_thumbnail_overlay_progress (self, progress, TRUE);
 
   alpha = hdy_ease_out_cubic (progress);
   phosh_home_set_background_alpha (self, alpha);
@@ -646,13 +654,12 @@ on_drag_state_changed (PhoshHome *self)
     }
     phosh_home_set_background_alpha (self, 1.0);
     phosh_overview_reset (self->overview);
-    g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
+    phosh_home_destroy_thumbnail_overlay (self);
     break;
   case PHOSH_DRAG_SURFACE_STATE_FOLDED:
     state = PHOSH_HOME_STATE_FOLDED;
     phosh_home_set_background_alpha (self, 0.0);
-    phosh_overview_set_active_activity_opacity (self->overview, 1.0);
-    g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
+    phosh_home_destroy_thumbnail_overlay (self);
     self->launching = FALSE;
     break;
   case PHOSH_DRAG_SURFACE_STATE_ANIMATED:
@@ -678,7 +685,7 @@ on_drag_state_changed (PhoshHome *self)
       if (!self->thumbnail_overlay)
         update_thumbnail_overlay_from_focused (self);
 
-      phosh_home_set_thumbnail_overlay_progress (self, 1.0);
+      phosh_home_set_thumbnail_overlay_progress (self, 1.0, FALSE);
     }
     self->launching = FALSE;
     break;

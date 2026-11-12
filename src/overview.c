@@ -931,12 +931,15 @@ phosh_overview_get_app_grid (PhoshOverview *self)
  * phosh_overview_set_active_activity_opacity:
  * @self: The overview
  * @progress: The animations progress [0.0, 1.0]
+ * @hide_focused: Keep focused activity hidden
  *
  * Set the opacity of the active activity based on the animations progress. This
  * is used when `PhoshHome` drives the thumbnail overlay animation.
  */
 void
-phosh_overview_set_active_activity_opacity (PhoshOverview *self, double progress)
+phosh_overview_set_active_activity_opacity (PhoshOverview *self,
+                                            double         progress,
+                                            gboolean       hide_focused)
 {
   PhoshOverviewPrivate *priv;
   g_autoptr (GList) children = NULL;
@@ -949,7 +952,7 @@ phosh_overview_set_active_activity_opacity (PhoshOverview *self, double progress
   for (GList *l = children; l; l = l->next) {
     double item_opacity = progress;
 
-    if (priv->activity && l->data == GTK_WIDGET (priv->activity) && progress < 0.99)
+    if (priv->activity && l->data == GTK_WIDGET (priv->activity) && hide_focused)
       item_opacity = 0.0;
 
     gtk_widget_set_opacity (GTK_WIDGET (l->data), item_opacity);

@@ -27,7 +27,9 @@ void       phosh_overview_focus_app_search (PhoshOverview *self);
 gboolean   phosh_overview_has_running_activities (PhoshOverview *self);
 gboolean   phosh_overview_handle_search (PhoshOverview *self, GdkEvent *event);
 PhoshAppGrid *phosh_overview_get_app_grid (PhoshOverview *self);
-void         phosh_overview_set_active_activity_opacity (PhoshOverview *self, double progress);
+void         phosh_overview_set_active_activity_opacity (PhoshOverview *self,
+                                                         double         progress,
+                                                         gboolean       hide_focused);
 PhoshToplevel *phosh_overview_get_focused_toplevel (PhoshOverview *self);
 PhoshToplevel *phosh_overview_get_toplevel_from_activity (PhoshOverview *self,
                                                           PhoshActivity *activity);
