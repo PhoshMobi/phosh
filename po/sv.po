@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-11-07 17:54+0000\n"
-"PO-Revision-Date: 2026-11-08 14:41+0100\n"
+"POT-Creation-Date: 2026-11-11 14:18+0000\n"
+"PO-Revision-Date: 2026-11-11 21:01+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -51,6 +51,14 @@ msgstr "Kalender"
 msgid "A simple calendar widget"
 msgstr "En enkel kalenderkomponent"
 
+#: plugins/camera-status-icon/camera-status-icon.desktop.in.in:4
+msgid "Camera Status Icon"
+msgstr "Statusikon för kamera"
+
+#: plugins/camera-status-icon/camera-status-icon.desktop.in.in:6
+msgid "A status icon that is shown while a camera is in use."
+msgstr "En statusikon som visas under tiden en kamera används."
+
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:4
 msgid "Dark Mode / Color Scheme Quick Setting"
 msgstr "Snabbinställning för mörkt läge / färgschema"
@@ -77,6 +85,14 @@ msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
 msgstr ""
 "Lägger till programstartare på låsskärmen. <b>Denna insticksmodul är "
 "experimentell.</b>"
+
+#: plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in:4
+msgid "Load Meter Status Icon"
+msgstr "Statusikon för belastningsmätare"
+
+#: plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in:6
+msgid "A CPU load meter status icon."
+msgstr "En statusikon för processorbelastningsmätare."
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
 msgid "Location Quick Setting"
@@ -377,7 +393,7 @@ msgstr "Misslyckades med att spara skärmbild"
 
 #: src/screenshot-manager.c:338 src/ui/power-menu.ui:199
 #: plugins/screenshot-quick-setting/qs.ui:14
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:4
 msgid "Screenshot"
 msgstr "Skärmbild"
@@ -977,6 +993,11 @@ msgstr "1 h"
 msgid "Choose Interval"
 msgstr "Välj intervall"
 
+#. The a11y accessible name of a camera indicator icon
+#: plugins/camera-status-icon/si.ui:10
+msgid "Camera Indicator"
+msgstr "Kameraindikator"
+
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
 msgid "Default style"
 msgstr "Standardstil"
@@ -1402,46 +1423,46 @@ msgid "Take a screenshot"
 msgstr "Ta en skärmbild"
 
 #. Translators: Label for taking a full-screen screenshot immediately.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:204
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:205
 msgid "Screenshot now"
 msgstr "Ta en skärmbild nu"
 
 #. Translators: Label for taking a screenshot of a selected area immediately.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:206
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:207
 msgid "Screenshot area now"
 msgstr "Ta en skärmbild på område nu"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:209
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:210
 msgid "Screenshot in 1s"
 msgstr "Ta en skärmbild om 1 sekund"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:211
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:212
 msgid "Screenshot area in 1s"
 msgstr "Ta en skärmbild på område om 1 sekund"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:214
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:215
 msgid "Screenshot in 3s"
 msgstr "Ta en skärmbild om 3 sekunder"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:216
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:217
 msgid "Screenshot area in 3s"
 msgstr "Ta en skärmbild på område om 3 sekunder"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:219
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:220
 msgid "Screenshot in 10s"
 msgstr "Ta en skärmbild om 10 sekunder"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:221
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:222
 msgid "Screenshot area in 10s"
 msgstr "Ta en skärmbild på område om 10 sekunder"
 
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
 msgid "Screenshot area"
 msgstr "Ta en skärmbild på område"
 
