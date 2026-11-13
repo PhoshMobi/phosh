@@ -124,6 +124,15 @@ build:native-debian-forky:
     paths:
       - _build
 
+build:native-debian-forky:noassert:
+  stage: build
+  variables:
+    CFLAGS: -DG_DISABLE_ASSERT
+    BUILD_OPTS: --werror -Dsearchd=true
+  image: ${DEBIAN_IMAGE}
+  <<: *build_before_script
+  <<: *build_step
+
 build:lib-debian-forky:
   stage: build
   image: ${DEBIAN_IMAGE}

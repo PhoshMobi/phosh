@@ -12,7 +12,7 @@ static void
 test_phosh_activity_new(void)
 {
   PhoshActivity *activity = PHOSH_ACTIVITY (phosh_activity_new ("com.example.foo"));
-  g_assert (activity);
+  g_assert_nonnull (activity);
   g_assert_cmpstr (phosh_activity_get_app_id (activity), ==, "com.example.foo");
   gtk_widget_destroy (GTK_WIDGET (activity));
 }
