@@ -202,6 +202,7 @@ Depends:
  libmm-glib-dev,
  libnm-dev,
  libphosh-0.45-0 (= ${binary:Version}),
+ libpipewire-0.3-dev,
  libpolkit-agent-1-dev,
  libpulse-dev,
  libsecret-1-dev,
