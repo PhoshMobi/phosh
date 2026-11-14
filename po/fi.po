@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-08-30 18:27+0000\n"
-"PO-Revision-Date: 2026-09-08 20:24+0300\n"
+"POT-Creation-Date: 2026-11-13 10:34+0000\n"
+"PO-Revision-Date: 2026-11-14 15:36+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish\n"
 "Language: fi\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.10\n"
 
 #: data/mobi.phosh.Shell.desktop.in.in:3 data/wayland-sessions/phosh.desktop:3
 msgid "Phone Shell"
@@ -50,6 +50,14 @@ msgstr "Kalenteri"
 msgid "A simple calendar widget"
 msgstr "Yksinkertainen kalenterisovelma"
 
+#: plugins/camera-status-icon/camera-status-icon.desktop.in.in:4
+msgid "Camera Status Icon"
+msgstr "Kameran tilan kuvake"
+
+#: plugins/camera-status-icon/camera-status-icon.desktop.in.in:6
+msgid "A status icon that is shown while a camera is in use."
+msgstr "Tilakuvake, joka näytetään, kun kamera on käytössä."
+
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:4
 msgid "Dark Mode / Color Scheme Quick Setting"
 msgstr "Tumman tilan / väriteeman pika-asetus"
@@ -75,6 +83,14 @@ msgstr "Käynnistinlaatikko"
 msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
 msgstr ""
 "Lisää käynnistimiä lukitusnäytölle. <b>Tämä liitännäinen on kokeellinen.</b>"
+
+#: plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in:4
+msgid "Load Meter Status Icon"
+msgstr "Kuormamittarin tilakuvake"
+
+#: plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in:6
+msgid "A CPU load meter status icon."
+msgstr ""
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
 msgid "Location Quick Setting"
@@ -124,17 +140,24 @@ msgid "Scaling Quick Setting"
 msgstr "Skaalauksen pika-asetus"
 
 #: plugins/scaling-quick-setting/scaling-quick-setting.desktop.in.in:6
-msgid "A quick setting for adjusting the display scaling."
-msgstr "Pika-asetus näytön skaalauksen säätämiselle."
+msgid "Adjust display scaling"
+msgstr "Säädä näytön skaalausta"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:4
+msgid "SSH Quick Setting"
+msgstr "SSH-pika-asetukset"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.desktop.in.in:6
+msgid "Start and stop the SSH server"
+msgstr "Käynnistä ja pysäytä SSH-palvelin"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:4
-#| msgid "Location Quick Setting"
 msgid "Syncthing Quick Setting"
 msgstr "Syncthingin pika-asetus"
 
 #: plugins/syncthing-quick-setting/syncthing-quick-setting.desktop.in.in:6
-msgid "A quick setting for Syncthing."
-msgstr "Pika-asetus Syncthingille."
+msgid "Toggle and monitor Syncthing"
+msgstr ""
 
 #: plugins/ticket-box/ticket-box.desktop.in.in:3
 #: plugins/ticket-box/ticket-box.ui:17
@@ -163,44 +186,44 @@ msgstr "Wi-Fi-yhteyspisteen pika-asetus"
 msgid "Toggle Wi-Fi hotspot on/off"
 msgstr "Wi-Fi-yhteyspiste päällä/pois"
 
-#: src/app-grid-button.c:144
+#: src/app-grid-button.c:145
 msgid "Add to Folder"
 msgstr "Lisää kansioon"
 
-#: src/app-grid-button.c:168
+#: src/app-grid-button.c:169
 msgid "Create new folder"
 msgstr "Luo uusi kansio"
 
-#: src/app-grid-button.c:399
+#: src/app-grid-button.c:414
 msgid "Can't uninstall application"
 msgstr "Sovellusta ei voi poistaa"
 
-#: src/app-grid-button.c:475
+#: src/app-grid-button.c:491
 msgid "Undo"
 msgstr "Kumoa"
 
-#: src/app-grid-button.c:476
+#: src/app-grid-button.c:492
 msgid "Application is now permanently hidden and disabled"
 msgstr "Sovellus on nyt pysyvästi piilotettu ja poistettu käytöstä"
 
-#: src/app-grid-button.c:493
+#: src/app-grid-button.c:509
 msgid "Failed to hide application"
 msgstr "Sovelluksen piilottaminen epäonnistui"
 
-#: src/app-grid-button.c:806 src/app-grid-button.c:860
+#: src/app-grid-button.c:822 src/app-grid-button.c:876
 msgid "Application"
 msgstr "Sovellus"
 
-#: src/app-grid.c:159
+#: src/app-grid.c:160
 #, c-format
 msgid "%s folder is empty"
 msgstr ""
 
-#: src/app-grid.c:265
+#: src/app-grid.c:266
 msgid "Show All Apps"
 msgstr "Näytä kaikki sovellukset"
 
-#: src/app-grid.c:268
+#: src/app-grid.c:269
 msgid "Show Only Mobile Friendly Apps"
 msgstr "Näytä vain mobiilille suunnatut sovellukset"
 
@@ -342,37 +365,48 @@ msgid "No"
 msgstr "Ei"
 
 #. give visual feedback on error
-#: src/lockscreen.c:396 src/ui/lockscreen.ui:279
+#: src/lockscreen.c:423 src/ui/lockscreen.ui:279
 msgid "Enter Passcode"
 msgstr "Syötä salasana"
 
-#: src/lockscreen.c:1036
+#: src/lockscreen.c:1079
 msgid "Checking…"
 msgstr "Tarkistetaan…"
 
+#: src/screenshot-manager.c:307
+msgid "View"
+msgstr "Näytä"
+
+#: src/screenshot-manager.c:307
+msgid "Open containing folder"
+msgstr "Avaa sisältävä kansio"
+
 #. Translators: '%s' is the filename of a screenshot
-#: src/screenshot-manager.c:268
+#: src/screenshot-manager.c:315
 #, c-format
 msgid "Screenshot saved to '%s'"
 msgstr "Kuvakaappaus tallennettu tiedostoon '%s'"
 
-#: src/screenshot-manager.c:270
+#: src/screenshot-manager.c:334
 msgid "Failed to save screenshot"
 msgstr "Kuvakaappauksen tallentaminen epäonnistui"
 
-#: src/screenshot-manager.c:274 src/ui/power-menu.ui:199
+#: src/screenshot-manager.c:338 src/ui/power-menu.ui:199
+#: plugins/screenshot-quick-setting/qs.ui:14
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:4
 msgid "Screenshot"
 msgstr "Kuvakaappaus"
 
 #. Translators: name of the folder beneath ~/Pictures used to store screenshots
-#: src/screenshot-manager.c:596
+#: src/screenshot-manager.c:650
 msgid "Screenshots"
 msgstr "Kuvakaappaukset"
 
 #. Translators: Name of a screenshot file. The first '%s' is a timestamp
 #. * like "2017-05-21 12-24-03" the 2nd '%s' is a possible suffix in case
 #. * the file already exists like '-3'
-#: src/screenshot-manager.c:616
+#: src/screenshot-manager.c:670
 #, c-format
 msgid "Screenshot from %s%s.png"
 msgstr "Kuvakaappaus %s%s.png"
@@ -622,11 +656,11 @@ msgstr "Poista asennus"
 msgid "Hide Application"
 msgstr "Piilota sovellus"
 
-#: src/ui/app-grid-button.ui:58
+#: src/ui/app-grid-button.ui:59
 msgid "_Remove from Folder"
 msgstr "_Poista kansiosta"
 
-#: src/ui/app-grid-button.ui:65
+#: src/ui/app-grid-button.ui:64
 msgid "Manage Hidden Apps"
 msgstr "Hallitse piilotettuja sovelluksia"
 
@@ -958,6 +992,11 @@ msgstr "1 h"
 #: plugins/caffeine-quick-setting/prefs/prefs.ui:214
 msgid "Choose Interval"
 msgstr "Valitse aikaväli"
+
+#. The a11y accessible name of a camera indicator icon
+#: plugins/camera-status-icon/si.ui:10
+msgid "Camera Indicator"
+msgstr "Kameran ilmaisin"
 
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
 msgid "Default style"
@@ -1350,6 +1389,95 @@ msgstr "Näytön asetukset"
 msgid "%d%%"
 msgstr "%d%%"
 
+#: plugins/screenshot-quick-setting/qs.ui:18
+msgid "Screenshot Settings"
+msgstr "Kuvakaappauksen asetukset"
+
+#: plugins/screenshot-quick-setting/qs.ui:33
+msgid "Full screen"
+msgstr "Koko näyttö"
+
+#: plugins/screenshot-quick-setting/qs.ui:42
+msgid "Area selection"
+msgstr "Aluevalinta"
+
+#: plugins/screenshot-quick-setting/qs.ui:55
+msgid "Immediate"
+msgstr "Välittömästi"
+
+#: plugins/screenshot-quick-setting/qs.ui:63
+msgid "1 second"
+msgstr "1 sekunti"
+
+#: plugins/screenshot-quick-setting/qs.ui:71
+msgid "3 seconds"
+msgstr "3 sekuntia"
+
+#: plugins/screenshot-quick-setting/qs.ui:79
+msgid "10 seconds"
+msgstr "10 sekuntia"
+
+#: plugins/screenshot-quick-setting/qs.ui:105
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:6
+msgid "Take a screenshot"
+msgstr "Ota kuvakaappaus"
+
+#. Translators: Label for taking a full-screen screenshot immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:205
+msgid "Screenshot now"
+msgstr "Kuvakaappaus nyt"
+
+#. Translators: Label for taking a screenshot of a selected area immediately.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:207
+msgid "Screenshot area now"
+msgstr "Kuvakaappaus alueesta nyt"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:210
+msgid "Screenshot in 1s"
+msgstr "Kuvakaappaus sekunnin kuluttua"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:212
+msgid "Screenshot area in 1s"
+msgstr "Kuvakaappaus alueesta sekunnin kuluttua"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:215
+msgid "Screenshot in 3s"
+msgstr "Kuvakaappaus 3 sekunnin kuluttua"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:217
+msgid "Screenshot area in 3s"
+msgstr "Kuvakaappaus alueesta 3 sekunnin kuluttua"
+
+#. Translators: Label for taking a full-screen screenshot after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:220
+msgid "Screenshot in 10s"
+msgstr "Kuvakaappaus 10 sekunnin kuluttua"
+
+#. Translators: Label for taking a screenshot of a selected area after a delay.
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:222
+msgid "Screenshot area in 10s"
+msgstr "Kuvakaappaus alueesta 10 sekunnin kuluttua"
+
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
+msgid "Screenshot area"
+msgstr "Kuvakaappaus alueesta"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:45
+msgid "SSH Unavailable"
+msgstr "SSH ei saatavilla"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH On"
+msgstr "SSH päällä"
+
+#: plugins/ssh-quick-setting/ssh-quick-setting.c:49
+msgid "SSH Off"
+msgstr "SSH ei päällä"
+
 #: plugins/syncthing-quick-setting/qs.ui:12
 #: plugins/syncthing-quick-setting/qs.ui:16
 msgid "Syncthing"
@@ -1360,7 +1488,6 @@ msgid "No folders"
 msgstr "Ei kansioita"
 
 #: plugins/syncthing-quick-setting/qs.ui:46
-#| msgid "Location Disabled"
 msgid "Syncthing is disabled"
 msgstr "Syncthing on pois käytöstä"
 
@@ -1392,6 +1519,9 @@ msgstr "Yhteyspiste päällä"
 #: plugins/wifi-hotspot-quick-setting/wifi-hotspot-quick-setting.c:82
 msgid "Hotspot Off"
 msgstr "Yhteyspiste pois"
+
+#~ msgid "A quick setting for Syncthing."
+#~ msgstr "Pika-asetus Syncthingille."
 
 #, c-format
 #~ msgid "In %u day"
