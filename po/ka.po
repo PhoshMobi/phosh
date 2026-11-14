@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: phosh\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/Phosh/phosh/issues\n"
-"POT-Creation-Date: 2026-11-07 17:54+0000\n"
-"PO-Revision-Date: 2026-11-08 03:20+0100\n"
+"POT-Creation-Date: 2026-11-13 10:34+0000\n"
+"PO-Revision-Date: 2026-11-14 07:22+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -51,6 +51,14 @@ msgstr "კალენდარი"
 msgid "A simple calendar widget"
 msgstr "მარტივი კალენდრის ვიჯეტი"
 
+#: plugins/camera-status-icon/camera-status-icon.desktop.in.in:4
+msgid "Camera Status Icon"
+msgstr "კამერის სტატუსის ხატულა"
+
+#: plugins/camera-status-icon/camera-status-icon.desktop.in.in:6
+msgid "A status icon that is shown while a camera is in use."
+msgstr "სტატუსის ხატულა, რომელიც ნაჩვენებია კამერის გამოყენებისას."
+
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.desktop.in.in:4
 msgid "Dark Mode / Color Scheme Quick Setting"
 msgstr "ბნელი რეჟიმის / ფერების სქემის სწრაფი მორგება"
@@ -76,6 +84,14 @@ msgstr "გამშვების ფანჯარა"
 msgid "Add launchers to the lock screen. <b>This plugin is experimental.</b>"
 msgstr ""
 "გამშვებების დამატება დაბლოკილ ეკრანზე <b>ეს დამატება ექსპერიმენტულია.</b>"
+
+#: plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in:4
+msgid "Load Meter Status Icon"
+msgstr "ჩატვირთვის გაზომვის სტატუსის ხატულა"
+
+#: plugins/load-meter-status-icon/load-meter-status-icon.desktop.in.in:6
+msgid "A CPU load meter status icon."
+msgstr "CPU დატვირთვის გაზომვის სტატუსის ხატულა."
 
 #: plugins/location-quick-setting/location-quick-setting.desktop.in.in:4
 msgid "Location Quick Setting"
@@ -376,7 +392,7 @@ msgstr "ეკრანის ანაბეჭდის შენახვა 
 
 #: src/screenshot-manager.c:338 src/ui/power-menu.ui:199
 #: plugins/screenshot-quick-setting/qs.ui:14
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
 #: plugins/screenshot-quick-setting/screenshot-quick-setting.desktop.in.in:4
 msgid "Screenshot"
 msgstr "ეკრანის ანაბეჭდი"
@@ -976,6 +992,11 @@ msgstr "1 სთ"
 msgid "Choose Interval"
 msgstr "აირჩიეთ ინტერვალი"
 
+#. The a11y accessible name of a camera indicator icon
+#: plugins/camera-status-icon/si.ui:10
+msgid "Camera Indicator"
+msgstr "კამერის მაჩვენებელი"
+
 #: plugins/dark-mode-quick-setting/dark-mode-quick-setting.c:34
 msgid "Default style"
 msgstr "ნაგულისხმევი სტილი"
@@ -1401,46 +1422,46 @@ msgid "Take a screenshot"
 msgstr "ეკრანის ანაბეჭდის გადაღება"
 
 #. Translators: Label for taking a full-screen screenshot immediately.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:204
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:205
 msgid "Screenshot now"
 msgstr "ეკრანის ანაბეჭდი ახლავე"
 
 #. Translators: Label for taking a screenshot of a selected area immediately.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:206
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:207
 msgid "Screenshot area now"
 msgstr "ეკრანის ანაბეჭდის არე ახლავე"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:209
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:210
 msgid "Screenshot in 1s"
 msgstr "ეკრანის ანაბეჭდი 1 წამში"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:211
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:212
 msgid "Screenshot area in 1s"
 msgstr "ეკრანის ანაბეჭდის არე 1 წამში"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:214
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:215
 msgid "Screenshot in 3s"
 msgstr "ეკრანის ანაბეჭდი 3 წამში"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:216
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:217
 msgid "Screenshot area in 3s"
 msgstr "ეკრანის ანაბეჭდის არე 3 წამში"
 
 #. Translators: Label for taking a full-screen screenshot after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:219
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:220
 msgid "Screenshot in 10s"
 msgstr "ეკრანის ანაბეჭდი 10 წამში"
 
 #. Translators: Label for taking a screenshot of a selected area after a delay.
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:221
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:222
 msgid "Screenshot area in 10s"
 msgstr "ეკრანის ანაბეჭდის არე 10 წამში"
 
-#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:229
+#: plugins/screenshot-quick-setting/screenshot-quick-setting.c:230
 msgid "Screenshot area"
 msgstr "ეკრანის ანაბეჭდის არე"
 
