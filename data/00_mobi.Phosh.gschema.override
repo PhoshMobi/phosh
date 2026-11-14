@@ -29,8 +29,8 @@ power-button-action='nothing'
 unlock-sim=true
 
 [mobi.phosh.shell:Phosh]
-# bazaar: https://github.com/kolunmi/bazaar/pull/1243
-force-adaptive=['firefox-esr.desktop', 'io.github.kolunmi.Bazaar.desktop']
+# endeavour: https://gitlab.gnome.org/World/Endeavour/-/merge_requests/179
+force-adaptive=['firefox-esr.desktop', 'org.gnome.Todo.desktop']
 
 [mobi.phosh.shell.plugins:Phosh]
 quick-settings=['wifi-hotspot-quick-setting', 'mobile-data-quick-setting', 'location-quick-setting']
