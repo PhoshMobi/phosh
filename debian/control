@@ -135,6 +135,7 @@ Depends:
  ${misc:Depends},
 Conflicts:
  phosh (<< 0.45~rc1-3~),
+ phosh-mobile-settings (<< 0.59.0~),
 Description: Pure Wayland shell for mobile devices - Common files
  Phosh is a graphical shell for Wayland compositors speaking the layer-surface
  protocol and aimed at mobile devices like smart phones and tablets using touch
@@ -163,7 +164,7 @@ Depends:
  ${misc:Depends},
  ${shlibs:Depends},
 Breaks:
- phosh-mobile-settings (<< 0.44~),
+ phosh-mobile-settings (<< 0.59.0~),
 Description: Pure Wayland shell for mobile devices - Plugins
  Phosh is a graphical shell for Wayland compositors speaking the layer-surface
  protocol and aimed at mobile devices like smart phones and tablets using touch

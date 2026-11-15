@@ -1,3 +1,90 @@
+phosh (0.59.0) experimental; urgency=medium
+
+  [ Cynosure ]
+  * plugins/screenshot-quick-setting: Wait for top bar reveal.
+    Also simplify the comment and formatting.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1365
+
+  [ Guido Günther ]
+  * tests: Make DBus mocks verbose.
+    Otherwise failures are hard to debug
+  * tests: Test for modem service more robustly.
+    The messages can be already fetched via
+      assert self.phosh.wait_for_output(" Modem is present\n")
+    If we only wait we might miss them so check the buffer first,
+    then wait for the output.
+  * mobile-data-quick-setting: Sync initial state.
+    Otherwise we might end up with an active toggle although there's
+    nothing to activate.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1347
+  * po: Add load-meter desktop file
+  * data: Work around pipewire module leak.
+  * camera-manager: New object to track camera streams
+  * shell: Instantiate camera manager
+  * camera-status-icon: New plugin to show when camera is in use.
+  * data: Enable camera status icon by default.
+    Closes: https://gitlab.gnome.org/World/Phosh/phosh/-/work_items/1342
+  * tests: Avoid plain assert.
+    This allows us to build with -DG_DISABLE_ASSERT
+  * toplevel: Drop constructor.
+    We can use a property setter just fine
+    We'll need that later for ext-foreign-toplevel support
+  * toplevel: No need to set user data.
+    We get `self` as data in the listener callbacks
+  * toplevel: Use g_set_str.
+    This avoids unnecessary signal emissions
+  * toplevel: Use getters for getting properties.
+    This is our generic pattern to make sure getting a property
+    is always the same than calling the getter. This will also
+    help us later when we switch to ext-foreign-toplevel as it
+    hides that difference.
+  * toplevel: Remove unused headers
+  * toplevel-manager: Remove unused headers.
+    We get all the wayland protocol headers via phosh-wayland.h
+  * toplevel-manager: Handle all arrays the same.
+    Let all of them use a free func which then allows us to use
+    g_clear_pointer.
+    This also avoids leaking pending toplevels on dispose.
+  * toplevel-manager: Allow to compile out asserts on array operations.
+    Use `g_assert ()` rather than `g_assert_true ()` so we can compile out
+    the assertions. Drop a `find` right before a `remove` as there's no need
+    to traverse the list twice.
+  * ci: Add build with asserts disabled.
+    Makes sure we don't introduce any warnings with this variant
+  * packaging: Let libphosh-dev depend on pw
+
+  [ Danial Behzadi ]
+  * Update Persian translation
+
+  [ Emin Tufan Çetin ]
+  * Update Turkish translation
+
+  [ Martin ]
+  * Update Slovenian translation
+
+  [ Anders Jonsson ]
+  * Update Swedish translation
+
+  [ Yuri Chornoivan ]
+  * Update Ukrainian translation
+
+  [ Antonio Marin ]
+  * Update Romanian translation
+
+  [ Ekaterine Papava ]
+  * Update Georgian translation
+
+  [ Evangelos Ribeiro Tzaras ]
+  * data: Update list of adaptive apps
+    bazaar includes the changes in a released version since April 2026.
+    endeavour is recommended in phosh-pim, but has so far not been marked
+    as mobile friendly.
+
+  [ Jiri Grönroos ]
+  * Update Finnish translation
+
+ -- Guido Günther <agx@sigxcpu.org>  Sat, 14 Nov 2026 20:12:19 +0100
+
 phosh (0.59~rc1) experimental; urgency=medium
 
   [ Michel Lind ]
