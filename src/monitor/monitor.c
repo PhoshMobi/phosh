@@ -534,6 +534,8 @@ phosh_monitor_is_builtin (PhoshMonitor *self)
       return TRUE;
     else if (g_strcmp0 (self->name, "HEADLESS-1") == 0)
       return TRUE;
+    else if (g_strcmp0 (self->name, "Virtual-1") == 0)
+      return TRUE;
   }
 
   return phosh_monitor_connector_is_builtin (self->conn_type);
