@@ -597,7 +597,26 @@ phosh_home_set_background_alpha (PhoshHome *self, double alpha)
 
 
 static void
-phosh_home_dragged (PhoshDragSurface *drag_surface, int margin)
+phosh_home_set_thumbnail_overlay_progress (PhoshHome *self, double progress, gboolean hide_focused)
+{
+  if (self->thumbnail_overlay == NULL)
+    return;
+
+  phosh_thumbnail_overlay_set_progress (self->thumbnail_overlay, progress);
+  phosh_overview_set_active_activity_opacity (self->overview, progress, hide_focused);
+}
+
+
+static void
+phosh_home_destroy_thumbnail_overlay (PhoshHome *self)
+{
+  phosh_overview_set_active_activity_opacity (self->overview, 1.0, FALSE);
+  g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
+}
+
+
+static void
+phosh_home_dragged (PhoshDragSurface *drag_surface, int margin, gboolean dragged)
 {
   PhoshHome *self = PHOSH_HOME (drag_surface);
   int width, height;
@@ -608,10 +627,7 @@ phosh_home_dragged (PhoshDragSurface *drag_surface, int margin)
   /* Avoid negative values when resizing the surface */
   progress = MAX (0, progress);
 
-  if (self->thumbnail_overlay) {
-    phosh_thumbnail_overlay_set_progress (self->thumbnail_overlay, progress);
-    phosh_overview_set_active_activity_opacity (self->overview, progress);
-  }
+  phosh_home_set_thumbnail_overlay_progress (self, progress, TRUE);
 
   alpha = hdy_ease_out_cubic (progress);
   phosh_home_set_background_alpha (self, alpha);
@@ -624,6 +640,7 @@ on_drag_state_changed (PhoshHome *self)
   PhoshHomeState state = self->state;
   PhoshDragSurfaceState drag_state;
   gboolean kbd_interactivity = FALSE;
+  gboolean skip_overlay = FALSE;
 
   drag_state = phosh_drag_surface_get_drag_state (PHOSH_DRAG_SURFACE (self));
 
@@ -637,36 +654,40 @@ on_drag_state_changed (PhoshHome *self)
     }
     phosh_home_set_background_alpha (self, 1.0);
     phosh_overview_reset (self->overview);
-    g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
+    phosh_home_destroy_thumbnail_overlay (self);
     break;
   case PHOSH_DRAG_SURFACE_STATE_FOLDED:
     state = PHOSH_HOME_STATE_FOLDED;
     phosh_home_set_background_alpha (self, 0.0);
-    phosh_overview_set_active_activity_opacity (self->overview, 1.0);
-    g_clear_pointer (&self->thumbnail_overlay, phosh_cp_widget_destroy);
+    phosh_home_destroy_thumbnail_overlay (self);
     self->launching = FALSE;
     break;
   case PHOSH_DRAG_SURFACE_STATE_ANIMATED:
+    if (self->state == PHOSH_HOME_STATE_UNFOLDED) {
+      /* If it's an app launch rather than a focus change we skip the
+       * overlay to not fight with the launch splash */
+      if (self->launching) {
+        g_debug ("App launching, skipping thumbnail overlay");
+        skip_overlay = TRUE;
+      }
+    }
+    G_GNUC_FALLTHROUGH;
   case PHOSH_DRAG_SURFACE_STATE_DRAGGED:
     state = PHOSH_HOME_STATE_TRANSITION;
+    /* Refresh the overview once folded */
     if (self->state == PHOSH_HOME_STATE_FOLDED) {
       phosh_overview_refresh (self->overview);
       update_thumbnail_overlay_from_focused (self);
-    } else if (self->state == PHOSH_HOME_STATE_UNFOLDED) {
-      /* If it's an app launch rather than a focus change we skip the
-       * overlay to not fight with the launch splash */
-      if (drag_state == PHOSH_DRAG_SURFACE_STATE_ANIMATED && self->launching) {
-        g_debug ("App launching, skipping thumbnail overlay");
-      } else {
-        /* activity-raised might have already created the overlay */
-        if (!self->thumbnail_overlay)
-          update_thumbnail_overlay_from_focused (self);
-
-        if (self->thumbnail_overlay)
-          phosh_thumbnail_overlay_set_progress (self->thumbnail_overlay, 1.0);
-      }
-      self->launching = FALSE;
     }
+
+    if (self->state == PHOSH_HOME_STATE_UNFOLDED && !skip_overlay) {
+      /* activity-raised might have already created the overlay */
+      if (!self->thumbnail_overlay)
+        update_thumbnail_overlay_from_focused (self);
+
+      phosh_home_set_thumbnail_overlay_progress (self, 1.0, FALSE);
+    }
+    self->launching = FALSE;
     break;
   default:
     g_return_if_reached ();

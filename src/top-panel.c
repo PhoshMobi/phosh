@@ -558,7 +558,7 @@ ease_in_quintic (double p)
 
 
 static void
-phosh_top_panel_dragged (PhoshDragSurface *drag_surface, int margin)
+phosh_top_panel_dragged (PhoshDragSurface *drag_surface, int margin, gboolean dragged)
 {
   PhoshTopPanel *self = PHOSH_TOP_PANEL (drag_surface);
   int width, height;
